@@ -1,0 +1,169 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+    background-color: #292b2c;
+    padding: 20px 0;
+}
+
+header .logo h1 {
+    color: #fff;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    display: inline-block;
+    float: right;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+header nav ul li a:hover {
+    color: #00aaff;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('https://source.unsplash.com/1600x900/?machine-learning,technology');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 150px 20px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 12px 30px;
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: #0077cc;
+}
+
+/* About Section */
+.about {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.about p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.feature-item {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+.feature-item h3 {
+    font-size: 24px;
+    color: #0077cc;
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Footer Section */
+footer {
+    background-color: #292b2c;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer p a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
