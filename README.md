@@ -21,7 +21,7 @@ Welcome to **ML Fusion Labs**! This project aims to provide an interactive platf
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your username/ML-Fusion-Lab-Website.git
+    git clone https://github.com/your-username/ML-Fusion-Lab-Website.git
     ```
 2. Navigate into the project directory:
     ```bash
