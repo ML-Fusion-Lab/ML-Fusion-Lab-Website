@@ -104,5 +104,11 @@ To ensure high-quality contributions to the project, follow these guidelines:
 ### Long-Term Vision
 
 - **AI-Driven Learning Paths**: Develop personalized, AI-driven learning paths based on user performance and interaction.
+
 - **Mobile Application**: Eventually expand ML Fusion Labs into a mobile application for on-the-go learning.
+
 - **Global Community**: Build a larger, global community where users can collaborate on ML projects and share their knowledge.
+
+## 🙏 Support
+
+Don't forget to leave a star ⭐ for this repository!
