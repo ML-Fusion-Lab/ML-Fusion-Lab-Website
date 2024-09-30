@@ -454,38 +454,130 @@ footer p a:hover {
     text-decoration: underline;
 }
 
+.contact-hero {
+    background-image: url('https://source.unsplash.com/1600x900/?contact,communication');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+    z-index: 1;
+}
+
+.contact-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contact-hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+/* Contact Us Section */
+.contact-us {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.contact-us h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
 .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    text-align: left;
 }
 
 .contact-form label {
     font-size: 18px;
     font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
 }
 
-.contact-form input, .contact-form textarea {
-    padding: 15px;
-    font-size: 16px;
+.contact-form input, 
+.contact-form textarea {
     width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
     border-radius: 10px;
     border: 1px solid #ddd;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+    border-color: #00c6ff;
+    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+    outline: none;
 }
 
 .contact-form button {
-    padding: 15px;
+    display: inline-block;
+    padding: 15px 40px;
     background-color: #00c6ff;
     color: white;
     border: none;
     border-radius: 50px;
     font-size: 18px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form button:hover {
     background-color: #0077cc;
+}
+
+.contact-form button:active {
+    background-color: #005fa3;
+    box-shadow: none;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
 }
