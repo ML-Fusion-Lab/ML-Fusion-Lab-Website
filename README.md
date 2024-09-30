@@ -127,13 +127,8 @@ Contributions are welcome! To contribute, You can follow these steps:
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-## Contributing is fun🧡
-
----
-
-## 📢 Support
+## Support🧡
 
 If you find this project helpful, please consider giving it a ⭐ on GitHub,  Happy Coding!
----
 
 Thank you for contributing to the ML Fusion Lab! Your efforts help make this project better for everyone. 🎉🚀
