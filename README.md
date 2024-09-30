@@ -1,10 +1,14 @@
 # ML Fusion Labs - Learn Machine Learning
 
-![ML Fusion Lab](https://github.com/user-attachments/assets/b0ab1152-9536-4d6c-b86d-3cf989c190e0)
+![image](https://github.com/user-attachments/assets/f60d6fd1-9749-44b1-b518-9b859683dc9a)
 
-Welcome to **ML Fusion Lab**! This platform helps you learn machine learning from scratch, explore real-world projects, and contribute your own machine learning endeavors.
+Welcome to **ML Fusion Lab**!.
 
 ---
+
+## Introduction📌
+
+This project aims to provide an interactive platform where users can learn machine learning from scratch, explore projects, and contribute their own machine learning endeavors.
 
 ## 📚 Key Features
 
@@ -34,14 +38,14 @@ Welcome to **ML Fusion Lab**! This platform helps you learn machine learning fro
 
 ---
 
-## 🛠️ Project Structure
+## Technology Used🚀
 
-- `index.html` - The homepage of the website.
-- `courses.html` - A page listing all machine learning courses.
-- `styles.css` - Stylesheet for website design.
-- `script.js` - JavaScript for interactivity and functionality.
+<p>
+  <a href="https://www.w3schools.com/html/"> <img src="https://img.icons8.com/color/70/000000/html-5--v1.png" alt="HTML" /></a>
+  <a href="https://www.w3schools.com/css/"> <img src="https://img.icons8.com/color/70/000000/css3.png" alt="CSS" /></a>
+  <a href="https://www.w3schools.com/js/"><img src="https://img.icons8.com/color/70/000000/javascript--v1.png" alt="JS" /></a>
+</p>
 
----
 
 ## 🎯 Contributing
 
