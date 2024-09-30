@@ -133,6 +133,6 @@ Contributions are welcome! To contribute, You can follow these steps:
 
 If you find this project helpful, please consider giving it a ⭐ on GitHub,  Happy Coding!
 
-[!Discord](https://img.shields.io/badge/Join%20the%20Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/FZxBRpTEeH)
+[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/FZxBRpTEeH)
          
 Thank you for contributing to the ML Fusion Lab! Your efforts help make this project better for everyone. 🎉🚀
