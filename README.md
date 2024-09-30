@@ -29,6 +29,10 @@ This project aims to provide an interactive platform where users can learn machi
 ![image](https://github.com/user-attachments/assets/3b18330d-db03-4e4d-adef-28fbf5a4401a)
 
 ---
+## Overview⭐
+
+Live Project -- [https://ml-fusion-lab.netlify.app/](https://ml-fusion-lab.netlify.app/)
+
 
 ## 🚀 Getting Started
 
