@@ -48,39 +48,57 @@ Live Project -- [https://ml-fusion-lab.netlify.app/](https://ml-fusion-lab.netli
 
 Remember to follow this practice to streamline collaboration and keep the project organized! 😊
 
-
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/your-username/ML-Fusion-Lab-Website.git
-    ```
-
-2. **Navigate into the project directory:**
-
-    ```bash
-    cd ml-fusion-labs
-    ```
-
-3. **Open `index.html` in your browser to view the website.**
-
----
-
 ## 🎯 Contributing
 
-Contributions are welcome! You can:
+Contributions are welcome! To contribute, You can follow these steps:
 
-- Add new tutorials, projects, or sections.
-- Improve the website design or add interactivity.
-- Fix bugs or other issues.
 
-To contribute, follow these steps:
+### Fork the Repository 🍴
 
-1. **Fork** this repository.
-2. Create a new branch: `feature/your-feature-name`.
-3. Commit your changes: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin feature/your-feature-name`.
-5. Submit a pull request.
+1. Navigate to the [ML Fusion Lab repository](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website).
+2. Click the "Fork" button at the top right of the page.
 
+### Clone Your Fork 💻
+
+1. Open GitHub Desktop.
+2. Click on "File" > "Clone Repository".
+3. Select the forked repository and choose the local path where you want to save it.
+4. Click "Clone".
+
+### Create a Branch 🌿
+
+1. In GitHub Desktop, click on "Current Branch" and select "New Branch".
+2. Name your branch descriptively, e.g., `feature-add-animation`.
+3. Click "Create Branch".
+
+## Making And Committing the Changes
+
+### Open the Repository in Your Editor 🖥️
+
+1. In GitHub Desktop, click on "Repository" > "Open in Visual Studio Code" (or your preferred editor).
+
+### Implement Your Changes 🔧
+
+1. Make your changes in the code editor.
+2. Save your changes.
+
+### Commit Your Changes 💾
+
+1. In GitHub Desktop, you should see your changes listed.
+2. Enter a summary for your commit and a detailed description if necessary.
+3. Click "Commit to `your-branch-name`".
+
+### Push Your Changes 📤
+
+1. Click "Push origin" in GitHub Desktop to push your changes to your forked repository on GitHub.
+
+## Submit a Pull Request 🔄
+
+1. Navigate to your forked repository on GitHub.
+2. Click on the "Compare & pull request" button.
+3. Ensure the base repository is `ML-Fusion-Lab/ML-Fusion-Lab-Website/` and the base branch is `main`.
+4. Add a title and description for your pull request.
+5. Click "Create pull request".
 ---
 
 ## 👥 Contributors
