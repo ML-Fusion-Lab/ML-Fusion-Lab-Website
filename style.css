@@ -246,19 +246,125 @@ footer p a:hover {
     color: #555;
 }
 
-/* Hero Section for Projects, About, and Contact */
-.projects-hero, .about-hero, .contact-hero {
-    background-image: url('https://source.unsplash.com/1600x900/?technology,team');
+/* Projects Page Specific Styles */
+.projects-hero {
+    background-image: url('https://source.unsplash.com/1600x900/?projects,machine-learning');
     background-size: cover;
     background-position: center;
     color: white;
     padding: 100px 20px;
     text-align: center;
+    position: relative;
 }
 
-.projects-hero h2, .about-hero h2, .contact-hero h2 {
+.projects-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
+    z-index: 1;
+}
+
+.projects-hero .hero-content {
+    position: relative;
+    z-index: 2; /* Make sure the content is above the overlay */
+}
+
+.projects-hero h2 {
     font-size: 48px;
     font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.projects-hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* Projects Section */
+.projects {
+    padding: 80px 20px;
+    background-color: #f9f9f9; /* Light background for contrast */
+}
+
+.projects h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Space between project items */
+}
+
+.project-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Fixed width for project items */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth effects */
+}
+
+.project-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.project-item h3 {
+    font-size: 24px;
+    color: #0077cc;
+    margin-bottom: 15px;
+}
+
+.project-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px; /* Space before the button */
+}
+
+.project-item .btn {
+    padding: 10px 20px;
+    background-color: #00c6ff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.project-item .btn:hover {
+    background-color: #0077cc; /* Darker on hover */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
 }
 
 .contact-form {
