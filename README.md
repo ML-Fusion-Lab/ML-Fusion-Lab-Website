@@ -4,6 +4,8 @@
 
 Welcome to **ML Fusion Lab**!.
 
+![image](https://github.com/user-attachments/assets/be4a8f54-f883-4da8-b31a-f4491decff82)
+
 ---
 
 ## Introduction📌
