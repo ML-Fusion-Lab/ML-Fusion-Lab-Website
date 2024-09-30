@@ -581,3 +581,97 @@ footer p a {
 footer p a:hover {
     text-decoration: underline;
 }
+
+.privacy-hero {
+    background-image: url('https://source.unsplash.com/1600x900/?security,privacy');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.privacy-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+    z-index: 1;
+}
+
+.privacy-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.privacy-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.privacy-hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+/* Privacy Policy Section */
+.privacy-policy {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: left;
+}
+
+.privacy-policy h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.privacy-policy p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+
+.privacy-policy h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0077cc;
+    font-weight: 600;
+}
+
+.privacy-policy p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
