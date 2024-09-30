@@ -1,3 +1,3 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Welcome to ML Fusion Labs!");
+    console.log("Welcome to ML Fusion Lab!");
 });
