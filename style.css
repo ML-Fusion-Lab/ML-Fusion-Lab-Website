@@ -245,3 +245,54 @@ footer p a:hover {
     font-size: 16px;
     color: #555;
 }
+
+/* Hero Section for Projects, About, and Contact */
+.projects-hero, .about-hero, .contact-hero {
+    background-image: url('https://source.unsplash.com/1600x900/?technology,team');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.projects-hero h2, .about-hero h2, .contact-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form label {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.contact-form button {
+    padding: 15px;
+    background-color: #00c6ff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #0077cc;
+}
