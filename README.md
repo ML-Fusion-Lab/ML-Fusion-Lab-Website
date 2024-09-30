@@ -96,58 +96,44 @@ Contributions are welcome! To contribute, You can follow these steps:
 
 1. Navigate to your forked repository on GitHub.
 2. Click on the "Compare & pull request" button.
-3. Ensure the base repository is `ML-Fusion-Lab/ML-Fusion-Lab-Website/` and the base branch is `main`.
+3. Ensure the base repository is `ML-Fusion-Lab/ML-Fusion-Lab-Website` and the base branch is `main`.
 4. Add a title and description for your pull request.
 5. Click "Create pull request".
 ---
 
+## How to Report Bugs 🐛
+
+1. **Check Existing Issues:** Before opening a new issue, check if the bug has already been reported.
+2. **Open a New Issue:** If the bug is new, open an issue on the [Issues page](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues).
+3. **Provide Details:** Include as much information as possible, such as steps to reproduce the bug, expected behavior, and screenshots if applicable.
+
+## How to Request Enhancements 🌟
+
+1. **Check Existing Issues:** Before suggesting a new feature, check if it has already been proposed.
+2. **Open a New Issue:** If the feature is new, open an issue on the [Issues page](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues).
+3. **Provide Details:** Clearly describe the enhancement and why it would be beneficial.
+
 ## 👥 Contributors
 
-- Mention contributors here or link to the contributors' section on GitHub.
+<table>
+	<tr>
+		<td>
+			<a href="https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/graphs/contributors">
+			  <img src="https://contrib.rocks/image?repo=ML-Fusion-Lab/ML-Fusion-Lab-Website" />
+</a>
+		</td>
+	</tr>
+</table>
 
----
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-## 📝 Future Updates
-
-We plan to introduce several new features in the coming months:
-
-1. **User Authentication**  
-   Allow users to sign up and log in, track course progress, and share projects.
-  
-2. **Interactive ML Playground**  
-   Experiment with ML models directly on the platform with real-time feedback.
-  
-3. **Certifications & Badges**  
-   Track course progression and offer certificates for course completion.
-
-4. **Search Functionality**  
-   Find courses, projects, and tutorials quickly through an enhanced search bar.
-
-5. **Discussion Forum**  
-   A community-driven forum for engaging in ML discussions and questions.
-
-6. **Blog Section**  
-   Tutorials, industry insights, and updates in the machine learning field.
-
-7. **Improved UI/UX**  
-   Better responsiveness, accessibility, and an overall improved design.
+## Contributing is fun🧡
 
 ---
 
 ## 📢 Support
 
-If you find this project helpful, please consider giving it a ⭐ on GitHub!
-
-![Support Us](path_to_support_image)
-
+If you find this project helpful, please consider giving it a ⭐ on GitHub,  Happy Coding!
 ---
 
-## 📷 Images
-
-Add your images in the following locations:
-
-- **Logo**: At the top, for a visually appealing introduction.
-- **Courses Screenshot**: Below the "Key Features" section to showcase the available courses.
-- **Interactive Playground Screenshot**: Under "Future Updates" to preview upcoming features.
-- **Support Us**: Towards the end to encourage contributions or GitHub stars.
-
+Thank you for contributing to the ML Fusion Lab! Your efforts help make this project better for everyone. 🎉🚀
