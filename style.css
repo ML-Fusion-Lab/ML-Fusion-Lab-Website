@@ -18,44 +18,52 @@ body {
     margin: 0 auto;
 }
 
-/* Header Styles */
+/* Header Styles - Refined */
 header {
     background-color: #1a1a1a;
-    padding: 20px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 50px; /* Adjusted padding for more space(35 to 30px) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 3px solid #00c6ff;
+    display: flex; /* Flexbox for better alignment */
+    justify-content: space-between; /* Space between logo and navigation */
+    align-items: center;
 }
 
 header .logo h1 {
     color: #fff;
-    display: inline-block;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 36px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0; /* Remove margin for better centering */
+    padding-bottom: 25px;
 }
 
 header nav ul {
     list-style: none;
-    display: inline-block;
-    float: right;
+    display: flex;
+    gap: 50px; /* Increase spacing between nav items */
 }
 
 header nav ul li {
-    display: inline;
-    margin: 0 15px;
+    margin: 0; /* Remove extra margin */
 }
 
 header nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 16px;
-    transition: color 0.3s;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding-bottom: 5px;
 }
 
 header nav ul li a:hover {
     color: #00c6ff;
+    border-bottom: 2px solid #00c6ff;
 }
 
 /* Hero Section */
