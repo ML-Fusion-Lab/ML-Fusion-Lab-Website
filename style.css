@@ -411,6 +411,13 @@ footer p a:hover {
     gap: 30px; /* Space between project items */
 }
 
+h1 {
+    text-align: center; 
+    margin: 0; 
+    font-size: 2rem; 
+    width: 100%; 
+}
+
 .project-item {
     background-color: white;
     padding: 30px;
