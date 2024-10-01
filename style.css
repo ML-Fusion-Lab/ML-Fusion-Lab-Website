@@ -1,4 +1,5 @@
 /* Global Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,9 +14,13 @@ body {
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
+    text-align: center;
+    width: 80%;
+    max-width: 12000px;
     margin: 0 auto;
+}
+.container h2{
+    font-size: 40px;
 }
 
 /* Header Styles */
@@ -58,6 +63,12 @@ header nav ul li a:hover {
     color: #00c6ff;
 }
 
+.about{
+    background-color: silver;
+    color: grey;
+    padding: 150px 20px;
+    text-align: center;
+}
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://source.unsplash.com/1600x900/?machine-learning,technology') center/cover;
