@@ -21,7 +21,7 @@ body {
 /* Header Styles */
 header {
     background-color: #1a1a1a;
-    padding: 20px 0;
+    padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -37,13 +37,30 @@ header .logo h1 {
 
 header nav ul {
     list-style: none;
-    display: inline-block;
-    float: right;
+    display: flex;
+    gap: 20px;
 }
 
-header nav ul li {
-    display: inline;
-    margin: 0 15px;
+#second-nav{
+    background-color: #00A4E3;
+    padding: 10px 0px 10px 0px;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+}
+
+#second-nav ol{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+#second-nav ol li a{
+    text-decoration: none;
+    color: #fff;
 }
 
 header nav ul li a {
@@ -56,6 +73,18 @@ header nav ul li a {
 
 header nav ul li a:hover {
     color: #00c6ff;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#menu-icon{
+    display: none;
+    color: #fff;
+    font-size: 25px;
 }
 
 /* Hero Section */
@@ -77,7 +106,7 @@ header nav ul li a:hover {
     margin-bottom: 30px;
 }
 
-.btn {
+#btn {
     padding: 15px 40px;
     background: #00c6ff;
     color: white;
@@ -90,7 +119,7 @@ header nav ul li a:hover {
     transition: background 0.3s;
 }
 
-.btn:hover {
+#btn:hover {
     background: #0077cc;
 }
 
@@ -788,4 +817,31 @@ footer p a {
 
 footer p a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 698px) {
+    #nav-ul{
+        display: none;
+    }
+
+    #menu-icon{
+        display: block;
+    }
+}
+
+@media (max-width: 586px) {
+    .feature-grid{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .feature-item{
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px) {
+    #home-img{
+        width: 300px;
+    }
 }

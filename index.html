@@ -9,28 +9,41 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1>ML Fusion Labs</h1>
+                <h1 class="animate__animated animate__backInLeft animate__delay-0s">ML Fusion Labs</h1>
             </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
+            <ul id="nav-ul">
+                <li class="animate__animated animate__backInRight animate__delay-0s"><a href="index.html">Home</a></li>
+                <li class="animate__animated animate__backInRight animate__delay-0s"><a href="courses.html">Courses</a></li>
+                <li class="animate__animated animate__backInRight animate__delay-0s"><a href="projects.html">Projects</a></li>
+                <li class="animate__animated animate__backInRight animate__delay-0s"><a href="about.html">About Us</a></li>
+                <li class="animate__animated animate__backInRight animate__delay-0s"><a href="contact.html">Contact</a></li>
             </ul>
+            <span class="animate__animated animate__flip animate__delay-0s"><i class="fa-solid fa-bars" id="menu-icon" onclick="activeNav()"></i></span>
         </nav>
     </header>
 
+    <div id="second-nav">
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ol>
+    </div>
+
     <section class="hero">
         <div class="hero-content">
-            <h2>Learn Machine Learning with Us</h2>
-            <p>We provide top-notch resources to help you master machine learning, from basics to advanced levels.</p>
-            <a href="courses.html" class="btn">Explore Courses</a>
+            <h2 class="animate__animated animate__bounceInDown animate__delay-1s">Learn Machine Learning with Us</h2>
+            <p class="animate__animated animate__bounceIn animate__delay-2s">We provide top-notch resources to help you master machine learning, from basics to advanced levels.</p>
+            <a href="courses.html" id="btn">Explore Courses</a>
         </div>
     </section>
 
@@ -41,7 +54,7 @@
             </center>
             <div id="about-content">
             <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all. Whether you are a beginner or an experienced professional, ML Fusion Labs has something to offer for everyone.</p>
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coding Team">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coding Team" id="home-img">
             </div>
         </div>
     </section>
@@ -72,5 +85,7 @@
             <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         </div>
     </footer>    
+
+    <script src="script.js"></script>
 </body>
 </html>
