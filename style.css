@@ -26,6 +26,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+
 }
 
 header .logo h1 {
@@ -33,16 +35,22 @@ header .logo h1 {
     display: inline-block;
     font-weight: 700;
     font-size: 28px;
+    margin-left: 20px;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header nav ul {
     list-style: none;
-    display: inline-block;
-    float: right;
+    display: flex;
+    margin-right: 20px;
 }
 
 header nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
@@ -51,11 +59,15 @@ header nav ul li a {
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 header nav ul li a:hover {
     color: #00c6ff;
+    background-color: rgba(0, 198, 255, 0.1);
+    transform: scale(1.05);
 }
 
 /* Hero Section */
