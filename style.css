@@ -151,6 +151,11 @@ header nav ul li a {
   color: white;
   padding: 150px 20px;
   text-align: center;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+    color: white;
+    padding: 150px 20px;
+    text-align: center;
 }
 
 .hero-content h2 {
@@ -181,6 +186,26 @@ header nav ul li a {
   background: #0077cc;
 }
 
+.about h2{
+    font-size: 36px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+.about p{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.about img{
+    max-width: 400px;
+    margin: 20px auto;
+}
+#about-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
 /* About Us Page Specific Styles */
 .about-hero {
   background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
