@@ -21,7 +21,7 @@ body {
 /* Header Styles */
 header {
     background-color: #1a1a1a;
-    padding: 20px 0;
+    padding: 15px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -33,17 +33,20 @@ header .logo h1 {
     display: inline-block;
     font-weight: 700;
     font-size: 28px;
+    padding-left: 15px;
 }
+/* new line of code */
 
 header nav ul {
     list-style: none;
-    display: inline-block;
+    /* display: inline-block; */
     float: right;
 }
 
 header nav ul li {
     display: inline;
     margin: 0 15px;
+    font-size: 25px;
 }
 
 header nav ul li a {
@@ -56,6 +59,48 @@ header nav ul li a {
 
 header nav ul li a:hover {
     color: #00c6ff;
+}
+
+/* what we offer section */
+
+.features-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(25% - 30px);
+    
+    text-align: center;
+    transition: transform 0.3s ease;
+   font-weight: bold;
+   display: flex;
+}
+.features-card h4{
+    font-weight: 400;
+}
+#display{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+   
+    
+}
+
+/* Hover effect */
+.features-card:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    transform: translateY(-10px); /* Slight lift effect */
+}
+
+/* features img */
+.features-card img {
+    margin-bottom: 15px;
+}
+
+.features-card h4 {
+    font-size: 18px;
+    color: #333;
 }
 
 /* Hero Section */
@@ -96,13 +141,14 @@ header nav ul li a:hover {
 
 /* About Us Page Specific Styles */
 .about-hero {
-    background-image: url('https://source.unsplash.com/1600x900/?team,collaboration');
+    background-image: url('https://images.ctfassets.net/rkv150f3eozw/7b6PQbEhY0EriSHH21hDQJ/b40b67f7097c1fc4382e6af20f29c4c1/Career_Background_Image.jpg');
     background-size: cover;
     background-position: center;
     color: white;
     padding: 100px 20px;
     text-align: center;
     position: relative;
+    padding-top: 200px;
 }
 
 .about-hero::before {
@@ -136,7 +182,7 @@ header nav ul li a:hover {
 }
 
 .about-us {
-    padding: 80px 20px;
+    padding: 30px 30px;
     background-color: #f9f9f9;
     text-align: center;
 }
@@ -148,7 +194,7 @@ header nav ul li a:hover {
 }
 
 .about-us p {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.8;
     color: #555;
     max-width: 900px;
@@ -769,3 +815,12 @@ footer p a {
 footer p a:hover {
     text-decoration: underline;
 }
+
+#h2text{
+    font-family: 'Roc Grotesk', sans-serif;
+    font-size: 3.125rem;
+    font-weight: 700;
+    line-height: 3.125rem;
+}
+
+
