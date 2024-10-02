@@ -5,6 +5,118 @@
 }
 
 body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* Header Styles */
+header {
+  background-color: #000000;
+  padding: 20px 50px; /* Adjusted padding for more space(35 to 30px) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #00c6ff;
+  display: flex; /* Flexbox for better alignment */
+  justify-content: space-between; /* Space between logo and navigation */
+  align-items: center;
+}
+
+header .logo h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0; /* Remove margin for better centering */
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 50px; /* Increase spacing between nav items */
+}
+header nav ul{
+  gap: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+header nav ul li {
+  margin: 0; /* Remove extra margin */
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 24px;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 5px;
+  background-color: #333;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-radius: 0.75rem; 
+}
+
+header nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
+}
+header nav .brand {
+color: #fff;
+font-weight: 700;
+font-size: 1.5rem;
+text-decoration: none;
+}
+header nav .logo h1 {
+color: #fff;
+font-weight: 700;
+font-size: 28px;
+margin: 0; /* Remove margin */
+}
+
+header nav ul {
+list-style: none;
+display: flex;
+margin: 0;
+padding: 0;
+}
+
+header nav ul li {
+margin: 0 0.5rem; /* Reduce margin between items */
+}
+
+header nav ul li a {
+color: #fff;
+text-decoration: none;
+font-weight: 500;
+font-size: 16px;
+padding: 0.5rem 0.75rem; /* Adjust padding for links */
+transition: color 0.3s ease;
+}
+
+header{
+  width: 100%; 
+  position: sticky;
+}
+nav{
+  width: 100%; /* made width full so that there there will be some space between navbar elements */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo h1{
+  padding: 0;
+}
 
 .container h2{
     font-size: 40px;
@@ -74,95 +186,6 @@ body {
     box-shadow: 20px 20px 20px grey;
 }
 
-/* Header Styles */
-header {
-
-    background-color: #1a1a1a;
-    padding: 20px 50px; /* Adjusted padding for more space(35 to 30px) */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 3px solid #00c6ff;
-    display: flex; /* Flexbox for better alignment */
-    justify-content: space-between; /* Space between logo and navigation */
-    align-items: center;
-}
-
-header .logo h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0; /* Remove margin for better centering */
-    padding-bottom: 25px;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 50px; /* Increase spacing between nav items */
-}
-
-header nav ul li {
-    margin: 0; /* Remove extra margin */
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 18px;
-    transition: color 0.3s, border-bottom 0.3s;
-    padding-bottom: 5px;
-
-  background-color: #333;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
-}
-header nav .brand {
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-header nav .logo h1 {
-  color: #fff;
-  font-weight: 700;
-  font-size: 28px;
-  margin: 0; /* Remove margin */
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-header nav ul li {
-  margin: 0 0.5rem; /* Reduce margin between items */
-}
-
-header nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 0.5rem 0.75rem; /* Adjust padding for links */
-  transition: color 0.3s ease;
-
-}
 
 /* Responsive styles */
 @media (max-width: 900px) {
@@ -246,8 +269,8 @@ header nav ul li a {
 }
 
 .about{
-    background-color: silver;
-    color: grey;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     padding: 150px 20px;
     text-align: center;
 }
@@ -264,6 +287,11 @@ header nav ul li a {
     color: white;
     padding: 150px 20px;
     text-align: center;
+    border-bottom: 2px solid #00c6ff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero-content h2 {
@@ -280,7 +308,7 @@ header nav ul li a {
 .btn {
   padding: 15px 40px;
   background: #00c6ff;
-  color: white;
+  color: black;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -292,21 +320,57 @@ header nav ul li a {
 
 .btn:hover {
   background: #0077cc;
+  color: white; 
+}
+
+.about{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.about p{
+  font-size: 20px;
+}
+.about_sec{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(255, 255, 255, 0.503);
+  border-radius: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.content{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 30px;
+}
+.content_text{
+  height: 100%;
+  width: 50vw;
+  padding: 20px 50px;
+}
+.content_img{
+  width: 50vw;
+  padding: 20px 50px;
+}
+.content_img img{
+  border-radius: 20px;
 }
 
 .about h2{
     font-size: 36px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 900;
+
 }
 .about p{
+  font-size: 22px;
     max-width: 800px;
     margin: 0 auto;
 }
 .about img{
     max-width: 400px;
-    margin: 20px auto;
 }
 #about-content{
     display: flex;
