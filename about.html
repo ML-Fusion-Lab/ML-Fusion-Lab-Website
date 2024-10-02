@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
     <style>
+        .logo {
+    margin: 5px 0 0 0;
+    margin-left: 30px;
+    display: flex;
+}
+.logo-content{
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 10px;
+  font-size: 35px;
+}
          footer {
             background: #333;
             color: white;
@@ -39,19 +51,24 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav>
+    <header >
+
+        <nav class="design">
             <div class="logo">
-                <h1>ML Fusion Labs</h1>
+                
+                <h1><img src="ml fusion lab log.jpg" alt="logo" width="130" height="130"/></h1>
+                <h2 class="logo-content">ML FUSION LABS</h2>
             </div>
+          <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-        </nav>
+      </nav>
+
     </header>
 
     <section class="about-hero">

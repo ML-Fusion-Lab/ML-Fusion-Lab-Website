@@ -22,7 +22,6 @@
     z-index: 100;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
-
 /* Hover Effect */
 #scrollTopBtn:hover {
     background-color: #f1f1f1; /* Slightly darker background on hover */

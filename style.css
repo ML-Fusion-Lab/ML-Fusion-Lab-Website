@@ -78,13 +78,11 @@ body {
 header {
 
     background-color: #1a1a1a;
-    padding: 20px 20px; /* Adjusted padding for more space(35 to 30px) */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 3px solid #00c6ff;
-    display: flex; /* Flexbox for better alignment */
     justify-content: space-between; /* Space between logo and navigation */
     align-items: center;
 }
@@ -96,7 +94,7 @@ header .logo h1 {
     letter-spacing: 2px;
     text-transform: uppercase;
     margin: 0; /* Remove margin for better centering */
-    padding-bottom: 25px;
+
 }
 
 header nav ul {
@@ -104,20 +102,18 @@ header nav ul {
     display: flex;
     gap: 50px; /* Increase spacing between nav items */
 }
-
 header nav ul li {
     margin: 0; /* Remove extra margin */
 }
-
 header nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 18px;
     transition: color 0.3s, border-bottom 0.3s;
     padding-bottom: 5px;
 
-  background-color: #333;
+  background-color: #3d3c3c;
   padding: 1rem 2rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
@@ -128,7 +124,6 @@ header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
 }
 header nav .brand {
   color: #fff;
@@ -157,8 +152,8 @@ header nav ul li {
 header nav ul li a {
   color: #fff;
   text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 20px;
   padding: 0.5rem 0.75rem; /* Adjust padding for links */
   transition: color 0.3s ease;
 

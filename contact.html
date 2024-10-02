@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
     <style>
+        header {
+    height: 150px;
+}
+.logo {
+    margin: 5px 0 0 0;
+    margin-left: 30px;
+    display: flex;
+}
+.logo-content{
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 10px;
+  font-size: 35px;
+}
         footer {
            background: #333;
            color: white;
@@ -40,19 +55,24 @@
 
 </head>
 <body>
-    <header>
-        <nav>
+    <header >
+
+        <nav class="design">
             <div class="logo">
-                <h1>ML Fusion Labs</h1>
+                
+                <h1><img src="ml fusion lab log.jpg" alt="logo" width="130" height="130"/></h1>
+                <h2 class="logo-content">ML FUSION LABS</h2>
             </div>
+          <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-        </nav>
+      </nav>
+
     </header>
 
     <section class="contact-hero">
@@ -67,13 +87,13 @@
             <h2>Get in Touch</h2>
             <form action="submit_form.php" method="post" class="contact-form">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="text" id="name" name="name" style="font-family:sans-serif;" placeholder="Your Name" required>
                 
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <input type="email" id="email" name="email" style="font-family:sans-serif;" placeholder="Your Email" required>
                 
                 <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                <textarea id="message" name="message" rows="5" style="font-family:sans-serif;" placeholder="Your Message" required></textarea>
                 
                 <button type="submit" class="btn">Send Message</button>
             </form>
