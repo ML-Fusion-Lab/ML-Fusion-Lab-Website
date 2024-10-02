@@ -10,6 +10,71 @@ body {
     font-size: 40px;
 }
 
+/*Newsletter Styles*/
+.newsletter{
+    height: 200px;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px solid white;
+}
+.newsletter-left{
+    margin-left: 60px;
+}
+.newsletter-left h1{
+    font-size: 1.5rem;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.newsletter-left p{
+    font-size: 1rem;
+    font-family: Poppins;
+    font-weight: 300;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-right: 150px;
+  }
+  
+  .input {
+    min-height: 50px;
+    width: 250px;
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid #00c6ff;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+  }
+  
+  .button--submit {
+    min-height: 50px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #00c6ff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+  }
+  
+  .button--submit:hover {
+    background-color: #00c6ff;
+  }
+
+.container img {
+    border-radius: 15px; /* Adjust the value as needed */
+    box-shadow: 20px 20px 20px grey;
+}
+
+/* Header Styles */
 header {
 
     background-color: #1a1a1a;
