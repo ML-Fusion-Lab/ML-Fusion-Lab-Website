@@ -118,13 +118,13 @@ Contributions are welcome! To contribute, You can follow these steps:
 ## 👥 Contributors
 
 <table>
-	<tr>
-		<td>
-			<a href="https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/graphs/contributors">
-			  <img src="https://contrib.rocks/image?repo=ML-Fusion-Lab/ML-Fusion-Lab-Website" />
-</a>
-		</td>
-	</tr>
+  <tr>
+    <td>
+      <a href="https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/graphs/contributors">
+        <img src="https://contrib.rocks/image?repo=ML-Fusion-Lab/ML-Fusion-Lab-Website" alt="Contributors Image" />
+      </a>
+    </td>
+  </tr>
 </table>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
