@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Machine Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 15px 0;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        header nav .logo h1 {
+            margin: 0;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul li {
+            margin-left: 20px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex: 1; /* Allow the section to grow and push the footer down */
+        }
+        section h2 {
+            margin-bottom: 20px;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        .footer-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .footer-links, .footer-socials {
+            margin: 10px 0;
+        }
+        .footer-links a, .footer-socials a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s; /* Add transition for hover effect */
+        }
+        .footer-links a:hover, .footer-socials a:hover {
+            color: #007BFF; /* Change color on hover */
+        }
+        .footer-contact {
+            margin: 10px 0;
+        }
+        .hidden {
+            display: none;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>ML Fusion Labs</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Introduction to Machine Learning</h2>
+        <p>Welcome to the Introduction to Machine Learning course. This course covers the basic concepts of machine learning, including types of ML and key algorithms.</p>
+        <p class="hidden" id="details">By the end of this course, you will have a solid foundation in machine learning and be prepared to tackle more advanced topics. This includes practical applications and hands-on projects that enhance your learning experience.</p>
+        <a href="#" class="btn" onclick="showDetails()">Learn More</a>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a> | 
+                <a href="about.html">About Us</a> | 
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-socials">
+                Follow us on: 
+                <a href="https://facebook.com" target="_blank">Facebook</a> | 
+                <a href="https://twitter.com" target="_blank">Twitter</a> | 
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showDetails() {
+            const details = document.getElementById('details');
+            details.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
