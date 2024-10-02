@@ -11,7 +11,22 @@ body {
     color: #333;
     line-height: 1.6;
 }
-
+.MYnav{
+    background-color: #1a1a1a;
+    color: white;
+}
+.MYnav li {
+    margin-top: -22px;
+}
+.logoOfnav{
+    margin-top: -22px;
+ margin-left: 2px;
+ margin-right: 660px;
+ width: 200px;
+ height: 78px;
+ object-fit: cover;
+ overflow: hidden;
+}
 .container {
     width: 90%;
     max-width: 1200px;
@@ -20,6 +35,7 @@ body {
 
 /* Header Styles */
 header {
+    height: 60px;
     background-color: #1a1a1a;
     padding: 20px 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
