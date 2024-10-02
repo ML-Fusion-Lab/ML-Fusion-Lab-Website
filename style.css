@@ -76,92 +76,68 @@ body {
 
 /* Header Styles */
 header {
-
-    background-color: #1a1a1a;
-    padding: 20px 20px; /* Adjusted padding for more space(35 to 30px) */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 3px solid #00c6ff;
-    display: flex; /* Flexbox for better alignment */
-    justify-content: space-between; /* Space between logo and navigation */
-    align-items: center;
-}
-
-header .logo h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0; /* Remove margin for better centering */
-    padding-bottom: 25px;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 50px; /* Increase spacing between nav items */
-}
-
-header nav ul li {
-    margin: 0; /* Remove extra margin */
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 18px;
-    transition: color 0.3s, border-bottom 0.3s;
-    padding-bottom: 5px;
-
-  background-color: #333;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #1a1a1a;
+  padding: 20px 20px; /* Padding adjusted */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-header nav {
+  border-bottom: 3px solid #00c6ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
-}
-header nav .brand {
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-header nav .logo h1 {
-  color: #fff;
-  font-weight: 700;
-  font-size: 28px;
-  margin: 0; /* Remove margin */
 }
 
+/* Container for Logo and Nav */
+header .container {
+  display: flex;
+  width: 100%; /* Takes the full width */
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Styling */
+header .logo {
+  display: flex;
+  align-items: center;
+  margin-left: 0; /* No margin to ensure it's on the left */
+  padding-left: 0; /* Removes any padding to push it left */
+}
+
+header .logo img {
+  margin: 0;
+  padding: 0; /* Ensure no padding or margin on the logo image */
+}
+
+/* Navigation Styling */
+header nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Navigation List */
 header nav ul {
   list-style: none;
   display: flex;
+  gap: 30px; /* Spacing between nav items */
   margin: 0;
   padding: 0;
 }
 
-header nav ul li {
-  margin: 0 0.5rem; /* Reduce margin between items */
-}
-
+/* Navigation Links */
 header nav ul li a {
   color: #fff;
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
-  padding: 0.5rem 0.75rem; /* Adjust padding for links */
+  padding: 0.5rem 0.75rem;
   transition: color 0.3s ease;
+}
 
+/* Ensure the entire header stays within the boundaries */
+header {
+  padding-left: 0; /* Set padding to zero for full left alignment */
 }
 
 /* Responsive styles */
