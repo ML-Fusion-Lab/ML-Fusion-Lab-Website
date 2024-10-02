@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -5,153 +6,65 @@
 }
 
 body {
-
-.container h2{
-    font-size: 40px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
 }
 
-/*Newsletter Styles*/
-.newsletter{
-    height: 200px;
-    width: 100%;
-    background-color: whitesmoke;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    box-shadow: 10px 10px 10px solid white;
-}
-.newsletter-left{
-    margin-left: 60px;
-}
-.newsletter-left h1{
-    font-size: 1.5rem;
-    font-family: Poppins;
-    font-weight: 500;
-}
-.newsletter-left p{
-    font-size: 1rem;
-    font-family: Poppins;
-    font-weight: 300;
-}
-.input-group {
-    display: flex;
-    align-items: center;
-    margin-right: 150px;
-  }
-  
-  .input {
-    min-height: 50px;
-    width: 250px;
-    padding: 0 1rem;
-    color: #fff;
-    font-size: 15px;
-    border: 1px solid #00c6ff;
-    border-radius: 6px 0 0 6px;
-    background-color: transparent;
-  }
-  
-  .button--submit {
-    min-height: 50px;
-    padding: .5em 1em;
-    border: none;
-    border-radius: 0 6px 6px 0;
-    background-color: #00c6ff;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color .3s ease-in-out;
-  }
-  
-  .button--submit:hover {
-    background-color: #00c6ff;
-  }
-
-.container img {
-    border-radius: 15px; /* Adjust the value as needed */
-    box-shadow: 20px 20px 20px grey;
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Header Styles */
 header {
-
-    background-color: #1a1a1a;
-    padding: 20px 20px; /* Adjusted padding for more space(35 to 30px) */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 3px solid #00c6ff;
-    display: flex; /* Flexbox for better alignment */
-    justify-content: space-between; /* Space between logo and navigation */
-    align-items: center;
-}
-
-header .logo h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0; /* Remove margin for better centering */
-    padding-bottom: 25px;
-}
-
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 50px; /* Increase spacing between nav items */
-}
-
-header nav ul li {
-    margin: 0; /* Remove extra margin */
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 18px;
-    transition: color 0.3s, border-bottom 0.3s;
-    padding-bottom: 5px;
-
-  background-color: #333;
-  padding: 1rem 2rem;
+  background-color: #1a1a1a;
+  padding: 0px 30px 0px 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
-}
-header nav .brand {
+
+header .logo h1 {
   color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-header nav .logo h1 {
-  color: #fff;
+  display: inline-block;
   font-weight: 700;
   font-size: 28px;
-  margin: 0; /* Remove margin */
 }
 
 header nav ul {
   list-style: none;
   display: flex;
-  margin: 0;
-  padding: 0;
+  gap: 20px;
 }
 
-header nav ul li {
-  margin: 0 0.5rem; /* Reduce margin between items */
+#main-logo{
+  width: 80px;
+}
+
+#second-nav{
+  background-color: #00A4E3;
+  padding: 10px 0px 10px 0px;
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+#second-nav ol{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+#second-nav ol li a{
+  text-decoration: none;
+  color: #fff;
 }
 
 header nav ul li a {
@@ -159,111 +72,31 @@ header nav ul li a {
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
-  padding: 0.5rem 0.75rem; /* Adjust padding for links */
-  transition: color 0.3s ease;
-
+  transition: color 0.3s;
 }
 
-/* Responsive styles */
-@media (max-width: 900px) {
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
-  }
-
-  header nav {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  header nav .hamburger {
-    display: block;
-    font-size: 28px;
-    cursor: pointer;
-    color: #fff;
-    padding: 1rem; /* Adjust padding for hamburger icon */
-    position: absolute;
-    top: 0;
-    right: 1rem; /* Adjust right position as needed */
-  }
-
-  header nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    display: none; /* Hide the navbar items */
-    width: 100%; /* Full width for mobile view */
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #333; /* Background color for the floating menu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
-    padding: 1rem; /* Add padding */
-    border-radius: 0 0 8px 8px; /* Rounded corners at the bottom */
-  }
-
-  header nav ul.show {
-    display: flex; /* Show the navbar items when the hamburger is clicked */
-    align-items: flex-end;
-  }
-
-  header nav ul li {
-    margin: 0.5rem 0; /* Adjust margin for vertical spacing */
-  }
-  header nav ul li a:hover {
-    color: #00c6ff;
-
-    border-bottom: 2px solid #00c6ff;
-
-    /* color: #000; */
-    /* border-radius: .75rem; Rounded corners for active link */
-  }
+header nav ul li a:hover {
+  color: #00c6ff;
 }
 
-/* Styles for larger screens */
-@media (min-width: 901px) {
-  header nav .hamburger {
-    display: none;
-  }
-
-  header nav ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  header nav ul li {
-    margin: 0 0.5rem; /* Reduce margin between items */
-  }
-  header nav ul li a:hover {
-    background-color: #00c6ff;
-    color: #000;
-    border-radius: 0.75rem; /* Rounded corners for active link */
-  }
-
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.about{
-    background-color: silver;
-    color: grey;
-    padding: 150px 20px;
-    text-align: center;
+#menu-icon{
+  display: none;
+  color: #fff;
+  font-size: 25px;
 }
+
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("https://source.unsplash.com/1600x900/?machine-learning,technology")
-      center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
   color: white;
   padding: 150px 20px;
   text-align: center;
-
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
-    color: white;
-    padding: 150px 20px;
-    text-align: center;
 }
 
 .hero-content h2 {
@@ -277,7 +110,7 @@ header nav ul li a {
   margin-bottom: 30px;
 }
 
-.btn {
+#btn {
   padding: 15px 40px;
   background: #00c6ff;
   color: white;
@@ -290,33 +123,33 @@ header nav ul li a {
   transition: background 0.3s;
 }
 
-.btn:hover {
+#btn:hover {
   background: #0077cc;
 }
 
 .about h2{
-    font-size: 36px;
-    margin-top: 50px;
-    margin-bottom: 10px;
-    font-weight: 700;
+  font-size: 36px;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 .about p{
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 .about img{
-    max-width: 400px;
-    margin: 20px auto;
+  max-width: 400px;
+  margin: 20px auto;
 }
 #about-content{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 /* About Us Page Specific Styles */
 .about-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
+  background-image: url('https://source.unsplash.com/1600x900/?team,collaboration');
   background-size: cover;
   background-position: center;
   color: white;
@@ -326,7 +159,7 @@ header nav ul li a {
 }
 
 .about-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -487,12 +320,13 @@ footer p a:hover {
 
 /* Course Page Specific Styles */
 .hero-small {
-  background-image: url("https://source.unsplash.com/1600x900/?education,learning");
+  background-color: #430f58;
   background-size: cover;
   background-position: center;
-  color: white;
+  color: #fff;
   padding: 100px 20px;
   text-align: center;
+
 }
 
 .hero-small h2 {
@@ -555,7 +389,7 @@ footer p a:hover {
 
 /* Projects Page Specific Styles */
 .projects-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?projects,machine-learning");
+  background-image: url('https://source.unsplash.com/1600x900/?projects,machine-learning');
   background-size: cover;
   background-position: center;
   color: white;
@@ -565,7 +399,7 @@ footer p a:hover {
 }
 
 .projects-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -675,7 +509,7 @@ footer p a:hover {
 }
 
 .contact-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?contact,communication");
+  background-image: url('https://source.unsplash.com/1600x900/?contact,communication');
   background-size: cover;
   background-position: center;
   color: white;
@@ -685,7 +519,7 @@ footer p a:hover {
 }
 
 .contact-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -740,7 +574,7 @@ footer p a:hover {
   display: block;
 }
 
-.contact-form input,
+.contact-form input, 
 .contact-form textarea {
   width: 100%;
   padding: 15px;
@@ -752,7 +586,7 @@ footer p a:hover {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-form input:focus,
+.contact-form input:focus, 
 .contact-form textarea:focus {
   border-color: #00c6ff;
   box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
@@ -803,7 +637,7 @@ footer p a:hover {
 }
 
 .privacy-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?security,privacy");
+  background-image: url('https://source.unsplash.com/1600x900/?security,privacy');
   background-size: cover;
   background-position: center;
   color: white;
@@ -813,7 +647,7 @@ footer p a:hover {
 }
 
 .privacy-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -897,7 +731,7 @@ footer p a:hover {
 }
 
 .terms-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?legal,contract");
+  background-image: url('https://source.unsplash.com/1600x900/?legal,contract');
   background-size: cover;
   background-position: center;
   color: white;
@@ -907,7 +741,7 @@ footer p a:hover {
 }
 
 .terms-hero::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -989,4 +823,39 @@ footer p a {
 footer p a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 698px) {
+  #nav-ul{
+      display: none;
+  }
+
+  #menu-icon{
+      display: block;
+  }
+
+  .course-list{
+      display: flex;
+      flex-direction: column;
+  }
+
+  .course-item{
+      width: 100%;
+  }
+}
+
+@media (max-width: 586px) {
+  .feature-grid{
+      display: flex;
+      flex-direction: column;
+  }
+
+  .feature-item{
+      width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  #home-img{
+      width: 300px;
+  }
 }
