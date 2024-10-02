@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -7,17 +6,25 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f5f5f6;
     color: #333;
     line-height: 1.6;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
+    text-align: center;
+    width: 80%;
+    max-width: 12000px;
     margin: 0 auto;
 }
+.container h2{
+    font-size: 40px;
+}
 
+.container img {
+    border-radius: 15px; /* Adjust the value as needed */
+    box-shadow: 20px 20px 20px grey;
+}
 /* Header Styles */
 header {
     background-color: #1a1a1a;
@@ -58,6 +65,12 @@ header nav ul li a:hover {
     color: #00c6ff;
 }
 
+.about{
+    background-color: silver;
+    color: grey;
+    padding: 150px 20px;
+    text-align: center;
+}
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
