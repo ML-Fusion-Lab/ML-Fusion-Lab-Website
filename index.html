@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <head>
     <link rel="icon">
@@ -7,36 +10,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Fusion Lab</title>
+
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+   
 </head>
 
 <body>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
     <header>
-        <nav>
-            <div class="logo">
-                <h1>ML Fusion Labs</h1>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <div class="logo">
+          <h1>ML Fusion Labs</h1>
+        </div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h2>Learn Machine Learning with Us</h2>
-            <p>We provide top-notch resources to help you master machine learning, from basics to advanced levels.</p>
-            <a href="courses.html" class="btn">Explore Courses</a>
-        </div>
+      <div class="hero-content">
+        <h2>Learn Machine Learning with Us</h2>
+        <p>
+          We provide top-notch resources to help you master machine learning,
+          from basics to advanced levels.
+        </p>
+        <a href="courses.html" class="btn">Explore Courses</a>
+      </div>
     </section>
 
     <section class="about">
+      <div class="container">
+        <h2>About ML Fusion Labs</h2>
+        <p>
+          We are a community-driven platform that aims to provide free,
+          accessible, and high-quality machine learning tutorials, projects, and
+          resources for all. Whether you are a beginner or an experienced
+          professional, ML Fusion Labs has something to offer for everyone.
+        </p>
+      </div>
         <div class="container">
             <center>
 
@@ -59,23 +85,31 @@
     </section>
 
     <section class="features">
-        <div class="container">
-            <h2>Our Features</h2>
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <h3>Structured Learning</h3>
-                    <p>Our courses are designed for clarity and progress, from fundamentals to expert-level topics.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Practical Projects</h3>
-                    <p>Work on real-world ML projects to apply the concepts you learn.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Community Support</h3>
-                    <p>Collaborate with other learners and contribute to open-source ML projects.</p>
-                </div>
-            </div>
+      <div class="container">
+        <h2>Our Features</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h3>Structured Learning</h3>
+            <p>
+              Our courses are designed for clarity and progress, from
+              fundamentals to expert-level topics.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3>Practical Projects</h3>
+            <p>
+              Work on real-world ML projects to apply the concepts you learn.
+            </p>
+          </div>
+          <div class="feature-item">
+            <h3>Community Support</h3>
+            <p>
+              Collaborate with other learners and contribute to open-source ML
+              projects.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
     <div class="newsletter">
         <div class="newsletter-left">
@@ -98,4 +132,21 @@
     </footer>
 </body>
 
+</html>
+      <div class="container">
+        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        <p>
+          <a href="privacy.html">Privacy Policy</a> |
+          <a href="terms.html">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navUL = document.querySelector("nav ul");
+      hamburger.addEventListener("click", () => {
+        navUL.classList.toggle("show");
+      });
+    </script>
+  </body>
 </html>
