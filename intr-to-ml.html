@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Machine Learning</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +14,7 @@
             background-color: #f9f9f9;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full height */
+            min-height: 100vh;
         }
         header {
             background: #333;
@@ -49,7 +50,7 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1; /* Allow the section to grow and push the footer down */
+            flex: 1;
         }
         section h2 {
             margin-bottom: 20px;
@@ -73,10 +74,10 @@
             color: white;
             text-decoration: none;
             margin: 0 10px;
-            transition: color 0.3s; /* Add transition for hover effect */
+            transition: color 0.3s;
         }
         .footer-links a:hover, .footer-socials a:hover {
-            color: #007BFF; /* Change color on hover */
+            color: #007BFF;
         }
         .footer-contact {
             margin: 10px 0;
@@ -96,6 +97,14 @@
         }
         .btn:hover {
             background-color: #0056b3;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -133,9 +142,11 @@
             </div>
             <div class="footer-socials">
                 Follow us on: 
-                <a href="https://facebook.com" target="_blank">Facebook</a> | 
-                <a href="https://twitter.com" target="_blank">Twitter</a> | 
-                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
             <div class="footer-contact">
                 <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
