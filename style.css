@@ -6,12 +6,12 @@
 
 body {
 
-.container h2{
+  .container h2 {
     font-size: 40px;
-}
+  }
 
-/*Newsletter Styles*/
-.newsletter{
+  /*Newsletter Styles*/
+  .newsletter {
     height: 200px;
     width: 100%;
     background-color: whitesmoke;
@@ -22,26 +22,64 @@ body {
     text-align: center;
     align-items: center;
     box-shadow: 10px 10px 10px solid white;
-}
-.newsletter-left{
+  }
+
+
+
+  .newsletter-left {
     margin-left: 60px;
-}
-.newsletter-left h1{
+  }
+
+  @media screen and (max-width: 767px) {
+    .newsletter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .newsletter-left {
+      width: 100%;
+      margin: 2px auto;
+    }
+
+    .newsletter-right {
+      margin: 2px auto;
+      display: flex;
+      justify-content: center;
+    }
+
+  }
+
+  .newsletter-left h1 {
     font-size: 1.5rem;
     font-family: Poppins;
     font-weight: 500;
-}
-.newsletter-left p{
+  }
+
+  .newsletter-left p {
     font-size: 1rem;
     font-family: Poppins;
     font-weight: 300;
-}
-.input-group {
+  }
+
+
+
+  .input-group {
     display: flex;
     align-items: center;
     margin-right: 150px;
+
   }
-  
+
+  @media screen and (max-width: 767px) {
+    .input-group {
+      margin: 2px auto;
+      width: 100%;
+    }
+
+  }
+
   .input {
     min-height: 50px;
     width: 250px;
@@ -52,7 +90,7 @@ body {
     border-radius: 6px 0 0 6px;
     background-color: transparent;
   }
-  
+
   .button--submit {
     min-height: 50px;
     padding: .5em 1em;
@@ -64,52 +102,59 @@ body {
     cursor: pointer;
     transition: background-color .3s ease-in-out;
   }
-  
+
   .button--submit:hover {
     background-color: #00c6ff;
   }
 
-.container img {
-    border-radius: 15px; /* Adjust the value as needed */
+  .container img {
+    border-radius: 15px;
+    /* Adjust the value as needed */
     box-shadow: 20px 20px 20px grey;
-}
+  }
 
-/* Header Styles */
-header {
+  /* Header Styles */
+  header {
 
     background-color: #1a1a1a;
-    padding: 20px 20px; /* Adjusted padding for more space(35 to 30px) */
+    padding: 20px 20px;
+    /* Adjusted padding for more space(35 to 30px) */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
     border-bottom: 3px solid #00c6ff;
-    display: flex; /* Flexbox for better alignment */
-    justify-content: space-between; /* Space between logo and navigation */
+    display: flex;
+    /* Flexbox for better alignment */
+    justify-content: space-between;
+    /* Space between logo and navigation */
     align-items: center;
-}
+  }
 
-header .logo h1 {
+  header .logo h1 {
     color: #fff;
     font-weight: 700;
     font-size: 36px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin: 0; /* Remove margin for better centering */
+    margin: 0;
+    /* Remove margin for better centering */
     padding-bottom: 25px;
-}
+  }
 
-header nav ul {
+  header nav ul {
     list-style: none;
     display: flex;
-    gap: 50px; /* Increase spacing between nav items */
-}
+    gap: 50px;
+    /* Increase spacing between nav items */
+  }
 
-header nav ul li {
-    margin: 0; /* Remove extra margin */
-}
+  header nav ul li {
+    margin: 0;
+    /* Remove extra margin */
+  }
 
-header nav ul li a {
+  header nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
@@ -117,876 +162,1067 @@ header nav ul li a {
     transition: color 0.3s, border-bottom 0.3s;
     padding-bottom: 5px;
 
-  background-color: #333;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-header nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
-}
-header nav .brand {
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-header nav .logo h1 {
-  color: #fff;
-  font-weight: 700;
-  font-size: 28px;
-  margin: 0; /* Remove margin */
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-header nav ul li {
-  margin: 0 0.5rem; /* Reduce margin between items */
-}
-
-header nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 0.5rem 0.75rem; /* Adjust padding for links */
-  transition: color 0.3s ease;
-
-}
-
-/* Responsive styles */
-@media (max-width: 900px) {
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
+    background-color: #333;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   header nav {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  header nav .hamburger {
-    display: block;
-    font-size: 28px;
-    cursor: pointer;
-    color: #fff;
-    padding: 1rem; /* Adjust padding for hamburger icon */
-    position: absolute;
-    top: 0;
-    right: 1rem; /* Adjust right position as needed */
-  }
-
-  header nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    display: none; /* Hide the navbar items */
-    width: 100%; /* Full width for mobile view */
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #333; /* Background color for the floating menu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
-    padding: 1rem; /* Add padding */
-    border-radius: 0 0 8px 8px; /* Rounded corners at the bottom */
-  }
-
-  header nav ul.show {
-    display: flex; /* Show the navbar items when the hamburger is clicked */
-    align-items: flex-end;
-  }
-
-  header nav ul li {
-    margin: 0.5rem 0; /* Adjust margin for vertical spacing */
-  }
-  header nav ul li a:hover {
-    color: #00c6ff;
-
-    border-bottom: 2px solid #00c6ff;
-
-    /* color: #000; */
-    /* border-radius: .75rem; Rounded corners for active link */
-  }
-}
-
-/* Styles for larger screens */
-@media (min-width: 901px) {
-  header nav .hamburger {
-    display: none;
-  }
-
-  header nav ul {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    padding: 0.5rem 1rem;
+    /* Adjust padding to reduce overall height */
+  }
+
+  header nav .brand {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  header nav .logo h1 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 28px;
+    margin: 0;
+    /* Remove margin */
+  }
+
+  header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
   }
 
   header nav ul li {
-    margin: 0 0.5rem; /* Reduce margin between items */
-  }
-  header nav ul li a:hover {
-    background-color: #00c6ff;
-    color: #000;
-    border-radius: 0.75rem; /* Rounded corners for active link */
+    margin: 0 0.5rem;
+    /* Reduce margin between items */
   }
 
-}
+  header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0.5rem 0.75rem;
+    /* Adjust padding for links */
+    transition: color 0.3s ease;
 
-.about{
+  }
+
+  /* Responsive styles */
+  @media (max-width: 900px) {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      /* Adjust padding to reduce overall height */
+    }
+
+    header nav {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    header nav .hamburger {
+      display: block;
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+      padding: 1rem;
+      /* Adjust padding for hamburger icon */
+      position: absolute;
+      top: 0;
+      right: 1rem;
+      /* Adjust right position as needed */
+    }
+
+    header nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      display: none;
+      /* Hide the navbar items */
+      width: 100%;
+      /* Full width for mobile view */
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #333;
+      /* Background color for the floating menu */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Add a box shadow */
+      padding: 1rem;
+      /* Add padding */
+      border-radius: 0 0 8px 8px;
+      /* Rounded corners at the bottom */
+    }
+
+    header nav ul.show {
+      display: flex;
+      /* Show the navbar items when the hamburger is clicked */
+      align-items: flex-end;
+    }
+
+    header nav ul li {
+      margin: 0.5rem 0;
+      /* Adjust margin for vertical spacing */
+    }
+
+    header nav ul li a:hover {
+      color: #00c6ff;
+
+      border-bottom: 2px solid #00c6ff;
+
+      /* color: #000; */
+      /* border-radius: .75rem; Rounded corners for active link */
+    }
+  }
+
+  /* Styles for larger screens */
+  @media (min-width: 901px) {
+    header nav .hamburger {
+      display: none;
+    }
+
+
+
+    header nav ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    header nav ul li {
+      margin: 0 0.5rem;
+      /* Reduce margin between items */
+    }
+
+    header nav ul li a:hover {
+      background-color: #00c6ff;
+      color: #000;
+      border-radius: 0.75rem;
+      /* Rounded corners for active link */
+    }
+
+  }
+
+  .about {
     background-color: silver;
     color: grey;
     padding: 150px 20px;
     text-align: center;
-}
-/* Hero Section */
-.hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("https://source.unsplash.com/1600x900/?machine-learning,technology")
-      center/cover;
-  color: white;
-  padding: 150px 20px;
-  text-align: center;
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("https://source.unsplash.com/1600x900/?machine-learning,technology") center/cover;
+    color: white;
+    padding: 150px 20px;
+    text-align: center;
 
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
     color: white;
     padding: 150px 20px;
     text-align: center;
-}
+  }
 
-.hero-content h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
+  .hero-content h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
 
-.hero-content p {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
+  .hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
 
-.btn {
-  padding: 15px 40px;
-  background: #00c6ff;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.3s;
-}
+  .btn {
+    padding: 15px 40px;
+    background: #00c6ff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
 
-.btn:hover {
-  background: #0077cc;
-}
+  .btn:hover {
+    background: #0077cc;
+  }
 
-.about h2{
+  .about h2 {
     font-size: 36px;
     margin-top: 50px;
     margin-bottom: 10px;
     font-weight: 700;
-}
-.about p{
+  }
+
+  .about p {
     max-width: 800px;
     margin: 0 auto;
-}
-.about img{
+  }
+
+  .about img {
     max-width: 400px;
     margin: 20px auto;
-}
-#about-content{
+  }
+
+  #about-content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-}
-/* About Us Page Specific Styles */
-.about-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-  position: relative;
+  }
+
+  /* About Us Page Specific Styles */
+  .about-hero {
+    background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .about-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    /* Dark overlay for contrast */
+    z-index: 1;
+  }
+
+  .about-hero .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .about-hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+  }
+
+  .about-us {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+  .about-us h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .about-us p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+
+  .about-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+
+  .about-list li {
+    font-size: 18px;
+    color: #333;
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .about-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  /* Features Section */
+  .features {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+  .features h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 700;
+  }
+
+  .feature-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    gap: 20px;
+  }
+
+
+
+  .feature-item {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    width: 30%;
+    /* width: 200px; */
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  @media screen and (max-width: 767px) {
+    .feature-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .feature-item {
+      width: 100%;
+    }
+
+  }
+
+
+
+  .feature-item:hover {
+    transform: translateY(-10px);
+  }
+
+  .feature-item h3 {
+    font-size: 26px;
+    color: #0077cc;
+    margin-bottom: 20px;
+  }
+
+  .feature-item p {
+    font-size: 18px;
+    color: #555;
+  }
+
+  /* Footer Section */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  /* Course Page Specific Styles */
+  .hero-small {
+    background-image: url("https://source.unsplash.com/1600x900/?education,learning");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+  }
+
+  .hero-small h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .hero-small p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .courses {
+    padding: 80px 20px;
+    background-color: #fff;
+  }
+
+  .courses h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 700;
+  }
+
+  .course-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .course-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    transition: transform 0.3s ease;
+    text-align: left;
+  }
+
+  .course-item:hover {
+    transform: translateY(-10px);
+  }
+
+  .course-item h3 {
+    font-size: 24px;
+    color: #0077cc;
+    margin-bottom: 15px;
+  }
+
+  .course-item p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  /* Projects Page Specific Styles */
+  .projects-hero {
+    background-image: url("https://source.unsplash.com/1600x900/?projects,machine-learning");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .projects-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for better text contrast */
+    z-index: 1;
+  }
+
+  .projects-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    /* Make sure the content is above the overlay */
+  }
+
+  .projects-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .projects-hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* Projects Section */
+  .projects {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    /* Light background for contrast */
+  }
+
+  .projects h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 700;
+  }
+
+  .project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    /* Space between project items */
+  }
+
+  .project-item {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    /* Fixed width for project items */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth effects */
+  }
+
+  .project-item:hover {
+    transform: translateY(-5px);
+    /* Lift effect on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    /* Deeper shadow on hover */
+  }
+
+  .project-item h3 {
+    font-size: 24px;
+    color: #0077cc;
+    margin-bottom: 15px;
+  }
+
+  .project-item p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    /* Space before the button */
+  }
+
+  .project-item .btn {
+    padding: 10px 20px;
+    background-color: #00c6ff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .project-item .btn:hover {
+    background-color: #0077cc;
+    /* Darker on hover */
+  }
+
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-hero {
+    background-image: url("https://source.unsplash.com/1600x900/?contact,communication");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .contact-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for contrast */
+    z-index: 1;
+  }
+
+  .contact-hero .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .contact-hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+  }
+
+  /* Contact Us Section */
+  .contact-us {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+  .contact-us h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .contact-form label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: #00c6ff;
+    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+    outline: none;
+  }
+
+  .contact-form button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #00c6ff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-form button:hover {
+    background-color: #0077cc;
+  }
+
+  .contact-form button:active {
+    background-color: #005fa3;
+    box-shadow: none;
+  }
+
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  .privacy-hero {
+    background-image: url("https://source.unsplash.com/1600x900/?security,privacy");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .privacy-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for contrast */
+    z-index: 1;
+  }
+
+  .privacy-hero .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .privacy-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .privacy-hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+  }
+
+  /* Privacy Policy Section */
+  .privacy-policy {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: left;
+  }
+
+  .privacy-policy h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .privacy-policy p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+
+  .privacy-policy h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0077cc;
+    font-weight: 600;
+  }
+
+  .privacy-policy p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  .terms-hero {
+    background-image: url("https://source.unsplash.com/1600x900/?legal,contract");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .terms-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for better text contrast */
+    z-index: 1;
+  }
+
+  .terms-hero .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .terms-hero h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .terms-hero p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+  }
+
+  /* Terms of Service Section */
+  .terms-of-service {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+    text-align: left;
+  }
+
+  .terms-of-service h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .terms-of-service p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto 40px;
+  }
+
+  .terms-of-service h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0077cc;
+    font-weight: 600;
+  }
+
+  .terms-of-service p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
 }
 
-.about-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6); /* Dark overlay for contrast */
-  z-index: 1;
+/* ------------------------------------------------------------------------------ */
+header {
+  height: 100px;
 }
 
-.about-hero .hero-content {
-  position: relative;
-  z-index: 2;
+.logo {
+  margin: 30px 0 0 0;
 }
 
-.about-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.about-hero p {
-  font-size: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  color: #f0f0f0;
-}
-
-.about-us {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
-
-.about-us h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-.about-us p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
-  max-width: 900px;
-  margin: 0 auto;
-  margin-bottom: 40px;
-}
-
-.about-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 600px;
-}
-
-.about-list li {
-  font-size: 18px;
-  color: #333;
-  background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-list li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Footer Styles */
 footer {
-  background-color: #1a1a1a;
+  background-color: #333;
   color: white;
-  padding: 40px 0;
   text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
 }
 
-footer p {
+.footer-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials,
+.footer-contact {
   margin: 10px 0;
 }
 
-footer p a {
-  color: #00c6ff;
+.footer-links a,
+.footer-socials a {
+  color: white;
   text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
 }
 
-footer p a:hover {
-  text-decoration: underline;
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007BFF;
 }
 
-/* Features Section */
-.features {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
-
-.features h2 {
-  font-size: 36px;
-  margin-bottom: 50px;
-  font-weight: 700;
-}
-
-.feature-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.feature-item {
-  background-color: #fff;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  width: 30%;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: translateY(-10px);
-}
-
-.feature-item h3 {
-  font-size: 26px;
-  color: #0077cc;
-  margin-bottom: 20px;
-}
-
-.feature-item p {
-  font-size: 18px;
-  color: #555;
-}
-
-/* Footer Section */
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 40px 0;
-  text-align: center;
-}
-
-footer p {
-  margin: 10px 0;
-}
-
-footer p a {
-  color: #00c6ff;
-  text-decoration: none;
-}
-
-footer p a:hover {
-  text-decoration: underline;
-}
-
-/* Course Page Specific Styles */
-.hero-small {
-  background-image: url("https://source.unsplash.com/1600x900/?education,learning");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.hero-small h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.hero-small p {
-  font-size: 18px;
-  margin-bottom: 30px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.courses {
-  padding: 80px 20px;
-  background-color: #fff;
-}
-
-.courses h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 50px;
-  font-weight: 700;
-}
-
-.course-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.course-item {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  transition: transform 0.3s ease;
-  text-align: left;
-}
-
-.course-item:hover {
-  transform: translateY(-10px);
-}
-
-.course-item h3 {
+.footer-socials a {
   font-size: 24px;
-  color: #0077cc;
-  margin-bottom: 15px;
+  margin: 0 15px;
 }
 
-.course-item p {
-  font-size: 16px;
-  color: #555;
-}
-
-/* Projects Page Specific Styles */
-.projects-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?projects,machine-learning");
-  background-size: cover;
-  background-position: center;
+.footer-contact a {
   color: white;
-  padding: 100px 20px;
-  text-align: center;
-  position: relative;
 }
 
-.projects-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
-  z-index: 1;
+.newsletter .input-group .input {
+  color: black;
 }
 
-.projects-hero .hero-content {
-  position: relative;
-  z-index: 2; /* Make sure the content is above the overlay */
-}
-
-.projects-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.projects-hero p {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-/* Projects Section */
-.projects {
-  padding: 80px 20px;
-  background-color: #f9f9f9; /* Light background for contrast */
-}
-
-.projects h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 50px;
-  font-weight: 700;
-}
-
-.project-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px; /* Space between project items */
-}
-
-.project-item {
-  background-color: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 300px; /* Fixed width for project items */
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth effects */
-}
-
-.project-item:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
-}
-
-.project-item h3 {
-  font-size: 24px;
-  color: #0077cc;
-  margin-bottom: 15px;
-}
-
-.project-item p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 20px; /* Space before the button */
-}
-
-.project-item .btn {
-  padding: 10px 20px;
-  background-color: #00c6ff;
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  background-color: #00BFFF;
   color: white;
   border: none;
-  border-radius: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s;
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.project-item .btn:hover {
-  background-color: #0077cc; /* Darker on hover */
+#scrollTopBtn:hover {
+  background-color: #555;
 }
 
-/* Footer Styles */
+/* ----------------------------------------------------------------------------------------------------------- */
+
+
 footer {
-  background-color: #1a1a1a;
+  background: #333;
   color: white;
-  padding: 40px 0;
   text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+  /* Push footer to bottom */
 }
 
-footer p {
-  margin: 10px 0;
-}
-
-footer p a {
-  color: #00c6ff;
-  text-decoration: none;
-}
-
-footer p a:hover {
-  text-decoration: underline;
-}
-
-.contact-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?contact,communication");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-  position: relative;
-}
-
-.contact-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
-  z-index: 1;
-}
-
-.contact-hero .hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.contact-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.contact-hero p {
-  font-size: 20px;
+.footer-container {
   max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  color: #f0f0f0;
+  margin: auto;
+  padding: 0 20px;
 }
 
-/* Contact Us Section */
-.contact-us {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
-
-.contact-us h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.contact-form label {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: #00c6ff;
-  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
-  outline: none;
-}
-
-.contact-form button {
-  display: inline-block;
-  padding: 15px 40px;
-  background-color: #00c6ff;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.contact-form button:hover {
-  background-color: #0077cc;
-}
-
-.contact-form button:active {
-  background-color: #005fa3;
-  box-shadow: none;
-}
-
-/* Footer Styles */
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 40px 0;
-  text-align: center;
-}
-
-footer p {
+.footer-links,
+.footer-socials {
   margin: 10px 0;
 }
 
-footer p a {
-  color: #00c6ff;
+.footer-links a,
+.footer-socials a {
+  color: white;
   text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+  /* Add transition for hover effect */
 }
 
-footer p a:hover {
-  text-decoration: underline;
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007BFF;
+  /* Change color on hover */
 }
 
-.privacy-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?security,privacy");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-  position: relative;
-}
-
-.privacy-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
-  z-index: 1;
-}
-
-.privacy-hero .hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.privacy-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.privacy-hero p {
-  font-size: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  color: #f0f0f0;
-}
-
-/* Privacy Policy Section */
-.privacy-policy {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
-  text-align: left;
-}
-
-.privacy-policy h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.privacy-policy p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
-  max-width: 900px;
-  margin: 0 auto 40px;
-}
-
-.privacy-policy h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #0077cc;
-  font-weight: 600;
-}
-
-.privacy-policy p:last-of-type {
-  margin-bottom: 0;
-}
-
-/* Footer Styles */
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 40px 0;
-  text-align: center;
-}
-
-footer p {
+.footer-contact {
   margin: 10px 0;
 }
 
-footer p a {
-  color: #00c6ff;
-  text-decoration: none;
-}
 
-footer p a:hover {
-  text-decoration: underline;
-}
 
-.terms-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?legal,contract");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-  position: relative;
-}
 
-.terms-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
-  z-index: 1;
-}
 
-.terms-hero .hero-content {
-  position: relative;
-  z-index: 2;
-}
 
-.terms-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
 
-.terms-hero p {
-  font-size: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  color: #f0f0f0;
-}
 
-/* Terms of Service Section */
-.terms-of-service {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
-  text-align: left;
-}
 
-.terms-of-service h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  text-align: center;
-}
 
-.terms-of-service p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
-  max-width: 900px;
-  margin: 0 auto 40px;
-}
 
-.terms-of-service h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #0077cc;
-  font-weight: 600;
-}
 
-.terms-of-service p:last-of-type {
-  margin-bottom: 0;
-}
 
-/* Footer Styles */
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 40px 0;
-  text-align: center;
-}
-
-footer p {
-  margin: 10px 0;
-}
-
-footer p a {
-  color: #00c6ff;
-  text-decoration: none;
-}
-
-footer p a:hover {
-  text-decoration: underline;
-}
-}
+/* ----------------------------------------------------- */
