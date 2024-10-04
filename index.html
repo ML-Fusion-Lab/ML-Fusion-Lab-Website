@@ -4,228 +4,182 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <head>
-    <link rel="icon">
-    <link rel="icon" href="ml-fusion-lab-logo.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ML Fusion Lab</title>
-
-    <link rel="stylesheet" href="style.css">
-
-
-    <style>
-        header {
-            height: 100px;
-        }
-
-        .logo {
-            margin: 30px 0px 0px 0px;
-        }
-      footer {
-         background: #333;
-         color: white;
-         text-align: center;
-         padding: 20px 0;
-         margin-top: auto; /* Push footer to bottom */
-     }
-     .footer-container {
-         max-width: 800px;
-         margin: auto;
-         padding: 0 20px;
-     }
-     .footer-links, .footer-socials {
-         margin: 10px 0;
-     }
-     .footer-links a, .footer-socials a {
-         color: white;
-         text-decoration: none;
-         margin: 0 10px;
-         transition: color 0.3s; /* Add transition for hover effect */
-     }
-     .footer-links a:hover, .footer-socials a:hover {
-         color: #007BFF; /* Change color on hover */
-     }
-     .footer-contact {
-         margin: 10px 0;
-     }
- </style>
-
-   
-</head>
-
-<body>
-
+  <title>ML Fusion Lab</title>
+  <link rel="icon" href="ml-fusion-lab-logo.png">
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="scroll.css">
-  </head>
 
-  <body>
+  <style>
+    header {
+      height: 100px;
+    }
 
-<header>
-  <nav>
-    <div class="logo">
-      <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007BFF;
+    }
+
+    .footer-contact {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="ml-fusion-lab-logo.jpg" alt="logo" width="100" height="100" />
+      </div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signin.html">Sign Up</a></li>
+      </ul>
+      <div class="theme-switch" id="theme-switch"></div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Learn Machine Learning with Us</h2>
+      <p>
+        We provide top-notch resources to help you master machine learning,
+        from basics to advanced levels.
+      </p>
+      <a href="courses.html" class="btn">Explore Courses</a>
     </div>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="courses.html">Courses</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="Login.html">Login</a></li>
-      <li><a href="Signin.html">Sign</a></li>
-    </ul>
-    <div class="theme-switch" id="theme-switch"></div>
-  </nav>
-</header>
+  </section>
 
-      </nav>
-
-    </header>
-
-    <section class="hero">
-      <div class="hero-content">
-        <h2>Learn Machine Learning with Us</h2>
-        <p>
-          We provide top-notch resources to help you master machine learning,
-          from basics to advanced levels.
+  <section class="about">
+    <div class="container">
+      <h2>About ML Fusion Labs</h2>
+      <p>
+        We are a community-driven platform that aims to provide free,
+        accessible, and high-quality machine learning tutorials, projects, and
+        resources for all. Whether you are a beginner or an experienced
+        professional, ML Fusion Labs has something to offer for everyone.
+      </p>
+    </div>
+    <div class="container">
+      <center>
+        <h2>Our Vision</h2>
+      </center>
+      <div id="about-content">
+        <p>Our goal is to empower learners by providing practical, hands-on experience through projects and collaborations. 
         </p>
-        <a href="courses.html" class="btn">Explore Courses</a>
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Coding Team">
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="about">
-      <div class="container">
-        <h2>About ML Fusion Labs</h2>
-        <p>
-          We are a community-driven platform that aims to provide free,
-          accessible, and high-quality machine learning tutorials, projects, and
-          resources for all. Whether you are a beginner or an experienced
-          professional, ML Fusion Labs has something to offer for everyone.
-        </p>
-      </div>
-      <div class="container">
-        <center>
-
-          <h2>About ML Fusion Labs</h2>
-        </center>
-        <div id="about-content">
-          <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine
-            learning tutorials, projects, and resources for all. Whether you are a beginner or an experienced
-            professional, ML Fusion Labs has something to offer for everyone.</p>
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Coding Team">
-
-          <h2>About ML Fusion Labs</h2>
-
-          <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning
-            tutorials, projects, and resources for all. Whether you are a beginner or an experienced professional, ML
-            Fusion Labs has something to offer for everyone.</p>
-          <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Coding Team">
-
+  <section class="features">
+    <div class="container">
+      <h2>Our Features</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>Structured Learning</h3>
+          <p>Our courses are designed for clarity and progress, from fundamentals to expert-level topics.</p>
+        </div>
+        <div class="feature-item">
+          <a href="projects.html" style="text-decoration: none;">
+            <h3>Practical Projects</h3>
+            <p>Work on real-world ML projects to apply the concepts you learn.</p>
+          </a>
+        </div>
+        <div class="feature-item">
+          <h3><a href="community_support.html">Community Support</a></h3>
+          <p>Collaborate with other learners and contribute to open-source ML projects.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="features">
+  <section class="newsletter">
+    <div class="newsletter-left">
+      <h1>Sign Up for Newsletters</h1>
+      <p>Get updates in your E-mail about <span>latest deals and products</span></p>
+    </div>
+    <div class="newsletter-right">
+      <div class="input-group">
+        <input type="email" class="input" id="Email" name="Email" placeholder="you@example.com" autocomplete="off">
+        <input class="button--submit" value="Subscribe" type="submit">
+      </div>
+    </div>
+  </section>
 
-      <div class="container">
-        <h2>Our Features</h2>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <h3>Structured Learning</h3>
-            <p>
-              Our courses are designed for clarity and progress, from
-              fundamentals to expert-level topics.
-            </p>
-          </div>
-          <div class="feature-item">
-            <a href="projects.html" style="text-decoration: none;">
-              <h3>Practical Projects</h3>
-              <p>
-                Work on real-world ML projects to apply the concepts you learn.
-              </p>
-            </a>
-          </div>
-
-          <div class="feature-item">
-              <h3><a href="community_suport.html">Community Support</a></h3>
-            <p>
-              Collaborate with other learners and contribute to open-source ML
-              projects.
-            </p>
-          </div>
-        </div>
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Service</a> | 
+        <a href="about.html">About Us</a> | 
+        <a href="contact.html">Contact</a>
       </div>
-    </section>
-    <section class="newsletter">
-      <div class="newsletter-left">
-        <h1>Sign Up for Newsletters</h1>
-        <p>Get updates in your E-mail about <span>latest deals and products</span></p>
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank">Facebook</a> |
+        <a href="https://twitter.com" target="_blank">Twitter</a> |
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
       </div>
-      <div class="newsletter-right">
-        <div class="input-group">
-          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com"
-            autocomplete="off">
-          <input class="button--submit" value="Subscribe" type="submit">
-        </div>
+      <div class="footer-contact">
+        <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
       </div>
-   </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
-        </div>
-    </footer>
-
-    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
-      <div class="footer-container">
-          <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-          <div class="footer-links">
-              <a href="privacy.html">Privacy Policy</a> | 
-              <a href="terms.html">Terms of Service</a> | 
-              <a href="about.html">About Us</a> | 
-              <a href="contact.html">Contact</a>
-          </div>
-          <div class="footer-socials">
-              Follow us on: 
-              <a href="https://facebook.com" target="_blank">Facebook</a> | 
-              <a href="https://twitter.com" target="_blank">Twitter</a> | 
-              <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-          </div>
-          <div class="footer-contact">
-              <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
-          </div>
-      </div>
+    </div>
   </footer>
-  
+
+  <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navUL = document.querySelector("nav ul");
+    hamburger.addEventListener("click", () => {
+      navUL.classList.toggle("show");
+    });
+  </script>
+  <script src="scroll.js"></script>
+  <script src="script.js"></script>
+
 </body>
 
-</html>
-      <div class="container">
-        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-        <p>
-          <a href="privacy.html">Privacy Policy</a> |
-          <a href="terms.html">Terms of Service</a>
-        </p>
-      </div>
-    </footer>
-    <script>
-      const hamburger = document.getElementById("hamburger");
-      const navUL = document.querySelector("nav ul");
-      hamburger.addEventListener("click", () => {
-        navUL.classList.toggle("show");
-      });
-    </script>
-    <script src="scroll.js"></script>
-    <script src="script.js"></script>
-  </body>
 </html>
