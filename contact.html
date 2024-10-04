@@ -36,6 +36,10 @@
        .footer-contact {
            margin: 10px 0;
        }
+       #message{
+       max-width: 600px;
+       }
+       
    </style>
 
 </head>
@@ -51,6 +55,7 @@
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
             </ul>
         </nav>
     </header>
@@ -75,8 +80,8 @@
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                 
-                <button type="submit" class="btn">Send Message</button>
             </form>
+            <button type="submit" class="btn">Send Message</button>
         </div>
     </section>
 
@@ -102,6 +107,7 @@
     </footer>
     <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
     <script src="scroll.js"></script>
+    <script src="script.js"></script>
     
 </body>
 </html>
