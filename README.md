@@ -115,13 +115,12 @@ Contributions are welcome! To contribute, You can follow these steps:
 2. **Open a New Issue:** If the feature is new, open an issue on the [Issues page](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues).
 3. **Provide Details:** Clearly describe the enhancement and why it would be beneficial.
 
-## 👥 Contributors
+<div>
+  <h2 align = "center"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" width="35" height="35">Our Contributors</h2>
+  <div align = "center">
+ <h3>Thank you for contributing to our repository</h3>
 
-<a href="https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=ML-Fusion-Lab/ML-Fusion-Lab-Website" />
-</a>
-
-Thank you for Contributing!
+![Contributors](https://contrib.rocks/image?repo=ML-Fusion-Lab/ML-Fusion-Lab-Website)
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
