@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="scroll.css" />
     <style>
+
       footer {
         background: #333;
         color: white;
@@ -55,6 +56,58 @@
           <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
       </nav>
+
+        footer {
+           background: #333;
+           color: white;
+           text-align: center;
+           padding: 20px 0;
+           margin-top: auto; /* Push footer to bottom */
+       }
+       .footer-container {
+           max-width: 800px;
+           margin: auto;
+           padding: 0 20px;
+       }
+       .footer-links, .footer-socials {
+           margin: 10px 0;
+       }
+       .footer-links a, .footer-socials a {
+           color: white;
+           text-decoration: none;
+           margin: 0 10px;
+           transition: color 0.3s; /* Add transition for hover effect */
+       }
+       .footer-links a:hover, .footer-socials a:hover {
+           color: #007BFF; /* Change color on hover */
+       }
+       .footer-contact {
+           margin: 10px 0;
+       }
+       #message{
+       max-width: 600px;
+       }
+       
+   </style>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+              <img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+            </div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <div class="theme-switch" id="theme-switch"></div>
+            </ul>
+          </nav>
+
     </header>
 
     <section class="contact-hero">
@@ -65,6 +118,7 @@
     </section>
 
     <section class="contact-us">
+
       <div class="container">
         <h2>Get in Touch</h2>
         <form
@@ -107,6 +161,23 @@
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
+
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <form action="submit_form.php" method="post" class="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                
+            </form>
+            <button type="submit" class="btn">Send Message</button>
+        </div>
+
     </section>
 
     <footer>
@@ -137,5 +208,11 @@
     </footer>
     <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
     <script src="scroll.js"></script>
+
   </body>
+
+    <script src="script.js"></script>
+    
+</body>
+
 </html>
