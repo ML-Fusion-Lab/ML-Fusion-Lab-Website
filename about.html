@@ -11,20 +11,22 @@
         <nav>
             <div class="logo">
                 <h1 onclick="window.location.href='index.html';" style="cursor: pointer;">ML Fusion Labs</h1>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="about.html" class="active">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                
             </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
+            </ul>
         </nav>
     </header>
 
     <section class="about-hero">
         <div class="hero-content">
-        <div>
+        <div class="hero-center">
             <h2>About ML Fusion Labs</h2>
             <p>We are committed to providing high-quality machine learning resources for learners and professionals alike.</p>
         </div>
@@ -70,5 +72,9 @@
             <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         </div>
     </footer>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+    <script src="scroll.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
