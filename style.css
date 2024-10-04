@@ -1303,3 +1303,59 @@ body.dark-mode .terms-of-service h3{
   background-color: #505056;
   color: #e0c0c0;
 }
+
+
+/* updated css for better alignment of element */
+header{
+  position: relative;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+nav .logo{
+  height: 5rem;
+  width: 5rem;
+  margin: 0;
+}
+nav .logo img{
+  height: 5rem;
+  width: 5rem;
+}
+nav ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul a{
+  border-radius: 2rem;
+}
+nav ul a:hover{
+  border-radius: 2rem;
+}
+
+/* hero section */
+.hero{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* about section */
+.about{
+  margin: 0;
+}
+.about .container{
+  margin-top: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.499);
+  border-radius: 2rem;
+  padding-bottom: 2rem;
+}
+.about .container h2{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
