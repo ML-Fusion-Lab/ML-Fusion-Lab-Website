@@ -47,9 +47,11 @@ footer {
 }
 
 * {
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 body {
@@ -147,6 +149,7 @@ body {
 
   header .logo h1 {
     color: #fff;
+
     font-weight: 700;
     font-size: 36px;
     letter-spacing: 2px;
@@ -155,6 +158,14 @@ body {
     /* Remove margin for better centering */
     padding-bottom: 25px;
   }
+
+    display: inline-block;
+    font-weight: 700;
+    font-size: 28px;
+    padding-left: 15px;
+}
+/* new line of code */
+
 
   header nav ul {
     list-style: none;
@@ -168,7 +179,55 @@ body {
     /* Remove extra margin */
   }
 
+
   header nav ul li a {
+
+  
+
+
+/* what we offer section */
+
+.features-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(25% - 30px);
+    
+    text-align: center;
+    transition: transform 0.3s ease;
+   font-weight: bold;
+   display: flex;
+}
+.features-card h4{
+    font-weight: 400;
+}
+#display{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+   
+    
+}
+
+/* Hover effect */
+.features-card:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    transform: translateY(-10px); /* Slight lift effect */
+}
+
+/* features img */
+.features-card img {
+    margin-bottom: 15px;
+}
+
+.features-card h4 {
+    font-size: 18px;
+    color: #333;
+}
+header nav ul li a {
+
     color: #fff;
     text-decoration: none;
     font-weight: 600;
@@ -332,6 +391,7 @@ body {
     padding: 150px 20px;
     text-align: center;
 
+
 }
 /* Hero Section */
 .hero {
@@ -340,11 +400,23 @@ body {
   padding: 100px 20px;
   text-align: center;
 
+
   }
 
   /* Hero Section */
   .hero {
+
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("https://source.unsplash.com/1600x900/?machine-learning,technology") center/cover;
+    color: white;
+    padding: 150px 20px;
+    text-align: center;
+
+   
+
+
     color: white;
     padding: 150px 20px;
     text-align: center;
@@ -372,6 +444,7 @@ body {
     font-weight: 600;
     text-decoration: none;
     transition: background 0.3s;
+
   }
 
   .btn:hover {
@@ -405,21 +478,40 @@ body {
   /* About Us Page Specific Styles */
   .about-hero {
     background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
+
+}
+
+.btn:hover {
+    background: #0077cc;
+}
+
+/* About Us Page Specific Styles */
+.about-hero {
+    background-image: url('https://images.ctfassets.net/rkv150f3eozw/7b6PQbEhY0EriSHH21hDQJ/b40b67f7097c1fc4382e6af20f29c4c1/Career_Background_Image.jpg');
+
     background-size: cover;
     background-position: center;
     color: white;
     padding: 100px 20px;
     text-align: center;
     position: relative;
+
   }
 
   .about-hero::before {
     content: "";
+
+    padding-top: 350px;
+}
+
+
+
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+
     background: rgba(0, 0, 0, 0.6);
     /* Dark overlay for contrast */
     z-index: 1;
@@ -434,21 +526,28 @@ body {
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 10px;
+    position: absolute;
+    top: -34vh;
+    left: 34%;
   }
 
   .about-hero p {
+
+.about-hero p {
+
     font-size: 20px;
     max-width: 800px;
     margin: 0 auto;
     margin-bottom: 30px;
     color: #f0f0f0;
+
   }
 
   .about-us {
-    padding: 80px 20px;
+    padding: 30px 30px;
     background-color: #f9f9f9;
     text-align: center;
-  }
+}
 
   .about-us h2 {
     font-size: 36px;
@@ -457,22 +556,36 @@ body {
   }
 
   .about-us p {
-    font-size: 18px;
+    font-size: 20px;
+
+    position: absolute;
+    top: -25vh;
+    left: 23%;
+}
+
+
     line-height: 1.8;
     color: #555;
     max-width: 900px;
     margin: 0 auto;
     margin-bottom: 40px;
+
   }
 
-  .about-list {
+
+
+.about-list {
+
     list-style: none;
     padding: 0;
     margin: 0 auto;
     max-width: 600px;
+
   }
 
-  .about-list li {
+
+.about-list li {
+
     font-size: 18px;
     color: #333;
     background: white;
@@ -481,43 +594,44 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   }
 
-  .about-list li:hover {
+  
+
+.about-list li:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  }
-
-  /* features styles */
-  .features {
+}
+.features {
     padding: 80px 20px;
     background-color: #f9f9f9;
     text-align: center;
-  }
+}
 
-  .features h2 {
+.features h2 {
     font-size: 36px;
     margin-bottom: 50px;
     font-weight: 700;
-  }
+}
 
-  .feature-grid {
+.feature-grid {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-  }
+}
 
-  .feature-item {
+.feature-item {
+
     background-color: #fff;
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     width: 30%;
     text-align: center;
-    transition: transform 0.3s ease;
-  }
-
-  .feature-item:hover {
+  transition: transform 0.3s ease;
+}
+.feature-item:hover {
     transform: translateY(-10px);
   }
 
@@ -531,6 +645,32 @@ body {
     font-size: 18px;
     color: #555;
   }
+
+/* Footer Styles */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
+
+/* Features Section */
+
+
+  
 
   /*   
   footer {
@@ -553,6 +693,27 @@ body {
     text-decoration: underline;
   }
   footer {
+=======
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+}
+
+.feature-item h3 {
+    font-size: 26px;
+    color: #0077cc;
+    margin-bottom: 20px;
+}
+
+.feature-item p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Footer Section */
+footer {
+
     background-color: #1a1a1a;
     color: white;
     padding: 40px 0;
