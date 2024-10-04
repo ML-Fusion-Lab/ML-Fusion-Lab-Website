@@ -1394,7 +1394,8 @@ body {
   }
 @media (max-width:1000px) {
   .newsletter {
-    height: 250px;
+    height: 300px;
+
     padding: 40px;
     width: 100%;
     background-color: whitesmoke;
@@ -1417,6 +1418,28 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+  .input {
+    min-height: 50px;
+    width: 200px;
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid #00c6ff;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+  }
+  .button--submit {
+    min-height: 50px;
+    width: 90px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #00c6ff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
   }
 
   
