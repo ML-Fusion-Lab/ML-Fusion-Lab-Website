@@ -493,6 +493,10 @@ footer p a:hover {
   text-align: center;
   transition: transform 0.3s ease;
 }
+.feature-item img{
+  width: 50px;
+  height: 50px;
+}
 
 .feature-item:hover {
   transform: translateY(-10px);
@@ -1387,11 +1391,7 @@ body {
     background-color: #00c6ff;
   }
 
-  .container img {
-    border-radius: 15px;
-    /* Adjust the value as needed */
-    box-shadow: 20px 20px 20px grey;
-  }
+ 
 @media (max-width:1000px) {
   .newsletter {
     height: 300px;
