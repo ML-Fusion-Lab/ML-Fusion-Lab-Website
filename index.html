@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <head>
     <link rel="icon">
     <link rel="icon" href="ml-fusion-lab-logo.png">
     <meta charset="UTF-8">
@@ -12,73 +13,43 @@
     <title>ML Fusion Lab</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
     <style>
         header {
-    height: 100px;
-}
+            height: 100px;
+        }
 
-.logo {
-    margin: 30px 0 0 0;
-}
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto; 
-}
-.footer-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 0 20px;
-}
-
-.footer-links, .footer-socials, .footer-contact {
-    margin: 10px 0;
-}
-
-.footer-links a, .footer-socials a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s; 
-}
-
-.footer-links a:hover, .footer-socials a:hover {
-    color: #007BFF; 
-}
-
-.footer-socials a {
-    font-size: 24px;
-    margin: 0 15px;
-}
-
-.footer-contact a {
-    color: white;
-}
-
-.newsletter .input-group .input {
-    color: black; 
-}
-
-#scrollTopBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 99;
-    font-size: 18px;
-    background-color: #00BFFF;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#scrollTopBtn:hover {
-    background-color: #555;
-}
+        .logo {
+            margin: 30px 0px 0px 0px;
+        }
+      footer {
+         background: #333;
+         color: white;
+         text-align: center;
+         padding: 20px 0;
+         margin-top: auto; /* Push footer to bottom */
+     }
+     .footer-container {
+         max-width: 800px;
+         margin: auto;
+         padding: 0 20px;
+     }
+     .footer-links, .footer-socials {
+         margin: 10px 0;
+     }
+     .footer-links a, .footer-socials a {
+         color: white;
+         text-decoration: none;
+         margin: 0 10px;
+         transition: color 0.3s; /* Add transition for hover effect */
+     }
+     .footer-links a:hover, .footer-socials a:hover {
+         color: #007BFF; /* Change color on hover */
+     }
+     .footer-contact {
+         margin: 10px 0;
+     }
  </style>
 
    
@@ -86,30 +57,31 @@ footer {
 
 <body>
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="scroll.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scroll.css">
   </head>
+
   <body>
 
-    <header >
+    <header>
 
-        <nav>
-            <div class="logo">
-                <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1>
-            </div>
-          <div class="hamburger" id="hamburger">&#9776;</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+      <nav>
+        <div class="logo">
+          <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+        </div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <div class="theme-switch" id="theme-switch"></div>
+
+        </ul>
+       
       </nav>
 
     </header>
@@ -135,28 +107,34 @@ footer {
           professional, ML Fusion Labs has something to offer for everyone.
         </p>
       </div>
-        <div class="container">
-            <center>
+      <div class="container">
+        <center>
 
-                <h2>About ML Fusion Labs</h2>
-            </center>
-            <div id="about-content">
-                <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine
-                    learning tutorials, projects, and resources for all. Whether you are a beginner or an experienced
-                    professional, ML Fusion Labs has something to offer for everyone.</p>
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Coding Team">
+          <h2>About ML Fusion Labs</h2>
+        </center>
+        <div id="about-content">
+          <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine
+            learning tutorials, projects, and resources for all. Whether you are a beginner or an experienced
+            professional, ML Fusion Labs has something to offer for everyone.</p>
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Coding Team">
 
-            <h2>About ML Fusion Labs</h2>
+          <h2>About ML Fusion Labs</h2>
 
-            <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all. Whether you are a beginner or an experienced professional, ML Fusion Labs has something to offer for everyone.</p>
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coding Team">
+          <p>We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning
+            tutorials, projects, and resources for all. Whether you are a beginner or an experienced professional, ML
+            Fusion Labs has something to offer for everyone.</p>
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Coding Team">
 
-            </div>
         </div>
+      </div>
     </section>
 
     <section class="features">
+
       <div class="container">
         <h2>Our Features</h2>
         <div class="feature-grid">
@@ -169,15 +147,15 @@ footer {
           </div>
           <div class="feature-item">
             <a href="projects.html" style="text-decoration: none;">
-                <h3>Practical Projects</h3>
-                <p>
-                    Work on real-world ML projects to apply the concepts you learn.
-                </p>
+              <h3>Practical Projects</h3>
+              <p>
+                Work on real-world ML projects to apply the concepts you learn.
+              </p>
             </a>
-        </div>
-        
+          </div>
+
           <div class="feature-item">
-            <h3>Community Support</h3>
+              <h3><a href="community_suport.html">Community Support</a></h3>
             <p>
               Collaborate with other learners and contribute to open-source ML
               projects.
@@ -186,21 +164,28 @@ footer {
         </div>
       </div>
     </section>
-    <div class="newsletter">
-        <div class="newsletter-left">
-            <h1>Sign Up for Newsletters</h1>
-            <p>Get updates in your E-mail about <span>latest deals and products</span></p>
+    <section class="newsletter">
+      <div class="newsletter-left">
+        <h1>Sign Up for Newsletters</h1>
+        <p>Get updates in your E-mail about <span>latest deals and products</span></p>
+      </div>
+      <div class="newsletter-right">
+        <div class="input-group">
+          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com"
+            autocomplete="off">
+          <input class="button--submit" value="Subscribe" type="submit">
         </div>
-        <div class="newsletter-right">
-            <div class="input-group">
-                <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com"
-                    autocomplete="off">
-                <input class="button--submit" value="Subscribe" type="submit">
-            </div>
-        </div>
-    </div>
+      </div>
+   </section>
     <footer>
-      <div class="container">
+        <div class="container">
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+      <div class="footer-container">
           <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
           <div class="footer-links">
               <a href="privacy.html">Privacy Policy</a> | 
@@ -208,33 +193,37 @@ footer {
               <a href="about.html">About Us</a> | 
               <a href="contact.html">Contact</a>
           </div>
-  
           <div class="footer-socials">
-              Follow us on:
-              <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-              <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              Follow us on: 
+              <a href="https://facebook.com" target="_blank">Facebook</a> | 
+              <a href="https://twitter.com" target="_blank">Twitter</a> | 
+              <a href="https://linkedin.com" target="_blank">LinkedIn</a>
           </div>
           <div class="footer-contact">
               <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
           </div>
       </div>
-      <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
   </footer>
-  <script>
-      const scrollTopBtn = document.getElementById("scrollTopBtn");
-      window.onscroll = function () {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-              scrollTopBtn.style.display = "block";
-          } else {
-              scrollTopBtn.style.display = "none";
-          }
-      };
   
-      function scrollToTop() {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
-      }
-  </script>
 </body>
+
+</html>
+      <div class="container">
+        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        <p>
+          <a href="privacy.html">Privacy Policy</a> |
+          <a href="terms.html">Terms of Service</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navUL = document.querySelector("nav ul");
+      hamburger.addEventListener("click", () => {
+        navUL.classList.toggle("show");
+      });
+    </script>
+    <script src="scroll.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>

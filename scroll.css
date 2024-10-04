@@ -35,3 +35,25 @@
     outline: none;
     box-shadow: 0px 0px 0px 4px rgba(100, 100, 250, 0.5); /* Focus ring */
 }
+
+/* Scroll Bar Styling */
+
+::-webkit-scrollbar{
+    width: 0.8em;
+}
+
+::-webkit-scrollbar-track{
+    background: transparent;
+    border-radius: 100vw;
+    margin-block:.5em ;
+    scroll-behavior:smooth;
+}
+::-webkit-scrollbar-thumb{
+    background-color:#007BFF ;
+    border-radius: 10vw;
+} 
+@supports (scrollbar-color:#007BFF){
+    *{
+        scrollbar-color:#007BFF;
+    }
+}
