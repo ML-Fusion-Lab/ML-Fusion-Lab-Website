@@ -150,13 +150,13 @@
         <div class="container">
             <h2>Featured Projects</h2>
             <div class="project-list">
-                <div class="project-item"></div>
+                <div class="project-item">
                     <h3>Crop Height Using Computer Vision</h3>
                     <p>Utilize contour detection techniques to estimate the height of crops for agricultural purposes.</p>
                     <a href="#" class="btn" onclick="openModal('modal1')">Learn More</a>
                 </div>
                 
-                <div class="project-item"></div>
+                <div class="project-item">
                     <h3>AI-Based Disease Diagnosis</h3>
                     <p>A machine learning model that helps detect early symptoms of diseases using patient data.</p>
                     <a href="#" class="btn" onclick="openModal('modal2')">Learn More</a>
@@ -256,7 +256,15 @@
                 </div>
             </div>
         </div>
-    </section>         
+    </section>
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+            <p id="modalTechnologies"></p>
+        </div>
+    </div>         
     <footer>
         <div class="footer-container">
             <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
