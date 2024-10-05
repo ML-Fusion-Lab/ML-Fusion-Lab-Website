@@ -513,26 +513,26 @@ footer p a:hover {
   color: #555;
 }
 
-/* Footer Section */
+/* Footer Styles */
 footer {
-    background-color: #1a1a1a;
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-  }
+  background-color: #2e2a2a; /* Dark grey background to match design */
+  color: #ffffff; /* White text for readability */
+  padding: 40px 0;
+  text-align: center;
+}
 
-  footer p {
-    margin: 10px 0;
-  }
+footer p {
+  margin: 10px 0;
+}
 
-  footer p a {
-    color: #00c6ff;
-    text-decoration: none;
-  }
+footer p a {
+  color: #00c6ff; /* Bright accent color for links */
+  text-decoration: none;
+}
 
-  footer p a:hover {
-    text-decoration: underline;
-  } */
+footer p a:hover {
+  text-decoration: underline;
+}
 
   /* Course Page Specific Styles */
   .hero-small {
@@ -714,8 +714,8 @@ footer {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -725,7 +725,7 @@ footer {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
@@ -843,8 +843,8 @@ footer {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -854,14 +854,13 @@ footer {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
   footer p a:hover {
     text-decoration: underline;
   }
-
   .privacy-hero {
     background-image: url("https://source.unsplash.com/1600x900/?security,privacy");
     background-size: cover;
@@ -938,8 +937,8 @@ footer {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -949,13 +948,14 @@ footer {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
   footer p a:hover {
     text-decoration: underline;
   }
+
 
   .terms-hero {
     background-image: url("https://source.unsplash.com/1600x900/?legal,contract");
@@ -1033,8 +1033,8 @@ footer {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -1044,7 +1044,7 @@ footer {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
@@ -2156,8 +2156,8 @@ h2 {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -2167,13 +2167,14 @@ h2 {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
   footer p a:hover {
     text-decoration: underline;
   }
+
 
   .contact-hero {
     background-image: url("https://source.unsplash.com/1600x900/?contact,communication");
@@ -2285,8 +2286,8 @@ h2 {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -2296,7 +2297,7 @@ h2 {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
@@ -2380,8 +2381,8 @@ h2 {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -2391,7 +2392,7 @@ h2 {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
@@ -2475,8 +2476,8 @@ h2 {
 
   /* Footer Styles */
   footer {
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2e2a2a; /* Dark grey background to match design */
+    color: #ffffff; /* White text for readability */
     padding: 40px 0;
     text-align: center;
   }
@@ -2486,7 +2487,7 @@ h2 {
   }
 
   footer p a {
-    color: #00c6ff;
+    color: #00c6ff; /* Bright accent color for links */
     text-decoration: none;
   }
 
