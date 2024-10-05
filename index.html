@@ -7,7 +7,7 @@
 
   <head>
     <link rel="icon">
-    <link rel="icon" href="ml-fusion-lab-logo.png">
+    <link rel="icon" href="ml fusion lab log.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Fusion Lab</title>
@@ -56,6 +56,24 @@
 </head>
 
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <img src="ml fusion lab log.jpg" alt="Preloader" class="preloader-icon">
+    <p class="loading-text">Loading...</p>
+</div>
+
+<!-- Main content -->
+<div id="main-content" style="display:none;">
+    <!-- Your existing content goes here -->
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.body.classList.add('loaded');
+        }, 3000); // 3 seconds delay
+    });
+</script>
 
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
