@@ -38,7 +38,14 @@ if (localStorage.getItem('dark-mode') === 'enabled') {
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Welcome to ML Fusion Lab!");
 });
+
+
+
+
+
+
 const themeToggle = document.getElementById('themeToggle');
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
 });
+

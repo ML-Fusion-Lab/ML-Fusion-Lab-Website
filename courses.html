@@ -9,19 +9,171 @@
     <link rel="stylesheet" href="scroll.css">
     <link rel="stylesheet" href="course.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full height */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 15px 0;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        header nav .logo h1 {
+            margin: 0;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            align-items: center; /* Ensure vertical alignment */
+        }
+        header nav ul li {
+            margin-left: 20px;
+        }
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .hamburger {
+            display: none; /* Initially hidden, can be displayed via media queries */
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+        .theme-switch {
+            margin-left: 20px;
+            /* Add your theme switch styles here */
+        }
+        .hero-small {
+            background: #264f7c;
+            color: white;
+            padding: 70px; /* Removed space between value and unit */
+            text-align: center;
+        }
+        .courses {
+            padding: 50px 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .course-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .course-item:hover {
+            transform: translateY(-5px);
+        }
+        .course-item h3 {
+            margin-bottom: 10px;
+        }
+        .course-item p {
+            margin-bottom: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto; /* Push footer to bottom */
+        }
+        .footer-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .footer-links, .footer-socials {
+            margin: 10px 0;
+        }
+        .footer-links a, .footer-socials a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s; /* Add transition for hover effect */
+        }
+        .footer-links a:hover, .footer-socials a:hover {
+            color: #007BFF; /* Change color on hover */
+        }
+        .footer-contact {
+            margin: 10px 0;
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block; /* Show hamburger on smaller screens */
+            }
+            header nav ul {
+                display: none; /* Hide menu items */
+                flex-direction: column;
+                width: 100%;
+                background: #333;
+            }
+            header nav ul.active {
+                display: flex;
+            }
+            header nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <h1>ML Fusion Labs</h1>
+                <h1>
+                    <img src="ml-fusion-lab-logo.png" alt="ML Fusion Labs Logo" width="100" height="100"/>
+                </h1>
             </div>
-            <ul>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul id="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses.html" class="active">Courses</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <div class="theme-switch" id="theme-switch">
+                    <!-- Theme switcher content (e.g., toggle button) -->
+                </div>
             </ul>
         </nav>
     </header>
@@ -39,7 +191,6 @@
         </div>
     </section>
     
-
     <section class="courses">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 30px;">Our Popular Courses</h2>
@@ -56,35 +207,35 @@
                     <p><strong>Duration:</strong> 3 weeks</p>
                     <p><strong>Difficulty:</strong> Intermediate</p>
                     <p>Understand the difference between supervised and unsupervised learning methods.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
+                    <a href="supervised-unsupervised.html" class="btn">Learn More</a>
                 </div>
                 <div class="course-item">
                     <h3>Neural Networks and Deep Learning</h3>
                     <p><strong>Duration:</strong> 5 weeks</p>
                     <p><strong>Difficulty:</strong> Advanced</p>
                     <p>Dive into deep learning and understand how neural networks work.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
+                    <a href="neural-networks.html" class="btn">Learn More</a>
                 </div>
                 <div class="course-item">
                     <h3>Practical ML with Python</h3>
                     <p><strong>Duration:</strong> 6 weeks</p>
                     <p><strong>Difficulty:</strong> Intermediate</p>
                     <p>Learn how to implement machine learning algorithms in Python with real-world examples.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
+                    <a href="practical-ml-python.html" class="btn">Learn More</a>
                 </div>
                 <div class="course-item">
                     <h3>Advanced ML Techniques</h3>
                     <p><strong>Duration:</strong> 4 weeks</p>
                     <p><strong>Difficulty:</strong> Advanced</p>
                     <p>Master advanced topics like reinforcement learning and unsupervised feature learning.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
+                    <a href="advanced-ml-techniques.html" class="btn">Learn More</a>
                 </div>
                 <div class="course-item">
                     <h3>Data Visualization with Python</h3>
                     <p><strong>Duration:</strong> 4 weeks</p>
                     <p><strong>Difficulty:</strong> Intermediate</p>
                     <p>Explore various libraries in Python for data visualization, including Matplotlib and Seaborn, to create insightful charts and graphs.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
+                    <a href="data-visualization-python.html" class="btn">Learn More</a>
                 </div>
             </div>
         </div>
@@ -114,5 +265,19 @@
     <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
     <script src="scroll.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
