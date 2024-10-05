@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="icon">
-    <link rel="icon" href="ml-fusion-lab-logo.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="icon" />
+    <link rel="icon" href="ml-fusion-lab-logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us - ML Fusion Labs</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="scroll.css" />
+=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="scroll.css">
+
     <style>
+
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto; /* Push footer to bottom */
+      }
+      .footer-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+      .footer-links,
+      .footer-socials {
+        margin: 10px 0;
+      }
+      .footer-links a,
+      .footer-socials a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s; /* Add transition for hover effect */
+      }
+      .footer-links a:hover,
+      .footer-socials a:hover {
+        color: #007bff; /* Change color on hover */
+      }
+      .footer-contact {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <h1>ML Fusion Labs</h1>
+        </div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+
         footer {
            background: #333;
            color: white;
@@ -61,18 +111,64 @@
                 <li><a href="contact.html">Contact</a></li>
                 <div class="theme-switch" id="theme-switch"></div>
             </ul>
+
       </nav>
+
 
     </header>
 
     <section class="contact-hero">
-        <div class="hero-content">
-            <h2>Contact ML Fusion Labs</h2>
-            <p>Have questions or feedback? We’d love to hear from you!</p>
-        </div>
+      <div class="hero-content">
+        <h2>Contact ML Fusion Labs</h2>
+        <p>Have questions or feedback? We’d love to hear from you!</p>
+      </div>
     </section>
 
     <section class="contact-us">
+
+      <div class="container">
+        <h2>Get in Touch</h2>
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="contact-form"
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="949b4eab-9721-4360-a138-aedf908e1975"
+          />
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
+
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your Email"
+            required
+          />
+
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+
         <div class="container">
             <h2>Get in Touch</h2>
             <form action="submit_form.php" method="post" class="contact-form">
@@ -88,17 +184,18 @@
             </form>
             <button type="submit" class="btn">Send Message</button>
         </div>
+
     </section>
 
     <footer>
-        <div class="footer-container">
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="about.html">About Us</a> | 
-                <a href="contact.html">Contact</a>
-            </div>
+      <div class="footer-container">
+        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a> |
+          <a href="terms.html">Terms of Service</a> |
+          <a href="about.html">About Us</a> |
+          <a href="contact.html">Contact</a>
+=======
             <div class="footer-socials">
                 Follow us on: 
             <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
@@ -109,10 +206,30 @@
                 <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
             </div>
         </div>
+        <div class="footer-socials">
+          Follow us on:
+          <a href="https://facebook.com" target="_blank">Facebook</a> |
+          <a href="https://twitter.com" target="_blank">Twitter</a> |
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </div>
+        <div class="footer-contact">
+          <p>
+            Contact us:
+            <a href="mailto:info@mlfusionlabs.com" style="color: white"
+              >info@mlfusionlabs.com</a
+            >
+            | Phone: +1 (555) 123-4567
+          </p>
+        </div>
+      </div>
     </footer>
     <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
     <script src="scroll.js"></script>
+
+  </body>
+
     <script src="script.js"></script>
     
 </body>
+
 </html>
