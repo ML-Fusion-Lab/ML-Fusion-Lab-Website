@@ -219,7 +219,7 @@ footer {
               <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
           </div>
       </div>
-      <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+      <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
   </footer>
   <script>
       const scrollTopBtn = document.getElementById("scrollTopBtn");
@@ -232,8 +232,10 @@ footer {
       };
   
       function scrollToTop() {
-          document.body.scrollTop = 0;
-          document.documentElement.scrollTop = 0;
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
       }
   </script>
 </body>
