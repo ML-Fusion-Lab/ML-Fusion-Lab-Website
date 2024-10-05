@@ -58,75 +58,7 @@ body {
     font-size: 40px;
   }
 
-  /*Newsletter Styles*/
-  .newsletter {
-    height: 200px;
-    width: 100%;
-    background-color: whitesmoke;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: center;
-    align-items: center;
-    box-shadow: 10px 10px 10px solid white;
-  }
-
-  .newsletter-left {
-    margin-left: 60px;
-  }
-
-  .newsletter-left h1 {
-    font-size: 1.5rem;
-    font-family: Poppins;
-    font-weight: 500;
-  }
-
-  .newsletter-left p {
-    font-size: 1rem;
-    font-family: Poppins;
-    font-weight: 300;
-  }
-
-  .input-group {
-    display: flex;
-    align-items: center;
-    margin-right: 150px;
-  }
-
-  .input {
-    min-height: 50px;
-    width: 250px;
-    padding: 0 1rem;
-    color: #fff;
-    font-size: 15px;
-    border: 1px solid #00c6ff;
-    border-radius: 6px 0 0 6px;
-    background-color: transparent;
-  }
-
-  .button--submit {
-    min-height: 50px;
-    padding: .5em 1em;
-    border: none;
-    border-radius: 0 6px 6px 0;
-    background-color: #00c6ff;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color .3s ease-in-out;
-  }
-
-  .button--submit:hover {
-    background-color: #00c6ff;
-  }
-
-  .container img {
-    border-radius: 15px;
-    /* Adjust the value as needed */
-    box-shadow: 20px 20px 20px grey;
-  }
-
+  
   /* Header Styles */
   header {
 
@@ -531,48 +463,54 @@ footer p a:hover {
     text-decoration: underline;
 }
 
+
 /* Features Section */
+
 .features {
-    padding: 80px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
 }
 
 .features h2 {
-    font-size: 36px;
-    margin-bottom: 50px;
-    font-weight: 700;
+  font-size: 36px;
+  margin-bottom: 50px;
+  font-weight: 700;
 }
 
 .feature-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .feature-item {
-    background-color: #fff;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    width: 30%;
-    text-align: center;
-    transition: transform 0.3s ease;
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  width: 30%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.feature-item img{
+  width: 50px;
+  height: 50px;
 }
 
 .feature-item:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .feature-item h3 {
-    font-size: 26px;
-    color: #0077cc;
-    margin-bottom: 20px;
+  font-size: 26px;
+  color: #0077cc;
+  margin-bottom: 20px;
 }
 
 .feature-item p {
-    font-size: 18px;
-    color: #555;
+  font-size: 18px;
+  color: #555;
 }
 
 /* Footer Section */
@@ -1330,7 +1268,7 @@ body.dark-mode .terms-of-service h3{
 #scrolltopbutton{
   background-color: #505056;
   color: #e0c0c0;
-=======
+}
 header {
   height: 100px;
 }
@@ -1453,12 +1391,59 @@ body {
     background-color: #00c6ff;
   }
 
-  .container img {
-    border-radius: 15px;
-    /* Adjust the value as needed */
-    box-shadow: 20px 20px 20px grey;
+ 
+@media (max-width:1000px) {
+  .newsletter {
+    height: 300px;
+
+    padding: 40px;
+    width: 100%;
+    background-color: whitesmoke;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 10px 10px 10px solid white;
   }
 
+  .newsletter-right{
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+    width: 80%;
+  }
+  .input-group{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .input {
+    min-height: 50px;
+    width: 200px;
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid #00c6ff;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+  }
+  .button--submit {
+    min-height: 50px;
+    width: 90px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #00c6ff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+  }
+
+  
+}
   /* Header Styles */
   header {
 
@@ -1723,7 +1708,13 @@ body {
     max-width: 400px;
     margin: 20px auto;
   }
-
+@media (max-width:700px) {
+  .about img {
+    max-width: 300px;
+    margin: 20px auto;
+  }
+  
+}
   #about-content {
     display: flex;
     flex-direction: row;
@@ -1818,7 +1809,91 @@ body {
   }
 
   /* features styles */
-  .features {
+  /* General Styles for Features Section */
+.features {
+  padding: 40px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2em;
+}
+
+/* Flexbox for Feature Grid */
+.feature-grid {
+  display: flex;
+  flex-wrap: wrap;   /* Allows the items to wrap if they don't fit on one line */
+  gap: 20px;         /* Adds space between feature items */
+  justify-content: space-around; /* Evenly distribute items */
+}
+
+.feature-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1 1 30%;      /* Flex items to grow/shrink with a base of 30% */
+  max-width: 30%;     /* Ensures no item exceeds 30% of the container's width */
+}
+
+/* Text Styling */
+.feature-item h3 {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.feature-item p {
+  font-size: 1em;
+  color: #555;
+}
+
+/* Responsive Styles */
+
+/* For tablets (below 768px) */
+@media (max-width: 768px) {
+  .feature-grid {
+    flex-direction: column;     /* Stack items vertically */
+    align-items: center;        /* Center the items */
+  }
+
+  .feature-item {
+    max-width: 100%;            /* Each item takes full width */
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+}
+
+/* For mobile devices (below 576px) */
+@media (max-width: 576px) {
+  .feature-item {
+    padding: 15px;
+  }
+
+  .feature-item h3 {
+    font-size: 1.3em;
+  }
+
+  .feature-item p {
+    font-size: 0.9em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+  /* .features {
     padding: 80px 20px;
     background-color: #f9f9f9;
     text-align: center;
@@ -1859,7 +1934,7 @@ body {
   .feature-item p {
     font-size: 18px;
     color: #555;
-  }
+  } */
 
   /*   
   footer {
