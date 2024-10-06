@@ -1,7 +1,8 @@
+/* Scroll to Top Button Styles */
 #scrollTopBtn {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 100px;
     display: none; /* Hidden by default */
     
     /* Circular shape */
@@ -37,23 +38,44 @@
 }
 
 /* Scroll Bar Styling */
-
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     width: 0.8em;
 }
 
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 100vw;
-    margin-block:.5em ;
-    scroll-behavior:smooth;
+    margin-block: .5em;
+    scroll-behavior: smooth;
 }
-::-webkit-scrollbar-thumb{
-    background-color:#007BFF ;
+
+::-webkit-scrollbar-thumb {
+    background-color: #007BFF;
     border-radius: 10vw;
-} 
-@supports (scrollbar-color:#007BFF){
-    *{
-        scrollbar-color:#007BFF;
+}
+
+@supports (scrollbar-color: #007BFF) {
+    * {
+        scrollbar-color: #007BFF;
     }
+}
+
+/* Chatbot Widget Styles */
+#chatbot {
+    position: fixed;
+    bottom: 90px; /* Adjusted to sit above the scroll button */
+    right: 90px; /* Adjust this to the desired spacing from the right */
+    z-index: 110; /* Ensures it's above other elements */
+}
+
+/* Optional hover effect for chatbot */
+#chatbot:hover {
+    transform: translateY(-2px);
+}
+
+/* Add this section for the chatbot widget */
+.bp-web-widget {
+    bottom: 250px !important; /* Adjust this value based on the final scroll button position */
+    right: 90px !important; /* Match this with the chatbot position */
+    z-index: 110 !important; /* Ensure it appears above other elements */
 }

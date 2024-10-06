@@ -2767,4 +2767,12 @@ nav ul a:hover{
   margin-top: 2rem;
   margin-bottom: 2rem;
 
+  .bp-web-widget {
+    bottom: 150px !important; /* Adjust this value based on the final scroll button position */
+    right: 20px !important; /* Adjust as needed */
+    z-index: 110 !important; /* Ensure it appears above other elements */
+}
+
+
+
 }
