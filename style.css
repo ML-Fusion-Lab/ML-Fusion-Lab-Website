@@ -45,11 +45,6 @@ footer {
   margin: 10px 0;
 }
 
-{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
 
@@ -360,6 +355,16 @@ header nav ul li a {
 
 .about .row .content .btn:hover {
   background-color: #0056b3; 
+}
+@media (max-width:1000px) {
+  .about .row {
+    display: flex;              /* Use flexbox for layout */
+    flex-direction: column-reverse;
+    align-items: center;       /* Center items vertically */
+    gap: 2rem;                 /* Space between the image and content */
+    padding: 2rem 0;           /* Padding for the section */
+  }
+  
 }
 
 /* Hero Section */
@@ -3031,7 +3036,7 @@ footer p a:hover {
   margin-bottom: 30px;
 }
 
-@@ -287,7 +287,7 @@ header nav ul li a {
+header nav ul li a {
   font-size: 18px;
   font-weight: 600;
   text-decoration: none;
@@ -3039,16 +3044,17 @@ footer p a:hover {
   transition:0.3s;
 }
 
-.btn:hover {
-@@ -299,6 +299,7 @@ header nav ul li a {
+
+header nav ul li a {
     margin-top: 50px;
     margin-bottom: 10px;
     font-weight: 700;
     color:#3d3434;
+
 }
 .about p{
     max-width: 800px;
-@@ -454,14 +455,18 @@ footer p a:hover {
+ 
 }
 
 .feature-item h3 {
