@@ -212,6 +212,8 @@ header nav ul li a {
   font-size: 16px;
   padding: 0.5rem 0.75rem; /* Adjust padding for links */
   transition: color 0.3s ease;
+  border: 2px solid white;
+  border-radius: 25px;
 
 }
 
@@ -1202,7 +1204,7 @@ body.dark-mode .newsletter-right {
 }
 
 .theme-switch.dark-theme {
-  background: linear-gradient(82deg, #ffffff, #1f1f1f);
+  background: linear-gradient(82deg, #ffffff, #f1e615);
 }
 
 .theme-switch.dark-theme::before {
