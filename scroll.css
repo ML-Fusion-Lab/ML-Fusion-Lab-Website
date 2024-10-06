@@ -5,15 +5,15 @@
     display: none; /* Hidden by default */
     
     /* Circular shape */
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%; 
     background-color: #ffffff;
-    color: #000000;
+    color: #00ff00;
     border: none;
     font-size: 20px;
     text-align: center;
-    line-height: 60px;
+    line-height: 20px;
     
     /* Add a subtle shadow */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
