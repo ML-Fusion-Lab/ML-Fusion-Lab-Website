@@ -1,0 +1,72 @@
+name: 🐞 Bug
+description: Report an issue to help us improve the project.
+title: "[BUG] <write a small description here>"
+labels: ["bug", "goal: fix", "priority: medium"]
+assignees: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Briefly describe the issue, what you tried, and what didn't work.
+      placeholder: "Describe the issue in detail..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Provide steps to reproduce the issue.
+      placeholder: "1. Go to...\n2. Click on...\n3. See error..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: Describe what you expected to happen.
+      placeholder: "What should have happened?"
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: Describe what actually happened.
+      placeholder: "What actually happened?"
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other details or information about the bug.
+      placeholder: "Any other details..."
+    validations:
+      required: false
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: no-duplicate-issues
+    attributes:
+      label: Checklist
+      options:
+        - label: "I have checked the existing [issues](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues)."
+          required: true
+        - label: "I have read the [Code Of Conduct](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/blob/main/contributing.md)"
+          required: true
+        - label: "The changes don't break the code"
+          required: true
+        - label: "Please attach screenshots and videos of the development work once done"
+          required: true
