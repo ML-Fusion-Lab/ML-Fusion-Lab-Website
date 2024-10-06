@@ -296,12 +296,72 @@ header nav ul li a {
 
 }
 
-.about{
-    background-color: silver;
-    color: grey;
-    padding: 150px 20px;
-    text-align: center;
+.about .row {
+  display: flex;              /* Use flexbox for layout */
+  align-items: center;       /* Center items vertically */
+  gap: 2rem;                 /* Space between the image and content */
+  padding: 2rem 0;           /* Padding for the section */
 }
+
+.about .row .img-container {
+  flex: 1 1 40%;             /* Image container takes up 40% of the row */
+  position: relative;        /* Position relative for absolute positioning of the heading */
+}
+
+.about .row .img-container img {
+  width: 100%;              
+  border: 1.5rem solid #fff; 
+  border-radius: 0.5rem;     /* Rounded corners */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Box shadow */
+  object-fit: cover;         /* Maintain aspect ratio */
+}
+
+.about .row .img-container h3 {
+  position: absolute;        
+  top: 38%;              
+  left: 50%;                 
+  transform: translateX(-50%); 
+  font-size: 25px;          
+  background: #fff;             
+  padding: 0.2em 9rem;      
+  border-radius: 0.5rem;      
+  text-align: center;       
+  mix-blend-mode: screen;    
+}
+
+.about .row .content {
+  flex: 1 1 60%;             
+}
+
+.about .row .content h3.content-heading {
+  font-size: 3rem;         
+  font-weight: bold;        
+  color: #333;               
+  margin-bottom: 1rem;       
+}
+
+.about .row .content p {
+  font-size: 1.5rem;         
+  color: #999;              
+  padding: 0.5rem 0;         
+  line-height: 1.5;          
+}
+
+.about .row .content .btn {
+  display: inline-block;      
+  padding: 0.8rem 1.5rem;   
+  background-color: #007BFF; 
+  color: #fff;              
+  text-decoration: none;     
+  border-radius: 0.5rem;     
+  margin-top: 1rem;          
+  transition: background-color 0.3s; 
+}
+
+.about .row .content .btn:hover {
+  background-color: #0056b3; 
+}
+
 /* Hero Section */
 .hero {
   
