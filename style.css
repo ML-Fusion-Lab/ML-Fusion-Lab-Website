@@ -1,4 +1,51 @@
-* {
+header {
+  height: 100px;
+}
+
+.logo {
+  margin: 30px 0px 0px 0px;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007BFF;
+
+}
+
+.footer-contact {
+  margin: 10px 0;
+}
+
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -1285,7 +1332,7 @@ body {
     font-size: 40px;
   }
 
-  /*Newsletter Styles*/
+  /Newsletter Styles/
   .newsletter {
     height: 200px;
     width: 100%;
@@ -1352,7 +1399,56 @@ body {
 @media (max-width:1000px) {
   .newsletter {
     height: 300px;
+    padding: 40px;
+    width: 100%;
+    background-color: whitesmoke;
+ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
+    box-shadow: 10px 10px 10px solid white;
+  }
+
+  .newsletter-right{
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+    width: 80%;
+  }
+  .input-group{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .input {
+    min-height: 50px;
+    width: 200px;
+    padding: 0 1rem;
+    color: #fff;
+    font-size: 15px;
+    border: 1px solid #00c6ff;
+    border-radius: 6px 0 0 6px;
+    background-color: transparent;
+  }
+  .button--submit {
+    min-height: 50px;
+    width: 90px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #00c6ff;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+  }
+
+  
+}
+  /* Header Styles */
+  header {
     padding: 40px;
     width: 100%;
     background-color: whitesmoke;
@@ -2861,6 +2957,55 @@ footer p a {
 footer p a:hover {
   text-decoration: underline;
 }
+
+.hero-content h2 {
+  font-size: 48px;
+  font-size: 52px;
+  margin-bottom: 20px;
+  font-weight: 700;
 }
 
+.hero-content p {
+  font-size: 20px;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+@@ -287,7 +287,7 @@ header nav ul li a {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s;
+  transition:0.3s;
+}
+
+.btn:hover {
+@@ -299,6 +299,7 @@ header nav ul li a {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color:#3d3434;
+}
+.about p{
+    max-width: 800px;
+@@ -454,14 +455,18 @@ footer p a:hover {
+}
+
+.feature-item h3 {
+  font-size: 26px;
+  font-size: 13px;
+  font-weight: 800;
+  text-align:center;
+  color: #0077cc;
+  margin-bottom: 20px;
+  padding: 0 3px 0 3px;
+}
+
+.feature-item p {
+  font-size: 18px;
+  color: #555;
+  font-size: 14px;
+  color: #575252;
+  text-align: center;
+}
 
