@@ -1,81 +1,61 @@
-/* Scroll to Top Button Styles */
 #scrollTopBtn {
     position: fixed;
     bottom: 20px;
     right: 100px;
-    display: none; /* Hidden by default */
-    
-    /* Circular shape */
+    display: none;
     width: 60px;
     height: 60px;
-    border-radius: 50%; 
-    background-color: #ffffff;
-    color: #000000;
+    border-radius: 50%;
+    background-color: #00A6FF; 
+    color: white;
     border: none;
     font-size: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     line-height: 60px;
-    
-    /* Add a subtle shadow */
+    padding: 5px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-    
     cursor: pointer;
     z-index: 100;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
-/* Hover Effect */
 #scrollTopBtn:hover {
-    background-color: #f1f1f1; /* Slightly darker background on hover */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25); /* Stronger shadow on hover */
-    transform: translateY(-2px); /* Makes it look like it lifts up slightly */
+    background-color: #007BBF; 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25); 
+    transform: translateY(-2px); 
 }
 
-/* Optional: Add a focus effect (for accessibility) */
+#scrollTopBtn i {
+    font-size: 25px; 
+    margin: 0; 
+    padding: 0; 
+    line-height: 1; 
+}
+
 #scrollTopBtn:focus {
     outline: none;
-    box-shadow: 0px 0px 0px 4px rgba(100, 100, 250, 0.5); /* Focus ring */
+    box-shadow: 0px 0px 0px 4px rgba(0, 166, 255, 0.5);
 }
 
-/* Scroll Bar Styling */
 ::-webkit-scrollbar {
     width: 0.8em;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #333333; 
     border-radius: 100vw;
-    margin-block: .5em;
-    scroll-behavior: smooth;
+    margin-block: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #007BFF;
+    background-color: #00A6FF; 
     border-radius: 10vw;
 }
 
-@supports (scrollbar-color: #007BFF) {
+@supports (scrollbar-color: #00A6FF) {
     * {
-        scrollbar-color: #007BFF;
+        scrollbar-color: #00A6FF #333333; 
     }
-}
-
-/* Chatbot Widget Styles */
-#chatbot {
-    position: fixed;
-    bottom: 90px; /* Adjusted to sit above the scroll button */
-    right: 90px; /* Adjust this to the desired spacing from the right */
-    z-index: 110; /* Ensures it's above other elements */
-}
-
-/* Optional hover effect for chatbot */
-#chatbot:hover {
-    transform: translateY(-2px);
-}
-
-/* Add this section for the chatbot widget */
-.bp-web-widget {
-    bottom: 250px !important; /* Adjust this value based on the final scroll button position */
-    right: 90px !important; /* Match this with the chatbot position */
-    z-index: 110 !important; /* Ensure it appears above other elements */
 }
