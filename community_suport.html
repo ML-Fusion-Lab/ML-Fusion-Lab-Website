@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="ml-fusion-lab-logo.png">
+    <link rel="icon" href="ml-fusion-lab-logo.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Fusion Labs - Community Support</title>
@@ -11,14 +11,51 @@
     <style>
         .community-support {
             margin: 20px 0; /* Adjusts vertical spacing */
+            padding: 10px; /* Adds padding around the section */
+            background-color: #f9f9f9; /* Light background for better contrast */
+            border-radius: 8px; /* Rounded corners for aesthetic appeal */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+        .community-support h2 {
+            font-weight: 600; /* Bolder font weight for main heading */
+            color: #333; /* Darker color for better readability */
         }
         .community-support h3 {
             margin-top: 30px; /* Creates a gap above the headings */
             margin-bottom: 10px; /* Creates a gap below the headings */
+            color: #555; /* Slightly lighter color for subheadings */
         }
         .btn {
             display: inline-block;
             margin: 10px 0; /* Creates a gap between buttons */
+            padding: 10px 15px; /* Adds padding for better button size */
+            background-color: #007bff; /* Primary button color */
+            color: white; /* Text color */
+            text-decoration: none; /* Removes underline */
+            border-radius: 5px; /* Rounded corners for buttons */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        .btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+        /* Style for the Back to Top button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 100;
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        #backToTop:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -46,23 +83,23 @@
 
             <h3>Join Our Forums</h3>
             <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums. Whether you’re a beginner or an expert, everyone is welcome!</p>
-            <a href="forum.html" class="btn">Visit Forums</a>
+            <a href="forum.html" class="btn" aria-label="Visit Forums">Visit Forums</a>
 
             <h3>Weekly Q&A Sessions</h3>
             <p>Join our weekly Q&A sessions where experts from the ML field answer your questions live. Check our schedule and sign up!</p>
-            <a href="qa_schedule.html" class="btn">View Schedule</a>
+            <a href="qa_schedule.html" class="btn" aria-label="View Schedule">View Schedule</a>
 
             <h3>Resource Library</h3>
             <p>Access our curated library of articles, tutorials, and videos to help you navigate through machine learning topics. Learn at your own pace!</p>
-            <a href="resources.html" class="btn">Explore Resources</a>
+            <a href="resources.html" class="btn" aria-label="Explore Resources">Explore Resources</a>
 
             <h3>Connect with Mentors</h3>
             <p>Get paired with experienced mentors who can guide you through complex topics, provide insights, and support your learning journey.</p>
-            <a href="mentor_program.html" class="btn">Find a Mentor</a>
+            <a href="mentor_program.html" class="btn" aria-label="Find a Mentor">Find a Mentor</a>
 
             <h3>Social Media Groups</h3>
             <p>Join our social media groups on platforms like Facebook, LinkedIn, and Discord to stay updated, network with other learners, and share resources.</p>
-            <a href="social_media.html" class="btn">Join Our Groups</a>
+            <a href="social_media.html" class="btn" aria-label="Join Our Groups">Join Our Groups</a>
         </div>
     </section>
 
@@ -72,5 +109,25 @@
             <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()" aria-label="Back to Top">Back to Top</button>
+
+    <script>
+        // Show the Back to Top button when the user scrolls down
+        window.onscroll = function() {
+            var backToTopButton = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
