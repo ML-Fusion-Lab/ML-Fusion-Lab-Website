@@ -49,6 +49,13 @@
     .footer-contact {
       margin: 10px 0;
     }
+
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: none;
+    }
   </style>
 </head>
 
@@ -56,7 +63,6 @@
   <header>
     <nav>
       <div class="logo">
-
         <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
       </div>
       <div class="hamburger" id="hamburger">&#9776;</div>
@@ -69,7 +75,6 @@
         <div class="theme-switch" id="theme-switch"></div>
       </ul>
     </nav>
-
   </header>
 
   <section class="about-us" style="
@@ -86,12 +91,10 @@
     </div>
   </section>
 
-
   <section class="contact-us">
-
     <div class="container">
       <h2>Get in Touch</h2>
-      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" onsubmit="return validateForm()">
         <input type="hidden" name="access_key" value="949b4eab-9721-4360-a138-aedf908e1975" />
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your Name" required />
@@ -101,13 +104,12 @@
 
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+        <p class="error-message" id="error-message">Message must be longer than 10 characters.</p>
 
         <button type="submit" class="btn" id="alertbutton">Send Message</button>
       </form>
-
     </div>
   </section>
-
 
   <footer>
     <div class="footer-container">
@@ -135,6 +137,21 @@
   <script src="scroll.js"></script>
   <script src="script.js"></script>
 
+  <script>
+    function validateForm() {
+      const message = document.getElementById('message').value;
+      const errorMessage = document.getElementById('error-message');
+      
+      if (message.length <= 10) {
+        errorMessage.style.display = 'block';
+        return false; // Prevent form submission
+      } else {
+        errorMessage.style.display = 'none'; // Hide error message
+      }
+
+      return true; // Proceed with submission
+    }
+  </script>
 
 </body>
 
