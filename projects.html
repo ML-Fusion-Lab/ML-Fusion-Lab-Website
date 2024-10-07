@@ -45,15 +45,6 @@
         margin-top: 20px;
     }
 
-    .project-item {
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: transform 0.3s ease;
-    }
-
     .project-item h3 {
         margin-bottom: 10px;
         font-size: 1.2em;
@@ -126,13 +117,24 @@
   }
   
   .project-item {
+    height: 400px;
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
   }
   
+  .project-item img {
+    height: 50%;
+    width: 100%;
+    margin: auto;
+}
+
   .project-item:hover {
     transform: translateY(-5px); /* Hover effect */
   }
@@ -195,105 +197,125 @@
             <h2>Featured Projects</h2>
             <div class="project-list">
                 <div class="project-item">
+                    <img src="Assets/projectpics/crops.jpg" alt="crops" style="box-shadow: none; border-radius: 5px;">
                     <h3>Crop Height Using Computer Vision</h3>
                     <p>Utilize contour detection techniques to estimate the height of crops for agricultural purposes.</p>
                     <a href="#" class="btn" onclick="openModal('modal1')">Learn More</a>
                 </div>
                 
                 <div class="project-item">
+                    <img src="Assets/projectpics/disease.jpg" alt="disease" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Based Disease Diagnosis</h3>
                     <p>A machine learning model that helps detect early symptoms of diseases using patient data.</p>
                     <a href="#" class="btn" onclick="openModal('modal2')">Learn More</a>
                 </div>
                 
                 <div class="project-item">
+                    <img src="Assets/projectpics/shop.jpg" alt="shopping" style="box-shadow: none; border-radius: 5px;">
                     <h3>Recommendation System for Shopping</h3>
                     <p>Build a recommendation system that suggests products based on user browsing behavior.</p>
                     <a href="#" class="btn" onclick="openModal('modal3')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/cnn.png" alt="cnn" style="box-shadow: none; border-radius: 5px;">
                     <h3>Image Classification with Deep Learning</h3>
                     <p>Develop a model that classifies images into categories using convolutional neural networks.</p>
                     <a href="#" class="btn" onclick="openModal('modal4')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/emai.jpg" alt="email" style="box-shadow: none; border-radius: 5px;">
                     <h3>Automated Email Response System</h3>
                     <p>Implement a system that uses NLP to generate automated responses to common email inquiries.</p>
                     <a href="#" class="btn" onclick="openModal('modal5')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/stock.jpg" alt="stock" style="box-shadow: none; border-radius: 5px;">
                     <h3>Stock Price Time Series Forecasting</h3>
                     <p>Apply machine learning algorithms to predict future stock prices based on historical data.</p>
                     <a href="#" class="btn" onclick="openModal('modal6')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/bot.png" alt="bot" style="box-shadow: none; border-radius: 5px;">
                     <h3>Chatbot Development for Customer Support</h3>
                     <p>Create an AI-powered chatbot that assists users with their inquiries in real time.</p>
                     <a href="#" class="btn" onclick="openModal('modal7')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/fraud.png" alt="fraud" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Powered Fraud Detection System</h3>
                     <p>Develop a system that identifies fraudulent activities using machine learning techniques.</p>
                     <a href="#" class="btn" onclick="openModal('modal8')">Learn More</a>
                 </div>
                 <!-- New Projects -->
                 <div class="project-item">
+                    <img src="Assets/projectpics/lth.png" alt="health" style="box-shadow: none; border-radius: 5px;">
                     <h3>Healthcare Predictive Analytics</h3>
                     <p>Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans.</p>
                     <a href="#" class="btn" onclick="openModal('modal9')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/wild.jpg" alt="wild" style="box-shadow: none; border-radius: 5px;">
                     <h3>Wildfire Detection Using Satellite Images</h3>
                     <p>Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.</p>
                     <a href="#" class="btn" onclick="openModal('modal10')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/waste.jpg" alt="waste" style="box-shadow: none; border-radius: 5px;">
                     <h3>Waste Management Optimization</h3>
                     <p>Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution.</p>
                     <a href="#" class="btn" onclick="openModal('modal11')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/traffic.jpg" alt="traffic" style="box-shadow: none; border-radius: 5px;">
                     <h3>Traffic Accident Prediction System</h3>
                     <p>Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.</p>
                     <a href="#" class="btn" onclick="openModal('modal12')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/personalizd.jpg" alt="personalized" style="box-shadow: none; border-radius: 5px;">
                     <h3>Personalized Learning Recommendation System</h3>
                     <p>Create an adaptive learning platform that suggests personalized learning paths based on student performance data.</p>
                     <a href="#" class="btn" onclick="openModal('modal13')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/mental.jpg" alt="mental" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI for Mental Health Analysis</h3>
                     <p>Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.</p>
                     <a href="#" class="btn" onclick="openModal('modal14')">Learn More</a>
                 </div>
                 <!-- Unique Innovative Projects -->
                 <div class="project-item">
+                    <img src="Assets/projectpics/dist.jpg" alt="Disaster" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Driven Disaster Relief Supply Chain Optimization</h3>
                     <p>Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time.</p>
                     <a href="#" class="btn" onclick="openModal('modal15')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/sound.jpg" alt="sound" style="box-shadow: none; border-radius: 5px;">
                     <h3>Urban Sound Classification</h3>
                     <p>Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.</p>
                     <a href="#" class="btn" onclick="openModal('modal16')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/eneryg.png" alt="energy" style="box-shadow: none; border-radius: 5px;">
                     <h3>Energy Consumption Prediction for Smart Homes</h3>
                     <p>Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.</p>
                     <a href="#" class="btn" onclick="openModal('modal17')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/nut.jpg" alt="nutrition" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI for Personalized Nutrition Plans</h3>
                     <p>Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.</p>
                     <a href="#" class="btn" onclick="openModal('modal18')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/rec.jpg" alt="recycle" style="box-shadow: none; border-radius: 5px;">
                     <h3>Plastic Waste Classification for Recycling</h3>
                     <p>Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.</p>
                     <a href="#" class="btn" onclick="openModal('modal19')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/the.jpg" alt="Therapist" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Powered Virtual Therapist</h3>
                     <p>Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.</p>
                     <a href="#" class="btn" onclick="openModal('modal20')">Learn More</a>
