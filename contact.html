@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" />
   <link rel="icon" href="ml-fusion-lab-logo.png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,18 +11,144 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    nav .logo img {
+      width: 80px;
+      height: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    nav ul li a:hover {
+      color: #007BFF;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: white;
+    }
+
+    /* Hero Section */
+    .contact-hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('assets/contact-us-communication-support-service-assistance-concept.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .contact-hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-hero p {
+      font-size: 1.3rem;
+    }
+
+    /* Contact Section */
+    .contact-us {
+      padding: 50px 20px;
+      background-color: #f9f9f9;
+    }
+
+    .contact-us h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Footer Styles */
     footer {
       background: #333;
       color: white;
       text-align: center;
       padding: 20px 0;
-      margin-top: auto;
-
+      margin-top: 40px;
     }
 
     .footer-container {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
+      max-width: 1200px;
       margin: auto;
       padding: 0 20px;
     }
@@ -50,57 +175,63 @@
       margin: 10px 0;
     }
 
-    .error-message {
-      color: red;
-      font-size: 0.9rem;
-      margin-top: 5px;
-      display: none;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      nav.active ul {
+        display: flex;
+      }
+
+      .contact-hero h2 {
+        font-size: 2rem;
+      }
+
+      .contact-hero p {
+        font-size: 1.2rem;
+      }
+
+      .container {
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="index.html"><h1><img  src="ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
-            </div>
-            <div class="hamburger" id="hamburger">&#9776;</div>
-            <ul>
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="Testimonial.html">Testimonial</a></li>
-              <div class="theme-switch" id="theme-switch"></div>
-            </ul>
-          </nav>
-
-    </header>
-
-    <section class="contact-hero">
-      <div class="hero-content">
-        <h2>Contact ML Fusion Labs</h2>
-        <p>Have questions or feedback? We’d love to hear from you!</p>
-
-  
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img src="ml fusion lab log.jpg" alt="logo" /></a>
+      </div>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="Testimonial.html">Testimonial</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section class="about-us" style="
-    background: linear-gradient(rgba(0, 0, 0, 0.41), rgba(0, 0, 0, 0.76)), url('assets/contact-us-communication-support-service-assistance-concept.jpg') center/cover;
-  background-size: cover;
-    background-position: center;
-    padding: 100px 20px;
-    text-align: center;
-    position: relative;
-">
-    <div class="aboutus-content">
-      <h2 style="color: white; font-size: 2.5rem;">Contact ML Fusion Labs</h2>
-      <p style="color: white; font-size: 1.5rem;">Have Questions or Feedback? We'd love to hear from you...</p>
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="hero-content">
+      <h2>Contact ML Fusion Labs</h2>
+      <p>Have questions or feedback? We’d love to hear from you!</p>
     </div>
   </section>
 
+  <!-- Contact Us Form -->
   <section class="contact-us">
     <div class="container">
       <h2>Get in Touch</h2>
@@ -116,11 +247,12 @@
         <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
         <p class="error-message" id="error-message">Message must be longer than 10 characters.</p>
 
-        <button type="submit" class="btn" id="alertbutton">Send Message</button>
+        <button type="submit" class="btn">Send Message</button>
       </form>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
@@ -145,9 +277,12 @@
 
   <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
   <script src="scroll.js"></script>
-  <script src="script.js"></script>
 
   <script>
+    document.getElementById('hamburger').addEventListener('click', function () {
+      document.querySelector('nav').classList.toggle('active');
+    });
+
     function validateForm() {
       const message = document.getElementById('message').value;
       const errorMessage = document.getElementById('error-message');
@@ -163,17 +298,6 @@
     }
   </script>
 
-main
-    <script src="script.js"></script>
-
-    <!-- Botpress Chat Scripts -->  
-  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-      
-
-    
-
-main
 </body>
 
 </html>
