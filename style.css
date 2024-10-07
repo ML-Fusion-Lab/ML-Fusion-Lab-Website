@@ -192,12 +192,13 @@ header nav .logo h1 {
 header nav ul {
   list-style: none;
   display: flex;
-  margin: 0;
+  margin-left: 100px;
   padding: 0;
 }
 
 header nav ul li {
-  margin: 0 0.5rem; /* Reduce margin between items */
+  margin: 0 0.5rem;
+   /* Reduce margin between items */
 }
 
 header nav ul li a {
@@ -1190,6 +1191,7 @@ body.dark-mode .newsletter-right {
   cursor: pointer;
   transition: background 0.3s ease-in-out;
   vertical-align: middle;
+  margin-left: 90px;
 }
 
 .theme-switch::before {
