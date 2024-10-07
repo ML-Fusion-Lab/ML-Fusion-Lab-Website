@@ -1130,7 +1130,14 @@ body.dark-mode section.about {
   padding: 150px 20px;
   text-align: center;
 }
+body.dark-mode section.about h3{
+  color: rgb(0, 0, 0);
 
+}
+body.dark-mode section.about .content .content-heading{
+  color: rgb(255, 255, 255);
+
+}
 body.dark-mode section.about img {
   border-radius: 15px;
   box-shadow: 20px 20px 20px rgb(51, 46, 46);
@@ -1174,6 +1181,10 @@ body.dark-mode .newsletter-left {
 
 }
 
+body.dark-mode .newsletter .input-group .input {
+  color: white;
+
+}
 body.dark-mode .newsletter-right {
   color: white;
 

@@ -13,7 +13,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(to right, #9d73ca, #8ea6d1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +23,7 @@ body {
 .container {
     background-color: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
     text-align: center;
@@ -48,7 +48,7 @@ input, select, textarea {
 }
 
 button {
-    background-color: #28a745;
+    background-color: #a94cb9;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -57,7 +57,7 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #216988;
 }
 
 .hidden {
@@ -76,10 +76,10 @@ button:hover {
         <h2>Feedback Form</h2>
         <form id="feedbackForm" onsubmit="return submitFeedback()">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" placeholder="Enter Name">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="Enter Email id" required>
 
             <label for="rating">Rating:</label>
             <select id="rating" name="rating" required>
@@ -92,7 +92,7 @@ button:hover {
             </select>
 
             <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments" rows="4" required></textarea>
+            <textarea id="comments" name="comments" placeholder="Enter comment" required></textarea>
 
             <button type="submit">Submit Feedback</button>
         </form>
