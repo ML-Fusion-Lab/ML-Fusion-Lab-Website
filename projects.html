@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
     <style>
+
+        body {
+            /*font-family: 'Arial', 'Helvetica Neue', sans-serif; /* Broader font fallback */
+            font-family: 'Roboto', 'Arial', sans-serif;
+            font-size: 16px; /* Base font size */
+            line-height: 1.6; /* Spacing for readability */
+            color: #333;
+            -webkit-font-smoothing: antialiased; /* Improve text rendering on macOS and iOS */
+            -moz-osx-font-smoothing: grayscale; /* Improve rendering on Firefox for macOS */
+        }
+        
+        
         footer {
            background: #333;
            color: white;
@@ -55,15 +67,24 @@
     }
 
     .project-item h3 {
-        margin-bottom: 10px;
-        font-size: 1.2em;
+        font-size: 1.3em; /* Slight size increase for clarity */
+        font-weight: 600;
+        line-height: 1.4; /* Add a bit more space between lines */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
+       
 
     .project-item p {
-        font-size: 1em;
-        color: #666;
-        margin-bottom: 15px;
+        font-size: 1.1em; 
+        color: #444; 
+        line-height: 1.5; 
+        font-weight: 400; /* Ensure consistent weight */
+        margin-bottom: 18px;
+        text-align: justify; /* Optional: Align text for a cleaner look */
     }
+    
+    
 
     .btn {
         background-color: #007BFF;
@@ -83,8 +104,10 @@
         transform: scale(1.05);
     }
 
-       /* Modal styles */
-       .modal {
+     
+
+/* Modal overlay styles */
+.modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -92,18 +115,23 @@
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    overflow: auto; /* Enable scroll if content overflows */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
 }
 
+/* Modal content styles */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    position: relative; /* Relative to the modal */
+    margin: 0 auto; /* Center the modal horizontally */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 90%; 
+    max-width: 500px; /* Set a max-width */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden; /* Prevent content from overflowing the container */
 }
+
 
 .close {
     color: #aaa;
@@ -403,6 +431,20 @@
         }
 
         modal.style.display = 'block';
+
+        // Get the hero content element and its height
+const heroContent = document.querySelector('.hero-content'); 
+const heroHeight = heroContent.offsetHeight;
+
+// Position the modal in the center of the screen, below the hero content
+modal.style.display = 'block';
+modal.style.position = 'fixed'; 
+modal.style.left = '50%'; 
+modal.style.top = `${heroHeight + 20}px`; 
+modal.style.transform = 'translate(-50%, 0)'; 
+modal.style.zIndex = '1000'; 
+
+
     }
 
     function closeModal() {
