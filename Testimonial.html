@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="scroll.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Internal CSS for Enhanced UI and Effects -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #B0E0E6, #001F3F); /* Light Blue and Navy Blue */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ccc;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            text-align: center;
+            background-color: #fff;
+            padding: 50px;
+            margin: 40px auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .testimonial-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: bold;
+            color: #007bff; /* Highlighted in blue */
+        }
+
+        .testimonial-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover img {
+            transform: scale(1.05);
+        }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial h4 {
+            font-size: 1.3rem;
+            color: black; /* Name in black */
+            margin-bottom: 5px;
+            font-weight: bold; /* Bold name */
+        }
+
+        .testimonial span {
+            font-size: 1rem;
+            color: #007bff; /* Job roles in blue */
+            font-weight: bold; /* Bold job roles */
+        }
+
+        .rating {
+            color: #ffb400; /* Star color */
+            margin: 10px 0;
+        }
+
+        /* Add subtle fade-in effect */
+        .testimonial {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInCard 0.5s forwards;
+        }
+
+        .testimonial:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .testimonial:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .testimonial:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInCard {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html"><h1><img  src="ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
+            </div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="testimonial.html">Testimonials</a></li>
+              <div class="theme-switch" id="theme-switch"></div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Testimonial Content -->
+    <div class="testimonial-section">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-container">
+            <!-- Testimonial 1 -->
+            <div class="testimonial">
+                <img src="https://media.istockphoto.com/id/1464539429/photo/thoughtful-business-man-with-a-digital-tablet.jpg?s=612x612&w=0&k=20&c=yLbK-rGNUkL0sPX4jw7Q_XE_vDtfj0X3nirixUlGtr4=" alt="Client 1">
+                <p>"ML Fusion Labs helped me solve my business challenges with AI. Their expertise is unmatched!"</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <h4>John Doe</h4>
+                <span>Business Analyst</span>
+                <p><em>Location: New York, USA</em></p>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial">
+                <img src="https://c4.wallpaperflare.com/wallpaper/94/499/622/beautiful-wallpaper-preview.jpg" alt="Client 2">
+                <p>"The project development at ML Fusion Labs exceeded my expectations. The results were amazing!"</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <h4>Jane Smith</h4>
+                <span>Software Engineer</span>
+                <p><em>Location: San Francisco, USA</em></p>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial">
+                <img src="https://media.istockphoto.com/id/1369199360/photo/portrait-of-a-handsome-young-businessman-working-in-office.jpg?s=612x612&w=0&k=20&c=ujyGdu8jKI2UB5515XZA33Tt4DBhDU19dKSTUTMZvrg=" alt="Client 3">
+                <p>"I was able to integrate cutting-edge machine learning models thanks to ML Fusion Labs' guidance."</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <h4>Michael Brown</h4>
+                <span>Data Scientist</span>
+                <p><em>Location: London, UK</em></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
