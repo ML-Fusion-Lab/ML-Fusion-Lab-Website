@@ -7,7 +7,6 @@ body {
     min-height: 100vh;
 }
 
-
 header {
     background: #333;
     color: white;
@@ -21,18 +20,22 @@ header nav {
     align-items: center;
     padding: 0 20px;
 }
+
 header nav .logo h1 {
     margin: 0;
 }
+
 header nav ul {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
 }
+
 header nav ul li {
     margin-left: 20px;
 }
+
 header nav ul li a {
     color: white;
     text-decoration: none;
@@ -42,16 +45,19 @@ header nav ul li a {
     padding: 50px 0;
     background-color: #f9f9f9;
 }
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
+
 .course-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
+
 .course-item {
     background: #fff;
     border: 1px solid #ddd;
@@ -61,15 +67,19 @@ header nav ul li a {
     transition: transform 0.3s;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 .course-item:hover {
     transform: translateY(-5px);
 }
+
 .course-item h3 {
     margin-bottom: 10px;
 }
+
 .course-item p {
     margin-bottom: 10px;
 }
+
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -79,49 +89,9 @@ header nav ul li a {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
+
 .btn:hover {
     background-color: #0056b3;
-}
-footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto; 
-}
-.footer-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 0 20px;
-}
-.footer-links, .footer-socials {
-    margin: 10px 0;
-}
-.footer-links a, .footer-socials a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-.footer-links a:hover, .footer-socials a:hover {
-    color: #007BFF; 
-}
-.footer-contact {
-    margin: 10px 0;
-}
-
-.hero-content {
-    background-image: url('3079594.jpg');
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 500px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
 }
 
 h1 {
@@ -134,9 +104,99 @@ h1 {
   
   p {
     font-weight: bold; 
-    color: white;      
-    -webkit-text-stroke: 1px black; 
-    text-shadow: 2px 2px 0 black;   
+    color: black;        
     font-size: 3rem;  
   }
   
+  
+  /********/
+
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+/* Styling the card */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Card hover effect */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+    border-color: #007bff;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.card-content span {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.logo {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.logo img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.tag {
+    background-color: #F1C40F;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    float: right;
+}
+
+
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.category-card img {
+    transition: transform 0.3s ease; 
+}
+
+.category-card:hover img {
+    transform: scale(1.1); 
+}
