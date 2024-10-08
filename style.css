@@ -174,7 +174,9 @@ header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
+  padding: 0.5rem 1rem;
+  margin-left: 90px;
+/* Adjust padding to reduce overall height */
 }
 header nav .brand {
   color: #fff;
