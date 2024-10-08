@@ -11,7 +11,6 @@ header {
     background: #333;
     color: white;
     padding: 15px 0;
-    margin-bottom: 0;
 }
 
 header nav {
@@ -100,17 +99,15 @@ h1 {
     -webkit-text-stroke: 1.5px black; 
     text-shadow: 1px 1px 0 black;   
     font-size: 3rem;   
-  }
+}
   
-  p {
+p {
     font-weight: bold; 
     color: black;        
     font-size: 3rem;  
-  }
-  
-  
-  /********/
+}
 
+/* Cards Container */
 .cards-container {
     display: flex;
     justify-content: space-between;
@@ -118,8 +115,7 @@ h1 {
     flex-wrap: wrap;
 }
 
-
-/* Styling the card */
+/* Card styling */
 .card {
     background-color: white;
     border-radius: 10px;
@@ -163,6 +159,7 @@ h1 {
     color: #555;
 }
 
+/* Logo styling */
 .logo {
     display: inline-block;
     margin-right: 10px;
@@ -174,6 +171,7 @@ h1 {
     vertical-align: middle;
 }
 
+/* Tag styling */
 .tag {
     background-color: #F1C40F;
     color: white;
@@ -183,7 +181,7 @@ h1 {
     float: right;
 }
 
-
+/* Category card hover effect */
 .category-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -199,4 +197,107 @@ h1 {
 
 .category-card:hover img {
     transform: scale(1.1); 
+}
+
+/* Footer styling */
+footer {
+  background-color: #1a1919;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+  position: relative;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007BFF;
+}
+
+.footer-contact {
+  margin: 10px 0;
+  color: white;
+}
+
+.footer-contact a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+.footer-socials a {
+  margin: 0 10px;
+  color: rgb(240, 228, 228); 
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #aca7eb;
+}
+
+footer p {
+  font-size: 14px;
+  color: white;
+}
+
+/* Scroll to Top Button */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  display: none;
+  background-color: #aca7eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#scrollTopBtn:hover {
+  background-color: #7f76db;
+}
+
+#scrollTopBtn.show {
+  display: block;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .footer-socials, .footer-contact, .footer-links {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .footer-socials a {
+    font-size: 20px;
+  }
+
+  .footer-contact p, .footer-links a {
+    font-size: 14px;
+  }
 }
