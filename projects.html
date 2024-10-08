@@ -99,16 +99,19 @@
 
 /* Modal overlay styles */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if content overflows */
-    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    padding: 20px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+    max-width: 90%;  /* For responsiveness */
+    max-height: 90%; /* For responsiveness */
+    overflow-y: auto; /* If content overflows */
 }
+
 
 /* Modal content styles */
 .modal-content {
@@ -139,13 +142,13 @@
 }
 .project-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
     gap: 20px; /* Adjust gap between items */
     padding: 20px;
-  }
-  
-  .project-item {
-    height: 400px;
+}
+
+.project-item {
+    height: 400px; /* Fixed height for consistency */
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 8px;
@@ -155,17 +158,22 @@
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-  }
-  
-  .project-item img {
-    height: 50%;
+    overflow: hidden; /* Prevents overflow of content */
+}
+
+.project-item img {
+    height: auto; /* Maintain aspect ratio */
+    max-height: 50%; /* Set max height to half of the project item */
     width: 100%;
+    object-fit: cover; /* Ensures image covers its area */
     margin: auto;
 }
 
-  .project-item:hover {
+.project-item:hover {
     transform: translateY(-5px); /* Hover effect */
-  }
+}
+
+
   
   /* Responsive adjustment for smaller screens */
   @media (max-width: 1200px) {
