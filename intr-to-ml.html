@@ -119,7 +119,7 @@
         <h2>Introduction to Machine Learning</h2>
         <p>Welcome to the Introduction to Machine Learning course. This course covers the basic concepts of machine learning, including types of ML and key algorithms.</p>
         <p class="hidden" id="details">By the end of this course, you will have a solid foundation in machine learning and be prepared to tackle more advanced topics. This includes practical applications and hands-on projects that enhance your learning experience.</p>
-        <a href="#" class="btn" onclick="showDetails()">Learn More</a>
+        <a href="#" class="btn" onclick="showDetails();changeLearnMore(this)">Learn More</a>
     </section>
 
     <footer>
@@ -148,6 +148,19 @@
             const details = document.getElementById('details');
             details.classList.toggle('hidden');
         }
+
+        function changeLearnMore(button)
+        {
+            const details = document.getElementById('details');
+            
+            if(details.classList.contains('hidden')) {
+                button.innerHTML = "Learn More";
+            }
+            else {
+                button.innerHTML = "Learn Less";
+            }
+        }
+
     </script>
 </body>
 </html>
