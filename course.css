@@ -111,11 +111,21 @@ h1 {
   
   /********/
 
-.cards-container {
+.courses{    
+    width: 100vw;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3rem !important;
+}
+
+.cards-container {    
+    display: flex;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    min-height: 100vh;
+    width: 90%;
 }
 
 
