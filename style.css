@@ -3086,3 +3086,78 @@ header nav ul li a {
   text-align: center;
 }
 
+/* Testimonials Page Dark Theme */
+body.dark-mode {
+  background: #121212; /* Dark background */
+  color: white; /* Default text color */
+}
+
+body.dark-mode .testimonial-section {
+  background-color: #1E1E1E; /* Darker background for testimonials */
+  border-radius: 12px; /* Match the light mode border radius */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Adjust shadow for dark mode */
+}
+
+body.dark-mode .testimonial-section h2 {
+  color: #E0E0E0; /* Light text for heading */
+}
+
+body.dark-mode .testimonial {
+  background-color: #292929; /* Dark background for each testimonial */
+  color: #FFFFFF; /* Light text for testimonials */
+}
+
+body.dark-mode .testimonial p {
+  color: #B0B0B0; /* Slightly lighter text for paragraph */
+}
+
+body.dark-mode .testimonial h4 {
+  color: #FFBB33; /* Use a different color for names, maybe golden */
+}
+
+body.dark-mode .testimonial span {
+  color: #66BB6A; /* Different color for job roles */
+}
+
+body.dark-mode .testimonial img {
+  border: 2px solid #505050; /* Dark border around images */
+}
+
+body.dark-mode .rating {
+  color: #FFB400; /* Keep the star color */
+}
+
+/* Navbar dark mode styles */
+body.dark-mode header {
+  background-color: #333; /* Keep header dark */
+}
+
+body.dark-mode nav ul li a {
+  color: #ffffff; /* Light links */
+}
+
+body.dark-mode nav ul li a:hover {
+  color: #ccc; /* Light hover effect */
+}
+
+/* Footer dark mode styles */
+body.dark-mode footer {
+  background: #222; /* Dark footer */
+  color: white;
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-socials a {
+  color: white; /* Light footer link colors */
+}
+
+body.dark-mode .footer-links a:hover,
+body.dark-mode .footer-socials a:hover {
+  color: #007BFF; /* Keep hover color for footer links */
+}
+
+/* Scroll to top button in dark mode */
+body.dark-mode #scrolltopbutton {
+  background-color: #505056; /* Keep as is or change to match dark theme */
+  color: #e0c0c0; /* Light color for button text */
+}
