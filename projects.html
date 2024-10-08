@@ -37,25 +37,153 @@
        .footer-contact {
            margin: 10px 0;
        }
+       /* Grid styling for the project cards */
+    .project-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .project-item h3 {
+        margin-bottom: 10px;
+        font-size: 1.2em;
+    }
+
+    .project-item p {
+        font-size: 1em;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .project-item:hover {
+        transform: scale(1.05);
+    }
+
+       /* Modal styles */
+       .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 20px; /* Adjust gap between items */
+    padding: 20px;
+  }
+  
+  .project-item {
+    height: 400px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .project-item img {
+    height: 50%;
+    width: 100%;
+    margin: auto;
+}
+
+  .project-item:hover {
+    transform: translateY(-5px); /* Hover effect */
+  }
+  
+  /* Responsive adjustment for smaller screens */
+  @media (max-width: 1200px) {
+    .project-list {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns for medium-sized screens */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .project-list {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet-sized screens */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .project-list {
+      grid-template-columns: 1fr; /* 1 column for small/mobile screens */
+    }
+  }
+  
    </style>
 
 </head>
 <body>
-    <header>
+    <header >
+
         <nav>
             <div class="logo">
-              <img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+
+                <a href="index.html"><h1><img  src="ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
+
             </div>
-            <div class="hamburger" id="hamburger">&#9776;</div>
+          <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
-              <li><a href="index.html">Home</a></li>
+
               <li><a href="courses.html">Courses</a></li>
               <li><a href="projects.html">Projects</a></li>
               <li><a href="about.html">About Us</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="Testimonial.html">Testimonial</a></li>
               <div class="theme-switch" id="theme-switch"></div>
+
             </ul>
-          </nav>
+      </nav>
+
+
     </header>
 
     <section class="projects-hero">
@@ -70,119 +198,142 @@
             <h2>Featured Projects</h2>
             <div class="project-list">
                 <div class="project-item">
+                    <img src="Assets/projectpics/crops.jpg" alt="crops" style="box-shadow: none; border-radius: 5px;">
                     <h3>Crop Height Using Computer Vision</h3>
                     <p>Utilize contour detection techniques to estimate the height of crops for agricultural purposes.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal1')">Learn More</a>
                 </div>
+                
                 <div class="project-item">
-                    <h3>Sentiment Analysis for Product Reviews</h3>
-                    <p>Analyze customer reviews using natural language processing to determine overall sentiment.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <img src="Assets/projectpics/disease.jpg" alt="disease" style="box-shadow: none; border-radius: 5px;">
+                    <h3>AI-Based Disease Diagnosis</h3>
+                    <p>A machine learning model that helps detect early symptoms of diseases using patient data.</p>
+                    <a href="#" class="btn" onclick="openModal('modal2')">Learn More</a>
                 </div>
+                
                 <div class="project-item">
+                    <img src="Assets/projectpics/shop.jpg" alt="shopping" style="box-shadow: none; border-radius: 5px;">
                     <h3>Recommendation System for Shopping</h3>
                     <p>Build a recommendation system that suggests products based on user browsing behavior.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal3')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/cnn.png" alt="cnn" style="box-shadow: none; border-radius: 5px;">
                     <h3>Image Classification with Deep Learning</h3>
                     <p>Develop a model that classifies images into categories using convolutional neural networks.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal4')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/emai.jpg" alt="email" style="box-shadow: none; border-radius: 5px;">
                     <h3>Automated Email Response System</h3>
                     <p>Implement a system that uses NLP to generate automated responses to common email inquiries.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal5')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/stock.jpg" alt="stock" style="box-shadow: none; border-radius: 5px;">
                     <h3>Stock Price Time Series Forecasting</h3>
                     <p>Apply machine learning algorithms to predict future stock prices based on historical data.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal6')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/bot.png" alt="bot" style="box-shadow: none; border-radius: 5px;">
                     <h3>Chatbot Development for Customer Support</h3>
                     <p>Create an AI-powered chatbot that assists users with their inquiries in real time.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal7')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/fraud.png" alt="fraud" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Powered Fraud Detection System</h3>
                     <p>Develop a system that identifies fraudulent activities using machine learning techniques.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal8')">Learn More</a>
                 </div>
                 <!-- New Projects -->
                 <div class="project-item">
+                    <img src="Assets/projectpics/lth.png" alt="health" style="box-shadow: none; border-radius: 5px;">
                     <h3>Healthcare Predictive Analytics</h3>
                     <p>Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal9')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/wild.jpg" alt="wild" style="box-shadow: none; border-radius: 5px;">
                     <h3>Wildfire Detection Using Satellite Images</h3>
                     <p>Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal10')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/waste.jpg" alt="waste" style="box-shadow: none; border-radius: 5px;">
                     <h3>Waste Management Optimization</h3>
                     <p>Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal11')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/traffic.jpg" alt="traffic" style="box-shadow: none; border-radius: 5px;">
                     <h3>Traffic Accident Prediction System</h3>
                     <p>Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal12')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/personalizd.jpg" alt="personalized" style="box-shadow: none; border-radius: 5px;">
                     <h3>Personalized Learning Recommendation System</h3>
                     <p>Create an adaptive learning platform that suggests personalized learning paths based on student performance data.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal13')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/mental.jpg" alt="mental" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI for Mental Health Analysis</h3>
                     <p>Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal14')">Learn More</a>
                 </div>
                 <!-- Unique Innovative Projects -->
                 <div class="project-item">
+                    <img src="Assets/projectpics/dist.jpg" alt="Disaster" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Driven Disaster Relief Supply Chain Optimization</h3>
                     <p>Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal15')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/sound.jpg" alt="sound" style="box-shadow: none; border-radius: 5px;">
                     <h3>Urban Sound Classification</h3>
                     <p>Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal16')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/eneryg.png" alt="energy" style="box-shadow: none; border-radius: 5px;">
                     <h3>Energy Consumption Prediction for Smart Homes</h3>
                     <p>Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal17')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/nut.jpg" alt="nutrition" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI for Personalized Nutrition Plans</h3>
                     <p>Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal18')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/rec.jpg" alt="recycle" style="box-shadow: none; border-radius: 5px;">
                     <h3>Plastic Waste Classification for Recycling</h3>
                     <p>Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal19')">Learn More</a>
                 </div>
                 <div class="project-item">
+                    <img src="Assets/projectpics/the.jpg" alt="Therapist" style="box-shadow: none; border-radius: 5px;">
                     <h3>AI-Powered Virtual Therapist</h3>
                     <p>Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <a href="#" class="btn" onclick="openModal('modal20')">Learn More</a>
                 </div>
             </div>
         </div>
-    </section>    
+    </section>
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDescription"></p>
+            <p id="modalTechnologies"></p>
+        </div>
+    </div>         
     <footer>
         <div class="footer-container">
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="about.html">About Us</a> | 
-                <a href="contact.html">Contact</a>
-            </div>
             <div class="footer-socials">
                 Follow us on: 
             <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
@@ -192,10 +343,148 @@
             <div class="footer-contact">
                 <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
             </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a> | 
+                <a href="about.html">About Us</a> | 
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
         </div>
     </footer>
+    <!-- JavaScript -->
+<script>
+    function openModal(projectId) {
+        const modal = document.getElementById('projectModal');
+        const title = document.getElementById('modalTitle');
+        const description = document.getElementById('modalDescription');
+        const technologies = document.getElementById('modalTechnologies');
+
+        switch (projectId) {
+            case 'modal1':
+                title.textContent = 'Crop Height Using Computer Vision';
+                description.textContent = 'Utilize contour detection techniques to estimate the height of crops for agricultural purposes.';
+                technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
+                break;
+            case 'modal2':
+                title.textContent = 'AI-Based Disease Diagnosis';
+                description.textContent = 'A machine learning model that helps detect early symptoms of diseases using patient data.';
+                technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas';
+                break;
+            case 'modal3':
+                title.textContent = 'Recommendation System for Shopping';
+                description.textContent = 'Build a recommendation system that suggest products based on user browsing behavior.';
+                technologies.textContent = 'Technologies Used: Python, Open cv, TensorFlow';
+                break;
+            case 'modal4':
+                title.textContent = 'Image Classification with Deep Learning';
+                description.textContent = 'Develop a model that classifies images into categories using convolutional neural networks.';
+                technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
+                break;
+            case 'modal5':
+                title.textContent = 'Automated Email Response System';
+                description.textContent = 'Implement a system that uses NLP to generate automated responses to common email inquiries.';
+                technologies.textContent = 'Technologies Used: Python, TensorFlow, Flask';
+                break;
+            case 'modal6':
+                title.textContent = 'Stock Price Time Series Forecasting';
+                description.textContent = 'Apply machine learning algorithms to predict future stock prices based on historical data.';
+                technologies.textContent = 'Technologies Used: Python, Keras, Librosa';
+                break;
+            case 'modal7':
+                title.textContent = 'Chatbot Development for Customer Support';
+                description.textContent = ' Create an AI-powered chatbot that assists users with their inquiries in real time.';
+                technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
+                break;
+            case 'modal8':
+                title.textContent = 'AI-Powered Fraud Detection System';
+                description.textContent = 'Develop a system that identifies fraudulent activities using machine learning techniques.';
+                technologies.textContent = 'Technologies Used: Python, Pandas, Statsmodels';
+                break;
+            case 'modal9':
+                title.textContent = 'Healthcare Predictive Analytics';
+                description.textContent = 'Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans. ';
+                technologies.textContent = 'Technologies Used: Python, Scikit-learn, Matplotlib';
+                break;
+            case 'modal10':
+                title.textContent = 'Wildfire Detection Using Satellite Images';
+                description.textContent = 'Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.';
+                technologies.textContent = 'Technologies Used: Python, NLTK, Flask';
+                break;
+            case 'modal11':
+                title.textContent = 'Waste Management Optimization';
+                description.textContent = 'Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution. ';
+                technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
+                break;
+            case 'modal12':
+                title.textContent = 'Traffic Accident Prediction System';
+                description.textContent = 'Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.';
+                technologies.textContent = 'Technologies Used: Python, NLTK, Sumy';
+                break;
+            case 'modal13':
+                title.textContent = 'Personalized Learning Recommendation System';
+                description.textContent = 'Create an adaptive learning platform that suggests personalized learning paths based on student performance data.';
+                technologies.textContent = 'Technologies Used: Python, Pandas, Scikit-learn';
+                break;
+            case 'modal14':
+                title.textContent = 'AI for Mental Health Analysis';
+                description.textContent = 'Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.';
+                technologies.textContent = 'Technologies Used: Python, OpenCV, Dlib';
+                break;
+            case 'modal15':
+                title.textContent = 'AI-Driven Disaster Relief Supply Chain Optimization ';
+                description.textContent = 'Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time. ';
+                technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
+                break;
+            case 'modal16':
+                title.textContent = 'Urban Sound Classification';
+                description.textContent = 'Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.';
+                technologies.textContent = 'Technologies Used: Python, Scikit-learn, Flask';
+                break;
+            case 'modal17':
+                title.textContent = 'Energy Consumption Prediction for Smart Homes';
+                description.textContent = 'Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.';
+                technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
+                break;
+            case 'modal18':
+                title.textContent = 'AI for Personalized Nutrition Plans';
+                description.textContent = 'Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.';
+                technologies.textContent = 'Technologies Used: Python, Gensim, NLTK';
+                break;
+            case 'modal19':
+                title.textContent = 'Plastic Waste Classification for Recycling';
+                description.textContent = 'Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.';
+                technologies.textContent = 'Technologies Used: Python, Scikit-learn, TensorFlow';
+                break;
+            case 'modal20':
+                title.textContent = 'AI-Powered Virtual Therapist';
+                description.textContent = 'Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.';
+                technologies.textContent = 'Technologies Used: Python, OpenAI Gym, TensorFlow';
+                break;
+        }
+
+        modal.style.display = 'block';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('projectModal');
+        modal.style.display = 'none';
+    }
+    //close model when clicking outside of it
+    window.onclick = function(event){
+        const modal = document.getElementById('projectModal');
+        if (event.target == modal){
+            modal.style.display = "none";
+        }
+    }
+</script>
     <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
     <script src="scroll.js"></script>  
     <script src="script.js"></script>
+
+    <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+
 </body>
 </html>

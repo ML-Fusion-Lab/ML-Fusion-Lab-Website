@@ -1,116 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="icon">
-    <link rel="icon" href="ml-fusion-lab-logo.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - ML Fusion Labs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="scroll.css">
-    <style>
-        footer {
-           background: #333;
-           color: white;
-           text-align: center;
-           padding: 20px 0;
-           margin-top: auto; /* Push footer to bottom */
-       }
-       .footer-container {
-           font-family: Arial, sans-serif;
-           max-width: 800px;
-           margin: auto;
-           padding: 0 20px;
-       }
-       .footer-links, .footer-socials {
-           margin: 10px 0;
-       }
-       .footer-links a, .footer-socials a {
-           color: white;
-           text-decoration: none;
-           margin: 0 10px;
-           transition: color 0.3s; /* Add transition for hover effect */
-       }
-       .footer-links a:hover, .footer-socials a:hover {
-           color: #007BFF; /* Change color on hover */
-       }
-       .footer-contact {
-           margin: 10px 0;
-       }
-       #message{
-       max-width: 600px;
-       }
-       
-   </style>
 
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - ML Fusion Labs</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="scroll.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+
+    }
+
+    .footer-container {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007BFF;
+    }
+
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
+
     <header>
         <nav>
             <div class="logo">
-              <img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+                <a href="index.html"><h1><img  src="ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
             </div>
             <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
-              <li><a href="index.html">Home</a></li>
               <li><a href="courses.html">Courses</a></li>
               <li><a href="projects.html">Projects</a></li>
               <li><a href="about.html">About Us</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="Testimonial.html">Testimonial</a></li>
               <div class="theme-switch" id="theme-switch"></div>
             </ul>
           </nav>
+
     </header>
 
     <section class="contact-hero">
-        <div class="hero-content">
-            <h2>Contact ML Fusion Labs</h2>
-            <p>Have questions or feedback? We’d love to hear from you!</p>
-        </div>
-    </section>
+      <div class="hero-content">
+        <h2>Contact ML Fusion Labs</h2>
+        <p>Have questions or feedback? We’d love to hear from you!</p>
 
-    <section class="contact-us">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <form action="submit_form.php" method="post" class="contact-form">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                
-            </form>
-            <button type="submit" class="btn">Send Message</button>
-        </div>
-    </section>
+  
+  </header>
 
-    <footer>
-        <div class="footer-container">
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="about.html">About Us</a> | 
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-socials">
-                Follow us on: 
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>  
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="footer-contact">
-                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
-            </div>
-        </div>
-    </footer>
-    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
-    <script src="scroll.js"></script>
+  <section class="about-us" style="
+    background: linear-gradient(rgba(0, 0, 0, 0.41), rgba(0, 0, 0, 0.76)), url('assets/contact-us-communication-support-service-assistance-concept.jpg') center/cover;
+  background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+">
+    <div class="aboutus-content">
+      <h2 style="color: white; font-size: 2.5rem;">Contact ML Fusion Labs</h2>
+      <p style="color: white; font-size: 1.5rem;">Have Questions or Feedback? We'd love to hear from you...</p>
+    </div>
+  </section>
+
+  <section class="contact-us">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" onsubmit="return validateForm()">
+        <input type="hidden" name="access_key" value="949b4eab-9721-4360-a138-aedf908e1975" />
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+        <p class="error-message" id="error-message">Message must be longer than 10 characters.</p>
+
+        <button type="submit" class="btn" id="alertbutton">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone:
+          +1 (555) 123-4567</p>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a> 
+        <a href="terms.html">Terms of Service</a> 
+        <a href="about.html">About Us</a>  
+        <a href="contact.html">Contact</a>
+        <a href="Testimonial.html">Testimonial</a>
+    </div>
+    <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+    </div>
+
+  </footer>
+
+  <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+  <script src="scroll.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    function validateForm() {
+      const message = document.getElementById('message').value;
+      const errorMessage = document.getElementById('error-message');
+      
+      if (message.length <= 10) {
+        errorMessage.style.display = 'block';
+        return false; // Prevent form submission
+      } else {
+        errorMessage.style.display = 'none'; // Hide error message
+      }
+
+      return true; // Proceed with submission
+    }
+  </script>
+
     <script src="script.js"></script>
-    
+
+    <!-- Botpress Chat Scripts -->  
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
 </body>
+
 </html>

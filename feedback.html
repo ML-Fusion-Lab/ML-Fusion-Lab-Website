@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #9d73ca, #8ea6d1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #a94cb9;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #216988;
+}
+
+.hidden {
+    display: none;
+}
+
+#feedbackResponse h3 {
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm" onsubmit="return submitFeedback()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter Name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email id" required>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select rating</option>
+                <option value="1">1 - Poor</option>
+                <option value="2">2 - Fair</option>
+                <option value="3">3 - Good</option>
+                <option value="4">4 - Very Good</option>
+                <option value="5">5 - Excellent</option>
+            </select>
+
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" placeholder="Enter comment" required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+
+        <div id="feedbackResponse" class="hidden">
+            <h3>Thank you for your feedback!</h3>
+            <p id="responseMessage"></p>
+            <button onclick="resetForm()">Submit another feedback</button>
+        </div>
+    </div>
+
+    <script>
+      function submitFeedback() {
+    // Get form values
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const rating = document.getElementById("rating").value;
+    const comments = document.getElementById("comments").value;
+
+    // Show feedback response and hide form
+    const form = document.getElementById("feedbackForm");
+    const response = document.getElementById("feedbackResponse");
+    const responseMessage = document.getElementById("responseMessage");
+
+    form.classList.add("hidden");
+    response.classList.remove("hidden");
+
+    // Display message
+    responseMessage.innerHTML = `Thank you, <strong>${name}</strong>, for rating us ${rating}/5. We appreciate your feedback!`;
+
+    return false; // Prevent form submission and page reload
+}
+
+function resetForm() {
+    // Reset form and show it again
+    document.getElementById("feedbackForm").reset();
+    document.getElementById("feedbackForm").classList.remove("hidden");
+    document.getElementById("feedbackResponse").classList.add("hidden");
+}
+
+    </script>
+</body>
+</html>
