@@ -5,238 +5,393 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Fusion Labs - Courses</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
-    
+    <link rel="stylesheet" href="course.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full height */
+        .course-card {
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        header {
-            background: #333;
-            color: white;
-            padding: 15px 0;
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+            border-color: #007bff;
         }
-        header nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        header nav .logo h1 {
-            margin: 0;
-        }
-        header nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-        header nav ul li {
-            margin-left: 20px;
-        }
-        header nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .hero-small {
-            background: #264f7c;
-            color: white;
-            padding: 70 px;
-            text-align: center;
-        }
-        .courses {
-            padding: 50px 0;
-            background-color: #f9f9f9;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .course-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .course-item {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .course-item:hover {
-            transform: translateY(-5px);
-        }
-        .course-item h3 {
-            margin-bottom: 10px;
-        }
-        .course-item p {
-            margin-bottom: 10px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
+
+        .course-card .btn {
+            background-color: #007bff;
+            border: none;
             transition: background-color 0.3s;
         }
-        .btn:hover {
+
+        .course-card .btn:hover {
             background-color: #0056b3;
         }
-        footer {
-            background: #333;
+
+        body {
+            padding-top: 70px; 
+        }
+
+        .navbar-custom {
+            background-color: #343a40; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-custom .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-custom .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar-custom .nav-link {
+            color: #ffffff !important;
+            transition: color 0.3s;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .navbar-custom .nav-link.active {
+            color: #007bff !important;
+            font-weight: bold;
+        }
+
+        .hero-small {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            background-color: #007bff;
             color: white;
             text-align: center;
-            padding: 20px 0;
-            margin-top: auto; /* Push footer to bottom */
-        }
-        .footer-container {
-            max-width: 800px;
-            margin: auto;
-            padding: 0 20px;
-        }
-        .footer-links, .footer-socials {
-            margin: 10px 0;
-        }
-        .footer-links a, .footer-socials a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s; /* Add transition for hover effect */
-        }
-        .footer-links a:hover, .footer-socials a:hover {
-            color: #007BFF; /* Change color on hover */
-        }
-        .footer-contact {
-            margin: 10px 0;
         }
     </style>
+
 </head>
 <body>
-    <header >
 
-        <nav>
-            <div class="logo">
-
-                <a href="index.html"><h1><img  src="ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
-
+    <header>
+        <!-- Enhanced Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="ml-fusion-lab-logo.png" alt="ML Fusion Labs Logo">
+                    ML Fusion Labs
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="courses.html">Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="projects.html">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <!-- Optional: Add a dropdown or additional links if needed -->
+                    </ul>
+                </div>
             </div>
-          <div class="hamburger" id="hamburger">&#9776;</div>
-            <ul>
-
-             
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="Testimonial.html">Testimonial</a></li>
-              <div class="theme-switch" id="theme-switch"></div>
-
-            </ul>
-      </nav>
-
-
-              
-
+        </nav>
     </header>
 
-    <section class="hero-small">
-        <div class="hero-content">
-            <h2>Machine Learning Courses</h2>
-            <p>Explore structured learning paths and practical projects to master machine learning.</p>
-        </div>
-    </section>
-
-    <section class="courses">
+    <section class="category-section py-5 text-center text-white" style="background-color: #1a1a3d;">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 30px;">Our Popular Courses</h2>
-            <div class="course-list">
-                <div class="course-item">
-                    <h3>Introduction to Machine Learning</h3>
-                    <p><strong>Duration:</strong> 4 weeks</p>
-                    <p><strong>Difficulty:</strong> Beginner</p>
-                    <p>Learn the basic concepts of machine learning, including types of ML and key algorithms.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
-                </div>
-                <div class="course-item">
-                    <h3>Supervised vs Unsupervised Learning</h3>
-                    <p><strong>Duration:</strong> 3 weeks</p>
-                    <p><strong>Difficulty:</strong> Intermediate</p>
-                    <p>Understand the difference between supervised and unsupervised learning methods.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
-                </div>
-                <div class="course-item">
-                    <h3>Neural Networks and Deep Learning</h3>
-                    <p><strong>Duration:</strong> 5 weeks</p>
-                    <p><strong>Difficulty:</strong> Advanced</p>
-                    <p>Dive into deep learning and understand how neural networks work.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
-                </div>
-                <div class="course-item">
-                    <h3>Practical ML with Python</h3>
-                    <p><strong>Duration:</strong> 6 weeks</p>
-                    <p><strong>Difficulty:</strong> Intermediate</p>
-                    <p>Learn how to implement machine learning algorithms in Python with real-world examples.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
-                </div>
-                <div class="course-item">
-                    <h3>Advanced ML Techniques</h3>
-                    <p><strong>Duration:</strong> 4 weeks</p>
-                    <p><strong>Difficulty:</strong> Advanced</p>
-                    <p>Master advanced topics like reinforcement learning and unsupervised feature learning.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
-                </div>
-                <div class="course-item">
-                    <h3>Data Visualization with Python</h3>
-                    <p><strong>Duration:</strong> 4 weeks</p>
-                    <p><strong>Difficulty:</strong> Intermediate</p>
-                    <p>Explore various libraries in Python for data visualization, including Matplotlib and Seaborn, to create insightful charts and graphs.</p>
-                    <a href="intr-to-ml.html" class="btn">Learn More</a>
+            <h1 class="fw-bold">Explore top-tier courses 
+                <span style="color: #b4ff00;">designed to fast-track your career,</span>
+            </h1>
+            <p class="lead mb-5" style="color: white;">Without breaking the bank. Achieve your learning goals with expert-led content tailored for success.</p>
+    
+            <!-- Search Bar -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-10 col-md-8 col-sm-12">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search for courses..." aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
+    
+            <!-- Course Categories -->
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/data science.png" alt="Data Science Icon" class="img-fluid mb-3">
+                        <h5>Data Science</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/programming language.png" alt="Programming Icon" class="img-fluid mb-3">
+                        <h5>Programming & Development</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/ai.png" alt="AI Icon" class="img-fluid mb-3">
+                        <h5>Artificial Intelligence</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/programming language.png" alt="Business Icon" class="img-fluid mb-3">
+                        <h5>Business</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/data science.png" alt="Autonomous Systems Icon" class="img-fluid mb-3">
+                        <h5>Autonomous Systems</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/cloud computing.png" alt="Cloud Computing Icon" class="img-fluid mb-3">
+                        <h5>Cloud Computing</h5>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </section>
+    
+    
+    <section class="courses py-5">
+        <div class="cards-container">
+            <!-- Card 1 -->
+            <div class="card">
+                <img src="Course Assets/1.jpg" alt="Google AI Essentials">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>Google AI Essentials</h3>
+                    <p>Beginner · Course</p>
+                </div>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="card">
+                <img src="Course Assets/2.jpg" alt="Python for Everybody">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>Python for Everybody</h3>
+                    <p>Beginner · Specialization</p>
+                </div>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="card">
+                <img src="Course Assets/3.jpg" alt="Prompt Engineering">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>Prompt Engineering</h3>
+                    <p>Beginner · Specialization</p>
+                </div>
+            </div>
+    
+            <!-- Card 4 -->
+            <div class="card">
+                <img src="Course Assets/4.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <img src="Course Assets/5.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="card">
+                <img src="Course Assets/6.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="card">
+                <img src="Course Assets/7.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+            
+            <!-- Card 8 -->
+            <div class="card">
+                <img src="Course Assets/8.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+            
+            <!-- Card 9 -->
+            <div class="card">
+                <img src="Course Assets/9.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="card">
+                <img src="Course Assets/10.png" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div class="card">
+                <img src="Course Assets/11.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+
+            <!-- Card 12 -->
+            <div class="card">
+                <img src="Course Assets/12.jpg" alt="IBM Data Science">
+                <div class="card-content">
+                    <div class="logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM">
+                        IBM
+                    </div>
+                    <h3>IBM Data Science</h3>
+                    <p>Beginner · Professional Certificate</p>
+                    <span class="tag">AI skills</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-socials">
-                Follow us on: 
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>  
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">ML Fusion Labs</a></li>
+                        <li><a href="#" class="text-white">Teach on ML Fusion Labs</a></li>
+                        <li><a href="#" class="text-white">Get the app</a></li>
+                        <li><a href="#" class="text-white">About us</a></li>
+                        <li><a href="#" class="text-white">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Careers</a></li>
+                        <li><a href="#" class="text-white">Blog</a></li>
+                        <li><a href="#" class="text-white">Help and Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Terms</a></li>
+                        <li><a href="#" class="text-white">Privacy policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 offset-md-4 text-end">
+                    <button class="btn btn-outline-light"> 
+                        <i class="bi bi-globe"></i> English
+                    </button>
+                </div>
             </div>
-            <div class="footer-contact">
-                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <a href="#" class="navbar-brand text-white">
+                        <img src="ml-fusion-lab-logo.png" alt="ML Fusion Labs logo" width="80">
+                    </a>
+                </div>
+                
+                <div class="col-md-6 text-end">
+                    <p class="mb-0" style="font-size: 0.875rem; color: white;">© 2024 ML Fusion Labs, Inc.</p>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="about.html">About Us</a> | 
-                <a href="contact.html">Contact</a>
-            </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
         </div>
     </footer>
+    
 
-    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
     <script src="scroll.js"></script>
-    <script src="script.js"></script>
-
-    <!-- Botpress Chat Scripts -->
-  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
