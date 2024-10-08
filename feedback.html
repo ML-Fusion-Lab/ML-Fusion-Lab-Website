@@ -5,75 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Page</title>
     <style>
-      * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #9d73ca, #8ea6d1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+        position: absolute; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        text-align: center;
+        margin: 0; 
+        font-size: 1.5em;
+        font-weight: bold;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #9d73ca, #8ea6d1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+        }
 
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
-}
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
 
-h2 {
-    margin-bottom: 20px;
-}
+        button {
+            background-color: #a94cb9;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
 
-label {
-    display: block;
-    text-align: left;
-    margin-top: 10px;
-}
+        button:hover {
+            background-color: #216988;
+        }
 
-input, select, textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
+        .hidden {
+            display: none;
+        }
 
-button {
-    background-color: #a94cb9;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+        #feedbackResponse h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
 
-button:hover {
-    background-color: #216988;
-}
+        .back-link {
+            display: inline-block;
+            background-color: #a94cb9;
+            color: white;
+            padding: 8px 10px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.9em;
+        }
 
-.hidden {
-    display: none;
-}
+        .back-link:hover {
+            background-color: #216988;
+        }
 
-#feedbackResponse h3 {
-    color: #28a745;
-    margin-bottom: 10px;
-}
-
+        #feedbackForm, #feedbackResponse {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Feedback Form</h2>
+        <div class="header">
+            <a href="index.html" class="back-link">←</a>
+            <h2>Feedback Form</h2>
+        </div>
         <form id="feedbackForm" onsubmit="return submitFeedback()">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter Name">
@@ -105,34 +139,29 @@ button:hover {
     </div>
 
     <script>
-      function submitFeedback() {
-    // Get form values
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const rating = document.getElementById("rating").value;
-    const comments = document.getElementById("comments").value;
+        function submitFeedback() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const rating = document.getElementById("rating").value;
+            const comments = document.getElementById("comments").value;
 
-    // Show feedback response and hide form
-    const form = document.getElementById("feedbackForm");
-    const response = document.getElementById("feedbackResponse");
-    const responseMessage = document.getElementById("responseMessage");
+            const form = document.getElementById("feedbackForm");
+            const response = document.getElementById("feedbackResponse");
+            const responseMessage = document.getElementById("responseMessage");
 
-    form.classList.add("hidden");
-    response.classList.remove("hidden");
+            form.classList.add("hidden");
+            response.classList.remove("hidden");
 
-    // Display message
-    responseMessage.innerHTML = `Thank you, <strong>${name}</strong>, for rating us ${rating}/5. We appreciate your feedback!`;
+            responseMessage.innerHTML = `Thank you, <strong>${name}</strong>, for rating us ${rating}/5. We appreciate your feedback!`;
 
-    return false; // Prevent form submission and page reload
-}
+            return false;
+        }
 
-function resetForm() {
-    // Reset form and show it again
-    document.getElementById("feedbackForm").reset();
-    document.getElementById("feedbackForm").classList.remove("hidden");
-    document.getElementById("feedbackResponse").classList.add("hidden");
-}
-
+        function resetForm() {
+            document.getElementById("feedbackForm").reset();
+            document.getElementById("feedbackForm").classList.remove("hidden");
+            document.getElementById("feedbackResponse").classList.add("hidden");
+        }
     </script>
 </body>
 </html>
