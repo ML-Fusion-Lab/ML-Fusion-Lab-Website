@@ -157,9 +157,56 @@
         .footer-contact a {
             color: white;
         }
+
+       /*  Hover effect CSS for form */
+        .contact-card form input:hover,
+.contact-card form textarea:hover {
+    border-color: #007BFF; 
+    background-color: #f0f8ff; 
+}
+
+.contact-card form input:focus,
+.contact-card form textarea:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+    outline: none; 
+}
+
+.contact-card form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.contact-card form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); 
+}
+
+.contact-card form button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+}
+
+        /* Grow the entire form on hover */
+.contact-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.contact-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
     </style>
 </head>
 
+    
 <body>
 
     <header>
