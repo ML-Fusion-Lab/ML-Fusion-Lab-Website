@@ -210,12 +210,80 @@
       </div>
       <div class="newsletter-right">
         <div class="input-group">
-          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com"
-            autocomplete="off">
+          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com" autocomplete="off">
           <input class="button--submit" value="Subscribe" type="submit">
+          <style>
+            .input-group {
+              display: flex;
+              transition: all 0.3s ease;
+              position: relative;
+              overflow: hidden;
+            }
+            .input {
+              transition: all 0.3s ease;
+              border: 2px solid #ccc;
+              padding: 10px;
+              border-radius: 4px 0 0 4px;
+              outline: none;
+            }
+            .input:focus {
+              border-color: #0056b3;
+              box-shadow: 0 0 10px rgba(0, 86, 179, 0.2);
+            }
+            .input::placeholder {
+              color: #999;
+              transition: all 0.3s ease;
+            }
+            .input:focus::placeholder {
+              opacity: 0;
+              transform: translateX(10px);
+            }
+            .button--submit {
+              transition: all 0.3s ease;
+              background-color: #0056b3;
+              color: white;
+              border: none;
+              padding: 10px 20px;
+              border-radius: 0 4px 4px 0;
+              cursor: pointer;
+              position: relative;
+              overflow: hidden;
+            }
+            .button--submit:hover {
+              background-color: #003d82;
+            }
+            .button--submit::before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 0;
+              height: 0;
+              background-color: rgba(255, 255, 255, 0.2);
+              border-radius: 50%;
+              transition: width 0.6s ease, height 0.6s ease;
+              transform: translate(-50%, -50%);
+            }
+            .button--submit:hover::before {
+              width: 300px;
+              height: 300px;
+            }
+            .button--submit:active {
+              transform: scale(0.95);
+            }
+            @keyframes shake {
+              0%, 100% { transform: translateX(0); }
+              25% { transform: translateX(5px); }
+              75% { transform: translateX(-5px); }
+            }
+            .input:invalid:not(:placeholder-shown) {
+              animation: shake 0.3s;
+              border-color: #ff3860;
+            }
+          </style>
         </div>
       </div>
-    </div>
+        </div> 
     <footer>
       <div class="container">
         <div class="footer-socials">
