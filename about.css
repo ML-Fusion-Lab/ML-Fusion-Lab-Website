@@ -292,3 +292,21 @@ height: 12em; /* Adjust height for mobile devices */
     display: flex;
     justify-content: center;
 }
+
+.para 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 600px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-contact {
+        flex-direction: row;
+    }
+}
