@@ -262,29 +262,6 @@ footer p {
   color: white;
 }
 
-/* Scroll to Top Button */
-#scrollTopBtn {
-  position: fixed;
-  bottom: 40px;
-  right: 30px;
-  display: none;
-  background-color: #aca7eb;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#scrollTopBtn:hover {
-  background-color: #7f76db;
-}
-
-#scrollTopBtn.show {
-  display: block;
-}
 
 /* Responsive Styling */
 @media (max-width: 768px) {
