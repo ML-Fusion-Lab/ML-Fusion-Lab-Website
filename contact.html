@@ -16,7 +16,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #000000;
         }
 
         header {
@@ -27,8 +27,17 @@
             align-items: center;
         }
 
+        .logo{
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
         .logo img {
-            height: 50px;
+            height: 65px;
+            padding-bottom: 15px;
+            
         }
 
         nav ul {
@@ -63,6 +72,8 @@
             color: white;
             padding: 60px 20px;
             text-align: center;
+            background: rgb(14,13,18);
+            background: linear-gradient(0deg, rgba(14,13,18,1) 24%, rgba(109,109,117,1) 76%, rgba(142,149,150,1) 100%);
         }
 
         .contact-hero h2 {
@@ -86,7 +97,7 @@
             background-color: white;
             padding: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            border-radius: 20px;
             max-width: 600px;
             width: 100%;
         }
@@ -101,7 +112,7 @@
             display: block;
             margin-bottom: 5px;
             font-size: 16px;
-            color: #555;
+            color: #000000;
         }
 
         .contact-card form input,
@@ -109,10 +120,14 @@
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border:none;
+            outline:none;
+            border-bottom: 2px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 2px 2px 4px;
             font-size: 16px;
             color: #333;
+            font-family:monospace;
         }
 
         .contact-card form button {
