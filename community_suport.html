@@ -6,6 +6,7 @@
     <title>ML Fusion Labs - Community Support</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="ml fusion lab log.jpg">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -70,54 +71,114 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="community_suport.html">
+                  <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+                </a>
+        
+              </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="community_support.html" class="active">Community Support</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
 
+     <main>
     <section class="community-support">
         <div class="container">
+            <h2>Community Support</h2>
+            <p>At ML Fusion Labs, we believe that learning is best when shared. Our community support section is designed to connect learners, share knowledge, and provide assistance for your machine learning journey.</p>
+            <!-- form card layout-->
             <div class="card">
-                <img src="https://via.placeholder.com/150" alt="Card 1">
                 <h3>Join Our Forums</h3>
                 <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums.</p>
                 <a href="forum.html" class="btn">Visit Forums</a>
             </div>
-
+<!--card 1-->
             <div class="card">
-                <img src="https://via.placeholder.com/150" alt="Card 2">
                 <h3>Weekly Q&A Sessions</h3>
                 <p>Join our weekly Q&A sessions where experts answer your questions live. Check our schedule and sign up!</p>
                 <a href="qa_schedule.html" class="btn">View Schedule</a>
             </div>
-
+<!--card 2-->
             <div class="card">
-                <img src="https://via.placeholder.com/150" alt="Card 3">
                 <h3>Resource Library</h3>
                 <p>Access our curated library of articles, tutorials, and videos to help you navigate machine learning topics.</p>
                 <a href="resources.html" class="btn">Explore Resources</a>
             </div>
-
+<!--card 3-->
             <div class="card">
-                <img src="https://via.placeholder.com/150" alt="Card 4">
                 <h3>Connect with Mentors</h3>
                 <p>Get paired with experienced mentors who can guide you through complex topics and support your learning journey.</p>
                 <a href="mentor_program.html" class="btn">Find a Mentor</a>
             </div>
-
+<!--card 4-->
             <div class="card">
-                <img src="https://via.placeholder.com/150" alt="Card 5">
                 <h3>Social Media Groups</h3>
                 <p>Join our social media groups to stay updated, network with other learners, and share resources.</p>
                 <a href="social_media.html" class="btn">Join Our Groups</a>
             </div>
         </div>
     </section>
-
+     </main>
     <!-- Back to Top Button -->
     <button id="backToTop" title="Go to top" aria-label="Back to Top"> <i class="fas fa-arrow-up"></i></button>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+          <div class="footer-socials">
+            Follow us on:
+            <a href="https://facebook.com" target="_blank">Facebook<i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank">Twitter<i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank">Linkedin<i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <div class="footer-contact">
+            <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone:
+              +1 (555) 123-4567</p>
+          </div>
+          <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a> |
+            <a href="about.html">About Us</a> |
+            <a href="contact.html">Contact</a>
+          </div>
+          <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
         </div>
-    </footer>
-</body>
-</html>
+        <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+      </footer>
+      <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollTopBtn.style.display = "block";
+          } else {
+            scrollTopBtn.style.display = "none";
+          }
+        };
+  
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        }
+      </script>
+      <script src="scroll.js"></script>
+      <script src="script.js"></script>
+  
+      <!-- Botpress Chat Scripts -->
+      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  
+  
+    </body>
+  
+  </html>
