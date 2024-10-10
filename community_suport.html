@@ -11,6 +11,17 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+        body.light-mode {
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+       
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -68,9 +79,24 @@
         .btn:hover {
             background-color: #007acc;
         }
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #0099ff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #007acc;
+        }
     </style>
 </head>
-<body>
+<body class="light-mode">
     <header>
         <nav>
             <div class="logo">
@@ -83,10 +109,10 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="community_support.html" class="active">Community Support</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
             </ul>
         </nav>
     </header>
@@ -155,30 +181,31 @@
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
       </footer>
       <script>
+        // Toggle Dark/Light Mode
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        themeSwitch.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        });
+
+        // Scroll to Top Button Functionality
         const scrollTopBtn = document.getElementById("scrollTopBtn");
         window.onscroll = function () {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollTopBtn.style.display = "block";
-          } else {
-            scrollTopBtn.style.display = "none";
-          }
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
         };
-  
+
         function scrollToTop() {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         }
-      </script>
-      <script src="scroll.js"></script>
-      <script src="script.js"></script>
-  
-      <!-- Botpress Chat Scripts -->
-      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-  
-  
-    </body>
-  
-  </html>
+    </script>
+</body>
+</html>
