@@ -107,7 +107,6 @@ body {
   }
 
   .container img {
-    border-radius: 15px; /* Adjust the value as needed */
     box-shadow: 20px 20px 20px grey;
   }
 
@@ -412,9 +411,9 @@ body {
   }
   /* About Us Page Specific Styles */
   .about-hero {
-    background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
+    background-image: url("robot-2301646_1280.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: top;
     color: white;
     padding: 100px 20px;
     text-align: center;
@@ -1213,10 +1212,11 @@ body.dark-mode .contact-us {
 
 /* About page dark theme */
 body.dark-mode .about-hero {
-  background: black;
+  background: url('robot-2301646_1280.jpg') no-repeat center center; /* Set the background image */
+  background-size: cover; /* Ensure the background image covers the entire div */
   color: white;
+  background-position: top;
 }
-
 body.dark-mode .about-us {
   margin-top: 2px;
   background: black;

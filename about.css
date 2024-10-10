@@ -1,0 +1,312 @@
+/*typing effect*/
+#typing-text {
+    font-size: 20px; /* Base font size */
+    font-weight: 400; /* Normal weight */
+    overflow: hidden; /* Hide overflow */
+    border-right: 2px solid; /* Cursor effect */
+    display: inline-block; /* Keep inline for better control */
+    animation: blink-cursor 0.7s step-end infinite; /* Blink cursor animation */
+    max-width: 90%; /* Limit max width to prevent overflow */
+    word-wrap: break-word; /* Allow words to wrap onto the next line */
+    white-space: normal; /* Allow text to wrap normally */
+}
+/* Blinking cursor animation */
+@keyframes blink-cursor {
+    from { border-right-color: black; }
+    to { border-right-color: transparent; }
+}
+/* Styling for the heading */
+.h2text {
+    font-size: 2.5rem; /* Adjust font size for emphasis */
+    font-weight: bold; /* Make the heading bold */
+    color: #2c3e50; /* Dark color for the text */
+    text-align: center; /* Center align the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    text-transform: uppercase; /* Uppercase letters */
+    letter-spacing: 2px; /* Increase spacing between letters */
+    position: relative; /* Position for decorative elements */
+    padding-top: 4rem;
+}
+
+/* Add a decorative underline */
+.h2text::after {
+    content: ""; /* Create a pseudo-element */
+    display: block; /* Block display */
+    width: 60%; /* Width of the underline */
+    height: 4px; /* Height of the underline */
+    background-color: #e74c3c; /* Color of the underline */
+    margin: 10px auto; /* Center the underline */
+    border-radius: 2px; /* Rounded corners */
+}
+
+/* Styling for the paragraph */
+p {
+    font-size: 1.2rem; /* Font size for readability */
+    line-height: 1.6; /* Line height for spacing */
+    color: #34495e; /* Slightly lighter color for the text */
+    text-align: center; /* Center align the paragraph */
+    max-width: 800px; /* Max width for better readability */
+    margin: 0 auto; /* Center align with auto margins */
+    padding: 0 20px; /* Padding for small screens */
+}
+
+.img-card-outer {
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+width: 100%;
+gap: 20px; /* Adds space between cards */
+padding: 20px; /* Adds some padding around the outer container */
+}
+
+.img-card {
+height: 20em;
+width: 20em; /* Fixed size for larger screens */
+background-size: cover;
+background-position: top;
+border-radius: 20px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.336); /* Initial shadow */
+transition: all 0.2s ease-in-out; /* Move transition here */
+}
+
+.img-card:hover {
+transform: scale(0.95); /* Slightly shrink the card */
+box-shadow: 0 10px 16px rgba(0, 0, 0, 0.622); /* Shadow spreads out */
+}
+
+/* Background images */
+.img1 {
+background-image: url("never-stop-learning-3653430_1280.jpg");
+}
+
+.img2 {
+background-image: url("algorithm-3859537_1280.jpg");
+}
+
+.img3 {
+background-image: url("programming-2115930_1280.jpg");
+}
+
+/* Responsive Styling */
+@media (max-width: 1200px) {
+.img-card {
+width: 18em; /* Adjust width for medium screens */
+height: 18em; /* Adjust height for medium screens */
+}
+}
+
+@media (max-width: 992px) {
+.img-card {
+width: 16em; /* Adjust width for smaller tablets */
+height: 16em; /* Adjust height for smaller tablets */
+}
+}
+
+@media (max-width: 768px) {
+.img-card {
+width: 14em; /* Adjust width for small tablets */
+height: 14em; /* Adjust height for small tablets */
+}
+}
+
+@media (max-width: 576px) {
+.img-card {
+width: 12em; /* Adjust width for mobile devices */
+height: 12em; /* Adjust height for mobile devices */
+}
+}
+
+
+/* style for what we are  */
+
+#display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card styling */
+.features-card {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 350px;
+    height: 200px;
+    text-align: center;
+    transition: transform 0.4s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Text inside the card */
+.features-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    z-index: 2; /* Ensure text stays on top of the water fill */
+    transition: color 0.4s ease-in-out;
+}
+
+/* Water fill effect (before) */
+.features-card::before {
+    content: "";
+    position: absolute;
+    top: 100%; /* Start from below the card */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0077cc; /* Water fill color */
+    z-index: 1; /* Keep water fill below text and bottom line */
+    transition: top 0.5s ease-in-out;
+}
+
+/* Bottom border effect (after) */
+.features-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background-color: #ff5733; /* Orange line */
+    z-index: 3; /* Ensure the orange line stays on top */
+    transition: width 0.4s ease-in-out;
+}
+
+/* Hover effect */
+.features-card:hover::before {
+    top: 0; /* Fill from bottom to top */
+}
+
+.features-card:hover h4 {
+    color: #ffffff; /* Change text color on hover */
+}
+
+.features-card:hover::after {
+    width: 100%; /* Expand the bottom line on hover */
+}
+
+.features-card:hover {
+    transform: translateY(-10px); /* Lift the card */
+}
+
+/* Team Section Styling */
+#team {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* Team heading */
+#team h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Team grid styling */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted to ensure 200px width */
+    gap: 20px;
+    justify-items: center;
+}
+
+/* Individual team member styling */
+.team-member {
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image styling */
+.team-member img {
+    width: 200px; /* Set width for circular images */
+    height: 200px; /* Set height for circular images */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image covers the frame */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for the image */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Name and position styling */
+.team-member h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.team-member p {
+    font-size: 1rem;
+    color: #777;
+}
+
+/* Hover effect */
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust for smaller screens */
+    }
+}
+ footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto; /* Push footer to bottom */
+}
+.footer-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 0 20px;
+}
+.footer-links, .footer-socials {
+    margin: 10px 0;
+    display: block;
+    justify-content: center;
+}
+.footer-links a, .footer-socials a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s; /* Add transition for hover effect */
+}
+.footer-links a:hover, .footer-socials a:hover {
+    color: #007BFF; /* Change color on hover */
+}
+.footer-contact {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.para 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 600px) {
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .footer-contact {
+        flex-direction: row;
+    }
+}

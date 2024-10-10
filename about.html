@@ -4,40 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - ML Fusion Labs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="scroll.css">
-    <style>
-         footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: auto; /* Push footer to bottom */
-        }
-        .footer-container {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: auto;
-            padding: 0 20px;
-        }
-        .footer-links, .footer-socials {
-            margin: 10px 0;
-        }
-        .footer-links a, .footer-socials a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s; /* Add transition for hover effect */
-        }
-        .footer-links a:hover, .footer-socials a:hover {
-            color: #007BFF; /* Change color on hover */
-        }
-        .footer-contact {
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="about.css">
 </head>
 
    </head>
@@ -67,46 +38,72 @@
       </nav>
              
     </header>
-
+    
     <section class="about-hero">
         <div class="hero-content">
-        <div class="hero-center">
-            <h2>About ML Fusion Labs</h2>
-            <p>We are committed to providing high-quality machine learning resources for learners and professionals alike.</p>
-        </div>
-            
+            <div class="hero-center">
+                <h2>About ML Fusion Labs</h2>
+                <p id="typing-text"></p>
+            </div>
         </div>
     </section>
-
+    
     <section class="about-us">
         <div class="container">
-            <h2 id="h2text">Our Mission</h2>
+            <h2 class="h2text">Our Mission</h2>
             <p>At ML Fusion Labs, we believe that machine learning education should be accessible to everyone. Our mission is to create an inclusive environment where learners of all levels can develop their skills through hands-on projects and expert guidance.</p>
-            
-            <h2>What We Offer</h2>
+            <div class="img-card-outer">
+                <div class="img-card img1"></div>
+                <div class="img-card img2"></div>
+                <div class="img-card img3"></div>
+            </div>
+
+            <h2 class="h2text">What We Offer?</h2>
 
             <div id="display">
                 <div class="features-card">
-                                
-                                <h4>Structured courses covering fundamental to advanced machine learning topics.</h4>                         
-                            </div>
-                
-                            <div class="features-card">
-                               
-                                <h4>Real-world projects to apply machine learning concepts.</h4>
-                                
-                            </div>
-                
-                            <div class="features-card">
-                              
-                                <h4>A supportive community of learners and experts to collaborate with.</h4>
-                                
-                            </div>
-            </div>  
+                    <h4>"Structured courses covering fundamental to advanced machine learning topics."</h4>                         
+                </div>
+            
+                <div class="features-card">
+                    <h4>Real-world projects to apply machine learning concepts.</h4>
+                </div>
+            
+                <div class="features-card">
+                    <h4>A supportive community of learners and experts to collaborate with.</h4>
+                </div>
+            </div>
           
 
-            <h2>Our Team</h2>
+            <h2 class="h2text">Our Team</h2>
             <p>ML Fusion Labs is powered by a diverse group of machine learning enthusiasts, industry professionals, and educators. We are committed to making machine learning education engaging, practical, and accessible for everyone.</p>
+            
+            <section id="team">
+                <div class="team-container">
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <img src="teammate1.jpg" alt="Team Member 1">
+                            <h4>John Doe</h4>
+                            <p>Lead Developer</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="teammate2.jpg" alt="Team Member 2">
+                            <h4>Jane Smith</h4>
+                            <p>Project Manager</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="teammate3.jpg" alt="Team Member 3">
+                            <h4>Michael Lee</h4>
+                            <p>UI/UX Designer</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="teammate4.jpg" alt="Team Member 4">
+                            <h4>Emily Brown</h4>
+                            <p>Data Scientist</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </section>
 
@@ -115,7 +112,7 @@
             <div class="footer-socials">
                 Follow us on: 
                 <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>  
+                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>  
                 <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="footer-contact">
@@ -128,17 +125,46 @@
             <a href="about.html">About Us</a>  
             <a href="contact.html">Contact</a>
             <a href="Testimonial.html">Testimonial</a>
+            <div class="para">
+                <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            </div>
         </div>
-        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
     </footer>
 
-    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+    <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="scroll.js"></script>
     <script src="script.js"></script>
 
     <!-- Botpress Chat Scripts -->
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <!--Typing functionality-->
+  <script>
+    const text = "We provide high-quality machine learning resources for all learners.";
+    let index = 0;
+
+    function type() {
+        const typingElement = document.getElementById("typing-text");
+
+        // If the sentence is fully written, reset after a delay
+        if (index === text.length) {
+            setTimeout(() => {
+                typingElement.innerHTML = ''; // Clear the text
+                index = 0; // Reset index
+                type(); // Start typing again
+            }, 1000); // 1 second delay before restarting typing
+        } else {
+            // Continue typing
+            typingElement.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(type, 50); // Adjust typing speed here
+        }
+    }
+
+    window.onload = function() {
+        type();
+    };
+</script>
 
 </body>
 </html>

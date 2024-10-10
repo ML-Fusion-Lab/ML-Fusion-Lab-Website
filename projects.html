@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
     <style>
+
+        body {
+            /*font-family: 'Arial', 'Helvetica Neue', sans-serif; /* Broader font fallback */
+            font-family: 'Roboto', 'Arial', sans-serif;
+            font-size: 16px; /* Base font size */
+            line-height: 1.6; /* Spacing for readability */
+            color: #333;
+            -webkit-font-smoothing: antialiased; /* Improve text rendering on macOS and iOS */
+            -moz-osx-font-smoothing: grayscale; /* Improve rendering on Firefox for macOS */
+        }
+        
+        
         footer {
            background: #333;
            color: white;
@@ -41,20 +53,33 @@
     .project-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        margin-top: 20px;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .project-item {
+        margin-bottom: 30px; /* Add some space below each project card */
     }
 
     .project-item h3 {
-        margin-bottom: 10px;
-        font-size: 1.2em;
+        font-size: 1.3em; /* Slight size increase for clarity */
+        font-weight: 600;
+        line-height: 1.4; /* Add a bit more space between lines */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
+       
 
     .project-item p {
-        font-size: 1em;
-        color: #666;
-        margin-bottom: 15px;
+        font-size: 1.1em; 
+        color: #444; 
+        line-height: 1.5; 
+        font-weight: 400; /* Ensure consistent weight */
+        margin-bottom: 18px;
+        text-align: justify; /* Optional: Align text for a cleaner look */
     }
+    
+    
 
     .btn {
         background-color: #007BFF;
@@ -74,27 +99,37 @@
         transform: scale(1.05);
     }
 
-       /* Modal styles */
-       .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+     
+
+/* Modal overlay styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    padding: 20px;
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+    max-width: 90%;  /* For responsiveness */
+    max-height: 90%; /* For responsiveness */
+    overflow-y: auto; /* If content overflows */
 }
 
+
+/* Modal content styles */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    position: relative; /* Relative to the modal */
+    margin: 0 auto; /* Center the modal horizontally */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 90%; 
+    max-width: 500px; /* Set a max-width */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden; /* Prevent content from overflowing the container */
 }
+
 
 .close {
     color: #aaa;
@@ -111,13 +146,13 @@
 }
 .project-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
     gap: 20px; /* Adjust gap between items */
     padding: 20px;
-  }
-  
-  .project-item {
-    height: 400px;
+}
+
+.project-item {
+    height: 400px; /* Fixed height for consistency */
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 8px;
@@ -127,17 +162,45 @@
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-  }
-  
-  .project-item img {
-    height: 50%;
+    overflow: hidden; /* Prevents overflow of content */
+}
+
+.project-item img {
+    height: auto; /* Maintain aspect ratio */
+    max-height: 50%; /* Set max height to half of the project item */
     width: 100%;
+    object-fit: cover; /* Ensures image covers its area */
     margin: auto;
 }
 
-  .project-item:hover {
+.project-item:hover {
     transform: translateY(-5px); /* Hover effect */
-  }
+
+}
+
+.hide-btn{
+    display: none;
+}
+
+.btn-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-cont .load-more-button{
+    background: #1c1c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.btn-cont .load-more-button:hover{
+    background: #000000;
+}
   
   /* Responsive adjustment for smaller screens */
   @media (max-width: 1200px) {
@@ -197,130 +260,10 @@
         <div class="container">
             <h2>Featured Projects</h2>
             <div class="project-list">
-                <div class="project-item">
-                    <img src="Assets/projectpics/crops.jpg" alt="crops" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Crop Height Using Computer Vision</h3>
-                    <p>Utilize contour detection techniques to estimate the height of crops for agricultural purposes.</p>
-                    <a href="#" class="btn" onclick="openModal('modal1')">Learn More</a>
-                </div>
-                
-                <div class="project-item">
-                    <img src="Assets/projectpics/disease.jpg" alt="disease" style="box-shadow: none; border-radius: 5px;">
-                    <h3>AI-Based Disease Diagnosis</h3>
-                    <p>A machine learning model that helps detect early symptoms of diseases using patient data.</p>
-                    <a href="#" class="btn" onclick="openModal('modal2')">Learn More</a>
-                </div>
-                
-                <div class="project-item">
-                    <img src="Assets/projectpics/shop.jpg" alt="shopping" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Recommendation System for Shopping</h3>
-                    <p>Build a recommendation system that suggests products based on user browsing behavior.</p>
-                    <a href="#" class="btn" onclick="openModal('modal3')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/cnn.png" alt="cnn" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Image Classification with Deep Learning</h3>
-                    <p>Develop a model that classifies images into categories using convolutional neural networks.</p>
-                    <a href="#" class="btn" onclick="openModal('modal4')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/emai.jpg" alt="email" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Automated Email Response System</h3>
-                    <p>Implement a system that uses NLP to generate automated responses to common email inquiries.</p>
-                    <a href="#" class="btn" onclick="openModal('modal5')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/stock.jpg" alt="stock" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Stock Price Time Series Forecasting</h3>
-                    <p>Apply machine learning algorithms to predict future stock prices based on historical data.</p>
-                    <a href="#" class="btn" onclick="openModal('modal6')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/bot.png" alt="bot" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Chatbot Development for Customer Support</h3>
-                    <p>Create an AI-powered chatbot that assists users with their inquiries in real time.</p>
-                    <a href="#" class="btn" onclick="openModal('modal7')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/fraud.png" alt="fraud" style="box-shadow: none; border-radius: 5px;">
-                    <h3>AI-Powered Fraud Detection System</h3>
-                    <p>Develop a system that identifies fraudulent activities using machine learning techniques.</p>
-                    <a href="#" class="btn" onclick="openModal('modal8')">Learn More</a>
-                </div>
-                <!-- New Projects -->
-                <div class="project-item">
-                    <img src="Assets/projectpics/lth.png" alt="health" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Healthcare Predictive Analytics</h3>
-                    <p>Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans.</p>
-                    <a href="#" class="btn" onclick="openModal('modal9')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/wild.jpg" alt="wild" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Wildfire Detection Using Satellite Images</h3>
-                    <p>Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.</p>
-                    <a href="#" class="btn" onclick="openModal('modal10')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/waste.jpg" alt="waste" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Waste Management Optimization</h3>
-                    <p>Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution.</p>
-                    <a href="#" class="btn" onclick="openModal('modal11')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/traffic.jpg" alt="traffic" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Traffic Accident Prediction System</h3>
-                    <p>Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.</p>
-                    <a href="#" class="btn" onclick="openModal('modal12')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/personalizd.jpg" alt="personalized" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Personalized Learning Recommendation System</h3>
-                    <p>Create an adaptive learning platform that suggests personalized learning paths based on student performance data.</p>
-                    <a href="#" class="btn" onclick="openModal('modal13')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/mental.jpg" alt="mental" style="box-shadow: none; border-radius: 5px;">
-                    <h3>AI for Mental Health Analysis</h3>
-                    <p>Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.</p>
-                    <a href="#" class="btn" onclick="openModal('modal14')">Learn More</a>
-                </div>
-                <!-- Unique Innovative Projects -->
-                <div class="project-item">
-                    <img src="Assets/projectpics/dist.jpg" alt="Disaster" style="box-shadow: none; border-radius: 5px;">
-                    <h3>AI-Driven Disaster Relief Supply Chain Optimization</h3>
-                    <p>Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time.</p>
-                    <a href="#" class="btn" onclick="openModal('modal15')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/sound.jpg" alt="sound" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Urban Sound Classification</h3>
-                    <p>Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.</p>
-                    <a href="#" class="btn" onclick="openModal('modal16')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/eneryg.png" alt="energy" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Energy Consumption Prediction for Smart Homes</h3>
-                    <p>Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.</p>
-                    <a href="#" class="btn" onclick="openModal('modal17')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/nut.jpg" alt="nutrition" style="box-shadow: none; border-radius: 5px;">
-                    <h3>AI for Personalized Nutrition Plans</h3>
-                    <p>Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.</p>
-                    <a href="#" class="btn" onclick="openModal('modal18')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/rec.jpg" alt="recycle" style="box-shadow: none; border-radius: 5px;">
-                    <h3>Plastic Waste Classification for Recycling</h3>
-                    <p>Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.</p>
-                    <a href="#" class="btn" onclick="openModal('modal19')">Learn More</a>
-                </div>
-                <div class="project-item">
-                    <img src="Assets/projectpics/the.jpg" alt="Therapist" style="box-shadow: none; border-radius: 5px;">
-                    <h3>AI-Powered Virtual Therapist</h3>
-                    <p>Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.</p>
-                    <a href="#" class="btn" onclick="openModal('modal20')">Learn More</a>
-                </div>
+                <!-- Projects rendered using javascript -->
+            </div>
+            <div class="btn-cont">
+                <button class="load-more-button">Load more</button>
             </div>
         </div>
     </section>
@@ -464,6 +407,20 @@
         }
 
         modal.style.display = 'block';
+
+        // Get the hero content element and its height
+const heroContent = document.querySelector('.hero-content'); 
+const heroHeight = heroContent.offsetHeight;
+
+// Position the modal in the center of the screen, below the hero content
+modal.style.display = 'block';
+modal.style.position = 'fixed'; 
+modal.style.left = '50%'; 
+modal.style.top = `${heroHeight + 20}px`; 
+modal.style.transform = 'translate(-50%, 0)'; 
+modal.style.zIndex = '1000'; 
+
+
     }
 
     function closeModal() {
@@ -478,9 +435,10 @@
         }
     }
 </script>
-    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+    <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="scroll.js"></script>  
     <script src="script.js"></script>
+    <script src="projects.js"></script>
 
     <!-- Botpress Chat Scripts -->
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>

@@ -1,28 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="ml-fusion-lab-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Fusion Labs - Community Support</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Meta Tags for SEO -->
-    <meta name="description" content="ML Fusion Labs - Join our community for Machine Learning resources, forums, Q&A sessions, and mentor support.">
-    <meta property="og:title" content="ML Fusion Labs - Community Support">
-    <meta property="og:description" content="A community dedicated to helping Machine Learning enthusiasts. Connect with forums, mentors, and resources.">
-    <meta property="og:image" content="ml-fusion-lab-logo.png">
-    <meta property="og:url" content="https://www.mlfusionlabs.com/community_support.html">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <!-- Favicon for Different Platforms -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -55,6 +38,12 @@
             z-index: 1;
         }
 
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
         .card h3 {
             margin: 10px 0;
             font-size: 1.5rem;
@@ -67,57 +56,62 @@
 
         .btn {
             display: inline-block;
-            margin: 10px 0; /* Creates a gap between buttons */
+            padding: 10px 20px;
+            background-color: #0099ff;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
         }
-    </style>   
+
+        .btn:hover {
+            background-color: #007acc;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>ML Fusion Labs</h1>
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="community_support.html" class="active">Community Support</a></li>
-            </ul>
-          </nav>
-    </header>
 
     <section class="community-support">
         <div class="container">
-            <h2 style="text-align: center;">Community Support</h2>
-            
-            <p>At ML Fusion Labs, we believe that learning is best when shared. Our community support section is designed to connect learners, share knowledge, and provide assistance for your machine learning journey.</p>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 1">
+                <h3>Join Our Forums</h3>
+                <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums.</p>
+                <a href="forum.html" class="btn">Visit Forums</a>
+            </div>
 
-            <h3>Join Our Forums</h3>
-            <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums. Whether you’re a beginner or an expert, everyone is welcome!</p>
-            <a href="forum.html" class="btn">Visit Forums</a>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 2">
+                <h3>Weekly Q&A Sessions</h3>
+                <p>Join our weekly Q&A sessions where experts answer your questions live. Check our schedule and sign up!</p>
+                <a href="qa_schedule.html" class="btn">View Schedule</a>
+            </div>
 
-            <h3>Weekly Q&A Sessions</h3>
-            <p>Join our weekly Q&A sessions where experts from the ML field answer your questions live. Check our schedule and sign up!</p>
-            <a href="qa_schedule.html" class="btn">View Schedule</a>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 3">
+                <h3>Resource Library</h3>
+                <p>Access our curated library of articles, tutorials, and videos to help you navigate machine learning topics.</p>
+                <a href="resources.html" class="btn">Explore Resources</a>
+            </div>
 
-            <h3>Resource Library</h3>
-            <p>Access our curated library of articles, tutorials, and videos to help you navigate through machine learning topics. Learn at your own pace!</p>
-            <a href="resources.html" class="btn">Explore Resources</a>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 4">
+                <h3>Connect with Mentors</h3>
+                <p>Get paired with experienced mentors who can guide you through complex topics and support your learning journey.</p>
+                <a href="mentor_program.html" class="btn">Find a Mentor</a>
+            </div>
 
-            <h3>Connect with Mentors</h3>
-            <p>Get paired with experienced mentors who can guide you through complex topics, provide insights, and support your learning journey.</p>
-            <a href="mentor_program.html" class="btn">Find a Mentor</a>
-
-            <h3>Social Media Groups</h3>
-            <p>Join our social media groups on platforms like Facebook, LinkedIn, and Discord to stay updated, network with other learners, and share resources.</p>
-            <a href="social_media.html" class="btn">Join Our Groups</a>
+            <div class="card">
+                <img src="https://via.placeholder.com/150" alt="Card 5">
+                <h3>Social Media Groups</h3>
+                <p>Join our social media groups to stay updated, network with other learners, and share resources.</p>
+                <a href="social_media.html" class="btn">Join Our Groups</a>
+            </div>
         </div>
     </section>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" title="Go to top" aria-label="Back to Top">Back to Top</button>
+    <button id="backToTop" title="Go to top" aria-label="Back to Top"> <i class="fas fa-arrow-up"></i></button>
 
     <footer>
         <div class="container">
