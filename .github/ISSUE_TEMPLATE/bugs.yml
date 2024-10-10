@@ -59,9 +59,9 @@ body:
       label: 'Checklist'
       description: 'Please ensure you have completed the following:'
       options:
-        - label: 'I have checked the [existing issues](https://github.com/aditya-bhaumik/Pathsphere/issues)'
+        - label: 'I have checked the [existing issues](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues)'
           required: true
-        - label: 'I have read the [Contributing Guidelines](https://github.com/aditya-bhaumik/Pathsphere/blob/main/contributing.md)'
+        - label: 'I have read the [Contributing Guidelines](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/blob/main/contributing.md)'
           required: true
         - label: 'I want to work on this issue. (optional)'
 
@@ -71,4 +71,4 @@ body:
         **Thank you for taking the time to report this issue! Your feedback is greatly appreciated.**
 
         You can also join the Discord community [here](https://discord.gg/FZxBRpTEeH).
-        Feel free to check out other amazing repositories of the Techsphere [here](https://github.com/aditya-bhaumik/Pathsphere).
+        Feel free to check out other amazing repositories of the Techsphere [here](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website).
