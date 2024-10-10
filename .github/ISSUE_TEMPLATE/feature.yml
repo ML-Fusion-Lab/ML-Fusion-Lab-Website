@@ -44,9 +44,9 @@ body:
     attributes:
       label: "Checklist"
       options:
-        - label: "I have checked the [Existing Issues](https://github.com/aditya-bhaumik/Pathsphere/issues)"
+        - label: "I have checked the [Existing Issues](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues)"
           required: true
-        - label: "I have read the [Contributing Guidelines](https://github.com/aditya-bhaumik/Pathsphere/blob/main/contributing.md)"
+        - label: "I have read the [Contributing Guidelines](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/blob/main/contributing.md)"
           required: true
         - label: "I want to work on this issue. (optional)"
           required: false
