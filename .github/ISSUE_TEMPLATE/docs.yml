@@ -34,11 +34,11 @@ body:
     id: terms_checklist_docs
     attributes:
       label: 'Checklist'
-      description: 'By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/aditya-bhaumik/Pathsphere/blob/main/contributing.md)'
+      description: 'By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/blob/main/contributing.md)'
       options:
-        - label: 'I have checked the existing [issues](https://github.com/aditya-bhaumik/Pathsphere/issues)'
+        - label: 'I have checked the existing [issues](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/issues)'
           required: true
-        - label: 'I have read the [Contributing Guidelines](https://github.com/aditya-bhaumik/Pathsphere/blob/main/contributing.md)'
+        - label: 'I have read the [Contributing Guidelines](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/blob/main/contributing.md)'
           required: true
         - label: 'I am willing to work on this issue (optional)'
           required: false
