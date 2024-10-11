@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Fusion Labs - Blog</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #282c34;
+            color: white;
+            padding: 7px;
+            text-align: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 100px;
+        }
+
+        .Blogs {
+            position: relative;
+            max-width: 100%;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            padding: 20px;
+            width: 100%; /* Ensure container fits the screen */
+        }
+
+        .blog-card {
+            width: 250px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 15px;
+        }
+
+        .blog-content h2 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #007bff;
+        }
+
+        .blog-content .author, .blog-content .date {
+            font-size: 0.8rem;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .blog-content .excerpt {
+            font-size: 0.9rem;
+            margin: 10px 0;
+        }
+
+        .blog-content button {
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .blog-content button:hover {
+            background-color: #0056b3;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        footer {
+            background-color: #282c34;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ML Fusion Labs Blog</h1>
+    </header>
+
+    <section class="carousel">
+        <div class="carousel-inner">
+            <!-- Blog Cards -->
+            <div class="blog-card">
+                <img src="Images/image1.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image2.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image3.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image1.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image2.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image3.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image1.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image2.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image3.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+
+            <div class="blog-card">
+                <img src="Images/image1.png" alt="Author Image" class="author-image">
+                <div class="blog-content">
+                    <h2>Introduction to Machine Learning</h2>
+                    <p class="author">by Jane Doe</p>
+                    <p class="date">October 8, 2024</p>
+                    <p class="excerpt">Learn the basics of machine learning, including the key concepts and algorithms you need to get started...</p>
+                    <button onclick="readMore('post1')">Read More</button>
+                </div>
+            </div>
+            <!-- Add more cards similarly as shown above -->
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const cards = document.querySelectorAll('.blog-card');
+            const totalCards = cards.length;
+            const cardWidth = cards[0].clientWidth + 20; // card width + margin
+            const visibleCards = Math.floor(document.body.clientWidth / cardWidth);
+            const totalWidth = totalCards * cardWidth;
+
+            currentIndex += direction;
+
+            // Prevent overshooting to the left or right
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            } else if (currentIndex > totalCards - visibleCards) {
+                currentIndex = totalCards - visibleCards;
+            }
+
+            const newTransform = -currentIndex * cardWidth;
+            carouselInner.style.transform = `translateX(${newTransform}px)`;
+        }
+
+        function readMore(postId) {
+            alert("Redirecting to full blog post: " + postId);
+            // Implement logic to open the full blog post
+        }
+    </script>
+</body>
+</html>
