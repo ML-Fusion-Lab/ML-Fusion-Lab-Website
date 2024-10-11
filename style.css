@@ -1231,8 +1231,14 @@ body.dark-mode .about-us p {
   margin: 0 auto;
   margin-bottom: 40px;
 }
+body.dark-mode .h2text {
+  color: white;
+}
+body.dark-mode .team-member p {
+  color: rgb(3, 3, 3);
+}
 
-/* projaec page dark theme */
+/* project page dark theme */
 body.dark-mode .projects-hero {
   background-color: #000;
 }

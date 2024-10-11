@@ -33,6 +33,45 @@
             margin-top: 30px; /* Creates a gap above the headings */
             margin-bottom: 10px; /* Creates a gap below the headings */
         }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin: 20px auto;
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card:nth-child(5) {
+            width: 60%;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
         .btn {
             display: inline-block;
             margin: 10px 0; /* Creates a gap between buttons */
@@ -71,6 +110,9 @@
         html {
             scroll-behavior: smooth;
         }
+        .dark-mode .card h3 {
+    color: #000; /* Dark black for headings in dark mode */
+}
     </style>
 </head>
 <body>
@@ -81,6 +123,7 @@
             </div>
             <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
+              <li><a href="index.html">Home</a></li>
               <li><a href="courses.html">Courses</a></li>
               <li><a href="projects.html">Projects</a></li>
               <li><a href="about.html">About Us</a></li>
@@ -95,43 +138,61 @@
         <div class="container">
             <h2>Community Support</h2>
             <p>At ML Fusion Labs, we believe that learning is best when shared. Our community support section is designed to connect learners, share knowledge, and provide assistance for your machine learning journey.</p>
-
+            <div class="card">
             <h3>Join Our Forums</h3>
             <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums. Whether you’re a beginner or an expert, everyone is welcome!</p>
-            <a href="forum.html" class="btn" aria-label="Visit Forums">Visit Forums</a>
-
+            <a href="https://ml-fusion-lab.netlify.app/forum.html" class="btn" aria-label="Visit Forums">Visit Forums</a>
+            </div>
+            <div class="card">
             <h3>Weekly Q&A Sessions</h3>
             <p>Join our weekly Q&A sessions where experts from the ML field answer your questions live. Check our schedule and sign up!</p>
-            <a href="qa_schedule.html" class="btn" aria-label="View Q&A Schedule">View Schedule</a>
-
+            <a href="https://ml-fusion-lab.netlify.app/qa_schedule.html" class="btn" aria-label="View Q&A Schedule">View Schedule</a>
+            </div>
+            <div class="card">
             <h3>Resource Library</h3>
             <p>Access our curated library of articles, tutorials, and videos to help you navigate through machine learning topics. Learn at your own pace!</p>
-            <a href="resources.html" class="btn" aria-label="Explore Resources">Explore Resources</a>
-
+            <a href="https://ml-fusion-lab.netlify.app/resources" class="btn" aria-label="Explore Resources">Explore Resources</a>
+            </div>
+            <div class="card">
             <h3>Connect with Mentors</h3>
             <p>Get paired with experienced mentors who can guide you through complex topics, provide insights, and support your learning journey.</p>
-            <a href="mentor_program.html" class="btn" aria-label="Find a Mentor">Find a Mentor</a>
-
+            <a href="https://ml-fusion-lab.netlify.app/mentor_program.html" class="btn" aria-label="Find a Mentor">Find a Mentor</a>
+            </div>
+            <div class="card">
             <h3>Social Media Groups</h3>
             <p>Join our social media groups on platforms like Facebook, LinkedIn, and Discord to stay updated, network with other learners, and share resources.</p>
-            <a href="social_media.html" class="btn" aria-label="Join Social Media Groups">Join Our Groups</a>
+            <a href="https://ml-fusion-lab.netlify.app/social_media.html" class="btn" aria-label="Join Social Media Groups">Join Our Groups</a>
+            </div>
         </div>
     </section>
 
     <!-- Back to Top Button -->
     <button id="backToTop" title="Go to top" aria-label="Back to Top"> <i class="fas fa-arrow-up"></i></button>
-
-    <footer>
-        <div class="container">
-            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    
+<footer>
+        <div class="footer-container">
+            <div class="footer-socials">
+                Follow us on: 
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>  
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a> | 
+                <a href="about.html">About Us</a> | 
+                <a href="contact.html">Contact</a>
+            </div>
             <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
         </div>
     </footer>
-
     <div id="loading-spinner" style="display: none;">
         <img src="spinner.gif" alt="Loading...">
     </div>
-
+    <script src="script.js"></script>
     <script>
         // Show loading spinner
         document.onreadystatechange = function () {
