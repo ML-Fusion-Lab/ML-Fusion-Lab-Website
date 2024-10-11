@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor - ML Fusion Lab</title>
+    <link rel="icon" href="ml-fusion-lab-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="mentor_program.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1><img src="ml fusion lab log.jpg" alt="logo" width="50" height="50" /></h1>
+            </a>
+        </div>
+        <nav>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mentor Section -->
+    <section class="mentor-section">
+        <div class="mentor-header">
+            <h2>Meet Our Mentors</h2>
+            <div class="filter">
+                <select>
+                    <option value="">Filter by Expertise</option>
+                    <option value="ml">Machine Learning</option>
+                    <option value="ai">AI</option>
+                    <option value="data-science">Data Science</option>
+                </select>
+                <select>
+                    <option value="">Filter by Experience</option>
+                    <option value="1-5">1-5 years</option>
+                    <option value="5-10">5-10 years</option>
+                    <option value="10+">10+ years</option>
+                </select>
+                <select>
+                    <option value="">Filter by College Affiliation</option>
+                    <option value="niti">NITs</option>
+                    <option value="iit">IITs</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mentor-container">
+            <div class="mentor-card">
+                <img src="image/m1.jpg" alt="Mentor 1">
+                <h3>Dr. Ada Clarke</h3>
+                <p>Expert in Machine Learning and Deep Learning, 10+ years of experience in the industry.</p>
+                <a href="mentor-details.html">View Profile</a>
+            </div>
+
+            <div class="mentor-card">
+                <img src="image/m2.jpg" alt="Mentor 2">
+                <h3>Jane Smith</h3>
+                <p>Data Scientist and AI Researcher, passionate about teaching and mentoring.</p>
+                <a href="mentor-details.html">View Profile</a>
+            </div>
+
+            <div class="mentor-card">
+                <img src="image/m3.jpg" alt="Mentor 3">
+                <h3>Dr. Emily White</h3>
+                <p>AI Ethics and NLP Specialist, guiding students and professionals towards AI research.</p>
+                <a href="mentor-details.html">View Profile</a>
+            </div>
+        </div>
+
+        <div class="see-more">
+            <a href="#">See More <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="email-form">
+            <h3>Need Help Finding a Mentor?</h3>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                Follow us on:
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a> |
+                <a href="about.html">About Us</a> |
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        </div>
+        <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+
+</html>
