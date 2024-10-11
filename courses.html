@@ -71,6 +71,10 @@
             color: white;
             text-align: center;
         }
+        .card{
+            cursor: pointer;
+        }
+
         .card .card-content .logo {
             display: flex;
             justify-content: start;
@@ -80,6 +84,11 @@
         .card .card-content .logo .logoName{
             font-size: 18px;
             margin-left: 3px;
+        }
+
+        .no-decoration{
+            text-decoration: none;
+            color: black;
         }
 
         .hide-btn{
@@ -243,7 +252,7 @@
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
       
     <script src="scroll.js"></script>
-    <script src="courses.js"></script>
+    <script src="courses.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,121 +1,13 @@
-// Array of courses to dynamically render on the page
-const courses = [
-  {
-    id: "course_1",
-    img: "Course Assets/1.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "Google AI Essentials",
-    desc: "Beginner · Course",
-    skills: "",
-  },
-  {
-    id: "course_2",
-    img: "Course Assets/2.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "Python for Everybody",
-    desc: "Beginner · Specialization",
-    skills: "",
-  },
-  {
-    id: "course_3",
-    img: "Course Assets/3.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "Prompt Engineering",
-    desc: "Beginner · Specialization",
-    skills: "",
-  },
-  {
-    id: "course_4",
-    img: "Course Assets/4.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_5",
-    img: "Course Assets/5.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_6",
-    img: "Course Assets/6.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_7",
-    img: "Course Assets/7.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_8",
-    img: "Course Assets/8.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_9",
-    img: "Course Assets/9.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_10",
-    img: "Course Assets/10.png",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_11",
-    img: "Course Assets/11.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-  {
-    id: "course_12",
-    img: "Course Assets/12.jpg",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    logoName: "IBM",
-    title: "IBM Data Science",
-    desc: "Beginner · Professional Certificate",
-    skills: "AI skills",
-  },
-];
+import courses from "./courseDetails.js";
 
 // Select card container
 const cardContainer = document.querySelector(".cards-container");
 const loadMoreButton = document.querySelector(".load-more-button");
 // Render courses
-cardPerPage = 5;
-currentIndex = 0;
+
+
+const cardPerPage = 5;
+let currentIndex = 0;
 
 const loadMore = () => {
   for (
@@ -124,7 +16,7 @@ const loadMore = () => {
     i++
   ) {
     // Create card element
-    const card = document.createElement("div");
+    const card = document.createElement("a");
     const cardImg = document.createElement("img");
     const cardContent = document.createElement("div");
     const logoDiv = document.createElement("div");
@@ -134,7 +26,8 @@ const loadMore = () => {
     const skills = document.createElement("span");
     const logoName = document.createElement("span");
     // Set attributes
-    card.className = "card";
+    card.className = "card no-decoration";
+    card.setAttribute("href", `course_details.html?courseId=${courses[i].id}`);
 
     cardImg.setAttribute("src", courses[i].img);
     cardImg.setAttribute("alt", courses[i].title);
@@ -171,8 +64,8 @@ const loadMore = () => {
   }
   currentIndex += cardPerPage;
 
-  if (currentIndex > courses.length){
-    loadMoreButton.classList.add("hide-btn")
+  if (currentIndex > courses.length) {
+    loadMoreButton.classList.add("hide-btn");
   }
 };
 
