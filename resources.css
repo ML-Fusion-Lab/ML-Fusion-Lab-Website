@@ -1,0 +1,152 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+header .logo {
+    margin: 0;
+}
+
+nav {
+    position: relative;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+.hamburger {
+    display: none;
+}
+
+.resources {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.resources h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.resources p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.resource-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.resource-section {
+    width: 30%;
+    margin: 10px;
+}
+
+.resource-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.resource-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.resource-item {
+    background: linear-gradient(45deg, #f4f5d3, #474c68);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.resource-item:hover {
+    transform: scale(1.05);
+}
+
+.resource-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+.name{
+    font-size: 1.6em;
+    color: #0e2904;
+}
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative; /* Ensure it stays at the bottom */
+    margin: 0; /* Set margin to 0 */
+}
+
+.footer-socials,
+.footer-contact,
+.footer-links {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#scrollTopBtn:hover {
+    background-color: #0056b3;
+}
