@@ -692,7 +692,7 @@ body {
 
   /* Projects Section */
   .projects {
-    padding: 80px 20px;
+    padding: 40px 20px;
     background-color: #f9f9f9;
     /* Light background for contrast */
   }
@@ -1910,9 +1910,7 @@ header nav ul li a {
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 5rem;
 }
 
 h2 {
