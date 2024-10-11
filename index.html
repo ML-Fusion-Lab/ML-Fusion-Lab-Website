@@ -12,7 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML Fusion Lab</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
       header {
@@ -163,13 +167,15 @@
     <!-- Direct Course Jump-In -->
     <Div class="direct-course">
       <h3 class="head-h3">Jump To Courses</h3>
-      <p class="crcPara">Our platform is perfect for those eager to dive into Python programming and explore the fascinating world of AI and ML. With comprehensive tutorials and hands-on projects, you'll gain the skills needed to excel in these cutting-edge fields.</p>
+      <p class="crcPara">Our platform is perfect for those eager to dive into Python programming and explore the
+        fascinating world of AI and ML. With comprehensive tutorials and hands-on projects, you'll gain the skills
+        needed to excel in these cutting-edge fields.</p>
       <div class="en-course">
         <a class="cr-box" href="https://roadmap.sh/python">Know The Roadmap</a>
         <a class="cr-box" href="https://www.learnpython.org/">Learn Basics</a>
         <a class="cr-box" href="https://www.w3schools.com/python/python_ml_getting_started.asp">Learn AI & ML</a>
       </div>
-  </Div>
+    </Div>
 
     <!-- about section ends -->
 
@@ -210,7 +216,8 @@
       </div>
       <div class="newsletter-right">
         <div class="input-group">
-          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com" autocomplete="off">
+          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com"
+            autocomplete="off">
           <input class="button--submit" value="Subscribe" type="submit">
           <style>
             .input-group {
@@ -219,6 +226,7 @@
               position: relative;
               overflow: hidden;
             }
+
             .input {
               transition: all 0.3s ease;
               border: 2px solid #ccc;
@@ -226,18 +234,22 @@
               border-radius: 4px 0 0 4px;
               outline: none;
             }
+
             .input:focus {
               border-color: #0056b3;
               box-shadow: 0 0 10px rgba(0, 86, 179, 0.2);
             }
+
             .input::placeholder {
               color: #999;
               transition: all 0.3s ease;
             }
+
             .input:focus::placeholder {
               opacity: 0;
               transform: translateX(10px);
             }
+
             .button--submit {
               transition: all 0.3s ease;
               background-color: #0056b3;
@@ -249,9 +261,11 @@
               position: relative;
               overflow: hidden;
             }
+
             .button--submit:hover {
               background-color: #003d82;
             }
+
             .button--submit::before {
               content: '';
               position: absolute;
@@ -264,18 +278,32 @@
               transition: width 0.6s ease, height 0.6s ease;
               transform: translate(-50%, -50%);
             }
+
             .button--submit:hover::before {
               width: 300px;
               height: 300px;
             }
+
             .button--submit:active {
               transform: scale(0.95);
             }
+
             @keyframes shake {
-              0%, 100% { transform: translateX(0); }
-              25% { transform: translateX(5px); }
-              75% { transform: translateX(-5px); }
+
+              0%,
+              100% {
+                transform: translateX(0);
+              }
+
+              25% {
+                transform: translateX(5px);
+              }
+
+              75% {
+                transform: translateX(-5px);
+              }
             }
+
             .input:invalid:not(:placeholder-shown) {
               animation: shake 0.3s;
               border-color: #ff3860;
@@ -283,7 +311,150 @@
           </style>
         </div>
       </div>
-        </div> 
+    </div>
+
+    <!--Testimonial section starts here-->
+    <section class="testimonial">
+      <div class="container">
+        <h2>Explore what people say...</h2>
+        <div class="accordion d-flex justify-content-center align-items-center height" id="accordionExample">
+          <div class="row">
+
+            <div class="col-md-6">
+
+              <div class="p-3">
+                <ul class="testimonial-list">
+                  <li>
+                    <div class="card p-3" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                      aria-controls="collapseOne">
+                      <div class="d-flex flex-row align-items-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/5.webp" width="50" class="rounded-circle">
+                        <div class="d-flex flex-column ml-2">
+                          <span class="font-weight-semi-bold">Milton Austin</span>
+                          <span>Sales Manager, Stack</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="card p-3" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                      aria-controls="collapseTwo">
+                      <div class="d-flex flex-row align-items-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" width="50" class="rounded-circle">
+                        <div class="d-flex flex-column ml-2">
+                          <span class="font-weight-normal">John Reeves</span>
+                          <span>Head of Sales, Asana</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="card p-3" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                      aria-controls="collapseThree">
+
+                      <div class="d-flex flex-row align-items-center">
+
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" width="50" class="rounded-circle">
+
+                        <div class="d-flex flex-column ml-2">
+
+                          <span class="font-weight-normal">Luke Harper</span>
+                          <span>Sales Team Lead,Sketch</span>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="p-3 testimonials-margin">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                  data-parent="#accordionExample">
+                  <div class="card-body">
+                    <h4>It was a great experience</h4>
+                    <div class="ratings">
+
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+
+
+                    </div>
+
+                    <p>I was blown away by the quality of resources and tutorials provided by ML Fusion Lab. As a
+                      beginner in machine learning, I was struggling to find a platform that could cater to my needs.
+                      But ML Fusion Lab's structured learning approach and practical projects helped me gain a solid
+                      understanding of the concepts. The community support was also incredible, with knowledgeable and
+                      supportive members who were always willing to help. I've already started applying my skills in my
+                      work and I couldn't be more grateful to ML Fusion Lab for the opportunity.</p>
+                  </div>
+                </div>
+
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <h4>Thanks for this great service</h4>
+                    <div class="ratings">
+
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+
+                    </div>
+
+                    <p>I've been in the industry for a while, but I was looking for a platform that could help me
+                      upskill and reskill in machine learning. ML Fusion Lab exceeded my expectations in every way. The
+                      courses were comprehensive, the instructors were knowledgeable, and the projects were challenging
+                      yet rewarding. What I loved most about ML Fusion Lab was the community aspect - being able to
+                      collaborate with other learners and work on real-world projects was an incredible experience. I've
+                      already recommended ML Fusion Lab to my colleagues and friends, and I'm excited to see where my
+                      new skills take me.</p>
+
+                  </div>
+                </div>
+
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <h4>You all are awesome thanks alot</h4>
+                    <div class="ratings">
+
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+
+                    </div>
+
+                    <p>I was skeptical about online learning platforms at first, but ML Fusion Lab changed my mind. The
+                      tutorials were engaging, the quizzes were challenging, and the projects were fun. What I
+                      appreciated most about ML Fusion Lab was the flexibility - I could learn at my own pace, whenever
+                      and wherever I wanted. The community was also super supportive, with members who were always
+                      willing to lend a helping hand. I've already started building my own machine learning projects and
+                      I'm excited to see where my new skills take me. Thanks ML Fusion Lab for an amazing learning
+                      experience!</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!--Testimonial section end here-->
     <footer>
       <div class="container">
         <div class="footer-socials">
@@ -329,6 +500,8 @@
     <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 
   </body>

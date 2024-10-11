@@ -1,3 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+/*testimonial*/
+.testimonial{
+  background-color:#fff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+}
+
+
+@media only screen and (max-width:768px) {
+
+  .container{
+  margin-top: 66px;
+ }
+
+   }
+
+ .height{
+  height: 60vh;
+ }
+
+ .card{
+
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+ }
+
+ .card:hover{
+
+  background-color: #eee;
+
+ }
+
+ .ratings i{
+
+  color: orange;
+ }
+
+ .testimonial-list{
+
+  list-style: none;
+ }
+
+ .testimonial-list li{
+
+  margin-bottom: 20px;
+ }
+
+ .testimonials-margin{
+
+  margin-top: -19px;
+ }
+
+
+/*testimonial end*/
+
 header {
   height: 100px;
 }
