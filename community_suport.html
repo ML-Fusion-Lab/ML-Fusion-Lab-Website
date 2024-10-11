@@ -50,12 +50,6 @@
             z-index: 1;
         }
 
-        .card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
         .card h3 {
             margin: 10px 0;
             font-size: 1.5rem;
@@ -160,52 +154,44 @@
 
     <footer>
         <div class="container">
-          <div class="footer-socials">
-            Follow us on:
-            <a href="https://facebook.com" target="_blank">Facebook<i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" target="_blank">Twitter<i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://linkedin.com" target="_blank">Linkedin<i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <div class="footer-contact">
-            <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone:
-              +1 (555) 123-4567</p>
-          </div>
-          <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms of Service</a> |
-            <a href="about.html">About Us</a> |
-            <a href="contact.html">Contact</a>
-          </div>
-          <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
         </div>
-        <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
-      </footer>
-      <script>
-        // Toggle Dark/Light Mode
-        const themeSwitch = document.getElementById('theme-switch');
-        const body = document.body;
+    </footer>
 
-        themeSwitch.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-        });
-
-        // Scroll to Top Button Functionality
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        window.onscroll = function () {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollTopBtn.style.display = "block";
+    <div id="loading-spinner" style="display: none;">
+        <img src="spinner.gif" alt="Loading...">
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Show loading spinner
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector("#loading-spinner").style.display = "block";
             } else {
-                scrollTopBtn.style.display = "none";
+                document.querySelector("#loading-spinner").style.display = "none";
             }
         };
 
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+        // When the user scrolls down 20px from the top, show the button
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            const backToTop = document.getElementById("backToTop");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
         }
+
+        // When the user clicks on the button, scroll to the top of the document
+        document.getElementById("backToTop").onclick = function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+        };
     </script>
 </body>
 </html>
