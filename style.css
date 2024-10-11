@@ -1212,10 +1212,11 @@ body.dark-mode .contact-us {
 
 /* About page dark theme */
 body.dark-mode .about-hero {
-  background: black;
+  background: url('robot-2301646_1280.jpg') no-repeat center center; /* Set the background image */
+  background-size: cover; /* Ensure the background image covers the entire div */
   color: white;
+  background-position: top;
 }
-
 body.dark-mode .about-us {
   margin-top: 2px;
   background: black;
@@ -1230,8 +1231,14 @@ body.dark-mode .about-us p {
   margin: 0 auto;
   margin-bottom: 40px;
 }
+body.dark-mode .h2text {
+  color: white;
+}
+body.dark-mode .team-member p {
+  color: rgb(3, 3, 3);
+}
 
-/* projaec page dark theme */
+/* project page dark theme */
 body.dark-mode .projects-hero {
   background-color: #000;
 }
