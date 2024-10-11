@@ -47,7 +47,7 @@ footer {
 
 body {
   .container h2 {
-    font-size: 40px;
+    font-size: 60px;
   }
 
   /*Newsletter Styles*/
@@ -535,7 +535,7 @@ body {
 
   .features h2 {
     font-size: 36px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     font-weight: 700;
   }
 
@@ -565,7 +565,7 @@ body {
   }
 
   .feature-item h3 {
-    font-size: 26px;
+    font-size: 30px;
     color: #0077cc;
     margin-bottom: 20px;
   }
@@ -1402,7 +1402,7 @@ footer {
 
 body {
   .container h2 {
-    font-size: 60px;
+    font-size:60px;
   }
 
   /Newsletter Styles/ .newsletter {
@@ -1940,7 +1940,7 @@ header nav ul li a {
 }
 
 .container {
-  max-width: 95vw;
+  max-width: 93vw;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -1960,13 +1960,13 @@ h2 {
 }
 
 .feature-item {
-  background-color: #f9f9f9;
-  padding: 20px;
+  background-color: #fcfcfc;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   flex: 1 1 30%; /* Flex items to grow/shrink with a base of 30% */
-  max-width: 30%; /* Ensures no item exceeds 30% of the container's width */
+  max-width:30%; /* Ensures no item exceeds 30% of the container's width */
 }
 
 /* Text Styling */
@@ -3060,8 +3060,8 @@ header nav ul li a {
 }
 
 .feature-item h3 {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 2.5em;
+  font-weight:900;
   text-align: center;
   color: #0077cc;
   margin-bottom: 20px;
@@ -3070,7 +3070,8 @@ header nav ul li a {
 
 .feature-item p {
   color: #555;
-  font-size: 1.5rem;
+  font-size: 1.8em;
+  font-weight: 200;
   color: #575252;
   text-align: center;
 }
