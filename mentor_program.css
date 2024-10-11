@@ -124,23 +124,11 @@ footer {
       margin-bottom: 15px;
       font-size: 16px;
     }
-    .footer-socials {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
+  
     .footer-socials a {
-      margin: 0 5px;
+      font-size: 20px;
     }
-    
-    .footer-socials img, 
-    .footer-socials i {
-      width: 30px;
-      height: 30px;
-    }
-    
-    
+  
     .footer-contact p, .footer-links a {
       font-size: 14px;
     }
@@ -338,3 +326,19 @@ body.dark-mode .head {
   left: 33px;
   background-image: url("Assets/sun.png");
 }
+.footer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-socials a {
+  margin: 0 5px;
+}
+
+.footer-socials img, 
+.footer-socials i {
+  width: 30px;
+  height: 30px;
+}
+
