@@ -1,7 +1,10 @@
 header {
   height: 100px;
 }
-
+body{
+ min-height:100vh;
+ max-width:100vw;
+}
 .logo {
   margin: 30px 0px 0px 0px;
 }
@@ -54,14 +57,14 @@ body {
     background-color: whitesmoke;
     margin-top: 30px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content:  center;
     text-align: center;
     align-items: center;
     box-shadow: 10px 10px 10px solid white;
   }
   .newsletter-left {
-    margin-left: 60px;
+    margin-left: 0px;
   }
   .newsletter-left h1 {
     font-size: 1.5rem;
@@ -76,10 +79,12 @@ body {
   .input-group {
     display: flex;
     align-items: center;
-    margin-right: 150px;
+    margin-right: 0px;
+    margin-top:5px;
   }
 
   .input {
+    margin:0,auto;
     min-height: 50px;
     width: 250px;
     padding: 0 1rem;
@@ -198,13 +203,13 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 1rem; /* Adjust padding to reduce overall height */
+      padding: 0.5rem 0.5rem; /* Adjust padding to reduce overall height */
     }
 
     header nav {
       flex-direction: column;
       align-items: flex-start;
-      width: 100%;
+      max-width: 100vw;
     }
 
     header nav .hamburger {
@@ -222,7 +227,7 @@ body {
       flex-direction: column;
       align-items: flex-start;
       display: none; /* Hide the navbar items */
-      width: 100%; /* Full width for mobile view */
+      max-height:100vw; /* Full width for mobile view */
       position: absolute;
       top: 100%;
       right: 0;
@@ -234,11 +239,11 @@ body {
 
     header nav ul.show {
       display: flex; /* Show the navbar items when the hamburger is clicked */
-      align-items: flex-end;
+      align-items: flex-start;
     }
 
     header nav ul li {
-      margin: 0.5rem 0; /* Adjust margin for vertical spacing */
+      margin: 0.5rem 1rem; /* Adjust margin for vertical spacing */
     }
     header nav ul li a:hover {
       color: #00c6ff;
@@ -252,6 +257,9 @@ body {
 
   /* Styles for larger screens */
   @media (min-width: 901px) {
+    header{
+      height: auto;
+    }
     header nav .hamburger {
       display: none;
     }
@@ -259,12 +267,13 @@ body {
     header nav ul {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
     }
 
-    header nav ul li {
+    /* header nav ul li {
       margin: 0 0.5rem; /* Reduce margin between items */
-    }
+    } */
     header nav ul li a:hover {
       background-color: #00c6ff;
       color: #000;
@@ -536,11 +545,12 @@ body {
   }
 
   .feature-item {
+    margin:0 auto;
     background-color: #fff;
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    width: 30%;
+    width:70vw;
     text-align: center;
     transition: transform 0.3s ease;
   }
@@ -562,6 +572,19 @@ body {
   .feature-item p {
     font-size: 18px;
     color: #555;
+  }
+  /* newsletter */
+  .newsletter{
+     display:flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+  }
+  .newsletter-left{
+    margin-left :0;
+  }
+  .input-group{
+    margin-right:0;
   }
 
   /* Footer Section */
@@ -1099,7 +1122,7 @@ body {
   footer p a:hover {
     text-decoration: underline;
   }
-}
+
 
 /*  home page dark theme styles */
 body.dark-mode section.about {
@@ -1452,11 +1475,14 @@ body {
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      align-items:center;
 
       box-shadow: 10px 10px 10px solid white;
     }
-
+   .newsletter-left{
+     margin-left :0;
+   }
     .newsletter-right {
       display: flex;
       justify-content: center;
@@ -1464,6 +1490,7 @@ body {
       width: 80%;
     }
     .input-group {
+      margin-right:0;
       margin-top: 30px;
       width: 100%;
       display: flex;
@@ -1571,7 +1598,7 @@ header .logo h1 {
 header nav ul {
   list-style: none;
   display: flex;
-  gap: 50px;
+  gap: 30px;
   /* Increase spacing between nav items */
 }
 
@@ -1589,7 +1616,7 @@ header nav ul li a {
   padding-bottom: 5px;
 
   background-color: #333;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -1601,6 +1628,7 @@ header nav {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
+
   /* Adjust padding to reduce overall height */
 }
 
@@ -1635,7 +1663,7 @@ header nav ul li a {
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
-  margin-right: -1rem;
+  /* margin-right: -1rem; */
   /* padding: 0.5rem 0.75rem; */
   /* Adjust padding for links */
   transition: color 0.3s ease;
@@ -1676,6 +1704,7 @@ header nav ul li a {
     display: none;
     /* Hide the navbar items */
     width: 100%;
+    height:100vh;
     /* Full width for mobile view */
     position: absolute;
     top: 100%;
@@ -1696,10 +1725,10 @@ header nav ul li a {
     align-items: flex-end;
   }
 
-  header nav ul li {
-    margin: 0.5rem 0;
+  /* header nav ul li {
+    /* margin: 0.5rem 0; */
     /* Adjust margin for vertical spacing */
-  }
+   */
 
   header nav ul li a:hover {
     color: #00c6ff;
