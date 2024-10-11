@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - ML Fusion Labs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="style.css">
@@ -100,8 +101,9 @@
         .contact-card form label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
             font-size: 16px;
-            color: #555;
+            color: #444444;
         }
 
         .contact-card form input,
@@ -179,6 +181,8 @@
     color: white;
     border: none;
     padding: 12px 20px;
+    margin-top: 8px;
+    margin-right: 3px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
@@ -204,7 +208,11 @@
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
-
+/* error message */
+.error-message {
+    margin-top: 0px;
+    font-size: 14px;
+  }
     </style>
 </head>
 
@@ -235,21 +243,31 @@
 
     <section class="contact-container">
         <div class="contact-card">
-            <h2>Get in Touch</h2>
-            <form action="submit_form.php" method="post">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
+          <h2 style="font-weight: bold;">Get in Touch</h2>
+          <div id="success-alert" class="alert alert-success" role="alert" style="display: none;">
+            Message sent successfully.
+          </div>
+      
+          <form id="contact-form" method="post" novalidate>
+            <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <div id="name-error" class="error-message" style="color: red; display: none;"></div>
+      
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <div id="email-error" class="error-message" style="color: red; display: none;"></div>
+      
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+            <div id="message-error" class="error-message" style="color: red; display: none;"></div>
+      
+            <button type="reset">Reset</button>
+            <button type="submit">Send Message</button>
+          </form>
         </div>
-    </section>
+      </section>
+      
 
     <footer>
         <div class="footer-container">
@@ -274,5 +292,50 @@
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="scroll.js"></script>
     <script src="script.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const emailPattern = /.*?@?[^@]*\.+.*/;
+
+    let hasError = false;
+
+    if (name === '') {
+        document.getElementById('name-error').textContent = 'Please enter your name.';
+        document.getElementById('name-error').style.display = 'block';
+        hasError = true;
+    } else {
+        document.getElementById('name-error').style.display = 'none';
+    }
+
+    if (email === '') {
+        document.getElementById('email-error').textContent = 'Please enter your email.';
+        document.getElementById('email-error').style.display = 'block';
+        hasError = true;
+    } else if (!emailPattern.test(email)) {
+        document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+        document.getElementById('email-error').style.display = 'block';
+        hasError = true;
+    } else {
+        document.getElementById('email-error').style.display = 'none';
+    }
+
+    if (message === '') {
+        document.getElementById('message-error').textContent = 'Please enter your message.';
+        document.getElementById('message-error').style.display = 'block';
+        hasError = true;
+    } else {
+        document.getElementById('message-error').style.display = 'none';
+    }
+    if (!hasError) {
+        document.getElementById('success-alert').style.display = 'block';
+        document.getElementById('contact-form').reset(); 
+    }
+});
+
+      </script>
   </body>
 </html>
