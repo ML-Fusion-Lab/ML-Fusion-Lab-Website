@@ -31,6 +31,39 @@
             </ul>
         </nav>
     </header>
+    <!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
 
     <!-- Mentor Section -->
     <section class="mentor-section">
@@ -135,6 +168,45 @@
             document.documentElement.scrollTop = 0;
         }
     </script>
+    <!-- js for mouse cursor trail effect -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+     const coords = { x: 0, y: 0 };
+     const circles = document.querySelectorAll(".circle");
+   
+     circles.forEach(function (circle) {
+       circle.x = 0;
+       circle.y = 0;
+     });
+   
+     window.addEventListener("mousemove", function (e) {
+       coords.x = e.pageX;
+       coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+     });
+   
+     function animateCircles() {
+       let x = coords.x;
+       let y = coords.y;
+   
+       circles.forEach(function (circle, index) {
+         circle.style.left = `${x - 12}px`;
+         circle.style.top = `${y - 12}px`;
+         circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+   
+         const nextCircle = circles[index + 1] || circles[0];
+         circle.x = x;
+         circle.y = y;
+   
+         x += (nextCircle.x - x) * 0.3;
+         y += (nextCircle.y - y) * 0.3;
+       });
+   
+       requestAnimationFrame(animateCircles);
+     }
+   
+     animateCircles();
+   });
+     </script>
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
 </body>
