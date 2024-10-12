@@ -7,7 +7,7 @@
     <title>Mentor - ML Fusion Lab</title>
     <link rel="icon" href="ml-fusion-lab-logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="mentor_program.css">
+    <link rel="stylesheet" href="qa-schedule.css">
 </head>
 
 <body>
@@ -32,7 +32,62 @@
         </nav>
     </header>
 
-    
+    <!-- Q&A Section -->
+    <section class="qna-section">
+        <div class="qna-row">
+            <!-- Latest Q&A Session -->
+            <div class="qna-tile gradient-box">
+                <h2>Latest Q&A Session</h2>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/latest-video" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Previous Week's Q&A Video -->
+            <div class="qna-tile gradient-box">
+                <h2>Previous Week's Q&A</h2>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/previous-video" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="qna-row">
+            <!-- FAQs -->
+            <div class="qna-tile gradient-box">
+                <h2>Last Week's Q&A FAQs</h2>
+                <ul class="faq-list">
+                    <li><strong>Q:</strong> How to start learning AI? <br> <strong>A:</strong> Begin with Python and follow structured courses.</li>
+                    <li><strong>Q:</strong> What platforms are good for ML practice? <br> <strong>A:</strong> Try platforms like Kaggle, Coursera, and fast.ai.</li>
+                    <!-- Add more FAQs here -->
+                </ul>
+            </div>
+
+            <!-- Ask Your Question -->
+            <div class="qna-tile gradient-box">
+                <h2>Ask Your Question</h2>
+                <form>
+                    <input type="text" placeholder="Enter your question here" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="qna-row">
+            <!-- Q&A Guidelines -->
+            <div class="qna-tile gradient-box">
+                <h2>Q&A Guidelines</h2>
+                <p>Questions should be relevant and respectful. Avoid spamming or using inappropriate content.</p>
+            </div>
+
+            <!-- Next Q&A Schedule -->
+            <div class="qna-tile gradient-box">
+                <h2>Next Q&A Schedule</h2>
+                <p>Next session: <strong>October 20, 2024</strong>, 6:00 PM IST.</p>
+                <p>Submit questions by <strong>October 18, 2024</strong> to be featured in the session!</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section -->
     <footer>
@@ -41,7 +96,7 @@
                 Follow us on:
                 <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://twitter.com" target="_blank">
-                    <img src="Course Assets/x.png" alt="X Logo" style="width: 30px; height: 30px; ">
+                    <img src="Course Assets/x.png" alt="X Logo" style="width: 30px; height: 30px;">
                 </a>
                 <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
@@ -58,9 +113,10 @@
         </div>
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
     </footer>
+
+    <!-- JavaScript -->
     <script src="scroll.js"></script>
     <script src="script.js"></script>
-
     <script>
         const scrollTopBtn = document.getElementById("scrollTopBtn");
         window.onscroll = function () {
