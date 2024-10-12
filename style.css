@@ -934,81 +934,50 @@ body {
     text-decoration: underline;
   }
 
-  .privacy-hero {
-    background-image: url("https://source.unsplash.com/1600x900/?security,privacy");
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-    position: relative;
-  }
-
-  .privacy-hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    /* Dark overlay for contrast */
-    z-index: 1;
-  }
-
-  .privacy-hero .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .privacy-hero h2 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .privacy-hero p {
-    font-size: 20px;
+.policy-container {
+    padding: 20px;
     max-width: 800px;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    color: #f0f0f0;
-  }
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 8px; /* Use the same value as your theme shape */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* Privacy Policy Section */
-  .privacy-policy {
-    padding: 80px 20px;
-    background-color: #f9f9f9;
-    text-align: left;
-  }
+.policy-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
 
-  .privacy-policy h2 {
+.policy-container h2 {
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 30px;
-    text-align: center;
-  }
+    text-align: center; /* Center this specific heading */
+    color: #0077cc; /* Primary theme color */
+}
 
-  .privacy-policy p {
+.policy-container p {
     font-size: 18px;
-    line-height: 1.8;
-    color: #555;
+    line-height: 1.6;
+    color: #e0e0e0; /* Lighter gray for better contrast */
     max-width: 900px;
     margin: 0 auto 40px;
-  }
+}
 
-  .privacy-policy h3 {
+.policy-container p.centered {
+  text-align: center; /* Center only this specific paragraph */
+}
+
+.policy-container h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #0077cc;
+    color: #0077cc; /* Change this if you want a different color */
     font-weight: 600;
-  }
+}
 
-  .privacy-policy p:last-of-type {
-    margin-bottom: 0;
-  }
-
-  /* Footer Styles */
+ /* Footer Styles */
   footer {
     background-color: #1a1a1a;
     color: white;
@@ -1029,81 +998,51 @@ body {
     text-decoration: underline;
   }
 
-  .terms-hero {
-    background-image: url("https://source.unsplash.com/1600x900/?legal,contract");
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 100px 20px;
-    text-align: center;
-    position: relative;
-  }
-
-  .terms-hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    /* Dark overlay for better text contrast */
-    z-index: 1;
-  }
-
-  .terms-hero .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .terms-hero h2 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .terms-hero p {
-    font-size: 20px;
+/*terms-page styling*/
+.terms-container {
+    padding: 20px;
     max-width: 800px;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    color: #f0f0f0;
-  }
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 8px; /* Use the same value as your theme shape */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* Terms of Service Section */
-  .terms-of-service {
-    padding: 80px 20px;
-    background-color: #f9f9f9;
-    text-align: left;
-  }
+.terms-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
 
-  .terms-of-service h2 {
+.terms-container h2 {
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 30px;
-    text-align: center;
-  }
+    text-align: center; /* Center this specific heading */
+    color: #0077cc; /* Primary theme color */
+}
 
-  .terms-of-service p {
+.terms-container p {
     font-size: 18px;
-    line-height: 1.8;
-    color: #555;
+    line-height: 1.6;
+    color: #e0e0e0; /* Lighter gray for better contrast */
     max-width: 900px;
     margin: 0 auto 40px;
-  }
+}
 
-  .terms-of-service h3 {
+.terms-container p.centered {
+  text-align: center; /* Center only this specific paragraph */
+}
+
+.terms-container h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #0077cc;
+    color: #0077cc; /* Change this if you want a different color */
     font-weight: 600;
-  }
+}
 
-  .terms-of-service p:last-of-type {
-    margin-bottom: 0;
-  }
-
-  /* Footer Styles */
+/* Footer Styles */
   footer {
     background-color: #1a1a1a;
     color: white;
@@ -1316,7 +1255,7 @@ body.dark-mode .course-item .btn {
   color: white;
   background-color: black;
 }
-/* privacy policy dark theme styles */
+/* privacy terms.terms-container dark theme styles */
 body.dark-mode .privacy-hero {
   background-color: black;
   margin-bottom: 2px;
@@ -2932,78 +2871,6 @@ footer p a:hover {
   text-decoration: underline;
 }
 
-.terms-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?legal,contract");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 100px 20px;
-  text-align: center;
-  position: relative;
-}
-
-.terms-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
-  z-index: 1;
-}
-
-.terms-hero .hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.terms-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.terms-hero p {
-  font-size: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  margin-bottom: 30px;
-  color: #f0f0f0;
-}
-
-/* Terms of Service Section */
-.terms-of-service {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
-  text-align: left;
-}
-
-.terms-of-service h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.terms-of-service p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
-  max-width: 900px;
-  margin: 0 auto 40px;
-}
-
-.terms-of-service h3 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #0077cc;
-  font-weight: 600;
-}
-
-.terms-of-service p:last-of-type {
-  margin-bottom: 0;
-}
 
 /* Footer Styles */
 footer {
