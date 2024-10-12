@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - ML Fusion Lab</title>
+    <link rel="icon" href="ml-fusion-lab-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="qa-schedule.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="head">
+        <div class="logo">
+            <a href="index.html">
+                <h1><img src="ml fusion lab log.jpg" alt="logo" width="50" height="50" /></h1>
+            </a>
+        </div>
+        <nav>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section - Empty for now -->
+    <section class="forum-section">
+        <h2>Forum Section Coming Soon!</h2>
+        <p>Stay tuned for the latest updates and discussions on Machine Learning and AI.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                Follow us on:
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank">
+                    <img src="Course Assets/x.png" alt="X Logo" style="width: 30px; height: 30px;">
+                </a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a> |
+                <a href="about.html">About Us</a> |
+                <a href="contact.html">Contact</a>
+            </div>
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        </div>
+        <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="scroll.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+</body>
+
+</html>
