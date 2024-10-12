@@ -19,7 +19,7 @@ footer {
 
 .footer-container {
   max-width: 800px;
-  margin: auto;
+  margin: auto; 
   padding: 0 20px;
 }
 
@@ -1788,7 +1788,7 @@ header nav ul li a {
 
 /* About Us Page Specific Styles */
 .about-hero {
-  background-image: url("https://source.unsplash.com/1600x900/?team,collaboration");
+  background: url('robot-2301646_1280.jpg') no-repeat center center; /* Set the background image */
   background-size: cover;
   background-position: center;
   color: white;
