@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="icon" href="ml-fusion-lab-logo.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="icon" href="ml-fusion-lab-logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ML Fusion Labs - Courses</title>
     <link
       rel="stylesheet"
@@ -13,262 +13,322 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="scroll.css">
-    <link rel="stylesheet" href="course.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="scroll.css" />
+    <link rel="stylesheet" href="course.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        .course-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .course-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
-            border-color: #007bff;
-        }
+      .course-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+        border-color: #007bff;
+      }
 
-        .course-card .btn {
-            background-color: #007bff;
-            border: none;
-            transition: background-color 0.3s;
-        }
+      .course-card .btn {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s;
+      }
 
-        .course-card .btn:hover {
-            background-color: #0056b3;
-        }
+      .course-card .btn:hover {
+        background-color: #0056b3;
+      }
 
-        body {
-            padding-top: 70px; 
-        }
+      body {
+        padding-top: 70px;
+      }
 
-        .navbar-custom {
-            background-color: #343a40; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+      .navbar-custom {
+        background-color: #343a40;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
 
-        .navbar-custom .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
+      .navbar-custom .navbar-brand {
+        display: flex;
+        align-items: center;
+      }
 
-        .navbar-custom .navbar-brand img {
-            height: 40px;
-            margin-right: 10px;
-        }
+      .navbar-custom .navbar-brand img {
+        height: 40px;
+        margin-right: 10px;
+      }
 
-        .navbar-custom .nav-link {
-            color: #ffffff !important;
-            transition: color 0.3s;
-        }
+      .navbar-custom .nav-link {
+        color: #ffffff !important;
+        transition: color 0.3s;
+      }
 
-        .navbar-custom .nav-link:hover {
-            color: #007bff !important;
-        }
+      .navbar-custom .nav-link:hover {
+        color: #007bff !important;
+      }
 
-        .navbar-custom .nav-link.active {
-            color: #007bff !important;
-            font-weight: bold;
-        }
+      .navbar-custom .nav-link.active {
+        color: #007bff !important;
+        font-weight: bold;
+      }
 
-        .hero-small {
-            padding-top: 50px;
-            padding-bottom: 50px;
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-        }
-        .card{
-            cursor: pointer;
-        }
+      .hero-small {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+      }
+      .card {
+        cursor: pointer;
+      }
 
-        .card .card-content .logo {
-            display: flex;
-            justify-content: start;
-            align-items: center;
-        }
+      .card .card-content .logo {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+      }
 
-        .card .card-content .logo .logoName{
-            font-size: 18px;
-            margin-left: 3px;
-        }
+      .card .card-content .logo .logoName {
+        font-size: 18px;
+        margin-left: 3px;
+      }
 
-        .no-decoration{
-            text-decoration: none;
-            color: black;
-        }
+      .no-decoration {
+        text-decoration: none;
+        color: black;
+      }
 
-        .hide-btn{
-            display: none;
-        }
+      .hide-btn {
+        display: none;
+      }
 
-        .btn-cont{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      .btn-cont {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-        .btn-cont .load-more-button{
-            background: #1c1c1c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            margin-top: 15px;
-        }
+      .btn-cont .load-more-button {
+        background: #1c1c1c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin-top: 15px;
+      }
 
-        .btn-cont .load-more-button:hover{
-            background: #000000;
-        }
+      .btn-cont .load-more-button:hover {
+        background: #000000;
+      }
 
-        body.dark-mode .btn-cont .load-more-button{
-            background-color: #fff;
-            color: #000;
-        }
-        body.dark-mode .btn-cont .load-more-button:hover{
-            background-color: #e2e2e2;
-        }
+      body.dark-mode .btn-cont .load-more-button {
+        background-color: #fff;
+        color: #000;
+      }
+      body.dark-mode .btn-cont .load-more-button:hover {
+        background-color: #e2e2e2;
+      }
     </style>
-
-</head>
-<body>
-
+  </head>
+  <body>
     <header>
-        <!-- Enhanced Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="ml-fusion-lab-logo.png" alt="ML Fusion Labs Logo">
-                    ML Fusion Labs
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="courses.html">Courses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="projects.html">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
-                        </li>
-                        <div class="theme-switch" id="theme-switch"></div>
-                        <!-- Optional: Add a dropdown or additional links if needed -->
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      <!-- Enhanced Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="ml-fusion-lab-logo.png" alt="ML Fusion Labs Logo" />
+            ML Fusion Labs
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="courses.html">Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="projects.html">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <div class="theme-switch" id="theme-switch"></div>
+              <!-- Optional: Add a dropdown or additional links if needed -->
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
-    <section class="category-section py-5 text-center text-white" style="background-color: #1a1a3d;">
-        <div class="container">
-            <h1 class="fw-bold">Explore top-tier courses 
-                <span style="color: #b4ff00;">designed to fast-track your career,</span>
-            </h1>
-            <p class="lead mb-5" style="color: white;">Without breaking the bank. Achieve your learning goals with expert-led content tailored for success.</p>
-    
-            <!-- Search Bar -->
-            <div class="row justify-content-center mb-4">
-                <div class="col-lg-10 col-md-8 col-sm-12">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search for courses..." aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-    
-            <!-- Course Categories -->
-            <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-                    <div class="category-card p-3 bg-white text-dark rounded shadow">
-                        <img src="Course Icons/data science.png" alt="Data Science Icon" class="img-fluid mb-3">
-                        <h5>Data Science</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-                    <div class="category-card p-3 bg-white text-dark rounded shadow">
-                        <img src="Course Icons/programming language.png" alt="Programming Icon" class="img-fluid mb-3">
-                        <h5>Programming & Development</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-                    <div class="category-card p-3 bg-white text-dark rounded shadow">
-                        <img src="Course Icons/ai.png" alt="AI Icon" class="img-fluid mb-3">
-                        <h5>Artificial Intelligence</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-                    <div class="category-card p-3 bg-white text-dark rounded shadow">
-                        <img src="Course Icons/programming language.png" alt="Business Icon" class="img-fluid mb-3">
-                        <h5>Business</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-                    <div class="category-card p-3 bg-white text-dark rounded shadow">
-                        <img src="Course Icons/data science.png" alt="Autonomous Systems Icon" class="img-fluid mb-3">
-                        <h5>Autonomous Systems</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-                    <div class="category-card p-3 bg-white text-dark rounded shadow">
-                        <img src="Course Icons/cloud computing.png" alt="Cloud Computing Icon" class="img-fluid mb-3">
-                        <h5>Cloud Computing</h5>
-                    </div>
-                </div>
-            </div>
+    <section
+      class="category-section py-5 text-center text-white"
+      style="background-color: #1a1a3d"
+    >
+      <div class="container">
+        <h1 class="fw-bold">
+          Explore top-tier courses
+          <span style="color: #b4ff00"
+            >designed to fast-track your career,</span
+          >
+        </h1>
+        <p class="lead mb-5" style="color: white">
+          Without breaking the bank. Achieve your learning goals with expert-led
+          content tailored for success.
+        </p>
 
-            
+        <!-- Search Bar -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-lg-10 col-md-8 col-sm-12">
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search for courses..."
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-light" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
         </div>
+
+        <!-- Course Categories -->
+        <div class="row">
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <img
+                src="Course-Icons/data-science.png"
+                alt="Data Science Icon"
+                class="img-fluid mb-3"
+              />
+              <h5>Data Science</h5>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <img
+                src="Course-Icons/programming-language.png"
+                alt="Programming Icon"
+                class="img-fluid mb-3"
+              />
+              <h5>Programming & Development</h5>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <img
+                src="Course-Icons/ai.png"
+                alt="AI Icon"
+                class="img-fluid mb-3"
+              />
+              <h5>Artificial Intelligence</h5>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <img
+                src="Course-Icons/business.png"
+                alt="Business Icon"
+                class="img-fluid mb-3"
+              />
+              <h5>Business</h5>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <img
+                src="Course-Icons/autonomous-system.png"
+                alt="Autonomous Systems Icon"
+                class="img-fluid mb-3"
+              />
+              <h5>Autonomous Systems</h5>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <img
+                src="Course-Icons/cloud-computing.png"
+                alt="Cloud Computing Icon"
+                class="img-fluid mb-3"
+              />
+              <h5>Cloud Computing</h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
-    
+
     <section class="courses py-5">
-        <div class="cards-container">
-            <!-- Course card rendered using javascript -->
-        </div>
-        <div class="btn-cont">
-            <button class="load-more-button">Load more</button>
-        </div>
+      <div class="cards-container">
+        <!-- Course card rendered using javascript -->
+      </div>
+      <div class="btn-cont">
+        <button class="load-more-button">Load more</button>
+      </div>
     </section>
 
     <footer>
-        <div class="container">
-          <div class="footer-socials">
-            Follow us on:
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            
-            <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <div class="footer-contact">
-            <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone:
-              +1 (555) 123-4567</p>
-          </div>
-          <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms of Service</a> |
-            <a href="about.html">About Us</a> |
-            <a href="contact.html">Contact</a>
-          </div>
-          <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      <div class="container">
+        <div class="footer-socials">
+          Follow us on:
+          <a href="https://facebook.com" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+
+          <a href="https://twitter.com" target="_blank"
+            ><i class="fa-brands fa-x-twitter"></i
+          ></a>
+          <a href="https://linkedin.com" target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
         </div>
-        </footer>
-    
-        <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
-      
+        <div class="footer-contact">
+          <p>
+            Contact us:
+            <a href="mailto:info@mlfusionlabs.com" style="color: white"
+              >info@mlfusionlabs.com</a
+            >
+            | Phone: +1 (555) 123-4567
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a> |
+          <a href="terms.html">Terms of Service</a> |
+          <a href="about.html">About Us</a> |
+          <a href="contact.html">Contact</a>
+        </div>
+        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      </div>
+    </footer>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script src="scroll.js"></script>
     <script src="courses.js" type="module"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
-
