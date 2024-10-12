@@ -2,8 +2,8 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  color: #514e4e;
-  background-color: #d3d3d3;
+  color: #352f2f;
+  background-color: #edebeb;
 }
 
 header {
@@ -237,7 +237,7 @@ body.dark-mode .head {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
-  background-color: #c6bfbf;
+  background-color: #e3e9f3;
 }
 
 .qna-row {
@@ -251,7 +251,7 @@ body.dark-mode .head {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(190deg, #a1b5bd,#969696);
+  background: linear-gradient(190deg, #7a88bc,#e5b792);
   color: rgb(51, 51, 62);
   transition: transform 0.3s ease;
   box-sizing: border-box; /* Ensures padding doesn't affect the width */
