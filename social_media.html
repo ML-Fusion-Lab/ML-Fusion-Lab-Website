@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="ml-fusion-lab-logo.png">
+    <title>ML Fusion Lab - Social Media</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="resources.css">
+<style>
+    body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background-color: #080808;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+header .logo {
+    margin: 0;
+}
+
+nav {
+    position: relative;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+.hamburger {
+    display: none;
+}
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#scrollTopBtn:hover {
+    background-color: #0056b3;
+}
+ /* css for mouse cursor trail effect */
+ .circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+    transition: transform 0.1s, left 0.1s, top 0.1s;
+  }
+  
+  .circle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+  }
+/* Social Media Cards Styling */
+.social-media-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            gap: 20px;
+        }
+
+        .social-card {
+            width: 250px;
+            height: 150px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .social-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-card a {
+            text-decoration: none;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        .social-card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .social-card:nth-child(1) i{
+                    color:#1DA1F2; /* github Blue */
+        }
+
+        .social-card:nth-child(2) i {
+            color: #1DA1F2; /* Twitter Blue */
+        }
+
+        .social-card:nth-child(3) i {
+            color:#1DA1F2 ; /* LinkedIn Blue */
+        } 
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .social-media-container {
+        flex-direction: column; /* Stack cards vertically on small screens */
+        align-items: center; /* Center items horizontally */
+    }
+
+    .social-card {
+        width: 80%; /* Make cards take full width on small screens */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .social-media-container {
+        justify-content: space-around; /* Space out cards evenly on medium screens */
+    }
+
+    .social-card {
+        width: 45%; /* Adjust card width on medium screens */
+    }
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    color: white;
+    padding: 50px 10px;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+/* Smooth Scrolling */
+html {
+            scroll-behavior: smooth;
+        }
+</style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+            </a>
+        </div>
+        <nav>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
+            </ul>
+        </nav>
+    </header>
+    <!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <h2 style="text-align:center; margin: 50px 0;">Connect with Us On Social Media</h2>
+      <p style="text-align:center; margin: 30px 0;" >At ML Fusion Lab, we empower users to unlock their potential in machine learning through comprehensive resources and hands-on projects. Connect with us on social media to stay updated, share insights, and enhance your educational journey in this dynamic field!</p>
+      <div class="social-media-container">
+            <div class="social-card">
+            <a href="https://github.com/ML-Fusion-Lab" target="_blank" aria-label="github profile">
+            <i class="fab fa-github"></i>
+            <p>GitHub</p>
+            </a>
+            </div>
+            <div class="social-card">
+            <a href="https://www.linkedin.com/in/vivek-vardhan-23682521b/" target="_blank" aria-label="linkedin profile">
+            <i class="fab fa-linkedin-in"></i>
+            <p>LinkedIn</p>
+            </a>
+            </div>
+    
+            <div class="social-card">
+            <a href="https://x.com/Vivek43862" target="_blank" aria-label="twitter profile">
+            <i class="fab fa-twitter"></i>
+            <p>Twitter</p>
+            </a>
+            </div>
+        </div>
+    
+
+        <footer>
+            <div class="container">
+              <div class="footer-socials">
+                Follow us on:
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+              <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone:
+                  +1 (555) 123-4567</p>
+              </div>
+              <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a> |
+                <a href="about.html">About Us</a> |
+                <a href="contact.html">Contact</a>
+              </div>
+              <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            </div>
+            <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+          </footer>
+          <script>
+            const scrollTopBtn = document.getElementById("scrollTopBtn");
+            window.onscroll = function () {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+              } else {
+                scrollTopBtn.style.display = "none";
+              }
+            };
+      
+            function scrollToTop() {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+              });
+            }
+          </script>
+          <script src="scroll.js"></script>
+          <script src="script.js"></script>
+          <script>
+            let isSubmitting = false;  // Debouncing flag
+          
+          // Function to show confirmation message
+          function showConfirmationMessage() {
+            var messageElement = document.getElementById('confirmation-message');
+            messageElement.style.display = 'block';
+            messageElement.style.opacity = '1';
+          
+            // Hide the message after 3 seconds
+            setTimeout(function() {
+              messageElement.style.opacity = '0';
+              setTimeout(function() {
+                messageElement.style.display = 'none';
+              }, 500); // wait for the opacity transition to finish
+            }, 3000);
+          }
+          
+          // Email validation function
+          function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+          }
+          
+          // Debounced form submission function
+          function debouncedSubmit(event) {
+            event.preventDefault();  // Prevent default form submission
+            var email = document.getElementById('email').value;
+            var errorMessage = document.getElementById('error-message');
+          
+            // Check if already submitting (debouncing) and if email is valid
+            if (isSubmitting) {
+              return;  // Prevent multiple submissions
+            }
+          
+            if (!validateEmail(email)) {
+              errorMessage.style.display = 'block';  // Show error message
+              return;
+            }
+          
+            errorMessage.style.display = 'none';  // Hide error message if valid
+          
+            console.log("Form submitted"); 
+            // Simulate form submission with a delay (debounce)
+            isSubmitting = true;
+            showConfirmationMessage();
+            
+            // Simulate form submission here if needed (AJAX or similar)
+            setTimeout(() => {
+              isSubmitting = false;  // Reset debouncing after 5 seconds
+            }, 5000);
+          }
+          
+          // Attach the function to the submit button
+          document.getElementById('submit-button').addEventListener('click', debouncedSubmit);
+          
+          
+          
+          </script>
+          <!-- js for mouse cursor trail effect -->
+          <script>
+             document.addEventListener("DOMContentLoaded", function () {
+          const coords = { x: 0, y: 0 };
+          const circles = document.querySelectorAll(".circle");
+        
+          circles.forEach(function (circle) {
+            circle.x = 0;
+            circle.y = 0;
+          });
+        
+          window.addEventListener("mousemove", function (e) {
+            coords.x = e.pageX;
+            coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+          });
+        
+          function animateCircles() {
+            let x = coords.x;
+            let y = coords.y;
+        
+            circles.forEach(function (circle, index) {
+              circle.style.left = `${x - 12}px`;
+              circle.style.top = `${y - 12}px`;
+              circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+        
+              const nextCircle = circles[index + 1] || circles[0];
+              circle.x = x;
+              circle.y = y;
+        
+              x += (nextCircle.x - x) * 0.3;
+              y += (nextCircle.y - y) * 0.3;
+            });
+        
+            requestAnimationFrame(animateCircles);
+          }
+        
+          animateCircles();
+        });
+          </script>
+          <!-- Botpress Chat Scripts -->
+          <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+          <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+      
+      
+        </body>
+      
+      </html>
+    
