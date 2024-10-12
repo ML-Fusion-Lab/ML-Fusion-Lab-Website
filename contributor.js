@@ -1,60 +1,32 @@
-const cont = document.getElementById("contributor");
-const owner = "ML-Fusion-Lab";
-const repoName = "ML-Fusion-Lab-Website";
+document.addEventListener("DOMContentLoaded", () => {
+  const contributorsContainer = document.getElementById("contributors");
 
-async function fetchContributors(pageNumber) {
-  const perPage = 100;
-  const url = `https://api.github.com/repos/${owner}/${repoName}/contributors?page=${pageNumber}&per_page=${perPage}`;
+  async function fetchContributors() {
+    try {
+      const response = await fetch(
+        `https://api.github.com/repos/ML-Fusion-Lab/ML-Fusion-Lab-Website/contributors`
+      );
+      const contributors = await response.json();
 
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch contributors data. Status code: ${response.status}`
-    );
-  }
+      contributorsContainer.innerHTML = "";
+      contributors.forEach((contributor) => {
+        const contributorCard = document.createElement("div");
+        contributorCard.className = "contributor-card";
 
-  const contributorsData = await response.json();
-  return contributorsData;
-}
+        contributorCard.innerHTML = `
+          <a href="${contributor.html_url}" target="_blank" rel="noopener noreferrer">
+            <img src="${contributor.avatar_url}" alt="${contributor.login}">
+          </a>
+          <h2>${contributor.login}</h2>
+          <p>Contributions: ${contributor.contributions}</p>
+        `;
 
-// Function to fetch all contributors
-async function fetchAllContributors() {
-  let allContributors = [];
-  let pageNumber = 1;
-
-  try {
-    while (true) {
-      const contributorsData = await fetchContributors(pageNumber);
-      if (contributorsData.length === 0) {
-        break;
-      }
-      allContributors = allContributors.concat(contributorsData);
-      pageNumber++;
+        contributorsContainer.appendChild(contributorCard);
+      });
+    } catch (error) {
+      console.error("Error fetching contributors:", error);
     }
-    allContributors.forEach((contributor) => {
-      if (contributor.login === owner) {
-        return;
-      }
-
-      const contributorCard = document.createElement("div");
-      contributorCard.classList.add("contributor-card");
-
-      const avatarImg = document.createElement("img");
-      avatarImg.src = contributor.avatar_url;
-      avatarImg.alt = `${contributor.login}'s Picture`;
-
-      const loginLink = document.createElement("a");
-      loginLink.href = contributor.html_url;
-      loginLink.target = "_blank";
-      loginLink.appendChild(avatarImg);
-
-      contributorCard.appendChild(loginLink);
-
-      cont.appendChild(contributorCard);
-    });
-  } catch (error) {
-    console.error(error);
   }
-}
 
-fetchAllContributors();
+  fetchContributors();
+});

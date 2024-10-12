@@ -1,114 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="icon" />
-    <link rel="icon" href="ml-fusion-lab-logo.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contributors</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="contributor.css" />
+
+    <head>
+      <link rel="icon" />
+      <link rel="icon" href="ml-fusion-lab-logo.png" />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>ML Fusion Lab</title>
+
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+      <link rel="stylesheet" href="contributor.css"/>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #a0a09c;
+      }
+      .top-btn {
+        display: none;
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 10px;
+        right: 0px;
+        background-color: #59038a;
+        color: #fff;
+        padding: 2px;
+        border: none;
+        margin-right: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .top-btn:hover {
+        background-color: #f689f2;
+      }
+
+      .pagination-btns {
+        margin: 50px 0px;
+      }
+
+      .pagination-btns button.btn {
+        border-radius: 5px;
+        outline: none;
+        margin: 5px 10px;
+        border: 1px solid rgb(146, 110, 110);
+      }
+
+      .pagination-btns button.btn,
+      .pagination-btns button.btn i.bi {
+        font-size: 2rem;
+      }
+    </style>
   </head>
-
   <body>
-    <header>
-      <div class="logo">
-        <a href="index.html">
-          <h1>
-            <img
-              src="ml fusion lab log.jpg"
-              alt="logo"
-              width="100"
-              height="100"
-            />
-          </h1>
-        </a>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="community_suport.html">Community Support</a></li>
-
-          <li><a href="feedback.html">Feedback</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <div class="contributors">
-      <div class="heading-box">
-        <h1 class="heading">Our Valuable Contributors</h1>
-      </div>
-      <div id="contributor"></div>
+    <div class="container">
+      <h1 class="title">Our Contributors</h1>
+      <div id="contributors" class="contributors-grid"></div>
     </div>
-
-    <footer>
-      <div class="container">
-        <div class="footer-socials">
-          Follow us on:
-          <a href="https://facebook.com" target="_blank"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="https://twitter.com" target="_blank"
-            ><i class="fa-brands fa-x-twitter"></i
-          ></a>
-          <a href="https://linkedin.com" target="_blank"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
-        </div>
-        <div class="footer-contact">
-          <p>
-            Contact us:
-            <a href="mailto:info@mlfusionlabs.com" style="color: white"
-              >info@mlfusionlabs.com</a
-            >
-            | Phone: +1 (555) 123-4567
-          </p>
-        </div>
-        <div class="footer-links">
-          <a href="privacy.html">Privacy Policy</a> |
-          <a href="terms.html">Terms of Service</a> |
-          <a href="about.html">About Us</a> |
-          <a href="contact.html">Contact</a>
-        </div>
-        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-      </div>
-      <button id="scrollTopBtn" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-      </button>
-    </footer>
+    <button class="top-btn" id="goToTopBtn" onclick="goToTop()">
+      <i class="fa-solid fa-chevron-up" style="color: #ffffff"></i>
+    </button>
     <script>
-      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      // Get the button
+      var mybutton = document.getElementById("goToTopBtn");
+
+      // When the user scrolls down 20px from the top of the document, show the button
       window.onscroll = function () {
+        scrollFunction();
+      };
+
+      function scrollFunction() {
         if (
           document.body.scrollTop > 20 ||
           document.documentElement.scrollTop > 20
         ) {
-          scrollTopBtn.style.display = "block";
+          mybutton.style.display = "block";
         } else {
-          scrollTopBtn.style.display = "none";
+          mybutton.style.display = "none";
         }
-      };
+      }
 
-      function scrollToTop() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+      // When the user clicks on the button, scroll to the top of the document
+      function goToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
       }
     </script>
-    <script src="scroll.js"></script>
-    <script src="script.js"></script>
     <script src="contributor.js"></script>
+    <script>
+      window.addEventListener("scroll", function () {
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+      });
+    </script>
   </body>
 </html>
