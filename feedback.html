@@ -10,22 +10,28 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+          body {
+              font-family: Arial, sans-serif;
+              /* Replace this URL with your actual image link */
+              background: url(https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) no-repeat center center fixed;
+              background-size: cover;
+              
+                           
+              /* Ensure content is centered */
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+          }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #9d73ca, #8ea6d1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
         .container {
             background-color: white;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
+            width: 500px;
         }
 
         .header {
@@ -54,26 +60,29 @@
 
         input, select, textarea {
             width: 100%;
-            padding: 8px;
+            padding: 15px;
             margin: 10px 0;
-            border-radius: 4px;
+            border-radius: 14px;
             border: 1px solid #ccc;
         }
 
         button {
-            background-color: #a94cb9;
+            background-color:#216988;
             color: white;
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             margin: 5px;
+            box-shadow: 0px 8px 0px rgba(0, 0, 0, 1);
         }
 
-        button:hover {
-            background-color: #216988;
-        }
 
+        button:active {
+            background-color: #093e55;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 1);
+            transform: translateY(4px);
+        }
         .hidden {
             display: none;
         }
@@ -85,7 +94,7 @@
 
         .back-link {
             display: inline-block;
-            background-color: #a94cb9;
+            background-color: #00c6ff;
             color: white;
             padding: 8px 10px;
             text-decoration: none;
@@ -100,6 +109,12 @@
         #feedbackForm, #feedbackResponse {
             text-align: center;
         }
+
+        textarea {
+            height: 200px;
+            resize: none;
+        }
+
     </style>
 </head>
 <body>
@@ -110,11 +125,11 @@
         </div>
         <form id="feedbackForm" onsubmit="return submitFeedback()">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter Name">
-
+            <input type="text" id="name" name="name" placeholder="Enter Name" required>
+    
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter Email id" required>
-
+    
             <label for="rating">Rating:</label>
             <select id="rating" name="rating" required>
                 <option value="" disabled selected>Select rating</option>
@@ -124,44 +139,69 @@
                 <option value="4">4 - Very Good</option>
                 <option value="5">5 - Excellent</option>
             </select>
-
+    
             <label for="comments">Comments:</label>
             <textarea id="comments" name="comments" placeholder="Enter comment" required></textarea>
-
+    
             <button type="submit">Submit Feedback</button>
         </form>
-
+    
         <div id="feedbackResponse" class="hidden">
             <h3>Thank you for your feedback!</h3>
             <p id="responseMessage"></p>
             <button onclick="resetForm()">Submit another feedback</button>
         </div>
     </div>
-
+    
     <script>
+        // Function to handle form submission
         function submitFeedback() {
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const rating = document.getElementById("rating").value;
-            const comments = document.getElementById("comments").value;
-
-            const form = document.getElementById("feedbackForm");
-            const response = document.getElementById("feedbackResponse");
-            const responseMessage = document.getElementById("responseMessage");
-
-            form.classList.add("hidden");
-            response.classList.remove("hidden");
-
-            responseMessage.innerHTML = `Thank you, <strong>${name}</strong>, for rating us ${rating}/5. We appreciate your feedback!`;
-
-            return false;
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const rating = document.getElementById('rating').value;
+            const comments = document.getElementById('comments').value;
+    
+            // Validate the form inputs
+            if (!name || !email || !rating || !comments) {
+                alert('Please fill out all fields');
+                return false;
+            }
+    
+            // Create a feedback object
+            const feedback = {
+                name: name,
+                email: email,
+                rating: rating,
+                comments: comments
+            };
+    
+            // Retrieve existing feedbacks from local storage, if any
+            let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+    
+            // Add new feedback to the feedback array
+            feedbacks.push(feedback);
+    
+            // Store updated feedback array back in local storage
+            localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+    
+            // Show the feedback response message
+            document.getElementById('feedbackResponse').classList.remove('hidden');
+            document.getElementById('feedbackForm').classList.add('hidden');
+            document.getElementById('responseMessage').innerText = `Thank you, ${name}, for your feedback!`;
+    
+            // Reset the form
+            document.getElementById('feedbackForm').reset();
+    
+            return false; // Prevent page reload
         }
-
+    
+        // Function to reset the form and show it again
         function resetForm() {
-            document.getElementById("feedbackForm").reset();
-            document.getElementById("feedbackForm").classList.remove("hidden");
-            document.getElementById("feedbackResponse").classList.add("hidden");
+            document.getElementById('feedbackForm').classList.remove('hidden');
+            document.getElementById('feedbackResponse').classList.add('hidden');
         }
     </script>
+    
 </body>
 </html>

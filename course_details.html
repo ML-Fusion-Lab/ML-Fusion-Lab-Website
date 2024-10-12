@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="scroll.css" />
+    <link rel="stylesheet" href="course_details.css" />
+  </head>
+  <style>
+    .navbar-custom {
+      background-color: #343a40;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-custom .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-custom .navbar-brand img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .navbar-custom .nav-link {
+      color: #ffffff !important;
+      transition: color 0.3s;
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #007bff !important;
+    }
+
+    .navbar-custom .nav-link.active {
+      color: #007bff !important;
+      font-weight: bold;
+    }
+  </style>
+
+  <body>
+    <header>
+      <!-- Enhanced Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="ml-fusion-lab-logo.png" alt="ML Fusion Labs Logo" />
+            ML Fusion Labs
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="courses.html">Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="projects.html">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+              <div class="theme-switch" id="theme-switch"></div>
+              <!-- Optional: Add a dropdown or additional links if needed -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+<!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+
+    <!-- Course details start -->
+    <div class="cd-wrapper">
+      <div class="cd-container">
+        <div class="cd-header">
+          <div class="cd-company-group">
+            <img
+              src="	https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+              alt="IBM"
+              class="cd-cmp-img"
+            />
+            <p>Certified</p>
+          </div>
+          <h1 class="cd-title" id="cd-title">Google AI Essentials</h1>
+          <div class="cd-instructor-cont">
+            <h2 class="cd-instructor-label" id="cd-instructor-label">
+              Instructors:
+            </h2>
+            <!-- <p class="cd-instructor" id="cd-instructor">John Doe,</p>  Example tag - This will be rendered dynamically using js -->
+          </div>
+          <div class="cd-lesson-detail-cont">
+            <div class="cd-lesson-group">
+              <i class="fa-solid fa-book-open lsn-icon"></i>
+              <p class="lessons">Lessons 16</p>
+            </div>
+            <div class="cd-lesson-group">
+              <i class="fa-solid fa-pencil lsn-icon"></i>
+              <p class="assignments">Assignments 10</p>
+            </div>
+            <div class="cd-lesson-group">
+              <i class="fa-solid fa-clock lsn-icon"></i>
+              <p class="duration">Duration 2h 10m</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- course image  -->
+        <div class="course-img-cont">
+          <img
+            src="Course Assets/1.jpg"
+            alt="course image"
+            class="course-img"
+            id="course img"
+          />
+        </div>
+
+        <div class="cd-core-details">
+          <div class="skills-gain">
+            <!-- <p class="skillName">AI integration</p> -->
+          </div>
+          <div class="about-cont">
+            <h2 class="about-title">About this course</h2>
+            <p class="about-desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque
+              provident dignissimos iste porro, aperiam facilis illo totam
+              harum. Commodi impedit praesentium accusamus nobis asperiores
+              cumque alias quaerat ipsa, provident aperiam?
+            </p>
+          </div>
+          <div class="completing-course-cont">
+            <h2 class="title">
+              After completeing this course you will be able to
+            </h2>
+            <div class="completing-course-group">
+              <!-- <i class="fa-regular fa-circle-check cd-tick"></i>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+                necessitatibus.
+              </p>
+            </div> This element will be dynamically loaded using js -->
+            </div>
+          </div>
+          <div class="requirement-sec">
+            <h2 class="title">Requirements</h2>
+            <!-- <div class="req-group">
+              <i class="fa-regular fa-circle-check cd-tick"></i>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis,
+                necessitatibus.
+              </p>
+            </div>
+             This element will be dynamically loaded using js 
+            -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right sidebar section  -->
+      <div class="sidebar">
+        <div class="sidebar-item-group">
+          <i class="fa-solid fa-microphone icon"></i>
+          <p>English</p>
+        </div>
+        <div class="sidebar-item-group">
+          <i class="fa-solid fa-book icon"></i>
+          <p>Exercises and quizes to help you in practice</p>
+        </div>
+        <div class="sidebar-item-group">
+          <i class="fa-solid fa-layer-group icon"></i>
+          <p>Beginner friendly</p>
+        </div>
+        <div class="sidebar-item-group">
+          <i class="fa-solid fa-mobile icon"></i>
+          <p>Access on mobie or laptop</p>
+        </div>
+        <div class="line"></div>
+        <div class="price-cont">
+          <div class="price-group">
+            <p class="striked-price"><s>$258</s></p>
+            <p class="price">$199</p>
+          </div>
+          <button class="enroll-btn">Enroll Today</button>
+        </div>
+      </div>
+    </div>
+    <!-- Course details end -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-socials">
+          Follow us on:
+          <a href="https://facebook.com" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://twitter.com" target="_blank"
+            ><i class="fa-brands fa-x-twitter"></i
+          ></a>
+          <a href="https://linkedin.com" target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+        <div class="footer-contact">
+          <p>
+            Contact us:
+            <a href="mailto:info@mlfusionlabs.com" style="color: white"
+              >info@mlfusionlabs.com</a
+            >
+            | Phone: +1 (555) 123-4567
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a> |
+          <a href="terms.html">Terms of Service</a> |
+          <a href="about.html">About Us</a> |
+          <a href="contact.html">Contact</a>
+        </div>
+        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      </div>
+      <button id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </footer>
+
+    <!-- Load scripts  -->
+    <script src="scroll.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+      import courses from "./courseDetails.js";
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const courseId = urlParams.get("courseId");
+
+      const course = courses.find((course) => course.id == courseId);
+
+      let companyImg = document.querySelector(".cd-cmp-img");
+      let title = document.querySelector(".cd-title");
+      let instructors = document.querySelector(".cd-instructor-cont");
+      let lessons = document.querySelector(".lessons");
+      let assignments = document.querySelector(".assignments");
+      let duration = document.querySelector(".duration");
+      let courseImg = document.querySelector(".course-img");
+      let skillsGain = document.querySelector(".skills-gain");
+      let aboutDesc = document.querySelector(".about-desc");
+      let completeCourseCont = document.querySelector(
+        ".completing-course-cont"
+      );
+      let requirementSection = document.querySelector(".requirement-sec");
+      let strikedPrice = document.querySelector(".striked-price");
+      let price = document.querySelector(".price");
+
+      console.log(course);
+      // Update the values of elements
+      companyImg.setAttribute("src", course.certifiedBy);
+      title.innerHTML = course.title;
+
+      course.instructors.forEach((inst_name) => {
+        let instructor_ptag = document.createElement("p");
+        instructor_ptag.innerHTML = inst_name;
+        instructor_ptag.classList.add("cd-instructor");
+        instructors.appendChild(instructor_ptag);
+      });
+
+      lessons.innerHTML = "Lessons " + course.courseDetails.lessons;
+      assignments.innerHTML = "Assignments " + course.courseDetails.assignments;
+      duration.innerHTML =
+        "Duration " +
+        course.courseDetails.duration.hours +
+        "h " +
+        course.courseDetails.duration.minutes +
+        "m";
+
+      courseImg.setAttribute("src", course.img);
+      aboutDesc.innerHTML = course.about;
+
+      course.learningOutcomes.forEach((outcome) => {
+        let group = document.createElement("div");
+        let tickIcon = document.createElement("i");
+        let outcomeName = document.createElement("p");
+
+        group.classList.add("completing-course-group");
+        tickIcon.classList.add("fa-regular", "fa-circle-check", "cd-tick");
+        outcomeName.innerHTML = outcome;
+
+        group.appendChild(tickIcon);
+        group.appendChild(outcomeName);
+        completeCourseCont.appendChild(group);
+      });
+
+      course.requirements.forEach((req) => {
+        let group = document.createElement("div");
+        let tickIcon = document.createElement("i");
+        let reqName = document.createElement("p");
+
+        group.classList.add("req-group");
+        tickIcon.classList.add("fa-regular", "fa-circle-check", "cd-tick");
+        reqName.innerHTML = req;
+
+        group.appendChild(tickIcon);
+        group.appendChild(reqName);
+        requirementSection.appendChild(group);
+      });
+
+      strikedPrice.innerHTML = "<s>" + course.strikedPrice + "</s>";
+      price.innerHTML = course.price;
+
+      course.skills.split(",").forEach(skill => {
+        let skillName = document.createElement("p")
+        skillName.innerHTML = skill;
+        skillName.classList.add("skillName")
+        skillsGain.appendChild(skillName)
+      })
+    </script>
+    <script>
+    // <!-- js for mouse cursor trail effect -->
+
+    document.addEventListener("DOMContentLoaded", function () {
+ const coords = { x: 0, y: 0 };
+ const circles = document.querySelectorAll(".circle");
+ 
+ circles.forEach(function (circle) {
+   circle.x = 0;
+   circle.y = 0;
+ });
+ 
+ window.addEventListener("mousemove", function (e) {
+   coords.x = e.pageX;
+   coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+ });
+ 
+ function animateCircles() {
+   let x = coords.x;
+   let y = coords.y;
+ 
+   circles.forEach(function (circle, index) {
+     circle.style.left = `${x - 12}px`;
+     circle.style.top = `${y - 12}px`;
+     circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+ 
+     const nextCircle = circles[index + 1] || circles[0];
+     circle.x = x;
+     circle.y = y;
+ 
+     x += (nextCircle.x - x) * 0.3;
+     y += (nextCircle.y - y) * 0.3;
+   });
+ 
+   requestAnimationFrame(animateCircles);
+ }
+ 
+ animateCircles();
+ });
+</script>
+  </body>
+</html>
