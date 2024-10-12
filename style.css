@@ -1,3 +1,61 @@
+/* Container for the progress bar */
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #f3f3f3;
+  z-index: 99;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress bar with glowing effect */
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #9be5ff, #0074e1);
+  box-shadow: 0 0 15px rgba(0, 116, 225, 0.7),
+    0 0 30px rgba(0, 116, 225, 0.5);
+  border-radius: 4px;
+  transition: width 0.25s ease-out;
+}
+
+/* Glowing animation */
+#progress-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.5;
+  animation: glow 2s infinite;
+  border-radius: inherit;
+}
+
+/* Glowing animation keyframes */
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  #progress-container {
+    height: 6px;
+  }
+}
 header {
   height: 100px;
 }
