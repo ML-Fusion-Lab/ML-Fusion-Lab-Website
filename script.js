@@ -3,6 +3,17 @@ const body = document.body;
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
 
+// progress bar functioning 
+  window.onscroll = function () { updateProgressBar() };
+
+  function updateProgressBar() {
+    var windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    var windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrollPercentage = (windowScroll / windowHeight) * 100;
+
+    document.getElementById('progress-bar').style.width = scrollPercentage + "%";
+  }
+
 // Function to enable dark mode
 function enableDarkMode() {
     body.classList.add('dark-mode');
