@@ -2,23 +2,20 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor - ML Fusion Lab</title>
     <link rel="icon" href="ml-fusion-lab-logo.png">
-    <title>ML Fusion Lab - Resources</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="resources.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="mentor_program.css">
 </head>
 
 <body>
-    <header>
+    <!-- Header Section -->
+    <header class="head">
         <div class="logo">
             <a href="index.html">
-                <h1><img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+                <h1><img src="ml fusion lab log.jpg" alt="logo" width="50" height="50" /></h1>
             </a>
         </div>
         <nav>
@@ -68,78 +65,80 @@
         <div class="circle"></div>
       </div>
 
-    <section class="resources">
-        <h2>Resources for Machine Learning</h2>
-        <p>Explore our curated list of resources to enhance your machine learning journey.</p>
+    <!-- Mentor Section -->
+    <section class="mentor-section">
+        <div class="mentor-header">
+            <h2>Meet Our Mentors</h2>
+            <div class="filter">
+                <select>
+                    <option value="">Filter by Expertise</option>
+                    <option value="ml">Machine Learning</option>
+                    <option value="ai">AI</option>
+                    <option value="data-science">Data Science</option>
+                </select>
+                <select>
+                    <option value="">Filter by Experience</option>
+                    <option value="1-5">1-5 years</option>
+                    <option value="5-10">5-10 years</option>
+                    <option value="10+">10+ years</option>
+                </select>
+                <select>
+                    <option value="">Filter by College Affiliation</option>
+                    <option value="niti">NITs</option>
+                    <option value="iit">IITs</option>
+                </select>
+            </div>
+        </div>
 
-        <div class="resource-container">
-            <div class="resource-section">
-                <h3>Books</h3>
-                <div class="resource-block">
-                    <div class="resource-item">
-                        <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/" target="_blank">
-                            <img src="image/r1.png" alt="Hands-On Machine Learning" />
-                            <span class="name">Hands-On Machine Learning</span>
-                        </a>
-                    </div>
-                    <div class="resource-item">
-                        <a href="https://www.deeplearningbook.org/" target="_blank">
-                            <img src="image/r2.png" alt="Deep Learning Book" />
-                            <span class="name">Deep Learning Book</span>
-                        </a>
-                    </div>
-                </div>
+        <div class="mentor-container">
+            <div class="mentor-card">
+                <img src="image/m1.jpg" alt="Mentor 1">
+                <h3>Dr. Ada Clarke</h3>
+                <p>Expert in Machine Learning and Deep Learning, 10+ years of experience in the industry.</p>
+                <a href="mentor-details.html">View Profile</a>
             </div>
 
-            <div class="resource-section">
-                <h3>Online Courses</h3>
-                <div class="resource-block">
-                    <div class="resource-item">
-                        <a href="https://www.coursera.org/specializations/machine-learning" target="_blank">
-                            <img src="image/r3.jpg" alt="Machine Learning Specialization" />
-                            <span class="name">Machine Learning Specialization</span>
-                        </a>
-                    </div>
-                    <div class="resource-item">
-                        <a href="https://www.udacity.com/course/intro-to-machine-learning-nanodegree--nd229" target="_blank">
-                            <img src="image/r4.jpg" alt="Intro to Machine Learning Nanodegree" />
-                            <span class="name">Intro to Machine Learning Nanodegree</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="mentor-card">
+                <img src="image/m2.jpg" alt="Mentor 2">
+                <h3>Jane Smith</h3>
+                <p>Data Scientist and AI Researcher, passionate about teaching and mentoring.</p>
+                <a href="mentor-details.html">View Profile</a>
             </div>
 
-            <div class="resource-section">
-                <h3>Videos</h3>
-                <div class="resource-block">
-                    <div class="resource-item">
-                        <a href="https://www.youtube.com/playlist?list=PL8dPuuaLlJ0p3rS20s0K5_hxzI9iB-tf6" target="_blank">
-                            <img src="image/r5.jpg" alt="Machine Learning Crash Course" />
-                            <span class="name">Machine Learning Crash Course</span>
-                        </a>
-                    </div>
-                    <div class="resource-item">
-                        <a href="https://www.youtube.com/watch?v=Gv9_4yM4G68" target="_blank">
-                            <img src="image/r6.jpg" alt="Deep Learning in 5 Minutes" />
-                            <span class="name">Deep Learning in 5 Minutes</span>
-                        </a>
-                    </div>
-                </div>
+            <div class="mentor-card">
+                <img src="image/m3.jpg" alt="Mentor 3">
+                <h3>Dr. Emily White</h3>
+                <p>AI Ethics and NLP Specialist, guiding students and professionals towards AI research.</p>
+                <a href="mentor-details.html">View Profile</a>
             </div>
+        </div>
+
+        <div class="see-more">
+            <a href="#">See More <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="email-form">
+            <h3>Need Help Finding a Mentor?</h3>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </section>
 
+    <!-- Footer Section -->
     <footer>
         <div class="container">
             <div class="footer-socials">
                 Follow us on:
                 <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://twitter.com" target="_blank">
+                    <img src="Course Assets/x.png" alt="X Logo" style="width: 30px; height: 30px; ">
+                </a>
                 <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="footer-contact">
-                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> |
-                    Phone: +1 (555) 123-4567</p>
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
             </div>
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a> |
@@ -151,6 +150,8 @@
         </div>
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
     </footer>
+    <script src="scroll.js"></script>
+    <script src="script.js"></script>
 
     <script>
         const scrollTopBtn = document.getElementById("scrollTopBtn");
@@ -163,14 +164,10 @@
         };
 
         function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
     </script>
-    <script src="scroll.js"></script>
-    <script src="script.js"></script>
     <!-- js for mouse cursor trail effect -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -210,11 +207,8 @@
      animateCircles();
    });
      </script>
-
-    <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-
 </body>
 
 </html>

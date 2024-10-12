@@ -122,14 +122,33 @@
       .btn-cont .load-more-button:hover {
         background: #000000;
       }
+ body.dark-mode .btn-cont .load-more-button{
+            background-color: #fff;
+            color: #000;
+        }
+        body.dark-mode .btn-cont .load-more-button:hover{
+            background-color: #e2e2e2;
+        }
+   /* css for mouse cursor trail effect */
+   .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+  transition: transform 0.1s, left 0.1s, top 0.1s;
+}
 
-      body.dark-mode .btn-cont .load-more-button {
-        background-color: #fff;
-        color: #000;
-      }
-      body.dark-mode .btn-cont .load-more-button:hover {
-        background-color: #e2e2e2;
-      }
+.circle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+}
     </style>
   </head>
   <body>
@@ -224,6 +243,7 @@
               />
               <h5>Data Science</h5>
             </div>
+
           </div>
           <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
             <div class="category-card p-3 bg-white text-dark rounded shadow">
@@ -233,6 +253,45 @@
                 class="img-fluid mb-3"
               />
               <h5>Programming & Development</h5>
+    
+            <!-- Course Categories -->
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/data-science.png" alt="Data Science Icon" class="img-fluid mb-3">
+                        <h5>Data Science Essentials</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/programming-language.png" alt="Programming Icon" class="img-fluid mb-3">
+                        <h5>Programming & Development</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/ai.png" alt="AI Icon" class="img-fluid mb-3">
+                        <h5>Artificial Intelligence</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/business.png" alt="Business Icon" class="img-fluid mb-3">
+                        <h5>Business Development</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/autonomous-system.png" alt="Autonomous Systems Icon" class="img-fluid mb-3">
+                        <h5>Autonomous Systems</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+                    <div class="category-card p-3 bg-white text-dark rounded shadow">
+                        <img src="Course Icons/cloud-computing.png" alt="Cloud Computing Icon" class="img-fluid mb-3">
+                        <h5>Cloud Computing Essentials</h5>
+                    </div>
+                </div>
             </div>
           </div>
           <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
@@ -330,5 +389,40 @@
     <script src="courses.js" type="module"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      
   </body>
+    <div class="circle-container">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+</body>
 </html>

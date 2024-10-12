@@ -100,6 +100,40 @@
   </head>
 
   <body>
+    <!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
     <header>
       <div class="logo">
         <a href="index.html">
@@ -210,8 +244,20 @@
       </div>
       <div class="newsletter-right">
         <div class="input-group">
-          <input type="email" class="input" id="Email" name="Email" placeholder="saptarshi2027paul@gmail.com" autocomplete="off">
-          <input class="button--submit" value="Subscribe" type="submit">
+          <input type="email" id="email" placeholder="Enter your email"  class="input" required>
+          <button type="submit" class="submit-button" id="submit-button">Subscribe</button>
+
+          
+          </div>
+          <div id="error-message" style="display: none; color: red; width:242px" >Please enter a valid email address.</div>
+
+          <!-- Confirmation message container -->
+          <div id="confirmation-message" style="display: none;" class="confirmation-message">
+            Thank you for subscribing to our newsletter!
+          </div>
+        </div>
+    </div> 
+
           <style>
             .input-group {
               display: flex;
@@ -238,7 +284,7 @@
               opacity: 0;
               transform: translateX(10px);
             }
-            .button--submit {
+            .submit-button {
               transition: all 0.3s ease;
               background-color: #0056b3;
               color: white;
@@ -248,11 +294,13 @@
               cursor: pointer;
               position: relative;
               overflow: hidden;
+              min-height: 50px;
+              font-size: 16px;
             }
-            .button--submit:hover {
+            .submit-button:hover {
               background-color: #003d82;
             }
-            .button--submit::before {
+            .submit-button::before {
               content: '';
               position: absolute;
               top: 50%;
@@ -264,11 +312,11 @@
               transition: width 0.6s ease, height 0.6s ease;
               transform: translate(-50%, -50%);
             }
-            .button--submit:hover::before {
+            .submit-button:hover::before {
               width: 300px;
               height: 300px;
             }
-            .button--submit:active {
+            .submit-button:active {
               transform: scale(0.95);
             }
             @keyframes shake {
@@ -280,10 +328,50 @@
               animation: shake 0.3s;
               border-color: #ff3860;
             }
-          </style>
-        </div>
-      </div>
-        </div> 
+            .confirmation-message {
+              position: fixed;
+              top: 20px;
+              left: 50%;
+              transform: translateX(-50%);
+              background-color: #4CAF50;
+              color: white;
+              padding: 15px;
+              border-radius: 5px;
+              font-size: 16px;
+              z-index: 1000;
+              text-align: center;
+              box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+              opacity: 0;
+              transition: opacity 0.5s ease-in-out;
+            }
+            @media only screen and (max-width: 600px) {
+              .confirmation-message {
+                font-size: 14px;
+                padding: 10px;
+                width: 80%;
+          } }
+   /* css for mouse cursor trail effect */
+   .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+  transition: transform 0.1s, left 0.1s, top 0.1s;
+}
+
+.circle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+}
+            
+          </style>  
     <footer>
       <div class="container">
         <div class="footer-socials">
@@ -325,7 +413,104 @@
     </script>
     <script src="scroll.js"></script>
     <script src="script.js"></script>
-
+    <script>
+      let isSubmitting = false;  // Debouncing flag
+    
+    // Function to show confirmation message
+    function showConfirmationMessage() {
+      var messageElement = document.getElementById('confirmation-message');
+      messageElement.style.display = 'block';
+      messageElement.style.opacity = '1';
+    
+      // Hide the message after 3 seconds
+      setTimeout(function() {
+        messageElement.style.opacity = '0';
+        setTimeout(function() {
+          messageElement.style.display = 'none';
+        }, 500); // wait for the opacity transition to finish
+      }, 3000);
+    }
+    
+    // Email validation function
+    function validateEmail(email) {
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+    
+    // Debounced form submission function
+    function debouncedSubmit(event) {
+      event.preventDefault();  // Prevent default form submission
+      var email = document.getElementById('email').value;
+      var errorMessage = document.getElementById('error-message');
+    
+      // Check if already submitting (debouncing) and if email is valid
+      if (isSubmitting) {
+        return;  // Prevent multiple submissions
+      }
+    
+      if (!validateEmail(email)) {
+        errorMessage.style.display = 'block';  // Show error message
+        return;
+      }
+    
+      errorMessage.style.display = 'none';  // Hide error message if valid
+    
+      console.log("Form submitted"); 
+      // Simulate form submission with a delay (debounce)
+      isSubmitting = true;
+      showConfirmationMessage();
+      
+      // Simulate form submission here if needed (AJAX or similar)
+      setTimeout(() => {
+        isSubmitting = false;  // Reset debouncing after 5 seconds
+      }, 5000);
+    }
+    
+    // Attach the function to the submit button
+    document.getElementById('submit-button').addEventListener('click', debouncedSubmit);
+    
+    
+    
+    </script>
+    <!-- js for mouse cursor trail effect -->
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+  
+    circles.forEach(function (circle) {
+      circle.x = 0;
+      circle.y = 0;
+    });
+  
+    window.addEventListener("mousemove", function (e) {
+      coords.x = e.pageX;
+      coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+    });
+  
+    function animateCircles() {
+      let x = coords.x;
+      let y = coords.y;
+  
+      circles.forEach(function (circle, index) {
+        circle.style.left = `${x - 12}px`;
+        circle.style.top = `${y - 12}px`;
+        circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+  
+        const nextCircle = circles[index + 1] || circles[0];
+        circle.x = x;
+        circle.y = y;
+  
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+      });
+  
+      requestAnimationFrame(animateCircles);
+    }
+  
+    animateCircles();
+  });
+    </script>
     <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
