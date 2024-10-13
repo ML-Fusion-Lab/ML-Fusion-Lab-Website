@@ -93,6 +93,10 @@ window.addEventListener("mousemove", function (e) {
   coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
 });
 
+window.onload=function(){
+  document.getElementById("search-id").focus();
+}
+
 function animateCircles() {
   let x = coords.x;
   let y = coords.y;
