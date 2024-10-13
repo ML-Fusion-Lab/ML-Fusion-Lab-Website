@@ -57,9 +57,24 @@
         margin-top: 40px;
     }
 
+    
+    /* animation on projects */
+    @keyframes appear{
+        from{
+            opacity: 0;
+            scale:0.4;
+        }to{
+            opacity: 1;
+            scale:1;
+        }
+     }
     .project-item {
         margin-bottom: 30px; /* Add some space below each project card */
+       animation: appear 5s linear;
+       animation-timeline:view();
+       animation-range: entry 0% cover 40%;
     }
+
 
     .project-item h3 {
         font-size: 1.3em; /* Slight size increase for clarity */
