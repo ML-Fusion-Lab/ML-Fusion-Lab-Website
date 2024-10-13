@@ -21,8 +21,30 @@
       <link rel="stylesheet" href="style.css" />
       <style>
         header {
-          height: 100px;
+          height: 200px;
+
         }
+        nav ul{
+          list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+        }
+        nav ul li {
+  display: inline-block;
+  margin: 0 4px; /* Reduce margin between items */
+  font-size: 2pc; /* Smaller font size */
+}
+        nav ul li a {
+  text-decoration: none;
+  padding: 6px 6px; /* Reduce padding for a more compact look */
+  color: #333;
+  transition: color 0.3s ease;
+}
+        
 
         .logo {
           margin: 30px 0 0 0;
@@ -174,10 +196,12 @@
         }
         .dark-mode #cookie-consent {
           background-color: #828281;
+          margin-left: 8px;
         }
 
         .dark-mode #cookie-consent p {
           color: white;
+          margin-left: 8px;
         }
       </style>
     </head>
@@ -253,8 +277,15 @@
           <li><a href="community_suport.html">Community Support</a></li>
 
           <li><a href="feedback.html">Feedback</a></li>
+          
+        
+
           <li><a href="login.html">Login</a></li>
+          <li><div class="gtranslate_wrapper"></div>
+            <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper","flag_size":16}</script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
           <div class="theme-switch" id="theme-switch"></div>
+          
         </ul>
       </nav>
     </header>
@@ -502,7 +533,7 @@
         pointer-events: none;
         background: radial-gradient(
           circle,
-          rgba(70, 130, 180, 0.3),
+          rgba(102, 120, 134, 0.3),
           skyblue,
           rgba(0, 0, 50, 0.3),
           white
@@ -550,6 +581,7 @@
           <a href="about.html">About Us</a> |
           <a href="contact.html">Contact</a> |
           <a href="contributor.html">Contributor</a>
+
         </div>
         <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
       </div>
