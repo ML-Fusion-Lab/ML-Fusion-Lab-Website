@@ -9,8 +9,8 @@
     <title>Contact Us - ML Fusion Labs</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="contact.css">
 
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
     <style>
         body {
@@ -20,15 +20,7 @@
             background-color: #f4f4f4;
         }
 
-        header {
-          height: 100px;
-        }
-
-        .logo {
-          margin: 10px 0 0 0;
-          
-        }
-
+      
         nav ul {
             list-style: none;
             margin-left: auto;
@@ -56,92 +48,8 @@
             color: #007BFF;
         }
 
-        .contact-hero {
-            
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .contact-hero h2 {
-            margin: 0;
-            font-size: 36px;
-        }
-
-        .contact-hero p {
-            font-size: 18px;
-        }
-
-        /* Contact form card styling */
-        .contact-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-        }
-
-        .contact-card {
-            background-color: white;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        .contact-card h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #333;
-        }
-
-        .contact-card form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 16px;
-            color: #444444;
-        }
-
-        .contact-card form input,
-        .contact-card form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .contact-card form button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .contact-card form button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .footer-container {
-            max-width: 800px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
+       
+       
         .footer-links a,
         .footer-socials a {
             color: white;
@@ -159,57 +67,551 @@
             color: white;
         }
 
-       /*  Hover effect CSS for form */
-        .contact-card form input:hover,
-.contact-card form textarea:hover {
-    border-color: #007BFF; 
-    background-color: #f0f8ff; 
+      
+  /* Container for the progress bar */
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #f3f3f3;
+  z-index: 99;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.contact-card form input:focus,
-.contact-card form textarea:focus {
-    border-color: #007BFF; 
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
-    outline: none; 
+/* Progress bar with glowing effect */
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #9be5ff, #0074e1);
+  box-shadow: 0 0 15px rgba(0, 116, 225, 0.7),
+    0 0 30px rgba(0, 116, 225, 0.5);
+  border-radius: 4px;
+  transition: width 0.25s ease-out;
 }
 
-.contact-card form button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    margin-top: 8px;
-    margin-right: 3px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease;
+/* Glowing animation */
+#progress-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.5;
+  animation: glow 2s infinite;
+  border-radius: inherit;
 }
 
-.contact-card form button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); 
-}
-
-.contact-card form button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
-}
-
-        /* Grow the entire form on hover */
-.contact-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
-
-.contact-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-}
-/* error message */
-.error-message {
-    margin-top: 0px;
-    font-size: 14px;
+/* Glowing animation keyframes */
+@keyframes glow {
+  0% {
+    opacity: 0.5;
   }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  #progress-container {
+    height: 6px;
+  }
+}
+header {
+  height: 100px;
+}
+body{
+ min-height:100vh;
+ max-width:100vw;
+}
+.logo {
+  margin: 5px 0px 5px 0px;
+  width: 100px;
+  aspect-ratio: auto 100 / 100;
+  height: 100px;
+}
+
+
+body {
+  .container h2 {
+    font-size: 40px;
+  }
+
+  
+  
+
+  
+
+  /* Styles for larger screens */
+  @media (min-width: 901px) {
+    header{
+      height: auto;
+    }
+    header nav .hamburger {
+      display: none;
+    }
+
+    header nav ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* header nav ul li {
+      margin: 0 0.5rem; /* Reduce margin between items */
+    } */
+    header nav ul li a:hover {
+      background-color: #00c6ff;
+      color: #000;
+      border-radius: 0.75rem; /* Rounded corners for active link */
+    }
+  }
+
+  
+
+ 
+ 
+
+header {
+  height: 100px;
+}
+
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007bff;
+}
+
+.footer-contact {
+  margin: 10px 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  .container h2 {
+    font-size:40px;
+  }
+
+  /Newsletter Styles/ .newsletter {
+    height: 200px;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px solid white;
+  }
+
+  .newsletter-left {
+    margin-left: 60px;
+  }
+
+  .newsletter-left h1 {
+    font-size: 1.5rem;
+    font-family: Poppins;
+    font-weight: 500;
+  }
+
+  .newsletter-left p {
+    font-size: 1rem;
+    font-family: Poppins;
+    font-weight: 300;
+  }
+
+  
+
+  @media (max-width: 1000px) {
+    .newsletter {
+      height: 300px;
+      padding: 40px;
+      width: 100%;
+      background-color: whitesmoke;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items:center;
+
+      box-shadow: 10px 10px 10px solid white;
+    }
+   .newsletter-left{
+     margin-left :0;
+   }
+    .newsletter-right {
+      display: flex;
+      justify-content: center;
+      padding-left: 200px;
+      width: 80%;
+    }
+   
+  }
+  
+ 
+}
+/* Header Styles */
+header {
+  background-color: #1a1a1a;
+  padding: 0px 20px;
+  /* Adjusted padding for more space(35 to 30px) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #00c6ff;
+  display: flex;
+  /* Flexbox for better alignment */
+  justify-content: space-between;
+  /* Space between logo and navigation */
+  align-items: center;
+}
+
+header .logo h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+  /* Remove margin for better centering */
+  /* padding-bottom: 25px; */
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  /* Increase spacing between nav items */
+}
+
+header nav ul li {
+  margin: 0;
+  /* Remove extra margin */
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 5px;
+
+  background-color: #333;
+  padding: 1rem 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  /* Adjust padding to reduce overall height */
+}
+
+/* header nav .brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+} */
+
+header nav .logo h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0;
+  /* Remove margin */
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* header nav ul li {
+  margin: 0 0.5rem;
+} */
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  /* margin-right: -1rem; */
+  /* padding: 0.5rem 0.75rem; */
+  /* Adjust padding for links */
+  transition: color 0.3s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    /* Adjust padding to reduce overall height */
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  header nav .hamburger {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    color: #fff;
+    padding: 1rem;
+    /* Adjust padding for hamburger icon */
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    /* Adjust right position as needed */
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+    /* Hide the navbar items */
+    width: 100%;
+    height:100vh;
+    /* Full width for mobile view */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    /* Background color for the floating menu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a box shadow */
+    padding: 1rem;
+    /* Add padding */
+    border-radius: 0 0 8px 8px;
+    /* Rounded corners at the bottom */
+  }
+
+  header nav ul.show {
+    display: flex;
+    /* Show the navbar items when the hamburger is clicked */
+    align-items: flex-end;
+  }
+
+  /* header nav ul li {
+    /* margin: 0.5rem 0; */
+    /* Adjust margin for vertical spacing */
+   */
+
+  header nav ul li a:hover {
+    color: #00c6ff;
+
+    border-bottom: 2px solid #00c6ff;
+
+    /* color: #000; */
+    /* border-radius: .75rem; Rounded corners for active link */
+  }
+}
+
+/* Styles for larger screens */
+@media (min-width: 901px) {
+  header nav .hamburger {
+    display: none;
+  }
+
+  header nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  header nav ul li {
+    margin: 0 0.5rem;
+    /* Reduce margin between items */
+  }
+
+  header nav ul li a:hover {
+    background-color: #00c6ff;
+    color: #000;
+    border-radius: 0.75rem;
+    /* Rounded corners for active link */
+  }
+}
+
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+    
+   
+.container .registration{
+  display: block;
+}
+#check{
+  display: none;
+}
+.container .form{
+  padding: 2rem;
+}
+.form header{
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+ .form input{
+   height: 60px;
+   width: 100%;
+   padding: 0 15px;
+   font-size: 17px;
+   margin-bottom: 1.3rem;
+   border: 1px solid #ddd;
+   border-radius: 6px;
+   outline: none;
+ }
+ .form input:focus{
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+ }
+.form a{
+  font-size: 16px;
+  color: #00c6ff;
+  text-decoration: none;
+}
+.form a:hover{
+  text-decoration: underline;
+}
+.form input.button{
+  color: #fff;
+  background:#00c6ff;;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 1.7rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.form input.button:hover{
+  background: #435681;
+}
+.signup{
+  font-size: 17px;
+  text-align: center;
+}
+.signup label{
+  color: #009579;
+  cursor: pointer;
+}
+.signup label:hover{
+  text-decoration: underline;
+}
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: flex;
+    }
+
+    
+
+    .section__container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 5rem 1rem;
+    }
+
+    .section__header {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: center;
+    }
+    .contact-form .image-container {
+    width: 40%;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    padding: 0.3rem;
+}
+
+
+
+
+
+
     </style>
 </head>
 
@@ -237,41 +639,69 @@
             </ul>
         </nav>
     </header>
-
-    <section class="contact-hero">
-        <div class="hero-content">
-            <h2>Contact ML Fusion Labs</h2>
-            <p>Have questions or feedback? We’d love to hear from you!</p>
+    <section class = "contact-section">
+      <div class = "contact-bg">
+        <h3>Get in Touch with Us</h3>
+        <h2>contact us</h2>
+        <div class = "line">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-    </section>
+        <p class = "text">We're here to assist you. Reach out to us for any inquiries or assistance you may need.</p>
+      </div>
 
-    <section class="contact-container">
-        <div class="contact-card">
-          <h2 style="font-weight: bold;">Get in Touch</h2>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30773392.078304354!2d61.028322527582525!3d19.69057626482709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1728715127994!5m2!1sen!2sin" width=100% height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          <div id="success-alert" class="alert alert-success" role="alert" style="display: none;">
-            Message sent successfully.
+
+      <div class = "contact-body">
+        <div class = "contact-info">
+          <div>
+            <span><i class = "fas fa-mobile-alt"></i></span>
+            <span>Phone No.</span>
+            <span class = "text"> +1 (555) 123-4567</span>
           </div>
-      
-          <form id="contact-form" method="post" novalidate>
-            <div>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <div id="name-error" class="error-message" style="color: red; display: none;"></div>
-      
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <div id="email-error" class="error-message" style="color: red; display: none;"></div>
-      
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-            <div id="message-error" class="error-message" style="color: red; display: none;"></div>
-      
-            <button type="reset">Reset</button>
-            <button type="submit">Send Message</button>
-          </form>
+          <div>
+            <span><i class = "fas fa-envelope-open"></i></span>
+            <span>E-mail</span>
+            <span class = "text">info@mlfusionlabs.com</span>
+          </div>
+          <div>
+            <span><i class = "fas fa-map-marker-alt"></i></span>
+            <span>Address</span>
+            <span class = "text">Tejashwi Nagar Jalandhar Cantt, Jalandhar , Pin Code:- 144005.</span>
+          </div>
+          <div>
+            <span><i class = "fas fa-clock"></i></span>
+            <span>Opening Hours</span>
+            <span class = "text">Monday - Friday (9:00 AM to 5:00 PM)</span>
+          </div>
         </div>
-      </section>
+
+        <div class="contact-form">
+          <form id="contactForm">
+            <div>
+              <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+              <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+            </div>
+            <div>
+              <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+              <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+            </div>
+            <textarea rows="5" placeholder="Message" class="form-control" id="message" required></textarea>
+            <input type="submit" class="send-btn" value="Send Message">
+          </form>
+        
+          <div class="image-container">
+            <img src="Assets/contact.webp" alt="Contact">
+          </div>
+        </div>
+      </div>
+
+      <div class = "map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.911005285574!2d75.6909327144019!3d31.253255681433364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a9089cd71f61f%3A0x3d684c9690d14a5!2sLovely%20Professional%20University%2C%20Jalandhar%2C%20Punjab%20144401%2C%20India!5e0!3m2!1sen!2sus!4v1649982737577!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+
+      
+    </section>
       
 
     <footer>
@@ -298,48 +728,47 @@
     <script src="scroll.js"></script>
     <script src="script.js"></script>
     <script>
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-
-    const name = document.getElementById('name').value.trim();
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from submitting
+    
+    // Get form values
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
     const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
     const message = document.getElementById('message').value.trim();
-    const emailPattern = /.*?@?[^@]*\.+.*/;
-
-    let hasError = false;
-
-    if (name === '') {
-        document.getElementById('name-error').textContent = 'Please enter your name.';
-        document.getElementById('name-error').style.display = 'block';
-        hasError = true;
-    } else {
-        document.getElementById('name-error').style.display = 'none';
+    
+    // Validate first and last name
+    if (firstName === '' || lastName === '') {
+      alert('Please enter your first and last name.');
+      return;
     }
-
-    if (email === '') {
-        document.getElementById('email-error').textContent = 'Please enter your email.';
-        document.getElementById('email-error').style.display = 'block';
-        hasError = true;
-    } else if (!emailPattern.test(email)) {
-        document.getElementById('email-error').textContent = 'Please enter a valid email address.';
-        document.getElementById('email-error').style.display = 'block';
-        hasError = true;
-    } else {
-        document.getElementById('email-error').style.display = 'none';
+    
+    // Validate email format
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
     }
-
+    
+    // Validate phone number (for simplicity, checking if it's all digits and has 10-15 characters)
+    const phonePattern = /^[0-9]{10,15}$/;
+    if (!phonePattern.test(phone)) {
+      alert('Please enter a valid phone number (10-15 digits).');
+      return;
+    }
+    
+    // Validate message
     if (message === '') {
-        document.getElementById('message-error').textContent = 'Please enter your message.';
-        document.getElementById('message-error').style.display = 'block';
-        hasError = true;
-    } else {
-        document.getElementById('message-error').style.display = 'none';
+      alert('Please enter your message.');
+      return;
     }
-    if (!hasError) {
-        document.getElementById('success-alert').style.display = 'block';
-        document.getElementById('contact-form').reset(); 
-    }
-});
+    
+    // If all validations pass
+    alert('Form submitted successfully!');
+    // You can submit the form here, for example:
+    // this.submit();
+  });
 
       </script>
   </body>
