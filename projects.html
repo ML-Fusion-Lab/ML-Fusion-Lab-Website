@@ -147,14 +147,15 @@
 .project-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
-    gap: 20px; /* Adjust gap between items */
+    gap: 40px; /* Increased gap to create space between items */
     padding: 20px;
 }
 
 .project-item {
-    height: 400px; /* Fixed height for consistency */
-    background-color: #f4f4f4;
+    height: 400px;
+    background-color: #ffffff;
     padding: 20px;
+    margin: 0 15px; /* Add horizontal margin for extra spacing */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
@@ -162,7 +163,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-    overflow: hidden; /* Prevents overflow of content */
+    overflow: hidden;
 }
 
 .project-item img {
