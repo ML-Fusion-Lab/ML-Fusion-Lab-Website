@@ -2228,6 +2228,11 @@ h2 {
   /* Space between project items */
 }
 
+.project-list .project-item {
+  height: 430px;
+  justify-content: flex-start;
+}
+
 .project-item {
   background-color: white;
   padding: 30px;
@@ -2253,6 +2258,12 @@ h2 {
   margin-bottom: 15px;
 }
 
+.project-list .project-item img {
+  height: 125px;
+  max-height: none;
+  margin: 0;
+}
+
 .project-item p {
   font-size: 16px;
   color: #555;
@@ -2261,6 +2272,8 @@ h2 {
 }
 
 .project-item .btn {
+  display: inline-block;
+  margin-top: auto;
   padding: 10px 20px;
   background-color: #00c6ff;
   color: white;
