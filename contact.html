@@ -67,8 +67,7 @@
             color: white;
         }
 
-      
-  /* Container for the progress bar */
+      /* Container for the progress bar */
 #progress-container {
   position: fixed;
   top: 0;
@@ -129,10 +128,7 @@
 header {
   height: 100px;
 }
-body{
- min-height:100vh;
- max-width:100vw;
-}
+
 .logo {
   margin: 5px 0px 5px 0px;
   width: 100px;
@@ -140,16 +136,133 @@ body{
   height: 100px;
 }
 
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: auto; 
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007bff;
+}
+
+.footer-contact {
+  margin: 10px 0;
+}
 
 body {
   .container h2 {
     font-size: 40px;
   }
 
-  
+  /*Newsletter Styles*/
+  .newsletter {
+    height: 200px;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+    text-align: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px solid white;
+  }
+  .newsletter-left {
+    margin-left: 0px;
+  }
+  .newsletter-left h1 {
+    font-size: 1.5rem;
+    font-family: Poppins;
+    font-weight: 500;
+  }
+  .newsletter-left p {
+    font-size: 1rem;
+    font-family: Poppins;
+    font-weight: 300;
+  }
   
 
-  
+  /* Responsive styles */
+  @media (max-width: 900px) {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.5rem;
+     /* Adjust padding to reduce overall height */
+    }
+
+    header nav {
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 100vw;
+    }
+
+    header nav .hamburger {
+      display: block;
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+      padding: 1rem; /* Adjust padding for hamburger icon */
+      position: absolute;
+      top: 0;
+      right: 1rem; /* Adjust right position as needed */
+    }
+
+    header nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      display: none; /* Hide the navbar items */
+      max-height:100vw; /* Full width for mobile view */
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #333; /* Background color for the floating menu */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+      padding: 1rem; /* Add padding */
+      border-radius: 0 0 8px 8px; /* Rounded corners at the bottom */
+    }
+
+    header nav ul.show {
+      display: flex; /* Show the navbar items when the hamburger is clicked */
+      align-items: flex-start;
+    }
+
+    header nav ul li {
+      margin: 0.5rem 1rem; /* Adjust margin for vertical spacing */
+    }
+    header nav ul li a:hover {
+      color: #00c6ff;
+
+      border-bottom: 2px solid #00c6ff;
+
+      /* color: #000; */
+      /* border-radius: .75rem; Rounded corners for active link */
+    }
+  }
 
   /* Styles for larger screens */
   @media (min-width: 901px) {
@@ -179,12 +292,319 @@ body {
 
   
 
- 
- 
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
 
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+
+/*  home page dark theme styles */
+body.dark-mode section.about {
+  margin-top: 2px;
+  background-color: #000000;
+  color: whitesmoke;
+  padding: 150px 20px;
+  text-align: center;
+}
+body.dark-mode section.about h3 {
+  color: rgb(0, 0, 0);
+}
+body.dark-mode section.about .content .content-heading {
+  color: rgb(255, 255, 255);
+}
+body.dark-mode section.about img {
+  border-radius: 15px;
+  box-shadow: 20px 20px 20px rgb(51, 46, 46);
+}
+
+body.dark-mode .features {
+  margin-top: 2px;
+
+  background-color: #000000;
+  color: white;
+}
+
+body.dark-mode .feature-item {
+  background-color: #2e2a2a;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  width: 30%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+body.dark-mode .feature-item h3 {
+  color: white;
+}
+
+body.dark-mode .feature-item p {
+  color: white;
+}
+
+body.dark-mode .newsletter {
+  background-color: black;
+  margin-top: 0;
+  /* Adjust this based on your needs */
+  padding: 20px;
+}
+
+body.dark-mode .newsletter-left {
+  color: white;
+}
+
+body.dark-mode .newsletter .input-group .input {
+  color: white;
+}
+body.dark-mode .newsletter-right {
+  color: white;
+}
+
+/* Here are the styles for the theme toggel  */
+.theme-switch {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background: linear-gradient(82deg, #ffffff, #00796b);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  vertical-align: middle;
+}
+
+.theme-switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+  background-image: url("Assets/moon.png");
+}
+
+.theme-switch.dark-theme {
+  background: linear-gradient(82deg, #ffffff, #1f1f1f);
+}
+
+.theme-switch.dark-theme::before {
+  left: 33px;
+  background-image: url("Assets/sun.png");
+}
+
+/*  contact page  dark theme*/
+body.dark-mode .contact-hero {
+  margin-bottom: 1px;
+  background: black;
+}
+
+body.dark-mode .contact-us {
+  background: black;
+  color: white;
+}
+
+/* About page dark theme */
+body.dark-mode .about-hero {
+  background: url('robot-2301646_1280.jpg') no-repeat center center; /* Set the background image */
+  background-size: cover; /* Ensure the background image covers the entire div */
+  color: white;
+  background-position: top;
+}
+body.dark-mode .about-us {
+  margin-top: 2px;
+  background: black;
+  color: white;
+}
+
+body.dark-mode .about-us p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+body.dark-mode .h2text {
+  color: white;
+}
+body.dark-mode .team-member p {
+  color: rgb(3, 3, 3);
+}
+
+/* project page dark theme */
+body.dark-mode .projects-hero {
+  background-color: #000;
+}
+
+body.dark-mode .projects {
+  margin-top: 2px;
+  background-color: #000;
+  color: white;
+}
+
+body.dark-mode .project-list {
+  background-color: #000;
+}
+
+body.dark-mode .project-item {
+  background-color: #8d7575;
+}
+
+body.dark-mode .project-item h3 {
+  color: black;
+}
+
+body.dark-mode .project-item p {
+  color: black;
+}
+
+body.dark-mode .project-item .btn {
+  color: white;
+  background-color: black;
+}
+/* course page dark theme styles */
+body.dark-mode .hero-small {
+  background-color: #000;
+}
+body.dark-mode .courses {
+  margin-top: 2px;
+  background-color: #000;
+  color: white;
+}
+body.dark-mode .course-item {
+  background-color: #8d7575;
+  color: #000000;
+}
+body.dark-mode .course-item h3 {
+  color: #000000;
+}
+body.dark-mode .course-item p {
+  color: #000000;
+}
+body.dark-mode .course-item .btn {
+  color: white;
+  background-color: black;
+}
+/* privacy terms.terms-container dark theme styles */
+body.dark-mode .privacy-hero {
+  background-color: black;
+  margin-bottom: 2px;
+}
+body.dark-mode .privacy-policy {
+  background-color: black;
+  color: white;
+}
+body.dark-mode .privacy-policy p {
+  color: white;
+}
+body.dark-mode .privacy-policy h3 {
+  color: rgb(59, 223, 231);
+}
+/* terms dark theme styles */
+body.dark-mode .terms-hero {
+  background-color: black;
+  margin-bottom: 2px;
+}
+body.dark-mode .terms-of-service {
+  background-color: black;
+  color: white;
+}
+body.dark-mode .terms-of-service p {
+  color: white;
+}
+body.dark-mode .terms-of-service h3 {
+  color: rgb(59, 223, 231);
+}
+#scrolltopbutton {
+  background-color: #505056;
+  color: #e0c0c0;
+}
 header {
   height: 100px;
 }
+
 
 
 footer {
@@ -223,11 +643,7 @@ footer {
   margin: 10px 0;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 body {
   .container h2 {
@@ -263,8 +679,6 @@ body {
     font-weight: 300;
   }
 
-  
-
   @media (max-width: 1000px) {
     .newsletter {
       height: 300px;
@@ -288,10 +702,35 @@ body {
       padding-left: 200px;
       width: 80%;
     }
-   
+    .input-group {
+      margin-right:0;
+      margin-top: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    
+  }
+  /* Header Styles */
+  header {
+    padding: 20px;
+    width: 100%;
+    background-color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 10px 10px 10px solid white;
+  }
+
+  .newsletter-right {
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+    width: 80%;
   }
   
- 
 }
 /* Header Styles */
 header {
@@ -491,6 +930,41 @@ header nav ul li a {
   }
 }
 
+@media (max-width: 768px) {
+  .feature-grid {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the items */
+  }
+
+  .feature-item {
+    max-width: 100%; /* Each item takes full width */
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+}
+
+/* For mobile devices (below 576px) */
+@media (max-width: 576px) {
+  .feature-item {
+    padding: 15px;
+  }
+
+  .feature-item h3 {
+    font-size: 1.3em;
+  }
+
+  .feature-item p {
+    font-size: 0.9em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
 
 footer {
   background-color: #1a1a1a;
@@ -511,6 +985,168 @@ footer p a {
 footer p a:hover {
   text-decoration: underline;
 }
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+
+/* Footer Styles */
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+
+/* Testimonials Page Dark Theme */
+body.dark-mode {
+  background: #121212; /* Dark background */
+  color: white; /* Default text color */
+}
+
+body.dark-mode .testimonial-section {
+  background-color: #1e1e1e; /* Darker background for testimonials */
+  border-radius: 12px; /* Match the light mode border radius */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Adjust shadow for dark mode */
+}
+
+body.dark-mode .testimonial-section h2 {
+  color: #e0e0e0; /* Light text for heading */
+}
+
+body.dark-mode .testimonial {
+  background-color: #292929; /* Dark background for each testimonial */
+  color: #ffffff; /* Light text for testimonials */
+}
+
+body.dark-mode .testimonial p {
+  color: #b0b0b0; /* Slightly lighter text for paragraph */
+}
+
+body.dark-mode .testimonial h4 {
+  color: #ffbb33; /* Use a different color for names, maybe golden */
+}
+
+body.dark-mode .testimonial span {
+  color: #66bb6a; /* Different color for job roles */
+}
+
+body.dark-mode .testimonial img {
+  border: 2px solid #505050; /* Dark border around images */
+}
+
+body.dark-mode .rating {
+  color: #ffb400; /* Keep the star color */
+}
+
+/* Navbar dark mode styles */
+body.dark-mode header {
+  background-color: #333; /* Keep header dark */
+}
+
+body.dark-mode nav ul li a {
+  color: #ffffff; /* Light links */
+}
+
+body.dark-mode nav ul li a:hover {
+  color: #ccc; /* Light hover effect */
+}
+
+/* Footer dark mode styles */
+body.dark-mode footer {
+  background: #222; /* Dark footer */
+  color: white;
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-socials a {
+  color: white; /* Light footer link colors */
+}
+
+body.dark-mode .footer-links a:hover,
+body.dark-mode .footer-socials a:hover {
+  color: #007bff; /* Keep hover color for footer links */
+}
+
+/* Scroll to top button in dark mode */
+body.dark-mode #scrolltopbutton {
+  background-color: #505056; /* Keep as is or change to match dark theme */
+  color: #e0c0c0; /* Light color for button text */
+}
+
+
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
     
@@ -636,6 +1272,7 @@ footer p a:hover {
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
             </ul>
         </nav>
     </header>
