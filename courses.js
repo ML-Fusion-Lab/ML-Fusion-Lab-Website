@@ -1,83 +1,103 @@
 import courses from "./courseDetails.js";
 
-// Select card container
 const cardContainer = document.querySelector(".cards-container");
 const loadMoreButton = document.querySelector(".load-more-button");
+const searchInput = document.getElementById("search-id");
+
 // Render courses
-
-
 const cardPerPage = 5;
 let currentIndex = 0;
+let filteredCourses = courses; // Create a filtered array
 
-const loadMore = () => {
-  for (
-    let i = currentIndex;
-    i < currentIndex + cardPerPage && i < courses.length;
-    i++
-  ) {
-    // Create card element
-    const card = document.createElement("a");
-    const cardImg = document.createElement("img");
-    const cardContent = document.createElement("div");
-    const logoDiv = document.createElement("div");
-    const logo = document.createElement("img");
-    const title = document.createElement("h3");
-    const desc = document.createElement("p");
-    const skills = document.createElement("span");
-    const logoName = document.createElement("span");
-    // Set attributes
-    card.className = "card no-decoration";
-    card.setAttribute("href", `course_details.html?courseId=${courses[i].id}`);
+// Function to create and append course cards
+const createCourseCard = (course) => {
+  const card = document.createElement("a");
+  const cardImg = document.createElement("img");
+  const cardContent = document.createElement("div");
+  const logoDiv = document.createElement("div");
+  const logo = document.createElement("img");
+  const title = document.createElement("h3");
+  const desc = document.createElement("p");
+  const skills = document.createElement("span");
+  const logoName = document.createElement("span");
 
-    cardImg.setAttribute("src", courses[i].img);
-    cardImg.setAttribute("alt", courses[i].title);
+  // Set attributes
+  card.className = "card no-decoration";
+  card.setAttribute("href", `course_details.html?courseId=${course.id}`);
+  cardImg.setAttribute("src", course.img);
+  cardImg.setAttribute("alt", course.title);
 
-    cardContent.className = "card-content";
+  cardContent.className = "card-content";
+  logoDiv.className = "logo";
+  logoName.innerHTML = course.logoName;
+  logoName.className = "logoName";
+  logo.setAttribute("src", course.logo);
 
-    logoDiv.className = "logo";
-    logoName.innerHTML = courses[i].logoName;
-    logoName.className = "logoName";
-    logo.setAttribute("src", courses[i].logo);
+  title.innerHTML = course.title;
+  desc.innerHTML = course.desc;
 
-    title.innerHTML = courses[i].title;
-    desc.innerHTML = courses[i].desc;
+  skills.className = "tag";
+  skills.innerHTML = course.skills;
 
-    skills.className = "tag";
-    skills.innerHTML = courses[i].skills;
+  // Append the elements
+  card.appendChild(cardImg);
+  card.appendChild(cardContent);
+  cardContent.appendChild(logoDiv);
+  cardContent.appendChild(title);
+  cardContent.appendChild(desc);
 
-    // Append the elements
-    card.appendChild(cardImg);
-    card.appendChild(cardContent);
-
-    cardContent.appendChild(logoDiv);
-    cardContent.appendChild(title);
-    cardContent.appendChild(desc);
-
-    // If skill is not present then do not append
-    if (courses[i].skills) {
-      cardContent.appendChild(skills);
-    }
-
-    logoDiv.appendChild(logo);
-    logoDiv.appendChild(logoName);
-    cardContainer.appendChild(card);
+  if (course.skills) {
+    cardContent.appendChild(skills);
   }
+
+  logoDiv.appendChild(logo);
+  logoDiv.appendChild(logoName);
+  cardContainer.appendChild(card);
+};
+
+// Function to render courses
+const renderCourses = () => {
+  // Clear the container
+  cardContainer.innerHTML = "";
+
+  // Show courses based on current index and cardPerPage
+  const coursesToShow = filteredCourses.slice(0, currentIndex + cardPerPage);
+  coursesToShow.forEach((course) => createCourseCard(course));
+
+  // Update the current index
   currentIndex += cardPerPage;
 
-  if (currentIndex > courses.length) {
+  // Hide load more button if all courses are loaded
+  if (currentIndex >= filteredCourses.length) {
     loadMoreButton.classList.add("hide-btn");
+  } else {
+    loadMoreButton.classList.remove("hide-btn");
   }
 };
 
-// Load cards on click event
+// filter courses 
+const filterCourses = (query) => {
+  currentIndex = 0; 
+  filteredCourses = courses.filter((course) =>
+    course.title.toLowerCase().includes(query.toLowerCase())
+  );
+  renderCourses();
+};
+
+
 loadMoreButton.addEventListener("click", () => {
-  loadMore();
+  renderCourses();
 });
 
-// Function is called once statically to load initial cards.
-loadMore();
+//search input 
+searchInput.addEventListener("input", (e) => {
+  const searchQuery = e.target.value;
+  filterCourses(searchQuery);
+});
 
-// <!-- js for mouse cursor trail effect -->
+// Initial render of courses
+renderCourses();
+
 
    document.addEventListener("DOMContentLoaded", function () {
 const coords = { x: 0, y: 0 };
@@ -90,7 +110,7 @@ circles.forEach(function (circle) {
 
 window.addEventListener("mousemove", function (e) {
   coords.x = e.pageX;
-  coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+  coords.y = e.pageY - window.scrollY;
 });
 
 window.onload=function(){
