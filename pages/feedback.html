@@ -592,7 +592,7 @@ body.dark-mode .newsletter-right {
   background-repeat: no-repeat;
   background-position: center;
   transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
-  background-image: url("Assets/moon.png");
+  background-image: url("../Assets/moon.png");
 }
 
 .theme-switch.dark-theme {
@@ -601,7 +601,7 @@ body.dark-mode .newsletter-right {
 
 .theme-switch.dark-theme::before {
   left: 33px;
-  background-image: url("Assets/sun.png");
+  background-image: url("../Assets/sun.png");
 }
 
 /*  contact page  dark theme*/
@@ -1357,6 +1357,40 @@ body.dark-mode #scrolltopbutton {
         </main>
     </div>
     
+    <script>
+      document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Get values from the form
+          const rating = document.querySelector('input[name="rating"]:checked')?.value;
+          const score = document.getElementById('score').value;
+          const comment = document.getElementById('comment').value;
+          const month = document.getElementById('month').value;
+          const year = document.getElementById('year').value;
+
+          // Create feedback object
+          const feedback = {
+              rating: rating,
+              satisfactionScore: score,
+              comment: comment,
+              startMonth: month,
+              startYear: year
+          };
+
+          // Get existing feedback from local storage
+          const feedbackList = JSON.parse(localStorage.getItem('feedbackList')) || [];
+
+          // Add the new feedback to the list
+          feedbackList.push(feedback);
+
+          // Save updated feedback list back to local storage
+          localStorage.setItem('feedbackList', JSON.stringify(feedbackList));
+          alert('Thank you for your feedback! Your response has been recorded.');
+          // Clear the form inputs
+          this.reset();
+      });
+  </script>
+
     <footer>
         <div class="footer-container">
             <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
@@ -1380,32 +1414,7 @@ body.dark-mode #scrolltopbutton {
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="../script/scroll.js"></script>
     <script src="../script/script.js"></script>
-    <script>
-    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const score = document.getElementById('score').value;
-            const comment = document.getElementById('comment').value;
-            const month = document.getElementById('month').value;
-            const year = document.getElementById('year').value;
 
-            // Check if all fields are filled
-            if (score && comment && month && year) {
-                // Here you would typically send the data to your server
-                // For this example, we'll just log it to the console
-                console.log('Feedback submitted:', { score, comment, month, year });
-
-                // Show alert
-                alert('Thank you! Your feedback has been successfully submitted.');
-
-                // Reset the form
-                this.reset();
-            } else {
-                alert('Please fill in all fields before submitting.');
-            }
-        });
-      </script>
       <div class="gtranslate_wrapper"></div>
       <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
       <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
