@@ -6,7 +6,7 @@ Welcome to **ML Fusion Lab**!.
 
 ## Website Preview
 
-![image](https://github.com/user-attachments/assets/be4a8f54-f883-4da8-b31a-f4491decff82)
+![website preview](https://github.com/user-attachments/assets/23ef8acb-a9cd-4e19-8422-112b19afc11e)
 
 ---
 
