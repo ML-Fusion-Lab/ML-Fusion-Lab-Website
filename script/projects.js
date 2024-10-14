@@ -7,7 +7,7 @@ const projects = [
     "imgStyle": "box-shadow: none; border-radius: 5px;",
     "cardTitle": "Dog Breed Classifier",
     "cardDesc": "In this tutorial, we build a dog breed classifier using the MobileNetV2 and Convolutional Neural Networks (CNNs).",
-    "learnMoreLink": "#"
+    "learnMoreLink": "../pages/dog_breed_classifier.html"
   },
   {
     "modelid": "modal2",
@@ -16,7 +16,7 @@ const projects = [
     "imgStyle": "box-shadow: none; border-radius: 5px;",
     "cardTitle": "Paddy Disease Classifier",
     "cardDesc": "In this tutorial, we build a paddy disease classifier using Convolutional Neural Networks (CNNs).",
-    "learnMoreLink": "#"
+    "learnMoreLink": "../pages/paddy_disease_tutorial.html"
   },
     {
       "modelid": "modal3",
