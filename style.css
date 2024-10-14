@@ -3145,3 +3145,27 @@ body.dark-mode #scrolltopbutton {
   color: white;
   background-color: black;
 }
+.footer-socials a {
+  font-size: 25px;
+  transition: all .38s ease;
+  color: #007bff;
+}
+.footer-socials a:hover{
+  color: white;
+  transform: scale(1.2);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+    #linkedin:hover{
+        color: white;
+        background-color:#0a66c2 ;
+    }
+    #facebook:hover{
+        padding: 2px 8px;
+        color: white;
+        background-color: #2e46ff;
+    }
+    #twitter:hover{
+        color: black;
+        background-color: #ffffff;
+    }

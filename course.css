@@ -215,7 +215,7 @@ footer .container {
   padding: 0 20px;
 }
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -231,7 +231,7 @@ footer .container {
 .footer-links a:hover,
 .footer-socials a:hover {
   color: #007BFF;
-}
+} */
 
 .footer-contact {
   margin: 10px 0;
@@ -247,7 +247,7 @@ footer .container {
   text-decoration: underline;
 }
 
-.footer-socials a {
+/* .footer-socials a {
   margin: 0 10px;
   color: rgb(240, 228, 228); 
   font-size: 24px;
@@ -256,7 +256,7 @@ footer .container {
 
 .footer-socials a:hover {
   color: #aca7eb;
-}
+} */
 
 footer p {
   font-size: 14px;

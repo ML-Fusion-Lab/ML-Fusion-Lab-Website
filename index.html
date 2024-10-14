@@ -26,6 +26,9 @@
           height: 200px;
 
         }
+        nav{
+          margin: 1rem 0;
+        }
         nav ul{
           list-style-type: none;
   padding: 0;
@@ -77,13 +80,17 @@
           color: white;
           text-decoration: none;
           margin: 0 10px;
-          transition: color 0.3s;
+          transition: all .38s ease-in-out;
         }
 
         .footer-links a:hover,
         .footer-socials a:hover {
-          color: #007bff;
+          color: white;
+          transform: scale(1.2);
+          padding: 2px 5px;
+          border-radius: 4px;
         }
+        
 
         .footer-socials a {
           font-size: 24px;
@@ -558,13 +565,13 @@
       <div class="container">
         <div class="footer-socials">
           Follow us on:
-          <a href="https://facebook.com" target="_blank"
+          <a href="https://facebook.com" id="facebook" target="_blank"
             ><i class="fab fa-facebook-f"></i
           ></a>
-          <a href="https://twitter.com" target="_blank"
+          <a href="https://twitter.com" id="twitter" target="_blank"
             ><i class="fa-brands fa-x-twitter"></i
           ></a>
-          <a href="https://linkedin.com" target="_blank"
+          <a href="https://linkedin.com" id="linkedin" target="_blank"
             ><i class="fab fa-linkedin-in"></i
           ></a>
         </div>
