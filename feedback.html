@@ -31,7 +31,8 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 500px;
+            width: 400px; /* Reduced from 500px */
+            max-width: 90%; /* Added to ensure responsiveness */
         }
 
         .header {
@@ -115,6 +116,39 @@
             resize: none;
         }
 
+        /* Add these new styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00a0ff;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background-color 0.3s;
+            padding: 0;
+        }
+
+        #backToTop:hover {
+            background-color: #0080ff;
+        }
+
+        #backToTop svg {
+            width: 24px;
+            height: 24px;
+            transform: rotate(-90deg);
+            display: block;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
@@ -203,7 +237,31 @@
             document.getElementById('feedbackForm').classList.remove('hidden');
             document.getElementById('feedbackResponse').classList.add('hidden');
         }
+
+        // Add these new functions
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("backToTop").style.display = "block";
+            } else {
+                document.getElementById("backToTop").style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
     
+    <!-- Add this button just before the closing body tag -->
+    <button id="backToTop" onclick="scrollToTop()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="currentColor"/>
+        </svg>
+    </button>
 </body>
 </html>
