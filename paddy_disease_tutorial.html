@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paddy Disease Classification Using CNN</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scroll.css" />
+</head>
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <h1>
+          <img src="ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="community_suport.html">Community Support</a></li>
+
+        <li><a href="feedback.html">Feedback</a></li>
+        <div class="theme-switch" id="theme-switch"></div>
+      </ul>
+    </nav>
+  </header>
+<div class="project-container">
+  <div id="b49f66bc" class="cell markdown"
+data-papermill="{&quot;duration&quot;:2.5905e-2,&quot;end_time&quot;:&quot;2024-10-11T14:12:06.935748&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:06.909843&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<h1 id="paddy-disease-classification-using-cnn" style="text-align: center;">Paddy Disease Classification Using CNN</h1>
+</div>
+<div id="1a7b5d01" class="cell markdown">
+<p>In this tutorial, we will learn how to create a deep learning model
+using a <strong>Convolutional Neural Network (CNN)</strong> to classify
+paddy diseases. Paddy (rice) is one of the most important crops
+worldwide, and diseases affecting it can lead to significant economic
+losses. Machine learning can help farmers detect diseases early by
+analyzing images of affected leaves.</p>
+<p>We will build a CNN model that can classify different paddy leaf
+diseases using a dataset of images. The process involves:</p>
+<ul>
+<li><strong>Loading and preprocessing the dataset</strong>: We will
+prepare our dataset by resizing images, normalizing pixel values, and
+applying data augmentation to prevent overfitting.</li>
+<li><strong>Building the CNN architecture</strong>: We'll create a CNN
+with multiple convolutional, pooling, and dense layers.</li>
+<li><strong>Training the model</strong>: The model will be trained on
+the preprocessed images.</li>
+<li><strong>Evaluating and testing</strong>: Finally, we will evaluate
+the model's performance using accuracy and loss metrics. Let's dive in
+and build a paddy disease classification model step by step!</li>
+</ul>
+</div>
+<div id="87ce659f" class="cell markdown">
+<h2 id="step-1-importing-libraries">Step 1: Importing Libraries</h2>
+<p>We start by importing the necessary libraries for building and
+training our CNN model.</p>
+</div>
+<div id="e6861a7c" class="cell code" data-execution_count="2"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:06.987887Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:06.987343Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:12:20.863558Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:12:20.862774Z&quot;}"
+data-papermill="{&quot;duration&quot;:13.905288,&quot;end_time&quot;:&quot;2024-10-11T14:12:20.865918&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:06.960630&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras <span class="im">import</span> Sequential</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense,Conv2D,MaxPooling2D,Flatten,BatchNormalization,Dropout</span></code></pre></div>
+</div>
+<div id="d4aea16c" class="cell markdown">
+<h3 id="explaination">Explaination</h3>
+</div>
+<div id="9f869239" class="cell markdown">
+<ul>
+<li><strong>Pandas</strong> (<code>pd</code>): Used for data
+manipulation and analysis.</li>
+<li><strong>NumPy</strong> (<code>np</code>): Provides support for
+large, multi-dimensional arrays and matrices.</li>
+<li><strong>Matplotlib</strong> (<code>plt</code>): A plotting library
+to visualize data and model results.</li>
+<li><strong>Seaborn</strong> (<code>sns</code>): Based on Matplotlib,
+Seaborn provides high-level interface for drawing attractive statistical
+graphics.</li>
+<li><strong>TensorFlow</strong> (<code>tf</code>): A deep learning
+library, providing functions to build and train machine learning
+models.</li>
+<li><strong>Keras</strong> (<code>keras</code>): A high-level neural
+networks API, included within TensorFlow, that simplifies the process of
+building models.</li>
+<li><strong>Sequential</strong>: A linear stack of layers in Keras for
+creating neural networks step by step.</li>
+<li><strong>Conv2D</strong>: Convolutional layers used for feature extraction from
+images.</li>
+<li><strong>MaxPooling2D</strong>: Used to reduce the spatial dimensions
+of the output after convolution.</li>
+<li><strong>Flatten</strong>: Converts a 2D matrix of features into a
+vector.</li>
+<li><strong>BatchNormalization</strong>: Normalizes the output of a
+previous activation layer to speed up training.</li>
+<li><strong>Dropout</strong>: A regularization technique to prevent
+overfitting by randomly dropping units during training. Next, we'll set
+up the dataset preprocessing and architecture of the CNN model.</li>
+</ul>
+</div>
+<div id="39d5bb0f" class="cell markdown">
+<h2 id="step-2-loading-and-preprocessing-the-dataset">Step 2: Loading
+and Preprocessing the Dataset</h2>
+<p>We will load the dataset from the given directory and preprocess it
+by resizing images and splitting it into training and validation
+sets.</p>
+</div>
+<div id="b9e46617" class="cell code" data-execution_count="4"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:34.273803Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:34.273354Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:12:39.058375Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:12:39.057627Z&quot;}"
+data-papermill="{&quot;duration&quot;:4.816896,&quot;end_time&quot;:&quot;2024-10-11T14:12:39.060664&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:34.243768&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>train_ds <span class="op">=</span> keras.utils.image_dataset_from_directory(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    directory<span class="op">=</span><span class="st">&#39;/kaggle/input/paddy-disease-dataset/paddy-disease-classification/train_images&#39;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span><span class="st">&quot;inferred&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    label_mode<span class="op">=</span><span class="st">&quot;int&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    class_names<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    color_mode<span class="op">=</span><span class="st">&quot;rgb&quot;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">32</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    image_size<span class="op">=</span>(<span class="dv">256</span>, <span class="dv">256</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    validation_split<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    subset<span class="op">=</span><span class="st">&quot;training&quot;</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span>seed  <span class="co"># Add seed argument</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>validation_ds <span class="op">=</span> keras.utils.image_dataset_from_directory(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    directory<span class="op">=</span><span class="st">&#39;/kaggle/input/paddy-disease-dataset/paddy-disease-classification/train_images&#39;</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span><span class="st">&quot;inferred&quot;</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    label_mode<span class="op">=</span><span class="st">&quot;int&quot;</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    class_names<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    color_mode<span class="op">=</span><span class="st">&quot;rgb&quot;</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">32</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    image_size<span class="op">=</span>(<span class="dv">256</span>, <span class="dv">256</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    validation_split<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    subset<span class="op">=</span><span class="st">&quot;validation&quot;</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span>seed  <span class="co"># Add seed argument</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Found 10407 files belonging to 10 classes.
+Using 8326 files for training.
+Found 10407 files belonging to 10 classes.
+Using 2081 files for validation.
+</code></pre>
+</div>
+</div>
+<div id="5ae1a54b" class="cell markdown">
+<h3 id="explaination">Explaination</h3>
+</div>
+<div id="0556b592" class="cell markdown">
+<ul>
+<li><code>image_dataset_from_directory</code>: This function helps load
+images directly from the directory and automatically labels them based
+on folder structure.</li>
+<li><code>directory</code>: Path to the folder containing the paddy
+disease images.</li>
+<li><code>labels="inferred"</code>: Automatically infers labels from
+folder names.</li>
+<li><code>label_mode="int"</code>: Labels are returned as
+integer-encoded values.</li>
+<li><code>image_size=(256, 256)</code>: Each image is resized to 256x256
+pixels to maintain uniformity.</li>
+<li><code>validation_split=0.2</code>: 20% of the data is reserved for
+validation, while 80% is used for training.</li>
+<li><code>subset</code>: Specifies whether this dataset is used for
+training or validation.</li>
+<li><code>seed</code>: Setting a random seed ensures that the dataset
+split is reproducible.</li>
+</ul>
+</div>
+<div id="3d03f2a5" class="cell markdown">
+<h2 id="step-3-normalizing-the-dataset">Step 3: Normalizing the
+Dataset</h2>
+<p>Before training the model, we need to normalize the pixel values of
+the images. Neural networks tend to perform better when the data is
+normalized, i.e., pixel values are scaled between 0 and 1 instead of
+their original range of 0 to 255.</p>
+</div>
+<div id="7e3c9795" class="cell code" data-execution_count="5"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:39.118253Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:39.117673Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:12:39.183336Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:12:39.182622Z&quot;}"
+data-papermill="{&quot;duration&quot;:9.6433e-2,&quot;end_time&quot;:&quot;2024-10-11T14:12:39.185497&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:39.089064&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalizing the data </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(image,label):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> tf.cast(image<span class="op">/</span><span class="dv">255</span>,tf.float32)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> image,label</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>train_ds <span class="op">=</span> train_ds.<span class="bu">map</span>(process)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>validation_ds <span class="op">=</span> validation_ds.<span class="bu">map</span>(process)</span></code></pre></div>
+</div>
+<div id="07dd916f" class="cell markdown">
+<h3 id="explaination">Explaination</h3>
+</div>
+<div id="25afbef9" class="cell markdown">
+<ul>
+<li><code>process(image, label)</code>: This function normalizes each
+image by dividing the pixel values by 255 (scaling them from 0-255 to
+0-1).</li>
+<li><code>tf.cast(image/255, tf.float32)</code>: Converts the pixel
+values to float32 data type for compatibility with TensorFlow
+models.</li>
+<li><code>train_ds.map(process)</code>: Applies the normalization
+function to each image in the training dataset.</li>
+<li><code>validation_ds.map(process)</code>: Applies the normalization
+function to each image in the validation dataset. Now that our images
+are normalized, we can move on to building and compiling the CNN
+model.</li>
+</ul>
+</div>
+<div id="10533fc5" class="cell markdown">
+<h2 id="step-4-counting-the-number-of-classes">Step 4: Counting the
+Number of Classes</h2>
+<p>We need to determine how many disease categories (classes) are
+present in the dataset. This will help us define the output layer of our
+CNN model correctly.</p>
+</div>
+<div id="9a990e69" class="cell code" data-execution_count="6"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:39.244949Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:39.244552Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:12:39.250678Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:12:39.249783Z&quot;}"
+data-papermill="{&quot;duration&quot;:3.8408e-2,&quot;end_time&quot;:&quot;2024-10-11T14:12:39.252709&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:39.214301&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the directory path from the DirectoryIterator object</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dataset_path <span class="op">=</span> <span class="st">&#39;/kaggle/input/paddy-disease-dataset/paddy-disease-classification/train_images&#39;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of subdirectories (classes)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>num_classes <span class="op">=</span> <span class="bu">len</span>([name <span class="cf">for</span> name <span class="kw">in</span> os.listdir(dataset_path) <span class="cf">if</span> os.path.isdir(os.path.join(dataset_path, name))])</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Number of classes:&quot;</span>, num_classes)</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Number of classes: 10
+</code></pre>
+</div>
+</div>
+<div id="7ea6bf0c" class="cell markdown">
+<h3 id="explaination">Explaination</h3>
+</div>
+<div id="f1e8ac73" class="cell markdown">
+<ul>
+<li><code>os.listdir(dataset_path)</code>: Lists all the directories and
+files in the given dataset path.</li>
+<li><code>os.path.isdir()</code>: Checks if the listed item is a
+directory (which corresponds to a class in our case).</li>
+<li><code>num_classes</code>: This variable stores the total number of
+subdirectories, each representing a disease class. The number of classes
+is an important parameter when defining the output layer of the CNN
+model. Next, we will use this to finalize the architecture of our
+model.</li>
+</ul>
+</div>
+<div id="31bfbb8f" class="cell markdown">
+<h2 id="step-5-building-the-cnn-model">Step 5: Building the CNN
+Model</h2>
+<p>We will now define the architecture of the <strong>Convolutional
+Neural Network (CNN)</strong> for paddy disease classification. The
+model consists of several convolutional layers for feature extraction,
+followed by pooling layers for downsampling, and dense layers for
+classification.</p>
+</div>
+<div id="cca5e17d" class="cell code"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:39.308811Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:39.308452Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:12:39.504671Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:12:39.503691Z&quot;}"
+data-papermill="{&quot;duration&quot;:0.226734,&quot;end_time&quot;:&quot;2024-10-11T14:12:39.506892&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:39.280158&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create CNN model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>model.add(Conv2D(<span class="dv">128</span>,kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;valid&#39;</span>,strides <span class="op">=</span> <span class="dv">1</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>,input_shape<span class="op">=</span>(<span class="dv">256</span>,<span class="dv">256</span>,<span class="dv">3</span>)))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>model.add(MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;valid&#39;</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>model.add(Conv2D(<span class="dv">64</span>,kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;valid&#39;</span>,strides <span class="op">=</span> <span class="dv">1</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>model.add(MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;valid&#39;</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model.add(Conv2D(<span class="dv">32</span>,kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;same&#39;</span>,strides <span class="op">=</span> <span class="dv">1</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>model.add(MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;valid&#39;</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>model.add(Conv2D(<span class="dv">16</span>,kernel_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;same&#39;</span>,strides <span class="op">=</span> <span class="dv">1</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>model.add(MaxPooling2D(pool_size<span class="op">=</span>(<span class="dv">3</span>,<span class="dv">3</span>),padding<span class="op">=</span><span class="st">&#39;valid&#39;</span>))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>model.add(Flatten())</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">128</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>))</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>model.add(Dropout(<span class="fl">0.1</span>))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>model.add(Dense(<span class="dv">64</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>model.add(Dropout(<span class="fl">0.1</span>))</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>model.add(Dense(num_classes,activation<span class="op">=</span><span class="st">&#39;softmax&#39;</span>))</span></code></pre></div>
+</div>
+<div id="60362f3b" class="cell markdown">
+<h3 id="explanation-of-the-model-layers">Explanation of the Model
+Layers:</h3>
+<ul>
+<li><code>Conv2D(128, kernel_size=(3,3))</code>: This is a 2D
+convolution layer with 128 filters and a kernel size of 3x3. It extracts
+features from the input images. The activation function used is
+ReLU.</li>
+<li><code>MaxPooling2D(pool_size=(3,3))</code>: The pooling layer
+reduces the spatial dimensions of the output, helping to reduce the
+number of parameters.</li>
+<li><strong>Additional Conv2D and MaxPooling2D layers</strong>: The
+model adds more convolution and pooling layers with fewer filters to
+progressively learn complex features while reducing dimensions.</li>
+<li><code>Flatten()</code>: This layer flattens the 2D matrix output
+into a 1D vector, preparing it for the dense layers.</li>
+<li><code>Dense(128, activation='relu')</code>: A fully connected layer
+with 128 neurons. ReLU activation is used to introduce
+non-linearity.</li>
+<li><code>Dropout(0.1)</code>: Dropout is applied to prevent
+overfitting. It randomly drops 10% of the neurons during training.</li>
+<li><code>Dense(64, activation='relu')</code>: Another fully connected
+layer with 64 neurons.</li>
+<li><code>Dense(num_classes, activation='softmax')</code>: The output
+layer with a number of neurons equal to the number of classes. Softmax
+is used for multi-class classification. This architecture is designed to
+extract rich feature maps from the paddy disease images and classify
+them into the appropriate disease categories.</li>
+</ul>
+</div>
+<div id="fece11ba" class="cell markdown">
+<h2 id="step-6-compiling-the-cnn-model">Step 6: Compiling the CNN
+Model</h2>
+<p>Once the architecture of the CNN model is defined, the next step is
+to compile it. During compilation, we specify the optimizer, loss
+function, and evaluation metrics.</p>
+</div>
+<div id="7d534006" class="cell code" data-execution_count="8"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:39.567930Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:39.567518Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:12:39.600954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:12:39.599950Z&quot;}"
+data-papermill="{&quot;duration&quot;:6.6314e-2,&quot;end_time&quot;:&quot;2024-10-11T14:12:39.603101&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:39.536787&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.optimizers.legacy <span class="im">import</span> Adam</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">&#39;adam&#39;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">&#39;sparse_categorical_crossentropy&#39;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">&#39;accuracy&#39;</span>])</span></code></pre></div>
+<div class="output display_data">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential"</span>
+</pre>
+
+</div>
+<div class="output display_data">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ conv2d (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">254</span>, <span style="color: #00af00; text-decoration-color: #00af00">254</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)  │         <span style="color: #00af00; text-decoration-color: #00af00">3,584</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)    │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">84</span>, <span style="color: #00af00; text-decoration-color: #00af00">84</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)    │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">82</span>, <span style="color: #00af00; text-decoration-color: #00af00">82</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">73,792</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">27</span>, <span style="color: #00af00; text-decoration-color: #00af00">27</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">27</span>, <span style="color: #00af00; text-decoration-color: #00af00">27</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">18,464</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">9</span>, <span style="color: #00af00; text-decoration-color: #00af00">9</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)       │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2d_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">9</span>, <span style="color: #00af00; text-decoration-color: #00af00">9</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)       │         <span style="color: #00af00; text-decoration-color: #00af00">4,624</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling2d_3 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">3</span>, <span style="color: #00af00; text-decoration-color: #00af00">3</span>, <span style="color: #00af00; text-decoration-color: #00af00">16</span>)       │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">144</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │        <span style="color: #00af00; text-decoration-color: #00af00">18,560</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">8,256</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)             │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)             │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">10</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">650</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+
+</div>
+<div class="output display_data">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">127,930</span> (499.73 KB)
+</pre>
+
+</div>
+<div class="output display_data">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">127,930</span> (499.73 KB)
+</pre>
+
+</div>
+<div class="output display_data">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+
+</div>
+</div>
+<div id="0c701ef4" class="cell markdown">
+<h3 id="explanation">Explanation:</h3>
+<ul>
+<li><code>model.summary()</code>: Displays a summary of the model
+architecture, showing the layers, output shapes, and the total number of
+trainable parameters.</li>
+<li><code>optimizer='adam'</code>: The Adam optimizer is used for
+training the model. Adam is an efficient and widely used optimization
+algorithm that adjusts the learning rate during training based on
+momentum and past gradients.</li>
+<li><code>loss='sparse_categorical_crossentropy'</code>: This loss
+function is used for multi-class classification when the labels are
+integers (not one-hot encoded). It measures the performance of the model
+based on the difference between predicted and actual class labels.</li>
+<li><code>metrics=['accuracy']</code>: Accuracy is used as the
+evaluation metric to measure the percentage of correctly classified
+images during training and validation.</li>
+</ul>
+<p>Now that the model is compiled, we can move on to the training
+phase.</p>
+</div>
+<div id="da1d8629" class="cell markdown">
+<h2 id="step-7-training-the-cnn-model-with-early-stopping">Step 7:
+Training the CNN Model with Early Stopping</h2>
+<p>Now that the model is compiled, we proceed to the training phase. To
+prevent overfitting and ensure the model doesn't train for too many
+epochs, we employ Early Stopping. This will stop the training process
+when the validation loss stops improving for a certain number of
+epochs.</p>
+</div>
+<div id="1fe52ad2" class="cell code" data-execution_count="11"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:12:39.815975Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:12:39.815219Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:17:34.150470Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:17:34.149183Z&quot;}"
+data-papermill="{&quot;duration&quot;:294.368412,&quot;end_time&quot;:&quot;2024-10-11T14:17:34.152857&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:39.784445&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>early_stopping <span class="op">=</span> keras.callbacks.EarlyStopping(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    monitor<span class="op">=</span><span class="st">&quot;val_loss&quot;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    min_delta<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    patience<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">&quot;auto&quot;</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    baseline<span class="op">=</span><span class="va">None</span>,  <span class="co"># Set to the value of val_loss at the desired epoch</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    restore_best_weights<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_ds, validation_data<span class="op">=</span>validation_ds, epochs<span class="op">=</span><span class="dv">500</span>,callbacks<span class="op">=</span>[early_stopping] )</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Epoch 1/500
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1728655961.819403      82 service.cc:145] XLA service 0x7c73c400ded0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+I0000 00:00:1728655961.819481      82 service.cc:153]   StreamExecutor device (0): Tesla P100-PCIE-16GB, Compute Capability 6.0
+</code></pre>
+</div>
+<div class="output stream stdout">
+<pre><code>  3/261 ━━━━━━━━━━━━━━━━━━━━ 11s 43ms/step - accuracy: 0.0816 - loss: 2.3086 </code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>I0000 00:00:1728655969.761492      82 device_compiler.h:188] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+</code></pre>
+</div>
+<div class="output stream stdout">
+<pre><code>261/261 ━━━━━━━━━━━━━━━━━━━━ 35s 96ms/step - accuracy: 0.1964 - loss: 2.1369 - val_accuracy: 0.3878 - val_loss: 1.7645
+Epoch 2/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 52ms/step - accuracy: 0.3765 - loss: 1.7563 - val_accuracy: 0.4224 - val_loss: 1.6145
+Epoch 3/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 50ms/step - accuracy: 0.4598 - loss: 1.5672 - val_accuracy: 0.5103 - val_loss: 1.4529
+Epoch 4/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 53ms/step - accuracy: 0.5365 - loss: 1.3625 - val_accuracy: 0.5579 - val_loss: 1.3062
+Epoch 5/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.6096 - loss: 1.1708 - val_accuracy: 0.6468 - val_loss: 1.0728
+Epoch 6/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 52ms/step - accuracy: 0.6581 - loss: 1.0325 - val_accuracy: 0.6444 - val_loss: 1.0699
+Epoch 7/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 52ms/step - accuracy: 0.7060 - loss: 0.8909 - val_accuracy: 0.7088 - val_loss: 0.9128
+Epoch 8/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 52ms/step - accuracy: 0.7196 - loss: 0.8401 - val_accuracy: 0.7299 - val_loss: 0.8351
+Epoch 9/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 54ms/step - accuracy: 0.7680 - loss: 0.7192 - val_accuracy: 0.7400 - val_loss: 0.8307
+Epoch 10/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 52ms/step - accuracy: 0.7833 - loss: 0.6559 - val_accuracy: 0.7564 - val_loss: 0.8046
+Epoch 11/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 54ms/step - accuracy: 0.8006 - loss: 0.5920 - val_accuracy: 0.7684 - val_loss: 0.7828
+Epoch 12/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.8176 - loss: 0.5438 - val_accuracy: 0.7674 - val_loss: 0.7860
+Epoch 13/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 54ms/step - accuracy: 0.8381 - loss: 0.4842 - val_accuracy: 0.7746 - val_loss: 0.7670
+Epoch 14/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.8524 - loss: 0.4322 - val_accuracy: 0.7987 - val_loss: 0.7146
+Epoch 15/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.8601 - loss: 0.4153 - val_accuracy: 0.8160 - val_loss: 0.6475
+Epoch 16/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 52ms/step - accuracy: 0.8770 - loss: 0.3655 - val_accuracy: 0.8097 - val_loss: 0.6803
+Epoch 17/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.8883 - loss: 0.3430 - val_accuracy: 0.7847 - val_loss: 0.7986
+Epoch 18/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 14s 54ms/step - accuracy: 0.8857 - loss: 0.3348 - val_accuracy: 0.8169 - val_loss: 0.7037
+Epoch 19/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.8796 - loss: 0.3517 - val_accuracy: 0.8169 - val_loss: 0.7019
+Epoch 20/500
+261/261 ━━━━━━━━━━━━━━━━━━━━ 13s 51ms/step - accuracy: 0.8951 - loss: 0.3125 - val_accuracy: 0.8318 - val_loss: 0.7073
+</code></pre>
+</div>
+</div>
+<div id="7cf37c58" class="cell markdown">
+<h3 id="explanation">Explanation:</h3>
+<ul>
+<li><code>EarlyStopping</code>: This callback monitors the model's
+performance on the validation set and halts the training if the
+monitored metric (in this case, val_loss) doesn't improve for a set
+number of epochs.</li>
+<li><code>monitor="val_loss"</code>: The validation loss is monitored to
+determine when to stop training.</li>
+<li><code>min_delta=0</code>: The minimum change in the monitored
+quantity to qualify as an improvement.</li>
+<li><code>patience=5</code>: The training will stop if no improvement in
+val_loss is observed for 5 consecutive epochs.</li>
+<li><code>restore_best_weights=False</code>: If set to True, the model
+will restore the weights from the epoch with the best validation
+loss.</li>
+<li><code>model.fit()</code>: This function begins the training of the
+CNN model. train_ds: The training dataset.</li>
+<li><code>validation_data=validation_ds</code>: The validation dataset
+is used to monitor performance during training.</li>
+<li><code>epochs=500</code>: The model is trained for up to 500 epochs
+(which is too much), but early stopping may halt it earlier if no
+improvement is observed.</li>
+<li><code>callbacks=[early_stopping]</code>: The early stopping callback
+is passed to stop training when necessary.</li>
+</ul>
+<p>Training will continue until the validation loss plateaus, ensuring
+that the model doesn't overfit and saving time during training.</p>
+</div>
+<div id="ccf66096" class="cell markdown">
+<h2 id="step-8-plotting-training-and-validation-accuracy">Step 8:
+Plotting Training and Validation Accuracy</h2>
+<p>After training the model, it’s essential to visualize the performance
+by plotting the accuracy on both the training and validation datasets
+across epochs. This will give us insights into how well the model is
+learning and whether it is overfitting.</p>
+</div>
+<div id="fe29a4e5" class="cell code" data-execution_count="12"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:17:34.764038Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:17:34.763096Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:17:35.143084Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:17:35.141949Z&quot;}"
+data-papermill="{&quot;duration&quot;:0.66954,&quot;end_time&quot;:&quot;2024-10-11T14:17:35.145195&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:17:34.475655&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the training and validation accuracy</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">&#39;accuracy&#39;</span>], label<span class="op">=</span><span class="st">&#39;Training Accuracy&#39;</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">&#39;val_accuracy&#39;</span>], label<span class="op">=</span><span class="st">&#39;Validation Accuracy&#39;</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Epoch&#39;</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Accuracy&#39;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Training and Validation Accuracy&#39;</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="output display_data">
+<p><img
+src="vertopal_23117a7c3e5c4f16b0b6e26438e7d520/942c7c368ebb545aeb78974034b4eaec673fe91f.png" /></p>
+</div>
+</div>
+<div id="1e0406da" class="cell markdown">
+<h3 id="explanation">Explanation:</h3>
+<ul>
+<li><code>history.history['accuracy']</code>: Contains the training
+accuracy values for each epoch.</li>
+<li><code>history.history['val_accuracy']</code>: Contains the
+validation accuracy values for each epoch.</li>
+<li><code>plt.plot()</code>: Used to plot both training and validation
+accuracy over the epochs.</li>
+<li><code>plt.xlabel('Epoch')</code>: Sets the label for the x-axis,
+which represents the number of epochs.</li>
+<li><code>plt.ylabel('Accuracy')</code>: Sets the label for the y-axis,
+which represents the accuracy percentage.</li>
+<li><code>plt.title('Training and Validation Accuracy')</code>: Adds a
+title to the plot.</li>
+<li><code>plt.legend()</code>: Displays the legend to differentiate
+between training and validation accuracy.</li>
+</ul>
+<p>This plot will help you visually assess how well the model
+generalizes. If there’s a significant gap between training and
+validation accuracy, it could indicate overfitting.</p>
+</div>
+<div id="4629e8c8" class="cell markdown">
+<h3 id="step-9-saving-the-trained-model">Step 9: Saving the Trained
+Model</h3>
+<p>After training the model, it's important to save it for future use,
+allowing us to load it later without needing to retrain. This can save a
+significant amount of time, especially for deep learning models.</p>
+</div>
+<div id="95d0cb33" class="cell code" data-execution_count="13"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:17:35.676558Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:17:35.675633Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-11T14:17:35.735031Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-11T14:17:35.734234Z&quot;}"
+data-papermill="{&quot;duration&quot;:0.330266,&quot;end_time&quot;:&quot;2024-10-11T14:17:35.737245&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:17:35.406979&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">&#39;paddy_model.h5&#39;</span>)</span></code></pre></div>
+</div>
+<div id="fe433b94" class="cell markdown">
+<h3 id="explanation">Explanation:</h3>
+<ul>
+<li><code>model.save('rice_model.h5')</code>: This function saves the
+entire model, including the architecture, weights, and training
+configuration, to a file named rice_model.h5. The .h5 extension
+indicates that the model is saved in the HDF5 format, which is commonly
+used for storing large amounts of numerical data.</li>
+</ul>
+<p>Once saved, the model can be easily loaded in the future for
+inference or further training, using:</p>
+</div>
+<div id="7a2f5840" class="cell code" data-execution_count="14"
+data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-11T14:17:36.263559Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-11T14:17:36.262651Z&quot;}"
+data-papermill="{&quot;duration&quot;:4.267633,&quot;end_time&quot;:&quot;2024-10-11T14:17:40.267044&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:17:35.999411&quot;,&quot;status&quot;:&quot;completed&quot;}"
+data-tags="[]">
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> load_model</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>loaded_model <span class="op">=</span> load_model(<span class="st">&#39;rice_model.h5&#39;</span>)</span></code></pre></div>
+</div>
+<div id="3ae93976" class="cell markdown">
+<p>This step ensures that your hard work in training the model is
+preserved for future use.</p>
+</div>
+<div id="bfab4f6a" class="cell markdown">
+<h2 id="conclusion">Conclusion</h2>
+<p>In this tutorial, we successfully built a Convolutional Neural
+Network (CNN) to classify paddy diseases using image data. We went
+through the following key steps:</p>
+<ol>
+<li><strong>Data Preparation</strong>: We loaded and normalized the
+paddy disease dataset, ensuring that the images were correctly processed
+for the model.</li>
+<li><strong>Model Architecture</strong>: We defined a CNN model with
+multiple convolutional and pooling layers, followed by fully connected
+layers for classification. This architecture enables the model to learn
+and extract important features from the input images effectively.</li>
+<li><strong>Model Compilation</strong>: We compiled the model using the
+Adam optimizer and sparse categorical crossentropy loss function,
+setting accuracy as our evaluation metric.</li>
+<li><strong>Training with Early Stopping</strong>: The model was trained
+with early stopping to prevent overfitting, monitoring the validation
+loss throughout the training process.</li>
+<li><strong>Evaluation</strong>: We visualized the training and
+validation accuracy to assess the model's performance and ensure it was
+learning effectively.</li>
+<li><strong>Model Saving</strong>: Finally, we saved the trained model
+for future use, making it easy to load and utilize without
+retraining.</li>
+</ol>
+<p>By following these steps, you can develop a robust machine learning
+model to classify paddy diseases, which can aid farmers and agricultural
+experts in identifying and managing crop health issues effectively.</p>
+<p>Feel free to adapt this tutorial for other types of image
+classification tasks, as the principles of CNNs can be applied across
+various domains.</p>
+<p>Thank you for following along, and happy coding!</p>
+</div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      Follow us on:
+      <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+      <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+      <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+    </div>
+    <div class="footer-contact">
+      <p>
+        Contact us:
+        <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+        | Phone: +1 (555) 123-4567
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms of Service</a> |
+      <a href="about.html">About Us</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="contributor.html">Contributor</a>
+    </div>
+    <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+  </div>
+  <button id="scrollTopBtn" onclick="scrollToTop()">
+    <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+</footer>
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+
+    circles.forEach(function (circle) {
+      circle.x = 0;
+      circle.y = 0;
+    });
+
+    window.addEventListener("mousemove", function (e) {
+      coords.x = e.pageX;
+      coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+    });
+
+    function animateCircles() {
+      let x = coords.x;
+      let y = coords.y;
+
+      circles.forEach(function (circle, index) {
+        circle.style.left = `${x - 12}px`;
+        circle.style.top = `${y - 12}px`;
+        circle.style.transform = `scale(${(circles.length - index) / circles.length
+          })`;
+
+        const nextCircle = circles[index + 1] || circles[0];
+        circle.x = x;
+        circle.y = y;
+
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+      });
+
+      requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+  });
+</script>
+<!-- Botpress Chat Scripts -->
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+</body>
+
+</html>
