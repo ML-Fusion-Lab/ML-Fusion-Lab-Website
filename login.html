@@ -101,7 +101,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const trustedEmailDomains = ["gmail.com", "outlook.com", "yahoo.com", "hotmail.com" , "protonmail.com" , "icloud.com" , "tutanota.com"]; // Add more domains if needed
+      const trustedEmailDomains = ["gmail.com", "outlook.com", "yahoo.com", "hotmail.com"]; // Add more domains if needed
 
       const registerButton = document.getElementById("register");
       const loginButton = document.getElementById("login");
@@ -154,12 +154,21 @@
           }
 
           if (!isTrustedDomain(email)) {
-            alert("Email domain is not allowed. Please use a trusted provider (e.g., Gmail, Outlook) etc.");
+            alert("Email domain is not allowed. Please use a trusted provider (e.g., Gmail, Outlook).");
+            return;
+          }
+
+          if (!validatePassword(password)) {
+            alert(`Password must contain at least 8 characters long and contain at least 
+            * 1 uppercase letter,
+            * 1 lowercase letter, 
+            * 1 number, and
+            * 1 special character.`);
             return;
           }
 
           if (spcharRegex.test(name) || spcharRegex.test(password)) {
-            alert('Name Or Password Cannot Contain <,>,", or /');
+            alert('Name or password cannot contain <, >, ", or /.');
             return;
           }
 
@@ -193,6 +202,11 @@
       function isTrustedDomain(email) {
         const domain = email.split("@")[1];
         return trustedEmailDomains.includes(domain);
+      }
+
+      function validatePassword(password) {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+        return passwordRegex.test(password);
       }
     });
   </script>
