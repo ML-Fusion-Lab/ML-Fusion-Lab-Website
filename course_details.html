@@ -322,7 +322,6 @@
       let strikedPrice = document.querySelector(".striked-price");
       let price = document.querySelector(".price");
 
-      console.log(course);
       // Update the values of elements
       companyImg.setAttribute("src", course.certifiedBy);
       title.innerHTML = course.title;
@@ -378,10 +377,11 @@
       price.innerHTML = course.price;
 
       course.skills.split(",").forEach(skill => {
-        let skillName = document.createElement("p")
+        let skillName = document.createElement("a")
         skillName.innerHTML = skill;
-        skillName.classList.add("skillName")
-        skillsGain.appendChild(skillName)
+        skillName.classList.add("skillName");
+        skillName.href = `courses.html?skill=${skill}#filterTitle`;
+        skillsGain.appendChild(skillName);
       })
     </script>
     <script>

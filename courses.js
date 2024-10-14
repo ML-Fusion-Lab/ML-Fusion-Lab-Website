@@ -139,3 +139,40 @@ function animateCircles() {
 
 animateCircles();
 });
+
+// Filter courses
+
+let URLParams = new URLSearchParams(window.location.search);
+let searchParams = URLParams.get("skill");
+
+if (searchParams) {
+  const courseSection = document.querySelector(".courses");
+  let filterHeader = document.createElement("div");
+  filterHeader.classList.add("filter-header");
+
+  let removeFiltersBtn = document.createElement("button");
+  removeFiltersBtn.classList.add("remove-filters-btn");
+  removeFiltersBtn.innerHTML = "Remove filters";
+
+  removeFiltersBtn.addEventListener("click", () => {
+    filteredCourses = courses;
+    renderCourses();
+    window.history.pushState({}, document.title, window.location.pathname);
+    filterHeader.remove();
+  })
+
+  let filterTitle = document.createElement("h2")
+  filterTitle.setAttribute("id", "filterTitle")
+  filterTitle.style.fontSize = "25px";
+  filterTitle.style.marginBottom = 0;
+  filterTitle.innerHTML = `Courses tagged with '<u>${searchParams}</u>'`;
+
+  filterHeader.appendChild(filterTitle);
+  filterHeader.appendChild(removeFiltersBtn);
+
+  courseSection.prepend(filterHeader);
+
+  let coursesWithTag = filteredCourses.filter((course) => course.skills.includes(searchParams));
+  filteredCourses = coursesWithTag;
+  renderCourses();
+}

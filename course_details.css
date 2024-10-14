@@ -117,6 +117,7 @@
     background: var(--black);
     color: white;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .cd-wrapper .cd-container .cd-core-details .skills-gain .skillName:hover{
@@ -263,6 +264,15 @@
 /* dark mode  */
 body.dark-mode .cd-wrapper .cd-container .cd-header .cd-title {
     color: white;
+}
+
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .skills-gain .skillName {
+    color: var(--black);
+    background: white;
+} 
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .skills-gain .skillName:hover{
+    color: var(--black);
+    background: rgb(233, 233, 233);
 }
 
 body.dark-mode .cd-wrapper .cd-container .cd-core-details .about-cont .about-desc {
