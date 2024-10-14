@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="icon" href="../image/ml fusion lab log.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ML Fusion Labs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/contact.css">
+
+    <link rel="stylesheet" href="../style/scroll.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+      
+        nav ul {
+            list-style: none;
+            margin-left: auto;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: white;
+            color: #007BFF;
+        }
+
+       
+       
+        .footer-links a,
+        .footer-socials a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover,
+        .footer-socials a:hover {
+            color: #007BFF;
+        }
+
+        .footer-contact a {
+            color: white;
+        }
+
+      /* Container for the progress bar */
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #f3f3f3;
+  z-index: 99;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress bar with glowing effect */
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #9be5ff, #0074e1);
+  box-shadow: 0 0 15px rgba(0, 116, 225, 0.7),
+    0 0 30px rgba(0, 116, 225, 0.5);
+  border-radius: 4px;
+  transition: width 0.25s ease-out;
+}
+
+/* Glowing animation */
+#progress-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.5;
+  animation: glow 2s infinite;
+  border-radius: inherit;
+}
+
+/* Glowing animation keyframes */
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  #progress-container {
+    height: 6px;
+  }
+}
+header {
+  height: 100px;
+}
+
+.logo {
+  margin: 5px 0px 5px 0px;
+  width: 100px;
+  aspect-ratio: auto 100 / 100;
+  height: 100px;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: auto; 
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007bff;
+}
+
+.footer-contact {
+  margin: 10px 0;
+}
+
+body {
+  .container h2 {
+    font-size: 40px;
+  }
+
+  /*Newsletter Styles*/
+  .newsletter {
+    height: 200px;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+    text-align: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px solid white;
+  }
+  .newsletter-left {
+    margin-left: 0px;
+  }
+  .newsletter-left h1 {
+    font-size: 1.5rem;
+    font-family: Poppins;
+    font-weight: 500;
+  }
+  .newsletter-left p {
+    font-size: 1rem;
+    font-family: Poppins;
+    font-weight: 300;
+  }
+  
+
+  /* Responsive styles */
+  @media (max-width: 900px) {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0.5rem;
+     /* Adjust padding to reduce overall height */
+    }
+
+    header nav {
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 100vw;
+    }
+
+    header nav .hamburger {
+      display: block;
+      font-size: 28px;
+      cursor: pointer;
+      color: #fff;
+      padding: 1rem; /* Adjust padding for hamburger icon */
+      position: absolute;
+      top: 0;
+      right: 1rem; /* Adjust right position as needed */
+    }
+
+    header nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      display: none; /* Hide the navbar items */
+      max-height:100vw; /* Full width for mobile view */
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #333; /* Background color for the floating menu */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+      padding: 1rem; /* Add padding */
+      border-radius: 0 0 8px 8px; /* Rounded corners at the bottom */
+    }
+
+    header nav ul.show {
+      display: flex; /* Show the navbar items when the hamburger is clicked */
+      align-items: flex-start;
+    }
+
+    header nav ul li {
+      margin: 0.5rem 1rem; /* Adjust margin for vertical spacing */
+    }
+    header nav ul li a:hover {
+      color: #00c6ff;
+
+      border-bottom: 2px solid #00c6ff;
+
+      /* color: #000; */
+      /* border-radius: .75rem; Rounded corners for active link */
+    }
+  }
+
+  /* Styles for larger screens */
+  @media (min-width: 901px) {
+    header{
+      height: auto;
+    }
+    header nav .hamburger {
+      display: none;
+    }
+
+    header nav ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* header nav ul li {
+      margin: 0 0.5rem; /* Reduce margin between items */
+    } */
+    header nav ul li a:hover {
+      background-color: #00c6ff;
+      color: #000;
+      border-radius: 0.75rem; /* Rounded corners for active link */
+    }
+  }
+
+  
+
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  
+  /* Footer Styles */
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 10px 0;
+  }
+
+  footer p a {
+    color: #00c6ff;
+    text-decoration: none;
+  }
+
+  footer p a:hover {
+    text-decoration: underline;
+  }
+
+
+/*  home page dark theme styles */
+body.dark-mode section.about {
+  margin-top: 2px;
+  background-color: #000000;
+  color: whitesmoke;
+  padding: 150px 20px;
+  text-align: center;
+}
+body.dark-mode section.about h3 {
+  color: rgb(0, 0, 0);
+}
+body.dark-mode section.about .content .content-heading {
+  color: rgb(255, 255, 255);
+}
+body.dark-mode section.about img {
+  border-radius: 15px;
+  box-shadow: 20px 20px 20px rgb(51, 46, 46);
+}
+
+body.dark-mode .features {
+  margin-top: 2px;
+
+  background-color: #000000;
+  color: white;
+}
+
+body.dark-mode .feature-item {
+  background-color: #2e2a2a;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  width: 30%;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+body.dark-mode .feature-item h3 {
+  color: white;
+}
+
+body.dark-mode .feature-item p {
+  color: white;
+}
+
+body.dark-mode .newsletter {
+  background-color: black;
+  margin-top: 0;
+  /* Adjust this based on your needs */
+  padding: 20px;
+}
+
+body.dark-mode .newsletter-left {
+  color: white;
+}
+
+body.dark-mode .newsletter .input-group .input {
+  color: white;
+}
+body.dark-mode .newsletter-right {
+  color: white;
+}
+
+/* Here are the styles for the theme toggel  */
+.theme-switch {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background: linear-gradient(82deg, #ffffff, #00796b);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  vertical-align: middle;
+}
+
+.theme-switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+  background-image: url("Assets/moon.png");
+}
+
+.theme-switch.dark-theme {
+  background: linear-gradient(82deg, #ffffff, #1f1f1f);
+}
+
+.theme-switch.dark-theme::before {
+  left: 33px;
+  background-image: url("Assets/sun.png");
+}
+
+/*  contact page  dark theme*/
+body.dark-mode .contact-hero {
+  margin-bottom: 1px;
+  background: black;
+}
+
+body.dark-mode .contact-us {
+  background: black;
+  color: white;
+}
+
+/* About page dark theme */
+body.dark-mode .about-hero {
+  background: url('robot-2301646_1280.jpg') no-repeat center center; /* Set the background image */
+  background-size: cover; /* Ensure the background image covers the entire div */
+  color: white;
+  background-position: top;
+}
+body.dark-mode .about-us {
+  margin-top: 2px;
+  background: black;
+  color: white;
+}
+
+body.dark-mode .about-us p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+body.dark-mode .h2text {
+  color: white;
+}
+body.dark-mode .team-member p {
+  color: rgb(3, 3, 3);
+}
+
+/* project page dark theme */
+body.dark-mode .projects-hero {
+  background-color: #000;
+}
+
+body.dark-mode .projects {
+  margin-top: 2px;
+  background-color: #000;
+  color: white;
+}
+
+body.dark-mode .project-list {
+  background-color: #000;
+}
+
+body.dark-mode .project-item {
+  background-color: #8d7575;
+}
+
+body.dark-mode .project-item h3 {
+  color: black;
+}
+
+body.dark-mode .project-item p {
+  color: black;
+}
+
+body.dark-mode .project-item .btn {
+  color: white;
+  background-color: black;
+}
+/* course page dark theme styles */
+body.dark-mode .hero-small {
+  background-color: #000;
+}
+body.dark-mode .courses {
+  margin-top: 2px;
+  background-color: #000;
+  color: white;
+}
+body.dark-mode .course-item {
+  background-color: #8d7575;
+  color: #000000;
+}
+body.dark-mode .course-item h3 {
+  color: #000000;
+}
+body.dark-mode .course-item p {
+  color: #000000;
+}
+body.dark-mode .course-item .btn {
+  color: white;
+  background-color: black;
+}
+/* privacy terms.terms-container dark theme styles */
+body.dark-mode .privacy-hero {
+  background-color: black;
+  margin-bottom: 2px;
+}
+body.dark-mode .privacy-policy {
+  background-color: black;
+  color: white;
+}
+body.dark-mode .privacy-policy p {
+  color: white;
+}
+body.dark-mode .privacy-policy h3 {
+  color: rgb(59, 223, 231);
+}
+/* terms dark theme styles */
+body.dark-mode .terms-hero {
+  background-color: black;
+  margin-bottom: 2px;
+}
+body.dark-mode .terms-of-service {
+  background-color: black;
+  color: white;
+}
+body.dark-mode .terms-of-service p {
+  color: white;
+}
+body.dark-mode .terms-of-service h3 {
+  color: rgb(59, 223, 231);
+}
+#scrolltopbutton {
+  background-color: #505056;
+  color: #e0c0c0;
+}
+header {
+  height: 100px;
+}
+
+
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007bff;
+}
+
+.footer-contact {
+  margin: 10px 0;
+}
+
+
+
+body {
+  .container h2 {
+    font-size:40px;
+  }
+
+  /Newsletter Styles/ .newsletter {
+    height: 200px;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    box-shadow: 10px 10px 10px solid white;
+  }
+
+  .newsletter-left {
+    margin-left: 60px;
+  }
+
+  .newsletter-left h1 {
+    font-size: 1.5rem;
+    font-family: Poppins;
+    font-weight: 500;
+  }
+
+  .newsletter-left p {
+    font-size: 1rem;
+    font-family: Poppins;
+    font-weight: 300;
+  }
+
+  @media (max-width: 1000px) {
+    .newsletter {
+      height: 300px;
+      padding: 40px;
+      width: 100%;
+      background-color: whitesmoke;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items:center;
+
+      box-shadow: 10px 10px 10px solid white;
+    }
+   .newsletter-left{
+     margin-left :0;
+   }
+    .newsletter-right {
+      display: flex;
+      justify-content: center;
+      padding-left: 200px;
+      width: 80%;
+    }
+    .input-group {
+      margin-right:0;
+      margin-top: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    
+  }
+  /* Header Styles */
+  header {
+    padding: 20px;
+    width: 100%;
+    background-color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 10px 10px 10px solid white;
+  }
+
+  .newsletter-right {
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
+    width: 80%;
+  }
+  
+}
+/* Header Styles */
+header {
+  background-color: #1a1a1a;
+  padding: 0px 20px;
+  /* Adjusted padding for more space(35 to 30px) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid #00c6ff;
+  display: flex;
+  /* Flexbox for better alignment */
+  justify-content: space-between;
+  /* Space between logo and navigation */
+  align-items: center;
+}
+
+header .logo h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+  /* Remove margin for better centering */
+  /* padding-bottom: 25px; */
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  /* Increase spacing between nav items */
+}
+
+header nav ul li {
+  margin: 0;
+  /* Remove extra margin */
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 5px;
+
+  background-color: #333;
+  padding: 1rem 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  /* Adjust padding to reduce overall height */
+}
+
+/* header nav .brand {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-decoration: none;
+} */
+
+header nav .logo h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0;
+  /* Remove margin */
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* header nav ul li {
+  margin: 0 0.5rem;
+} */
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  /* margin-right: -1rem; */
+  /* padding: 0.5rem 0.75rem; */
+  /* Adjust padding for links */
+  transition: color 0.3s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    /* Adjust padding to reduce overall height */
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  header nav .hamburger {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    color: #fff;
+    padding: 1rem;
+    /* Adjust padding for hamburger icon */
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    /* Adjust right position as needed */
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    display: none;
+    /* Hide the navbar items */
+    width: 100%;
+    height:100vh;
+    /* Full width for mobile view */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    /* Background color for the floating menu */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a box shadow */
+    padding: 1rem;
+    /* Add padding */
+    border-radius: 0 0 8px 8px;
+    /* Rounded corners at the bottom */
+  }
+
+  header nav ul.show {
+    display: flex;
+    /* Show the navbar items when the hamburger is clicked */
+    align-items: flex-end;
+  }
+
+  /* header nav ul li {
+    /* margin: 0.5rem 0; */
+    /* Adjust margin for vertical spacing */
+   */
+
+  header nav ul li a:hover {
+    color: #00c6ff;
+
+    border-bottom: 2px solid #00c6ff;
+
+    /* color: #000; */
+    /* border-radius: .75rem; Rounded corners for active link */
+  }
+}
+
+/* Styles for larger screens */
+@media (min-width: 901px) {
+  header nav .hamburger {
+    display: none;
+  }
+
+  header nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  header nav ul li {
+    margin: 0 0.5rem;
+    /* Reduce margin between items */
+  }
+
+  header nav ul li a:hover {
+    background-color: #00c6ff;
+    color: #000;
+    border-radius: 0.75rem;
+    /* Rounded corners for active link */
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-grid {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the items */
+  }
+
+  .feature-item {
+    max-width: 100%; /* Each item takes full width */
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+}
+
+/* For mobile devices (below 576px) */
+@media (max-width: 576px) {
+  .feature-item {
+    padding: 15px;
+  }
+
+  .feature-item h3 {
+    font-size: 1.3em;
+  }
+
+  .feature-item p {
+    font-size: 0.9em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+
+/* Footer Styles */
+footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 10px 0;
+}
+
+footer p a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  text-decoration: underline;
+}
+
+
+/* Testimonials Page Dark Theme */
+body.dark-mode {
+  background: #121212; /* Dark background */
+  color: white; /* Default text color */
+}
+
+body.dark-mode .testimonial-section {
+  background-color: #1e1e1e; /* Darker background for testimonials */
+  border-radius: 12px; /* Match the light mode border radius */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Adjust shadow for dark mode */
+}
+
+body.dark-mode .testimonial-section h2 {
+  color: #e0e0e0; /* Light text for heading */
+}
+
+body.dark-mode .testimonial {
+  background-color: #292929; /* Dark background for each testimonial */
+  color: #ffffff; /* Light text for testimonials */
+}
+
+body.dark-mode .testimonial p {
+  color: #b0b0b0; /* Slightly lighter text for paragraph */
+}
+
+body.dark-mode .testimonial h4 {
+  color: #ffbb33; /* Use a different color for names, maybe golden */
+}
+
+body.dark-mode .testimonial span {
+  color: #66bb6a; /* Different color for job roles */
+}
+
+body.dark-mode .testimonial img {
+  border: 2px solid #505050; /* Dark border around images */
+}
+
+body.dark-mode .rating {
+  color: #ffb400; /* Keep the star color */
+}
+
+/* Navbar dark mode styles */
+body.dark-mode header {
+  background-color: #333; /* Keep header dark */
+}
+
+body.dark-mode nav ul li a {
+  color: #ffffff; /* Light links */
+}
+
+body.dark-mode nav ul li a:hover {
+  color: #ccc; /* Light hover effect */
+}
+
+/* Footer dark mode styles */
+body.dark-mode footer {
+  background: #222; /* Dark footer */
+  color: white;
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-socials a {
+  color: white; /* Light footer link colors */
+}
+
+body.dark-mode .footer-links a:hover,
+body.dark-mode .footer-socials a:hover {
+  color: #007bff; /* Keep hover color for footer links */
+}
+
+/* Scroll to top button in dark mode */
+body.dark-mode #scrolltopbutton {
+  background-color: #505056; /* Keep as is or change to match dark theme */
+  color: #e0c0c0; /* Light color for button text */
+}
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+    
+   
+.container .registration{
+  display: block;
+}
+#check{
+  display: none;
+}
+.container .form{
+  padding: 2rem;
+}
+.form header{
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+ .form input{
+   height: 60px;
+   width: 100%;
+   padding: 0 15px;
+   font-size: 17px;
+   margin-bottom: 1.3rem;
+   border: 1px solid #ddd;
+   border-radius: 6px;
+   outline: none;
+ }
+ .form input:focus{
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+ }
+.form a{
+  font-size: 16px;
+  color: #00c6ff;
+  text-decoration: none;
+}
+.form a:hover{
+  text-decoration: underline;
+}
+.form input.button{
+  color: #fff;
+  background:#00c6ff;;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 1.7rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.form input.button:hover{
+  background: #435681;
+}
+.signup{
+  font-size: 17px;
+  text-align: center;
+}
+.signup label{
+  color: #009579;
+  cursor: pointer;
+}
+.signup label:hover{
+  text-decoration: underline;
+}
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: flex;
+    }
+
+    
+
+    .section__container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 5rem 1rem;
+    }
+
+    .section__header {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: center;
+    }
+    .contact-form .image-container {
+    width: 40%;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    padding: 0.3rem;
+}
+
+
+
+
+
+
+    </style>
+</head>
+
+    
+<body>
+
+    <header>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div  class="logo">
+            <a href="../index.html">
+                <h1>
+                <img src="../image/ml fusion lab log.jpg" alt="ML Fusion Lab Logo"  width= "100"; height=" 100";>
+                </h1>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <div class="theme-switch" id="theme-switch"></div>
+            </ul>
+        </nav>
+    </header>
+    <section class = "contact-section">
+      <div class = "contact-bg">
+        <h3>Get in Touch with Us</h3>
+        <h2>contact us</h2>
+        <div class = "line">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <p class = "text">We're here to assist you. Reach out to us for any inquiries or assistance you may need.</p>
+      </div>
+
+
+      <div class = "contact-body">
+        <div class = "contact-info">
+          <div>
+            <span><i class = "fas fa-mobile-alt"></i></span>
+            <span>Phone No.</span>
+            <span class = "text"> +1 (555) 123-4567</span>
+          </div>
+          <div>
+            <span><i class = "fas fa-envelope-open"></i></span>
+            <span>E-mail</span>
+            <span class = "text">info@mlfusionlabs.com</span>
+          </div>
+          <div>
+            <span><i class = "fas fa-map-marker-alt"></i></span>
+            <span>Address</span>
+            <span class = "text">Tejashwi Nagar Jalandhar Cantt, Jalandhar , Pin Code:- 144005.</span>
+          </div>
+          <div>
+            <span><i class = "fas fa-clock"></i></span>
+            <span>Opening Hours</span>
+            <span class = "text">Monday - Friday (9:00 AM to 5:00 PM)</span>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="contactForm">
+            <div>
+              <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+              <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+            </div>
+            <div>
+              <input type="email" class="form-control" id="email" placeholder="E-mail" required>
+              <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+            </div>
+            <textarea rows="5" placeholder="Message" class="form-control" id="message" required></textarea>
+            <input type="submit" class="send-btn" value="Send Message">
+          </form>
+        
+          <div class="image-container">
+            <img src="Assets/contact.webp" alt="Contact">
+          </div>
+        </div>
+      </div>
+
+      <div class = "map">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.911005285574!2d75.6909327144019!3d31.253255681433364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a9089cd71f61f%3A0x3d684c9690d14a5!2sLovely%20Professional%20University%2C%20Jalandhar%2C%20Punjab%20144401%2C%20India!5e0!3m2!1sen!2sus!4v1649982737577!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+
+      
+    </section>
+      
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a> |
+                <a href="terms.html">Terms of Service</a> |
+                <a href="about.html">About Us</a> |
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-socials">
+                Follow us on:
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+            </div>
+        </div>
+    </footer>
+    <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from submitting
+    
+    // Get form values
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    // Validate first and last name
+    if (firstName === '' || lastName === '') {
+      alert('Please enter your first and last name.');
+      return;
+    }
+    
+    // Validate email format
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    
+    // Validate phone number (for simplicity, checking if it's all digits and has 10-15 characters)
+    const phonePattern = /^[0-9]{10,15}$/;
+    if (!phonePattern.test(phone)) {
+      alert('Please enter a valid phone number (10-15 digits).');
+      return;
+    }
+    
+    // Validate message
+    if (message === '') {
+      alert('Please enter your message.');
+      return;
+    }
+    
+    // If all validations pass
+    alert('Form submitted successfully!');
+    // You can submit the form here, for example:
+    // this.submit();
+  });
+
+      </script>
+      <div class="gtranslate_wrapper"></div>
+      <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
+      <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+  </body>
+</html>

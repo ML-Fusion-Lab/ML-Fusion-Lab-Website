@@ -13,7 +13,7 @@ body {
   font-family: "Poppins", sans-serif;
   overflow: hidden;
   height: 100vh;
-  background: url("4emu.gif");
+  background: url("../image/4emu.gif");
   background-size: cover;
   opacity: 1.2;
 
@@ -233,7 +233,7 @@ input {
 }
 
 .overlay {
-  background-image: url('4emu.gif');
+  background-image: url('../image/4emu.gif');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
