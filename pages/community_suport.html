@@ -285,6 +285,12 @@
     </script>
      <!-- js for mouse cursor trail effect -->
      <script>
+        const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('header nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
         document.addEventListener("DOMContentLoaded", function () {
      const coords = { x: 0, y: 0 };
      const circles = document.querySelectorAll(".circle");

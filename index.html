@@ -730,6 +730,12 @@
     <script src="script/scroll.js"></script>
     <script src="script/script.js"></script>
     <script>
+      const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('header nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
       let isSubmitting = false; // Debouncing flag
 
       // Function to show confirmation message

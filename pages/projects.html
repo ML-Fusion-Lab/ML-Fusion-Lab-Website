@@ -508,6 +508,12 @@ modal.style.zIndex = '1000';
             modal.style.display = "none";
         }
     }
+    const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('header nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
 </script>
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="../script/scroll.js"></script>  
