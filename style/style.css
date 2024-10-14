@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 8px;
+  height: 4px !important;
   background-color: #f3f3f3;
   z-index: 99;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -264,7 +264,6 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem 0.5rem;
      /* Adjust padding to reduce overall height */
     }
 
@@ -289,13 +288,12 @@ body {
       flex-direction: column;
       align-items: flex-start;
       display: none; /* Hide the navbar items */
-      max-height:100vw; /* Full width for mobile view */
+      height: auto; /* Full width for mobile view */
       position: absolute;
       top: 100%;
       right: 0;
       background-color: #333; /* Background color for the floating menu */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
-      padding: 1rem; /* Add padding */
       border-radius: 0 0 8px 8px; /* Rounded corners at the bottom */
     }
 
@@ -304,9 +302,7 @@ body {
       align-items: flex-start;
     }
 
-    header nav ul li {
-      margin: 0.5rem 1rem; /* Adjust margin for vertical spacing */
-    }
+  
     header nav ul li a:hover {
       color: #00c6ff;
 

@@ -216,7 +216,14 @@
               <li><a href="../pages/contact.html">Contact</a></li>
               <li><a href="../pages/Testimonial.html">Testimonials</a></li>
               <li><div class="gtranslate_wrapper"></div>
-                <script>window.gtranslateSettings = {"default_language":"en",   "detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
+                <script>window.gtranslateSettings = {"default_language":"en",   "detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}
+                    const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('header nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+                </script>
                   <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
               <div class="theme-switch" id="theme-switch"></div>
             </ul>
