@@ -9,6 +9,26 @@ body{
     font-family: 'Open Sans', sans-serif;
     line-height: 1.5;
 }
+.theme-switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url("../Assets/moon.png");
+}
+
+.theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url("../Assets/sun.png");
+}
+
+
 .contact-bg{
     height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(assets/booking.jpeg);

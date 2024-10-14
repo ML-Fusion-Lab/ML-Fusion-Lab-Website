@@ -4,6 +4,24 @@
     font-family: "poppins", sans-serif;
 }
 
+.theme-switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url("../Assets/moon.png");
+}
+
+.theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url("../Assets/sun.png");
+}
 
 :root {
     --black: #1d1d1f;

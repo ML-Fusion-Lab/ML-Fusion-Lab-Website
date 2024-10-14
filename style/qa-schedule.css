@@ -202,7 +202,7 @@ body.dark-mode .head {
   background-repeat: no-repeat;
   background-position: center;
   transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
-  background-image: url("Assets/moon.png");
+  background-image: url("../Assets/moon.png");
 }
 
 .theme-switch.dark-theme {
@@ -211,7 +211,7 @@ body.dark-mode .head {
 
 .theme-switch.dark-theme::before {
   left: 33px;
-  background-image: url("Assets/sun.png");
+  background-image: url("../Assets/sun.png");
 }
 
 /* Social Icons */
