@@ -19,7 +19,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
       />
-      <link rel="stylesheet" href="./style/scroll.css" />
+  
       <link rel="stylesheet" href="./style/style.css" />
       <link rel="stylesheet" href="./style/popup.css" />
 
@@ -99,28 +99,27 @@
         .newsletter .input-group .input {
           color: black;
           /* height: 50px; */
-          
+          width: 450px;          
         }
+
         
-
         #scrollTopBtn {
-          display: none;
-          position: fixed;
-          bottom: 20px;
-          right: 30px;
-          z-index: 99;
-          font-size: 18px;
-          background-color: #00bfff;
-          color: white;
-          border: none;
-          padding: 10px;
-          border-radius: 5px;
-        }
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        background-color: #00BFFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+      }
 
-        #scrollTopBtn:hover {
-          background-color: #555;
-        }
-
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
         #cookie-consent {
           position: fixed;
           bottom: 10px;
@@ -217,7 +216,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="./style/scroll.css">
   </head>
 
   <body>
@@ -480,8 +479,8 @@
       }
 
       .submit-button:hover::before {
-        width: 300px;
-        height: 300px;
+        width: 350px;
+        height: 350px;
       }
 
       .submit-button:active {
@@ -594,10 +593,9 @@
         </div>
         <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
       </div>
-      <button id="scrollTopBtn" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-      </button>
+      <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
     </footer>
+    <script src="script/scroll.js"></script>
 
     <!-- POP-UP HTML CODE GOES HERE -->
      <!-- Pop-up for email sign-up -->
@@ -708,25 +706,7 @@
     learnMoreLink.style.display = 'none';
   });
 });
-      const scrollTopBtn = document.getElementById("scrollTopBtn");
-      window.onscroll = function () {
-        if (
-          document.body.scrollTop > 20 ||
-          document.documentElement.scrollTop > 20
-        ) {
-          scrollTopBtn.style.display = "block";
-        } else {
-          scrollTopBtn.style.display = "none";
-        }
-      };
-
-      function scrollToTop() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
-    </script>
+</script>
     <script src="script/scroll.js"></script>
     <script src="script/script.js"></script>
     <script>
