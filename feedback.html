@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href="ml-fusion-lab-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Page</title>
@@ -16,6 +17,34 @@
             --accent-color-1: hsl(230, 58%, 75%);
             --accent-color-2: hsl(210, 66.7%, 98.8%);
         }
+        /* Updated Star Rating Styles */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffffff" stroke="%23000000" stroke-width="1" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffff00" stroke="%23000000" stroke-width="1" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -24,25 +53,48 @@
             color: var(--primary-color);
         }
         .content {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: 40px auto; /* Keep vertical margin for spacing from header and footer */
+            padding: 40px; /* Add significant padding inside the content area */
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(53, 46, 46, 0.285);
+            position: relative;
         }
-        header {
-            background-color: var(--bg-color);
-            padding: 20px;
-            text-align: center;
+        .feedback-header {
+            background-color: transparent; /* Remove the dark background */
+            position: relative; /* Add this to allow absolute positioning of the image */
+            padding: 10px 20px;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header h1 {
+        .feedback-header h1 {
             font-size: 24px;
             margin-bottom: 20px;
         }
-        header img {
+        .feedback-header img {
             max-width: 100%;
             height: auto;
+            z-index: -1;
+            max-height: 300px; /* Adjust as needed */
+            object-fit: cover;
+            margin-bottom: 20px;
         }
+        .feedback-header, .feedback-header img {
+    border: none !important;
+    border-bottom: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+}
+
         main {
             padding: 20px;
         }
@@ -1249,13 +1301,21 @@ body.dark-mode #scrolltopbutton {
         </nav>
     </header>
     <div class="content">
-        <header>
+        <header class="feedback-header">
             <h1>Feel free to drop us your feedback.</h1>
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1457119/feedback-form-template.svg"
                 alt="A woman is sitting on the floor and working on a laptop (vector illustration)" />
         </header>
         <main>
             <form id="feedbackForm">
+                <h2>How would you rate your overall experience?</h2>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
+                </div>
                 <h2>How satisfied are you overall with the support of our website?</h2>
                 <div class="tickmarks">
                     <span>0</span>
