@@ -1,4 +1,4 @@
-import courses from "./courseDetails.js";
+import courses from "../script/courseDetails.js";
 
 const cardContainer = document.querySelector(".cards-container");
 const loadMoreButton = document.querySelector(".load-more-button");

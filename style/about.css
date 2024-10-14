@@ -76,15 +76,15 @@ box-shadow: 0 10px 16px rgba(0, 0, 0, 0.622); /* Shadow spreads out */
 
 /* Background images */
 .img1 {
-background-image: url("never-stop-learning-3653430_1280.jpg");
+background-image: url("../image/never-stop-learning-3653430_1280.jpg");
 }
 
 .img2 {
-background-image: url("algorithm-3859537_1280.jpg");
+background-image: url("../image/algorithm-3859537_1280.jpg");
 }
 
 .img3 {
-background-image: url("programming-2115930_1280.jpg");
+background-image: url("../image/programming-2115930_1280.jpg");
 }
 
 /* Responsive Styling */
