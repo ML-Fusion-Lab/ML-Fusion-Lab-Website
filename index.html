@@ -19,6 +19,8 @@
         referrerpolicy="no-referrer"
       />
       <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="./style/popup.css" />
+
       <style>
         header {
           height: 200px;
@@ -590,6 +592,30 @@
       </button>
     </footer>
 
+    <!-- POP-UP HTML CODE GOES HERE -->
+     <!-- Pop-up for email sign-up -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+          <div class="popup-left">
+          <img src="image/popup.jpg" alt="ML Learning Image" >
+          
+          </div>
+          <!-- <a href='#' class="popuplogo"><img  src="ml fusion lab logo.jpeg" width="50" height="50"></a> -->
+          <div class="popup-right">
+
+              <h1>Join ML Fusion Lab!</h1>
+              <h2>Get Free Machine Learning Resources</h2>
+              <p>Sign up to avail upto <strong>75% off</strong> on your first purchase and boost your ML journey.</p>
+              <form id="emailForm">
+                  <input type="email" id="email" placeholder="Enter your email" required>
+                  <button type="submit" class="signup-btn">Sign Up Now</button>
+              </form>
+              <a href="#" class="no-thanks close-btn">No thanks</a>
+              <p class="terms">By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+          </div>
+      </div>
+    </div>
+
     <div id="cookie-consent">
       <p>
         We use cookies to improve your experience. By using our website, you
@@ -797,6 +823,7 @@
     </script>
     <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="./script/popup.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
   </body>
 </html>
