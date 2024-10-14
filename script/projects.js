@@ -2,25 +2,25 @@
 const projects = [
   {
     "modelid": "modal1",
-    "cardImage": "Assets/projectpics/dog.png",
+    "cardImage": "../../Assets/projectpics/dog.png",
     "cardAlt": "cnn",
     "imgStyle": "box-shadow: none; border-radius: 5px;",
     "cardTitle": "Dog Breed Classifier",
     "cardDesc": "In this tutorial, we build a dog breed classifier using the MobileNetV2 and Convolutional Neural Networks (CNNs).",
-    "learnMoreLink": "/dog_breed_classifier.html"
+    "learnMoreLink": "#"
   },
   {
     "modelid": "modal2",
-    "cardImage": "Assets/projectpics/paddy.jpeg",
+    "cardImage": "../Assets/projectpics/paddy.jpeg",
     "cardAlt": "cnn",
     "imgStyle": "box-shadow: none; border-radius: 5px;",
     "cardTitle": "Paddy Disease Classifier",
     "cardDesc": "In this tutorial, we build a paddy disease classifier using Convolutional Neural Networks (CNNs).",
-    "learnMoreLink": "/paddy_disease_tutorial.html"
+    "learnMoreLink": "#"
   },
     {
       "modelid": "modal3",
-      "cardImage": "Assets/projectpics/crops.jpg",
+      "cardImage": "../Assets/projectpics/crops.jpg",
       "cardAlt": "crops",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Crop Height Using Computer Vision",
@@ -29,7 +29,7 @@ const projects = [
     },
     {
       "modelid": "modal4",
-      "cardImage": "Assets/projectpics/disease.jpg",
+      "cardImage": "../Assets/projectpics/disease.jpg",
       "cardAlt": "disease",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Based Disease Diagnosis",
@@ -38,7 +38,7 @@ const projects = [
     },
     {
       "modelid": "modal5",
-      "cardImage": "Assets/projectpics/shop.jpg",
+      "cardImage": "../Assets/projectpics/shop.jpg",
       "cardAlt": "shopping",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Recommendation System for Shopping",
@@ -47,7 +47,7 @@ const projects = [
     },
     {
       "modelid": "modal6",
-      "cardImage": "Assets/projectpics/cnn.png",
+      "cardImage": "../Assets/projectpics/cnn.png",
       "cardAlt": "cnn",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Image Classification with Deep Learning",
@@ -56,7 +56,7 @@ const projects = [
     },
     {
       "modelid": "modal7",
-      "cardImage": "Assets/projectpics/emai.jpg",
+      "cardImage": "../Assets/projectpics/emai.jpg",
       "cardAlt": "email",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Automated Email Response System",
@@ -65,7 +65,7 @@ const projects = [
     },
     {
       "modelid": "modal8",
-      "cardImage": "Assets/projectpics/stock.jpg",
+      "cardImage": "../Assets/projectpics/stock.jpg",
       "cardAlt": "stock",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Stock Price Time Series Forecasting",
@@ -74,7 +74,7 @@ const projects = [
     },
     {
       "modelid": "modal9",
-      "cardImage": "Assets/projectpics/bot.png",
+      "cardImage": "../Assets/projectpics/bot.png",
       "cardAlt": "bot",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Chatbot Development for Customer Support",
@@ -83,7 +83,7 @@ const projects = [
     },
     {
       "modelid": "modal10",
-      "cardImage": "Assets/projectpics/fraud.png",
+      "cardImage": "../Assets/projectpics/fraud.png",
       "cardAlt": "fraud",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Powered Fraud Detection System",
@@ -92,7 +92,7 @@ const projects = [
     },
     {
       "modelid": "modal11",
-      "cardImage": "Assets/projectpics/lth.png",
+      "cardImage": "../Assets/projectpics/lth.png",
       "cardAlt": "health",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Healthcare Predictive Analytics",
@@ -101,7 +101,7 @@ const projects = [
     },
     {
       "modelid": "modal12",
-      "cardImage": "Assets/projectpics/wild.jpg",
+      "cardImage": "../Assets/projectpics/wild.jpg",
       "cardAlt": "wild",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Wildfire Detection Using Satellite Images",
@@ -110,7 +110,7 @@ const projects = [
     },
     {
       "modelid": "modal13",
-      "cardImage": "Assets/projectpics/waste.jpg",
+      "cardImage": "../Assets/projectpics/waste.jpg",
       "cardAlt": "waste",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Waste Management Optimization",
@@ -119,7 +119,7 @@ const projects = [
     },
     {
       "modelid": "modal14",
-      "cardImage": "Assets/projectpics/traffic.jpg",
+      "cardImage": "../Assets/projectpics/traffic.jpg",
       "cardAlt": "traffic",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Traffic Accident Prediction System",
@@ -128,7 +128,7 @@ const projects = [
     },
     {
       "modelid": "modal15",
-      "cardImage": "Assets/projectpics/personalizd.jpg",
+      "cardImage": "../Assets/projectpics/personalizd.jpg",
       "cardAlt": "personalized",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Personalized Learning Recommendation System",
@@ -137,7 +137,7 @@ const projects = [
     },
     {
       "modelid": "modal16",
-      "cardImage": "Assets/projectpics/mental.jpg",
+      "cardImage": "../Assets/projectpics/mental.jpg",
       "cardAlt": "mental",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI for Mental Health Analysis",
@@ -146,7 +146,7 @@ const projects = [
     },
     {
       "modelid": "modal17",
-      "cardImage": "Assets/projectpics/dist.jpg",
+      "cardImage": "../Assets/projectpics/dist.jpg",
       "cardAlt": "Disaster",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Driven Disaster Relief Supply Chain Optimization",
@@ -155,7 +155,7 @@ const projects = [
     },
     {
       "modelid": "modal18",
-      "cardImage": "Assets/projectpics/sound.jpg",
+      "cardImage": "../Assets/projectpics/sound.jpg",
       "cardAlt": "sound",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Urban Sound Classification",
@@ -164,7 +164,7 @@ const projects = [
     },
     {
       "modelid": "modal19",
-      "cardImage": "Assets/projectpics/eneryg.png",
+      "cardImage": "../Assets/projectpics/eneryg.png",
       "cardAlt": "energy",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Energy Consumption Prediction for Smart Homes",
@@ -173,7 +173,7 @@ const projects = [
     },
     {
       "modelid": "modal20",
-      "cardImage": "Assets/projectpics/nut.jpg",
+      "cardImage": "../Assets/projectpics/nut.jpg",
       "cardAlt": "nutrition",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI for Personalized Nutrition Plans",
@@ -182,7 +182,7 @@ const projects = [
     },
     {
       "modelid": "modal21",
-      "cardImage": "Assets/projectpics/rec.jpg",
+      "cardImage": "../Assets/projectpics/rec.jpg",
       "cardAlt": "recycle",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Plastic Waste Classification for Recycling",
@@ -191,7 +191,7 @@ const projects = [
     },
     {
       "modelid": "modal22",
-      "cardImage": "Assets/projectpics/the.jpg",
+      "cardImage": "../Assets/projectpics/the.jpg",
       "cardAlt": "Therapist",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Powered Virtual Therapist",
