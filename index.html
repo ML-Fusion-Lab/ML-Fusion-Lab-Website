@@ -400,6 +400,7 @@
       </div>
     </div>
   </section>
+
   <div class="newsletter">
     <div class="newsletter-left">
       <h1>Sign Up for Newsletters</h1>
@@ -410,13 +411,13 @@
     </div>
     <div class="newsletter-right">
       <div class="input-group">
-        <input type="email" id="email" placeholder="Enter your email" class="input" required />
+        <input type="email" id="email" placeholder="Enter your email" class="input" required  style="border-radius: 4px 0 0 4px;"/>
         <button type="submit" class="submit-button" id="submit-button">
           Subscribe
         </button>
       </div>
-      <div id="error-message" style="display: none; color: red; width: 242px">
-        Please enter a valid email address.
+      <div id="error-message" style="display: none; color: red; width: 260px">
+        *Please enter a valid email address.
       </div>
 
         <!-- Confirmation message container -->
@@ -430,19 +431,21 @@
       </div>
     </div>
 
+
+    
     <style>
       .input-group {
         display: flex;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        border-radius: 4px;
       }
 
       .input {
         transition: all 0.3s ease;
         border: 2px solid #ccc;
         padding: 10px;
-        border-radius: 4px 0 0 4px;
         outline: none;
       }
 
@@ -578,6 +581,45 @@
         /* removed the non-breaking space (&nbsp;) */
       }
     </style>
+
+
+
+
+ <!-- This script for newsletter subscription -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('submit-button').addEventListener('click', function (e) {
+      e.preventDefault(); 
+
+      const emailInput = document.getElementById('email');
+      const email = emailInput.value.trim();
+      const errorMessage = document.getElementById('error-message');
+      const confirmationMessage = document.getElementById('confirmation-message');
+
+     
+      if (!validateEmail(email)) {
+        errorMessage.style.display = 'block';
+        confirmationMessage.style.display = 'none';
+      } else {
+        errorMessage.style.display = 'none';
+        confirmationMessage.style.display = 'block';
+
+       
+        emailInput.value = '';
+      }
+    });
+
+  
+    function validateEmail(email) {
+      const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return re.test(email);
+    }
+  });
+</script>
+
+
+
+
     <footer>
       <div class="container">
         <div class="footer-socials">
