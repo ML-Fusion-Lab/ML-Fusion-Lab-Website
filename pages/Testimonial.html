@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon">
+    <link rel="icon" href="../image/ml-fusion-lab-logo.png">
     <title>Testimonials</title>
     <link rel="stylesheet" href="../style/style.css" />
     <link rel="stylesheet" href="../style/scroll.css" />
@@ -52,129 +54,51 @@
             color: #ccc;
         }
 
-        /* Testimonial Section */
-        .testimonial-section {
-            text-align: center;
-            background-color: #fff;
-            padding: 50px;
-            margin: 40px auto;
-            max-width: 1200px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .testimonial-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #333;
-            font-weight: bold;
-            color: #007bff; /* Highlighted in blue */
-        }
-
-        .testimonial-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .testimonial {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .slider {
             position: relative;
+            margin-top: 100px;
+            width: 100%;
+            height: 550px; /* Increased height */
             overflow: hidden;
         }
-
-        .testimonial::before {
-            content: "";
+        .item {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-        }
-
-        .testimonial:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .testimonial img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
+            width: 350px; /* Increased width */
+            height: 500px; /* Increased height */
+            text-align: justify;
+            background-color: #fff;
             border-radius: 10px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            padding: 20px;
+            transition: 0.5s;
+            left: calc(50% - 150px); /* Adjusted for new width */
+            top: 0;
+            margin-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-
-        .testimonial:hover img {
-            transform: scale(1.05);
+        #next, #prev {
+            position: absolute;
+            top: 40%;
+            color: #fff;
+            background: none;
+            border: none;
+            font-size: xxx-large;
+            font-family: monospace;
+            font-weight: bold;
+            opacity: 0.5;
+            transition: opacity 0.5s;
+            z-index: 10; /* Ensure buttons are above slides */
         }
-
-        .testimonial p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 15px;
+        #next {
+            right: 50px;
         }
-
-        .testimonial h4 {
-            font-size: 1.3rem;
-            color: black; /* Name in black */
-            margin-bottom: 5px;
-            font-weight: bold; /* Bold name */
+        #prev {
+            left: 50px;
         }
-
-        .testimonial span {
-            font-size: 1rem;
-            color: #007bff; /* Job roles in blue */
-            font-weight: bold; /* Bold job roles */
-        }
-
-        .rating {
-            color: #ffb400; /* Star color */
-            margin: 10px 0;
-        }
-
-        /* Add subtle fade-in effect */
-        .testimonial {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInCard 0.5s forwards;
-        }
-
-        .testimonial:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-
-        .testimonial:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .testimonial:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-
-        @keyframes fadeInCard {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        #prev:hover, #next:hover {
+            opacity: 8;
         }
          /* css for mouse cursor trail effect */
    .circle {
@@ -196,6 +120,48 @@
   pointer-events: none;
   z-index: 9999; /* removed the non-breaking space (&nbsp;) */
 }
+.item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .item img:hover {
+            transform: scale(1.1);
+        }
+
+        .item h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+       
+
+        .item p {
+            text-align: justify;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .stars {
+            color: #ffd700;
+            font-size: 1.6em;
+            margin-top: auto;
+        }
+        
+        .item .job-title {
+            color: #007BFF;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+
+        .item .location {
+            color: #000408;
+            font-style: italic;
+            margin: 0 0 15px 0;
+        }
+
     </style>
 </head>
 <body>
@@ -264,55 +230,91 @@
           </div>
 
     <!-- Testimonial Content -->
-    <div class="testimonial-section">
-        <h2>What Our Clients Say</h2>
-        <div class="testimonial-container">
-            <!-- Testimonial 1 -->
-            <div class="testimonial">
-                <img src="https://media.istockphoto.com/id/1464539429/photo/thoughtful-business-man-with-a-digital-tablet.jpg?s=612x612&w=0&k=20&c=yLbK-rGNUkL0sPX4jw7Q_XE_vDtfj0X3nirixUlGtr4=" alt="Client 1">
-                <p>"ML Fusion Labs helped me solve my business challenges with AI. Their expertise is unmatched!"</p>
-                <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <h4>John Doe</h4>
-                <span>Business Analyst</span>
-                <p><em>Location: New York, USA</em></p>
-            </div>
-            <!-- Testimonial 2 -->
-            <div class="testimonial">
-                <img src="https://c4.wallpaperflare.com/wallpaper/94/499/622/beautiful-wallpaper-preview.jpg" alt="Client 2">
-                <p>"The project development at ML Fusion Labs exceeded my expectations. The results were amazing!"</p>
-                <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <h4>Jane Smith</h4>
-                <span>Software Engineer</span>
-                <p><em>Location: San Francisco, USA</em></p>
-            </div>
-            <!-- Testimonial 3 -->
-            <div class="testimonial">
-                <img src="https://media.istockphoto.com/id/1369199360/photo/portrait-of-a-handsome-young-businessman-working-in-office.jpg?s=612x612&w=0&k=20&c=ujyGdu8jKI2UB5515XZA33Tt4DBhDU19dKSTUTMZvrg=" alt="Client 3">
-                <p>"I was able to integrate cutting-edge machine learning models thanks to ML Fusion Labs' guidance."</p>
-                <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                </div>
-                <h4>Michael Brown</h4>
-                <span>Data Scientist</span>
-                <p><em>Location: London, UK</em></p>
-            </div>
+    <div class="slider">
+        <div class="item">
+            <img src="../image/teammate2.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- Swift Gomez</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
         </div>
+
+
+        <div class="item">
+            <img src="../image/teammate1.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- Travis Scott</h2>
+            <div class="job-title">ML Engineer</div>
+            <div class="location">Location: California, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate4.jpg" alt="John Doe">
+            <div class="stars">★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Data Science Engineer</div>
+            <div class="location">Location: London, United Kingdom</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate3.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate1.jpg" alt="John Doe">
+            <div class="stars">★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate2.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- Swift Gomez</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate1.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate1.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate2.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <div class="item">
+            <img src="../image/teammate3.jpg" alt="John Doe">
+            <div class="stars">★★★★★</div>
+            <p>"The courses at ML Fusion Labs have been transformative for my career. The hands-on projects and expert guidance helped me land my dream job in AI. I can't recommend them enough!"</p>
+            <h2>- John Doe</h2>
+            <div class="job-title">Software Engineer</div>
+            <div class="location">Location: San Francisco, USA</div>
+        </div>
+        <button id="next">></button>
+        <button id="prev"><</button>
     </div>
     <footer>
         <div class="container">
@@ -335,44 +337,84 @@
         </div>
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
         <!-- js for mouse cursor trail effect -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-     const coords = { x: 0, y: 0 };
-     const circles = document.querySelectorAll(".circle");
-   
-     circles.forEach(function (circle) {
-       circle.x = 0;
-       circle.y = 0;
-     });
-   
-     window.addEventListener("mousemove", function (e) {
-       coords.x = e.pageX;
-       coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
-     });
-   
-     function animateCircles() {
-       let x = coords.x;
-       let y = coords.y;
-   
-       circles.forEach(function (circle, index) {
-         circle.style.left = `${x - 12}px`;
-         circle.style.top = `${y - 12}px`;
-         circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
-   
-         const nextCircle = circles[index + 1] || circles[0];
-         circle.x = x;
-         circle.y = y;
-   
-         x += (nextCircle.x - x) * 0.3;
-         y += (nextCircle.y - y) * 0.3;
-       });
-   
-       requestAnimationFrame(animateCircles);
-     }
-   
-     animateCircles();
-   });
-     </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const coords = { x: 0, y: 0 };
+                const circles = document.querySelectorAll(".circle");
+            
+                circles.forEach(function (circle) {
+                    circle.x = 0;
+                    circle.y = 0;
+                });
+            
+                window.addEventListener("mousemove", function (e) {
+                    coords.x = e.pageX;
+                    coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+                });
+            
+                function animateCircles() {
+                    let x = coords.x;
+                    let y = coords.y;
+            
+                    circles.forEach(function (circle, index) {
+                        circle.style.left = `${x - 12}px`;
+                        circle.style.top = `${y - 12}px`;
+                        circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+            
+                        const nextCircle = circles[index + 1] || circles[0];
+                        circle.x = x;
+                        circle.y = y;
+            
+                        x += (nextCircle.x - x) * 0.3;
+                        y += (nextCircle.y - y) * 0.3;
+                    });
+            
+                    requestAnimationFrame(animateCircles);
+                }
+            
+                animateCircles();
+            });
+    
+            let items = document.querySelectorAll('.slider .item');
+            let active = 3;
+    
+            function loadShow(){
+                items[active].style.transform = `none`;
+                items[active].style.zIndex = 1;
+                items[active].style.filter = 'none';
+                items[active].style.opacity = 1;
+                // show after
+                let stt = 0;
+                for(var i = active + 1; i < items.length; i ++){
+                    stt++;
+                    items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`;
+                    items[i].style.zIndex = -stt;
+                    items[i].style.filter = 'blur(5px)';
+                    items[i].style.opacity = stt > 2 ? 0 : 0.6;
+                }
+                stt = 0;
+                for(var i = (active - 1); i >= 0; i --){
+                    stt++;
+                    items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`;
+                    items[i].style.zIndex = -stt;
+                    items[i].style.filter = 'blur(5px)';
+                    items[i].style.opacity = stt > 2 ? 0 : 0.6;
+                }
+            }
+            loadShow();
+            let next = document.getElementById('next');
+            let prev = document.getElementById('prev');
+            next.style.display = 'block';
+            prev.style.display = 'block';
+            next.onclick = function(){
+                active = active + 1 < items.length ?  active + 1 : active;
+                loadShow();
+            }
+            prev.onclick = function(){
+                active = active - 1 >= 0 ? active - 1 : active;
+                loadShow();
+            }
+        </script>
         <script src="../script/scroll.js"></script>
         <script src="../script/script.js"></script>
     </footer>
