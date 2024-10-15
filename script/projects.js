@@ -167,7 +167,7 @@ const projects = [
       "cardImage": "../Assets/projectpics/eneryg.png",
       "cardAlt": "energy",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
-      "cardTitle": "Energy Consumption Prediction for Smart Homes",
+      "cardTitle": "Smart Home Energy Prediction",
       "cardDesc": "Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.",
       "learnMoreLink": "#"
     },
@@ -185,7 +185,7 @@ const projects = [
       "cardImage": "../Assets/projectpics/rec.jpg",
       "cardAlt": "recycle",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
-      "cardTitle": "Plastic Waste Classification for Recycling",
+      "cardTitle": "Plastic Waste Classification To Recycle",
       "cardDesc": "Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.",
       "learnMoreLink": "#"
     },
