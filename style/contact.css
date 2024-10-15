@@ -28,7 +28,6 @@ body{
     background-image: url("../Assets/sun.png");
 }
 
-
 .contact-bg{
     height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(assets/booking.jpeg);
@@ -119,7 +118,6 @@ body{
 .contact-form form{
     padding-bottom: 1rem;
     width: 155%;
-
 }
 .form-control{
     width: 100%;
@@ -134,6 +132,21 @@ body{
 .form-control:focus{
     box-shadow: 0 0 6px -3px rgba(48, 48, 48, 1);
 }
+
+/* Form Hover Effect
+.contact-form form:hover {
+    box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
+    border: 1px solid #00c6ff;
+    transition: box-shadow 0.3s ease, border 0.3s ease;
+} */
+
+/* Field Hover Effect */
+.form-control:hover {
+    border-color: #00c6ff;
+    box-shadow: 0 0 6px rgba(0, 198, 255, 0.5);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
 .contact-form form div{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -151,18 +164,22 @@ body{
     cursor: pointer;
     transition: all 0.4s ease;
 }
-.send-btn:hover{
-    opacity: 0.8;
+
+/* Button Hover Effect */
+.send-btn:hover {
+    background: #0095e0;
+    opacity: 1;
+    transform: translateY(-2px); /* slight lift effect */
+    transition: background 0.3s ease, transform 0.3s ease;
 }
+
 .contact-form > div img{
     width: 100%;
-    
 }
 .contact-form > div{
     margin: 0 auto;
     text-align: center;
 }
-
 .social-links{
     display: flex;
     justify-content: center;
@@ -184,7 +201,6 @@ body{
     color:  #00c6ff;
     border-color: #00c6ff;
 }
-
 @media screen and (min-width: 768px){
     .contact-bg .text{
         width: 70%;
@@ -196,7 +212,6 @@ body{
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
 @media screen and (min-width: 992px){
     .contact-bg .text{
         width: 50%;
@@ -207,7 +222,6 @@ body{
         align-items: center;
     }
 }
-
 @media screen and (min-width: 1200px){
     .contact-info{
         grid-template-columns: repeat(4, 1fr);
