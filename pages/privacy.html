@@ -320,7 +320,7 @@
                 <a href="../pages/about.html">About Us</a> | 
                 <a href="../pages/contact.html">Contact</a>
             </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
         </div>
     </footer>
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
@@ -364,7 +364,14 @@
    });
      </script>
     <script src="../script/scroll.js"></script>
-    <script src="../script/script.js"></script>  
+    <script src="../script/script.js"></script> 
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script> 
 </body>
 
 </html>

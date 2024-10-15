@@ -272,7 +272,7 @@
         <a href="contact.html">Contact</a> |
         <a href="contributor.html">Contributor</a>
       </div>
-      <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
     </div>
   </footer>
 
@@ -324,6 +324,13 @@
       document.getElementById('progress-bar').style.width = scrollPercentage + "%";
     }
   </script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
 </body>
 
 </html>

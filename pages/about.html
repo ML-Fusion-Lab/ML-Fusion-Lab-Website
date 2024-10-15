@@ -172,7 +172,7 @@
             <a href="contact.html">Contact</a>
             <a href="Testimonial.html">Testimonial</a>
             <div class="para">
-                <p style="color: white;">&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+                <p style="color: white;">&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
             </div>
         </div>
     </footer>
@@ -250,6 +250,13 @@
  animateCircles();
 });
  </script>
+ <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
 
 </body>
 </html>

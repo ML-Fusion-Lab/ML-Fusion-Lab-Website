@@ -150,7 +150,7 @@
                 <a href="../pages/about.html">About Us</a> |
                 <a href="../pages/contact.html">Contact</a>
             </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
         </div>
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
     </footer>
@@ -217,7 +217,13 @@
     <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
 
 </html>
