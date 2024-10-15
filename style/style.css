@@ -94,7 +94,7 @@ footer {
   padding: 0 20px;
 }
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -104,13 +104,15 @@ footer {
   color: white;
   text-decoration: none;
   margin: 0 10px;
-  transition: color 0.3s;
+  transition: all .38s ease-in-out;
 }
 
 .footer-links a:hover,
-.footer-socials a:hover {
-  color: #007bff;
-}
+  .footer-socials a:hover {
+          color: white;
+          transform: scale(1.2);
+          padding: 2px 5px;
+          border-radius: 4px;} */
 
 .footer-contact {
   margin: 10px 0;
@@ -1295,7 +1297,7 @@ footer {
   padding: 0 20px;
 }
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -1311,7 +1313,7 @@ footer {
 .footer-links a:hover,
 .footer-socials a:hover {
   color: #007bff;
-}
+} */
 
 .footer-contact {
   margin: 10px 0;
@@ -3068,3 +3070,58 @@ body.dark-mode #scrolltopbutton {
   color: white;
   background-color: black;
 }
+.footer-socials a {
+
+  font-size: 25px;
+  margin: 0 15px;
+  transition: all .38s ease;
+
+  color: #007bff;
+
+}
+
+.footer-socials a:hover{
+
+  /* color: white; */
+
+  transform: scale(1.2);
+
+  padding: 2px 4px;
+
+  border-radius: 4px;
+
+}
+
+    .linkedin:hover{
+
+        color: white;
+
+        background-color:#0a66c2 ;
+
+    }
+
+    .facebook:hover{
+
+        padding: 2px 10px;
+
+        color: white;
+
+        background-color: #2e46ff;
+
+    }
+
+    .twitter:hover{
+
+        color: black;
+
+        background-color: #ffffff;
+
+    }
+
+    .Github:hover{
+
+      color: rgb(0, 0, 0);
+
+      background-color: #ffffff;
+
+  }

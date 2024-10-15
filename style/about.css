@@ -294,7 +294,7 @@ height: 12em; /* Adjust height for mobile devices */
     margin: auto;
     padding: 0 20px;
 }
-.footer-links, .footer-socials {
+/* .footer-links, .footer-socials {
     margin: 10px 0;
     display: block;
     justify-content: center;
@@ -303,11 +303,11 @@ height: 12em; /* Adjust height for mobile devices */
     color: white;
     text-decoration: none;
     margin: 0 10px;
-    transition: color 0.3s; /* Add transition for hover effect */
+    transition: color 0.3s; /* Add transition for hover effect
 }
 .footer-links a:hover, .footer-socials a:hover {
-    color: #007BFF; /* Change color on hover */
-}
+    color: #007BFF; /* Change color on hover 
+} */
 .footer-contact {
     margin: 10px 0;
     display: flex;
