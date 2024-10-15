@@ -25,7 +25,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Crop Height Using Computer Vision",
       "cardDesc": "Utilize contour detection techniques to estimate the height of crops for agricultural purposes.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/crop_height_estimation_tutorial.html"
     },
     {
       "modelid": "modal4",
