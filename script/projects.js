@@ -20,15 +20,6 @@ const projects = [
   },
   {
     "modelid": "modal3",
-    "cardImage": "../../Assets/projectpics/irish.jpg",
-    "cardAlt": "Descision Tree",
-    "imgStyle": "box-shadow: none; border-radius: 5px;",
-    "cardTitle": "Decision Tree Tutorial Project",
-    "cardDesc": "In this tutorial, we build a Decision Tree classifier using the Iris Flower dataset and Scikit-learn.",
-    "learnMoreLink": "../pages/decision_tree_tutorial.html"
-  },
-  {
-    "modelid": "modal4",
     "cardImage": "../Assets/projectpics/terrain_classifier.jpg",
     "cardAlt": "cnn",
     "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -37,7 +28,7 @@ const projects = [
     "learnMoreLink": "../pages/terrain_classifier.html"
   },
     {
-      "modelid": "modal5",
+      "modelid": "modal4",
       "cardImage": "../Assets/projectpics/crops.jpg",
       "cardAlt": "crops",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -45,19 +36,8 @@ const projects = [
       "cardDesc": "Utilize contour detection techniques to estimate the height of crops for agricultural purposes.",
       "learnMoreLink": "../pages/crop_height_estimation_tutorial.html"
     },
-
     {
-      "modelid": "modal6",
-      "cardImage": "../Assets/projectpics/airquality.png",
-      "cardAlt": "Air Quality Predictor",
-      "imgStyle": "box-shadow: none; border-radius: 5px;",
-      "cardTitle": "Air Quality Predictor",
-      "cardDesc": "To assess, monitor, and improve air quality in urban areas, aiming to reduce pollution levels and promote public health.",
-      "learnMoreLink": "../pages/Air_Quality_Prediction.html"
-    },
- 
-    {
-      "modelid": "modal7",
+      "modelid": "modal5",
       "cardImage": "../Assets/projectpics/disease.jpg",
       "cardAlt": "disease",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -65,9 +45,8 @@ const projects = [
       "cardDesc": "A machine learning model that helps detect early symptoms of diseases using patient data.",
       "learnMoreLink": "#"
     },
-
     {
-      "modelid": "modal8",
+      "modelid": "modal6",
       "cardImage": "../Assets/projectpics/shop.jpg",
       "cardAlt": "shopping",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -76,7 +55,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal9",
+      "modelid": "modal7",
       "cardImage": "../Assets/projectpics/cnn.png",
       "cardAlt": "cnn",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -85,7 +64,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal10",
+      "modelid": "modal8",
       "cardImage": "../Assets/projectpics/emai.jpg",
       "cardAlt": "email",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -94,7 +73,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal11",
+      "modelid": "modal9",
       "cardImage": "../Assets/projectpics/stock.jpg",
       "cardAlt": "stock",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -103,7 +82,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal12",
+      "modelid": "modal10",
       "cardImage": "../Assets/projectpics/bot.png",
       "cardAlt": "bot",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -112,7 +91,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal13",
+      "modelid": "modal11",
       "cardImage": "../Assets/projectpics/fraud.png",
       "cardAlt": "fraud",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -121,7 +100,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal14",
+      "modelid": "modal12",
       "cardImage": "../Assets/projectpics/lth.png",
       "cardAlt": "health",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -130,7 +109,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal15",
+      "modelid": "modal13",
       "cardImage": "../Assets/projectpics/wild.jpg",
       "cardAlt": "wild",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -139,7 +118,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal16",
+      "modelid": "modal14",
       "cardImage": "../Assets/projectpics/waste.jpg",
       "cardAlt": "waste",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -148,7 +127,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal17",
+      "modelid": "modal15",
       "cardImage": "../Assets/projectpics/traffic.jpg",
       "cardAlt": "traffic",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -157,7 +136,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal18",
+      "modelid": "modal16",
       "cardImage": "../Assets/projectpics/personalizd.jpg",
       "cardAlt": "personalized",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -166,7 +145,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal19",
+      "modelid": "modal17",
       "cardImage": "../Assets/projectpics/mental.jpg",
       "cardAlt": "mental",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -175,7 +154,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal20",
+      "modelid": "modal18",
       "cardImage": "../Assets/projectpics/dist.jpg",
       "cardAlt": "Disaster",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -184,7 +163,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal21",
+      "modelid": "modal19",
       "cardImage": "../Assets/projectpics/sound.jpg",
       "cardAlt": "sound",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -193,7 +172,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal22",
+      "modelid": "modal20",
       "cardImage": "../Assets/projectpics/eneryg.png",
       "cardAlt": "energy",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -202,7 +181,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal23",
+      "modelid": "modal21",
       "cardImage": "../Assets/projectpics/nut.jpg",
       "cardAlt": "nutrition",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -211,7 +190,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal24",
+      "modelid": "modal22",
       "cardImage": "../Assets/projectpics/rec.jpg",
       "cardAlt": "recycle",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -220,7 +199,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal25",
+      "modelid": "modal23",
       "cardImage": "../Assets/projectpics/the.jpg",
       "cardAlt": "Therapist",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -228,9 +207,9 @@ const projects = [
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
       "learnMoreLink": "#"
     }
-
   ]
-
+  
+  
   // Select card container
   const projectList = document.querySelector(".project-list");
   const loadMoreButton = document.querySelector(".load-more-button");
