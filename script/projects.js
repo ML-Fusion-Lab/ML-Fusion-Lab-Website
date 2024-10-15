@@ -36,6 +36,17 @@ const projects = [
       "cardDesc": "Utilize contour detection techniques to estimate the height of crops for agricultural purposes.",
       "learnMoreLink": "../pages/crop_height_estimation_tutorial.html"
     },
+
+    {
+      "modelid": "modal24",
+      "cardImage": "../Assets/projectpics/airquality.png",
+      "cardAlt": "Air Quality Predictor",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Air Quality Predictor",
+      "cardDesc": "To assess, monitor, and improve air quality in urban areas, aiming to reduce pollution levels and promote public health.",
+      "learnMoreLink": "../pages/Air_Quality_Prediction.html"
+    },
+ 
     {
       "modelid": "modal5",
       "cardImage": "../Assets/projectpics/disease.jpg",
@@ -45,6 +56,7 @@ const projects = [
       "cardDesc": "A machine learning model that helps detect early symptoms of diseases using patient data.",
       "learnMoreLink": "#"
     },
+
     {
       "modelid": "modal6",
       "cardImage": "../Assets/projectpics/shop.jpg",
@@ -207,9 +219,9 @@ const projects = [
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
       "learnMoreLink": "#"
     }
+
   ]
-  
-  
+
   // Select card container
   const projectList = document.querySelector(".project-list");
   const loadMoreButton = document.querySelector(".load-more-button");
