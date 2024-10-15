@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EfficientNet Terrain Classification</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        background-color: #4a90e2;
+        color: white;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        animation: colorChange 8s infinite;
+    }
+    @keyframes colorChange {
+        0% { background-color: #4a90e2; }
+        50% { background-color: #50b3a2; }
+        100% { background-color: #4a90e2; }
+    }
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    h2, h3 {
+        text-align: center;
+        color: #333;
+    }
+    p {
+        line-height: 1.6;
+        color: #555;
+    }
+    ul {
+        margin-left: 20px;
+    }
+    pre {
+        background-color: #eee;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <div class="theme-switch" id="theme-switch"></div>
+      </ul>
+    </nav>
+  </header>
+<div class="project-container">
+    <div id="b49f66bc" class="cell markdown header"
+    data-papermill="{&quot;duration&quot;:2.5905e-2,&quot;end_time&quot;:&quot;2024-10-11T14:12:06.935748&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-11T14:12:06.909843&quot;,&quot;status&quot;:&quot;completed&quot;}"
+    data-tags="[]">
+        <h1 style="text-align: center;">EfficientNet for Terrain Classification</h1>
+    </div>
+    <h2>Overview</h2>
+    <p>
+        This project uses EfficientNet-B0 for terrain classification, distinguishing between different terrain types such as mountains, forests, glaciers, deserts, and coasts. 
+        Large datasets of terrain data, collected from photographs and satellite images, need rapid labeling for efficient processing. 
+        With the use of Transfer Learning and GPU acceleration, the model offers fast inference with high accuracy, making it suitable for handling large-scale datasets effectively.
+    </p>
+    <p>Key features include:</p>
+    <ul>
+        <li>Data Augmentation for Robust Training</li>
+        <li>GPU-accelerated Training for Speed</li>
+        <li>Model Evaluation using Confusion Matrices</li>
+        <li>Early Stopping to Prevent Overfitting</li>
+    </ul>
+
+    <h2>Code Walkthrough</h2>
+
+    <h3>1. Importing Necessary Modules</h3>
+    <p>We start by importing all the required modules, including PyTorch for deep learning, EfficientNet from torchvision, and data loaders for handling datasets.</p>
+    <pre>
+# Importing required libraries
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torchvision import datasets, models, transforms
+from torch.utils.data import DataLoader
+from torchvision.models import EfficientNet_B0_Weights
+import matplotlib.pyplot as plt
+    </pre>
+
+    <h3>2. Checking GPU Availability</h3>
+    <p>This step ensures that the model utilizes GPU if available for faster training and inference.</p>
+    <pre>
+# Check if a GPU is available
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Using device: {device}")
+    </pre>
+
+    <h3>3. Data Augmentation and Loading</h3>
+    <p>We define data transformations to improve the model's robustness and load the datasets using PyTorch's <code>ImageFolder</code>.</p>
+    <pre>
+# Define data augmentation techniques
+data_transforms = transforms.Compose([
+    transforms.RandomResizedCrop(224),
+    transforms.RandomHorizontalFlip(),
+    transforms.ColorJitter(brightness=0.2, contrast=0.2),
+    transforms.ToTensor(),
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+])
+
+# Load training and testing datasets
+train_dataset = datasets.ImageFolder(root="train_data_path", transform=data_transforms)
+test_dataset = datasets.ImageFolder(root="test_data_path", transform=data_transforms)
+
+# Create data loaders
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+    </pre>
+
+    <h3>4. Modifying the EfficientNet-B0 Model</h3>
+    <p>We modify the classifier layer to match the number of terrain classes (5 classes in this case).</p>
+    <pre>
+# Load EfficientNet-B0 with pretrained weights
+model = models.efficientnet_b0(weights=EfficientNet_B0_Weights.DEFAULT)
+
+# Modify the final classifier layer
+num_classes = 5
+model.classifier[1] = nn.Linear(model.classifier[1].in_features, num_classes)
+
+# Move the model to the appropriate device
+model = model.to(device)
+    </pre>
+
+    <h3>5. Defining Loss Function and Optimizer</h3>
+    <p>We use CrossEntropyLoss as the loss function and Adam as the optimizer for efficient learning.</p>
+    <pre>
+# Define loss function and optimizer
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.0001)
+    </pre>
+
+    <h3>6. Implementing Early Stopping and Learning Rate Scheduler</h3>
+    <p>A learning rate scheduler adjusts the learning rate dynamically, and early stopping prevents overfitting.</p>
+    <pre>
+# Learning rate scheduler
+scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, factor=0.5, patience=2, verbose=True)
+    </pre>
+
+    <h3>7. Training the Model</h3>
+    <p>We define the training loop, track accuracy, and implement early stopping.</p>
+    <pre>
+def train_model(model, train_loader, criterion, optimizer, scheduler, num_epochs=15, patience=5):
+    best_acc = 0.0
+    patience_counter = 0
+
+    for epoch in range(num_epochs):
+        model.train()
+        running_loss = 0.0
+        correct, total = 0, 0
+
+        for images, labels in train_loader:
+            images, labels = images.to(device), labels.to(device)
+            optimizer.zero_grad()
+
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item()
+            _, preds = torch.max(outputs, 1)
+            correct += (preds == labels).sum().item()
+            total += labels.size(0)
+
+        epoch_acc = correct / total * 100
+        print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss:.4f}, Accuracy: {epoch_acc:.2f}%')
+
+        scheduler.step(epoch_acc)
+
+        if epoch_acc > best_acc:
+            best_acc = epoch_acc
+            patience_counter = 0
+            torch.save(model.state_dict(), "best_model.pth")
+        else:
+            patience_counter += 1
+            if patience_counter >= patience:
+                print("Early stopping triggered.")
+                break
+    </pre>
+
+    <h3>8. Evaluating the Model</h3>
+    <p>Finally, we evaluate the trained model on the test dataset to check its performance.</p>
+    <pre>
+def evaluate_model(model, test_loader):
+    model.eval()
+    correct, total = 0, 0
+    with torch.no_grad():
+        for images, labels in test_loader:
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
+            _, preds = torch.max(outputs, 1)
+            correct += (preds == labels).sum().item()
+            total += labels.size(0)
+
+    print(f'Test Accuracy: {100 * correct / total:.2f}%')
+
+# Evaluate the trained model
+evaluate_model(model, test_loader)
+    </pre>
+</div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      Follow us on:
+      <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+      <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+      <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+    </div>
+    <div class="footer-contact">
+      <div>
+        Contact us:
+        <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+        | Phone: +1 (555) 123-4567
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="../pages/privacy.html">Privacy Policy</a> |
+      <a href="../pages/terms.html">Terms of Service</a> |
+      <a href="../pages/about.html">About Us</a> |
+      <a href="../pages/contact.html">Contact</a> |
+      <a href="../pages/contributor.html">Contributor</a>
+    </div>
+    <div>&copy; 2024 ML Fusion Labs | All Rights Reserved</div>
+  </div>
+  <button id="scrollTopBtn" onclick="scrollToTop()">
+    <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+</footer>
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+
+    circles.forEach(function (circle) {
+      circle.x = 0;
+      circle.y = 0;
+    });
+
+    window.addEventListener("mousemove", function (e) {
+      coords.x = e.pageX;
+      coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+    });
+
+    function animateCircles() {
+      let x = coords.x;
+      let y = coords.y;
+
+      circles.forEach(function (circle, index) {
+        circle.style.left = `${x - 12}px`;
+        circle.style.top = `${y - 12}px`;
+        circle.style.transform = `scale(${(circles.length - index) / circles.length
+          })`;
+
+        const nextCircle = circles[index + 1] || circles[0];
+        circle.x = x;
+        circle.y = y;
+
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+      });
+
+      requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+  });
+</script>
+<!-- Botpress Chat Scripts -->
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+</body>
+
+</html>
