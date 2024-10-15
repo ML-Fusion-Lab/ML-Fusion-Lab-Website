@@ -110,11 +110,14 @@ p {
     font-size: 3rem;  
 }
 
+
+
 /* Cards Container */
 .cards-container {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
+    align-items: center;
+    gap: 45px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -202,7 +205,6 @@ p {
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    
 }
 
 .flip-card:hover .flip-card-inner {
