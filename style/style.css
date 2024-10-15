@@ -1,6 +1,8 @@
 *{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
 }/* Container for the progress bar */
+
 #progress-container {
   position: fixed;
   top: 0;
@@ -59,7 +61,13 @@
   }
 }
 header {
-  height: 100px;
+  height: 200px;
+  
+}
+header nav ul li a {
+  gap: 12px;
+  right: -40px;
+  font-size: small;
 }
 body{
  min-height:100vh;
@@ -174,91 +182,6 @@ body {
     background-color: #00c6ff;
   }
 
-  /* .container img {
-    box-shadow: 20px 20px 20px grey;
-  } */
-
-  /* Header Styles */
-  /* header {
-    background-color: #1a1a1a;
-    padding: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 3px solid #00c6ff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  header .logo h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin: 0;
-    padding-bottom: 25px;
-  } */
-
-  /* header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 50px; 
-  } */
-
-  /* header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 18px;
-    transition: color 0.3s, border-bottom 0.3s;
-    padding-bottom: 5px;
-
-    background-color: #333;
-    padding: 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  } */
-  /* header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 70%;
-    margin-right: 1rem;
-  }
-  header nav .brand {
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-  header nav .logo h1 {
-    color: #fff;
-    font-weight: 700;
-    font-size: 28px;
-    margin: 0;
-  }
-
-  header nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-
-
-  header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 0.5rem 0.75rem;
-    transition: color 0.3s ease;
-  } */
 
   /* Responsive styles */
   @media (max-width: 900px) {
@@ -293,7 +216,8 @@ body {
       height: auto; /* Full width for mobile view */
       position: absolute;
       top: 100%;
-      right: 0;
+      
+      right: 0px;
       background-color: #333; /* Background color for the floating menu */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow */
       border-radius: 0 0 8px 8px; /* Rounded corners at the bottom */
@@ -1196,6 +1120,7 @@ body.dark-mode .newsletter-right {
   cursor: pointer;
   transition: background 0.3s ease-in-out;
   vertical-align: middle;
+  right: -10px;
 }
 
 .theme-switch::before {
