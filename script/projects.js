@@ -229,18 +229,13 @@ const projects = [
       const title = document.createElement("h3");
       const desc = document.createElement("p");
       const link = document.createElement("a");
-
+      const learnMoreLink = document.createElement("a");
       // Set attributes
       card.className = "project-item";
   
       cardImg.setAttribute("src", projects[i].cardImage);
       cardImg.setAttribute("style", projects[i].imgStyle)
       cardImg.setAttribute("alt", projects[i].cardAlt);
-        
-      link.href = projects[i].learnMoreLink;
-      link.innerHTML = "Learn more";
-      link.classList.add("btn");
-      link.setAttribute("onclick", `openModal('${projects[i].modelid}')`)
       title.innerHTML = projects[i].cardTitle;
       desc.innerHTML = projects[i].cardDesc;
 
@@ -249,7 +244,19 @@ const projects = [
       card.appendChild(title);
       card.appendChild(desc);
       card.appendChild(link);
-  
+      if (projects[i].learnMoreLink != '#'){
+        link.href = projects[i].learnMoreLink;
+        link.innerHTML = "Open Project";
+        link.classList.add("btn");
+        card.appendChild(link);
+      }
+      else{
+
+        learnMoreLink.innerHTML = "Learn More";
+        learnMoreLink.classList.add("btn");
+        learnMoreLink.setAttribute("onclick", `openModal('${projects[i].modelid}')`)
+        card.appendChild(learnMoreLink);
+      }
       projectList.appendChild(card);
     }
     currentIndex += cardPerPage;
