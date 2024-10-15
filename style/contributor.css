@@ -8,6 +8,7 @@
 .title {
   display: inline-block;
   font-size: 3em;
+  width: 100vw;
   margin-bottom: 20px;
   padding: 10px;
   color: #fffdff;
@@ -38,11 +39,12 @@
 
 .contributors-grid {
   display: flex;
+  width: 100vw;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px;
   gap: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .contributor-card {
