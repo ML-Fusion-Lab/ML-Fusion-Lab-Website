@@ -63,8 +63,9 @@
               <label>Remember me</label>
             </div>
             <div class="pass-link">
-              <a href="#">Forgot password?</a>
-            </div>
+              <a href="#" id="forgotPasswordLink">Forgot password?</a>
+              </div>
+              <div id="forgotPasswordMessage"></div>
           </div>
           <button type="submit">Login</button>
           <span>or use your account</span>
@@ -74,6 +75,16 @@
             <a class="lin" href="www.linkedin.com" class="social"><i class="lni lni-linkedin-original"></i></a>
           </div>
         </form>
+
+        <!-- Forgot Password form (Initially hidden) -->
+        <!-- <form id="forgotPasswordForm" style="display:none;">
+          <strong><p id="h1">Forgot Password</p></strong>
+          <input type="email1" placeholder="Enter your email" id="forgotPasswordEmail">
+          <button type="button1" id="forgotPasswordSubmit">Reset Password</button>
+          <a href="#" id="backToLogin">Back to Login</a>
+          <div id="forgotPasswordMessage"></div>
+        </form> -->
+
       </div>
 
       <div class="overlay-container">
@@ -97,119 +108,10 @@
     </div>
   </div>
 
+
   <script src="../script/login.js"></script>
+  <script src="../script/forgotpassword.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const trustedEmailDomains = ["gmail.com", "outlook.com", "yahoo.com", "hotmail.com"]; // Add more domains if needed
-
-      const registerButton = document.getElementById("register");
-      const loginButton = document.getElementById("login");
-      const container = document.getElementById("container");
-      const loginSuccessBanner = document.getElementById("loginSuccessBanner");
-      const registerSuccessBanner = document.getElementById("registerSuccessBanner");
-      const loginDeclineBanner = document.getElementById("loginDeclineBanner");
-      const registerDeclineBanner = document.getElementById("registerDeclineBanner");
-
-      registerButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        container.classList.add("right-panel-active");
-        document.getElementById("registerForm").scrollIntoView({ behavior: "smooth" });
-      });
-
-      loginButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        container.classList.remove("right-panel-active");
-        document.getElementById("loginForm").scrollIntoView({ behavior: "smooth" });
-      });
-
-      // Form validation and submission
-      document.getElementById("registerForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        validateForm("register");
-      });
-
-      document.getElementById("loginForm").addEventListener("submit", function (event) {
-        event.preventDefault();
-        validateForm("login");
-      });
-
-      function validateForm(formType) {
-        let email, password, name;
-        const spcharRegex = /[<>"/]/;
-
-        if (formType === "register") {
-          name = document.getElementById("registerName").value;
-          email = document.getElementById("registerEmail").value;
-          password = document.getElementById("registerPassword").value;
-
-          if (name === "" || email === "" || password === "") {
-            alert("Please fill in all fields");
-            return;
-          }
-
-          if (!validateEmail(email)) {
-            alert("Please enter a valid email address");
-            return;
-          }
-
-          if (!isTrustedDomain(email)) {
-            alert("Email domain is not allowed. Please use a trusted provider (e.g., Gmail, Outlook).");
-            return;
-          }
-
-          if (!validatePassword(password)) {
-            alert(`Password must contain at least 8 characters long and contain at least 
-            * 1 uppercase letter,
-            * 1 lowercase letter, 
-            * 1 number, and
-            * 1 special character.`);
-            return;
-          }
-
-          if (spcharRegex.test(name) || spcharRegex.test(password)) {
-            alert('Name or password cannot contain <, >, ", or /.');
-            return;
-          }
-
-          if (localStorage.getItem("email") === email) {
-            registerDeclineBanner.style.display = "block";
-            setTimeout(() => {
-              registerDeclineBanner.style.display = "none";
-            }, 6000);
-          }
-
-          localStorage.setItem("name", name);
-          localStorage.setItem("email", email);
-          localStorage.setItem("password", password);
-
-          // Show register success banner
-          registerSuccessBanner.style.display = "block";
-          setTimeout(() => {
-            registerSuccessBanner.style.display = "none";
-            document.getElementById("registerName").value = "";
-            document.getElementById("registerEmail").value = "";
-            document.getElementById("registerPassword").value = "";
-          }, 3000);
-        }
-      }
-
-      function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-      }
-
-      function isTrustedDomain(email) {
-        const domain = email.split("@")[1];
-        return trustedEmailDomains.includes(domain);
-      }
-
-      function validatePassword(password) {
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-        return passwordRegex.test(password);
-      }
-    });
-  </script>
 
 </body>
 </html>
