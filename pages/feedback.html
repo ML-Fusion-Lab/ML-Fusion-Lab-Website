@@ -1275,6 +1275,76 @@ body.dark-mode #scrolltopbutton {
   background-color: #505056; /* Keep as is or change to match dark theme */
   color: #e0c0c0; /* Light color for button text */
 }
+
+
+
+/* Hover effects for images in the feedback header */
+.feedback-header img {
+    transition: transform 0.3s ease, filter 0.3s ease; 
+}
+
+.feedback-header img:hover {
+    transform: scale(1.05); 
+    filter: brightness(1.1); 
+}
+
+/* Hover effect for the content div */
+.content {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.content:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* Hover effect for form fields */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select,
+input[type="range"] {
+    transition: transform 0.3s ease, border 0.3s ease, background 0.3s ease; 
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover,
+textarea:hover,
+select:hover,
+input[type="range"]:hover {
+    transform: scale(1.02);
+    border: 2px solid #007bff; 
+    background: #f0f8ff;
+}
+
+/* Hover effect for star rating */
+.star-rating label {
+    transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffb400; 
+    transform: scale(1.2);
+}
+
+/* Hover effect for the feedback button */
+#feedback-btn {
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+#feedback-btn:hover {
+    background-color: #0056b3; 
+    transform: scale(1.05); 
+}
     </style>
 </head>
 <body>
