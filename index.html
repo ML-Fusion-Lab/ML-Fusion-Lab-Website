@@ -82,9 +82,27 @@
           transition: color 0.3s;
         }
 
-        .footer-links a:hover,
+        /* .footer-links a:hover,
         .footer-socials a:hover {
           color: #007bff;
+        } */
+
+               
+        /* Facebook hover color with gradient */
+        .footer-socials a.facebook:hover {
+          background: linear-gradient(to right, white, #3b5998);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        /* Twitter hover color */
+        .footer-socials a.twitter:hover {
+          color: black; /* Twitter black */
+        }
+
+        /* LinkedIn hover color */
+        .footer-socials a.linkedin:hover {
+          color: #0077b5; /* LinkedIn light blue */
         }
 
         .footer-socials a {
@@ -564,13 +582,13 @@
       <div class="container">
         <div class="footer-socials">
           Follow us on:
-          <a href="https://facebook.com" target="_blank"
+          <a class="facebook" href="https://facebook.com" target="_blank"
             ><i class="fab fa-facebook-f"></i
           ></a>
-          <a href="https://twitter.com" target="_blank"
+          <a class="twitter" href="https://twitter.com" target="_blank"
             ><i class="fa-brands fa-x-twitter"></i
           ></a>
-          <a href="https://linkedin.com" target="_blank"
+          <a class="linkedin" href="https://linkedin.com" target="_blank"
             ><i class="fab fa-linkedin-in"></i
           ></a>
         </div>
