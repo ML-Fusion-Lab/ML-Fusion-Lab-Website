@@ -19,10 +19,16 @@
   <style>
     html {
       scroll-behavior: smooth;
+      max-width: 100vw;
+      max-height: 100vh;
     }
 
     body {
-      background-color: #a0a09c;
+      background-color: #a0a09c;    
+      overflow-x: hidden;
+      margin: 0;
+
+
     }
 
     header {
@@ -239,6 +245,21 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="community_suport.html">Community Support</a></li>
         <li><a href="feedback.html">Feedback</a></li>
+        <li>
+          <div class="gtranslate_wrapper"></div>
+          <script>
+            window.gtranslateSettings = {
+              default_language: "en",
+              detect_browser_language: true,
+              wrapper_selector: ".gtranslate_wrapper",
+            };
+          </script>
+          <script
+            src="https://cdn.gtranslate.net/widgets/latest/popup.js"
+            defer
+          ></script>
+        </li>
+        <div class="theme-switch" id="theme-switch"></div>
       </ul>
     </nav>
   </header>
@@ -247,6 +268,7 @@
     <h1 class="title">Our Contributors</h1>
     <div id="contributors" class="contributors-grid"></div>
   </div>
+
   <button class="top-btn" id="goToTopBtn" onclick="goToTop()">
     <i class="fa-solid fa-chevron-up" style="color: #ffffff"></i>
   </button>
@@ -331,6 +353,7 @@
     // Update the HTML content
     document.getElementById("current-year").textContent = currentYear;
 </script>
+<script src="../script/script.js"></script>
 </body>
 
 </html>

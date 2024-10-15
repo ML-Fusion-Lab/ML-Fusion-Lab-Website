@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="${contributor.html_url}" target="_blank" rel="noopener noreferrer">
             <img src="${contributor.avatar_url}" alt="${contributor.login}">
           </a>
-          <h2>${contributor.login}</h2>
+          <h3>${contributor.login}</h3>
           <p>Contributions: ${contributor.contributions}</p>
         `;
 

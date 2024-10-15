@@ -8,7 +8,6 @@
 .title {
   display: inline-block;
   font-size: 3em;
-  width: 100vw;
   margin-bottom: 20px;
   padding: 10px;
   color: #fffdff;
@@ -42,12 +41,13 @@
   width: 100vw;
   flex-wrap: wrap;
   gap: 40px;
-  justify-content: center;
-  align-items: center;
+
   padding: 20px;
 }
 
 .contributor-card {
+  /* width: auto;
+  height: auto; */
   width: 300px;
   position: relative;
   overflow: hidden;
@@ -56,14 +56,21 @@
   flex-direction: column;
   align-items: center;
   background-color: #f5f2f5;
-  /* border: 1px solid #00ebdf; */
+  border: 1px solid #1e4fc2;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 1);
   padding: 16px;
   transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
   text-decoration: none;
   color: inherit;
   /* margin-bottom: 16px;  */
+  word-wrap: wrap;
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
+
+}
+
+#contributors {
+  perspective: 1000px; /* This adds depth for 3D transformations */
 }
 
 .contributor-card:hover {
@@ -71,6 +78,8 @@
   box-shadow: 1px 1px 23px rgba(14, 6, 14, 0.915);
   border: none;
   cursor: pointer;
+  transform: translateZ(50px); /* Moves the card forward in 3D space */
+
 }
 
 .contributor-card::before {
@@ -80,7 +89,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(132deg, #060506 50%, rgb(206, 206, 206) 51%);
+  background: linear-gradient(132deg, #76ABAE 50%, rgb(206, 206, 206) 51%);
   /* background: linear-gradient(130deg, #3b89ff 50%, #eef6ff 50%); */
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: translate(-100%, -100%);
@@ -116,7 +125,6 @@
   } */
 
 .contributor-card h2 {
-  font-size: 1.2em;
   color: #040404;
   position: relative;
   z-index: 1;
