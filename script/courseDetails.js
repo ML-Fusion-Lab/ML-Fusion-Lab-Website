@@ -1,7 +1,7 @@
 const courseDetails = [
     {
       id: "course_1",
-      img: "Course Assets/1.jpg",
+      img: "CourseAssets/1.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Google AI Essentials",
@@ -33,7 +33,7 @@ const courseDetails = [
     },
     {
       id: "course_2",
-      img: "Course Assets/2.jpg",
+      img: "CourseAssets/2.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Python for Everybody",
@@ -65,7 +65,7 @@ const courseDetails = [
     },
     {
       id: "course_3",
-      img: "Course Assets/3.jpg",
+      img: "CourseAssets/3.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Prompt Engineering",
@@ -97,7 +97,7 @@ const courseDetails = [
     },
     {
       id: "course_4",
-      img: "Course Assets/4.jpg",
+      img: "CourseAssets/4.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "IBM Data Science",
@@ -129,7 +129,7 @@ const courseDetails = [
     },
     {
       id: "course_5",
-      img: "Course Assets/5.jpg",
+      img: "CourseAssets/5.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Machine Learning Fundamentals",
@@ -161,7 +161,7 @@ const courseDetails = [
     },
     {
       id: "course_6",
-      img: "Course Assets/6.jpg",
+      img: "CourseAssets/6.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Big Data Analytics",
@@ -193,7 +193,7 @@ const courseDetails = [
     },
     {
       id: "course_7",
-      img: "Course Assets/7.jpg",
+      img: "CourseAssets/7.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Cybersecurity Essentials",
@@ -225,7 +225,7 @@ const courseDetails = [
     },
     {
       id: "course_8",
-      img: "Course Assets/8.jpg",
+      img: "CourseAssets/8.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Cloud Computing Fundamentals",
@@ -257,7 +257,7 @@ const courseDetails = [
     },
     {
       id: "course_9",
-      img: "Course Assets/9.jpg",
+      img: "CourseAssets/9.jpg",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Blockchain Technology",
@@ -289,7 +289,7 @@ const courseDetails = [
     },
     {
       id: "course_10",
-      img: "Course Assets/10.png",
+      img: "CourseAssets/10.png",
       logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
       logoName: "IBM",
       title: "Data Visualization Mastery",
