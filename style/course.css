@@ -246,14 +246,19 @@ p {
 .tag {
     background-color: #F1C40F;
     color: white;
-    padding: 5px 10px;
+    padding: 5px;
+    display: block;
+    width: 50%;
+    text-align: center;
+    margin-bottom: 2px;
     border-radius: 5px;
     font-size: 0.8rem;
     position: absolute;
     bottom: 5px;
-    align-items: center;
-
+    left: 50%; /* Moves to the middle of the page */
+    transform: translateX(-50%); /* Centers the element horizontally */
 }
+
 
 /* Category card hover effect */
 .category-card {
