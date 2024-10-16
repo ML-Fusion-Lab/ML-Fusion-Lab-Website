@@ -192,6 +192,7 @@ body {
       justify-content: space-between;
       align-items: center;
      /* Adjust padding to reduce overall height */
+     height: auto;
     }
 
     header nav {
