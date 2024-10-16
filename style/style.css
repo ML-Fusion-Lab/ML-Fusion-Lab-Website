@@ -1529,7 +1529,6 @@ header nav ul li {
 header nav ul li a {
   color: #fff;
   text-decoration: none;
-  font-size: medium;
   transition: color 0.3s, border-bottom 0.3s;
 
   background-color: #333;
