@@ -231,6 +231,40 @@
           color: white;
           margin-left: 8px;
         }
+        .top{
+
+          background-color: orange;
+          color : black;
+          font-size: 20px;
+          font-weight: bold;
+          cursor : pointer;
+        }
+
+        .top:hover{
+
+          background-color: rgb(214, 155, 78);
+          border-radius : 2px;
+
+
+        }
+
+        .top1{
+
+          background-color: rgb(0, 89, 255);
+          font-size: 20px;
+          color : white;
+          font-weight: bold;
+          font-style: italic;
+        }
+
+        .contain{
+
+          padding-top: 40px;
+          display: flex;
+          flex-direction: row;
+          
+
+        }
       </style>
     </head>
 
@@ -243,38 +277,7 @@
 
   <body>
     <!-- html for mouse cursor trail effect -->
-    <div class="circle-container">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-    </div>
+    
 
     <header>
       <div id="progress-container">
@@ -294,27 +297,34 @@
       </div>
       <nav>
         <div class="hamburger" id="hamburger">&#9776;</div>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="pages/courses.html">Courses</a></li>
-          <li><a href="pages/projects.html">Projects</a></li>
-          <li><a href="pages/about.html">About Us</a></li>
-          <li><a href="pages/contact.html">Contact</a></li>
-          <li><a href="pages/community_suport.html">Community Support</a></li>
 
-          <li><a href="pages/feedback.html">Feedback</a></li>
+        <div class="contain"> <!-- container-->
+          <ul>
+            <li><a class="top" style="text-decoration: underline; margin-left : 40px;" href="index.html">Home</a></li>
+            <li><a class="top" href="pages/courses.html">Courses</a></li>
+            <li><a class="top" href="pages/projects.html">Projects</a></li>
+            <li><a class="top" href="pages/about.html">About Us</a></li>
+            <li><a class="top" href="pages/contact.html">Contact</a></li>
+            <li><a class="top" href="pages/community_suport.html">Community Support</a></li>
+  
+            <li><a class="top1" href="pages/feedback.html">Feedback</a></li>
+            
           
+  
+            <li><a class="top1" href="pages/login.html">Login</a></li>
+            <li><div class="gtranslate_wrapper"></div>
+              <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper","flag_size":16}</script>
+
+              <script  src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
+
+            <div style="padding-right: 30px; margin-left : 650px; margin-top : 30px; padding-bottom : 30px; align-items : center" class="theme-switch" id="theme-switch"></div>
+            
+          </ul>
+        </nav>
+      </header>
+
+        </div>
         
-
-          <li><a href="pages/login.html">Login</a></li>
-          <li><div class="gtranslate_wrapper"></div>
-            <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper","flag_size":16}</script>
-            <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
-          <div class="theme-switch" id="theme-switch"></div>
-          
-        </ul>
-      </nav>
-    </header>
 
     <section class="hero">
       <div class="hero-content">
