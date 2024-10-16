@@ -174,9 +174,9 @@ body.dark-mode footer {
     color: white;
 }
 
-/* Theme Toggle */
+
+/* Here are the styles for the theme toggel  */
 .theme-switch {
-    margin-right: 20px;
     display: inline-block;
     width: 60px;
     height: 30px;
@@ -186,9 +186,10 @@ body.dark-mode footer {
     cursor: pointer;
     transition: background 0.3s ease-in-out;
     vertical-align: middle;
-}
-
-.theme-switch::before {
+    right: -10px;
+  }
+  
+  .theme-switch::before {
     content: "";
     position: absolute;
     top: 3px;
@@ -200,17 +201,17 @@ body.dark-mode footer {
     background-position: center;
     transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
     background-image: url("../Assets/moon.png");
-}
-
-.theme-switch.dark-theme {
-    background: linear-gradient(82deg, #ffffff, #151414);
-}
-
-.theme-switch.dark-theme::before {
+  }
+  
+  .theme-switch.dark-theme {
+    background: linear-gradient(82deg, #ffffff, #1f1f1f);
+  }
+  
+  .theme-switch.dark-theme::before {
     left: 33px;
     background-image: url("../Assets/sun.png");
-}
-
+  }
+  
 /* Social Icons */
 .footer-socials {
     display: flex;

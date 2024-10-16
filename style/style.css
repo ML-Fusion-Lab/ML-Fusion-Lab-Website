@@ -1187,7 +1187,6 @@ body.dark-mode .newsletter .input-group .input {
 body.dark-mode .newsletter-right {
   color: white;
 }
-
 /* Here are the styles for the theme toggel  */
 .theme-switch {
   display: inline-block;
@@ -1224,6 +1223,7 @@ body.dark-mode .newsletter-right {
   left: 33px;
   background-image: url("../Assets/sun.png");
 }
+
 
 /*  contact page  dark theme*/
 body.dark-mode .contact-hero {
@@ -1407,7 +1407,7 @@ body {
     font-size: 40px;
   }
 
-  /Newsletter Styles/ .newsletter {
+ .newsletter {
     height: 200px;
     width: 100%;
     background-color: whitesmoke;

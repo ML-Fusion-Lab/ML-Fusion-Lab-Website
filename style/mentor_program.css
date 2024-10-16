@@ -293,9 +293,9 @@ body.dark-mode .head {
 }
 
 
+
 /* Here are the styles for the theme toggel  */
 .theme-switch {
-  margin-right: 20px;
   display: inline-block;
   width: 60px;
   height: 30px;
@@ -305,6 +305,7 @@ body.dark-mode .head {
   cursor: pointer;
   transition: background 0.3s ease-in-out;
   vertical-align: middle;
+  right: -10px;
 }
 
 .theme-switch::before {
@@ -322,13 +323,14 @@ body.dark-mode .head {
 }
 
 .theme-switch.dark-theme {
-  background: linear-gradient(82deg, #ffffff, #151414);
+  background: linear-gradient(82deg, #ffffff, #1f1f1f);
 }
 
 .theme-switch.dark-theme::before {
   left: 33px;
   background-image: url("../Assets/sun.png");
 }
+
 .footer-socials {
   display: flex;
   align-items: center;

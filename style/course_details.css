@@ -4,7 +4,21 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.theme-switch::before {
+/* Here are the styles for the theme toggel  */
+.theme-switch {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    border-radius: 30px;
+    background: linear-gradient(82deg, #ffffff, #00796b);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    vertical-align: middle;
+    right: -10px;
+  }
+  
+  .theme-switch::before {
     content: "";
     position: absolute;
     top: 3px;
@@ -16,12 +30,17 @@
     background-position: center;
     transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
     background-image: url("../Assets/moon.png");
-}
-
-.theme-switch.dark-theme::before {
+  }
+  
+  .theme-switch.dark-theme {
+    background: linear-gradient(82deg, #ffffff, #1f1f1f);
+  }
+  
+  .theme-switch.dark-theme::before {
     left: 33px;
     background-image: url("../Assets/sun.png");
-}
+  }
+  
 
 :root {
     --black: #1d1d1f;
