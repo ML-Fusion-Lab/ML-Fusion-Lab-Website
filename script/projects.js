@@ -43,7 +43,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Crop Height Using Computer Vision",
       "cardDesc": "Utilize contour detection techniques to estimate the height of crops for agricultural purposes.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/crop_height_estimation_tutorial.html"
     },
     {
       "modelid": "modal6",
@@ -185,7 +185,7 @@ const projects = [
       "cardImage": "../Assets/projectpics/eneryg.png",
       "cardAlt": "energy",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
-      "cardTitle": "Energy Consumption Prediction for Smart Homes",
+      "cardTitle": "Smart Home Energy Prediction",
       "cardDesc": "Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.",
       "learnMoreLink": "#"
     },
@@ -203,7 +203,7 @@ const projects = [
       "cardImage": "../Assets/projectpics/rec.jpg",
       "cardAlt": "recycle",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
-      "cardTitle": "Plastic Waste Classification for Recycling",
+      "cardTitle": "Plastic Waste Classification To Recycle",
       "cardDesc": "Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.",
       "learnMoreLink": "#"
     },
@@ -238,18 +238,13 @@ const projects = [
       const title = document.createElement("h3");
       const desc = document.createElement("p");
       const link = document.createElement("a");
-
+      const learnMoreLink = document.createElement("a");
       // Set attributes
       card.className = "project-item";
   
       cardImg.setAttribute("src", projects[i].cardImage);
       cardImg.setAttribute("style", projects[i].imgStyle)
       cardImg.setAttribute("alt", projects[i].cardAlt);
-        
-      link.href = projects[i].learnMoreLink;
-      link.innerHTML = "Learn more";
-      link.classList.add("btn");
-      link.setAttribute("onclick", `openModal('${projects[i].modelid}')`)
       title.innerHTML = projects[i].cardTitle;
       desc.innerHTML = projects[i].cardDesc;
 
@@ -258,7 +253,19 @@ const projects = [
       card.appendChild(title);
       card.appendChild(desc);
       card.appendChild(link);
-  
+      if (projects[i].learnMoreLink != '#'){
+        link.href = projects[i].learnMoreLink;
+        link.innerHTML = "Open Project";
+        link.classList.add("btn");
+        card.appendChild(link);
+      }
+      else{
+
+        learnMoreLink.innerHTML = "Learn More";
+        learnMoreLink.classList.add("btn");
+        learnMoreLink.setAttribute("onclick", `openModal('${projects[i].modelid}')`)
+        card.appendChild(learnMoreLink);
+      }
       projectList.appendChild(card);
     }
     currentIndex += cardPerPage;

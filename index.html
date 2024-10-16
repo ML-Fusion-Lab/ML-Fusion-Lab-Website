@@ -20,13 +20,17 @@
         referrerpolicy="no-referrer"
       />
   
-      <link rel="stylesheet" href="./style/style.css" />
+      
       <link rel="stylesheet" href="./style/popup.css" />
+      <link rel="stylesheet" href="./style/style.css" />
 
       <style>
         header {
           height: 200px;
 
+        }
+        nav{
+          margin: 1rem 0;
         }
         nav ul{
           list-style-type: none;
@@ -68,7 +72,7 @@
           padding: 0 20px;
         }
 
-        .footer-links,
+        /* .footer-links,
         .footer-socials,
         .footer-contact {
           margin: 10px 0;
@@ -79,13 +83,31 @@
           color: white;
           text-decoration: none;
           margin: 0 10px;
-          transition: color 0.3s;
-        }
+          transition: all .38s ease-in-out;
+        } */
 
-        .footer-links a:hover,
+        /* .footer-links a:hover,
         .footer-socials a:hover {
           color: #007bff;
-        }
+        } */
+
+               
+        /* Facebook hover color with gradient */
+        /* . a.facebook:hover {
+          background: linear-gradient(to right, white, #3b5998);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        } */
+
+        /* Twitter hover color */
+        /* .footer-socials a.twitter:hover {
+          color: black; /* Twitter black 
+        } */
+
+        /* LinkedIn hover color */
+        /* .footer-socials a.linkedin:hover {
+          color: #0077b5; /* LinkedIn light blue 
+        } */
 
         .footer-socials a {
           font-size: 24px;
@@ -258,7 +280,7 @@
       <div id="progress-container">
         <div id="progress-bar"></div>
       </div>
-      <div class="logo">
+      <div class="logo" style="margin-top: 15px;">
         <a href="index.html">
           <h1>
             <img
@@ -382,6 +404,7 @@
       </div>
     </div>
   </section>
+
   <div class="newsletter">
     <div class="newsletter-left">
       <h1>Sign Up for Newsletters</h1>
@@ -392,13 +415,13 @@
     </div>
     <div class="newsletter-right">
       <div class="input-group">
-        <input type="email" id="email" placeholder="Enter your email" class="input" required />
+        <input type="email" id="email" placeholder="Enter your email" class="input" required  style="border-radius: 4px 0 0 4px;"/>
         <button type="submit" class="submit-button" id="submit-button">
           Subscribe
         </button>
       </div>
-      <div id="error-message" style="display: none; color: red; width: 242px">
-        Please enter a valid email address.
+      <div id="error-message" style="display: none; color: red; width: 260px">
+        *Please enter a valid email address.
       </div>
 
         <!-- Confirmation message container -->
@@ -412,19 +435,21 @@
       </div>
     </div>
 
+
+    
     <style>
       .input-group {
         display: flex;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        border-radius: 4px;
       }
 
       .input {
         transition: all 0.3s ease;
         border: 2px solid #ccc;
         padding: 10px;
-        border-radius: 4px 0 0 4px;
         outline: none;
       }
 
@@ -560,19 +585,61 @@
         /* removed the non-breaking space (&nbsp;) */
       }
     </style>
+
+
+
+
+ <!-- This script for newsletter subscription -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('submit-button').addEventListener('click', function (e) {
+      e.preventDefault(); 
+
+      const emailInput = document.getElementById('email');
+      const email = emailInput.value.trim();
+      const errorMessage = document.getElementById('error-message');
+      const confirmationMessage = document.getElementById('confirmation-message');
+
+     
+      if (!validateEmail(email)) {
+        errorMessage.style.display = 'block';
+        confirmationMessage.style.display = 'none';
+      } else {
+        errorMessage.style.display = 'none';
+        confirmationMessage.style.display = 'block';
+
+       
+        emailInput.value = '';
+      }
+    });
+
+  
+    function validateEmail(email) {
+      const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return re.test(email);
+    }
+  });
+</script>
+
+
+
+
     <footer>
       <div class="container">
         <div class="footer-socials">
           Follow us on:
-          <a href="https://facebook.com" target="_blank"
+          <a class="facebook" href="https://facebook.com" target="_blank"
             ><i class="fab fa-facebook-f"></i
           ></a>
-          <a href="https://twitter.com" target="_blank"
+          <a class="twitter" href="https://twitter.com" target="_blank"
             ><i class="fa-brands fa-x-twitter"></i
           ></a>
-          <a href="https://linkedin.com" target="_blank"
+          <a class="linkedin" href="https://linkedin.com" target="_blank"
             ><i class="fab fa-linkedin-in"></i
           ></a>
+          <a class="Github" href="https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>          
         </div>
         <div class="footer-contact">
           <p>
@@ -591,7 +658,7 @@
           <a href="pages/contributor.html">Contributor</a>
 
         </div>
-        <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+        <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
       </div>
       <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
     </footer>
@@ -818,5 +885,12 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="./script/popup.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    <script>
+      // Get the current year
+      const currentYear = new Date().getFullYear();
+      
+      // Update the HTML content
+      document.getElementById("current-year").textContent = currentYear;
+  </script>
   </body>
 </html>

@@ -23,7 +23,7 @@
            margin: auto;
            padding: 0 20px;
        }
-       .footer-links, .footer-socials {
+       /* .footer-links, .footer-socials {
            margin: 10px 0;
        }
        .footer-links a, .footer-socials a {
@@ -31,13 +31,13 @@
            text-decoration: none;
            margin: 0 10px;
            transition: color 0.3s; /* Add transition for hover effect */
-       }
+       /* } */
        .footer-links a:hover, .footer-socials a:hover {
            color: #007BFF; /* Change color on hover */
        }
        .footer-contact {
            margin: 10px 0;
-       }
+       } */
         /* css for mouse cursor trail effect */
    .circle {
   position: absolute;
@@ -143,9 +143,9 @@
         <div class="footer-container">
             <div class="footer-socials">
                 Follow us on: 
-                <a href="https://facebook.com" target="_blank">Facebook</a> | 
-                <a href="https://twitter.com" target="_blank">Twitter</a> | 
-                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://facebook.com" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="twitter" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="footer-contact">
                 <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
@@ -156,7 +156,7 @@
                 <a href="../pages/about.html">About Us</a> | 
                 <a href="../pages/contact.html">Contact</a>
             </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
         </div>
     </footer>
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
@@ -200,7 +200,14 @@
    });
      </script>
     <script src="../script/scroll.js"></script>
-    <script src="../script/script.js"></script>  
+    <script src="../script/script.js"></script>
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
 
 </html>

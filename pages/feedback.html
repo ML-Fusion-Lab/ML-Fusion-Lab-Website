@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/scroll.css">
+    <link rel="stylesheet" href="../style/style.css" />
 
     <style>
         :root {
@@ -180,7 +181,7 @@
 
        
        
-        .footer-links a,
+        /* .footer-links a,
         .footer-socials a {
             color: white;
             text-decoration: none;
@@ -191,7 +192,7 @@
         .footer-links a:hover,
         .footer-socials a:hover {
             color: #007BFF;
-        }
+        } */
 
         .footer-contact a {
             color: white;
@@ -280,7 +281,7 @@ footer {
   padding: 0 20px;
 }
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -296,7 +297,7 @@ footer {
 .footer-links a:hover,
 .footer-socials a:hover {
   color: #007bff;
-}
+} */
 
 .footer-contact {
   margin: 10px 0;
@@ -751,7 +752,7 @@ footer {
   padding: 0 20px;
 }
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -767,7 +768,7 @@ footer {
 .footer-links a:hover,
 .footer-socials a:hover {
   color: #007bff;
-}
+} */
 
 .footer-contact {
   margin: 10px 0;
@@ -1275,6 +1276,76 @@ body.dark-mode #scrolltopbutton {
   background-color: #505056; /* Keep as is or change to match dark theme */
   color: #e0c0c0; /* Light color for button text */
 }
+
+
+
+/* Hover effects for images in the feedback header */
+.feedback-header img {
+    transition: transform 0.3s ease, filter 0.3s ease; 
+}
+
+.feedback-header img:hover {
+    transform: scale(1.05); 
+    filter: brightness(1.1); 
+}
+
+/* Hover effect for the content div */
+.content {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.content:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* Hover effect for form fields */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select,
+input[type="range"] {
+    transition: transform 0.3s ease, border 0.3s ease, background 0.3s ease; 
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover,
+textarea:hover,
+select:hover,
+input[type="range"]:hover {
+    transform: scale(1.02);
+    border: 2px solid #007bff; 
+    background: #f0f8ff;
+}
+
+/* Hover effect for star rating */
+.star-rating label {
+    transition: color 0.3s ease, transform 0.3s ease; 
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffb400; 
+    transform: scale(1.2);
+}
+
+/* Hover effect for the feedback button */
+#feedback-btn {
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    background-color: #007bff; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+#feedback-btn:hover {
+    background-color: #0056b3; 
+    transform: scale(1.05); 
+}
     </style>
 </head>
 <body>
@@ -1352,7 +1423,7 @@ body.dark-mode #scrolltopbutton {
                     <option value="2023">2023</option>
                     <!-- Add other years -->
                 </select>
-                <button type="submit">Send Feedback</button>
+                <button type="submit" id="feedback-btn">Send Feedback</button>
             </form>
         </main>
     </div>
@@ -1391,26 +1462,26 @@ body.dark-mode #scrolltopbutton {
       });
   </script>
 
-    <footer>
-        <div class="footer-container">
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
-            <div class="footer-links">
-                <a href="../pages/privacy.html">Privacy Policy</a> |
-                <a href="../pages/terms.html">Terms of Service</a> |
-                <a href="../pages/about.html">About Us</a> |
-                <a href="../pages/contact.html">Contact</a>
-            </div>
-            <div class="footer-socials">
-                Follow us on:
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="footer-contact">
-                <p>Contact us: <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
-            </div>
-        </div>
-    </footer>
+<footer>
+  <div class="footer-container">
+      <div class="footer-socials">
+          Follow us on: 
+      <a href="https://facebook.com" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+      <a href="https://twitter.com"  class="twitter"target="_blank"><i class="fa-brands fa-x-twitter"></i></a>  
+      <a href="https://linkedin.com" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="footer-contact">
+          <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+      </div>
+      <div class="footer-links">
+          <a href="../pages/privacy.html">Privacy Policy</a> | 
+          <a href="../pages/terms.html">Terms of Service</a> | 
+          <a href="../pages/about.html">About Us</a> | 
+          <a href="../pages/contact.html">Contact</a>
+      </div>
+      <p>&copy; <span id="current-year"></span>ML Fusion Labs | All Rights Reserved</p>
+  </div>
+</footer>
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="../script/scroll.js"></script>
     <script src="../script/script.js"></script>
@@ -1418,5 +1489,12 @@ body.dark-mode #scrolltopbutton {
       <div class="gtranslate_wrapper"></div>
       <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
       <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+      <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
 </html>
