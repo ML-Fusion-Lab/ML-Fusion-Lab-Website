@@ -138,7 +138,7 @@
           position: fixed;
           bottom: 10px;
           left: 10px;
-          background-color: #f0f2f5;
+          background-color: #292b30;
           padding: 20px;
           display: flex;
           flex-direction: column;
@@ -153,17 +153,21 @@
           border-right: 5px solid transparent;
           border-bottom: 5px solid transparent;
           transition: border-color 0.6s;
-          border: 3px solid #020172;
+          border: 3px solid #000000;
         }
 
         #cookie-consent:hover {
-          border-right-color: #020172;
-          border-bottom-color: #020172;
+          border-right-color: #336491;
+          border-bottom-color: #323257;
         }
-
+        #cookie-consent img {
+  width: 20px; /* Adjust this size as needed */
+  height: auto;
+  margin-right: 15px;
+        }
         #cookie-consent p {
           margin-bottom: 10px;
-          color: black; /* Make the text black for better visibility */
+          color: rgb(255, 252, 252); /* Make the text black for better visibility */
           text-align: center; /* Center align the text */
         }
 
@@ -172,7 +176,7 @@
           width: 260px; /* Decrease the button width */
           height: 35px; /* Decrease the button height */
           color: white;
-          background-color: #011856;
+          background-color: #3e6088;
           border: none;
           border-radius: 5px; /* Add rounded corners */
           cursor: pointer;
@@ -192,19 +196,19 @@
 
         .accept-cookies:hover {
           background-color: rgb(174, 233, 255);
-          color: #120141;
-          border: 2px solid blue;
+          color: #ffffff;
+          border: 2px solid rgb(0, 0, 0);
         }
 
         .reject-cookies:hover {
           background-color: rgb(174, 233, 255);
-          color: #0b025c;
-          border: 2px solid blue;
+          color: #ffffff;
+          border: 2px solid rgb(0, 0, 0);
         }
 
         #learn-more-link,
         #show-less-link {
-          color: #021667;
+          color: #bebebe;
           text-decoration: none;
           cursor: pointer;
           font-size: 20px;
@@ -215,7 +219,7 @@
           margin-top: 10px;
         }
         .dark-mode #cookie-consent {
-          background-color: #828281;
+          background-color: #000000;
           margin-left: 8px;
         }
 
@@ -841,7 +845,7 @@
 
     <div id="cookie-consent">
       <p>
-        We use cookies to improve your experience. By using our website, you
+        <img src="216341.png" alt="cookies">We use cookies to improve your experience. By using our website, you
         consent to all cookies in accordance with our Cookie Policy.
         <a href="#" id="learn-more-link">Learn More</a>
       </p>
