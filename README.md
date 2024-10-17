@@ -1,6 +1,6 @@
 # ML Fusion Lab - Learn Machine Learning
 
-![image](https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe)
+![image](https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe) 
 
 Welcome to **ML Fusion Lab**!.
 
