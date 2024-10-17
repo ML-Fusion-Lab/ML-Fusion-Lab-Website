@@ -49,7 +49,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .cd-wrapper .cd-container .cd-header .cd-company-group p {
