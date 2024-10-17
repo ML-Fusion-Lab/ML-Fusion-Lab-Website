@@ -187,7 +187,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Urban Sound Classification",
       "cardDesc": "Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/urban_sound_classification_tutorial.html"
     },
     {
       "modelid": "modal22",
