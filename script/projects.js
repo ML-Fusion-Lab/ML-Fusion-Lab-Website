@@ -109,7 +109,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Chatbot Development for Customer Support",
       "cardDesc": "Create an AI-powered chatbot that assists users with their inquiries in real time.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/chatbot_development_tutorial.html"
     },
     {
       "modelid": "modal13",
@@ -265,6 +265,8 @@ const projects = [
       card.appendChild(title);
       card.appendChild(desc);
       card.appendChild(link);
+
+  
       if (projects[i].learnMoreLink != '#'){
         link.href = projects[i].learnMoreLink;
         link.innerHTML = "Open Project";
@@ -272,7 +274,6 @@ const projects = [
         card.appendChild(link);
       }
       else{
-
         learnMoreLink.innerHTML = "Learn More";
         learnMoreLink.classList.add("btn");
         learnMoreLink.setAttribute("onclick", `openModal('${projects[i].modelid}')`)
