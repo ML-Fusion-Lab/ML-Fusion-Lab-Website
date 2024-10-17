@@ -13,7 +13,7 @@ Welcome to **ML Fusion Lab**!.
 <div align = "center">
 <br>
 <table align="center">
-    <thead align="center">
+    <thead align="center"> 
         <tr border: 1px;>
             <td><b>🌟 Stars</b></td>
             <td><b>🍴 Forks</b></td>
