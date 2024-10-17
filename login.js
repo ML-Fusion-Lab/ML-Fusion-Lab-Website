@@ -34,24 +34,25 @@ function togglePasswordVisibility(buttonId, inputId, iconId) {
   const toggleButton = document.getElementById(buttonId);
   const icon = document.getElementById(iconId);
 
-  toggleButton.addEventListener('click', function (e) {
-      // Toggle the type attribute
-      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordInput.setAttribute('type', type);
+  // Initialize the icon to be a closed eye (fa-eye-slash) because the password is hidden initially
+  icon.classList.add('fa-eye-slash');
 
-      // Toggle the icon
-      if (type === 'password') {
-          icon.classList.remove('fa-eye-slash');
-          icon.classList.add('fa-eye');
-      } else {
-          icon.classList.remove('fa-eye');
-          icon.classList.add('fa-eye-slash');
-      }
+  toggleButton.addEventListener('click', function () {
+    // Toggle the type attribute between 'password' and 'text'
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+
+    // Toggle the icon
+    if (type === 'password') {
+      icon.classList.remove('fa-eye');
+      icon.classList.add('fa-eye-slash');
+    } else {
+      icon.classList.remove('fa-eye-slash');
+      icon.classList.add('fa-eye');
+    }
   });
 }
 
+// Apply to both login and register
 togglePasswordVisibility('toggleLoginPassword', 'loginPassword', 'loginIcon');
 togglePasswordVisibility('toggleRegisterPassword', 'registerPassword', 'registerIcon');
- 
-
- 
