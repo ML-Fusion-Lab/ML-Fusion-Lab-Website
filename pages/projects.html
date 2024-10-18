@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - ML Fusion Labs</title>
-    <link rel="stylesheet" href="../style/style.css">
+    
     <link rel="stylesheet" href="../style/scroll.css">
+    <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
 
@@ -20,36 +21,6 @@
             -moz-osx-font-smoothing: grayscale; /* Improve rendering on Firefox for macOS */
         }
         
-        
-        footer {
-           background: #1b1a1a;
-           color: white;
-           text-align: center;
-           padding: 20px 0;
-           margin-top: auto; /* Push footer to bottom */
-       }
-       .footer-container {
-           font-family: Arial, sans-serif;
-           max-width: 800px;
-           margin: auto;
-           padding: 0 20px;
-       }
-       .footer-links, .footer-socials {
-           margin: 10px 0;
-       }
-       .footer-links a, .footer-socials a {
-           color: white;
-           text-decoration: none;
-           margin: 0 10px;
-           transition: color 0.3s; /* Add transition for hover effect */
-       }
-       .footer-links a:hover, .footer-socials a:hover {
-           color: #007BFF; /* Change color on hover */
-       }
-       .footer-contact {
-           margin: 10px 0;
-       }
-       /* Grid styling for the project cards */
     .project-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -263,6 +234,91 @@
   z-index: 9999; /* removed the non-breaking space (&nbsp;) */
 }
   
+
+/* new footer properties */
+.footer {
+    padding: 5rem 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 400px repeat(3, 1fr);
+    gap: 2rem;
+    background-color: black;
+  }
+  
+  .footer-col img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    position: relative;
+    bottom: 15px;
+  }
+  
+  .footer-p {
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    color: white;
+    display: block;
+  }
+  
+  .footer-social {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-social i {
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    opacity: 0.7;
+    border: 2px solid white;
+    border-radius: 100%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease 0s;
+  }
+  
+  .footer-social i:hover {
+    opacity: 1;
+    background-color: #35373b;
+  }
+  
+  .h46 {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .footer-col-main {
+    margin-top: -1rem;
+  }
+  
+  .footer-col-main a {
+    display: block;
+    margin-bottom: 1rem;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.3s ease 0s;
+  }
+  
+  .footer-col-main a:hover {
+    opacity: 1;
+  }
+  
+  .footer-bar {
+    margin: auto;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: white;
+    background-color: black;
+  }
+  
+  @media (max-width: 900px) {
+    .footer {
+        grid-template-columns: 1fr 200px;
+    }
+  }
+  /* this is only end of footer style */
    </style>
 
 </head>
@@ -355,26 +411,44 @@
             <p id="modalTechnologies"></p>
         </div>
     </div>         
-    <footer>
-        <div class="footer-container">
-            <div class="footer-socials">
-                Follow us on: 
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
-            <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>  
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <div class="footer">
+        <div class="footer-col">
+            <img src="http://127.0.0.1:3000/image/ml%20fusion%20lab%20log.jpg" alt="">
+            <span class="footer-p">
+      
+              We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
+      
+            </span>
+            <div class="footer-social">
+                <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
             </div>
-            <div class="footer-contact">
-                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
-            </div>
-            <div class="footer-links">
-                <a href="../pages/privacy.html">Privacy Policy</a> | 
-                <a href="../pages/terms.html">Terms of Service</a> | 
-                <a href="../pages/about.html">About Us</a> | 
-                <a href="../pages/contact.html">Contact</a>
-            </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
         </div>
-    </footer>
+        <div class="footer-col-main">
+            <h4 class="h46">ML Fusion Labs</h4>
+            <a href="#">Business</a>
+            <a href="#">Franchise</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">About Us</h4>
+            <a href="http://127.0.0.1:3000/pages/about.html">About Us</a>
+            <a href="#">Security</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">Contact</h4>
+            <a href="http://127.0.0.1:3000/pages/contact.html">Contact Us</a>
+            <a href="info@mlfusionlabs.com">Email Us</a>
+            <a href="http://127.0.0.1:3000/pages/privacy.html">Privacy Policy</a>
+            <a href="http://127.0.0.1:3000/pages/terms.html">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="footer-bar"> 
+        &copy; 2024 ML Fusion Labs | All Rights Reserved
+      
+      </div>
     <!-- JavaScript -->
 <script>
     function openModal(projectId) {
@@ -384,102 +458,141 @@
         const technologies = document.getElementById('modalTechnologies');
 
         switch (projectId) {
-            case 'modal4':
+
+            case 'modal8':
+
                 title.textContent = 'Crop Height Using Computer Vision';
                 description.textContent = 'Utilize contour detection techniques to estimate the height of crops for agricultural purposes.';
                 technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
                 break;
-            case 'modal5':
+
+            case 'modal9':
+
                 title.textContent = 'AI-Based Disease Diagnosis';
                 description.textContent = 'A machine learning model that helps detect early symptoms of diseases using patient data.';
                 technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas';
                 break;
-            case 'modal6':
+
+            case 'modal10':
+            
                 title.textContent = 'Recommendation System for Shopping';
                 description.textContent = 'Build a recommendation system that suggest products based on user browsing behavior.';
                 technologies.textContent = 'Technologies Used: Python, Open cv, TensorFlow';
                 break;
-            case 'modal7':
+
+            case 'modal11':
+
                 title.textContent = 'Image Classification with Deep Learning';
                 description.textContent = 'Develop a model that classifies images into categories using convolutional neural networks.';
                 technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
                 break;
-            case 'modal8':
+
+            case 'modal12':
+
                 title.textContent = 'Automated Email Response System';
                 description.textContent = 'Implement a system that uses NLP to generate automated responses to common email inquiries.';
                 technologies.textContent = 'Technologies Used: Python, TensorFlow, Flask';
                 break;
-            case 'modal9':
+
+            case 'modal13':
+
                 title.textContent = 'Stock Price Time Series Forecasting';
                 description.textContent = 'Apply machine learning algorithms to predict future stock prices based on historical data.';
                 technologies.textContent = 'Technologies Used: Python, Keras, Librosa';
                 break;
-            case 'modal10':
+
+            case 'modal14':
+
                 title.textContent = 'Chatbot Development for Customer Support';
                 description.textContent = ' Create an AI-powered chatbot that assists users with their inquiries in real time.';
                 technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
                 break;
-            case 'modal11':
+
+            case 'modal15':
+
                 title.textContent = 'AI-Powered Fraud Detection System';
                 description.textContent = 'Develop a system that identifies fraudulent activities using machine learning techniques.';
                 technologies.textContent = 'Technologies Used: Python, Pandas, Statsmodels';
                 break;
-            case 'modal12':
+
+            case 'modal16':
+
                 title.textContent = 'Healthcare Predictive Analytics';
                 description.textContent = 'Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans. ';
                 technologies.textContent = 'Technologies Used: Python, Scikit-learn, Matplotlib';
                 break;
-            case 'modal13':
+
+            case 'modal17':
+
                 title.textContent = 'Wildfire Detection Using Satellite Images';
                 description.textContent = 'Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.';
                 technologies.textContent = 'Technologies Used: Python, NLTK, Flask';
                 break;
-            case 'modal14':
+
+            case 'modal18':
+
                 title.textContent = 'Waste Management Optimization';
                 description.textContent = 'Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution. ';
                 technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
                 break;
-            case 'modal15':
+
+            case 'modal19':
+
                 title.textContent = 'Traffic Accident Prediction System';
                 description.textContent = 'Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.';
                 technologies.textContent = 'Technologies Used: Python, NLTK, Sumy';
                 break;
-            case 'modal16':
+
+            case 'modal20':
+
                 title.textContent = 'Personalized Learning Recommendation System';
                 description.textContent = 'Create an adaptive learning platform that suggests personalized learning paths based on student performance data.';
                 technologies.textContent = 'Technologies Used: Python, Pandas, Scikit-learn';
                 break;
-            case 'modal17':
+
+            case 'modal21':
+
                 title.textContent = 'AI for Mental Health Analysis';
                 description.textContent = 'Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.';
                 technologies.textContent = 'Technologies Used: Python, OpenCV, Dlib';
                 break;
-            case 'modal18':
+
+            case 'modal22':
+
                 title.textContent = 'AI-Driven Disaster Relief Supply Chain Optimization ';
                 description.textContent = 'Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time. ';
                 technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
                 break;
-            case 'modal19':
+
+            case 'modal23':
+
                 title.textContent = 'Urban Sound Classification';
                 description.textContent = 'Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.';
                 technologies.textContent = 'Technologies Used: Python, Scikit-learn, Flask';
                 break;
-            case 'modal20':
-                title.textContent = 'Smart Home Energy Prediction';
+            
+            case 'modal24':
+                title.textContent = 'Energy Consumption Prediction for Smart Homes';
                 description.textContent = 'Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.';
                 technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
                 break;
-            case 'modal21':
+            
+            case 'modal25':
+            
                 title.textContent = 'AI for Personalized Nutrition Plans';
                 description.textContent = 'Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.';
                 technologies.textContent = 'Technologies Used: Python, Gensim, NLTK';
                 break;
-            case 'modal22':
+            
+            case 'modal26':
+
                 title.textContent = 'Plastic Waste Classification for Recycling';
                 description.textContent = 'Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.';
                 technologies.textContent = 'Technologies Used: Python, Scikit-learn, TensorFlow';
                 break;
-            case 'modal23':
+
+            case 'modal27':
+
                 title.textContent = 'AI-Powered Virtual Therapist';
                 description.textContent = 'Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.';
                 technologies.textContent = 'Technologies Used: Python, OpenAI Gym, TensorFlow';
@@ -568,6 +681,12 @@
     <!-- Botpress Chat Scripts -->
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
 </body>
 </html>

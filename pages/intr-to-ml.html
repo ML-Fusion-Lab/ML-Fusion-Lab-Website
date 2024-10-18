@@ -198,7 +198,7 @@
                 <a href="../pages/about.html">About Us</a> | 
                 <a href="../pages/contact.html">Contact</a>
             </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
         </div>
     </footer>
 
@@ -259,6 +259,13 @@
   
     animateCircles();
   });
+    </script>
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
     </script>
 </body>
 </html>

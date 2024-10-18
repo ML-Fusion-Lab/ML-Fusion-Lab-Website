@@ -13,14 +13,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="../style/contributor.css" />
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/contributor.css" />
+  
   <style>
     html {
       scroll-behavior: smooth;
+      max-width: 100vw;
+      max-height: 100vh;
     }
 
     body {
-      background-color: #a0a09c;
+      background-color: #a0a09c;    
+      overflow-x: hidden;
+      margin: 0;
+
+
     }
 
     header {
@@ -237,6 +245,21 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="community_suport.html">Community Support</a></li>
         <li><a href="feedback.html">Feedback</a></li>
+        <li>
+          <div class="gtranslate_wrapper"></div>
+          <script>
+            window.gtranslateSettings = {
+              default_language: "en",
+              detect_browser_language: true,
+              wrapper_selector: ".gtranslate_wrapper",
+            };
+          </script>
+          <script
+            src="https://cdn.gtranslate.net/widgets/latest/popup.js"
+            defer
+          ></script>
+        </li>
+        <div class="theme-switch" id="theme-switch"></div>
       </ul>
     </nav>
   </header>
@@ -245,6 +268,7 @@
     <h1 class="title">Our Contributors</h1>
     <div id="contributors" class="contributors-grid"></div>
   </div>
+
   <button class="top-btn" id="goToTopBtn" onclick="goToTop()">
     <i class="fa-solid fa-chevron-up" style="color: #ffffff"></i>
   </button>
@@ -252,9 +276,9 @@
     <div class="container">
       <div class="footer-socials">
         Follow us on:
-        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://facebook.com" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" class="twitter"target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://linkedin.com" class="linkedin"target="_blank"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <div class="footer-contact">
         <p>
@@ -270,7 +294,7 @@
         <a href="contact.html">Contact</a> |
         <a href="contributor.html">Contributor</a>
       </div>
-      <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
     </div>
   </footer>
 
@@ -322,6 +346,14 @@
       document.getElementById('progress-bar').style.width = scrollPercentage + "%";
     }
   </script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
+<script src="../script/script.js"></script>
 </body>
 
 </html>

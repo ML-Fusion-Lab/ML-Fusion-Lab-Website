@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 
@@ -26,7 +27,10 @@
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
-
+body.dark-mode .project-container {
+  background-color:#1a1a1a;
+  color: white;
+}
     @media (max-width: 600px) {
       .project-container {
         font-size: 0.9em;
@@ -549,6 +553,426 @@
       text-align: center;
       margin: 0.5rem auto;
     }
+    body.dark-mode p {
+  margin: 1em 0;
+}
+
+body.dark-mode a {
+  color: #e0e0e0;
+}
+
+body.dark-mode a:visited {
+  color: #cccccc;
+}
+
+body.dark-mode img {
+  max-width: 100%;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #f0f0f0;
+}
+
+body.dark-mode h5,
+body.dark-mode h6 {
+  font-size: 1em;
+  font-style: italic;
+  color: #cccccc;
+}
+
+body.dark-mode h6 {
+  font-weight: normal;
+}
+
+body.dark-mode ol,
+body.dark-mode ul {
+  padding-left: 1.7em;
+  margin-top: 1em;
+  color: #dddddd;
+}
+
+body.dark-mode li > ol,
+body.dark-mode li > ul {
+  margin-top: 0;
+}
+
+body.dark-mode blockquote {
+  margin: 1em 0 1em 1.7em;
+  padding-left: 1em;
+  border-left: 2px solid #444444;
+  color: #bbbbbb;
+}
+
+body.dark-mode code {
+  font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+  font-size: 85%;
+  margin: 0;
+  color: #eeeeee;
+  background-color: #333333;
+}
+
+body.dark-mode pre {
+  margin: 1em 0;
+  overflow: auto;
+  background-color: #2a2a2a;
+}
+
+body.dark-mode pre code {
+  padding: 0;
+  overflow: visible;
+  overflow-wrap: normal;
+}
+
+body.dark-mode .sourceCode {
+  background-color: transparent;
+  overflow: visible;
+}
+
+body.dark-mode hr {
+  background-color: #444444;
+  border: none;
+  height: 1px;
+  margin: 1em 0;
+}
+
+body.dark-mode table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #e0e0e0;
+}
+
+body.dark-mode table caption {
+  margin-bottom: 0.75em;
+  color: #cccccc;
+}
+
+body.dark-mode tbody {
+  margin-top: 0.5em;
+  border-top: 1px solid #444444;
+  border-bottom: 1px solid #444444;
+}
+
+body.dark-mode th {
+  border-top: 1px solid #444444;
+  padding: 0.25em 0.5em;
+  color: #f0f0f0;
+}
+
+body.dark-mode td {
+  padding: 0.125em 0.5em;
+  color: #dddddd;
+}
+
+body.dark-mode header {
+  margin-bottom: 4em;
+  text-align: center;
+  color: #ffffff;
+}
+
+body.dark-mode #TOC li {
+  list-style: none;
+}
+
+body.dark-mode #TOC ul {
+  padding-left: 1.3em;
+}
+
+body.dark-mode #TOC > ul {
+  padding-left: 0;
+}
+
+body.dark-mode #TOC a:not(:hover) {
+  text-decoration: none;
+}
+
+body.dark-mode code {
+  white-space: pre-wrap;
+}
+
+body.dark-mode span.smallcaps {
+  font-variant: small-caps;
+  color: #f0f0f0;
+}
+
+body.dark-mode div.columns {
+  display: flex;
+  gap: min(4vw, 1.5em);
+}
+
+body.dark-mode div.column {
+  flex: auto;
+  overflow-x: auto;
+}
+
+body.dark-mode div.hanging-indent {
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+body.dark-mode ul.task-list {
+  list-style: none;
+}
+
+body.dark-mode ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+
+body.dark-mode pre > code.sourceCode {
+  white-space: pre;
+  position: relative;
+}
+
+body.dark-mode pre > code.sourceCode > span {
+  display: inline-block;
+  line-height: 1.25;
+}
+
+body.dark-mode pre > code.sourceCode > span:empty {
+  height: 1.2em;
+}
+
+body.dark-mode .sourceCode {
+  overflow: visible;
+}
+
+body.dark-mode code.sourceCode > span {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body.dark-mode div.sourceCode {
+  margin: 1em 0;
+}
+
+body.dark-mode pre.sourceCode {
+  margin: 0;
+}
+
+@media screen {
+  body.dark-mode div.sourceCode {
+    overflow: auto;
+  }
+}
+
+@media print {
+  body.dark-mode pre > code.sourceCode {
+    white-space: pre-wrap;
+  }
+
+  body.dark-mode pre > code.sourceCode > span {
+    text-indent: -5em;
+    padding-left: 5em;
+  }
+}
+
+body.dark-mode pre.numberSource code {
+  counter-reset: source-line 0;
+}
+
+body.dark-mode pre.numberSource code > span {
+  position: relative;
+  left: -4em;
+  counter-increment: source-line;
+}
+
+body.dark-mode pre.numberSource code > span > a:first-child::before {
+  content: counter(source-line);
+  position: relative;
+  left: -1em;
+  text-align: right;
+  vertical-align: baseline;
+  border: none;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0 4px;
+  width: 4em;
+  color: #aaaaaa;
+}
+
+body.dark-mode pre.numberSource {
+  margin-left: 3em;
+  border-left: 1px solid #aaaaaa;
+  padding-left: 4px;
+}
+
+@media screen {
+  body.dark-mode pre > code.sourceCode > span > a:first-child::before {
+    text-decoration: underline;
+  }
+}
+
+body.dark-mode code span.al {
+  color: #ff6666;
+  font-weight: bold;
+}
+
+body.dark-mode code span.an {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.at {
+  color: #8bbf50;
+}
+
+body.dark-mode code span.bn {
+  color: #60d070;
+}
+
+body.dark-mode code span.bu {
+  color: #00b000;
+}
+
+body.dark-mode code span.cf {
+  color: #009040;
+  font-weight: bold;
+}
+
+body.dark-mode code span.ch {
+  color: #5080c0;
+}
+
+body.dark-mode code span.cn {
+  color: #ff6666;
+}
+
+body.dark-mode code span.co {
+  color: #80c0d0;
+  font-style: italic;
+}
+
+body.dark-mode code span.cv {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.do {
+  color: #d05a5a;
+  font-style: italic;
+}
+
+body.dark-mode code span.dt {
+  color: #b04030;
+}
+
+body.dark-mode code span.dv {
+  color: #60d070;
+}
+
+body.dark-mode code span.er {
+  color: #ff3333;
+  font-weight: bold;
+}
+
+body.dark-mode code span.ex {}
+
+body.dark-mode code span.fl {
+  color: #60d070;
+}
+
+body.dark-mode code span.fu {
+  color: #0848a0;
+}
+
+body.dark-mode code span.im {
+  color: #00b000;
+  font-weight: bold;
+}
+
+body.dark-mode code span.in {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.kw {
+  color: #009040;
+  font-weight: bold;
+}
+
+body.dark-mode code span.op {
+  color: #999999;
+}
+
+body.dark-mode code span.ot {
+  color: #009040;
+}
+
+body.dark-mode code span.pp {
+  color: #e08a00;
+}
+
+body.dark-mode code span.sc {
+  color: #5080c0;
+}
+
+body.dark-mode code span.ss {
+  color: #d06688;
+}
+
+body.dark-mode code span.st {
+  color: #5080c0;
+}
+
+body.dark-mode code span.va {
+  color: #28287c;
+}
+
+body.dark-mode code span.vs {
+  color: #5080c0;
+}
+
+body.dark-mode code span.wa {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode .display.math {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+  color: #f0f0f0;
+}
+
+    /* css for mouse cursor trail effect */
+.circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+    transition: transform 0.1s, left 0.1s, top 0.1s;
+  }
+  
+  .circle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+  }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -1489,11 +1913,14 @@ Found 700 images belonging to 70 classes.
         <a href="../pages/contact.html">Contact</a> |
         <a href="../pages/contact.html">Contributor</a>
       </div>
-      <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
     </div>
     <button id="scrollTopBtn" onclick="scrollToTop()">
       <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
   </footer>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
   <script>
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     window.onscroll = function () {
@@ -1556,6 +1983,13 @@ Found 700 images belonging to 70 classes.
   <!-- Botpress Chat Scripts -->
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
 </body>
 
 </html>

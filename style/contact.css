@@ -118,7 +118,7 @@ body{
 }
 .contact-form form{
     padding-bottom: 1rem;
-    width: 155%;
+    width: 30vw;
 }
 .form-control{
     width: 100%;
@@ -148,11 +148,14 @@ body{
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.contact-form form div{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 0.6rem;
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 400px;
 }
+
 .send-btn{
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
@@ -217,14 +220,95 @@ body{
     .contact-bg .text{
         width: 50%;
     }
-    .contact-form{
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        align-items: center;
-    }
 }
 @media screen and (min-width: 1200px){
     .contact-info{
         grid-template-columns: repeat(4, 1fr);
     }
 }
+
+
+/* new footer properties */
+.footer {
+    padding: 5rem 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 400px repeat(3, 1fr);
+    gap: 2rem;
+    background-color: black;
+  }
+  
+  .footer-col img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    position: relative;
+    bottom: 15px;
+  }
+  
+  .footer-p {
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    color: white;
+    display: block;
+  }
+  
+  .footer-social {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-social i {
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    opacity: 0.7;
+    border: 2px solid white;
+    border-radius: 100%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease 0s;
+  }
+  
+  .footer-social i:hover {
+    opacity: 1;
+    background-color: #35373b;
+  }
+  
+  .h46 {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .footer-col-main {
+    margin-top: -1rem;
+  }
+  
+  .footer-col-main a {
+    display: block;
+    margin-bottom: 1rem;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.3s ease 0s;
+  }
+  
+  .footer-col-main a:hover {
+    opacity: 1;
+  }
+  
+  .footer-bar {
+    margin: auto;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: white;
+    background-color: black;
+  }
+  
+  @media (max-width: 900px) {
+    .footer {
+        grid-template-columns: 1fr 200px;
+    }
+  }
+  /* this is only end of footer style */
