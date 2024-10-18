@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Mask Detection</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .content {
+        margin: 20px auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+        transition: color 0.3s;
+      }
+      code {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        padding: 10px;
+        white-space: pre-wrap;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      /* css for mouse cursor trail effect */
+      .circle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle,
+          rgba(70, 130, 180, 0.3),
+          skyblue,
+          rgba(0, 0, 50, 0.3),
+          white
+        );
+        transition: transform 0.1s, left 0.1s, top 0.1s;
+      }
+
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+      }
+      .note {
+        background-color: #e7f3fe;
+        border-left: 6px solid #2196f3;
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        transition: background-color 0.3s, border-left-color 0.3s;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto;
+      }
+
+      .footer-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .footer-links,
+      .footer-socials,
+      .footer-contact {
+        margin: 10px 0;
+      }
+
+      .footer-links a,
+      .footer-socials a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover,
+      .footer-socials a:hover {
+        color: #007bff;
+      }
+
+      .footer-socials a {
+        font-size: 24px;
+        margin: 0 15px;
+      }
+
+      .footer-contact a {
+        color: white;
+      }
+
+      .ani {
+        display: flex;
+        padding: 0.5em 0;
+        justify-content: center;
+        align-items: center;
+        background-color: #4a90e2;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        animation: colorChange 8s infinite;
+      }
+      body.dark-mode .ani {
+        color: #1c2e3e;
+      }
+      @keyframes colorChange {
+        0% {
+          background-color: #4a90e2;
+        }
+        50% {
+          background-color: #50b3a2;
+        }
+        100% {
+          background-color: #4a90e2;
+        }
+      }
+
+      /* Dark mode styles */
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+      }
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3 {
+        color: #58a6ff;
+      }
+      body.dark-mode code {
+        background-color: #2b2b2b;
+        border-color: #444;
+        color: #e6e6e6;
+      }
+      body.dark-mode .note {
+        background-color: #1c2e3e;
+        border-left-color: #58a6ff;
+      }
+      body.dark-mode header {
+        background-color: #2c2c2c;
+      }
+      body.dark-mode nav ul li a {
+        color: #f0f0f0;
+      }
+      #scrollTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 105px;
+        z-index: 99;
+        font-size: 26px;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <header>
+      <div class="logo">
+        <a href="../index.html">
+          <h1>
+            <img
+              src="../image/ml fusion lab log.jpg"
+              alt="logo"
+              width="100"
+              height="100"
+            />
+          </h1>
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../pages/courses.html">Courses</a></li>
+          <li><a href="../pages/projects.html">Projects</a></li>
+          <li><a href="../pages/about.html">About Us</a></li>
+          <li><a href="../pages/contact.html">Contact</a></li>
+          <li>
+            <a href="../pages/community_suport.html">Community Support</a>
+          </li>
+          <li><a href="../pages/feedback.html">Feedback</a></li>
+          <div class="theme-switch" id="theme-switch"></div>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="content">
+      <h1 class="ani">
+        Face Mask Detection: From Data Analysis to Model Deployment
+      </h1>
+
+      <h2>1. Project Overview</h2>
+      <p>
+        This project aims to detect whether a person in an image is wearing a
+        mask correctly, incorrectly, or not wearing a mask at all. We'll walk
+        through the entire process from data analysis to model deployment.
+      </p>
+
+      <h2>2. Setting Up the Environment</h2>
+      <p>First, let's import the necessary libraries:</p>
+      <code>
+        import numpy as np import pandas as pd import matplotlib.pyplot as plt
+        import seaborn as sns import torch from torchvision import datasets,
+        transforms, models from PIL import Image import xmltodict import os
+        import argparse from collections import Counter
+      </code>
+
+      <h2>3. Data Analysis</h2>
+
+      <h3>3.1 Loading Image and Annotation Files</h3>
+      <p>
+        We start by loading the images and their corresponding annotation files:
+      </p>
+      <code>
+        IMG_DIR = r"archive\images" ANNOT_DIR = r"archive\annotations"
+        img_names, xml_names = [], [] for dirname, _, filenames in
+        os.walk(IMG_DIR): for filename in filenames: if
+        filename.endswith(".xml"): xml_names.append(filename) else:
+        img_names.append(filename) print(f"Total Images: {len(img_names)},
+        Annotations: {len(xml_names)}")
+      </code>
+
+      <h3>3.2 Analyzing Class Distribution</h3>
+      <p>We analyze the distribution of classes in our dataset:</p>
+      <code>
+        def get_class_distribution(img_list): class_list = [] for img_name in
+        img_list: with open(f"{ANNOT_DIR}/{img_name[:-4]}.xml") as fd: doc =
+        xmltodict.parse(fd.read()) objects = doc["annotation"]["object"] if
+        isinstance(objects, list): for obj in objects:
+        class_list.append(obj["name"]) else: class_list.append(objects["name"])
+        return Counter(class_list) class_counts =
+        get_class_distribution(img_names) print("Class Distribution:",
+        class_counts) # Visualize class distribution
+        plt.pie(class_counts.values(), labels=class_counts.keys(),
+        autopct='%1.2f%%') plt.title("Class Distribution in Dataset") plt.show()
+      </code>
+
+      <h3>3.3 Visualizing Annotations</h3>
+      <p>
+        We can visualize the bounding boxes and class labels on sample images:
+      </p>
+      <code>
+        def visualize_annotations(img_name): # (Code for visualization) pass for
+        i in range(3): visualize_annotations(img_names[i])
+      </code>
+
+      <h2>4. Data Preprocessing</h2>
+      <p>
+        We preprocess the data by applying transformations and creating a
+        dataset:
+      </p>
+      <code>
+        my_transform = transforms.Compose([transforms.Resize((224, 224)),
+        transforms.ToTensor()]) def create_dataset(img_list): # (Code for
+        dataset creation) pass dataset = create_dataset(img_names)
+      </code>
+
+      <h2>5. Model Creation and Training</h2>
+
+      <h3>5.1 Splitting the Data</h3>
+      <code>
+        train_size = int(0.7 * len(dataset)) test_size = len(dataset) -
+        train_size train_data, test_data = random_split(dataset, [train_size,
+        test_size]) print(f"Train Size: {train_size}, Test Size: {test_size}")
+      </code>
+
+      <h3>5.2 Creating DataLoaders</h3>
+      <code>
+        train_loader = DataLoader(train_data, batch_size=32, shuffle=True)
+        test_loader = DataLoader(test_data, batch_size=32, shuffle=False)
+      </code>
+
+      <h3>5.3 Building the Model</h3>
+      <p>We use a pretrained ResNet34 model and modify it for our task:</p>
+      <code>
+        model = models.resnet34(pretrained=True) model.fc =
+        nn.Linear(model.fc.in_features, 3) for param in model.parameters():
+        param.requires_grad = False for param in model.fc.parameters():
+        param.requires_grad = True
+      </code>
+
+      <h3>5.4 Training the Model</h3>
+      <code>
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        model.to(device) n_epochs = 2 for epoch in range(n_epochs): # (Training
+        loop code) pass # Save the trained model torch.save(model.state_dict(),
+        'face_mask_model.pth')
+      </code>
+
+      <h2>6. Model Deployment and Usage</h2>
+      <p>After training, we can use the model for predictions on new images:</p>
+      <code>
+        def load_model(model_path='face_mask_model.pth'): model =
+        models.resnet34(pretrained=True) model.fc =
+        torch.nn.Linear(model.fc.in_features, 3)
+        model.load_state_dict(torch.load(model_path,
+        map_location=torch.device('cpu'))) model.eval() return model def
+        predict_image(image_path, model): # (Code for image prediction) pass def
+        show_image_with_prediction(image, prediction): plt.imshow(image)
+        plt.title(f"Prediction: {prediction}") plt.axis('off') plt.show()
+      </code>
+
+      <h3>6.1 Using the Model</h3>
+      <p>To use the model on a new image, you can run:</p>
+      <code>
+        if __name__ == "__main__": parser =
+        argparse.ArgumentParser(description="Predict mask status for an image.")
+        parser.add_argument("image_path", type=str, help="Path to the input
+        image") parser.add_argument("--model_path", type=str,
+        default="face_mask_model.pth", help="Path to the trained model") args =
+        parser.parse_args() model = load_model(args.model_path) prediction,
+        image = predict_image(args.image_path, model) print(f"Prediction:
+        {prediction}") show_image_with_prediction(image, prediction)
+      </code>
+
+      <div class="note">
+        <p>
+          <strong>Note:</strong> To use this script, run it from the command
+          line as follows:
+        </p>
+        <code
+          >python predict_mask.py path_to_your_image.jpg --model_path
+          path_to_your_model.pth</code
+        >
+      </div>
+
+      <h2>Conclusion</h2>
+      <p>
+        This project demonstrates the entire pipeline of a face mask detection
+        system, from data analysis to model deployment. By following these
+        steps, you can create and use a model to detect whether individuals in
+        images are wearing masks correctly, incorrectly, or not at all.
+      </p>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-socials">
+          Follow us on:
+          <a href="https://facebook.com" target="_blank">
+            <svg
+              style="width: 10px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                fill="#ffffff"
+                d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+              />
+            </svg>
+          </a>
+          <a href="https://twitter.com" target="_blank"
+            ><svg
+              style="width: 15px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                fill="#ffffff"
+                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+              />
+            </svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank">
+            <svg
+              style="width: 15px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+              <path
+                fill="#ffffff"
+                d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="footer-contact">
+          <div>
+            Contact us:
+            <a href="mailto:info@mlfusionlabs.com" style="color: white"
+              >info@mlfusionlabs.com</a
+            >
+            | Phone: +1 (555) 123-4567
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="../pages/privacy.html">Privacy Policy</a> |
+          <a href="../pages/terms.html">Terms of Service</a> |
+          <a href="../pages/about.html">About Us</a> |
+          <a href="../pages/contact.html">Contact</a> |
+          <a href="../pages/contributor.html">Contributor</a>
+        </div>
+        <div>
+          &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+          Reserved
+        </div>
+      </div>
+      <button id="scrollTopBtn" onclick="scrollToTop()">
+        <svg
+          style="width: 20px"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 384 512"
+        >
+          <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            fill="#ffffff"
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+          />
+        </svg>
+      </button>
+    </footer>
+    <script>
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      window.onscroll = function () {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          scrollTopBtn.style.display = "block";
+        } else {
+          scrollTopBtn.style.display = "none";
+        }
+      };
+
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const coords = { x: 0, y: 0 };
+        const circles = document.querySelectorAll(".circle");
+
+        circles.forEach(function (circle, index) {
+          circle.x = 0;
+          circle.y = 0;
+        });
+
+        window.addEventListener("mousemove", function (e) {
+          coords.x = e.clientX;
+          coords.y = e.clientY;
+        });
+
+        function animateCircles() {
+          let x = coords.x;
+          let y = coords.y;
+
+          circles.forEach(function (circle, index) {
+            circle.style.left = x + "px";
+            circle.style.top = y + "px";
+
+            circle.style.scale = (circles.length - index) / circles.length;
+            circle.x = x;
+            circle.y = y;
+
+            const nextCircle = circles[index + 1] || circles[0];
+            x += (nextCircle.x - x) * 0.3;
+            y += (nextCircle.y - y) * 0.3;
+          });
+
+          requestAnimationFrame(animateCircles);
+        }
+
+        animateCircles();
+      });
+    </script>
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+    <script src="../script/projects.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  </body>
+</html>

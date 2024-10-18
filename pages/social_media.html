@@ -292,9 +292,9 @@ html {
             <div class="container">
               <div class="footer-socials">
                 Follow us on:
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://facebook.com" target="_blank" style="color: white;" ><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" style="color: white;"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" style="color: white;"><i class="fab fa-linkedin-in"></i></a>
               </div>
               <div class="footer-contact">
                 <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone:
@@ -306,7 +306,7 @@ html {
                 <a href="../pages/about.html">About Us</a> |
                 <a href="../pages/contact.html">Contact</a>
               </div>
-              <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+              <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
             </div>
             <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
           </footer>
@@ -430,7 +430,13 @@ html {
           <!-- Botpress Chat Scripts -->
           <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
           <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-      
+          <script>
+            // Get the current year
+            const currentYear = new Date().getFullYear();
+            
+            // Update the HTML content
+            document.getElementById("current-year").textContent = currentYear;
+          </script>
       
         </body>
       

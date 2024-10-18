@@ -1,3 +1,4 @@
+// Add toggle password functionality to both login and register forms
 document.addEventListener("DOMContentLoaded", function () {
   const registerButton = document.getElementById("register");
   const loginButton = document.getElementById("login");
@@ -5,6 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
   const forgotPasswordLink = document.getElementById("forgotPasswordLink");
   const forgotPasswordMessage = document.getElementById("forgotPasswordMessage");
+  const loginSuccessBanner = document.getElementById("loginSuccessBanner");
+  const loginDeclineBanner = document.getElementById("loginDeclineBanner");
+  const registerSuccessBanner = document.getElementById("registerSuccessBanner");
+  const registerDeclineBanner = document.getElementById("registerDeclineBanner");
 
   // Store original login form HTML for restoration later
   const originalLoginFormHTML = loginForm.innerHTML;
@@ -85,41 +90,40 @@ document.addEventListener("DOMContentLoaded", function () {
         loginIcon.classList.add('fa-eye-slash');
       }
     });
+
+    // Re-attach login form submission event listener
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      validateForm("login");
+    });
   }
 
-  // Initialize login form event listeners
-  reinitializeLoginForm();
-});
+  // Password visibility toggle function for both login and register forms
+  function togglePasswordVisibility(buttonId, inputId, iconId) {
+    const passwordInput = document.getElementById(inputId);
+    const toggleButton = document.getElementById(buttonId);
+    const icon = document.getElementById(iconId);
 
-// Password visibility toggle function for both login and register forms
-function togglePasswordVisibility(buttonId, inputId, iconId) {
-  const passwordInput = document.getElementById(inputId);
-  const toggleButton = document.getElementById(buttonId);
-  const icon = document.getElementById(iconId);
+    toggleButton.addEventListener('click', function () {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
 
-  toggleButton.addEventListener('click', function () {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
+      // Toggle the icon
+      if (type === 'password') {
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      } else {
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      }
+    });
+  }
 
-    // Toggle the icon
-    if (type === 'password') {
-      icon.classList.remove('fa-eye-slash');
-      icon.classList.add('fa-eye');
-    } else {
-      icon.classList.remove('fa-eye');
-      icon.classList.add('fa-eye-slash');
-    }
-  });
-}
-
-// Add toggle password functionality to both login and register forms
-document.addEventListener("DOMContentLoaded", function () {
+  // Add toggle password functionality to both login and register forms
   togglePasswordVisibility('toggleLoginPassword', 'loginPassword', 'loginIcon');
   togglePasswordVisibility('toggleRegisterPassword', 'registerPassword', 'registerIcon');
-});
 
-// Registration form validation and localStorage handling
-document.addEventListener("DOMContentLoaded", function () {
+  // Registration form validation and localStorage handling
   const trustedEmailDomains = ["gmail.com", "outlook.com", "yahoo.com", "hotmail.com"];
 
   // Handle form submission for both register and login forms
@@ -159,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (!validatePassword(password)) {
-        alert(`Password must contain at least 8 characters long and contain at least 
+        alert(`Password must be at least 8 characters long and contain at least 
         * 1 uppercase letter,
         * 1 lowercase letter, 
         * 1 number, and
@@ -174,6 +178,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (localStorage.getItem("email") === email) {
         alert("This email is already registered.");
+        registerDeclineBanner.style.display = 'block';
+        setTimeout(() => {
+          registerDeclineBanner.style.display = 'none';
+        }, 3000);
         return;
       }
 
@@ -181,10 +189,32 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
 
-      // Display success message for registration
-      alert("Registration successful. You can now log in.");
-      container.classList.remove("right-panel-active"); // Switch to login form
-      document.getElementById("loginForm").scrollIntoView({ behavior: "smooth" });
+      // Show registration success and redirect to login
+      registerSuccessBanner.style.display = 'block';
+      setTimeout(() => {
+        registerSuccessBanner.style.display = 'none';
+        container.classList.remove("right-panel-active"); // Switch to login form
+        document.getElementById("loginForm").scrollIntoView({ behavior: "smooth" });
+      }, 3000);
+    }
+
+    if (formType === "login") {
+      email = document.getElementById("loginEmail").value;
+      password = document.getElementById("loginPassword").value;
+
+      if (localStorage.getItem("email") === email && localStorage.getItem("password") === password) {
+        // Show login success and redirect to home
+        loginSuccessBanner.style.display = 'block';
+        setTimeout(() => {
+          loginSuccessBanner.style.display = 'none';
+          window.location.href = "../index.html"; // Redirect to home page
+        }, 3000);
+      } else {
+        loginDeclineBanner.style.display = 'block';
+        setTimeout(() => {
+          loginDeclineBanner.style.display = 'none';
+        }, 3000);
+      }
     }
   }
 

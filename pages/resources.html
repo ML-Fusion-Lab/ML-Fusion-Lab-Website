@@ -81,13 +81,13 @@
                 <div class="resource-block">
                     <div class="resource-item">
                         <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/" target="_blank">
-                            <img src="image/r1.png" alt="Hands-On Machine Learning" />
+                            <img src="/image/r1.png" alt="Hands-On Machine Learning" />
                             <span class="name">Hands-On Machine Learning</span>
                         </a>
                     </div>
                     <div class="resource-item">
                         <a href="https://www.deeplearningbook.org/" target="_blank">
-                            <img src="image/r2.png" alt="Deep Learning Book" />
+                            <img src="/image/r2.png" alt="Deep Learning Book" />
                             <span class="name">Deep Learning Book</span>
                         </a>
                     </div>
@@ -99,13 +99,13 @@
                 <div class="resource-block">
                     <div class="resource-item">
                         <a href="https://www.coursera.org/specializations/machine-learning" target="_blank">
-                            <img src="image/r3.jpg" alt="Machine Learning Specialization" />
+                            <img src="/image/r3.jpg" alt="Machine Learning Specialization" />
                             <span class="name">Machine Learning Specialization</span>
                         </a>
                     </div>
                     <div class="resource-item">
                         <a href="https://www.udacity.com/course/intro-to-machine-learning-nanodegree--nd229" target="_blank">
-                            <img src="image/r4.jpg" alt="Intro to Machine Learning Nanodegree" />
+                            <img src="/image/r4.jpg" alt="Intro to Machine Learning Nanodegree" />
                             <span class="name">Intro to Machine Learning Nanodegree</span>
                         </a>
                     </div>
@@ -117,13 +117,13 @@
                 <div class="resource-block">
                     <div class="resource-item">
                         <a href="https://www.youtube.com/playlist?list=PL8dPuuaLlJ0p3rS20s0K5_hxzI9iB-tf6" target="_blank">
-                            <img src="image/r5.jpg" alt="Machine Learning Crash Course" />
+                            <img src="/image/r5.jpg" alt="Machine Learning Crash Course" />
                             <span class="name">Machine Learning Crash Course</span>
                         </a>
                     </div>
                     <div class="resource-item">
                         <a href="https://www.youtube.com/watch?v=Gv9_4yM4G68" target="_blank">
-                            <img src="image/r6.jpg" alt="Deep Learning in 5 Minutes" />
+                            <img src="/image/r6.jpg" alt="Deep Learning in 5 Minutes" />
                             <span class="name">Deep Learning in 5 Minutes</span>
                         </a>
                     </div>
@@ -136,9 +136,9 @@
         <div class="container">
             <div class="footer-socials">
                 Follow us on:
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://facebook.com" target="_blank" style="color: white;"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" style="color: white;"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" style="color: white;"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="footer-contact">
                 <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> |
@@ -150,7 +150,7 @@
                 <a href="../pages/about.html">About Us</a> |
                 <a href="../pages/contact.html">Contact</a>
             </div>
-            <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+            <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
         </div>
         <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
     </footer>
@@ -217,7 +217,13 @@
     <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
 
 </html>

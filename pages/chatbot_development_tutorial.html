@@ -6,11 +6,58 @@
   <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crop Height Estimation Using Computer Vision</title>
+  <title>Chatbot Development for Customer Support</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
   <link rel="stylesheet" href="../style/style.css" />
   <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
     header {
       height: 100px;
     }
@@ -147,11 +194,13 @@
       margin: 1em 0;
     }
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../style/scroll.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style\scroll.css" />
+</head>
 <style>
-    .crop-height-container {
+  
+.chatbot-container {
     padding: 0 20px;
     margin: 0;
     max-width: 100%;
@@ -161,17 +210,17 @@
     font-family: Arial, sans-serif;
 }
 
-.crop-height-container h1 {
+.chatbot-container h1 {
     color: #333;
     font-size: 40px;
 }
 
-.crop-height-container h2 {
+.chatbot-container h2 {
     color: #555;
     font-size: 35px;
 }
 
-.crop-height-container pre {
+.chatbot-container pre {
     background-color: #f4f4f4;
     border-left: 3px solid #ddd;
     padding: 10px;
@@ -179,45 +228,42 @@
     font-family: "Courier New", Courier, monospace;
 }
 
-.crop-height-container code {
+.chatbot-container code {
     color: #c7254e;
     background-color: #f9f2f4;
     padding: 2px 4px;
     border-radius: 4px;
 }
 
-.crop-height-container ul {
+.chatbot-container ul {
     list-style-type: disc;
     margin: 10px 0;
     padding-left: 20px;
 }
 
-.crop-height-container li {
+.chatbot-container li {
     margin-bottom: 8px;
     font-size: 20px;
 }
 
-.crop-height-container p {
+.chatbot-container p {
     line-height: 1.6;
     font-size: 20px;
 }
 
-/* Specific Python comment color */
-.crop-height-container pre code::before {
+.chatbot-container pre code::before {
     content: " ";
     white-space: pre;
 }
 
-.crop-height-container pre code {
+.chatbot-container pre code {
     font-size: 16px;
 }
 
-/* Change comment color */
-.crop-height-container pre code span.comment {
+.chatbot-container pre code span.comment {
     color: #228B22; /* Green color for Python comments */
 }
 </style>
-</head>
 <body>
 
   <div class="circle-container">
@@ -275,130 +321,110 @@
       </ul>
     </nav>
   </header>
-<div class="crop-height-container">
-        <h1 style="text-align: center; margin-top: 40px;">Crop Height Estimation Using Computer Vision</h1>
-        <p>In this tutorial, we will learn how to estimate crop height using computer vision techniques, specifically contour detection. Accurate crop height measurement is vital for monitoring crop growth and assessing the health and yield potential in agricultural fields. Using image processing and contour detection, we can automate the process of estimating crop height, saving time and effort for farmers.</p>
+<body>
+    <div class="chatbot-container">
+        <h1 style="text-align: center; margin-top: 40px;">Chatbot Development for Customer Support</h1>
+        <p>In this tutorial, we will build a customer support chatbot using Natural Language Processing (NLP) techniques. This chatbot can handle frequently asked questions, guide users through support queries, and escalate issues to human agents if necessary.</p>
 
-        <h2>Steps to Estimate Crop Height</h2>
-        <ol>
-            <li>Capture images of the crops.</li>
-            <li>Preprocess the images.</li>
-            <li>Detect contours to isolate the crops from the background.</li>
-            <li>Measure the height of the detected crop contours.</li>
-        </ol>
-
-        <h2>Step 1: Importing Libraries</h2>
-        <pre><code>
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-        </code></pre>
-        <p><strong>Explanation:</strong></p>
+        <h2>Prerequisites</h2>
         <ul>
-            <li><strong>cv2 (OpenCV):</strong> A powerful library for computer vision tasks, such as image processing and contour detection.</li>
-            <li><strong>NumPy (np):</strong> Used for array operations and handling image data.</li>
-            <li><strong>Matplotlib (plt):</strong> A plotting library to visualize the images and results.</li>
+            <li>Basic Python programming knowledge.</li>
+            <li>Familiarity with Natural Language Processing (NLP).</li>
+            <li>Python environment (3.7+).</li>
+            <li>Required libraries installed: nltk, spaCy, rasa, ChatterBot, Flask.</li>
         </ul>
 
-        <h2>Step 2: Loading and Preprocessing the Image</h2>
-        <pre><code>
-<span class="comment"># Load the image</span>
-image = cv2.imread('crop_image.jpg')
-
-<span class="comment"># Convert to grayscale </span>
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-<span class="comment"># Apply Gaussian blur to reduce noise</span>
-blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-
-<span class="comment"># Display the preprocessed image</span>
-plt.imshow(blurred, cmap='gray')
-plt.title("Preprocessed Image")
-plt.show()
-        </code></pre>
-        <p><strong>Explanation:</strong></p>
+        <h2>Step 1: Understanding Chatbots in Customer Support</h2>
+        <p>Chatbots are classified into:</p>
         <ul>
-            <li><strong>cv2.imread():</strong> Reads the input image.</li>
-            <li><strong>cv2.cvtColor():</strong> Converts the image to grayscale.</li>
-            <li><strong>cv2.GaussianBlur():</strong> Applies a blur filter to reduce noise and smoothen the image for better contour detection.</li>
+            <li><strong>Rule-based Chatbots:</strong> Follow predefined rules.</li>
+            <li><strong>AI-driven Chatbots:</strong> Use machine learning for NLP to generate responses.</li>
+        </ul>
+        <p>We’ll build a chatbot that combines both rule-based logic and AI-driven responses.</p>
+
+        <h2>Step 2: Setting up Your Development Environment</h2>
+        <pre><code>
+<span class="comment"> # Install libraries</span>
+pip install nltk spacy rasa chatterbot flask
+
+<span class="comment"># Set up a virtual environment</span>
+python -m venv chatbot_env
+source chatbot_env/bin/activate
+        </code></pre>
+
+        <h2>Step 3: Designing the Conversation Flow</h2>
+        <p>Common customer queries include:</p>
+        <ul>
+            <li>FAQ Handling: "What are your hours?"</li>
+            <li>Order Status: "Where is my order?"</li>
+            <li>Escalation: "Can I speak to a representative?"</li>
         </ul>
 
-        <h2>Step 3: Contour Detection</h2>
+        <h2>Step 4: Implementing Natural Language Processing (NLP)</h2>
         <pre><code>
-<span class="comment"># Detect edges using Canny edge detection</span>
-edges = cv2.Canny(blurred, 50, 150)
-
-<span class="comment"># Find contours</span>
-contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-<span class="comment"># Draw the contours on the original image</span>
-cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
-
-<span class="comment"># Display the image with contours</span>
-plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-plt.title("Image with Contours")
-plt.show()
+import spacy
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("Where is my order?")
+for token in doc:
+    print(token.text, token.pos_)
         </code></pre>
-        <p><strong>Explanation:</strong></p>
-        <ul>
-            <li><strong>cv2.Canny():</strong> Detects the edges in the image using Canny edge detection.</li>
-            <li><strong>cv2.findContours():</strong> Finds the contours based on the edges detected in the image.</li>
-            <li><strong>cv2.drawContours():</strong> Draws the detected contours on the original image.</li>
-        </ul>
 
-        <h2>Step 4: Estimating Crop Height</h2>
+        <h2>Step 5: Developing the Chatbot</h2>
         <pre><code>
-<span class="comment"> Find the bounding box for the largest contour</span>
-contour = max(contours, key=cv2.contourArea)
-x, y, w, h = cv2.boundingRect(contour)
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 
-<span class="comment"> Calculate crop height (height of the bounding box)</span>
-crop_height = h
+chatbot = ChatBot('CustomerSupportBot')
+trainer = ListTrainer(chatbot)
 
-<span class="comment"> Draw the bounding box on the image</span>
-cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+conversation = [
+    "Hello", "Hi there!",
+    "What is your name?", "I am a customer support chatbot."
+]
 
-<span class="comment"> Display the image with bounding box</span>
-plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-plt.title(f"Estimated Crop Height: {crop_height} pixels")
-plt.show()
+trainer.train(conversation)
+response = chatbot.get_response("Hello")
+print(response)
         </code></pre>
-        <p><strong>Explanation:</strong></p>
-        <ul>
-            <li><strong>cv2.boundingRect():</strong> Computes the bounding box of the largest contour, which helps in calculating the height of the crop.</li>
-            <li><strong>crop_height:</strong> Represents the height of the bounding box, which is an estimate of the crop height in pixels.</li>
-        </ul>
 
-        <h2>Step 5: Scaling the Height (Optional)</h2>
+        <h2>Step 6: Testing the Chatbot</h2>
         <pre><code>
-<span class="comment"> # Assuming the real-world height of the image is known (e.g., 100 cm)</span>
-</span>
-real_world_height = 100  # cm
-image_height = image.shape[0]  # in pixels
-
-<span class="comment"> # Convert crop height to real-world units</span>
-crop_height_cm = (crop_height / image_height) * real_world_height
-
-print(f"Estimated Crop Height: {crop_height_cm:.2f} cm")
+<span class="comment"># Test chatbot with various inputs</span>
+response = chatbot.get_response("Where is my order?")
+print(response)
         </code></pre>
-        <p><strong>Explanation:</strong></p>
-        <ul>
-            <li><strong>crop_height_cm:</strong> This variable stores the estimated crop height in centimeters (or another real-world unit), based on the scaling factor of the image.</li>
-        </ul>
+
+        <h2>Step 7: Deploying the Chatbot</h2>
+        <pre><code>
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.json.get("message")
+    bot_response = chatbot.get_response(user_message)
+    return jsonify({"response": str(bot_response)})
+
+if __name__ == "__main__":
+    app.run()
+        </code></pre>
+
+        <h2>Step 8: Adding Escalation Features</h2>
+        <pre><code>
+def escalate_to_agent(user_input):
+    if "speak to a representative" in user_input.lower():
+        return "Sure, I'll connect you to a representative."
+        </code></pre>
 
         <h2>Conclusion</h2>
-        <p>In this tutorial, we've built a crop height estimation system using computer vision techniques, specifically contour detection. We covered image preprocessing, contour detection, height estimation, and result visualization.</p>
-
-        <p>This system demonstrates the basic workflow of using computer vision for agricultural purposes. You can further improve this by:</p>
+        <p>In this tutorial, you learned how to build a simple chatbot for customer support using rule-based logic and NLP. You also integrated escalation features for complex issues.</p>
+        <p>Next steps:</p>
         <ul>
-            <li>Implementing more advanced image segmentation techniques</li>
-            <li>Developing a more robust calibration method for pixels-to-metric conversion</li>
-            <li>Integrating machine learning models for more accurate crop identification and measurement</li>
+            <li>Integrate the chatbot with messaging platforms like WhatsApp or Slack.</li>
+            <li>Use advanced NLP models like GPT for better accuracy.</li>
         </ul>
-        <p>Remember that real-world application would require careful calibration and validation with ground truth data to ensure accuracy in various field conditions.</p>
     </div>
-</div>
-</div>
+</body>
 <footer>
   <div class="container">
     <div class="footer-socials">
@@ -421,7 +447,7 @@ print(f"Estimated Crop Height: {crop_height_cm:.2f} cm")
       <a href="contact.html">Contact</a> |
       <a href="contributor.html">Contributor</a>
     </div>
-    <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+    <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
   </div>
   <button id="scrollTopBtn" onclick="scrollToTop()">
     <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
@@ -488,13 +514,6 @@ print(f"Estimated Crop Height: {crop_height_cm:.2f} cm")
 <!-- Botpress Chat Scripts -->
 <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-<script>
-  // Get the current year
-  const currentYear = new Date().getFullYear();
-  
-  // Update the HTML content
-  document.getElementById("current-year").textContent = currentYear;
-</script>
 </body>
 
 </html>

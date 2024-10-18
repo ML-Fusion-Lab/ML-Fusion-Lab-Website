@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - ML Fusion Labs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../style/style.css">
+    
 
     <link rel="stylesheet" href="../style/scroll.css">
     <link rel="stylesheet" href="../style/about.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 
    </head>
@@ -152,29 +153,45 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-socials">
-                Follow us on: 
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
-                <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>  
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <div class="footer-contact">
-                <p style="color: white;">Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
-            </div>
-        </div>
-        <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a> 
-            <a href="terms.html">Terms of Service</a> 
-            <a href="about.html">About Us</a>  
-            <a href="contact.html">Contact</a>
-            <a href="Testimonial.html">Testimonial</a>
-            <div class="para">
-                <p style="color: white;">&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+    <div class="footer">
+        <div class="footer-col">
+            <img src="../image/ml fusion lab log.jpg" alt="">
+            <span class="footer-p">
+      
+              We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
+      
+            </span>
+            <div class="footer-social">
+                <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </div>
-    </footer>
+        <div class="footer-col-main">
+            <h4 class="h46">ML Fusion Labs</h4>
+            <a href="#">Business</a>
+            <a href="#">Franchise</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">About Us</h4>
+            <a href="about.html">About Us</a>
+            <a href="./privacy.html">Security</a>
+            <a href="./contributor.html">Contributors</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">Contact</h4>
+            <a href="./contact.html">Contact Us</a>
+            <a href="info@mlfusionlabs.com">Email Us</a>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="footer-bar"> 
+        &copy; 2024 ML Fusion Labs | All Rights Reserved
+      
+      </div>
 
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="../script/scroll.js"></script>
@@ -249,6 +266,13 @@
  animateCircles();
 });
  </script>
+ <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
 
 </body>
 </html>

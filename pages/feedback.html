@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/scroll.css">
+    <link rel="stylesheet" href="../style/style.css" />
 
     <style>
         :root {
@@ -19,31 +20,34 @@
         }
         /* Updated Star Rating Styles */
         .star-rating {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-        }
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center; /* Center the stars horizontally */
+    align-items: center; /* Center the stars vertically if needed */
+    margin: 0 auto; /* Ensure it doesn't shift due to outer spacing */
+}
 
-        .star-rating input {
-            display: none;
-        }
+.star-rating input {
+    display: none;
+}
 
-        .star-rating label {
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            margin-right: 5px;
-            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffffff" stroke="%23000000" stroke-width="1" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-        }
+.star-rating label {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffffff" stroke="%23000000" stroke-width="1" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
 
-        .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
-            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffff00" stroke="%23000000" stroke-width="1" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
-        }
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23ffff00" stroke="%23000000" stroke-width="1" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>');
+}
+
 
         body {
             font-family: Arial, sans-serif;
@@ -104,10 +108,31 @@
             margin-top: 20px;
         }
         .tickmarks {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    width: 100%; /* Ensure tick marks take the full width of the container */
+}
+
+.tickmarks span {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 2px solid #007bff; /* Border color for the circle */
+    border-radius: 30%; /* Make the span circular */
+    background-color: transparent;
+    color: #007bff;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.tickmarks span:hover {
+    transform: scale(1.5); /* Make the span larger when hovered */
+    background-color: #007bff;
+    color: white; /* Change text color on hover */
+}
+
         input[type="range"] {
             width: 100%;
             margin: 10px 0;
@@ -142,6 +167,19 @@
             header, main {
                 flex: 1;
             }
+            .center-select {
+    display: flex;
+    justify-content: center; /* Centers the selects horizontally */
+    align-items: center; /* Vertically centers them if the container has a height */
+    gap: 10px; /* Optional: Adds some space between the selects */
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
         }
         body {
             font-family: 'Arial', sans-serif;
@@ -180,7 +218,7 @@
 
        
        
-        .footer-links a,
+        /* .footer-links a,
         .footer-socials a {
             color: white;
             text-decoration: none;
@@ -191,11 +229,11 @@
         .footer-links a:hover,
         .footer-socials a:hover {
             color: #007BFF;
-        }
+        } */
 
-        .footer-contact a {
+        /* .footer-contact a {
             color: white;
-        }
+        } */
 
       /* Container for the progress bar */
 #progress-container {
@@ -266,7 +304,7 @@ header {
   height: 100px;
 }
 
-footer {
+/* footer {
   background: #333;
   color: white;
   text-align: center;
@@ -278,9 +316,9 @@ footer {
   max-width: 800px;
   margin: auto; 
   padding: 0 20px;
-}
+} */
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -296,11 +334,11 @@ footer {
 .footer-links a:hover,
 .footer-socials a:hover {
   color: #007bff;
-}
+} */
 
-.footer-contact {
+/* .footer-contact {
   margin: 10px 0;
-}
+} */
 
 body {
   .container h2 {
@@ -423,7 +461,7 @@ body {
   
 
   /* Footer Styles */
-  footer {
+  /* footer {
     background-color: #1a1a1a;
     color: white;
     padding: 40px 0;
@@ -441,11 +479,11 @@ body {
 
   footer p a:hover {
     text-decoration: underline;
-  }
+  } */
 
   
   /* Footer Styles */
-  footer {
+  /* footer {
     background-color: #1a1a1a;
     color: white;
     padding: 40px 0;
@@ -504,7 +542,7 @@ body {
   footer p a:hover {
     text-decoration: underline;
   }
-
+ */
 
 /*  home page dark theme styles */
 body.dark-mode section.about {
@@ -737,7 +775,7 @@ header {
 
 
 
-footer {
+/* footer {
   background: #333;
   color: white;
   text-align: center;
@@ -749,9 +787,9 @@ footer {
   max-width: 800px;
   margin: auto;
   padding: 0 20px;
-}
+} */
 
-.footer-links,
+/* .footer-links,
 .footer-socials {
   margin: 10px 0;
 }
@@ -767,11 +805,11 @@ footer {
 .footer-links a:hover,
 .footer-socials a:hover {
   color: #007bff;
-}
+} */
 
-.footer-contact {
+/* .footer-contact {
   margin: 10px 0;
-}
+} */
 
 
 
@@ -1096,7 +1134,7 @@ header nav ul li a {
 }
 
 
-footer {
+/* footer {
   background-color: #1a1a1a;
   color: white;
   padding: 40px 0;
@@ -1175,11 +1213,11 @@ footer p a {
 
 footer p a:hover {
   text-decoration: underline;
-}
+} */
 
 
 /* Footer Styles */
-footer {
+/* footer {
   background-color: #1a1a1a;
   color: white;
   padding: 40px 0;
@@ -1197,7 +1235,7 @@ footer p a {
 
 footer p a:hover {
   text-decoration: underline;
-}
+} */
 
 
 /* Testimonials Page Dark Theme */
@@ -1299,13 +1337,18 @@ body.dark-mode #scrolltopbutton {
 }
 
 /* Hover effect for form fields */
+/* General Input and Select Styles */
 input[type="text"],
 input[type="email"],
 input[type="number"],
 textarea,
 select,
 input[type="range"] {
-    transition: transform 0.3s ease, border 0.3s ease, background 0.3s ease; 
+    transition: transform 0.3s ease, border 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 input[type="text"]:hover,
@@ -1315,36 +1358,146 @@ textarea:hover,
 select:hover,
 input[type="range"]:hover {
     transform: scale(1.02);
-    border: 2px solid #007bff; 
-    background: #f0f8ff;
+    border: 2px solid #007bff;
+    background-color: #f0f8ff;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Focus styles */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus,
+input[type="range"]:focus {
+    border: 2px solid #0056b3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.3);
 }
 
 /* Hover effect for star rating */
 .star-rating label {
-    transition: color 0.3s ease, transform 0.3s ease; 
+    transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #ffb400; 
+    color: #ffb400;
     transform: scale(1.2);
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 /* Hover effect for the feedback button */
 #feedback-btn {
-    transition: background-color 0.3s ease, transform 0.3s ease; 
-    background-color: #007bff; 
-    color: #fff; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 5px; 
-    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    text-transform: uppercase;
 }
 
 #feedback-btn:hover {
-    background-color: #0056b3; 
-    transform: scale(1.05); 
+    background-color: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3);
 }
+
+#feedback-btn:active {
+    transform: scale(1);
+    box-shadow: 0 2px 6px rgba(0, 86, 179, 0.3);
+}
+
+
+/* new footer properties */
+.footer {
+    padding: 5rem 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 400px repeat(3, 1fr);
+    gap: 2rem;
+    background-color: black;
+  }
+  
+  .footer-col img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    position: relative;
+    bottom: 15px;
+  }
+  
+  .footer-p {
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    color: white;
+    display: block;
+  }
+  
+  .footer-social {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer-social i {
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    opacity: 0.7;
+    border: 2px solid white;
+    border-radius: 100%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease 0s;
+  }
+  
+  .footer-social i:hover {
+    opacity: 1;
+    background-color: #35373b;
+  }
+  
+  .h46 {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .footer-col-main {
+    margin-top: -1rem;
+  }
+  
+  .footer-col-main a {
+    display: block;
+    margin-bottom: 1rem;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.3s ease 0s;
+  }
+  
+  .footer-col-main a:hover {
+    opacity: 1;
+  }
+  
+  .footer-bar {
+    margin: auto;
+    padding: 1rem;
+    font-size: 0.8rem;
+    color: white;
+    background-color: black;
+  }
+  
+  @media (max-width: 900px) {
+    .footer {
+        grid-template-columns: 1fr 200px;
+    }
+  }
+  /* this is only end of footer style */
     </style>
 </head>
 <body>
@@ -1461,26 +1614,45 @@ input[type="range"]:hover {
       });
   </script>
 
-<footer>
-  <div class="footer-container">
-      <div class="footer-socials">
-          Follow us on: 
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>  
-      <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>  
-      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+<div class="footer">
+  <div class="footer-col">
+      <img src="../image/ml fusion lab log.jpg" alt="">
+      <span class="footer-p">
+
+        We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
+
+      </span>
+      <div class="footer-social">
+          <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+          <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
       </div>
-      <div class="footer-contact">
-          <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
-      </div>
-      <div class="footer-links">
-          <a href="../pages/privacy.html">Privacy Policy</a> | 
-          <a href="../pages/terms.html">Terms of Service</a> | 
-          <a href="../pages/about.html">About Us</a> | 
-          <a href="../pages/contact.html">Contact</a>
-      </div>
-      <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
   </div>
-</footer>
+  <div class="footer-col-main">
+      <h4 class="h46">ML Fusion Labs</h4>
+      <a href="#">Business</a>
+      <a href="#">Franchise</a>
+      <a href="#">Network</a>
+  </div>
+  <div class="footer-col-main">
+      <h4 class="h46">About Us</h4>
+      <a href="./about.html">About Us</a>
+      <a href="./privacy.html">Security</a>
+      <a href="./contributor.html">Contributors</a>
+  </div>
+  <div class="footer-col-main">
+      <h4 class="h46">Contact</h4>
+      <a href="./contact.html">Contact Us</a>
+      <a href="info@mlfusionlabs.com">Email Us</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms & Conditions</a>
+  </div>
+</div>
+<div class="footer-bar"> 
+  &copy; 2024 ML Fusion Labs | All Rights Reserved
+
+</div>
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
     <script src="../script/scroll.js"></script>
     <script src="../script/script.js"></script>
@@ -1488,5 +1660,12 @@ input[type="range"]:hover {
       <div class="gtranslate_wrapper"></div>
       <script>window.gtranslateSettings = {"default_language":"en","detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
       <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+      <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
 </html>

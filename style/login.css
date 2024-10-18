@@ -397,3 +397,27 @@ input {
   background-color: #0A66C2;
 }
 
+input {
+  transition: transform 0.3s ease-in-out;
+}
+
+input:hover {
+  transform: scale(1.05); 
+}
+
+.social-container a {
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+  transition: transform 0.3s ease-in-out; 
+}
+
+/* Hover effects for social icons */
+.social-container a:hover {
+  transform: scale(1.1);
+}

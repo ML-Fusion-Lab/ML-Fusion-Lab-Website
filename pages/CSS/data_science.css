@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #a2a3a2;
+    background-image: none;
+}
+
+.hero-image {
+    width: 50%;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.hero-text {
+    width: 50%;
+}
+
+.prerequisites, .course-structure, .courses {
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2d3747;
+}
+
+.modules {
+    display: flex;
+    flex-direction: column;
+}
+
+.module {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #392532;
+}
+.prerequisites {
+    font-size: 1.5rem; 
+    font-weight: bold;
+}
+.prerequisites h2{
+    font-size: 2.4rem;
+}
+/* Style the courses section */
+.courses {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Style the heading */
+.courses h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Make the list of courses a flex container */
+.courses ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    list-style-type: none;
+    gap: 20px;
+}
+
+/* Style individual course items as tiles */
+.courses li {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    width: calc(33.333% - 20px); /* Ensures 3 tiles fit on a row */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Link styling inside the course tiles */
+.courses li a {
+    text-decoration: none;
+    color: #0073e6;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+
+/* Hover effect on course tiles */
+.courses li:hover {
+    transform: translateY(-10px); /* Lift the tile */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add deeper shadow */
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+    .courses ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .courses li {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #928c8c;
+    font-family: Arial, sans-serif;
+}
+
+body.dark-mode h2, 
+body.dark-mode h3 {
+    color: #BB86FC;
+}
+
+body.dark-mode .prerequisites, 
+body.dark-mode .course-structure, 
+body.dark-mode .courses {
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+body.dark-mode ul li {
+    padding: 10px 0;
+}
+
+body.dark-mode ul li a {
+    color: #BB86FC;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+body.dark-mode ul li a:hover {
+    color: #FFB74D;
+    text-decoration: underline;
+}
+
+body.dark-mode .module {
+    border: 1px solid #BB86FC;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+body.dark-mode .module h3 {
+    color: #FFB74D;
+}
+
+body.dark-mode .module p {
+    color: #E0E0E0;
+}
+body.dark-mode .courses li {
+    background-color: #404549;
+}
+
+body.dark-mode .courses li  a{
+   color: #9f9292;
+}
+body.dark-mode .module{
+    background-color: #404549;
+}
+
+body.dark-mode .hero {
+    background-color: #292a29;
+}
