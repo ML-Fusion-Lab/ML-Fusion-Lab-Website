@@ -1,4 +1,4 @@
-const themeSwitch = document.getElementById('theme-switch'); // Ensure this matches your HTML button's ID
+const themeSwitch = document.getElementById('checkbox'); // Ensure this matches your HTML button's ID
 const body = document.body;
 const header = document.querySelector('header');
 const footer = document.querySelector('footer');
