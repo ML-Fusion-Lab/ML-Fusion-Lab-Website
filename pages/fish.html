@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Community</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .hero {
+            background-image: url('https://example.com/yoga-class-image.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background-color: transparent;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+        .image-credit {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8em;
+        }
+        .yoga-types {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #FFD700;
+        }
+        .yoga-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 18%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .yoga-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .yoga-card h3 {
+            margin: 10px 0;
+        }
+        .yoga-card p {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .more-button {
+            background-color: #FFD700;
+            border: none;
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to our community of<br>yoga practitioners</h1>
+            <a href="#" class="cta-button">JOIN THE CLUB</a>
+        </div>
+        <div class="image-credit">Images from Freepik</div>
+    </div>
+    
+    <div class="yoga-types">
+        <div class="yoga-card">
+            <img src="https://example.com/hatha-yoga.jpg" alt="Hatha Yoga">
+            <h3>HATHA YOGA</h3>
+            <p>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+            <a href="#" class="more-button">MORE</a>
+        </div>
+        <div class="yoga-card">
+            <img src="https://example.com/hatha-vinyasa.jpg" alt="Hatha Vinyasa">
+            <h3>HATHA VINYASA</h3>
+            <p>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+            <a href="#" class="more-button">MORE</a>
+        </div>
+        <div class="yoga-card">
+            <img src="https://example.com/pilates.jpg" alt="Pilates">
+            <h3>PILATES</h3>
+            <p>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+            <a href="#" class="more-button">MORE</a>
+        </div>
+        <div class="yoga-card">
+            <img src="https://example.com/iyengar.jpg" alt="Iyengar">
+            <h3>IYENGAR</h3>
+            <p>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+            <a href="#" class="more-button">MORE</a>
+        </div>
+        <div class="yoga-card">
+            <img src="https://example.com/kundalini.jpg" alt="Kundalini">
+            <h3>KUNDALINI</h3>
+            <p>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+            <a href="#" class="more-button">MORE</a>
+        </div>
+    </div>
+
+    <script>
+        // You can add JavaScript here for any interactive features
+        // For example, to handle the "JOIN THE CLUB" button click:
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest in joining our yoga community!');
+        });
+
+        // For the "MORE" buttons:
+        document.querySelectorAll('.more-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                let yogaType = this.closest('.yoga-card').querySelector('h3').textContent;
+                alert(`You clicked to learn more about ${yogaType}. More information coming soon!`);
+            });
+        });
+    </script>
+</body>
+</html>
