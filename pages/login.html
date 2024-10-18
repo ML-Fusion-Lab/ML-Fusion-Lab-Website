@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="../style/login.css">
 </head>
 <body>
-  <div id="loginSuccessBanner" class="success-banner">Logged in successfully</div>
-  <div id="loginDeclineBanner" class="decline-banner">Logged in Blocked <br> credentials didn't match</div>
-  <div id="registerSuccessBanner" class="success-banner">Registered successfully</div>
-  <div id="registerDeclineBanner" class="decline-banner">Registered Blocked <br> Same email address</div>
+  <div id="loginSuccessBanner" class="success-banner" style="display:none;">Logged in successfully</div>
+  <div id="loginDeclineBanner" class="decline-banner" style="display:none;">Login Blocked <br> Credentials didn't match</div>
+  <div id="registerSuccessBanner" class="success-banner" style="display:none;">Registered successfully</div>
+  <div id="registerDeclineBanner" class="decline-banner" style="display:none;">Registration Blocked <br> Same email address exists</div>
   
   <!-- Back to Home Button -->
   <div>
@@ -39,11 +39,6 @@
             </button>
           </div>
           <button type="submit">Register</button>
-          <div class="social-container">
-            <a class="fb" href="www.facebook.com" class="social"><i class="lni lni-facebook-fill"></i></a>
-            <a class="goog" href="www.google.com" class="social"><i class="lni lni-google"></i></a>
-            <a class="lin" href="www.linkedin.com" class="social"><i class="lni lni-linkedin-original"></i></a>
-          </div>
         </form>
       </div>
 
@@ -64,40 +59,24 @@
             </div>
             <div class="pass-link">
               <a href="#" id="forgotPasswordLink">Forgot password?</a>
-              </div>
-              <div id="forgotPasswordMessage"></div>
+            </div>
+            <div id="forgotPasswordMessage"></div>
           </div>
           <button type="submit">Login</button>
-          <span>or use your account</span>
-          <div class="social-container">
-            <a class="fb" href="www.facebook.com" class="social"><i class="lni lni-facebook-fill"></i></a>
-            <a class="goog" href="www.google.com" class="social"><i class="lni lni-google"></i></a>
-            <a class="lin" href="www.linkedin.com" class="social"><i class="lni lni-linkedin-original"></i></a>
-          </div>
         </form>
-
-        <!-- Forgot Password form (Initially hidden) -->
-        <!-- <form id="forgotPasswordForm" style="display:none;">
-          <strong><p id="h1">Forgot Password</p></strong>
-          <input type="email1" placeholder="Enter your email" id="forgotPasswordEmail">
-          <button type="button1" id="forgotPasswordSubmit">Reset Password</button>
-          <a href="#" id="backToLogin">Back to Login</a>
-          <div id="forgotPasswordMessage"></div>
-        </form> -->
-
       </div>
 
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
-            <h1 class="title">Hello <br> friends</h1>
+            <h1 class="title">Hello friends</h1>
             <p>If you have an account, login here.</p>
             <button class="ghost" id="login">Login
               <i class="lni lni-arrow-left login"></i>
             </button>
           </div>
           <div class="overlay-panel overlay-right">
-            <h1 class="title">Start your <br> journey now</h1>
+            <h1 class="title">Start your journey now</h1>
             <p>If you don't have an account yet, join us and start your journey.</p>
             <button class="ghost" id="register">Register
               <i class="lni lni-arrow-right register"></i>
@@ -108,10 +87,7 @@
     </div>
   </div>
 
-
-  <script src="../script/login.js"></script>
-  <script src="../script/forgotpassword.js"></script>
-
+ <script src="../script/login.js"></script>
 
 </body>
 </html>
