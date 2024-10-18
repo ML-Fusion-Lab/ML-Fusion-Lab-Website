@@ -1,6 +1,8 @@
 # ML Fusion Lab - Learn Machine Learning
 
-![image](https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe) 
+<p align="left">
+  <img width="200" height="200" src="https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe">
+</p>
 
 Welcome to **ML Fusion Lab**!.
 
@@ -110,7 +112,7 @@ This project aims to provide an interactive platform where users can learn machi
 - **Hands-on Projects**: Real-world projects to test and enhance your skills.
 - **Community Contributions**: Upload and collaborate on ML projects.
 
-![image](https://github.com/user-attachments/assets/3b18330d-db03-4e4d-adef-28fbf5a4401a)
+![image](https://github.com/user-attachments/assets/88518206-ed3e-4e54-96f2-ad2b0e25b575)
 
 ---
 ## Overview⭐

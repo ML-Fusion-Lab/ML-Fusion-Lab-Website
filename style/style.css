@@ -425,6 +425,7 @@ body {
   color: rgb(118, 58, 58);
   padding: 100px 20px;
   text-align: center;
+  height: 80vh;
 
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
