@@ -3185,3 +3185,18 @@ body.dark-mode #scrolltopbutton {
 
   background-color: #ffffff;
 }
+.form-container{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.contact-map-container{
+  display: flex;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.9px);
+  -webkit-backdrop-filter: blur(10.9px);
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  margin-bottom: 50px;
+}
