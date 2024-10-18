@@ -406,6 +406,7 @@ height: 12em; /* Adjust height for mobile devices */
   }
   
   .footer-col-main {
+    width: fit-content;
     margin-top: -1rem;
   }
   
