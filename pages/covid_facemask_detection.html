@@ -34,6 +34,32 @@
         white-space: pre-wrap;
         transition: background-color 0.3s, border-color 0.3s;
       }
+      /* css for mouse cursor trail effect */
+      .circle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle,
+          rgba(70, 130, 180, 0.3),
+          skyblue,
+          rgba(0, 0, 50, 0.3),
+          white
+        );
+        transition: transform 0.1s, left 0.1s, top 0.1s;
+      }
+
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+      }
       .note {
         background-color: #e7f3fe;
         border-left: 6px solid #2196f3;
@@ -94,6 +120,9 @@
         font-weight: bold;
         text-align: center;
         animation: colorChange 8s infinite;
+      }
+      body.dark-mode .ani {
+        color: #1c2e3e;
       }
       @keyframes colorChange {
         0% {
@@ -467,14 +496,14 @@
         const coords = { x: 0, y: 0 };
         const circles = document.querySelectorAll(".circle");
 
-        circles.forEach(function (circle) {
+        circles.forEach(function (circle, index) {
           circle.x = 0;
           circle.y = 0;
         });
 
         window.addEventListener("mousemove", function (e) {
-          coords.x = e.pageX;
-          coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+          coords.x = e.clientX;
+          coords.y = e.clientY;
         });
 
         function animateCircles() {
@@ -482,16 +511,14 @@
           let y = coords.y;
 
           circles.forEach(function (circle, index) {
-            circle.style.left = `${x - 12}px`;
-            circle.style.top = `${y - 12}px`;
-            circle.style.transform = `scale(${
-              (circles.length - index) / circles.length
-            })`;
+            circle.style.left = x + "px";
+            circle.style.top = y + "px";
 
-            const nextCircle = circles[index + 1] || circles[0];
+            circle.style.scale = (circles.length - index) / circles.length;
             circle.x = x;
             circle.y = y;
 
+            const nextCircle = circles[index + 1] || circles[0];
             x += (nextCircle.x - x) * 0.3;
             y += (nextCircle.y - y) * 0.3;
           });
@@ -502,6 +529,9 @@
         animateCircles();
       });
     </script>
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+    <script src="../script/projects.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
   </body>
