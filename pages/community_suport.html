@@ -271,7 +271,7 @@
             color: rgba(255,255,255,0.7);
             font-size: 0.8em;
         }
-        .yoga-types {
+        .yoga-types-parent {
             display: flex;
             justify-content: space-around;
             padding: 20px;
@@ -289,6 +289,53 @@
    .dark-mode .yoga-card {
      background-color: black;
    }
+
+/* Base styles for yoga-types */
+.yoga-types-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    background-color: #007BFF;
+}
+
+/* Yoga card styles */
+.yoga-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 calc(25% - 40px); /* Adjust width and spacing for 4 columns */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.yoga-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .yoga-card {
+        flex: 1 1 calc(33.33% - 40px); /* 3 columns for larger tablets and smaller laptops */
+    }
+}
+
+@media (max-width: 768px) {
+    .yoga-card {
+        flex: 1 1 calc(50% - 40px); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .yoga-card {
+        flex: 1 1 100%; /* 1 column for mobile devices */
+    }
+}
+
 
 .yoga-card:hover {
     transform: translateY(-10px); /* Moves the card upwards */
@@ -414,7 +461,7 @@
         <div class="image-credit"></div>
     </div>
     
-    <div class="yoga-types">
+    <div class="yoga-types yoga-types-parent">
         <div class="yoga-card">
             <img src="../image/forum.jpeg" alt="Hatha Yoga">
             <h3>Join Our Forums</h3>
