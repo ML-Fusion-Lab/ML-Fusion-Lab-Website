@@ -236,7 +236,18 @@
                   defer
                 ></script>
               </li>
-              <div class="theme-switch" id="theme-switch"></div>
+              <!-- <div class="theme-switch" id="theme-switch"></div> -->
+              <div id="themeSwitch" class="theme-switch">
+                <input type="checkbox" class="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label">
+                  
+                  <img src="../Assets/sun.png" class="theme-btn">
+                  <img src="../Assets/moon.png" class="theme-btn">
+                  <!-- <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i> -->
+                  <span class="ball"></span>
+                </label>
+              </div>
               <!-- Optional: Add a dropdown or additional links if needed -->
             </ul>
           </div>
@@ -282,32 +293,38 @@
         <div class="row">
           <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
             <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <img
-                src="../Course Icons/data-science.png"
-                alt="Data Science Icon"
-                class="img-fluid mb-3"
-              />
-              <h5>Data Science Essentials</h5>
+              <a href="data_science.html" style="text-decoration: none; color: inherit;">
+                <img
+                  src="../Course Icons/data-science.png"
+                  alt="Data Science Icon"
+                  class="img-fluid mb-3"
+                />
+                <h5>Data Science Essentials</h5>
+              </a>
             </div>
           </div>
           <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
             <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <a href="Programming.html" style="text-decoration: none; color: inherit;">
               <img
                 src="../Course Icons/programming-language.png"
                 alt="Programming Icon"
                 class="img-fluid mb-3"
               />
               <h5>Programming & Development</h5>
+            </a>
             </div>
           </div>
           <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
             <div class="category-card p-3 bg-white text-dark rounded shadow">
+              <a href="ai.html" style="text-decoration: none; color: inherit;">
               <img
                 src="../Course Icons/ai.png"
                 alt="AI Icon"
                 class="img-fluid mb-3"
               />
               <h5>Artificial Intelligence</h5>
+            </a>
             </div>
           </div>
           <div class="col-lg-2 col-md-4 col-sm-6 mb-4">

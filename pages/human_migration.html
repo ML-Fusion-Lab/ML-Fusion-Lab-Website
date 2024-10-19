@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birth Rate Prediction</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 10px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 20px;
+        
+      }
+      .content {
+        margin: 20px auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+        transition: color 0.3s;
+      }
+      code {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        padding: 10px;
+        white-space: pre-wrap;
+        font-size: 20px;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      /* css for mouse cursor trail effect */
+      .circle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle,
+          rgba(70, 130, 180, 0.3),
+          skyblue,
+          rgba(0, 0, 50, 0.3),
+          white
+        );
+        transition: transform 0.1s, left 0.1s, top 0.1s;
+      }
+
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+      }
+      .note {
+        background-color: #e7f3fe;
+        border-left: 6px solid #2196f3;
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        transition: background-color 0.3s, border-left-color 0.3s;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto;
+      }
+
+      .footer-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .footer-links,
+      .footer-socials,
+      .footer-contact {
+        margin: 10px 0;
+      }
+
+      .footer-links a,
+      .footer-socials a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover,
+      .footer-socials a:hover {
+        color: #007bff;
+      }
+
+      .footer-socials a {
+        font-size: 24px;
+        margin: 0 15px;
+      }
+
+      .footer-contact a {
+        color: white;
+      }
+
+      .ani {
+        display: flex;
+        padding: 0.5em 0;
+        justify-content: center;
+        align-items: center;
+        background-color: #4a90e2;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        animation: colorChange 8s infinite;
+      }
+      body.dark-mode .ani {
+        color: #1c2e3e;
+      }
+      @keyframes colorChange {
+        0% {
+          background-color: #4a90e2;
+        }
+        50% {
+          background-color: #50b3a2;
+        }
+        100% {
+          background-color: #4a90e2;
+        }
+      }
+
+      /* Dark mode styles */
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+      }
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3 {
+        color: #58a6ff;
+      }
+      body.dark-mode code {
+        background-color: #2b2b2b;
+        border-color: #444;
+        color: #e6e6e6;
+      }
+      body.dark-mode .note {
+        background-color: #1c2e3e;
+        border-left-color: #58a6ff;
+      }
+      body.dark-mode header {
+        background-color: #2c2c2c;
+      }
+      body.dark-mode nav ul li a {
+        color: #f0f0f0;
+      }
+      #scrollTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 105px;
+        z-index: 99;
+        font-size: 26px;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <header>
+      <div class="logo">
+        <a href="../index.html">
+          <h1>
+            <img
+              src="../image/ml fusion lab log.jpg"
+              alt="logo"
+              width="100"
+              height="100"
+            />
+          </h1>
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../pages/courses.html">Courses</a></li>
+          <li><a href="../pages/projects.html">Projects</a></li>
+          <li><a href="../pages/about.html">About Us</a></li>
+          <li><a href="../pages/contact.html">Contact</a></li>
+          <li>
+            <a href="../pages/community_suport.html">Community Support</a>
+          </li>
+          <li><a href="../pages/feedback.html">Feedback</a></li>
+          <div class="theme-switch" id="theme-switch"></div>
+        </ul>
+      </nav>
+    </header>
+    <div class="content">
+        <h1 class="ani">Detailed Data Analysis Notebook Explanation</h1>
+    
+    <div class="section">
+        <h2>1. Import Libraries</h2>
+        <div class="code-block">
+            <pre><code>
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split, GridSearchCV, KFold
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+import xgboost as xgb
+            </pre></code>
+        </div>
+        <p>This section imports all necessary libraries:</p>
+        <ul>
+            <li><strong>pandas (pd):</strong> For data manipulation and analysis</li>
+            <li><strong>numpy (np):</strong> For numerical operations</li>
+            <li><strong>seaborn (sns) and matplotlib.pyplot (plt):</strong> For data visualization</li>
+            <li><strong>sklearn:</strong> For machine learning models, preprocessing, and evaluation metrics</li>
+            <li><strong>xgboost (xgb):</strong> For the XGBoost algorithm</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>2. Load and Explore Data</h2>
+        <div class="code-block">
+            <pre><code>
+data = pd.read_csv('migration_nz.csv')
+data.head(10)
+
+data['Measure'].unique()
+            </pre></code>
+        </div>
+        <p>
+            This step loads the dataset 'migration_nz.csv' into a pandas DataFrame. 
+            The <code>head(10)</code> function displays the first 10 rows of the data to give an initial view of its structure.
+            The <code>unique()</code> function is then used to show all unique values in the 'Measure' column, which helps understand the categories present in this feature.
+        </p>
+    </div>
+    
+    <div class="section">
+        <h2>3. Data Preprocessing</h2>
+        <div class="code-block">
+            <pre><code>
+data['Measure'].replace({"Arrivals": 0, "Departures": 1, "Net": 2}, inplace=True)
+
+data['CountryID'] = pd.factorize(data['Country'])[0]
+data['CitID'] = pd.factorize(data['Citizenship'])[0]
+
+data['Value'].fillna(data['Value'].median(), inplace=True)
+
+data.drop(['Country', 'Citizenship'], axis=1, inplace=True)
+            </pre></code>
+        </div>
+        <p>This preprocessing step involves several operations:</p>
+        <ol>
+            <li>The 'Measure' column is encoded numerically (Arrivals: 0, Departures: 1, Net: 2).</li>
+            <li>'Country' and 'Citizenship' columns are factorized into numerical IDs using <code>pd.factorize()</code>. This converts categorical data to numerical data that can be used in machine learning models.</li>
+            <li>Missing values in the 'Value' column are filled with the median value of that column.</li>
+            <li>The original 'Country' and 'Citizenship' columns are dropped as they've been replaced by their numerical counterparts.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>4. Feature Engineering and Data Split</h2>
+        <div class="code-block">
+            <pre><code>
+poly = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False)
+X_poly = poly.fit_transform(data[['CountryID', 'Measure', 'Year', 'CitID']])
+
+Y = data['Value']
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X_poly, Y, test_size=0.3, random_state=42
+)
+            </pre></code>
+        </div>
+        <p>
+            This step creates polynomial features and splits the data:
+        </p>
+        <ol>
+            <li>Polynomial features of degree 2 are created using <code>PolynomialFeatures</code>. This adds interaction terms between features, which can capture more complex relationships.</li>
+            <li>The target variable 'Value' is separated from the feature set.</li>
+            <li>The data is split into training (70%) and testing (30%) sets using <code>train_test_split</code>. The <code>random_state</code> is set for reproducibility.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>5. Feature Scaling</h2>
+        <div class="code-block">
+            <pre><code>
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+            </pre></code>
+        </div>
+        <p>
+            This step standardizes the features:
+        </p>
+        <ol>
+            <li>A <code>StandardScaler</code> is initialized.</li>
+            <li>The scaler is fit to the training data and then used to transform both training and test data.</li>
+            <li>This ensures all features are on the same scale, which is important for many machine learning algorithms.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>6. Model Training and Evaluation</h2>
+        <div class="code-block">
+            <pre><code>
+rf = RandomForestRegressor(n_estimators=70,max_features = 3,max_depth=5,n_jobs=-1)
+rf.fit(X_train ,y_train)
+rf.score(X_test, y_test)
+
+gb_model = GradientBoostingRegressor(n_estimators=200, max_depth=5, learning_rate=0.2)
+gb_model.fit(X_train, y_train)
+y_pred = gb_model.predict(X_test)
+print("Gradient Boosting R2 Score:", r2_score(y_test, y_pred))
+print("Gradient Boosting RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
+
+xgb_model = xgb.XGBRegressor(n_estimators=100, max_depth=5, learning_rate=0.1, n_jobs=-1)
+xgb_model.fit(X_train, y_train)
+y_pred_xgb = xgb_model.predict(X_test)
+print("XGBoost R2 Score:", r2_score(y_test, y_pred_xgb))
+print("XGBoost RMSE:", np.sqrt(mean_squared_error(y_test, y_pred_xgb)))
+
+print("GB  :",gb_model.score(X_test,y_test))
+print("XBG :",xgb_model.score(X_test,y_test))
+            </pre></code>
+        </div>
+        <p>
+            This section trains and evaluates three different models:
+        </p>
+        <ol>
+            <li><strong>Random Forest:</strong> A basic model is trained and its score is calculated.</li>
+            <li><strong>Gradient Boosting:</strong> A model is trained and evaluated using R2 score and RMSE (Root Mean Square Error).</li>
+            <li><strong>XGBoost:</strong> Another model is trained and evaluated similarly.</li>
+            <li>Finally, the scores of Gradient Boosting and XGBoost models are compared.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>7. Hyperparameter Tuning</h2>
+        <div class="code-block">
+            <pre><code>
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [3, 5, 7],
+    'learning_rate': [0.01, 0.1, 0.2]
+}
+grid_search = GridSearchCV(GradientBoostingRegressor(), param_grid, cv=3, n_jobs=-1)
+grid_search.fit(X_train, y_train)
+
+print("Best Parameters:", grid_search.best_params_)
+best_model = grid_search.best_estimator_
+            </pre></code>
+        </div>
+        <p>
+            This step performs hyperparameter tuning for the Gradient Boosting model:
+        </p>
+        <ol>
+            <li>A parameter grid is defined with different values for 'n_estimators', 'max_depth', and 'learning_rate'.</li>
+            <li>GridSearchCV is used to perform an exhaustive search over the specified parameter values.</li>
+            <li>The best parameters are printed, and the best model is saved.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>8. Data Visualization</h2>
+        <div class="code-block">
+            <pre><code>
+grouped = data.groupby('Year')['Value'].sum()
+grouped.plot(kind='line', marker='o')
+plt.title("Growth of Migration to New Zealand by Year")
+plt.xlabel("Year")
+plt.ylabel("Total Migration Value")
+plt.grid(True)
+plt.show()
+
+grouped.plot(kind='bar')
+plt.axhline(0, color='g')
+plt.show()
+
+corr = data.corr()
+sns.heatmap(corr, 
+            xticklabels=corr.columns.values,
+            yticklabels=corr.columns.values)
+plt.show()
+            </pre></code>
+        </div>
+        <p>
+            This section creates several visualizations:
+        </p>
+        <ol>
+            <li>A line plot showing the growth of migration to New Zealand by year.</li>
+            <li>A bar plot of the same data with a horizontal line at y=0.</li>
+            <li>A correlation heatmap of the features using seaborn.</li>
+        </ol>
+    </div>
+    
+    <div class="section">
+        <h2>9. Model Saving</h2>
+        <div class="code-block">
+            <pre><code>
+import joblib
+
+joblib.dump(scaler, 'models/scaler.pkl')
+joblib.dump(rf, 'models/random_forest_model.pkl')
+joblib.dump(gb_model, 'models/gradient_boosting_model.pkl')
+joblib.dump(xgb_model, 'models/xgboost_model.pkl')
+
+print("Models and scaler saved successfully!")
+            </pre></code>
+        </div>
+        <p>
+            In this final step:
+        </p>
+        <ol>
+            <li>The joblib library is imported for model serialization.</li>
+            <li>The trained models (Random Forest, Gradient Boosting, XGBoost) and the scaler are saved using joblib.dump().</li>
+            <li>These saved models can be loaded later for making predictions without needing to retrain.</li>
+        </ol>
+    </div>
+    
+    <p>This notebook demonstrates a comprehensive approach to analyzing migration data for New Zealand, including data preprocessing, feature engineering, model training, evaluation, visualization, and model saving for future use.</p>
+    /div>
+    <footer>
+        <div class="container">
+          <div class="footer-socials">
+            Follow us on:
+            <a href="https://facebook.com" target="_blank">
+              <svg
+                style="width: 10px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  fill="#ffffff"
+                  d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+                />
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank"
+              ><svg
+                style="width: 15px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  fill="#ffffff"
+                  d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                />
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank">
+              <svg
+                style="width: 15px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  fill="#ffffff"
+                  d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="footer-contact">
+            <div>
+              Contact us:
+              <a href="mailto:info@mlfusionlabs.com" style="color: white"
+                >info@mlfusionlabs.com</a
+              >
+              | Phone: +1 (555) 123-4567
+            </div>
+          </div>
+          <div class="footer-links">
+            <a href="../pages/privacy.html">Privacy Policy</a> |
+            <a href="../pages/terms.html">Terms of Service</a> |
+            <a href="../pages/about.html">About Us</a> |
+            <a href="../pages/contact.html">Contact</a> |
+            <a href="../pages/contributor.html">Contributor</a>
+          </div>
+          <div>
+            &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+            Reserved
+          </div>
+        </div>
+        <button id="scrollTopBtn" onclick="scrollToTop()">
+          <svg
+            style="width: 20px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+            />
+          </svg>
+        </button>
+      </footer>
+      <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+          if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+          ) {
+            scrollTopBtn.style.display = "block";
+          } else {
+            scrollTopBtn.style.display = "none";
+          }
+        };
+  
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const coords = { x: 0, y: 0 };
+          const circles = document.querySelectorAll(".circle");
+  
+          circles.forEach(function (circle, index) {
+            circle.x = 0;
+            circle.y = 0;
+          });
+  
+          window.addEventListener("mousemove", function (e) {
+            coords.x = e.clientX;
+            coords.y = e.clientY;
+          });
+  
+          function animateCircles() {
+            let x = coords.x;
+            let y = coords.y;
+  
+            circles.forEach(function (circle, index) {
+              circle.style.left = x + "px";
+              circle.style.top = y + "px";
+  
+              circle.style.scale = (circles.length - index) / circles.length;
+              circle.x = x;
+              circle.y = y;
+  
+              const nextCircle = circles[index + 1] || circles[0];
+              x += (nextCircle.x - x) * 0.3;
+              y += (nextCircle.y - y) * 0.3;
+            });
+  
+            requestAnimationFrame(animateCircles);
+          }
+  
+          animateCircles();
+        });
+      </script>
+      <script src="../script/scroll.js"></script>
+      <script src="../script/script.js"></script>
+      <script src="../script/projects.js"></script>
+      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    </body>
+  </html>
+  
