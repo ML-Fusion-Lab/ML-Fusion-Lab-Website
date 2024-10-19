@@ -151,12 +151,15 @@ body {
   border: 2px solid white;
   border-radius: 100%;
   padding: 0.5rem;
-  transition: background-color 0.3s ease 0s;
+  /* Modified: Transform property to smoothen the animation */
+  transition: transform 0.3s ease, background 0.3s ease; 
 }
 
 .footer-social i:hover {
   opacity: 1;
   background-color: #35373b;
+  /* Added: Zoom effect on hover */
+  transform: scale(1.2); 
 }
 
 .h46 {
