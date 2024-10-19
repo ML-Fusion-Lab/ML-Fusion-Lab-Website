@@ -447,7 +447,7 @@ footer .container {
     align-items: center;
   }
   
-  .footer-social i {
+  /* .footer-social i {
     color: white;
     font-size: 1.25rem;
     margin-right: 1rem;
@@ -461,7 +461,7 @@ footer .container {
   .footer-social i:hover {
     opacity: 1;
     background-color: #35373b;
-  }
+  } */
   
   .h46 {
     margin-bottom: 2rem;
@@ -488,12 +488,8 @@ footer .container {
   }
   
   .footer-bar {
-    margin: auto;
+    /* Adjusted Width to cover entire footer bottom */
     width: 100%;
-    padding: 1rem;
-    font-size: 0.8rem;
-    color: white;
-    background-color: black;
   }
 
   
