@@ -162,6 +162,30 @@ body {
   transform: scale(1.2); 
 }
 
+/* Hover color change effect for Facebook icon */
+.footer-social .fa-facebook:hover {
+  background: #1877F2; /* Official Facebook blue */
+  color: white;
+} 
+
+/* Hover color change effect for Instagram icon */
+.footer-social .fa-instagram:hover {
+  background: #E4405F; /* Official Instagram pinkish red */
+  color: white;
+} 
+
+/* Hover color change effect for Twitter[X] icon */
+.footer-social .fa-x-twitter:hover {
+  background: black; /* Official X color */
+  color: white;
+}
+
+/* Hover color change effect for LinkedIn icon */
+.footer-social .fa-linkedin:hover {
+  background: #0077B5; /* Official LinkedIn blue */
+  color: white;
+}
+
 .h46 {
   margin-bottom: 2rem;
   font-size: 1.2rem;
