@@ -319,6 +319,74 @@
     }
   }
   /* this is only end of footer style */
+  /* bg image */
+  .projects-hero {
+    position: relative;
+    padding: 80px 20px;
+    background-image: url('../image/project.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dark overlay to ensure text readability */
+.projects-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+
+.hero-content {
+    position: relative; 
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    z-index: 1; 
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .projects-hero::before {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .projects-hero {
+        min-height: 300px;
+        padding: 60px 20px;
+    }
+}
+/* end */
    </style>
 
 </head>
