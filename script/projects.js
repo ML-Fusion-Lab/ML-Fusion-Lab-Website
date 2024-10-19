@@ -72,8 +72,17 @@ const projects = [
     "cardDesc": "In this tutorial, we use time series analysis to train RandomForest , XGBoost and GradientBoost models to predict HUman Migration.",
     "learnMoreLink": "../pages/human_migration.html"
   },
+  {
+    "modelid": "modal9",
+    "cardImage": "../Assets/projectpics/sarima_stock.webp",
+    "cardAlt": "cnn",
+    "imgStyle": "box-shadow: none; border-radius: 5px;",
+    "cardTitle": "ARIMA - Stock prediction ",
+    "cardDesc": "In this tutorial, we use time series analysis to SARIMA model for stoack prediction.",
+    "learnMoreLink": "../pages/arima_stock_prediction.html"
+  },
     {
-      "modelid": "modal9",
+      "modelid": "modal10",
       "cardImage": "../Assets/projectpics/crops.jpg",
       "cardAlt": "crops",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -82,7 +91,7 @@ const projects = [
       "learnMoreLink": "../pages/crop_height_estimation_tutorial.html"
     },
     {
-      "modelid": "modal10",
+      "modelid": "modal11",
       "cardImage": "../Assets/projectpics/disease.jpg",
       "cardAlt": "disease",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -91,7 +100,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal11",
+      "modelid": "modal12",
       "cardImage": "../Assets/projectpics/shop.jpg",
       "cardAlt": "shopping",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -100,7 +109,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal12",
+      "modelid": "modal13",
       "cardImage": "../Assets/projectpics/cnn.png",
       "cardAlt": "cnn",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -109,7 +118,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal13",
+      "modelid": "modal14",
       "cardImage": "../Assets/projectpics/emai.jpg",
       "cardAlt": "email",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -118,7 +127,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal14",
+      "modelid": "modal15",
       "cardImage": "../Assets/projectpics/stock.jpg",
       "cardAlt": "stock",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -127,7 +136,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal15",
+      "modelid": "modal16",
       "cardImage": "../Assets/projectpics/bot.png",
       "cardAlt": "bot",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -136,7 +145,7 @@ const projects = [
       "learnMoreLink": "../pages/chatbot_development_tutorial.html"
     },
     {
-      "modelid": "modal16",
+      "modelid": "modal17",
       "cardImage": "../Assets/projectpics/fraud.png",
       "cardAlt": "fraud",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -145,7 +154,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal17",
+      "modelid": "modal18",
       "cardImage": "../Assets/projectpics/lth.png",
       "cardAlt": "health",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -154,7 +163,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal18",
+      "modelid": "modal19",
       "cardImage": "../Assets/projectpics/wild.jpg",
       "cardAlt": "wild",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -163,7 +172,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal19",
+      "modelid": "modal20",
       "cardImage": "../Assets/projectpics/waste.jpg",
       "cardAlt": "waste",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -172,7 +181,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal20",
+      "modelid": "modal21",
       "cardImage": "../Assets/projectpics/traffic.jpg",
       "cardAlt": "traffic",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -181,7 +190,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal21",
+      "modelid": "modal22",
       "cardImage": "../Assets/projectpics/personalizd.jpg",
       "cardAlt": "personalized",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -190,7 +199,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal22",
+      "modelid": "modal23",
       "cardImage": "../Assets/projectpics/mental.jpg",
       "cardAlt": "mental",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -199,7 +208,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal23",
+      "modelid": "modal24",
       "cardImage": "../Assets/projectpics/dist.jpg",
       "cardAlt": "Disaster",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -208,7 +217,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal24",
+      "modelid": "modal25",
       "cardImage": "../Assets/projectpics/sound.jpg",
       "cardAlt": "sound",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -217,7 +226,7 @@ const projects = [
       "learnMoreLink": "../pages/urban_sound_classification_tutorial.html"
     },
     {
-      "modelid": "modal25",
+      "modelid": "modal26",
       "cardImage": "../Assets/projectpics/eneryg.png",
       "cardAlt": "energy",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -226,7 +235,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal26",
+      "modelid": "modal27",
       "cardImage": "../Assets/projectpics/nut.jpg",
       "cardAlt": "nutrition",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -235,7 +244,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal27",
+      "modelid": "modal28",
       "cardImage": "../Assets/projectpics/rec.jpg",
       "cardAlt": "recycle",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -244,7 +253,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal28",
+      "modelid": "modal29",
       "cardImage": "../Assets/projectpics/the.jpg",
       "cardAlt": "Therapist",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
