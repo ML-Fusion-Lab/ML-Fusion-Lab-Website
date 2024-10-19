@@ -211,9 +211,10 @@ body {
 }
 
 .footer-bar {
+  text-align: center; /* Centered the text horizontally */
   margin: auto;
-  padding: 1rem;
-  font-size: 0.8rem;
+  padding: 10px 0; /* Added some padding(top & bottom) for spacing */
+  font-size: 18px; /* Increased the font size for better visibility */
   color: white;
   background-color: black;
 }
