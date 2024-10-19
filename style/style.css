@@ -151,12 +151,39 @@ body {
   border: 2px solid white;
   border-radius: 100%;
   padding: 0.5rem;
-  transition: background-color 0.3s ease 0s;
+  /* Modified: Transform property to smoothen the animation */
+  transition: transform 0.3s ease, background 0.3s ease; 
 }
 
 .footer-social i:hover {
   opacity: 1;
   background-color: #35373b;
+  /* Added: Zoom effect on hover */
+  transform: scale(1.2); 
+}
+
+/* Hover color change effect for Facebook icon */
+.footer-social .fa-facebook:hover {
+  background: #1877F2; /* Official Facebook blue */
+  color: white;
+} 
+
+/* Hover color change effect for Instagram icon */
+.footer-social .fa-instagram:hover {
+  background: #E4405F; /* Official Instagram pinkish red */
+  color: white;
+} 
+
+/* Hover color change effect for Twitter[X] icon */
+.footer-social .fa-x-twitter:hover {
+  background: black; /* Official X color */
+  color: white;
+}
+
+/* Hover color change effect for LinkedIn icon */
+.footer-social .fa-linkedin:hover {
+  background: #0077B5; /* Official LinkedIn blue */
+  color: white;
 }
 
 .h46 {
@@ -184,9 +211,10 @@ body {
 }
 
 .footer-bar {
+  text-align: center; /* Centered the text horizontally */
   margin: auto;
-  padding: 1rem;
-  font-size: 0.8rem;
+  padding: 10px 0; /* Added some padding(top & bottom) for spacing */
+  font-size: 18px; /* Increased the font size for better visibility */
   color: white;
   background-color: black;
 }
