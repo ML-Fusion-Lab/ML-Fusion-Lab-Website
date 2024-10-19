@@ -227,12 +227,12 @@ A heartfelt thank you to the following individuals for their valuable contributi
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 
-<div align="center">
-    <a href="#top">
-        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
-    </a>
-</div>
+## 👥 Team
 
+| ![Vivek Vardhan](https://avatars.githubusercontent.com/u/91594529?v=4&s=80) |
+|:--:|
+| **Vivek Vardhan** <br> <sub>Project Admin</sub> | 
+| [![LinkedIn](https://img.icons8.com/fluency/32/000000/linkedin.png)](https://www.linkedin.com/in/vivek-vardhan-23682521b/) |
 
 ## Support🧡
 
@@ -241,3 +241,9 @@ If you find this project helpful, please consider giving it a ⭐ on GitHub,  Ha
 [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/FZxBRpTEeH)
          
 Thank you for contributing to the ML Fusion Lab! Your efforts help make this project better for everyone. 🎉🚀
+
+<div align="center">
+    <a href="#top">
+        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
+    </a>
+</div>
