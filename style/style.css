@@ -207,8 +207,11 @@ body {
   .newsletter {
     height: auto;
     width: 100%;
-    background-color: #489bff;
-    color: white;
+    background-color: #f5f5f7;
+    color: black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 1px solid rgb(204 204 204);
     margin-top: 30px;
     display: flex;
     flex-direction: column !important;
