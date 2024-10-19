@@ -242,9 +242,17 @@ const projects = [
       "cardTitle": "AI-Powered Virtual Therapist",
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
       "learnMoreLink": "#"
-    }
-  ]
-  
+    },
+    {
+      "modelid": "modal28",
+      "cardImage": "../Assets/projectpics/plant_disease_detection.jpg",
+      "cardAlt": "Plant Disease Detection",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "AI-Driven Plant Disease Detection",
+      "cardDesc": "Develop an AI model using the PlantVillage dataset and fine-tuned Xception architecture to identify and classify plant diseases.",
+      "learnMoreLink": "../pages/plant_disease_detection.html"
+    }    
+  ] 
   
   // Select card container
   const projectList = document.querySelector(".project-list");
