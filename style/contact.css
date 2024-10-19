@@ -69,8 +69,8 @@ body{
     left: 33px;
     background-image: url("../Assets/sun.png");
 } */
-
-.contact-bg{
+/* 
+/*.contact-bg{
     height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(assets/booking.jpeg);
     background-position: 50% 100%;
@@ -119,7 +119,103 @@ body{
 }
 .contact-bg .text{
     margin: 1.6rem 0;
+} */
+ /* bg image */
+.contact-bg {
+    position: relative;
+    padding: 80px 20px;
+    background-image: url('../image/contact.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
+/* Dark overlay for better readability */
+.contact-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    z-index: 1;
+}
+
+/* Style for all direct children to appear above overlay */
+.contact-bg > * {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.contact-bg h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.contact-bg h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Line styling */
+.contact-bg .line {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.contact-bg .line div {
+    width: 30px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+.contact-bg .text {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .contact-bg::before {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-bg {
+        min-height: 300px;
+        padding: 60px 20px;
+    }
+
+    .contact-bg h2 {
+        font-size: 2rem;
+    }
+
+    .contact-bg h3 {
+        font-size: 1.2rem;
+    }
+
+    .contact-bg .text {
+        font-size: 1rem;
+    }
+}
+/* end */
 .contact-body{
     max-width: 1320px;
     margin: 0 auto;
