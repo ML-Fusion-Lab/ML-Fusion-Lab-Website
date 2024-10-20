@@ -17,6 +17,22 @@ header {
   padding: 15px 0;
 }
 
+button{
+  transition: all 0.3s ease;
+}
+
+button:hover{
+  transform: scale(1.1);
+}
+
+.btn{
+  transition: all 0.3s ease;
+}
+
+.btn:hover{
+  transform: scale(1.1);
+}
+
 header nav {
   display: flex;
   justify-content: space-between;

@@ -37,6 +37,22 @@
     line-height: 1; 
 }
 
+button{
+    transition: all 0.3s ease;
+  }
+
+  button:hover{
+    transform: scale(1.1);
+  }
+
+  .btn{
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover{
+    transform: scale(1.1);
+  }
+
 #scrollTopBtn:focus {
     outline: none;
     box-shadow: 0px 0px 0px 4px rgba(0, 166, 255, 0.5);

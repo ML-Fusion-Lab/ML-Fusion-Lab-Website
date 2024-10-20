@@ -19,6 +19,22 @@ header {
     padding: 0px 10px;
 }
 
+button{
+    transition: all 0.3s ease;
+  }
+
+  button:hover{
+    transform: scale(1.1);
+  }
+
+  .btn{
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover{
+    transform: scale(1.1);
+  }
+
 header .logo {
     margin: 0;
 }

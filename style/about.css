@@ -34,6 +34,22 @@
     opacity: 0;
     position: absolute;
   }
+
+  button{
+    transition: all 0.3s ease;
+  }
+
+  button:hover{
+    transform: scale(1.1);
+  }
+
+  .btn{
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover{
+    transform: scale(1.1);
+  }
   
   .checkbox-label {
     background: linear-gradient(82deg, #ffffff, #00796b);

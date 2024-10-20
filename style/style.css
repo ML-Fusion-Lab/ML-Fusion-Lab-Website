@@ -267,6 +267,22 @@ body {
     margin-top: 5px;
   }
 
+  button{
+    transition: all 0.3s ease;
+  }
+
+  button:hover{
+    transform: scale(1.1);
+  }
+
+  .btn{
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover{
+    transform: scale(1.1);
+  }
+
   .input {
     margin: 0, auto;
     min-height: 50px;

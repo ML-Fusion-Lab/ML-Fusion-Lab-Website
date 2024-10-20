@@ -9,6 +9,22 @@ body {
     background-color: #ffffff;
 }
 
+button{
+  transition: all 0.3s ease;
+}
+
+button:hover{
+  transform: scale(1.1);
+}
+
+.btn{
+  transition: all 0.3s ease;
+}
+
+.btn:hover{
+  transform: scale(1.1);
+}
+
 header {
     background-color: #efeded;
     border-bottom: 3px solid #007BFF;
