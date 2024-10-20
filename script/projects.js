@@ -272,6 +272,15 @@ const projects = [
     },
     {
       "modelid": "modal31",
+      "cardImage": "../Assets/projectpics/deblurrer.webp",
+      "cardAlt": "CNN",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "De-blurring Images using CNN",
+      "cardDesc": "In this tutorial, we will build a CNN model to deblur given image",
+      "learnMoreLink": "../pages/deblurring.html"
+    },
+    {
+      "modelid": "modal32",
       "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
       "cardAlt": "Crop Rotation Recommendation",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
