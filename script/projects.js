@@ -262,14 +262,24 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal28",
+      "modelid": "modal30",
       "cardImage": "../Assets/projectpics/plant_disease_detection.jpg",
       "cardAlt": "Plant Disease Detection",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Driven Plant Disease Detection",
       "cardDesc": "Develop an AI model using the PlantVillage dataset and fine-tuned Xception architecture to identify and classify plant diseases.",
       "learnMoreLink": "../pages/plant_disease_detection.html"
-    }    
+    },
+    {
+      "modelid": "modal31",
+      "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
+      "cardAlt": "Crop Rotation Recommendation",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "AI-Powered Crop Rotation Recommendation",
+      "cardDesc": "Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.",
+      "learnMoreLink": "../pages/crop_rotation_recommendation.html"
+    }
+        
   ] 
   
   // Select card container
