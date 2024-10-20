@@ -1444,17 +1444,6 @@ input[type="range"]:focus {
     align-items: center;
   }
   
-  .footer-social i {
-    color: white;
-    font-size: 1.25rem;
-    margin-right: 1rem;
-    opacity: 0.7;
-    border: 2px solid white;
-    border-radius: 100%;
-    padding: 0.5rem;
-    transition: background-color 0.3s ease 0s;
-  }
-  
   .footer-social i:hover {
     opacity: 1;
     background-color: #35373b;
@@ -1484,14 +1473,6 @@ input[type="range"]:focus {
     opacity: 1;
   }
   
-  .footer-bar {
-    margin: auto;
-    padding: 1rem;
-    font-size: 0.8rem;
-    color: white;
-    background-color: black;
-  }
-  
   @media (max-width: 900px) {
     .footer {
         grid-template-columns: 1fr 200px;
@@ -1519,7 +1500,18 @@ input[type="range"]:focus {
                 <li><a href="../pages/projects.html">Projects</a></li>
                 <li><a href="../pages/about.html">About Us</a></li>
                 <li><a href="../pages/contact.html">Contact</a></li>
-                <div class="theme-switch" id="theme-switch"></div>
+                <!-- <div class="theme-switch" id="theme-switch"></div> -->
+                <div id="themeSwitch" class="theme-switch">
+                  <input type="checkbox" class="checkbox" id="checkbox">
+                  <label for="checkbox" class="checkbox-label">
+                    
+                    <img src="../Assets/sun.png" class="theme-btn">
+                    <img src="../Assets/moon.png" class="theme-btn">
+                    <!-- <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i> -->
+                    <span class="ball"></span>
+                  </label>
+                </div>
             </ul>
         </nav>
     </header>
@@ -1625,7 +1617,8 @@ input[type="range"]:focus {
       <div class="footer-social">
           <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
           <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+          <!-- Replaced: Twitter(X) Logo -->
+          <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
       </div>
   </div>

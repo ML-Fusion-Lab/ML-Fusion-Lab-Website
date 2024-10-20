@@ -269,10 +269,19 @@ const projects = [
       "cardTitle": "HumanFace Landmark Detction",
       "cardDesc": "In this tutorial, we will build a CNN model to map and detect landmaks in Human Face",
       "learnMoreLink": "../pages/face_landmark_detection.html"
+    },
+    {
+      "modelid": "modal31",
+      "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
+      "cardAlt": "Crop Rotation Recommendation",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "AI-Powered Crop Rotation Recommendation",
+      "cardDesc": "Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.",
+      "learnMoreLink": "../pages/crop_rotation_recommendation.html"
     }
+        
+  ] 
 
-  ]
-  
   
   // Select card container
   const projectList = document.querySelector(".project-list");

@@ -151,12 +151,39 @@ body {
   border: 2px solid white;
   border-radius: 100%;
   padding: 0.5rem;
-  transition: background-color 0.3s ease 0s;
+  /* Modified: Transform property to smoothen the animation */
+  transition: transform 0.3s ease, background 0.3s ease; 
 }
 
 .footer-social i:hover {
   opacity: 1;
   background-color: #35373b;
+  /* Added: Zoom effect on hover */
+  transform: scale(1.2); 
+}
+
+/* Hover color change effect for Facebook icon */
+.footer-social .fa-facebook:hover {
+  background: #1877F2; /* Official Facebook blue */
+  color: white;
+} 
+
+/* Hover color change effect for Instagram icon */
+.footer-social .fa-instagram:hover {
+  background: #E4405F; /* Official Instagram pinkish red */
+  color: white;
+} 
+
+/* Hover color change effect for Twitter[X] icon */
+.footer-social .fa-x-twitter:hover {
+  background: black; /* Official X color */
+  color: white;
+}
+
+/* Hover color change effect for LinkedIn icon */
+.footer-social .fa-linkedin:hover {
+  background: #0077B5; /* Official LinkedIn blue */
+  color: white;
 }
 
 .h46 {
@@ -184,9 +211,10 @@ body {
 }
 
 .footer-bar {
+  text-align: center; /* Centered the text horizontally */
   margin: auto;
-  padding: 1rem;
-  font-size: 0.8rem;
+  padding: 10px 0; /* Added some padding(top & bottom) for spacing */
+  font-size: 18px; /* Increased the font size for better visibility */
   color: white;
   background-color: black;
 }
@@ -205,16 +233,18 @@ body {
 
   /*Newsletter Styles*/
   .newsletter {
-    height: 200px;
-    width: 100%;
-    background-color: whitesmoke;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    box-shadow: 10px 10px 10px solid white;
+    height: auto;
+        width: 100%;
+        background-color: #f5f5f7;
+        color: black;
+        border-radius: 20px;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column !important;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        box-shadow: 0px 0px 10px #afafafad;
   }
   .newsletter-left {
     margin-left: 0px;
@@ -410,6 +440,11 @@ body {
 .about .row .content .btn:hover {
   background-color: #0056b3;
 }
+.feature-item:hover{
+  border: 1px solid #0077cc;
+  box-shadow:0px 0px 15px #0077cc;
+  transition: .40s ease-in-out;
+}
 @media (max-width: 1000px) {
   .about .row {
     display: flex; /* Use flexbox for layout */
@@ -425,6 +460,7 @@ body {
   color: rgb(118, 58, 58);
   padding: 100px 20px;
   text-align: center;
+  height: 80vh;
 
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("https://plus.unsplash.com/premium_photo-1682756540097-6a887bbcf9b0?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
@@ -613,6 +649,7 @@ footer p a:hover {
   background-color: #fff;
   padding: 30px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #0077cc;
   border-radius: 15px;
   width: 70vw;
   text-align: center;
@@ -625,6 +662,10 @@ footer p a:hover {
 
 .feature-item:hover {
   transform: translateY(-10px);
+  border: 1px solid #0077cc;
+  box-shadow:0px 0px 10px #0077cc;
+  transition: .40s ease-in-out;
+
 }
 
 .feature-item h3 {
@@ -1159,9 +1200,14 @@ body.dark-mode .feature-item {
   border-radius: 15px;
   width: 30%;
   text-align: center;
+  border: 1px solid #0077cc;
   transition: transform 0.3s ease;
 }
-
+body.dark-mode .feature-item:hover{
+  border: 1px solid #0077cc;
+  box-shadow:0px 0px 25px #0077cc;
+  transition: .40s ease-in-out;
+}
 body.dark-mode .feature-item h3 {
   color: white;
 }
@@ -1189,7 +1235,7 @@ body.dark-mode .newsletter-right {
 }
 
 /* Here are the styles for the theme toggel  */
-.theme-switch {
+/* .theme-switch {
   display: inline-block;
   width: 60px;
   height: 30px;
@@ -1223,7 +1269,48 @@ body.dark-mode .newsletter-right {
 .theme-switch.dark-theme::before {
   left: 33px;
   background-image: url("../Assets/sun.png");
+} */
+
+/* theme toggle switch */
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
 }
+
+.checkbox-label {
+  background: linear-gradient(82deg, #ffffff, #00796b);
+  width: 60px;
+  height: 28px;
+  border-radius: 50px;
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.theme-btn{
+  height: 23px;
+  height: 23px;
+}
+.checkbox-label .ball {
+  background-color: #000000;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  transition: transform 0.3s linear;
+  
+}
+
+.checkbox:checked + .checkbox-label .ball {
+  transform: translateX(31px);
+  
+}
+
 
 /*  contact page  dark theme*/
 body.dark-mode .contact-hero {
@@ -1474,14 +1561,14 @@ body {
       height: 300px;
       padding: 40px;
       width: 100%;
-      background-color: whitesmoke;
+      background-color: #489bff;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      box-shadow: 10px 10px 10px solid white;
+      box-shadow: 0 0 10px white;
     }
     .newsletter-left {
       margin-left: 0;
@@ -1962,7 +2049,11 @@ h2 {
   flex: 1 1 30%; /* Flex items to grow/shrink with a base of 30% */
   max-width: 30%; /* Ensures no item exceeds 30% of the container's width */
 }
-
+.feature-item:hover{
+  border: 1px solid #0077cc;
+  box-shadow:0px 0px 15px #0077cc;
+  transition: .40s ease-in-out;
+}
 /* Text Styling */
 .feature-item h3 {
   margin-bottom: 15px;
@@ -3183,4 +3274,19 @@ body.dark-mode #scrolltopbutton {
   color: rgb(0, 0, 0);
 
   background-color: #ffffff;
+}
+.form-container{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.contact-map-container{
+  display: flex;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10.9px);
+  -webkit-backdrop-filter: blur(10.9px);
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  margin-bottom: 50px;
 }

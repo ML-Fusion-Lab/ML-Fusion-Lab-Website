@@ -1,6 +1,8 @@
 # ML Fusion Lab - Learn Machine Learning
 
-![image](https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe) 
+<p align="left">
+  <img width="200" height="200" src="https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe">
+</p>
 
 Welcome to **ML Fusion Lab**!.
 
@@ -110,7 +112,7 @@ This project aims to provide an interactive platform where users can learn machi
 - **Hands-on Projects**: Real-world projects to test and enhance your skills.
 - **Community Contributions**: Upload and collaborate on ML projects.
 
-![image](https://github.com/user-attachments/assets/3b18330d-db03-4e4d-adef-28fbf5a4401a)
+![image](https://github.com/user-attachments/assets/88518206-ed3e-4e54-96f2-ad2b0e25b575)
 
 ---
 ## Overview⭐
@@ -225,12 +227,12 @@ A heartfelt thank you to the following individuals for their valuable contributi
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 
-<div align="center">
-    <a href="#top">
-        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
-    </a>
-</div>
+## 👥 Team
 
+| ![Vivek Vardhan](https://avatars.githubusercontent.com/u/91594529?v=4&s=80) |
+|:--:|
+| **Vivek Vardhan** <br> <sub>Project Admin</sub> | 
+| [![LinkedIn](https://img.icons8.com/fluency/32/000000/linkedin.png)](https://www.linkedin.com/in/vivek-vardhan-23682521b/) |
 
 ## Support🧡
 
@@ -239,3 +241,9 @@ If you find this project helpful, please consider giving it a ⭐ on GitHub,  Ha
 [![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/FZxBRpTEeH)
          
 Thank you for contributing to the ML Fusion Lab! Your efforts help make this project better for everyone. 🎉🚀
+
+<div align="center">
+    <a href="#top">
+        <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
+    </a>
+</div>

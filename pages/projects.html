@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - ML Fusion Labs</title>
-    
     <link rel="stylesheet" href="../style/scroll.css">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -264,23 +263,7 @@
     display: flex;
     align-items: center;
   }
-  
-  .footer-social i {
-    color: white;
-    font-size: 1.25rem;
-    margin-right: 1rem;
-    opacity: 0.7;
-    border: 2px solid white;
-    border-radius: 100%;
-    padding: 0.5rem;
-    transition: background-color 0.3s ease 0s;
-  }
-  
-  .footer-social i:hover {
-    opacity: 1;
-    background-color: #35373b;
-  }
-  
+   
   .h46 {
     margin-bottom: 2rem;
     font-size: 1.2rem;
@@ -289,6 +272,7 @@
   }
   
   .footer-col-main {
+    width: max-content;
     margin-top: -1rem;
   }
   
@@ -305,20 +289,81 @@
     opacity: 1;
   }
   
-  .footer-bar {
-    margin: auto;
-    padding: 1rem;
-    font-size: 0.8rem;
-    color: white;
-    background-color: black;
-  }
-  
+   
   @media (max-width: 900px) {
     .footer {
         grid-template-columns: 1fr 200px;
     }
   }
   /* this is only end of footer style */
+  /* bg image */
+  .projects-hero {
+    position: relative;
+    padding: 80px 20px;
+    background-image: url('../image/project.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dark overlay to ensure text readability */
+.projects-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+
+.hero-content {
+    position: relative; 
+    text-align: center;
+    color: #ffffff;
+    max-width: 800px;
+    z-index: 1; 
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .projects-hero::before {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .projects-hero {
+        min-height: 300px;
+        padding: 60px 20px;
+    }
+}
+/* end */
    </style>
 
 </head>
@@ -344,7 +389,18 @@
               <li><div class="gtranslate_wrapper"></div>
                 <script>window.gtranslateSettings = {"default_language":"en",   "detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
                   <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
-              <div class="theme-switch" id="theme-switch"></div>
+              <!-- <div class="theme-switch" id="theme-switch"></div> -->
+              <div id="themeSwitch" class="theme-switch">
+                <input type="checkbox" class="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label">
+                  
+                  <img src="../Assets/sun.png" class="theme-btn">
+                  <img src="../Assets/moon.png" class="theme-btn">
+                  <!-- <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i> -->
+                  <span class="ball"></span>
+                </label>
+              </div>
 
             </ul>
       </nav>
@@ -413,7 +469,7 @@
     </div>         
     <div class="footer">
         <div class="footer-col">
-            <img src="http://127.0.0.1:3000/image/ml%20fusion%20lab%20log.jpg" alt="">
+            <img src="../image/ml fusion lab log.jpg" alt="">
             <span class="footer-p">
       
               We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
@@ -422,7 +478,8 @@
             <div class="footer-social">
                 <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <!-- Replaced: Twitter(X) Logo -->
+                <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
                 <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </div>
@@ -592,11 +649,23 @@
                 break;
 
             case 'modal29':
-
                 title.textContent = 'AI-Powered Virtual Therapist';
                 description.textContent = 'Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.';
                 technologies.textContent = 'Technologies Used: Python, OpenAI Gym, TensorFlow';
                 break;
+            
+            case 'modal30':
+                title.textContent = 'AI-Driven Plant Disease Detection';
+                description.textContent = 'Develop an AI model using the PlantVillage dataset and fine-tuned Xception architecture to identify and classify plant diseases.';
+                technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras, OpenCV, NumPy, Matplotlib';
+                break;
+                
+            case 'modal31':
+            title.textContent = 'AI-Powered Crop Rotation Recommendation';
+            description.textContent = 'Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.';
+            technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas, NumPy, Matplotlib';
+            break;
+
         }
 
         modal.style.display = 'block';

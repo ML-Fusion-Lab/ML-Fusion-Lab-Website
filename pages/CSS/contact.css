@@ -1228,3 +1228,54 @@ align-items: right;
 padding: 0.3rem;
 }
 
+@media screen and (max-width: 400px) {
+
+    body{
+        align-items: center;
+    }
+
+    .contact-map-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-map-container .contact-form input{
+        width: 300px;
+        height: 40px;
+        position: relative;
+        right: 100px;
+    }
+
+    .contact-map-container .contact-form textarea{
+        width: 300px;
+        height: 70px;
+        position: relative;
+        right: 100px;
+    }
+
+    #send-btn{
+       text-align: center;
+    }
+
+    .map{
+        position: relative;
+        left: 10px;
+    }
+    #footer-col-main{
+        position: relative;
+        right: 30px;
+        bottom: 3px;
+    }
+
+    #footer-col-ml{
+        position: relative;
+        right: 30px;
+        top: 20px;
+    }
+
+    #footer-col-ml a{
+        position: relative;
+        left: 20px;
+    }
+
+  }

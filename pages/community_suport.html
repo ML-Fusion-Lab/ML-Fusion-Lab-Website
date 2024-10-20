@@ -164,18 +164,7 @@
     display: flex;
     align-items: center;
   }
-  
-  .footer-social i {
-    color: white;
-    font-size: 1.25rem;
-    margin-right: 1rem;
-    opacity: 0.7;
-    border: 2px solid white;
-    border-radius: 100%;
-    padding: 0.5rem;
-    transition: background-color 0.3s ease 0s;
-  }
-  
+   
   .footer-social i:hover {
     opacity: 1;
     background-color: #35373b;
@@ -204,14 +193,7 @@
   .footer-col-main a:hover {
     opacity: 1;
   }
-  
-  .footer-bar {
-    margin: auto;
-    padding: 1rem;
-    font-size: 0.8rem;
-    color: white;
-    background-color: black;
-  }
+
   
   @media (max-width: 900px) {
     .footer {
@@ -219,6 +201,169 @@
     }
   }
   /* this is only end of footer style */
+  .hero {
+            background-image: url('../image/ml-fusion-lab-logo.png');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.cta-button:hover {
+    background-color: white; /* Change background color */
+    color: black; /* Change text color */
+}
+
+        .image-credit {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8em;
+        }
+        .yoga-types-parent {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #007BFF;
+        }
+        .yoga-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 18%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+   .dark-mode .yoga-card {
+     background-color: black;
+   }
+
+/* Base styles for yoga-types */
+.yoga-types-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    background-color: #007BFF;
+}
+
+/* Yoga card styles */
+.yoga-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 calc(25% - 40px); /* Adjust width and spacing for 4 columns */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.yoga-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .yoga-card {
+        flex: 1 1 calc(33.33% - 40px); /* 3 columns for larger tablets and smaller laptops */
+    }
+}
+
+@media (max-width: 768px) {
+    .yoga-card {
+        flex: 1 1 calc(50% - 40px); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .yoga-card {
+        flex: 1 1 100%; /* 1 column for mobile devices */
+    }
+}
+
+
+.yoga-card:hover {
+    transform: translateY(-10px); /* Moves the card upwards */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+        .yoga-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.yoga-card img:hover {
+    transform: scale(1.1); /* Slightly increase size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+        .yoga-card h3 {
+            margin: 10px 0;
+        }
+        .yoga-card p {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .more-button {
+    background-color: #007BFF; /* Bright blue color */
+    border: none;
+    color: white; /* Better contrast with background */
+    padding: 8px 16px; /* Increased padding for better spacing */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 0.9em; /* Slightly increased font size */
+    font-weight: bold; /* Make text bold */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.more-button:hover {
+    background-color: #0056b3; /* Darker shade of blue for hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+
     </style>
 </head>
 <body>
@@ -241,7 +386,18 @@
               <li><div class="gtranslate_wrapper"></div>
                 <script>window.gtranslateSettings = {"default_language":"en",   "detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
                   <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
-              <div class="theme-switch" id="theme-switch"></div>
+              <!-- <div class="theme-switch" id="theme-switch"></div> -->
+              <div id="themeSwitch" class="theme-switch">
+                <input type="checkbox" class="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label">
+                  
+                  <img src="../Assets/sun.png" class="theme-btn">
+                  <img src="../Assets/moon.png" class="theme-btn">
+                  <!-- <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i> -->
+                  <span class="ball"></span>
+                </label>
+              </div>
             </ul>
           </nav>
     </header>
@@ -279,45 +435,54 @@
         <div class="circle"></div>
       </div>
     
-
-    <section class="community-support">
-        <div class="container">
-            <h2>Community Support</h2>
-            <p>At ML Fusion Labs, we believe that learning is best when shared. Our community support section is designed to connect learners, share knowledge, and provide assistance for your machine learning journey.</p>
-            <div class="card">
+      <div class="hero">
+        <div class="hero-content">
+            <h1>At ML Fusion Labs, we believe that learning is best when shared.<br>Our community support section is designed to connect learners, share knowledge, and provide assistance for your machine learning journey.</h1>
+            <a href="forum.html" class="cta-button">JOIN THE COMMUNITY</a>
+        </div>
+        <div class="image-credit"></div>
+    </div>
+    
+    <div class="yoga-types yoga-types-parent">
+        <div class="yoga-card">
+            <img src="../image/forum.jpeg" alt="Hatha Yoga">
             <h3>Join Our Forums</h3>
-            <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums. Whether you’re a beginner or an expert, everyone is welcome!</p>
-            <a href="forum.html" class="btn" aria-label="Visit Forums">Visit Forums</a>
-            </div>
-            <div class="card">
+            <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums.</p>
+            <a href="forum.html" class="more-button">VISIT FORUMS</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/QA.jpg" alt="Hatha Vinyasa">
             <h3>Weekly Q&A Sessions</h3>
             <p>Join our weekly Q&A sessions where experts from the ML field answer your questions live. Check our schedule and sign up!</p>
-            <a href="qa_schedule.html" class="btn" aria-label="View Q&A Schedule">View Schedule</a>
-            </div>
-            <div class="card">
+            <a href="qa_schedule.html" class="more-button">VIEW SCHEDULE</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/resource.jpeg" alt="Pilates">
             <h3>Resource Library</h3>
             <p>Access our curated library of articles, tutorials, and videos to help you navigate through machine learning topics. Learn at your own pace!</p>
-            <a href="resources.html" class="btn" aria-label="Explore Resources">Explore Resources</a>
-            </div>
-            <div class="card">
+            <a href="resources.html" class="more-button">EXPLORE RESOURCES</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/mentor.jpeg" alt="Iyengar">
             <h3>Connect with Mentors</h3>
             <p>Get paired with experienced mentors who can guide you through complex topics, provide insights, and support your learning journey.</p>
-            <a href="mentor_program.html" class="btn" aria-label="Find a Mentor">Find a Mentor</a>
-            </div>m
-            <div class="card">
+            <a href="mentor_program.html" class="more-button">FIND A MENTOR</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/social.jpeg" alt="Kundalini">
             <h3>Social Media Groups</h3>
             <p>Join our social media groups on platforms like Facebook, LinkedIn, and Discord to stay updated, network with other learners, and share resources.</p>
-            <a href="social_media.html" class="btn" aria-label="Join Social Media Groups">Join Our Groups</a>
-            </div>
+            <a href="social_media.html" class="more-button">JOIN OUR GROUPS</a>
         </div>
-    </section>
+    </div>
+    
 
     <!-- Back to Top Button -->
     <button id="backToTop" title="Go to top" aria-label="Back to Top"> <i class="fas fa-arrow-up"></i></button>
 
     <div class="footer">
       <div class="footer-col">
-          <img src="http://127.0.0.1:3000/image/ml%20fusion%20lab%20log.jpg" alt="">
+          <img src="../image/ml fusion lab log.jpg" alt="">
           <span class="footer-p">
     
             We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
@@ -326,7 +491,8 @@
           <div class="footer-social">
               <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
               <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-              <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+              <!-- Replaced: Twitter(X) Logo -->
+              <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
               <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
           </div>
       </div>

@@ -3,7 +3,47 @@
     padding: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+/* switch theme toggal */
+.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .checkbox-label {
+    background: linear-gradient(82deg, #ffffff, #00796b);
+    width: 60px;
+    height: 28px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .theme-btn{
+    height: 23px;
+    height: 23px;
+  }
+  .checkbox-label .ball {
+    background-color: #000000;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.3s linear;
+    
+  }
+  
+  .checkbox:checked + .checkbox-label .ball {
+    transform: translateX(31px);
+    
+  }
+  
 
+/* 
 .theme-switch::before {
     content: "";
     position: absolute;
@@ -20,8 +60,8 @@
 
 .theme-switch.dark-theme::before {
     left: 33px;
-    background-image: url("../Assets/sun.png");
-}
+    background-image: url("../Assets/sun.png"); */
+/* } */
 
 :root {
     --black: #1d1d1f;

@@ -299,7 +299,11 @@
           <li><a href="pages/contact.html">Contact</a></li>
           <li><a href="pages/community_suport.html">Community Support</a></li>
           <li><a href="pages/feedback.html">Feedback</a></li>
-          <li><a href="pages/login.html">Login</a></li>
+          <!-- Login/Logout Button -->
+          <li><a id="login-btn" href="pages/login.html">Login</a></li>
+          <li style="display: none;" id="logout-btn">
+            <a href="#" onclick="logout()">Logout</a>
+          </li>
           <li>
             <div class="gtranslate_wrapper"></div>
             <script>
@@ -310,14 +314,24 @@
                 flag_size: 16,
               };
             </script>
-            <script
-            src="https://cdn.gtranslate.net/widgets/latest/popup.js"
-            defer
-          ></script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
           </li>
-          <div class="theme-switch" id="theme-switch"></div>
+          <!-- <div class="theme-switch themeSwitch" id="theme-switch"></div> -->
+
+          <div id="themeSwitch" class="theme-switch">
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+              
+              <img src="./Assets/sun.png" class="theme-btn">
+              <img src="./Assets/moon.png" class="theme-btn">
+              <!-- <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i> -->
+              <span class="ball"></span>
+            </label>
+          </div>
         </ul>
       </nav>
+      
     </header>
 
     <section class="hero">
@@ -383,6 +397,7 @@
         <h2>Our Features</h2>
         <div class="feature-grid">
           <div class="feature-item">
+            <a href="pages/courses.html" style="text-decoration: none">
             <h3>Structured Learning</h3>
             <p>
               Our courses are designed for clarity and progress, from
@@ -399,52 +414,83 @@
           </div>
 
           <div class="feature-item">
+            <a href="pages/community_suport.html" style="text-decoration: none">
             <h3>Community Support</h3>
             <p>
               Collaborate with other learners and contribute to open-source ML
               projects.
             </p>
+            </a>
           </div>
         </div>
       </div>
     </section>
-
-    <div class="newsletter">
-      <div class="newsletter-left">
-        <h1>Sign Up for Newsletters</h1>
-        <p>
-          Get updates in your E-mail about
-          latest deals and products
-        </p>
-      </div>
-      <div class="newsletter-right">
-        <div class="input-group">
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            class="input"
-            required
-            style="border-radius: 4px 0 0 4px"
-          />
-          <button type="submit" class="submit-button" id="submit-button">
-            Subscribe
-          </button>
+<!-- Newsletters Section  -->
+    <div class="container newsletter d-flex flex-column p-5">
+      <div class="align-items-center justify-content-between w-100">
+        <div class="mx-auto col-lg-6">
+          <h1 class="h4">Sign Up for Newsletters</h1>
+          <p>Get updates in your email about the latest deals and products</p>
         </div>
-        <div id="error-message" style="display: none; color: red; width: 260px">
-          *Please enter a valid email address.
-        </div>
-
-        <!-- Confirmation message container -->
-        <div
-          id="confirmation-message"
-          style="display: none"
-          class="confirmation-message"
-        >
-          Thank you for subscribing to our newsletter!
+        <div class="mx-auto col-lg-6 d-flex flex-wrap items-center">
+          <div class="input-group ">
+            <input
+              type="email"
+              id="email"
+              class="form-control me-md-3 rounded border border-dark px-4 py-2"
+              placeholder="Enter your email"
+              required
+            />
+            <button class="btn btn-secondary mb-2 rounded bg-dark p-2 px-4" style="width: max-content;" type="submit" id="submit-button">
+              Subscribe
+            </button>
+          </div>
+          <div id="error-message" class="text-danger small mt-2" style="display: none;">
+            *Please enter a valid email address.
+          </div>
+          <div id="confirmation-message" class="text-success small mt-2" style="display: none;">
+            Thank you for subscribing to our newsletter!
+          </div>
         </div>
       </div>
     </div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .input-group {
+        display: flex;
+        align-items: stretch;
+      }
+    
+      .input-group .form-control {
+        border-radius: 4px 0 0 4px;
+      }
+    
+      .input-group .btn {
+        border-radius: 0 4px 4px 0;
+        flex-shrink: 0; 
+      }
+
+      @media (max-width: 768px) {
+        .input-group {
+          flex-direction: column;
+          justify-content: center;
+        }
+    
+        .input-group .form-control,
+        .input-group .btn {
+          border-radius: 4px;
+          width: 100%;
+        }
+    
+        .input-group .btn {
+          margin-top: 10px;
+        }
+      }
+    </style>
+    
 
     <style>
       .input-group {
@@ -637,7 +683,7 @@
       <div class="footer-social">
           <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
           <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+          <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
           <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
       </div>
   </div>
@@ -671,177 +717,143 @@
 
     <!-- POP-UP HTML CODE GOES HERE -->
     <!-- Pop-up for email sign-up -->
-    <div id="popup" class="popup">
-      <div class="popup-content">
-        <div class="popup-left">
-          <img src="image/popup.jpg" alt="ML Learning Image" />
-        </div>
-        <!-- <a href='#' class="popuplogo"><img  src="ml fusion lab logo.jpeg" width="50" height="50"></a> -->
-        <div class="popup-right">
-          <h1>Join ML Fusion Lab!</h1>
-          <h2>Get Free Machine Learning Resources</h2>
-          <p>
-            Sign up to avail upto <strong>75% off</strong> on your first
-            purchase and boost your ML journey.
-          </p>
-          <form id="emailForm">
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              required
-            />
-            <button type="button" class="signup-btn" onclick="showToastAndRedirect()">Sign Up Now</button>
-          </form>
-          <a href="#" class="no-thanks close-btn">No thanks</a>
-          <p class="terms">
-            By signing up, you agree to our <a href="#">Terms of Service</a> and
-            <a href="#">Privacy Policy</a>.
-          </p>
-        </div>
-      </div>
+    <!-- POP-UP HTML CODE -->
+<div id="popup" class="popup" style="display: none;">
+  <div class="popup-content">
+    <div class="popup-left">
+      <img src="image/popup.jpg" alt="ML Learning Image" />
     </div>
-
-    <!-- Toast notification -->
-    <div id="toast" class="toast">
-      <div class="toast-content">
-        <i class="fas fa-info-circle"></i>
-        <div class="message">
-          <span class="text text-1">Redirecting</span>
-          <span class="text text-2">Taking you to the signup page...</span>
-        </div>
-      </div>
-      <i class="fa-solid fa-xmark close"></i>
-      <div class="progress"></div>
+    <div class="popup-right">
+      <h1>Join ML Fusion Lab!</h1>
+      <h2>Get Free Machine Learning Resources</h2>
+      <p>
+        Sign up to avail up to <strong>75% off</strong> on your first
+        purchase and boost your ML journey.
+      </p>
+      <form id="emailForm">
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button type="button" class="signup-btn" onclick="showToastAndRedirect()">Sign Up Now</button>
+      </form>
+      <a href="#" class="no-thanks close-btn">No thanks</a>
+      <p class="terms">
+        By signing up, you agree to our <a href="#">Terms of Service</a> and
+        <a href="#">Privacy Policy</a>.
+      </p>
     </div>
+  </div>
+</div>
 
-    <style>
-    /* Toast Notification Styles */
-    .toast {
-      position: fixed;
-      top: 25px;
-      right: 30px;
-      border-radius: 12px;
-      background: #fff;
-      padding: 20px 35px 20px 25px;
-      box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transform: translateX(calc(100% + 30px));
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-      z-index: 9999;
+<!-- Toast notification -->
+<div id="toast" class="toast">
+  <div class="toast-content">
+    <i class="fas fa-info-circle"></i>
+    <div class="message">
+      <span class="text text-1">Redirecting</span>
+      <span class="text text-2">Taking you to the signup page...</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="progress"></div>
+</div>
+
+
+
+
+<style>
+  /* Toast Notification Styles */
+  .toast {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+    z-index: 9999;
+  }
+
+  .toast.active {
+    transform: translateX(0%);
+  }
+
+  .toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .toast-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    background-color: #4070f4;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+  }
+
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+
+  .message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+  }
+
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .toast .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .toast .close:hover {
+    opacity: 1;
+  }
+
+  .toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  }
+
+  .toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+  }
+
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+
+  @keyframes progress {
+    100% {
+      right: 100%;
     }
-
-    .toast.active {
-      transform: translateX(0%);
-    }
-
-    .toast .toast-content {
-      display: flex;
-      align-items: center;
-    }
-
-    .toast-content .check {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 35px;
-      min-width: 35px;
-      background-color: #4070f4;
-      color: #fff;
-      font-size: 20px;
-      border-radius: 50%;
-    }
-
-    .toast-content .message {
-      display: flex;
-      flex-direction: column;
-      margin: 0 20px;
-    }
-
-    .message .text {
-      font-size: 16px;
-      font-weight: 400;
-      color: #666666;
-    }
-
-    .message .text.text-1 {
-      font-weight: 600;
-      color: #333;
-    }
-
-    .toast .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      padding: 5px;
-      cursor: pointer;
-      opacity: 0.7;
-    }
-
-    .toast .close:hover {
-      opacity: 1;
-    }
-
-    .toast .progress {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 3px;
-      width: 100%;
-    }
-
-    .toast .progress:before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      height: 100%;
-      width: 100%;
-      background-color: #4070f4;
-    }
-
-    .progress.active:before {
-      animation: progress 5s linear forwards;
-    }
-
-    @keyframes progress {
-      100% {
-        right: 100%;
-      }
-    }
-    </style>
-
-    <script>
-    function showToastAndRedirect() {
-      console.log("showToastAndRedirect function called");
-      const toast = document.getElementById('toast');
-      toast.classList.add('active');
-      
-      // Start the progress bar animation
-      toast.querySelector('.progress').classList.add('active');
-
-      // Set a timeout to redirect after 3 seconds
-      setTimeout(() => {
-        redirectToSignup();
-      }, 3000);
-    }
-
-    function redirectToSignup() {
-      // Assuming your login/signup page is at pages/login.html
-      window.location.href = 'pages/login.html';
-    }
-
-    // Optional: Add functionality to close the toast manually
-    document.querySelector('.toast .close').addEventListener('click', () => {
-      document.getElementById('toast').classList.remove('active');
-    });
-
-    // Ensure the DOM is fully loaded before attaching event listeners
-    document.addEventListener('DOMContentLoaded', function() {
-      const signupBtn = document.querySelector('.signup-btn');
-      signupBtn.addEventListener('click', showToastAndRedirect);
-    });
-    </script>
+  }
+  </style>
 
     <div id="cookie-consent">
       <p>
@@ -1038,7 +1050,7 @@
     </script>
     <!-- Botpress Chat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="./script/popup.js"></script>
+    <script src="./script//popup.js"></script>
     <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
     <script>
       // Get the current year
