@@ -121,7 +121,7 @@ body {
   display: grid;
   grid-template-columns: 400px repeat(3, 1fr);
   gap: 2rem;
-  background-color: black;
+  background-color:#191919;
 }
 
 .footer-col img {
@@ -130,6 +130,7 @@ body {
   border-radius: 10px;
   position: relative;
   bottom: 15px;
+ 
 }
 
 .footer-p {
