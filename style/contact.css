@@ -449,3 +449,36 @@ body{
     }
   }
   /* this is only end of footer style */
+
+  #firstName,#lastName{
+    padding: 12px 20px 12px 40px;
+    background-image: url('../../image/user-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 15px 19px;
+    background-size: 15px;
+    height: 60px;
+}
+#email{
+    padding: 12px 20px 12px 40px;
+    background-image: url('../../image/envelope-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 15px 21px;
+    background-size: 15px;
+    height: 60px;
+}
+#phone{
+    padding: 12px 20px 12px 40px;
+    background-image: url('../../image/phone-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 15px 21px;
+    background-size: 15px;
+    height: 60px;
+}
+#message{
+    padding: 12px 20px 12px 40px;
+    background-image: url('../../image/message-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 15px 18px;
+    background-size: 15px;
+    /* height: 60px; */
+}
