@@ -190,9 +190,9 @@
             }
 
             // Validate phone number (for simplicity, checking if it's all digits and has 10-15 characters)
-            const phonePattern = /^[0-9]{10,15}$/;
+            const phonePattern = /^[0-9]{10}$/;
             if (!phonePattern.test(phone)) {
-                alert('Please enter a valid phone number (10-15 digits).');
+                alert('Please enter a valid phone number (10).');
                 return;
             }
 
