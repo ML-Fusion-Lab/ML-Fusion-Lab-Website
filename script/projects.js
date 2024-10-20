@@ -287,7 +287,17 @@ const projects = [
       "cardTitle": "AI-Powered Crop Rotation Recommendation",
       "cardDesc": "Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.",
       "learnMoreLink": "../pages/crop_rotation_recommendation.html"
+    },
+    {
+      "modelid": "modal33",
+      "cardImage": "../Assets/projectpics/gold_price_predictor.jpg",
+      "cardAlt": "Gold Price Prediction",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Gold Price Prediction using Random Forest",
+      "cardDesc": "Build a Random Forest regression model to predict future gold prices based on financial indicators like SPX, USO, SLV, and EUR/USD.",
+      "learnMoreLink": "../pages/gold_price_predictor.html"
     }
+    
         
   ] 
 
