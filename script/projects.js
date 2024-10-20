@@ -260,7 +260,17 @@ const projects = [
       "cardTitle": "AI-Powered Virtual Therapist",
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
       "learnMoreLink": "#"
+    },
+    {
+      "modelid": "modal30",
+      "cardImage": "../Assets/projectpics/humanface_landmark_detection.webp",
+      "cardAlt": "CNN",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "HumanFace Landmark Detction",
+      "cardDesc": "In this tutorial, we will build a CNN model to map and detect landmaks in Human Face",
+      "learnMoreLink": "../pages/face_landmark_detection.html"
     }
+
   ]
   
   
