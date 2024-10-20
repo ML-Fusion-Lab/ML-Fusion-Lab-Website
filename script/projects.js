@@ -63,8 +63,26 @@ const projects = [
     "cardDesc": "In this tutorial, we use time series analysis to train LSTM , ARIMA and Prophet models to predict Birth Rate.",
     "learnMoreLink": "../pages/birth_rate_prediction.html"
   },
+  {
+    "modelid": "modal8",
+    "cardImage": "../Assets/projectpics/human_migration.webp",
+    "cardAlt": "cnn",
+    "imgStyle": "box-shadow: none; border-radius: 5px;",
+    "cardTitle": "Predicting Human Migration ",
+    "cardDesc": "In this tutorial, we use time series analysis to train RandomForest , XGBoost and GradientBoost models to predict HUman Migration.",
+    "learnMoreLink": "../pages/human_migration.html"
+  },
+  {
+    "modelid": "modal9",
+    "cardImage": "../Assets/projectpics/sarima_stock.webp",
+    "cardAlt": "cnn",
+    "imgStyle": "box-shadow: none; border-radius: 5px;",
+    "cardTitle": "ARIMA - Stock prediction ",
+    "cardDesc": "In this tutorial, we use time series analysis to SARIMA model for stoack prediction.",
+    "learnMoreLink": "../pages/arima_stock_prediction.html"
+  },
     {
-      "modelid": "modal8",
+      "modelid": "modal10",
       "cardImage": "../Assets/projectpics/crops.jpg",
       "cardAlt": "crops",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -73,7 +91,7 @@ const projects = [
       "learnMoreLink": "../pages/crop_height_estimation_tutorial.html"
     },
     {
-      "modelid": "modal9",
+      "modelid": "modal11",
       "cardImage": "../Assets/projectpics/disease.jpg",
       "cardAlt": "disease",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -82,7 +100,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal10",
+      "modelid": "modal12",
       "cardImage": "../Assets/projectpics/shop.jpg",
       "cardAlt": "shopping",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -91,7 +109,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal11",
+      "modelid": "modal13",
       "cardImage": "../Assets/projectpics/cnn.png",
       "cardAlt": "cnn",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -100,7 +118,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal12",
+      "modelid": "modal14",
       "cardImage": "../Assets/projectpics/emai.jpg",
       "cardAlt": "email",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -109,7 +127,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal13",
+      "modelid": "modal15",
       "cardImage": "../Assets/projectpics/stock.jpg",
       "cardAlt": "stock",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -118,7 +136,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal14",
+      "modelid": "modal16",
       "cardImage": "../Assets/projectpics/bot.png",
       "cardAlt": "bot",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -127,7 +145,7 @@ const projects = [
       "learnMoreLink": "../pages/chatbot_development_tutorial.html"
     },
     {
-      "modelid": "modal15",
+      "modelid": "modal17",
       "cardImage": "../Assets/projectpics/fraud.png",
       "cardAlt": "fraud",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -136,7 +154,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal16",
+      "modelid": "modal18",
       "cardImage": "../Assets/projectpics/lth.png",
       "cardAlt": "health",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -145,7 +163,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal17",
+      "modelid": "modal19",
       "cardImage": "../Assets/projectpics/wild.jpg",
       "cardAlt": "wild",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -154,7 +172,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal18",
+      "modelid": "modal20",
       "cardImage": "../Assets/projectpics/waste.jpg",
       "cardAlt": "waste",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -163,7 +181,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal19",
+      "modelid": "modal21",
       "cardImage": "../Assets/projectpics/traffic.jpg",
       "cardAlt": "traffic",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -172,7 +190,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal20",
+      "modelid": "modal22",
       "cardImage": "../Assets/projectpics/personalizd.jpg",
       "cardAlt": "personalized",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -181,7 +199,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal21",
+      "modelid": "modal23",
       "cardImage": "../Assets/projectpics/mental.jpg",
       "cardAlt": "mental",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -190,7 +208,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal22",
+      "modelid": "modal24",
       "cardImage": "../Assets/projectpics/dist.jpg",
       "cardAlt": "Disaster",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -199,7 +217,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal23",
+      "modelid": "modal25",
       "cardImage": "../Assets/projectpics/sound.jpg",
       "cardAlt": "sound",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -208,7 +226,7 @@ const projects = [
       "learnMoreLink": "../pages/urban_sound_classification_tutorial.html"
     },
     {
-      "modelid": "modal24",
+      "modelid": "modal26",
       "cardImage": "../Assets/projectpics/eneryg.png",
       "cardAlt": "energy",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -217,7 +235,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal25",
+      "modelid": "modal27",
       "cardImage": "../Assets/projectpics/nut.jpg",
       "cardAlt": "nutrition",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -226,7 +244,7 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal26",
+      "modelid": "modal28",
       "cardImage": "../Assets/projectpics/rec.jpg",
       "cardAlt": "recycle",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -235,16 +253,35 @@ const projects = [
       "learnMoreLink": "#"
     },
     {
-      "modelid": "modal27",
+      "modelid": "modal29",
       "cardImage": "../Assets/projectpics/the.jpg",
       "cardAlt": "Therapist",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Powered Virtual Therapist",
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
       "learnMoreLink": "#"
+    },
+    {
+      "modelid": "modal30",
+      "cardImage": "../Assets/projectpics/humanface_landmark_detection.webp",
+      "cardAlt": "CNN",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "HumanFace Landmark Detction",
+      "cardDesc": "In this tutorial, we will build a CNN model to map and detect landmaks in Human Face",
+      "learnMoreLink": "../pages/face_landmark_detection.html"
+    },
+    {
+      "modelid": "modal31",
+      "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
+      "cardAlt": "Crop Rotation Recommendation",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "AI-Powered Crop Rotation Recommendation",
+      "cardDesc": "Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.",
+      "learnMoreLink": "../pages/crop_rotation_recommendation.html"
     }
-  ]
-  
+        
+  ] 
+
   
   // Select card container
   const projectList = document.querySelector(".project-list");

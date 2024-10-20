@@ -33,7 +33,18 @@
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <div class="theme-switch" id="theme-switch"></div>
+                <!-- <div class="theme-switch" id="theme-switch"></div> -->
+                <div id="themeSwitch" class="theme-switch">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+                      
+                      <img src="../Assets/sun.png" class="theme-btn">
+                      <img src="../Assets/moon.png" class="theme-btn">
+                      <!-- <i class="fas fa-moon"></i>
+                      <i class="fas fa-sun"></i> -->
+                      <span class="ball"></span>
+                    </label>
+                  </div>
             </ul>
         </nav>
     </header>
@@ -78,8 +89,13 @@
                 </div>
             </div>
 
+            <div class="contact-map-container">
             <div class="contact-form">
-                <form id="contactForm">
+                <div class="image-container">
+                    <img src="../Assets/contact.webp" alt="Contact">
+                </div>
+                <div class="form-container" >
+                    <form id="contactForm">
                     <div>
                         <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                         <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
@@ -90,18 +106,17 @@
                     </div>
                     <input type="text" class="form-control" id="phone" placeholder="Phone" required>
                     <textarea rows="5" placeholder="Message" class="form-control" id="message" required></textarea>
-                    <input type="submit" class="send-btn" value="Send Message">
-                </form>
-
-                <div class="image-container">
-                    <img src="../Assets/contact.webp" alt="Contact">
+                    <input id="send-btn" type="submit" class="send-btn" value="Send Message">
+                    </form>
                 </div>
             </div>
+            <div class="map" style="display: flex; align-items: center; margin-top: 15%; margin-right: 5%;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.911005285574!2d75.6909327144019!3d31.253255681433364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a9089cd71f61f%3A0x3d684c9690d14a5!2sLovely%20Professional%20University%2C%20Jalandhar%2C%20Punjab%20144401%2C%20India!5e0!3m2!1sen!2sus!4v1649982737577!5m2!1sen!2sin" width="500px" height="500" frameborder="0" style="border:0; border-radius: 15px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
         </div>
+    </div>
 
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.911005285574!2d75.6909327144019!3d31.253255681433364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a9089cd71f61f%3A0x3d684c9690d14a5!2sLovely%20Professional%20University%2C%20Jalandhar%2C%20Punjab%20144401%2C%20India!5e0!3m2!1sen!2sus!4v1649982737577!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
+        
     </section>
 
     <div class="footer">
@@ -111,11 +126,12 @@
             <div class="footer-social">
                 <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com/"><i class="fa-brands fa-square-x-twitter"></i></a>
+                <!-- Replaced: Twitter(X) Logo -->
+                <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
                 <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </div>
-        <div class="footer-col-main">
+        <div id="footer-col-ml" class="footer-col-main">
             <h4 class="h46">ML Fusion Labs</h4>
             <a href="#">Business</a>
             <a href="#">Franchise</a>
@@ -127,7 +143,7 @@
             <a href="./privacy.html">Security</a>
             <a href="./contributor.html">Contributors</a>
         </div>
-        <div class="footer-col-main">
+        <div id="footer-col-main" class="footer-col-main">
             <h4 class="h46">Contact</h4>
             <a href="./contact.html">Contact Us</a>
             <a href="info@mlfusionlabs.com">Email Us</a>
@@ -188,6 +204,7 @@
 
             // If all validations pass
             alert('Form submitted successfully!');
+            this.reset();
             // You can submit the form here, for example:
             // this.submit();
         });

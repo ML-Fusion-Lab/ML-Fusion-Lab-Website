@@ -10,6 +10,47 @@ body{
     font-family: 'Open Sans', sans-serif;
     line-height: 1.5;
 }
+/* theme toggle switch */
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .checkbox-label {
+    background: linear-gradient(82deg, #ffffff, #00796b);
+    width: 60px;
+    height: 28px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .theme-btn{
+    height: 23px;
+    height: 23px;
+  }
+  .checkbox-label .ball {
+    background-color: #000000;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.3s linear;
+    
+  }
+  
+  .checkbox:checked + .checkbox-label .ball {
+    transform: translateX(31px);
+    
+  }
+  
+/* 
 .theme-switch::before {
     content: "";
     position: absolute;
@@ -27,9 +68,9 @@ body{
 .theme-switch.dark-theme::before {
     left: 33px;
     background-image: url("../Assets/sun.png");
-}
-
-.contact-bg{
+} */
+/* 
+/*.contact-bg{
     height: 40vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(assets/booking.jpeg);
     background-position: 50% 100%;
@@ -78,7 +119,103 @@ body{
 }
 .contact-bg .text{
     margin: 1.6rem 0;
+} */
+ /* bg image */
+.contact-bg {
+    position: relative;
+    padding: 80px 20px;
+    background-image: url('../image/contact.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
+/* Dark overlay for better readability */
+.contact-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    z-index: 1;
+}
+
+/* Style for all direct children to appear above overlay */
+.contact-bg > * {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.contact-bg h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.contact-bg h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Line styling */
+.contact-bg .line {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.contact-bg .line div {
+    width: 30px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+.contact-bg .text {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .contact-bg::before {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .contact-bg {
+        min-height: 300px;
+        padding: 60px 20px;
+    }
+
+    .contact-bg h2 {
+        font-size: 2rem;
+    }
+
+    .contact-bg h3 {
+        font-size: 1.2rem;
+    }
+
+    .contact-bg .text {
+        font-size: 1rem;
+    }
+}
+/* end */
 .contact-body{
     max-width: 1320px;
     margin: 0 auto;
@@ -118,7 +255,7 @@ body{
 }
 .contact-form form{
     padding-bottom: 1rem;
-    width: 155%;
+    width: 30vw;
 }
 .form-control{
     width: 100%;
@@ -148,11 +285,14 @@ body{
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.contact-form form div{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 0.6rem;
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    max-width: 400px;
 }
+
 .send-btn{
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
@@ -216,11 +356,6 @@ body{
 @media screen and (min-width: 992px){
     .contact-bg .text{
         width: 50%;
-    }
-    .contact-form{
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        align-items: center;
     }
 }
 @media screen and (min-width: 1200px){
