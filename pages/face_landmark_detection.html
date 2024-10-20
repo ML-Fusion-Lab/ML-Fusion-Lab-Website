@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Human Migration Prediction</title>
+    <title>Face Landmark Detection</title>
     <link rel="stylesheet" href="../style/style.css" />
     <style>
       body {
@@ -245,237 +245,160 @@
       </nav>
     </header>
     <div class="content">
-        <h1 class="ani">Detailed Data Analysis Notebook Explanation</h1>
-    
+        <h1 class="ani">Face Landmark Detection using PyTorch and ResNet</h1>
+
     <div class="section">
-        <h2>1. Import Libraries</h2>
-        <div class="code-block">
-            <pre><code>
-import pandas as pd
+        <h2>Overview</h2>
+        <p>This code implements a face landmark detection system using PyTorch and a modified ResNet18 architecture. The system is trained on the IBUG 300W dataset to predict 68 facial landmarks. The code covers the entire pipeline from dataset downloading and preprocessing to model training and visualization of results.</p>
+    </div>
+
+    <div class="section">
+        <h2>Code Walkthrough</h2>
+
+        <h3>1. Imports and Setup</h3>
+        <pre><code class="language-python">
+import time
+import cv2
+import os
+import random
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
+from PIL import Image
+import imutils
+import matplotlib.image as mpimg
+from math import radians, cos, sin
+import xml.etree.ElementTree as ET
+import urllib.request
+import tarfile
+import torch
+import torchvision
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+from torchvision import datasets, models, transforms
+from torch.utils.data import Dataset, DataLoader
+        </code></pre>
+        <p>This section imports all the necessary libraries for image processing, data manipulation, deep learning, and visualization.</p>
 
-from sklearn.model_selection import train_test_split, GridSearchCV, KFold
-from sklearn.preprocessing import StandardScaler, PolynomialFeatures
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import mean_squared_error, r2_score
-import xgboost as xgb
-            </pre></code>
-        </div>
-        <p>This section imports all necessary libraries:</p>
-        <ul>
-            <li><strong>pandas (pd):</strong> For data manipulation and analysis</li>
-            <li><strong>numpy (np):</strong> For numerical operations</li>
-            <li><strong>seaborn (sns) and matplotlib.pyplot (plt):</strong> For data visualization</li>
-            <li><strong>sklearn:</strong> For machine learning models, preprocessing, and evaluation metrics</li>
-            <li><strong>xgboost (xgb):</strong> For the XGBoost algorithm</li>
-        </ul>
+        <h3>2. Dataset Download and Extraction</h3>
+        <pre><code class="language-python">
+def download_and_extract_dataset():
+    dataset_url = "http://dlib.net/files/data/ibug_300W_large_face_landmark_dataset.tar.gz"
+    dataset_tar = "ibug_300W_large_face_landmark_dataset.tar.gz"
+    extracted_folder = "ibug_300W_large_face_landmark_dataset"
+
+    if not os.path.exists(extracted_folder):
+        print("Downloading the dataset...")
+        urllib.request.urlretrieve(dataset_url, dataset_tar)
+        print("Download completed.")
+
+        print("Extracting the dataset...")
+        with tarfile.open(dataset_tar, "r:gz") as tar:
+            tar.extractall()
+        print("Extraction completed.")
+
+        print("Cleaning up...")
+        os.remove(dataset_tar)
+        print("Cleanup completed.")
+    else:
+        print(f"{extracted_folder} already exists. Skipping download.")
+        </code></pre>
+        <p>This function downloads the IBUG 300W dataset if it's not already present, extracts it, and removes the tar file to save space.</p>
+
+        <h3>3. Data Visualization</h3>
+        <pre><code class="language-python">
+def visualize_landmarks(image, landmarks, title=None):
+    plt.figure(figsize=(10, 10))
+    plt.imshow(image, cmap='gray')
+    plt.scatter(landmarks[:, 0], landmarks[:, 1], s=5, c='g')
+    if title:
+        plt.title(title)
+    plt.show()
+        </code></pre>
+        <p>This function visualizes an image with its corresponding facial landmarks, which is useful for debugging and understanding the data.</p>
+
+        <h3>4. Data Transforms</h3>
+        <pre><code class="language-python">
+class Transforms:
+    def __init__(self):
+        self.color_jitter = transforms.ColorJitter(
+            brightness=0.3, contrast=0.3, saturation=0.3, hue=0.1
+        )
+
+    def rotate(self, image, landmarks, angle):
+        # ... (rotation logic)
+
+    def resize(self, image, landmarks, img_size):
+        # ... (resizing logic)
+
+    def crop_face(self, image, landmarks, crops):
+        # ... (face cropping logic)
+
+    def __call__(self, image, landmarks, crops):
+        # ... (apply all transforms)
+        </code></pre>
+        <p>The Transforms class applies various data augmentation techniques such as rotation, resizing, face cropping, and color jittering to increase the diversity of the training data.</p>
+
+        <h3>5. Custom Dataset</h3>
+        <pre><code class="language-python">
+class FaceLandmarksDataset(Dataset):
+    def __init__(self, root_dir, transforms=None):
+        # ... (initialization)
+
+    def parse_xml(self):
+        # ... (XML parsing logic)
+
+    def __len__(self):
+        return len(self.image_filenames)
+
+    def __getitem__(self, index):
+        # ... (get and transform a single item)
+        </code></pre>
+        <p>This custom dataset class loads the images and landmarks from the IBUG 300W dataset, applies the necessary transforms, and prepares the data for training.</p>
+
+        <h3>6. ResNet Model</h3>
+        <pre><code class="language-python">
+class ResNetFaceLandmarks(nn.Module):
+    def __init__(self, num_classes=136):
+        super().__init__()
+        self.model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+        self.model.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        self.model.fc = nn.Linear(self.model.fc.in_features, num_classes)
+        
+    def forward(self, x):
+        return self.model(x)
+        </code></pre>
+        <p>This class modifies the ResNet18 architecture to accept grayscale images and output 136 values (68 landmarks * 2 coordinates).</p>
+
+        <h3>7. Training Loop</h3>
+        <pre><code class="language-python">
+def train_model(model, train_loader, valid_loader, criterion, optimizer, num_epochs=10):
+    # ... (training logic)
+        </code></pre>
+        <p>This function handles the training process, including forward and backward passes, loss calculation, and model saving.</p>
+
+        <h3>8. Prediction Visualization</h3>
+        <pre><code class="language-python">
+def visualize_predictions(model, valid_loader, num_samples=8):
+    # ... (visualization logic)
+        </code></pre>
+        <p>This function visualizes the model's predictions alongside the ground truth landmarks for a set of validation images.</p>
+
+        <h3>9. Main Execution</h3>
+        <pre><code class="language-python">
+if __name__ == "__main__":
+    # ... (main execution logic)
+        </code></pre>
+        <p>The main execution block sets up the dataset, dataloaders, model, loss function, and optimizer. It then trains the model and visualizes the predictions.</p>
     </div>
-    
+
     <div class="section">
-        <h2>2. Load and Explore Data</h2>
-        <div class="code-block">
-            <pre><code>
-data = pd.read_csv('migration_nz.csv')
-data.head(10)
-
-data['Measure'].unique()
-            </pre></code>
-        </div>
-        <p>
-            This step loads the dataset 'migration_nz.csv' into a pandas DataFrame. 
-            The <code>head(10)</code> function displays the first 10 rows of the data to give an initial view of its structure.
-            The <code>unique()</code> function is then used to show all unique values in the 'Measure' column, which helps understand the categories present in this feature.
-        </p>
+        <h2>Conclusion</h2>
+        <p>This code demonstrates a complete pipeline for training a face landmark detection model using PyTorch and ResNet18. It includes data preprocessing, augmentation, model definition, training, and result visualization. The modular structure allows for easy modifications and improvements to various parts of the pipeline.</p>
     </div>
-    
-    <div class="section">
-        <h2>3. Data Preprocessing</h2>
-        <div class="code-block">
-            <pre><code>
-data['Measure'].replace({"Arrivals": 0, "Departures": 1, "Net": 2}, inplace=True)
 
-data['CountryID'] = pd.factorize(data['Country'])[0]
-data['CitID'] = pd.factorize(data['Citizenship'])[0]
-
-data['Value'].fillna(data['Value'].median(), inplace=True)
-
-data.drop(['Country', 'Citizenship'], axis=1, inplace=True)
-            </pre></code>
-        </div>
-        <p>This preprocessing step involves several operations:</p>
-        <ol>
-            <li>The 'Measure' column is encoded numerically (Arrivals: 0, Departures: 1, Net: 2).</li>
-            <li>'Country' and 'Citizenship' columns are factorized into numerical IDs using <code>pd.factorize()</code>. This converts categorical data to numerical data that can be used in machine learning models.</li>
-            <li>Missing values in the 'Value' column are filled with the median value of that column.</li>
-            <li>The original 'Country' and 'Citizenship' columns are dropped as they've been replaced by their numerical counterparts.</li>
-        </ol>
+    <script>Prism.highlightAll();</script>
     </div>
-    
-    <div class="section">
-        <h2>4. Feature Engineering and Data Split</h2>
-        <div class="code-block">
-            <pre><code>
-poly = PolynomialFeatures(degree=2, interaction_only=True, include_bias=False)
-X_poly = poly.fit_transform(data[['CountryID', 'Measure', 'Year', 'CitID']])
-
-Y = data['Value']
-
-X_train, X_test, y_train, y_test = train_test_split(
-    X_poly, Y, test_size=0.3, random_state=42
-)
-            </pre></code>
-        </div>
-        <p>
-            This step creates polynomial features and splits the data:
-        </p>
-        <ol>
-            <li>Polynomial features of degree 2 are created using <code>PolynomialFeatures</code>. This adds interaction terms between features, which can capture more complex relationships.</li>
-            <li>The target variable 'Value' is separated from the feature set.</li>
-            <li>The data is split into training (70%) and testing (30%) sets using <code>train_test_split</code>. The <code>random_state</code> is set for reproducibility.</li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h2>5. Feature Scaling</h2>
-        <div class="code-block">
-            <pre><code>
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-            </pre></code>
-        </div>
-        <p>
-            This step standardizes the features:
-        </p>
-        <ol>
-            <li>A <code>StandardScaler</code> is initialized.</li>
-            <li>The scaler is fit to the training data and then used to transform both training and test data.</li>
-            <li>This ensures all features are on the same scale, which is important for many machine learning algorithms.</li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h2>6. Model Training and Evaluation</h2>
-        <div class="code-block">
-            <pre><code>
-rf = RandomForestRegressor(n_estimators=70,max_features = 3,max_depth=5,n_jobs=-1)
-rf.fit(X_train ,y_train)
-rf.score(X_test, y_test)
-
-gb_model = GradientBoostingRegressor(n_estimators=200, max_depth=5, learning_rate=0.2)
-gb_model.fit(X_train, y_train)
-y_pred = gb_model.predict(X_test)
-print("Gradient Boosting R2 Score:", r2_score(y_test, y_pred))
-print("Gradient Boosting RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
-
-xgb_model = xgb.XGBRegressor(n_estimators=100, max_depth=5, learning_rate=0.1, n_jobs=-1)
-xgb_model.fit(X_train, y_train)
-y_pred_xgb = xgb_model.predict(X_test)
-print("XGBoost R2 Score:", r2_score(y_test, y_pred_xgb))
-print("XGBoost RMSE:", np.sqrt(mean_squared_error(y_test, y_pred_xgb)))
-
-print("GB  :",gb_model.score(X_test,y_test))
-print("XBG :",xgb_model.score(X_test,y_test))
-            </pre></code>
-        </div>
-        <p>
-            This section trains and evaluates three different models:
-        </p>
-        <ol>
-            <li><strong>Random Forest:</strong> A basic model is trained and its score is calculated.</li>
-            <li><strong>Gradient Boosting:</strong> A model is trained and evaluated using R2 score and RMSE (Root Mean Square Error).</li>
-            <li><strong>XGBoost:</strong> Another model is trained and evaluated similarly.</li>
-            <li>Finally, the scores of Gradient Boosting and XGBoost models are compared.</li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h2>7. Hyperparameter Tuning</h2>
-        <div class="code-block">
-            <pre><code>
-param_grid = {
-    'n_estimators': [50, 100, 200],
-    'max_depth': [3, 5, 7],
-    'learning_rate': [0.01, 0.1, 0.2]
-}
-grid_search = GridSearchCV(GradientBoostingRegressor(), param_grid, cv=3, n_jobs=-1)
-grid_search.fit(X_train, y_train)
-
-print("Best Parameters:", grid_search.best_params_)
-best_model = grid_search.best_estimator_
-            </pre></code>
-        </div>
-        <p>
-            This step performs hyperparameter tuning for the Gradient Boosting model:
-        </p>
-        <ol>
-            <li>A parameter grid is defined with different values for 'n_estimators', 'max_depth', and 'learning_rate'.</li>
-            <li>GridSearchCV is used to perform an exhaustive search over the specified parameter values.</li>
-            <li>The best parameters are printed, and the best model is saved.</li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h2>8. Data Visualization</h2>
-        <div class="code-block">
-            <pre><code>
-grouped = data.groupby('Year')['Value'].sum()
-grouped.plot(kind='line', marker='o')
-plt.title("Growth of Migration to New Zealand by Year")
-plt.xlabel("Year")
-plt.ylabel("Total Migration Value")
-plt.grid(True)
-plt.show()
-
-grouped.plot(kind='bar')
-plt.axhline(0, color='g')
-plt.show()
-
-corr = data.corr()
-sns.heatmap(corr, 
-            xticklabels=corr.columns.values,
-            yticklabels=corr.columns.values)
-plt.show()
-            </pre></code>
-        </div>
-        <p>
-            This section creates several visualizations:
-        </p>
-        <ol>
-            <li>A line plot showing the growth of migration to New Zealand by year.</li>
-            <li>A bar plot of the same data with a horizontal line at y=0.</li>
-            <li>A correlation heatmap of the features using seaborn.</li>
-        </ol>
-    </div>
-    
-    <div class="section">
-        <h2>9. Model Saving</h2>
-        <div class="code-block">
-            <pre><code>
-import joblib
-
-joblib.dump(scaler, 'models/scaler.pkl')
-joblib.dump(rf, 'models/random_forest_model.pkl')
-joblib.dump(gb_model, 'models/gradient_boosting_model.pkl')
-joblib.dump(xgb_model, 'models/xgboost_model.pkl')
-
-print("Models and scaler saved successfully!")
-            </pre></code>
-        </div>
-        <p>
-            In this final step:
-        </p>
-        <ol>
-            <li>The joblib library is imported for model serialization.</li>
-            <li>The trained models (Random Forest, Gradient Boosting, XGBoost) and the scaler are saved using joblib.dump().</li>
-            <li>These saved models can be loaded later for making predictions without needing to retrain.</li>
-        </ol>
-    </div>
-    
-    <p>This notebook demonstrates a comprehensive approach to analyzing migration data for New Zealand, including data preprocessing, feature engineering, model training, evaluation, visualization, and model saving for future use.</p>
-    /div>
     <footer>
         <div class="container">
           <div class="footer-socials">

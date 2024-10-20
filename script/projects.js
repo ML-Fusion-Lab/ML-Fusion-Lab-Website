@@ -263,12 +263,12 @@ const projects = [
     },
     {
       "modelid": "modal30",
-      "cardImage": "../Assets/projectpics/plant_disease_detection.jpg",
-      "cardAlt": "Plant Disease Detection",
+      "cardImage": "../Assets/projectpics/humanface_landmark_detection.webp",
+      "cardAlt": "CNN",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
-      "cardTitle": "AI-Driven Plant Disease Detection",
-      "cardDesc": "Develop an AI model using the PlantVillage dataset and fine-tuned Xception architecture to identify and classify plant diseases.",
-      "learnMoreLink": "../pages/plant_disease_detection.html"
+      "cardTitle": "HumanFace Landmark Detction",
+      "cardDesc": "In this tutorial, we will build a CNN model to map and detect landmaks in Human Face",
+      "learnMoreLink": "../pages/face_landmark_detection.html"
     },
     {
       "modelid": "modal31",
@@ -281,6 +281,7 @@ const projects = [
     }
         
   ] 
+
   
   // Select card container
   const projectList = document.querySelector(".project-list");
