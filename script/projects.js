@@ -307,7 +307,18 @@ const projects = [
       "learnMoreLink": "../pages/fuel_efficiency.html"
     },
     {
+
       "modelid": "modal35",
+      "cardImage": "../Assets/projectpics/next_word.webp",
+      "cardAlt": "NLP",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "NLP Word Prediction",
+      "cardDesc": "In this tutorial, we will build a NLP to predict next word in sentence",
+      "learnMoreLink": "../pages/next_word.html"
+    },
+    {
+
+      "modelid": "modal36",
       "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
       "cardAlt": "Crop Rotation Recommendation",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -316,7 +327,7 @@ const projects = [
       "learnMoreLink": "../pages/crop_rotation_recommendation.html"
     },
     {
-      "modelid": "modal36",
+      "modelid": "modal37",
       "cardImage": "../Assets/projectpics/gold_price_predictor.jpg",
       "cardAlt": "Gold Price Prediction",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
