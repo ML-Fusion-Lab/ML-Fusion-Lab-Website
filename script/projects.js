@@ -290,6 +290,15 @@ const projects = [
     },
     {
       "modelid": "modal33",
+      "cardImage": "../Assets/projectpics/fuel_efficiency.webp",
+      "cardAlt": "Deep Learning",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Predict Fuel Efficiency with Machine Learning",
+      "cardDesc": "In this tutorial, we will build a Machine Learning model to predict fuel Efficiency",
+      "learnMoreLink": "../pages/fuel_efficiency.html"
+    },
+    {
+      "modelid": "modal34",
       "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
       "cardAlt": "Crop Rotation Recommendation",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
