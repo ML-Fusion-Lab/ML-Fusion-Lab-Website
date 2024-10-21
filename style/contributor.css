@@ -85,6 +85,10 @@
 
   padding: 20px;
 }
+.dark-mode .contributors-grid {
+  background-color: #1c1c1c; /* dark background */
+  color: #000000; /* dark text color */
+}
 
 /* Added Lines */
 .contributor-card {
