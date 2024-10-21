@@ -237,7 +237,7 @@ body {
     height: auto;
         width: 100%;
         background-color: #f5f5f7;
-        color: black;
+        color: rgb(0, 0, 0);
         border-radius: 20px;
         margin: 30px auto;
         display: flex;
@@ -1219,6 +1219,7 @@ body.dark-mode .feature-item p {
 
 body.dark-mode .newsletter {
   background-color: black;
+  color: white;
   margin-top: 0;
   /* Adjust this based on your needs */
   padding: 20px;
