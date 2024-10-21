@@ -79,9 +79,9 @@
 
 .contributors-grid {
   display: flex;
-  width: 100vw;
+  width: 95vw;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 20px;
 
   padding: 20px;
 }
