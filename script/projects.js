@@ -281,6 +281,15 @@ const projects = [
     },
     {
       "modelid": "modal32",
+      "cardImage": "../Assets/projectpics/earthquake.webp",
+      "cardAlt": "Deep Learning",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Earthquake Prediction using Deep Learning",
+      "cardDesc": "In this tutorial, we will build a Deep Learning model to predict earthquakes",
+      "learnMoreLink": "../pages/earthquake_prediction.html"
+    },
+    {
+      "modelid": "modal33",
       "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
       "cardAlt": "Crop Rotation Recommendation",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
