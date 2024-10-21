@@ -1,13 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon">
     <link rel="icon" href="../image/ml-fusion-lab-logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - ML Fusion Labs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/style.css">
 
     <link rel="stylesheet" href="../style/scroll.css">
@@ -18,66 +20,87 @@
             margin: 0;
             padding: 0;
         }
+
         .background-container {
-            background-color: #505050; /* Dark background to make white text visible */
+            background-color: #505050;
+            /* Dark background to make white text visible */
             padding: 50px;
             max-width: 100%;
             margin: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .policy-container {
             max-width: 800px;
             padding: 25px;
             margin: auto;
-            color: #fff; /* White text for all content except headings */
+            color: #fff;
+            /* White text for all content except headings */
         }
-        h2, h3 {
-            color: #4c4c84; /* Different color for headings */
+
+        h2,
+        h3 {
+            color: #4c4c84;
+            /* Different color for headings */
         }
-        p, ol {
+
+        p,
+        ol {
             font-size: 16px;
             line-height: 1.6;
-            color: #fff; /* White text */
+            color: #fff;
+            /* White text */
         }
+
         .centered {
             text-align: center;
             font-size: 18px;
             margin-bottom: 20px;
         }
+
         ol {
             padding-left: 20px;
         }
+
         a {
             color: rgb(210, 17, 17);
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
+
         /* Styling for specific paragraphs and lists */
-        ol li, ol ol li {
+        ol li,
+        ol ol li {
             color: rgb(136, 136, 142);
         }
+
         p {
             margin-bottom: 15px;
         }
+
         p:last-of-type {
             margin-bottom: 0;
         }
-   
-    footer {
-        background: #333;
-        color: white;
-        text-align: center;
-        padding: 20px 0;
-        margin-top: auto; /* Push footer to bottom */
-    }
-    .footer-container {
-        max-width: 800px;
-        margin: auto;
-        padding: 0 20px;
-    }
-    /* .footer-links, .footer-socials {
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            /* Push footer to bottom */
+        }
+
+        .footer-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* .footer-links, .footer-socials {
         margin: 10px 0;
     }
     .footer-links a, .footer-socials a {
@@ -85,45 +108,154 @@
         text-decoration: none;
         margin: 0 10px;
         transition: color 0.3s; /* Add transition for hover effect */
-    /* } 
+        /* } 
     .footer-links a:hover, .footer-socials a:hover {
         color: #007BFF; /* Change color on hover 
     } */
-    .footer-contact {
-        margin: 10px 0;
-    }
-     /* css for mouse cursor trail effect */
-   .circle {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
-  transition: transform 0.1s, left 0.1s, top 0.1s;
-}
+        .footer-contact {
+            margin: 10px 0;
+        }
 
-.circle-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999; /* removed the non-breaking space (&nbsp;) */
-}
-</style>
+        /* css for mouse cursor trail effect */
+        .circle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(70, 130, 180, 0.3), skyblue, rgba(0, 0, 50, 0.3), white);
+            transition: transform 0.1s, left 0.1s, top 0.1s;
+        }
+
+        .circle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            /* removed the non-breaking space (&nbsp;) */
+        }
+
+        .privacy-hero {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .privacy-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .privacy-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .privacy-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .privacy-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .privacy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .privacy-card h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-card i {
+            font-size: 1.5rem;
+        }
+
+        .privacy-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .privacy-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #424242;
+        }
+
+        .privacy-list li::before {
+            content: "•";
+            color: #1a237e;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1a237e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #0d47a1;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-hero h1 {
+                font-size: 2rem;
+            }
+
+            .privacy-card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header >
+    <header>
         <div id="progress-container">
             <div id="progress-bar"></div>
         </div>
         <nav>
             <div class="logo">
-                <h1><img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1>
+                <h1><img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
             </div>
-          <div class="hamburger" id="hamburger">&#9776;</div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../pages/courses.html">Courses</a></li>
@@ -135,16 +267,16 @@
                 <div id="themeSwitch" class="theme-switch">
                     <input type="checkbox" class="checkbox" id="checkbox">
                     <label for="checkbox" class="checkbox-label">
-                      
-                      <img src="../Assets/sun.png" class="theme-btn">
-                      <img src="../Assets/moon.png" class="theme-btn">
-                      <!-- <i class="fas fa-moon"></i>
+
+                        <img src="../Assets/sun.png" class="theme-btn">
+                        <img src="../Assets/moon.png" class="theme-btn">
+                        <!-- <i class="fas fa-moon"></i>
                       <i class="fas fa-sun"></i> -->
-                      <span class="ball"></span>
+                        <span class="ball"></span>
                     </label>
-                  </div>
+                </div>
             </ul>
-      </nav>
+        </nav>
 
     </header>
     <!-- html for mouse cursor trail effect -->
@@ -179,137 +311,78 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="circle"></div>
-      </div>
+    </div>
 
-      <section class="background-container">
-        <div class="policy-container">
-            <h2>Privacy Policy</h2>
-            <p class="centered">
-                Welcome to our Privacy Policy page. Your privacy is critically important to us.
-            </p>
-
-            <h3>Information We Collect</h3>
-            <p>
-                ML Fusion Labs respects your privacy and recognizes the need to protect your personal information (any
-                information by which you can be identified, such as name, address, financial information, and telephone
-                number) you share with us. We would like to assure you that we follow appropriate standards when it comes to
-                protecting your privacy on our website.
-            </p>
-
-            <p>
-                In general, you can visit ML Fusion Labs without telling us who you are or revealing any personal
-                information about yourself. We track the Internet address of the domains from which people visit us and analyze this
-                data for trends and statistics, but the individual user remains anonymous.
-            </p>
-
-            <p>
-                Please note that our Privacy Policy forms part of our Terms and conditions available at <a href="terms.html">terms-and-conditions</a>.
-            </p>
-
-            <p>
-                A transaction on ML Fusion Labs is to be conducted by persons above the age of 18 years only. If you
-                are under 18 years of age, you are not allowed to make a transaction in ML Fusion Labs. It is the duty
-                of the legal guardians of all persons below 18 years of age to ensure that their wards do not make a
-                transaction without their supervision on ML Fusion Labs. It shall be automatically deemed that by allowing any
-                person below the age of 18 years to transact on ML Fusion Labs, their legal guardians have expressly consented to
-                their use and we disclaim any liability arising from your failure to do so.
-            </p>
-
-            <p>
-                We may collect your personal data when you:
-            <ol type="a">
-                <li>create an account with us or</li>
-                <li>otherwise provide us with your personal data or</li>
-                <li>use of any related services connected to ML Fusion Labs or</li>
-                <li>complete contact forms or request newsletters or other information from us (e.g., email)</li>
-            </ol>
-            When you access ML Fusion Labs, we will automatically collect your computer data, which may include:
-            <ol type="i">
-                <li>browser type,</li>
-                <li>IP address,</li>
-                <li>language,</li>
-                <li>operating system,</li>
-                <li>cookies and the ID,</li>
-                <li>location of your device,</li>
-                <li>the state or country from which you accessed ML Fusion Labs,</li>
-                <li>the pages you view,</li>
-                <li>length of time spent on pages</li>
-                <li>the services you use and the manner in which you use such services (e.g., the content you
-                    access, view, click on, search for, transact etc.),</li>
-                <li>the date and time of your visit,</li>
-                <li>metadata, logs files, error logs,</li>
-                <li>other hardware and software information.</li>
-            </ol>
-            </p>
-
-            <h3>How We Use Your Information</h3>
-            <p>
-                This computer data is collected for analysis and evaluation in order to help us improve
-                ML Fusion Lab, the services we provide and to enhance your experience by providing you with better services and
-                benefits that you shall be entitled to. To the extent that such computer data is maintained in a manner that
-                identifies your name or contact information, it will be treated as personal data; otherwise, such computer
-                data will be treated as non-personal data.
-            </p>
-
-            <p>
-                The personal data we collect from you will be used, or shared with third parties (including
-                related companies and third party service providers), for some or all of the following purposes: 
-            <ol type="a">
-                <li>creating or maintaining any account or profile you may have with us,</li>
-                <li>to track your activity on ML Fusion Labs,</li>
-                <li>verifying and carrying out financial transactions in relation to any payments or transfers you make,</li>
-                <li>carrying out research and analytics on our users' demographics and behavior,</li>
-                <li>to personalize and tailor any communications that we may send you and provide you with products, services, or information we think you may find useful,</li>
-                <li>to personalize and enhance user experience,</li>
-                <li>determining and verifying your eligibility for certain marketing or transaction events,</li>
-                <li>enforcing our terms of use; and/or</li>
-                <li>communicating with you in relation to your account and alerting you to the latest developments,</li>
-                <li>to enable us to administer any competitions or other offers/promotions you enter.</li>
-            </ol>
-            </p>
-
-            <h3>Sharing Your Information</h3>
-            <p>
-                When you register an account or otherwise provide us with your personal data, we may also use
-                the personal data to send to you marketing and/or promotional materials about us and our services from time
-                to time. You can unsubscribe from receiving the marketing information at any time by using the unsubscribe
-                function within the electronic marketing material.
-            </p>
-
-            <p>
-                In order to provide our products and services to you or to otherwise fulfill contractual
-                arrangements that we have with you, we may need to appoint other organizations to carry out some of the data
-                processing activities on our behalf. These may include payment processing, delivery organizations, fraud prevention, and screening.
-            </p>
-
-            <p>
-                We may share your data with advertising networks and/or social media platforms for the purposes
-                of selecting and serving relevant adverts to you via those platforms, and to search engine and
-                analytics providers.
-            </p>
-
-            <p>
-                We also act as an intermediary to facilitate a transaction between you and the ultimate
-                course provider to enable your purchase of a particular course or service.
-            </p>
-
-            <h3>Security of Your Information</h3>
-            <p>
-                We have implemented reasonable security arrangements, including physical, administrative, technical, and electronic security measures to protect against the loss, misuse, and alteration of your personal data. We are PCI DSS certified, meaning the data you submit to us is secure and protected.
-            </p>
-
-            <p>
-                It is your responsibility to protect any passwords you use to access your account on ML Fusion Labs. If you lose control of your password, you may lose substantial control over your personal data and other information submitted to us.
-            </p>
-
-            <h3>Changes to This Policy</h3>
-            <p>
-                If our privacy policy changes in the future, it will be posted here and a new effective date will be shown. You should access our privacy policy regularly to ensure you understand our current policies.
-            </p>
-
-            <p>If you have an enquiry or a complaint about the way we handle your personal information, you may contact us at <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a>.</p>
-        </div>
+    <section class="privacy-hero">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is our top priority. Learn how we protect and manage your personal information.</p>
     </section>
+
+    <div class="privacy-content">
+        <div class="privacy-card">
+            <h2><i class="fas fa-shield-alt"></i> Information We Collect</h2>
+            <p>At ML Fusion Labs, we collect various types of information to provide you with the best possible service:
+            </p>
+            <ul class="privacy-list">
+                <li>Personal identification information (Name, email, phone number)</li>
+                <li>Account credentials and preferences</li>
+                <li>Device and browser information</li>
+                <li>Usage data and analytics</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-user-lock"></i> How We Use Your Data</h2>
+            <ul class="privacy-list">
+                <li>Personalizing your learning experience</li>
+                <li>Improving our services and course offerings</li>
+                <li>Processing payments and transactions</li>
+                <li>Communicating important updates and announcements</li>
+                <li>Analyzing user behavior to enhance our platform</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-share-alt"></i> Information Sharing</h2>
+            <p>We may share your information with:</p>
+            <ul class="privacy-list">
+                <li>Course providers and instructors</li>
+                <li>Payment processing partners</li>
+                <li>Analytics and service providers</li>
+                <li>Legal authorities when required by law</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-lock"></i> Security Measures</h2>
+            <ul class="privacy-list">
+                <li>PCI DSS certified payment processing</li>
+                <li>Encrypted data transmission</li>
+                <li>Regular security audits and updates</li>
+                <li>Secure password policies</li>
+                <li>24/7 system monitoring</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-user-shield"></i> Your Rights</h2>
+            <ul class="privacy-list">
+                <li>Access your personal data</li>
+                <li>Request data correction or deletion</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Control cookie preferences</li>
+                <li>Request data portability</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h2>Have Questions About Your Privacy?</h2>
+            <p>We're here to help! Contact our privacy team for any concerns or questions.</p>
+            <a href="mailto:info@mlfusionlabs.com" class="contact-button">
+                <i class="fas fa-envelope"></i> Contact Privacy Team
+            </a>
+        </div>
+    </div>
 
 
 
@@ -317,18 +390,19 @@
     <footer>
         <div class="footer-container">
             <div class="footer-socials">
-                Follow us on: 
+                Follow us on:
                 <a href="https://facebook.com" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://twitter.com" class="twitter" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
                 <a href="https://linkedin.com" class="linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="footer-contact">
-                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com" style="color: white;">info@mlfusionlabs.com</a> |
+                    Phone: +1 (555) 123-4567</p>
             </div>
             <div class="footer-links">
-                <a href="../pages/privacy.html">Privacy Policy</a> | 
-                <a href="../pages/terms.html">Terms of Service</a> | 
-                <a href="../pages/about.html">About Us</a> | 
+                <a href="../pages/privacy.html">Privacy Policy</a> |
+                <a href="../pages/terms.html">Terms of Service</a> |
+                <a href="../pages/about.html">About Us</a> |
                 <a href="../pages/contact.html">Contact</a>
             </div>
             <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
@@ -338,51 +412,51 @@
     <!-- js for mouse cursor trail effect -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-     const coords = { x: 0, y: 0 };
-     const circles = document.querySelectorAll(".circle");
-   
-     circles.forEach(function (circle) {
-       circle.x = 0;
-       circle.y = 0;
-     });
-   
-     window.addEventListener("mousemove", function (e) {
-       coords.x = e.pageX;
-       coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
-     });
-   
-     function animateCircles() {
-       let x = coords.x;
-       let y = coords.y;
-   
-       circles.forEach(function (circle, index) {
-         circle.style.left = `${x - 12}px`;
-         circle.style.top = `${y - 12}px`;
-         circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
-   
-         const nextCircle = circles[index + 1] || circles[0];
-         circle.x = x;
-         circle.y = y;
-   
-         x += (nextCircle.x - x) * 0.3;
-         y += (nextCircle.y - y) * 0.3;
-       });
-   
-       requestAnimationFrame(animateCircles);
-     }
-   
-     animateCircles();
-   });
-     </script>
+            const coords = { x: 0, y: 0 };
+            const circles = document.querySelectorAll(".circle");
+
+            circles.forEach(function (circle) {
+                circle.x = 0;
+                circle.y = 0;
+            });
+
+            window.addEventListener("mousemove", function (e) {
+                coords.x = e.pageX;
+                coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+            });
+
+            function animateCircles() {
+                let x = coords.x;
+                let y = coords.y;
+
+                circles.forEach(function (circle, index) {
+                    circle.style.left = `${x - 12}px`;
+                    circle.style.top = `${y - 12}px`;
+                    circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+
+                    const nextCircle = circles[index + 1] || circles[0];
+                    circle.x = x;
+                    circle.y = y;
+
+                    x += (nextCircle.x - x) * 0.3;
+                    y += (nextCircle.y - y) * 0.3;
+                });
+
+                requestAnimationFrame(animateCircles);
+            }
+
+            animateCircles();
+        });
+    </script>
     <script src="../script/scroll.js"></script>
-    <script src="../script/script.js"></script> 
+    <script src="../script/script.js"></script>
     <script>
         // Get the current year
         const currentYear = new Date().getFullYear();
-        
+
         // Update the HTML content
         document.getElementById("current-year").textContent = currentYear;
-    </script> 
+    </script>
 </body>
 
 </html>
