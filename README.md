@@ -2,7 +2,7 @@
 
 <p align="left">
   <img width="200" height="200" src="https://github.com/user-attachments/assets/92d11c70-7352-487d-abde-b3eecf4abbfe">
-</p>
+</p> 
 
 Welcome to **ML Fusion Lab**!.
 
