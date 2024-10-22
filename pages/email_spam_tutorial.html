@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Spam Classifier Tutorial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+<link rel="stylesheet" href="../style/style.css" />
+  <style>
+        .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+body.dark-mode .project-container {
+  background-color:#1a1a1a;
+  color: white;
+}
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style/scroll.css" />
+</head>
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml-fusion-lab-logo.png" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+
+<section id="email-spam-classifier-using-lstm" class="cell markdown">
+  <h2 style="font-size: 48px;">Email Spam Classifier using LSTM</h2>
+  <p>In this tutorial, we will build an <strong>Email Spam
+  Classifier</strong> using <strong>Deep Learning</strong> techniques,
+  specifically leveraging <strong>LSTM (Long Short-Term Memory)</strong>
+  layers in <strong>Keras</strong>. LSTMs are a type of recurrent neural
+  network (RNN) well-suited for sequential data, making them ideal for
+  processing and classifying text data.</p>
+  <p>Our goal will be to create a model that can classify emails as
+  <strong>spam</strong> or <strong>not spam</strong> based on the email
+  content. We'll use several layers in Keras, such as
+  <strong>Embedding</strong>, <strong>LSTM</strong>,
+  <strong>Bidirectional</strong>, and <strong>Dropout</strong> to build
+  and train our model.</p>
+  <h2 id="prerequisites">Prerequisites</h2>
+  <p>Before diving in, make sure you have the following:</p>
+  <ul>
+  <li><strong>Basic knowledge of deep learning</strong>, especially
+  Recurrent Neural Networks (RNNs) and LSTMs</li>
+  <li><strong>Python</strong>, and libraries like <strong>Keras</strong>
+  and <strong>TensorFlow</strong> installed</li>
+  </ul>
+  </section>
+  <section id="step-1-importing-required-libraries" class="cell markdown">
+  <h3>Step 1: Importing Required Libraries</h3>
+  <p>In this section, we will import all the necessary libraries and
+  packages to build our email spam classifier. These libraries help with
+  text preprocessing, data handling, model creation, and evaluation.</p>
+  </section>
+  <div class="cell code" data-execution_count="11"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:28:58.585631Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:28:58.585230Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:28:58.595770Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:28:58.595010Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:28:58.585599Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb1"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+  <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+  <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+  <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+  <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+  <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+  <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+  <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+  <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+  <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+  <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+  <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+  <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+  <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+  <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+  <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfTransformer</span>
+  <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk <span class="im">as</span> nltk</span>
+  <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+  <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+  <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.util <span class="im">import</span> compounding</span>
+  <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.util <span class="im">import</span> minibatch</span>
+  <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> keras</span>
+  <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.models <span class="im">import</span> Sequential</span>
+  <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.initializers <span class="im">import</span> Constant</span>
+  <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> (LSTM, </span>
+  <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                          Embedding, </span>
+  <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                          BatchNormalization,</span>
+  <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                          Dense, </span>
+  <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                          TimeDistributed, </span>
+  <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                          Dropout, </span>
+  <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                          Bidirectional,</span>
+  <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                          Flatten, </span>
+  <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>                          GlobalMaxPool1D)</span>
+  <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.preprocessing.text <span class="im">import</span> Tokenizer</span>
+  <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.preprocessing.sequence <span class="im">import</span> pad_sequences</span>
+  <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.callbacks <span class="im">import</span> ModelCheckpoint, ReduceLROnPlateau</span>
+  <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.optimizers <span class="im">import</span> Adam</span>
+  <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> (</span>
+  <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    precision_score, </span>
+  <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    recall_score, </span>
+  <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    f1_score, </span>
+  <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    classification_report,</span>
+  <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    accuracy_score</span>
+  <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ul>
+  <li><strong>General Imports</strong>:
+  <ul>
+  <li><code>re</code> and <code>string</code>: Regular expressions and
+  string manipulations, which are used to clean and preprocess text
+  data.</li>
+  <li><code>numpy</code>: Provides support for large, multi-dimensional
+  arrays and matrices, along with mathematical functions to operate on
+  them.</li>
+  <li><code>random</code>: For generating random sequences and shuffling
+  data.</li>
+  <li><code>pandas</code>: For data manipulation and analysis,
+  particularly useful for handling tabular data.</li>
+  <li><code>os</code>: Helps interact with the file system, useful when
+  loading datasets.</li>
+  </ul></li>
+  <li><strong>Text Preprocessing Libraries</strong>:
+  <ul>
+  <li><code>nltk</code>: The <strong>Natural Language Toolkit</strong>
+  provides various tools for text preprocessing, such as tokenization and
+  stopword removal.</li>
+  <li><code>spacy</code>: Another NLP library used for text processing,
+  tokenization, and lemmatization.</li>
+  <li><code>matplotlib.pyplot</code>: A plotting library for visualizing
+  data, such as loss/accuracy curves during model training.</li>
+  </ul></li>
+  <li><strong>scikit-learn Preprocessing and Model Evaluation</strong>:
+  <ul>
+  <li><code>LabelEncoder</code>: Converts categorical labels (like "spam"
+  and "not spam") into numeric form.</li>
+  <li><code>train_test_split</code>: Splits the dataset into training and
+  testing sets.</li>
+  <li><code>CountVectorizer</code> and <code>TfidfTransformer</code>:
+  Convert text documents into a matrix of token counts (bag of words) and
+  apply TF-IDF transformation, respectively.</li>
+  <li><code>classification_report</code>, <code>precision_score</code>,
+  <code>recall_score</code>, <code>f1_score</code>,
+  <code>accuracy_score</code>: These are various metrics used to evaluate
+  the performance of our classifier.</li>
+  </ul></li>
+  <li><strong>Keras for Deep Learning</strong>:
+  <ul>
+  <li><strong>Sequential</strong>: This is used to build the model layer
+  by layer.</li>
+  <li><strong>Embedding</strong>: Turns positive integers (representing
+  words) into dense vectors of fixed size. This is the first layer in the
+  model.</li>
+  <li><strong>LSTM</strong>: A type of recurrent neural network layer that
+  can capture long-term dependencies in sequential data.</li>
+  <li><strong>Bidirectional</strong>: Wraps the LSTM layer to capture
+  information from both directions (forward and backward).</li>
+  <li><strong>Dense</strong>: Fully connected layer to map features to
+  output labels.</li>
+  <li><strong>Dropout</strong>: A regularization technique to prevent
+  overfitting by randomly setting a fraction of input units to 0 during
+  training.</li>
+  <li><strong>Flatten</strong>, <strong>BatchNormalization</strong>,
+  <strong>GlobalMaxPool1D</strong>, <strong>TimeDistributed</strong>:
+  Additional layers used for normalization, dimensionality reduction, and
+  sequence processing.</li>
+  </ul></li>
+  <li><strong>Model Optimization</strong>:
+  <ul>
+  <li><strong>ModelCheckpoint</strong>: Saves the model during training
+  when it reaches the best performance.</li>
+  <li><strong>ReduceLROnPlateau</strong>: Reduces learning rate when a
+  metric has stopped improving, helping the model converge.</li>
+  <li><strong>Adam</strong>: The optimizer used to update weights,
+  controlling the learning rate during training.</li>
+  </ul></li>
+  </ul>
+  <p>With all the libraries loaded, you're ready to start preparing the
+  data and building the deep learning model.</p>
+  </section>
+  <section id="step-2-loading-and-preparing-the-dataset"
+  class="cell markdown">
+  <h2>Step 2: Loading and Preparing the Dataset</h2>
+  <p>In this step, we will load the SMS Spam Collection Dataset, clean it,
+  and get it ready for further processing. We will drop any unnecessary
+  columns and rename the remaining ones for simplicity.</p>
+  </section>
+  <div class="cell code" data-execution_count="12"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:29:01.091575Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:29:01.091180Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:29:01.114319Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:29:01.113422Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:29:01.091543Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb2"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;/kaggle/input/sms-spam-collection-dataset/spam.csv&quot;</span>, encoding<span class="op">=</span><span class="st">&quot;latin-1&quot;</span>)</span>
+  <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna(how<span class="op">=</span><span class="st">&quot;any&quot;</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+  <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> [<span class="st">&#39;target&#39;</span>, <span class="st">&#39;message&#39;</span>]</span>
+  <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
+  <div class="output execute_result" data-execution_count="12">
+  <div>
+  <style scoped>
+      .dataframe tbody tr th:only-of-type {
+          vertical-align: middle;
+      }
+  
+      .dataframe tbody tr th {
+          vertical-align: top;
+      }
+  
+      .dataframe thead th {
+          text-align: right;
+      }
+  </style>
+  <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: right;">
+        <th></th>
+        <th>target</th>
+        <th>message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>0</th>
+        <td>ham</td>
+        <td>Go until jurong point, crazy.. Available only ...</td>
+      </tr>
+      <tr>
+        <th>1</th>
+        <td>ham</td>
+        <td>Ok lar... Joking wif u oni...</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td>spam</td>
+        <td>Free entry in 2 a wkly comp to win FA Cup fina...</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td>ham</td>
+        <td>U dun say so early hor... U c already then say...</td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td>ham</td>
+        <td>Nah I don't think he goes to usf, he lives aro...</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Loading the Dataset</strong>:
+  <ul>
+  <li><code>pd.read_csv()</code>: This function loads the dataset from a
+  CSV file. The <code>encoding="latin-1"</code> parameter is used to
+  handle any special characters in the text (common when working with
+  email or SMS datasets).</li>
+  </ul></li>
+  <li><strong>Dropping Unnecessary Columns</strong>:
+  <ul>
+  <li><code>df.dropna(how="any", axis=1)</code>: This command removes any
+  columns with missing values. In this dataset, there are some irrelevant
+  columns that contain <code>NaN</code> values, so dropping them ensures
+  we only work with clean data.</li>
+  <li>The <code>axis=1</code> parameter specifies that we are dropping
+  columns (rather than rows).</li>
+  </ul></li>
+  <li><strong>Renaming Columns</strong>:
+  <ul>
+  <li><code>df.columns = ['target', 'message']</code>: We rename the
+  remaining columns to make them more intuitive. The
+  <strong>target</strong> column represents whether an SMS is
+  <strong>spam</strong> or <strong>not spam</strong>, and the
+  <strong>message</strong> column contains the actual SMS content.</li>
+  </ul></li>
+  <li><strong>Previewing the Dataset</strong>:
+  <ul>
+  <li><code>df.head()</code>: This displays the first five rows of the
+  dataset, allowing us to verify that the data has been loaded and
+  processed correctly.</li>
+  </ul></li>
+  </ol>
+  </section>
+  <section id="step-3-exploring-the-dataset" class="cell markdown">
+  <h2>Step 3: Exploring the Dataset</h2>
+  <p>In this step, we will add a new feature to the dataset, visualize the
+  distribution of spam and non-spam messages, and understand the basic
+  structure of the data.</p>
+  </section>
+  <div class="cell code" data-execution_count="8"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:28:53.936054Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:28:53.935813Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:28:54.193058Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:28:54.192231Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:28:53.936029Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb3"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;message_len&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;message&#39;</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">len</span>(x.split(<span class="st">&#39; &#39;</span>)))</span>
+  <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>new<span class="op">=</span>df.groupby(<span class="st">&#39;target&#39;</span>)[<span class="st">&#39;target&#39;</span>].value_counts()</span>
+  <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>new</span>
+  <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>new.plot(kind<span class="op">=</span><span class="st">&#39;bar&#39;</span>,title<span class="op">=</span><span class="st">&#39;Count (target)&#39;</span>)</span></code></pre></div>
+  <div class="output display_data">
+  <p><img
+  src="../Assets/projectpics/lstm.png" /></p>
+  </div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Adding a Feature for Message Length</strong>:
+  <ul>
+  <li><code>df['message_len']</code>: We create a new column called
+  <code>message_len</code> which calculates the number of words in each
+  message.</li>
+  <li><code>apply(lambda x: len(x.split(' ')))</code>: For each message,
+  we split the text into individual words and count them. This provides an
+  additional feature (message length), which can be useful for
+  classification. For example, spam messages might tend to be longer or
+  shorter compared to non-spam messages.</li>
+  </ul></li>
+  <li><strong>Groupby for Target Count</strong>:
+  <ul>
+  <li><code>df.groupby('target')['target'].value_counts()</code>: This
+  groups the data by the <strong>target</strong> column (<code>spam</code>
+  or <code>ham</code>) and counts the number of occurrences for each
+  class. This is a helpful way to check if the dataset is imbalanced.</li>
+  </ul></li>
+  <li><strong>Plotting the Target Distribution</strong>:
+  <ul>
+  <li><code>new.plot(kind='bar', title='Count (target)')</code>: We use
+  <strong>matplotlib</strong> to create a bar plot that visualizes the
+  count of <strong>spam</strong> and <strong>non-spam</strong>
+  (<code>ham</code>) messages. The plot gives us a quick view of how
+  balanced or imbalanced the dataset is. If one class (say, spam) has far
+  fewer examples than the other, this could affect the model's
+  performance, and techniques like oversampling or undersampling might be
+  needed.</li>
+  </ul></li>
+  </ol>
+  </section>
+  <section
+  id="step-4-analyzing-message-length-and-downloading-nltk-stopwords"
+  class="cell markdown">
+  <h2>Step 4: Analyzing Message Length and Downloading NLTK Stopwords</h2>
+  <p>In this step, we will further explore the dataset by analyzing the
+  distribution of message lengths for both spam and non-spam (ham)
+  messages. Additionally, we will download the stopwords from the NLTK
+  library for future text preprocessing.</p>
+  </section>
+  <div class="cell code"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:29:31.397580Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:29:31.397139Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:29:31.611873Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:29:31.611127Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:29:31.397544Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb4"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ham_df <span class="op">=</span> df[df[<span class="st">&#39;target&#39;</span>] <span class="op">==</span> <span class="st">&#39;ham&#39;</span>][<span class="st">&#39;message_len&#39;</span>].value_counts().sort_index()</span>
+  <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>spam_df <span class="op">=</span> df[df[<span class="st">&#39;target&#39;</span>] <span class="op">==</span> <span class="st">&#39;spam&#39;</span>][<span class="st">&#39;message_len&#39;</span>].value_counts().sort_index()</span>
+  <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">&#39;stopwords&#39;</span>)</span></code></pre></div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><p><strong>Analyzing Ham Message Length</strong>:</p>
+  <ul>
+  <li><code>ham_df = df[df['target'] == 'ham']['message_len'].value_counts().sort_index()</code>:
+  <ul>
+  <li>We filter the dataset to include only <strong>ham</strong>
+  (non-spam) messages by checking where the <code>target</code> column
+  equals <code>'ham'</code>.</li>
+  <li><code>value_counts()</code>: This function counts how many messages
+  have the same length.</li>
+  <li><code>sort_index()</code>: After counting, we sort the values by
+  message length to understand the distribution more clearly.</li>
+  </ul></li>
+  </ul></li>
+  <li><p><strong>Analyzing Spam Message Length</strong>:</p>
+  <ul>
+  <li><code>spam_df = df[df['target'] == 'spam']['message_len'].value_counts().sort_index()</code>:
+  Similar to the <strong>ham</strong> analysis, we filter for
+  <strong>spam</strong> messages and count their lengths. Sorting the
+  counts helps us compare message lengths between ham and spam.</li>
+  </ul>
+  <p>By comparing the two, you might observe differences in the
+  distribution of message lengths between spam and non-spam messages,
+  which could be an important feature in classification.</p></li>
+  <li><p><strong>Downloading Stopwords</strong>:</p>
+  <ul>
+  <li><code>nltk.download('stopwords')</code>: This downloads a list of
+  common stopwords (e.g., "the", "is", "in", etc.) from the
+  <strong>NLTK</strong> library. These stopwords will be used in the next
+  step to remove unnecessary words that don’t contribute much to the
+  model’s decision-making process.</li>
+  </ul></li>
+  </ol>
+  </section>
+  <section
+  id="step-5-text-preprocessing--cleaning-removing-stopwords-and-stemming"
+  class="cell markdown">
+  <h2>Step 5: Text Preprocessing – Cleaning, Removing Stopwords, and
+  Stemming</h2>
+  <p>In this step, we will define functions to clean, remove stopwords,
+  and stem the text data. These preprocessing steps are crucial for
+  standardizing the textual data before passing it to a machine learning
+  or deep learning model.</p>
+  </section>
+  <div class="cell code" data-execution_count="16"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:29:39.356577Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:29:39.356201Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:29:39.363877Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:29:39.363236Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:29:39.356544Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb5"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_text(text):</span>
+  <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="bu">str</span>(text).lower()</span>
+  <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="st">&#39;\[.*?\]&#39;</span>, <span class="st">&#39;&#39;</span>, text)</span>
+  <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="st">&#39;https?://\S+|www\.\S+&#39;</span>, <span class="st">&#39;&#39;</span>, text)</span>
+  <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="st">&#39;&lt;.*?&gt;+&#39;</span>, <span class="st">&#39;&#39;</span>, text)</span>
+  <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="st">&#39;[</span><span class="sc">%s</span><span class="st">]&#39;</span> <span class="op">%</span> re.escape(string.punctuation), <span class="st">&#39;&#39;</span>, text)</span>
+  <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>, <span class="st">&#39;&#39;</span>, text)</span>
+  <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="st">&#39;\w*\d\w*&#39;</span>, <span class="st">&#39;&#39;</span>, text)</span>
+  <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
+  <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> stopwords.words(<span class="st">&#39;english&#39;</span>)</span>
+  <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>more_stopwords <span class="op">=</span> [<span class="st">&#39;u&#39;</span>, <span class="st">&#39;im&#39;</span>, <span class="st">&#39;c&#39;</span>]</span>
+  <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> stop_words <span class="op">+</span> more_stopwords</span>
+  <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_stopwords(text):</span>
+  <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="st">&#39; &#39;</span>.join(word <span class="cf">for</span> word <span class="kw">in</span> text.split(<span class="st">&#39; &#39;</span>) <span class="cf">if</span> word <span class="kw">not</span> <span class="kw">in</span> stop_words)</span>
+  <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span>
+  <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>stemmer <span class="op">=</span> nltk.SnowballStemmer(<span class="st">&quot;english&quot;</span>)</span>
+  <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stemm_text(text):</span>
+  <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="st">&#39; &#39;</span>.join(stemmer.stem(word) <span class="cf">for</span> word <span class="kw">in</span> text.split(<span class="st">&#39; &#39;</span>))</span>
+  <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> text</span></code></pre></div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Text Cleaning</strong>:
+  <ul>
+  <li>Converts all text to lowercase.</li>
+  <li>Removes unnecessary elements like URLs, punctuation, and text within
+  brackets.</li>
+  </ul></li>
+  <li><strong>Stopword Removal</strong>:
+  <ul>
+  <li>Uses the NLTK stopwords list and adds custom stopwords like 'u',
+  'im', and 'c'.</li>
+  <li>Filters out common, uninformative words to focus on more meaningful
+  terms.</li>
+  </ul></li>
+  <li><strong>Stemming</strong>:
+  <ul>
+  <li>Reduces words to their root form, which standardizes word variations
+  (e.g., "running" becomes "run").
+  </li>
+  </ul></li>
+  </ol>
+  </section>
+  <div class="cell markdown">
+  <p>By applying these functions, we ensure the dataset is clean and ready
+  for the next steps in text vectorization and model building.</p>
+  </div>
+  <div class="cell code" data-execution_count="17"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:29:44.087887Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:29:44.087169Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:29:45.053945Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:29:45.053255Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:29:44.087850Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb6"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;cleantxt&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;message&#39;</span>].<span class="bu">apply</span>(clean_text)</span>
+  <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;cleantxt&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;cleantxt&#39;</span>].<span class="bu">apply</span>(clean_text).<span class="bu">apply</span>(remove_stopwords)</span>
+  <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;cleantxt&#39;</span>] <span class="op">=</span> df[<span class="st">&#39;cleantxt&#39;</span>].<span class="bu">apply</span>(stemm_text)</span>
+  <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
+  <div class="output execute_result" data-execution_count="17">
+  <div>
+  <style scoped>
+      .dataframe tbody tr th:only-of-type {
+          vertical-align: middle;
+      }
+  
+      .dataframe tbody tr th {
+          vertical-align: top;
+      }
+  
+      .dataframe thead th {
+          text-align: right;
+      }
+  </style>
+  <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: right;">
+        <th></th>
+        <th>target</th>
+        <th>message</th>
+        <th>cleantxt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>0</th>
+        <td>ham</td>
+        <td>Go until jurong point, crazy.. Available only ...</td>
+        <td>go jurong point crazi avail bugi n great world...</td>
+      </tr>
+      <tr>
+        <th>1</th>
+        <td>ham</td>
+        <td>Ok lar... Joking wif u oni...</td>
+        <td>ok lar joke wif oni</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td>spam</td>
+        <td>Free entry in 2 a wkly comp to win FA Cup fina...</td>
+        <td>free entri  wkli comp win fa cup final tkts  m...</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td>ham</td>
+        <td>U dun say so early hor... U c already then say...</td>
+        <td>dun say earli hor alreadi say</td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td>ham</td>
+        <td>Nah I don't think he goes to usf, he lives aro...</td>
+        <td>nah dont think goe usf live around though</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  <section id="step-6-encoding-the-target-labels" class="cell markdown">
+  <h2>Step 6: Encoding the Target Labels</h2>
+  <p>In this step, we will convert the categorical labels in the target
+  column (i.e., 'spam' and 'ham') into numerical format. This is necessary
+  for feeding the labels into the deep learning model, as most models work
+  with numerical values rather than strings.</p>
+  <p>We will use LabelEncoder from the sklearn library to transform the
+  labels.</p>
+  </section>
+  <div class="cell code" data-execution_count="18"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:29:50.229489Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:29:50.228785Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:29:50.240948Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:29:50.240221Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:29:50.229453Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb7"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>labelencoder<span class="op">=</span> LabelEncoder()</span>
+  <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>labelencoder.fit(df[<span class="st">&#39;target&#39;</span>])</span>
+  <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;target_num&#39;</span>] <span class="op">=</span> labelencoder.transform(df[<span class="st">&#39;target&#39;</span>])</span>
+  <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
+  <div class="output execute_result" data-execution_count="18">
+  <div>
+  <style scoped>
+      .dataframe tbody tr th:only-of-type {
+          vertical-align: middle;
+      }
+  
+      .dataframe tbody tr th {
+          vertical-align: top;
+      }
+  
+      .dataframe thead th {
+          text-align: right;
+      }
+  </style>
+  <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: right;">
+        <th></th>
+        <th>target</th>
+        <th>message</th>
+        <th>cleantxt</th>
+        <th>target_num</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>0</th>
+        <td>ham</td>
+        <td>Go until jurong point, crazy.. Available only ...</td>
+        <td>go jurong point crazi avail bugi n great world...</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <th>1</th>
+        <td>ham</td>
+        <td>Ok lar... Joking wif u oni...</td>
+        <td>ok lar joke wif oni</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td>spam</td>
+        <td>Free entry in 2 a wkly comp to win FA Cup fina...</td>
+        <td>free entri  wkli comp win fa cup final tkts  m...</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td>ham</td>
+        <td>U dun say so early hor... U c already then say...</td>
+        <td>dun say earli hor alreadi say</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td>ham</td>
+        <td>Nah I don't think he goes to usf, he lives aro...</td>
+        <td>nah dont think goe usf live around though</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Label Encoding</strong>:
+  <ul>
+  <li>We instantiate the <code>LabelEncoder()</code> object and use it to
+  fit the <code>target</code> column, which contains the categorical
+  labels ('spam' and 'ham').</li>
+  </ul></li>
+  <li><strong>Transforming Labels</strong>:
+  <ul>
+  <li>The <code>transform()</code> method converts the labels into
+  numerical values. For example, 'ham' might be encoded as <code>0</code>
+  and 'spam' as <code>1</code>.</li>
+  </ul></li>
+  <li><strong>New Column</strong>:
+  <ul>
+  <li>We create a new column <code>target_num</code> to store the
+  transformed numerical labels, preserving the original
+  <code>target</code> column for reference.</li>
+  </ul></li>
+  </ol>
+  <p>This step prepares the target labels for model training by converting
+  them into a format suitable for machine learning models. The
+  <code>df.head()</code> call will allow you to check the new column
+  <code>target_num</code> with the numerical values.</p>
+  </section>
+  <section
+  id="step-7-splitting-the-dataset-into-training-and-testing-sets"
+  class="cell markdown">
+  <h2>Step 7: Splitting the Dataset into Training and Testing Sets</h2>
+  <p>In this step, we will split the dataset into training and testing
+  sets. This is essential for evaluating the performance of the model on
+  unseen data. We will use the <code>train_test_split</code> function from
+  the sklearn library to achieve this.</p>
+  </section>
+  <div class="cell code" data-execution_count="19"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:29:55.688203Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:29:55.687455Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:29:55.695842Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:29:55.695178Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:29:55.688165Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb8"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[<span class="st">&#39;cleantxt&#39;</span>]</span>
+  <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span> df[<span class="st">&#39;target_num&#39;</span>]</span>
+  <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, random_state<span class="op">=</span><span class="dv">40</span>,test_size<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div>
+  </div>
+  <section id="step-8-text-vectorization-and-model-setup"
+  class="cell markdown">
+  <h3>Step 8: Text Vectorization and Model Setup</h3>
+  <p>In this step, we will vectorize the cleaned text data using the
+  <strong>Tokenizer</strong> from Keras, and then we will prepare the deep
+  learning model for classification.</p>
+  <ol>
+  <li><strong>Vectorization</strong>:
+  <ul>
+  <li>We will convert the text data into sequences of integers, where each
+  integer represents a word in the vocabulary.</li>
+  <li>Additionally, we will pad the sequences to ensure they have a
+  uniform length.</li>
+  </ul></li>
+  <li><strong>Model Setup</strong>:
+  <ul>
+  <li>We will define the architecture of the LSTM-based model, including
+  the input, embedding, LSTM, and output layers.</li>
+  </ul></li>
+  </ol>
+  </section>
+  <div class="cell code" data-execution_count="21"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:30:00.053421Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:30:00.053097Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:30:00.174123Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:30:00.173408Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:30:00.053393Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb9"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.preprocessing <span class="im">import</span> sequence</span>
+  <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>max_words <span class="op">=</span> <span class="dv">400</span></span>
+  <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>max_len <span class="op">=</span> <span class="dv">150</span></span>
+  <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>tok <span class="op">=</span> Tokenizer(num_words<span class="op">=</span><span class="dv">400</span>)</span>
+  <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>tok.fit_on_texts(X_train)</span>
+  <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>sequences <span class="op">=</span> tok.texts_to_sequences(X_train)</span>
+  <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sequences_train <span class="op">=</span> sequence.pad_sequences(sequences,maxlen<span class="op">=</span><span class="dv">150</span>)</span>
+  <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.models <span class="im">import</span> Model</span>
+  <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.layers <span class="im">import</span> LSTM, Activation, Dense, Dropout, Input, Embedding</span>
+  <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.optimizers <span class="im">import</span> RMSprop</span></code></pre></div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Text Vectorization</strong>:
+  <ul>
+  <li><strong>Tokenizer</strong>: We initialize the <code>Tokenizer</code>
+  with a limit on the number of unique words (<code>max_words</code>). The
+  <code>fit_on_texts()</code> method builds the word index based on the
+  training data.</li>
+  <li><strong>Texts to Sequences</strong>: The
+  <code>texts_to_sequences()</code> method converts each text in the
+  training set into a sequence of integers based on the word index.</li>
+  <li><strong>Padding</strong>: The <code>pad_sequences()</code> function
+  pads the sequences to ensure that all inputs have the same length
+  (<code>max_len</code>), which is essential for feeding them into the
+  LSTM model.</li>
+  </ul></li>
+  <li><strong>Model Setup</strong>:
+  <ul>
+  <li><strong>Input Layer</strong>: The model begins with an input layer
+  that accepts sequences of length <code>max_len</code>.</li>
+  <li><strong>Embedding Layer</strong>: This layer converts the integer
+  sequences into dense vector representations. We specify
+  <code>output_dim=128</code>, meaning each word will be represented as a
+  128-dimensional vector.</li>
+  <li><strong>LSTM Layer</strong>: An LSTM layer is added with 64 units,
+  which helps capture temporal dependencies in the text data.</li>
+  <li><strong>Dropout Layer</strong>: A dropout layer with a rate of 0.5
+  is included to prevent overfitting.</li>
+  <li><strong>Output Layer</strong>: The output layer uses a sigmoid
+  activation function for binary classification, predicting whether the
+  input message is spam or ham.</li>
+  <li><strong>Compile the Model</strong>: We compile the model using the
+  RMSprop optimizer and binary cross-entropy as the loss function,
+  suitable for binary classification tasks.</li>
+  </ul></li>
+  </ol>
+  </section>
+  <section id="step-9-defining-the-rnn-model-architecture"
+  class="cell markdown">
+  <h3>Step 9: Defining the RNN Model Architecture</h3>
+  <p>In this step, we will define a function to create the RNN model
+  architecture. We will use the <strong>Embedding</strong>,
+  <strong>LSTM</strong>, and <strong>Dense</strong> layers to build the
+  model, followed by a <strong>sigmoid activation</strong> function for
+  binary classification. After defining the model, we will compile it.</p>
+  </section>
+  <div class="cell code"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:30:49.235087Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:30:49.234326Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:30:53.533957Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:30:53.533096Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:30:49.235053Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb10"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> RNN():</span>
+  <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> Input(name<span class="op">=</span><span class="st">&#39;inputs&#39;</span>,shape<span class="op">=</span>[max_len])</span>
+  <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> Embedding(max_words,<span class="dv">50</span>,input_length<span class="op">=</span>max_len)(inputs)</span>
+  <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> LSTM(<span class="dv">64</span>)(layer)</span>
+  <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> Dense(<span class="dv">256</span>,name<span class="op">=</span><span class="st">&#39;FC1&#39;</span>)(layer)</span>
+  <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> Activation(<span class="st">&#39;relu&#39;</span>)(layer)</span>
+  <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> Dropout(<span class="fl">0.5</span>)(layer)</span>
+  <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> Dense(<span class="dv">1</span>,name<span class="op">=</span><span class="st">&#39;out_layer&#39;</span>)(layer)</span>
+  <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> Activation(<span class="st">&#39;sigmoid&#39;</span>)(layer)</span>
+  <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> Model(inputs<span class="op">=</span>inputs,outputs<span class="op">=</span>layer)</span>
+  <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+  <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RNN()</span>
+  <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
+  <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(loss<span class="op">=</span><span class="st">&#39;binary_crossentropy&#39;</span>,optimizer<span class="op">=</span>RMSprop(),metrics<span class="op">=</span>[<span class="st">&#39;accuracy&#39;</span>])</span></code></pre></div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Model Function</strong>:
+  <ul>
+  <li>The <code>RNN()</code> function encapsulates the model architecture,
+  allowing for easy instantiation.</li>
+  </ul></li>
+  <li><strong>Input Layer</strong>:
+  <ul>
+  <li>We define an input layer that accepts sequences of length
+  <code>max_len</code>.</li>
+  </ul></li>
+  <li><strong>Embedding Layer</strong>:
+  <ul>
+  <li>The <strong>Embedding</strong> layer converts the input sequences
+  into dense vectors of fixed size (50 dimensions in this case).</li>
+  </ul></li>
+  <li><strong>LSTM Layer</strong>:
+  <ul>
+  <li>An <strong>LSTM</strong> layer is added to capture dependencies in
+  the input sequences.</li>
+  </ul></li>
+  <li><strong>Fully Connected Layer</strong>:
+  <ul>
+  <li>A <strong>Dense</strong> layer with 256 units serves as a fully
+  connected layer, transforming the output from the LSTM.</li>
+  </ul></li>
+  <li><strong>Activation Layer</strong>:
+  <ul>
+  <li>We apply the <strong>ReLU</strong> activation function to introduce
+  non-linearity.</li>
+  </ul></li>
+  <li><strong>Dropout Layer</strong>:
+  <ul>
+  <li>A <strong>Dropout</strong> layer with a dropout rate of 0.5 is added
+  to prevent overfitting by randomly setting a fraction of the input units
+  to zero during training.</li>
+  </ul></li>
+  <li><strong>Output Layer</strong>:
+  <ul>
+  <li>A <strong>Dense</strong> output layer produces a single output,
+  followed by a <strong>sigmoid activation</strong> function to output a
+  probability value between 0 and 1, indicating the likelihood of the
+  input being spam.</li>
+  </ul></li>
+  <li><strong>Model Compilation</strong>:
+  <ul>
+  <li>After defining the model, we compile it using the binary
+  cross-entropy loss function, the RMSprop optimizer, and accuracy as a
+  metric.</li>
+  </ul></li>
+  </ol>
+  <p>The <code>model.summary()</code> call provides a detailed overview of
+  the model architecture, including the number of parameters at each
+  layer. With the model defined and compiled, we can now proceed to train
+  it using the training data.</p>
+  </section>
+  <section id="step-10-training-the-model" class="cell markdown">
+  <h2>Step 10: Training the Model</h2>
+  <p>In this step, we will train the RNN model using the training data. We
+  will specify the batch size, number of epochs, and validation split, and
+  we will also implement early stopping to prevent overfitting.</p>
+  </section>
+  <div class="cell code" data-execution_count="26"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:30:58.719117Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:30:58.718072Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:31:25.219659Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:31:25.218528Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:30:58.719078Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb11"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> keras.callbacks <span class="im">import</span> EarlyStopping</span>
+  <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model.fit(sequences_train,y_train,batch_size<span class="op">=</span><span class="dv">128</span>,epochs<span class="op">=</span><span class="dv">10</span>,</span>
+  <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>          validation_split<span class="op">=</span><span class="fl">0.2</span>,callbacks<span class="op">=</span>[EarlyStopping(monitor<span class="op">=</span><span class="st">&#39;val_loss&#39;</span>,min_delta<span class="op">=</span><span class="fl">0.005</span>)])</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>Epoch 1/10
+  28/28 [==============================] - 6s 160ms/step - loss: 0.4174 - accuracy: 0.8550 - val_loss: 0.2778 - val_accuracy: 0.8823
+  Epoch 2/10
+  28/28 [==============================] - 4s 143ms/step - loss: 0.2314 - accuracy: 0.9156 - val_loss: 0.1489 - val_accuracy: 0.9641
+  Epoch 3/10
+  28/28 [==============================] - 4s 145ms/step - loss: 0.1204 - accuracy: 0.9655 - val_loss: 0.0951 - val_accuracy: 0.9686
+  Epoch 4/10
+  28/28 [==============================] - 4s 142ms/step - loss: 0.0796 - accuracy: 0.9784 - val_loss: 0.0800 - val_accuracy: 0.9776
+  Epoch 5/10
+  28/28 [==============================] - 4s 143ms/step - loss: 0.0630 - accuracy: 0.9801 - val_loss: 0.0742 - val_accuracy: 0.9821
+  Epoch 6/10
+  28/28 [==============================] - 4s 142ms/step - loss: 0.0521 - accuracy: 0.9837 - val_loss: 0.0755 - val_accuracy: 0.9821
+  </code></pre>
+  </div>
+  <div class="output execute_result" data-execution_count="26">
+  <pre><code>&lt;keras.src.callbacks.History at 0x7a29d04573a0&gt;</code></pre>
+  </div>
+  </div>
+  <section id="explanation" class="cell markdown">
+  <h3>Explanation:</h3>
+  <ol>
+  <li><strong>Training the Model</strong>:
+  <ul>
+  <li>We call the <code>fit()</code> method on the model to start the
+  training process.</li>
+  </ul></li>
+  <li><strong>Parameters</strong>:
+  <ul>
+  <li><strong><code>sequences_train</code></strong>: This is the padded
+  sequence data used as input for training.</li>
+  <li><strong><code>y_train</code></strong>: The corresponding labels for
+  the training data.</li>
+  <li><strong><code>batch_size=128</code></strong>: The model will update
+  its weights after processing 128 samples at a time.</li>
+  <li><strong><code>epochs=10</code></strong>: The model will go through
+  the entire training dataset 10 times.</li>
+  <li><strong><code>validation_split=0.2</code></strong>: 20% of the
+  training data will be set aside for validation during training, allowing
+  us to monitor the model's performance on unseen data.</li>
+  <li><strong><code>callbacks</code></strong>: We include the
+  <code>EarlyStopping</code> callback, which will stop training if the
+  validation loss does not improve by at least 0.005 for a specified
+  number of epochs (the default patience is set to 10).</li>
+  </ul></li>
+  </ol>
+  <p>This setup allows the model to learn from the training data while
+  monitoring its performance on a validation set, helping to ensure that
+  it generalizes well to unseen data. After training, we can evaluate the
+  model's performance on the test set.</p>
+  </section>
+  <section id="step-11-evaluating-the-model" class="cell markdown">
+  <h2>Step 11: Evaluating the Model</h2>
+  <p>In this step, we will evaluate the performance of the trained RNN
+  model on the test data. This involves converting the test data into
+  sequences, padding them to the required length, and then using the
+  <code>evaluate()</code> method to get the model's accuracy and loss on
+  the test set.</p>
+  </section>
+  <div class="cell code" data-execution_count="28"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:31:36.947101Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:31:36.946648Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:31:37.672753Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:31:37.671734Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:31:36.947066Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb14"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_sequences <span class="op">=</span> tok.texts_to_sequences(X_test)</span>
+  <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>test_sequences_matrix <span class="op">=</span> sequence.pad_sequences(test_sequences,maxlen<span class="op">=</span>max_len)</span>
+  <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>accr <span class="op">=</span> model.evaluate(test_sequences_matrix,y_test)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>35/35 [==============================] - 1s 18ms/step - loss: 0.0775 - accuracy: 0.9785
+  </code></pre>
+  </div>
+  </div>
+  <div class="cell code" data-execution_count="29"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-12-10T08:31:40.645366Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-12-10T08:31:40.644967Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-12-10T08:31:40.650579Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-12-10T08:31:40.649607Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2023-12-10T08:31:40.645335Z&quot;}"
+  data-trusted="true">
+  <div class="sourceCode" id="cb16"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Test set</span><span class="ch">\n</span><span class="st">  Loss: </span><span class="sc">{:0.2f}</span><span class="ch">\n</span><span class="st">  Accuracy: </span><span class="sc">{:0.2f}</span><span class="st">&#39;</span>.<span class="bu">format</span>(accr[<span class="dv">0</span>],accr[<span class="dv">1</span>]))</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>Test set
+    Loss: 0.08
+    Accuracy: 0.98
+  </code></pre>
+  </div>
+  </div>
+  <section id="conclusion" class="cell markdown">
+  <h2>Conclusion</h2>
+  <p>In this tutorial, we successfully built an RNN model using Keras to
+  classify SMS messages as either spam or ham. Through a series of steps,
+  we:</p>
+  <ol>
+  <li>Loaded and preprocessed the dataset, including cleaning the text and
+  removing stopwords.</li>
+  <li>Tokenized the text data and converted it into sequences suitable for
+  input into the model.</li>
+  <li>Defined an RNN architecture with embedding, LSTM, and dense
+  layers.</li>
+  <li>Trained the model using a portion of the data while monitoring
+  performance with early stopping.</li>
+  <li>Evaluated the model on a test set.</li>
+  </ol>
+  <p>After training, the model achieved an impressive accuracy of
+  <strong>98%</strong> with a loss of <strong>0.08</strong> on the test
+  set. This demonstrates the effectiveness of using deep learning
+  techniques for text classification tasks.</p>
+  <p>With such high accuracy, the model is well-suited for real-world
+  applications in spam detection, providing a robust solution to filter
+  unwanted messages. Future improvements could involve experimenting with
+  different architectures, hyperparameter tuning, or incorporating
+  additional features to further enhance performance.</p>
+  <p>Thank you for following along, and we hope this tutorial has been
+  informative and helpful in your journey to mastering deep learning for
+  text classification!</p>
+  </section>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+        <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contact.html">Contributor</a>
+      </div>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+  </footer>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
+</body>
+</html>

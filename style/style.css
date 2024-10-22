@@ -237,7 +237,7 @@ body {
     height: auto;
         width: 100%;
         background-color: #f5f5f7;
-        color: black;
+        color: rgb(0, 0, 0);
         border-radius: 20px;
         margin: 30px auto;
         display: flex;
@@ -660,8 +660,42 @@ footer p a:hover {
   width: 50px;
   height: 50px;
 }
+/* Styling all the 'Our Features' Cards */
+.feature-item:first-child,.feature-item:nth-last-child(2),.feature-item:last-child{
+  background-size: cover;
+  background-repeat: no-repeat;
+   transition: background-size 0.4s ease;
+}
+.feature-item:first-child{
+  background-image: url("../image/card-1.jpg");
+  background-position:bottom;
+}
+.feature-item:first-child:hover,.feature-item:nth-last-child(2):hover,.feature-item:last-child:hover{
+   background-size: 103%;
+}
+
+.feature-item:first-child h3, .feature-item:first-child p,.feature-item:nth-last-child(2) h3,.feature-item:nth-last-child(2) p,.feature-item:last-child h3,.feature-item:last-child p{
+  color: #ffffff;
+}
+.feature-item:first-child p,.feature-item:nth-last-child(2) p,.feature-item:last-child p{
+ font-weight: 370;
+}
+.feature-item:nth-last-child(2){
+  background-image: url("../image/card-2.jpg");
+  background-position: center;
+}
+
+.feature-item:last-child{
+  background-image: url("../image/card-3.jpg");
+  background-position: left;
+ 
+}
+
+
+
 
 .feature-item:hover {
+
   transform: translateY(-10px);
   border: 1px solid #0077cc;
   box-shadow:0px 0px 10px #0077cc;
@@ -1219,6 +1253,7 @@ body.dark-mode .feature-item p {
 
 body.dark-mode .newsletter {
   background-color: black;
+  color: white;
   margin-top: 0;
   /* Adjust this based on your needs */
   padding: 20px;
@@ -3089,16 +3124,16 @@ header nav ul li a {
   font-size: 26px;
   font-weight: 900;
   text-align: center;
-  color: #0077cc;
+  /* color: #ffffff; */
   margin-bottom: 20px;
   padding: 0 3px 0 3px;
 }
 
 .feature-item p {
-  color: #555;
+  /* color: #555; */
   font-size: 18px;
   font-weight: 200;
-  color: #575252;
+  /* color: #ffffff; */
   text-align: center;
 }
 
