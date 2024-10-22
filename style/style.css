@@ -1987,10 +1987,10 @@ header nav ul li a {
 }
 
 .about-us p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #555;
-  max-width: 900px;
+  font-size: 25px;
+  line-height: 1.9;
+  color: #000;
+  max-width: 800px;
   margin: 0 auto;
   margin-bottom: 40px;
 }
