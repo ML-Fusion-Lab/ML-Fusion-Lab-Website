@@ -344,9 +344,16 @@ const projects = [
       "cardTitle": "Gold Price Prediction using Random Forest",
       "cardDesc": "Build a Random Forest regression model to predict future gold prices based on financial indicators like SPX, USO, SLV, and EUR/USD.",
       "learnMoreLink": "../pages/gold_price_predictor.html"
-    }
-    
-        
+    }, 
+    {
+      "modelid": "modal39",
+      "cardImage": "../Assets/projectpics/skill_gap_analyzer.jpg",
+      "cardAlt": "Skill Gap Analyzer using Gemini LLM",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Skill Gap Analyzer",
+      "cardDesc": "Develop a web app that identifies skill gaps based on a user's current skills and career goals by leveraging LinkedIn data and Google's Gemini API.",
+      "learnMoreLink": "../pages/skill_gap_analyzer.html"
+    }        
   ] 
 
   
