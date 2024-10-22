@@ -160,7 +160,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Powered Fraud Detection System",
       "cardDesc": "Develop a system that identifies fraudulent activities using machine learning techniques.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/fraud_detection.html"
     },
     {
       "modelid": "modal19",
