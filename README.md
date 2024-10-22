@@ -213,7 +213,7 @@ A heartfelt thank you to the following individuals for their valuable contributi
 
 <div align='center'>
 
-[![Stargazers repo roster for @ML-Fusion-Lab/ML-Fusion-Lab-Website](https://reporoster.com/stars/ML-Fusion-Lab/ML-Fusion-Lab-Website)](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/stargazers)
+[![Stargazers repo roster for @ML-Fusion-Lab/ML-Fusion-Lab-Website](https://reporoster.com/stars/ML-Fusion-Lab/ML-Fusion-Lab-Website)](https://github.com/ML-Fusion-Lab/ML-Fusion-Lab-Website/stargazers) 
 
 </div>
 
