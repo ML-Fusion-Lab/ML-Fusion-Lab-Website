@@ -336,7 +336,19 @@ const projects = [
     },
     {
 
+
       "modelid": "modal38",
+      "cardImage": "../Assets/projectpics/pneumonia_detection.webp",
+      "cardAlt": "ML",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Pneumonia Detection using Machine Learning",
+      "cardDesc": "In this tutorial, we will build a Deep Learnig model to help wiith Pneumonia Detection ",
+      "learnMoreLink": "../pages/pneumonia_detection.html"
+    },
+    {
+
+
+      "modelid": "modal39",
       "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
       "cardAlt": "Crop Rotation Recommendation",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -345,7 +357,7 @@ const projects = [
       "learnMoreLink": "../pages/crop_rotation_recommendation.html"
     },
     {
-      "modelid": "modal39",
+      "modelid": "modal40",
       "cardImage": "../Assets/projectpics/gold_price_predictor.jpg",
       "cardAlt": "Gold Price Prediction",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -354,7 +366,7 @@ const projects = [
       "learnMoreLink": "../pages/gold_price_predictor.html"
     }, 
     {
-      "modelid": "modal40",
+      "modelid": "modal41",
       "cardImage": "../Assets/projectpics/skill_gap_analyzer.jpg",
       "cardAlt": "Skill Gap Analyzer using Gemini LLM",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
