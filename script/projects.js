@@ -319,6 +319,16 @@ const projects = [
     {
 
       "modelid": "modal36",
+      "cardImage": "../Assets/projectpics/title_generator.webp",
+      "cardAlt": "LSTM",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Title Generaion using Machine Learning",
+      "cardDesc": "In this tutorial, we will build a LSTM model to generate titles",
+      "learnMoreLink": "../pages/title_generator.html"
+    },
+    {
+
+      "modelid": "modal37",
       "cardImage": "../Assets/projectpics/crop_rotation_recommendation.jpg",
       "cardAlt": "Crop Rotation Recommendation",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
@@ -327,7 +337,7 @@ const projects = [
       "learnMoreLink": "../pages/crop_rotation_recommendation.html"
     },
     {
-      "modelid": "modal37",
+      "modelid": "modal38",
       "cardImage": "../Assets/projectpics/gold_price_predictor.jpg",
       "cardAlt": "Gold Price Prediction",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
