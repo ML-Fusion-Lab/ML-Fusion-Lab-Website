@@ -178,7 +178,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Healthcare Predictive Analytics",
       "cardDesc": "Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/healthcare.html"
     },
     {
       "modelid": "modal21",
@@ -187,7 +187,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Wildfire Detection Using Satellite Images",
       "cardDesc": "Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.",
-      "learnMoreLink": "#"
+          "learnMoreLink": "../pages/healthcare.html"
     },
     {
       "modelid": "modal22",
