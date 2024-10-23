@@ -382,7 +382,16 @@ const projects = [
       "cardTitle": "Heart Disease Prediction",
       "cardDesc": "In this tutorial , we will train a model for the task of heart disease prediction using Machine Learning",
       "learnMoreLink": "../pages/heart_disease.html"
-    }          
+    },
+    {
+      "modelid": "modal43",
+      "cardImage": "../Assets/projectpics/fashion.webp",
+      "cardAlt": "Heart Disease Prediction using Machine Learning",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Fashion Recommendation System ",
+      "cardDesc": "In this tutorial , we will create a Fashion Recommendation System using Machine Learning",
+      "learnMoreLink": "../pages/fashion.html"
+    }           
   ] 
 
   
