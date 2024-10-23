@@ -373,7 +373,16 @@ const projects = [
       "cardTitle": "Skill Gap Analyzer",
       "cardDesc": "Develop a web app that identifies skill gaps based on a user's current skills and career goals by leveraging LinkedIn data and Google's Gemini API.",
       "learnMoreLink": "../pages/skill_gap_analyzer.html"
-    }        
+    },
+    {
+      "modelid": "modal42",
+      "cardImage": "../Assets/projectpics/heart_disease.webp",
+      "cardAlt": "Heart Disease Prediction using Machine Learning",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Heart Disease Prediction",
+      "cardDesc": "In this tutorial , we will train a model for the task of heart disease prediction using Machine Learning",
+      "learnMoreLink": "../pages/heart_disease.html"
+    }          
   ] 
 
   
