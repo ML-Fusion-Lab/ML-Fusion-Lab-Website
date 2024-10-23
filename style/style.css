@@ -213,7 +213,7 @@ body {
 
 .footer-bar {
   text-align: center; /* Centered the text horizontally */
-  margin: auto;
+  margin-bottom: -4%;
   padding: 10px 0; /* Added some padding(top & bottom) for spacing */
   font-size: 18px; /* Increased the font size for better visibility */
   color: white;
@@ -378,6 +378,7 @@ body {
 
 .about .row {
   display: flex; /* Use flexbox for layout */
+  flex-wrap: nowrap;
   align-items: center; /* Center items vertically */
   gap: 2rem; /* Space between the image and content */
   padding: 2rem 0; /* Padding for the section */
@@ -1888,7 +1889,7 @@ header nav ul li a {
 .about {
   background-color: rgb(255, 244, 244);
   color: grey;
-  padding: 150px 20px;
+  padding: -50px 20px;
   text-align: center;
 }
 
