@@ -109,6 +109,11 @@
   color: inherit;
   word-wrap: wrap;
 }
+.dark-mode .contributor-card {
+  background-color: #363434;
+  border: 2px solid #7d7d7d;
+  color: #f8dada;
+}
 
 #contributors {
   perspective: 1000px; /* This adds depth for 3D transformations */
@@ -146,6 +151,15 @@
   margin-bottom: 10px;
   transition: box-shadow 0.3s ease-in-out, border 0.1s ease-in-out;
 }
+.dark-mode .contributor-card img {
+  border-radius: 50%;
+  border: 2px solid #9ea1a4;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s ease-in-out, border 0.1s ease-in-out;
+}
 
 .contributor-card h2 {
   color: #040404;
@@ -157,6 +171,14 @@
 .contributor-card p {
   font-size: 1.2em;
   color: #040404;
+  position: relative;
+  z-index: 1;
+  transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin: 0 0 10px;
+}
+ .dark-mode .contributor-card p {
+  font-size: 1.2em;
+  color: #ffffff;
   position: relative;
   z-index: 1;
   transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
