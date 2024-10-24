@@ -214,7 +214,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Waste Management Optimization",
       "cardDesc": "Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/waste_management.html"
     },
     {
       "modelid": "modal25",
