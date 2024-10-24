@@ -231,6 +231,7 @@
     <div class="circle"></div>
     <div class="circle"></div>
     <div class="circle"></div>
+    <div class="circle"></div>
   </div>
 
   <header style="width: 100.8%;">
@@ -403,22 +404,23 @@
   <style>
     .faq {
       padding: 40px 20px;
-      background-color: #f9f9f9;
+      background-color: #f9f9f9; /* Light mode background */
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin: 20px 0;
+      transition: background-color 0.3s, color 0.3s; /* Smooth transition */
     }
 
     .faq h2 {
       text-align: center;
       margin-bottom: 30px;
       font-size: 2em;
-      color: #333;
+      color: #333; /* Light mode text color */
     }
 
     .faq-item {
       margin: 15px 0;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #ddd; /* Light mode border */
       padding: 15px 0;
     }
 
@@ -428,7 +430,7 @@
 
     .faq-item h3 {
       cursor: pointer;
-      color: #007bff;
+      color: #007bff; /* Light mode heading color */
       font-size: 1.5em;
       transition: color 0.3s;
     }
@@ -439,9 +441,35 @@
 
     .faq-item p {
       margin: 5px 0 0 0;
-      color: #555;
+      color: #555; /* Light mode paragraph color */
       font-size: 1em;
       line-height: 1.5;
+    }
+
+    /* Dark Mode Styles */
+    .dark-mode .faq {
+      background-color: #292b30; /* Dark mode background */
+      color: #f9f9f9; /* Dark mode text color */
+    }
+
+    .dark-mode .faq h2 {
+      color: #f9f9f9; /* Dark mode heading color */
+    }
+
+    .dark-mode .faq-item {
+      border-bottom: 1px solid #444; /* Dark mode border */
+    }
+
+    .dark-mode .faq-item h3 {
+      color: #66b3ff; /* Dark mode heading color */
+    }
+
+    .dark-mode .faq-item h3:hover {
+      color: #99ccff; /* Darker blue on hover in dark mode */
+    }
+
+    .dark-mode .faq-item p {
+      color: #ccc; /* Dark mode paragraph color */
     }
   </style>
 
