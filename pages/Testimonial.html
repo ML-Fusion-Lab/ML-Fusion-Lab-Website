@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
   </head>
   <body>
+    
+    <button class="go-top-btn">
+      <img height="30px" width="30" src="arrow_upper.png" alt="arrow up">
+    </button>
     <header>
       <div id="progress-container">
         <div id="progress-bar"></div>
@@ -243,6 +247,22 @@
           navMenu.classList.toggle("show");
         });
       });
+
+      const goTopBtn = document.querySelector('.go-top-btn');
+      window.addEventListener('scroll',checkHeight)
+      function checkHeight(){
+        if(window.scrollY > 200){
+          goTopBtn.style.display = "flex"
+        } else{
+          goTopBtn.style.display ="none"
+        }
+      }
+      goTopBtn.addEventListener('click',()=>{
+        window.scrollTo({
+          top: 0,
+          behavior:"smooth"
+        })
+      })
     </script>
   </body>
 </html>
