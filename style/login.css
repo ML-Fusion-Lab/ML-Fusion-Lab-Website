@@ -421,3 +421,96 @@ input:hover {
 .social-container a:hover {
   transform: scale(1.1);
 }
+
+
+#google-login{
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid #cacaca;
+  background-color: #FFF;
+  color: #fff;
+  font-size: 3px;
+  font-weight: 200;
+  margin: 10px;
+  padding: 10px 50px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+
+}
+
+#google-login :hover{
+  letter-spacing: 2px;
+ 
+}
+#google-login a{
+  color: #232836;
+}
+
+#google-login:active{
+  
+  transform: scale(0.95);
+
+}
+#facbook-login{
+
+  position: relative;
+  border-radius: 20px;
+  border: none;
+  background-color: #3b5998;
+  color: #fff;
+  font-size: 3px;
+  font-weight: 200;
+  margin: 10px;
+  padding: 10px 50px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+
+}
+
+#facbook-login a{
+  text-decoration: none;
+  color: #fff;
+}
+#facbook-login:hover {
+  letter-spacing: 2px;
+  background-color: #3b5998;
+}
+
+
+#facbook-login:active{
+  
+  transform: scale(0.95);
+
+}
+
+
+#x-login{
+  position: relative;
+  border-radius: 20px;
+ border: none;
+  background-color: #000000;
+  color: #fff;
+  font-size: 3px;
+  font-weight: 200;
+  margin: 10px;
+  padding: 10px 80px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  transition: 0.3s ease-in-out;
+}
+
+#x-login a{
+   color: #fff;
+}
+#x-login :hover{
+  letter-spacing: 2px;
+}
+
+#x-login:active{
+  
+    transform: scale(0.95);
+  
+}
+
