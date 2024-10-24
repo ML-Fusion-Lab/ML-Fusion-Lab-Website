@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" href="../image/ml fusion lab log.jpg">
     <meta charset="UTF-8">
@@ -7,403 +8,442 @@
     <title>Projects - ML Fusion Labs</title>
     <link rel="stylesheet" href="../style/scroll.css">
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-
         body {
             /*font-family: 'Arial', 'Helvetica Neue', sans-serif; /* Broader font fallback */
             font-family: 'Roboto', 'Arial', sans-serif;
-            font-size: 16px; /* Base font size */
-            line-height: 1.6; /* Spacing for readability */
+            font-size: 16px;
+            /* Base font size */
+            line-height: 1.6;
+            /* Spacing for readability */
             color: #333;
-            -webkit-font-smoothing: antialiased; /* Improve text rendering on macOS and iOS */
-            -moz-osx-font-smoothing: grayscale; /* Improve rendering on Firefox for macOS */
+            -webkit-font-smoothing: antialiased;
+            /* Improve text rendering on macOS and iOS */
+            -moz-osx-font-smoothing: grayscale;
+            /* Improve rendering on Firefox for macOS */
         }
-        
-    .project-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 40px;
-    }
 
-    
-    /* animation on projects */
-    @keyframes appear{
-        from{
-            opacity: 0;
-            scale:0.4;
-        }to{
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+
+        /* animation on projects */
+        @keyframes appear {
+            from {
+                opacity: 0;
+                scale: 0.4;
+            }
+
+            to {
+                opacity: 1;
+                scale: 1;
+            }
+        }
+
+        .project-item {
+            margin-bottom: 30px;
+            /* Add some space below each project card */
+            animation: appear 5s linear;
+            animation-timeline: view();
+            animation-range: entry 0% cover 40%;
+        }
+
+
+        .project-item h3 {
+            font-size: 1.3em;
+            /* Slight size increase for clarity */
+            font-weight: 600;
+            line-height: 1.4;
+            /* Add a bit more space between lines */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+
+        .project-item p {
+            font-size: 1.1em;
+            color: #444;
+            line-height: 1.5;
+            font-weight: 400;
+            /* Ensure consistent weight */
+            margin-bottom: 18px;
+            text-align: justify;
+            /* Optional: Align text for a cleaner look */
+        }
+
+
+
+        .btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .project-item:hover {
+            transform: scale(1.05);
+        }
+
+
+
+        /* Modal overlay styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            padding: 20px;
+            /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+            max-width: 90%;
+            /* For responsiveness */
+            max-height: 90%;
+            /* For responsiveness */
+            overflow-y: auto;
+            /* If content overflows */
+        }
+
+
+        /* Modal content styles */
+        .modal-content {
+            position: relative;
+            /* Relative to the modal */
+            margin: 0 auto;
+            /* Center the modal horizontally */
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            /* Set a max-width */
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            /* Prevent content from overflowing the container */
+        }
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .container {
+            margin: auto;
+        }
+
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* Responsive columns */
+            gap: 40px;
+            /* Increased gap to create space between items */
+            padding: 20px;
+        }
+
+        .project-item {
+            height: 400px;
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 0 15px;
+            /* Add horizontal margin for extra spacing */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+        }
+
+        .project-item img {
+            height: auto;
+            /* Maintain aspect ratio */
+            max-height: 50%;
+            /* Set max height to half of the project item */
+            width: 100%;
+            object-fit: cover;
+            /* Ensures image covers its area */
+            margin: auto;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            /* Hover effect */
+
+        }
+
+        .hide-btn {
+            display: none;
+        }
+
+        .btn-cont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-cont .load-more-button {
+            background: #1c1c1c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .btn-cont .load-more-button:hover {
+            background: #000000;
+        }
+
+        /* Responsive adjustment for smaller screens */
+        @media (max-width: 1200px) {
+            .project-list {
+                grid-template-columns: repeat(3, 1fr);
+                /* 3 columns for medium-sized screens */
+            }
+        }
+
+        @media (max-width: 900px) {
+            .project-list {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 columns for tablet-sized screens */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .project-list {
+                grid-template-columns: 1fr;
+                /* 1 column for small/mobile screens */
+            }
+        }
+
+        /* css for mouse cursor trail effect */
+        .circle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(70, 130, 180, 0.3), skyblue, rgba(0, 0, 50, 0.3), white);
+            transition: transform 0.1s, left 0.1s, top 0.1s;
+        }
+
+        .circle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            /* removed the non-breaking space (&nbsp;) */
+        }
+
+
+        /* new footer properties */
+        .footer {
+            padding: 5rem 1rem;
+            position: relative;
+            display: grid;
+            grid-template-columns: 400px repeat(3, 1fr);
+            gap: 2rem;
+            background-color: #191919;
+        }
+
+        .footer-col img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 10px;
+            position: relative;
+            bottom: 15px;
+        }
+
+        .footer-p {
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            color: white;
+            display: block;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+        }
+
+        .h46 {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .footer-col-main {
+            width: max-content;
+            margin-top: -1rem;
+        }
+
+        .footer-col-main a {
+            display: block;
+            margin-bottom: 1rem;
+            color: white;
+            opacity: 0.7;
+            text-decoration: none;
+            transition: opacity 0.3s ease 0s;
+        }
+
+        .footer-col-main a:hover {
             opacity: 1;
-            scale:1;
         }
-     }
-    .project-item {
-        margin-bottom: 30px; /* Add some space below each project card */
-       animation: appear 5s linear;
-       animation-timeline:view();
-       animation-range: entry 0% cover 40%;
-    }
 
 
-    .project-item h3 {
-        font-size: 1.3em; /* Slight size increase for clarity */
-        font-weight: 600;
-        line-height: 1.4; /* Add a bit more space between lines */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-       
+        @media (max-width: 900px) {
+            .footer {
+                grid-template-columns: 1fr 200px;
+            }
+        }
 
-    .project-item p {
-        font-size: 1.1em; 
-        color: #444; 
-        line-height: 1.5; 
-        font-weight: 400; /* Ensure consistent weight */
-        margin-bottom: 18px;
-        text-align: justify; /* Optional: Align text for a cleaner look */
-    }
-    
-    
+        /* this is only end of footer style */
+        /* bg image */
+        .projects-hero {
+            position: relative;
+            padding: 80px 20px;
+            background-image: url('../image/project.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .btn {
-        background-color: #007BFF;
-        color: white;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 1em;
-        transition: background-color 0.3s ease;
-    }
+        /* Dark overlay to ensure text readability */
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+        }
 
-    .btn:hover {
-        background-color: #0056b3;
-    }
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: #ffffff;
+            max-width: 800px;
+            z-index: 1;
+        }
 
-    .project-item:hover {
-        transform: scale(1.05);
-    }
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
 
-     
+        .hero-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
 
-/* Modal overlay styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    padding: 20px;
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
-    max-width: 90%;  /* For responsiveness */
-    max-height: 90%; /* For responsiveness */
-    overflow-y: auto; /* If content overflows */
-}
+        /* Dark mode adjustments */
+        @media (prefers-color-scheme: dark) {
+            .projects-hero::before {
+                background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+            }
+        }
 
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
 
-/* Modal content styles */
-.modal-content {
-    position: relative; /* Relative to the modal */
-    margin: 0 auto; /* Center the modal horizontally */
-    padding: 20px;
-    width: 90%; 
-    max-width: 500px; /* Set a max-width */
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    overflow: hidden; /* Prevent content from overflowing the container */
-}
+            .hero-content p {
+                font-size: 1.1rem;
+            }
 
+            .projects-hero {
+                min-height: 300px;
+                padding: 60px 20px;
+            }
+        }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.container{
-    margin: auto;
-}
-
-
-.project-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
-    gap: 40px; /* Increased gap to create space between items */
-    padding: 20px;
-}
-
-.project-item {
-    height: 400px;
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 0 15px; /* Add horizontal margin for extra spacing */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-}
-
-.project-item img {
-    height: auto; /* Maintain aspect ratio */
-    max-height: 50%; /* Set max height to half of the project item */
-    width: 100%;
-    object-fit: cover; /* Ensures image covers its area */
-    margin: auto;
-}
-
-.project-item:hover {
-    transform: translateY(-5px); /* Hover effect */
-
-}
-
-.hide-btn{
-    display: none;
-}
-
-.btn-cont{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn-cont .load-more-button{
-    background: #1c1c1c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
-.btn-cont .load-more-button:hover{
-    background: #000000;
-}
-  
-  /* Responsive adjustment for smaller screens */
-  @media (max-width: 1200px) {
-    .project-list {
-      grid-template-columns: repeat(3, 1fr); /* 3 columns for medium-sized screens */
-    }
-  }
-  
-  @media (max-width: 900px) {
-    .project-list {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet-sized screens */
-    }
-  }
-  
-  @media (max-width: 600px) {
-    .project-list {
-      grid-template-columns: 1fr; /* 1 column for small/mobile screens */
-    }
-  }
-   /* css for mouse cursor trail effect */
-   .circle {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
-  transition: transform 0.1s, left 0.1s, top 0.1s;
-}
-
-.circle-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999; /* removed the non-breaking space (&nbsp;) */
-}
-  
-
-/* new footer properties */
-.footer {
-    padding: 5rem 1rem;
-    position: relative;
-    display: grid;
-    grid-template-columns: 400px repeat(3, 1fr);
-    gap: 2rem;
-    background-color: #191919;
-  }
-  
-  .footer-col img {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 10px;
-    position: relative;
-    bottom: 15px;
-  }
-  
-  .footer-p {
-    opacity: 0.7;
-    margin-bottom: 2rem;
-    color: white;
-    display: block;
-  }
-  
-  .footer-social {
-    display: flex;
-    align-items: center;
-  }
-   
-  .h46 {
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: white;
-  }
-  
-  .footer-col-main {
-    width: max-content;
-    margin-top: -1rem;
-  }
-  
-  .footer-col-main a {
-    display: block;
-    margin-bottom: 1rem;
-    color: white;
-    opacity: 0.7;
-    text-decoration: none;
-    transition: opacity 0.3s ease 0s;
-  }
-  
-  .footer-col-main a:hover {
-    opacity: 1;
-  }
-  
-   
-  @media (max-width: 900px) {
-    .footer {
-        grid-template-columns: 1fr 200px;
-    }
-  }
-  /* this is only end of footer style */
-  /* bg image */
-  .projects-hero {
-    position: relative;
-    padding: 80px 20px;
-    background-image: url('../image/project.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Dark overlay to ensure text readability */
-.projects-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
-}
-
-.hero-content {
-    position: relative; 
-    text-align: center;
-    color: #ffffff;
-    max-width: 800px;
-    z-index: 1; 
-}
-
-.hero-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-    .projects-hero::before {
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-    }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-    
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-    
-    .projects-hero {
-        min-height: 300px;
-        padding: 60px 20px;
-    }
-}
-/* end */
-   </style>
+        /* end */
+    </style>
 
 </head>
+
 <body>
-    <header >
+    <header>
         <div id="progress-container">
             <div id="progress-bar"></div>
         </div>
         <nav>
             <div class="logo">
 
-                <a href="../index.html"><h1><img  src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
+                <a href="../index.html">
+                    <h1><img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+                </a>
 
             </div>
-          <div class="hamburger" id="hamburger">&#9776;</div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
             <ul>
 
-              <li><a href="../pages/courses.html">Courses</a></li>
-              <li><a href="../pages/projects.html">Projects</a></li>
-              <li><a href="../pages/about.html">About Us</a></li>
-              <li><a href="../pages/contact.html">Contact</a></li>
-              <li><a href="../pages/Testimonial.html">Testimonial</a></li>
-              <li><div class="gtranslate_wrapper"></div>
-                <script>window.gtranslateSettings = {"default_language":"en",   "detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
-                  <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
-              <!-- <div class="theme-switch" id="theme-switch"></div> -->
-              <div id="themeSwitch" class="theme-switch">
-                <input type="checkbox" class="checkbox" id="checkbox">
-                <label for="checkbox" class="checkbox-label">
-                  
-                  <img src="../Assets/sun.png" class="theme-btn">
-                  <img src="../Assets/moon.png" class="theme-btn">
-                  <!-- <i class="fas fa-moon"></i>
+                <li><a href="../pages/courses.html">Courses</a></li>
+                <li><a href="../pages/projects.html">Projects</a></li>
+                <li><a href="../pages/about.html">About Us</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/Testimonial.html">Testimonial</a></li>
+                <li>
+                    <div class="gtranslate_wrapper"></div>
+                    <script>window.gtranslateSettings = { "default_language": "en", "detect_browser_language": true, "wrapper_selector": ".gtranslate_wrapper" }</script>
+                    <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
+                </li>
+                <!-- <div class="theme-switch" id="theme-switch"></div> -->
+                <div id="themeSwitch" class="theme-switch">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+
+                        <img src="../Assets/sun.png" class="theme-btn">
+                        <img src="../Assets/moon.png" class="theme-btn">
+                        <!-- <i class="fas fa-moon"></i>
                   <i class="fas fa-sun"></i> -->
-                  <span class="ball"></span>
-                </label>
-              </div>
+                        <span class="ball"></span>
+                    </label>
+                </div>
 
             </ul>
-      </nav>
+        </nav>
 
 
     </header>
@@ -439,7 +479,7 @@
         <div class="circle"></div>
         <div class="circle"></div>
         <div class="circle"></div>
-      </div>
+    </div>
 
     <section class="projects-hero">
         <div class="hero-content">
@@ -466,14 +506,15 @@
             <p id="modalDescription"></p>
             <p id="modalTechnologies"></p>
         </div>
-    </div>         
+    </div>
     <div class="footer">
         <div class="footer-col">
             <img src="../image/ml fusion lab log.jpg" alt="">
             <span class="footer-p">
-      
-              We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
-      
+
+                We are a community-driven platform that aims to provide free, accessible, and high-quality machine
+                learning tutorials, projects, and resources for all.
+
             </span>
             <div class="footer-social">
                 <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
@@ -497,277 +538,278 @@
         <div class="footer-col-main">
             <h4 class="h46">Contact</h4>
             <a href="http://127.0.0.1:3000/pages/contact.html">Contact Us</a>
-            <a href="info@mlfusionlabs.com">Email Us</a>
+            <a href="./email.html">Email Us</a>
             <a href="http://127.0.0.1:3000/pages/privacy.html">Privacy Policy</a>
             <a href="http://127.0.0.1:3000/pages/terms.html">Terms & Conditions</a>
         </div>
-      </div>
-      <div class="footer-bar"> 
+    </div>
+    <div class="footer-bar">
         &copy; 2024 ML Fusion Labs | All Rights Reserved
-      
-      </div>
+
+    </div>
     <!-- JavaScript -->
-<script>
-    function openModal(projectId) {
-        const modal = document.getElementById('projectModal');
-        const title = document.getElementById('modalTitle');
-        const description = document.getElementById('modalDescription');
-        const technologies = document.getElementById('modalTechnologies');
+    <script>
+        function openModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const title = document.getElementById('modalTitle');
+            const description = document.getElementById('modalDescription');
+            const technologies = document.getElementById('modalTechnologies');
 
-        switch (projectId) {
+            switch (projectId) {
 
-            case 'modal14':
+                case 'modal14':
 
-                title.textContent = 'Crop Height Using Computer Vision';
-                description.textContent = 'Utilize contour detection techniques to estimate the height of crops for agricultural purposes.';
-                technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
-                break;
+                    title.textContent = 'Crop Height Using Computer Vision';
+                    description.textContent = 'Utilize contour detection techniques to estimate the height of crops for agricultural purposes.';
+                    technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
+                    break;
 
-            case 'modal15':
+                case 'modal15':
 
-                title.textContent = 'AI-Based Disease Diagnosis';
-                description.textContent = 'A machine learning model that helps detect early symptoms of diseases using patient data.';
-                technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas';
-                break;
+                    title.textContent = 'AI-Based Disease Diagnosis';
+                    description.textContent = 'A machine learning model that helps detect early symptoms of diseases using patient data.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas';
+                    break;
 
-            case 'modal16':
-            
-                title.textContent = 'Recommendation System for Shopping';
-                description.textContent = 'Build a recommendation system that suggest products based on user browsing behavior.';
-                technologies.textContent = 'Technologies Used: Python, Open cv, TensorFlow';
-                break;
+                case 'modal16':
 
-            case 'modal17':
+                    title.textContent = 'Recommendation System for Shopping';
+                    description.textContent = 'Build a recommendation system that suggest products based on user browsing behavior.';
+                    technologies.textContent = 'Technologies Used: Python, Open cv, TensorFlow';
+                    break;
 
-                title.textContent = 'Image Classification with Deep Learning';
-                description.textContent = 'Develop a model that classifies images into categories using convolutional neural networks.';
-                technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
-                break;
+                case 'modal17':
 
-            case 'modal18':
+                    title.textContent = 'Image Classification with Deep Learning';
+                    description.textContent = 'Develop a model that classifies images into categories using convolutional neural networks.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
+                    break;
 
-                title.textContent = 'Automated Email Response System';
-                description.textContent = 'Implement a system that uses NLP to generate automated responses to common email inquiries.';
-                technologies.textContent = 'Technologies Used: Python, TensorFlow, Flask';
-                break;
+                case 'modal18':
 
-            case 'modal19':
+                    title.textContent = 'Automated Email Response System';
+                    description.textContent = 'Implement a system that uses NLP to generate automated responses to common email inquiries.';
+                    technologies.textContent = 'Technologies Used: Python, TensorFlow, Flask';
+                    break;
 
-                title.textContent = 'Stock Price Time Series Forecasting';
-                description.textContent = 'Apply machine learning algorithms to predict future stock prices based on historical data.';
-                technologies.textContent = 'Technologies Used: Python, Keras, Librosa';
-                break;
+                case 'modal19':
 
-            case 'modal20':
+                    title.textContent = 'Stock Price Time Series Forecasting';
+                    description.textContent = 'Apply machine learning algorithms to predict future stock prices based on historical data.';
+                    technologies.textContent = 'Technologies Used: Python, Keras, Librosa';
+                    break;
 
-                title.textContent = 'Chatbot Development for Customer Support';
-                description.textContent = ' Create an AI-powered chatbot that assists users with their inquiries in real time.';
-                technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
-                break;
+                case 'modal20':
 
-            case 'modal21':
+                    title.textContent = 'Chatbot Development for Customer Support';
+                    description.textContent = ' Create an AI-powered chatbot that assists users with their inquiries in real time.';
+                    technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
+                    break;
 
-                title.textContent = 'AI-Powered Fraud Detection System';
-                description.textContent = 'Develop a system that identifies fraudulent activities using machine learning techniques.';
-                technologies.textContent = 'Technologies Used: Python, Pandas, Statsmodels';
-                break;
+                case 'modal21':
 
-            case 'modal22':
+                    title.textContent = 'AI-Powered Fraud Detection System';
+                    description.textContent = 'Develop a system that identifies fraudulent activities using machine learning techniques.';
+                    technologies.textContent = 'Technologies Used: Python, Pandas, Statsmodels';
+                    break;
 
-                title.textContent = 'Healthcare Predictive Analytics';
-                description.textContent = 'Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans. ';
-                technologies.textContent = 'Technologies Used: Python, Scikit-learn, Matplotlib';
-                break;
+                case 'modal22':
 
-            case 'modal23':
+                    title.textContent = 'Healthcare Predictive Analytics';
+                    description.textContent = 'Use patient data to predict potential diseases, enabling early intervention and personalized treatment plans. ';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, Matplotlib';
+                    break;
 
-                title.textContent = 'Wildfire Detection Using Satellite Images';
-                description.textContent = 'Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.';
-                technologies.textContent = 'Technologies Used: Python, NLTK, Flask';
-                break;
+                case 'modal23':
 
-            case 'modal24':
+                    title.textContent = 'Wildfire Detection Using Satellite Images';
+                    description.textContent = 'Leverage satellite imagery and deep learning to detect and predict wildfire occurrences in vulnerable regions.';
+                    technologies.textContent = 'Technologies Used: Python, NLTK, Flask';
+                    break;
 
-                title.textContent = 'Waste Management Optimization';
-                description.textContent = 'Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution. ';
-                technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
-                break;
+                case 'modal24':
 
-            case 'modal25':
+                    title.textContent = 'Waste Management Optimization';
+                    description.textContent = 'Develop a machine learning model to optimize waste collection schedules based on city data, reducing pollution. ';
+                    technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras';
+                    break;
 
-                title.textContent = 'Traffic Accident Prediction System';
-                description.textContent = 'Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.';
-                technologies.textContent = 'Technologies Used: Python, NLTK, Sumy';
-                break;
+                case 'modal25':
 
-            case 'modal26':
+                    title.textContent = 'Traffic Accident Prediction System';
+                    description.textContent = 'Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.';
+                    technologies.textContent = 'Technologies Used: Python, NLTK, Sumy';
+                    break;
 
-                title.textContent = 'Personalized Learning Recommendation System';
-                description.textContent = 'Create an adaptive learning platform that suggests personalized learning paths based on student performance data.';
-                technologies.textContent = 'Technologies Used: Python, Pandas, Scikit-learn';
-                break;
+                case 'modal26':
 
-            case 'modal27':
+                    title.textContent = 'Personalized Learning Recommendation System';
+                    description.textContent = 'Create an adaptive learning platform that suggests personalized learning paths based on student performance data.';
+                    technologies.textContent = 'Technologies Used: Python, Pandas, Scikit-learn';
+                    break;
 
-                title.textContent = 'AI for Mental Health Analysis';
-                description.textContent = 'Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.';
-                technologies.textContent = 'Technologies Used: Python, OpenCV, Dlib';
-                break;
+                case 'modal27':
 
-            case 'modal28':
+                    title.textContent = 'AI for Mental Health Analysis';
+                    description.textContent = 'Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.';
+                    technologies.textContent = 'Technologies Used: Python, OpenCV, Dlib';
+                    break;
 
-                title.textContent = 'AI-Driven Disaster Relief Supply Chain Optimization ';
-                description.textContent = 'Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time. ';
-                technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
-                break;
+                case 'modal28':
 
-            case 'modal29':
+                    title.textContent = 'AI-Driven Disaster Relief Supply Chain Optimization ';
+                    description.textContent = 'Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time. ';
+                    technologies.textContent = 'Technologies Used: Python, OpenCV, TensorFlow';
+                    break;
 
-                title.textContent = 'Urban Sound Classification';
-                description.textContent = 'Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.';
-                technologies.textContent = 'Technologies Used: Python, Scikit-learn, Flask';
-                break;
-            
-            case 'modal30':
-                title.textContent = 'Energy Consumption Prediction for Smart Homes';
-                description.textContent = 'Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.';
-                technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
-                break;
-            
-            case 'modal31':
-            
-                title.textContent = 'AI for Personalized Nutrition Plans';
-                description.textContent = 'Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.';
-                technologies.textContent = 'Technologies Used: Python, Gensim, NLTK';
-                break;
-            
-            case 'modal32':
+                case 'modal29':
 
-                title.textContent = 'Plastic Waste Classification for Recycling';
-                description.textContent = 'Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.';
-                technologies.textContent = 'Technologies Used: Python, Scikit-learn, TensorFlow';
-                break;
+                    title.textContent = 'Urban Sound Classification';
+                    description.textContent = 'Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, Flask';
+                    break;
 
-            case 'modal33':
-                title.textContent = 'AI-Powered Virtual Therapist';
-                description.textContent = 'Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.';
-                technologies.textContent = 'Technologies Used: Python, OpenAI Gym, TensorFlow';
-                break;
-            
-            case 'modal34':
-                title.textContent = 'AI-Driven Plant Disease Detection';
-                description.textContent = 'Develop an AI model using the PlantVillage dataset and fine-tuned Xception architecture to identify and classify plant diseases.';
-                technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras, OpenCV, NumPy, Matplotlib';
-                break;
-                
-            case 'modal35':
-            title.textContent = 'AI-Powered Crop Rotation Recommendation';
-            description.textContent = 'Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.';
-            technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas, NumPy, Matplotlib';
-            break;
+                case 'modal30':
+                    title.textContent = 'Energy Consumption Prediction for Smart Homes';
+                    description.textContent = 'Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, SQL';
+                    break;
 
-            case 'modal36':
-            title.textContent = 'Gold Price Prediction using Random Forest';
-            description.textContent = 'Build a Random Forest regression model to predict future gold prices based on financial indicators like SPX, USO, SLV, and EUR/USD.';
-            technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn';
-            break;
+                case 'modal31':
 
-            case 'modal39':
-            title.textContent = 'Skill Gap Analyzer using Gemini LLM';
-            description.textContent = 'Develop a web app that identifies skill gaps based on a user\'s current skills and career goals by leveraging LinkedIn data and Google\'s Gemini API.';
-            technologies.textContent = 'Technologies Used: Flask, Python, Proxycurl API, Google Gemini API, HTML, CSS, JavaScript';
-            break;
+                    title.textContent = 'AI for Personalized Nutrition Plans';
+                    description.textContent = 'Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.';
+                    technologies.textContent = 'Technologies Used: Python, Gensim, NLTK';
+                    break;
+
+                case 'modal32':
+
+                    title.textContent = 'Plastic Waste Classification for Recycling';
+                    description.textContent = 'Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, TensorFlow';
+                    break;
+
+                case 'modal33':
+                    title.textContent = 'AI-Powered Virtual Therapist';
+                    description.textContent = 'Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.';
+                    technologies.textContent = 'Technologies Used: Python, OpenAI Gym, TensorFlow';
+                    break;
+
+                case 'modal34':
+                    title.textContent = 'AI-Driven Plant Disease Detection';
+                    description.textContent = 'Develop an AI model using the PlantVillage dataset and fine-tuned Xception architecture to identify and classify plant diseases.';
+                    technologies.textContent = 'Technologies Used: Python, TensorFlow, Keras, OpenCV, NumPy, Matplotlib';
+                    break;
+
+                case 'modal35':
+                    title.textContent = 'AI-Powered Crop Rotation Recommendation';
+                    description.textContent = 'Build an AI model using Random Forest to recommend the best crop for the next season based on soil type, moisture, and nutrient levels.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas, NumPy, Matplotlib';
+                    break;
+
+                case 'modal36':
+                    title.textContent = 'Gold Price Prediction using Random Forest';
+                    description.textContent = 'Build a Random Forest regression model to predict future gold prices based on financial indicators like SPX, USO, SLV, and EUR/USD.';
+                    technologies.textContent = 'Technologies Used: Python, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn';
+                    break;
+
+                case 'modal39':
+                    title.textContent = 'Skill Gap Analyzer using Gemini LLM';
+                    description.textContent = 'Develop a web app that identifies skill gaps based on a user\'s current skills and career goals by leveraging LinkedIn data and Google\'s Gemini API.';
+                    technologies.textContent = 'Technologies Used: Flask, Python, Proxycurl API, Google Gemini API, HTML, CSS, JavaScript';
+                    break;
+
+            }
+
+            modal.style.display = 'block';
+
+            // Get the hero content element and its height
+            const heroContent = document.querySelector('.hero-content');
+            const heroHeight = heroContent.offsetHeight;
+
+            // Position the modal in the center of the screen, below the hero content
+            modal.style.display = 'block';
+            modal.style.position = 'fixed';
+            modal.style.left = '50%';
+            modal.style.top = `${heroHeight + 20}px`;
+            modal.style.transform = 'translate(-50%, 0)';
+            modal.style.zIndex = '1000';
+
 
         }
 
-        modal.style.display = 'block';
-
-        // Get the hero content element and its height
-        const heroContent = document.querySelector('.hero-content'); 
-        const heroHeight = heroContent.offsetHeight;
-
-        // Position the modal in the center of the screen, below the hero content
-        modal.style.display = 'block';
-        modal.style.position = 'fixed'; 
-        modal.style.left = '50%'; 
-        modal.style.top = `${heroHeight + 20}px`; 
-        modal.style.transform = 'translate(-50%, 0)'; 
-        modal.style.zIndex = '1000'; 
-
-
-    }
-
-    function closeModal() {
-        const modal = document.getElementById('projectModal');
-        modal.style.display = 'none';
-    }
-    //close model when clicking outside of it
-    window.onclick = function(event){
-        const modal = document.getElementById('projectModal');
-        if (event.target == modal){
-            modal.style.display = "none";
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
         }
-    }
-    const hamburger = document.getElementById('hamburger');
-  const navMenu = document.querySelector('header nav ul');
+        //close model when clicking outside of it
+        window.onclick = function (event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('header nav ul');
 
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-  });
-</script>
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+    </script>
     <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
-    <script src="../script/scroll.js"></script>  
+    <script src="../script/scroll.js"></script>
     <script src="../script/script.js"></script>
     <script src="../script/projects.js"></script>
     <!-- js for mouse cursor trail effect -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-     const coords = { x: 0, y: 0 };
-     const circles = document.querySelectorAll(".circle");
-   
-     circles.forEach(function (circle) {
-       circle.x = 0;
-       circle.y = 0;
-     });
-   
-     window.addEventListener("mousemove", function (e) {
-       coords.x = e.pageX;
-       coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
-     });
-   
-     function animateCircles() {
-       let x = coords.x;
-       let y = coords.y;
-   
-       circles.forEach(function (circle, index) {
-         circle.style.left = `${x - 12}px`;
-         circle.style.top = `${y - 12}px`;
-         circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
-   
-         const nextCircle = circles[index + 1] || circles[0];
-         circle.x = x;
-         circle.y = y;
-   
-         x += (nextCircle.x - x) * 0.3;
-         y += (nextCircle.y - y) * 0.3;
-       });
-   
-       requestAnimationFrame(animateCircles);
-     }
-   
-     animateCircles();
-   });
-     </script>
+            const coords = { x: 0, y: 0 };
+            const circles = document.querySelectorAll(".circle");
+
+            circles.forEach(function (circle) {
+                circle.x = 0;
+                circle.y = 0;
+            });
+
+            window.addEventListener("mousemove", function (e) {
+                coords.x = e.pageX;
+                coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+            });
+
+            function animateCircles() {
+                let x = coords.x;
+                let y = coords.y;
+
+                circles.forEach(function (circle, index) {
+                    circle.style.left = `${x - 12}px`;
+                    circle.style.top = `${y - 12}px`;
+                    circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+
+                    const nextCircle = circles[index + 1] || circles[0];
+                    circle.x = x;
+                    circle.y = y;
+
+                    x += (nextCircle.x - x) * 0.3;
+                    y += (nextCircle.y - y) * 0.3;
+                });
+
+                requestAnimationFrame(animateCircles);
+            }
+
+            animateCircles();
+        });
+    </script>
 
     <!-- Botpress Chat Scripts -->
-  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-  <script>
-    // Get the current year
-    const currentYear = new Date().getFullYear();
-    
-    // Update the HTML content
-    document.getElementById("current-year").textContent = currentYear;
-</script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
 </body>
+
 </html>

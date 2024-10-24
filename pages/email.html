@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../image/ml-fusion-lab-logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ML Fusion Labs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/scroll.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background-container {
+            background-color: #505050;
+            padding: 50px;
+            max-width: 100%;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            padding: 25px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2,
+        h3 {
+            color: #4c4c84;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #4c4c84;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0d47a1;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <nav>
+            <div class="logo">
+                <h1><img src="../image/ml-fusion-lab-logo.jpg" alt="logo" width="100" height="100" /></h1>
+            </div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../pages/courses.html">Courses</a></li>
+                <li><a href="../pages/projects.html">Projects</a></li>
+                <li><a href="../pages/about.html">About Us</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/Testimonial.html">Testimonial</a></li>
+                <div id="themeSwitch" class="theme-switch">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+                        <img src="../Assets/sun.png" class="theme-btn">
+                        <img src="../Assets/moon.png" class="theme-btn">
+                        <span class="ball"></span>
+                    </label>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="background-container">
+        <div class="contact-container">
+            <div class="form-header">
+                <h2>Contact Us</h2>
+                <p>Have a question or need help? Send us a message and we will get back to you shortly.</p>
+            </div>
+
+            <form action="/submit-form" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+            <div class="contact-info">
+                <p>Email us directly at <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a></p>
+                <p>We usually respond within 24-48 hours.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <!-- Footer content remains the same -->
+        <div class="footer-col">
+            <img src="./../image/ml-fusion-lab-logo.jpg" alt="">
+            <p class="footer-p">
+                We are a community-driven platform that aims to provide free, accessible, and high-quality machine
+                learning tutorials, projects, and resources for all.
+            </p>
+            <div class="footer-social">
+                <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">ML Fusion Labs</h4>
+            <a href="#">Business</a>
+            <a href="#">Franchise</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">About Us</h4>
+            <a href="./pages/about.html">About Us</a>
+            <a href="#">Security</a>
+            <a href="./pages/contributor.html">Contributors</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">Contact</h4>
+            <a href="./pages/contact.html">Contact Us</a>
+            <a href="email.html">Email Us</a>
+            <a href="./pages/privacy.html">Privacy Policy</a>
+            <a href="./pages/terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <div class="footer-bar">
+        &copy; 2024 ML Fusion Labs | All Rights Reserved
+        <button id="scrollTopBtn" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+</body>
+
+</html>
