@@ -229,6 +229,8 @@
     <div class="circle"></div>
     <div class="circle"></div>
     <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
   </div>
 
   <header style="width: 100.8%;">
@@ -400,26 +402,46 @@
   <!-- CSS for FAQ Section -->
   <style>
     .faq {
-      padding: 20px;
+      padding: 40px 20px;
       background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 20px 0;
     }
 
     .faq h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #333;
     }
 
     .faq-item {
       margin: 15px 0;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none; /* Remove border for the last item */
     }
 
     .faq-item h3 {
       cursor: pointer;
       color: #007bff;
+      font-size: 1.5em;
+      transition: color 0.3s;
+    }
+
+    .faq-item h3:hover {
+      color: #0056b3; /* Darker blue on hover */
     }
 
     .faq-item p {
-      margin: 5px 0 15px 0;
+      margin: 5px 0 0 0;
+      color: #555;
+      font-size: 1em;
+      line-height: 1.5;
     }
   </style>
 
