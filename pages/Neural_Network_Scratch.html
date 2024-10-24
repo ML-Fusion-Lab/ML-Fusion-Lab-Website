@@ -1,0 +1,2829 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Network From Scratch</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+body.dark-mode .project-container {
+  background-color:#1a1a1a;
+  color: white;
+}
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 1.4em;
+    }
+
+    h5,
+    h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+
+    h6 {
+      font-weight: normal;
+    }
+
+    ol,
+    ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+
+    li>ol,
+    li>ul {
+      margin-top: 0;
+    }
+
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+
+    .sourceCode {
+      background-color: transparent;
+      overflow: visible;
+    }
+
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    table caption {
+      margin-bottom: 0.75em;
+    }
+
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+
+    #TOC li {
+      list-style: none;
+    }
+
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+
+    #TOC>ul {
+      padding-left: 0;
+    }
+
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    ul.task-list {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+
+    pre>code.sourceCode {
+      white-space: pre;
+      position: relative;
+    }
+
+    pre>code.sourceCode>span {
+      display: inline-block;
+      line-height: 1.25;
+    }
+
+    pre>code.sourceCode>span:empty {
+      height: 1.2em;
+    }
+
+    .sourceCode {
+      overflow: visible;
+    }
+
+    code.sourceCode>span {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    div.sourceCode {
+      margin: 1em 0;
+    }
+
+    pre.sourceCode {
+      margin: 0;
+    }
+
+    @media screen {
+      div.sourceCode {
+        overflow: auto;
+      }
+    }
+
+    @media print {
+      pre>code.sourceCode {
+        white-space: pre-wrap;
+      }
+
+      pre>code.sourceCode>span {
+        text-indent: -5em;
+        padding-left: 5em;
+      }
+    }
+
+    pre.numberSource code {
+      counter-reset: source-line 0;
+    }
+
+    pre.numberSource code>span {
+      position: relative;
+      left: -4em;
+      counter-increment: source-line;
+    }
+
+    pre.numberSource code>span>a:first-child::before {
+      content: counter(source-line);
+      position: relative;
+      left: -1em;
+      text-align: right;
+      vertical-align: baseline;
+      border: none;
+      display: inline-block;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: 0 4px;
+      width: 4em;
+      color: #aaaaaa;
+    }
+
+    pre.numberSource {
+      margin-left: 3em;
+      border-left: 1px solid #aaaaaa;
+      padding-left: 4px;
+    }
+
+    div.sourceCode {}
+
+    @media screen {
+      pre>code.sourceCode>span>a:first-child::before {
+        text-decoration: underline;
+      }
+    }
+
+    code span.al {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Alert */
+    code span.an {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Annotation */
+    code span.at {
+      color: #7d9029;
+    }
+
+    /* Attribute */
+    code span.bn {
+      color: #40a070;
+    }
+
+    /* BaseN */
+    code span.bu {
+      color: #008000;
+    }
+
+    /* BuiltIn */
+    code span.cf {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* ControlFlow */
+    code span.ch {
+      color: #4070a0;
+    }
+
+    /* Char */
+    code span.cn {
+      color: #880000;
+    }
+
+    /* Constant */
+    code span.co {
+      color: #60a0b0;
+      font-style: italic;
+    }
+
+    /* Comment */
+    code span.cv {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* CommentVar */
+    code span.do {
+      color: #ba2121;
+      font-style: italic;
+    }
+
+    /* Documentation */
+    code span.dt {
+      color: #902000;
+    }
+
+    /* DataType */
+    code span.dv {
+      color: #40a070;
+    }
+
+    /* DecVal */
+    code span.er {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Error */
+    code span.ex {}
+
+    /* Extension */
+    code span.fl {
+      color: #40a070;
+    }
+
+    /* Float */
+    code span.fu {
+      color: #06287e;
+    }
+
+    /* Function */
+    code span.im {
+      color: #008000;
+      font-weight: bold;
+    }
+
+    /* Import */
+    code span.in {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Information */
+    code span.kw {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* Keyword */
+    code span.op {
+      color: #666666;
+    }
+
+    /* Operator */
+    code span.ot {
+      color: #007020;
+    }
+
+    /* Other */
+    code span.pp {
+      color: #bc7a00;
+    }
+
+    /* Preprocessor */
+    code span.sc {
+      color: #4070a0;
+    }
+
+    /* SpecialChar */
+    code span.ss {
+      color: #bb6688;
+    }
+
+    /* SpecialString */
+    code span.st {
+      color: #4070a0;
+    }
+
+    /* String */
+    code span.va {
+      color: #19177c;
+    }
+
+    /* Variable */
+    code span.vs {
+      color: #4070a0;
+    }
+
+    /* VerbatimString */
+    code span.wa {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Warning */
+    .display.math {
+      display: block;
+      text-align: center;
+      margin: 0.5rem auto;
+    }
+    body.dark-mode p {
+  margin: 1em 0;
+}
+
+body.dark-mode a {
+  color: #e0e0e0;
+}
+
+body.dark-mode a:visited {
+  color: #cccccc;
+}
+
+body.dark-mode img {
+  max-width: 100%;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #f0f0f0;
+}
+
+body.dark-mode h5,
+body.dark-mode h6 {
+  font-size: 1em;
+  font-style: italic;
+  color: #cccccc;
+}
+
+body.dark-mode h6 {
+  font-weight: normal;
+}
+
+body.dark-mode ol,
+body.dark-mode ul {
+  padding-left: 1.7em;
+  margin-top: 1em;
+  color: #dddddd;
+}
+
+body.dark-mode li > ol,
+body.dark-mode li > ul {
+  margin-top: 0;
+}
+
+body.dark-mode blockquote {
+  margin: 1em 0 1em 1.7em;
+  padding-left: 1em;
+  border-left: 2px solid #444444;
+  color: #bbbbbb;
+}
+
+body.dark-mode code {
+  font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+  font-size: 85%;
+  margin: 0;
+  color: #eeeeee;
+  background-color: #333333;
+}
+
+body.dark-mode pre {
+  margin: 1em 0;
+  overflow: auto;
+  background-color: #2a2a2a;
+}
+
+body.dark-mode pre code {
+  padding: 0;
+  overflow: visible;
+  overflow-wrap: normal;
+}
+
+body.dark-mode .sourceCode {
+  background-color: transparent;
+  overflow: visible;
+}
+
+body.dark-mode hr {
+  background-color: #444444;
+  border: none;
+  height: 1px;
+  margin: 1em 0;
+}
+
+body.dark-mode table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #e0e0e0;
+}
+
+body.dark-mode table caption {
+  margin-bottom: 0.75em;
+  color: #cccccc;
+}
+
+body.dark-mode tbody {
+  margin-top: 0.5em;
+  border-top: 1px solid #444444;
+  border-bottom: 1px solid #444444;
+}
+
+body.dark-mode th {
+  border-top: 1px solid #444444;
+  padding: 0.25em 0.5em;
+  color: #f0f0f0;
+}
+
+body.dark-mode td {
+  padding: 0.125em 0.5em;
+  color: #dddddd;
+}
+
+body.dark-mode header {
+  margin-bottom: 4em;
+  text-align: center;
+  color: #ffffff;
+}
+
+body.dark-mode #TOC li {
+  list-style: none;
+}
+
+body.dark-mode #TOC ul {
+  padding-left: 1.3em;
+}
+
+body.dark-mode #TOC > ul {
+  padding-left: 0;
+}
+
+body.dark-mode #TOC a:not(:hover) {
+  text-decoration: none;
+}
+
+body.dark-mode code {
+  white-space: pre-wrap;
+}
+
+body.dark-mode span.smallcaps {
+  font-variant: small-caps;
+  color: #f0f0f0;
+}
+
+body.dark-mode div.columns {
+  display: flex;
+  gap: min(4vw, 1.5em);
+}
+
+body.dark-mode div.column {
+  flex: auto;
+  overflow-x: auto;
+}
+
+body.dark-mode div.hanging-indent {
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+body.dark-mode ul.task-list {
+  list-style: none;
+}
+
+body.dark-mode ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+
+body.dark-mode pre > code.sourceCode {
+  white-space: pre;
+  position: relative;
+}
+
+body.dark-mode pre > code.sourceCode > span {
+  display: inline-block;
+  line-height: 1.25;
+}
+
+body.dark-mode pre > code.sourceCode > span:empty {
+  height: 1.2em;
+}
+
+body.dark-mode .sourceCode {
+  overflow: visible;
+}
+
+body.dark-mode code.sourceCode > span {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body.dark-mode div.sourceCode {
+  margin: 1em 0;
+}
+
+body.dark-mode pre.sourceCode {
+  margin: 0;
+}
+
+@media screen {
+  body.dark-mode div.sourceCode {
+    overflow: auto;
+  }
+}
+
+@media print {
+  body.dark-mode pre > code.sourceCode {
+    white-space: pre-wrap;
+  }
+
+  body.dark-mode pre > code.sourceCode > span {
+    text-indent: -5em;
+    padding-left: 5em;
+  }
+}
+
+body.dark-mode pre.numberSource code {
+  counter-reset: source-line 0;
+}
+
+body.dark-mode pre.numberSource code > span {
+  position: relative;
+  left: -4em;
+  counter-increment: source-line;
+}
+
+body.dark-mode pre.numberSource code > span > a:first-child::before {
+  content: counter(source-line);
+  position: relative;
+  left: -1em;
+  text-align: right;
+  vertical-align: baseline;
+  border: none;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0 4px;
+  width: 4em;
+  color: #aaaaaa;
+}
+
+body.dark-mode pre.numberSource {
+  margin-left: 3em;
+  border-left: 1px solid #aaaaaa;
+  padding-left: 4px;
+}
+
+@media screen {
+  body.dark-mode pre > code.sourceCode > span > a:first-child::before {
+    text-decoration: underline;
+  }
+}
+
+body.dark-mode code span.al {
+  color: #ff6666;
+  font-weight: bold;
+}
+
+body.dark-mode code span.an {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.at {
+  color: #8bbf50;
+}
+
+body.dark-mode code span.bn {
+  color: #60d070;
+}
+
+body.dark-mode code span.bu {
+  color: #00b000;
+}
+
+body.dark-mode code span.cf {
+  color: #009040;
+  font-weight: bold;
+}
+
+body.dark-mode code span.ch {
+  color: #5080c0;
+}
+
+body.dark-mode code span.cn {
+  color: #ff6666;
+}
+
+body.dark-mode code span.co {
+  color: #80c0d0;
+  font-style: italic;
+}
+
+body.dark-mode code span.cv {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.do {
+  color: #d05a5a;
+  font-style: italic;
+}
+
+body.dark-mode code span.dt {
+  color: #b04030;
+}
+
+body.dark-mode code span.dv {
+  color: #60d070;
+}
+
+body.dark-mode code span.er {
+  color: #ff3333;
+  font-weight: bold;
+}
+body.dark-mode code span.ex {}
+
+body.dark-mode code span.fl {
+  color: #60d070;
+}
+
+body.dark-mode code span.fu {
+  color: #0848a0;
+}
+
+body.dark-mode code span.im {
+  color: #00b000;
+  font-weight: bold;
+}
+
+body.dark-mode code span.in {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.kw {
+  color: #009040;
+  font-weight: bold;
+}
+
+body.dark-mode code span.op {
+  color: #999999;
+}
+
+body.dark-mode code span.ot {
+  color: #009040;
+}
+
+body.dark-mode code span.pp {
+  color: #e08a00;
+}
+
+body.dark-mode code span.sc {
+  color: #5080c0;
+}
+
+body.dark-mode code span.ss {
+  color: #d06688;
+}
+
+body.dark-mode code span.st {
+  color: #5080c0;
+}
+
+body.dark-mode code span.va {
+  color: #28287c;
+}
+
+body.dark-mode code span.vs {
+  color: #5080c0;
+}
+
+body.dark-mode code span.wa {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode .display.math {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+  color: #f0f0f0;
+}
+
+    /* css for mouse cursor trail effect */
+.circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+    transition: transform 0.1s, left 0.1s, top 0.1s;
+  }
+  
+  .circle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+  }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml-fusion-lab-logo.png" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+    <div id="7b44dc82" class="cell markdown">
+      <h2 id="building-neural-networks-from-scratch-in-python" style="font-size: 48px;">Building Neural
+        Networks from Scratch in Python</h2>
+      <p>In this tutorial, we’ll explore how to build a simple neural network
+        from the ground up using Python. Neural networks are the backbone of
+        deep learning models and power a variety of applications from image
+        classification to natural language processing.</p>
+      <p>Our goal here is to understand the underlying mechanics of a neural
+        network and implement one from scratch—without relying on high-level
+        libraries like TensorFlow or PyTorch. By the end of this tutorial,
+        you'll have a solid understanding of how neural networks work, including
+        key elements like activation functions (ReLU, Sigmoid), forward
+        propagation, and backpropagation.</p>
+      <p>We'll also perform some basic data analysis to prepare our dataset
+        and evaluate the performance of our model. Let's get started!</p>
+      <h2 id="prerequisites">Prerequisites</h2>
+      <p>To follow along, you should have a basic understanding of Python and
+        fundamental concepts in machine learning such as:</p>
+      <ul>
+        <li>Matrix operations</li>
+        <li>Gradient descent</li>
+        <li>Basic statistics (mean, standard deviation)</li>
+      </ul>
+      <h3 id="steps">Steps:</h3>
+      <ol>
+        <li><strong>Data Analysis:</strong> We'll begin by analyzing a simple
+          dataset.</li>
+        <li><strong>Activation Functions:</strong> Next, we'll implement key
+          activation functions like ReLU and Sigmoid.</li>
+        <li><strong>Neural Network Creation:</strong> Finally, we’ll implement a
+          neural network, train it, and evaluate its performance.</li>
+      </ol>
+    </div>
+    <div id="18067f53" class="cell markdown">
+      <h2 id="step-1-importing-libraries-and-loading-the-dataset">Step 1:
+        Importing Libraries and Loading the Dataset</h2>
+    </div>
+    <div id="05e99d85" class="cell markdown">
+      <p>In this step, we’ll import the necessary Python libraries for data
+        analysis, visualization, and machine learning. We’ll also load the
+        breast cancer dataset and preview its structure to understand the data
+        we’ll be working with.</p>
+    </div>
+    <div id="f0949b98" class="cell code" data-execution_count="2"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:06.627774Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:06.627257Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:06.680458Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:06.679066Z&quot;}"
+      data-papermill="{&quot;duration&quot;:6.9369e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:06.682810&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:06.613441&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb1">
+        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;/kaggle/input/breast-cancer-dataset/breast-cancer.csv&#39;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre>
+      </div>
+      <div class="output execute_result" data-execution_count="2">
+        <div>
+          <style scoped>
+            .dataframe tbody tr th:only-of-type {
+              vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+              vertical-align: top;
+            }
+
+            .dataframe thead th {
+              text-align: right;
+            }
+          </style>
+          <table border="1" class="dataframe">
+            <thead>
+              <tr style="text-align: right;">
+                <th></th>
+                <th>id</th>
+                <th>diagnosis</th>
+                <th>radius_mean</th>
+                <th>texture_mean</th>
+                <th>perimeter_mean</th>
+                <th>area_mean</th>
+                <th>smoothness_mean</th>
+                <th>compactness_mean</th>
+                <th>concavity_mean</th>
+                <th>concave points_mean</th>
+                <th>...</th>
+                <th>radius_worst</th>
+                <th>texture_worst</th>
+                <th>perimeter_worst</th>
+                <th>area_worst</th>
+                <th>smoothness_worst</th>
+                <th>compactness_worst</th>
+                <th>concavity_worst</th>
+                <th>concave points_worst</th>
+                <th>symmetry_worst</th>
+                <th>fractal_dimension_worst</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>0</th>
+                <td>842302</td>
+                <td>M</td>
+                <td>17.99</td>
+                <td>10.38</td>
+                <td>122.80</td>
+                <td>1001.0</td>
+                <td>0.11840</td>
+                <td>0.27760</td>
+                <td>0.3001</td>
+                <td>0.14710</td>
+                <td>...</td>
+                <td>25.38</td>
+                <td>17.33</td>
+                <td>184.60</td>
+                <td>2019.0</td>
+                <td>0.1622</td>
+                <td>0.6656</td>
+                <td>0.7119</td>
+                <td>0.2654</td>
+                <td>0.4601</td>
+                <td>0.11890</td>
+              </tr>
+              <tr>
+                <th>1</th>
+                <td>842517</td>
+                <td>M</td>
+                <td>20.57</td>
+                <td>17.77</td>
+                <td>132.90</td>
+                <td>1326.0</td>
+                <td>0.08474</td>
+                <td>0.07864</td>
+                <td>0.0869</td>
+                <td>0.07017</td>
+                <td>...</td>
+                <td>24.99</td>
+                <td>23.41</td>
+                <td>158.80</td>
+                <td>1956.0</td>
+                <td>0.1238</td>
+                <td>0.1866</td>
+                <td>0.2416</td>
+                <td>0.1860</td>
+                <td>0.2750</td>
+                <td>0.08902</td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td>84300903</td>
+                <td>M</td>
+                <td>19.69</td>
+                <td>21.25</td>
+                <td>130.00</td>
+                <td>1203.0</td>
+                <td>0.10960</td>
+                <td>0.15990</td>
+                <td>0.1974</td>
+                <td>0.12790</td>
+                <td>...</td>
+                <td>23.57</td>
+                <td>25.53</td>
+                <td>152.50</td>
+                <td>1709.0</td>
+                <td>0.1444</td>
+                <td>0.4245</td>
+                <td>0.4504</td>
+                <td>0.2430</td>
+                <td>0.3613</td>
+                <td>0.08758</td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <td>84348301</td>
+                <td>M</td>
+                <td>11.42</td>
+                <td>20.38</td>
+                <td>77.58</td>
+                <td>386.1</td>
+                <td>0.14250</td>
+                <td>0.28390</td>
+                <td>0.2414</td>
+                <td>0.10520</td>
+                <td>...</td>
+                <td>14.91</td>
+                <td>26.50</td>
+                <td>98.87</td>
+                <td>567.7</td>
+                <td>0.2098</td>
+                <td>0.8663</td>
+                <td>0.6869</td>
+                <td>0.2575</td>
+                <td>0.6638</td>
+                <td>0.17300</td>
+              </tr>
+              <tr>
+                <th>4</th>
+                <td>84358402</td>
+                <td>M</td>
+                <td>20.29</td>
+                <td>14.34</td>
+                <td>135.10</td>
+                <td>1297.0</td>
+                <td>0.10030</td>
+                <td>0.13280</td>
+                <td>0.1980</td>
+                <td>0.10430</td>
+                <td>...</td>
+                <td>22.54</td>
+                <td>16.67</td>
+                <td>152.20</td>
+                <td>1575.0</td>
+                <td>0.1374</td>
+                <td>0.2050</td>
+                <td>0.4000</td>
+                <td>0.1625</td>
+                <td>0.2364</td>
+                <td>0.07678</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>5 rows × 32 columns</p>
+        </div>
+      </div>
+    </div>
+    <div id="576d23be" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ul>
+        <li><strong>Libraries</strong>: The code imports several key libraries:
+          <ul>
+            <li><strong>Seaborn</strong> and <strong>Matplotlib</strong> are for
+              creating visualizations.</li>
+            <li><strong>NumPy</strong> helps with numerical operations, especially
+              handling arrays and matrices (important for neural networks).</li>
+            <li><strong>Pandas</strong> allows us to load and manipulate structured
+              data like CSV files.</li>
+            <li><strong>Plotly</strong> is useful for creating interactive
+              visualizations.</li>
+            <li><strong>Scikit-learn</strong> provides tools for data preprocessing
+              and evaluating model performance.</li>
+          </ul>
+        </li>
+        <li><strong>Loading the Dataset</strong>: The <code>pd.read_csv()</code>
+          function reads the breast cancer dataset from a CSV file into a
+          DataFrame (<code>df</code>). This is followed by <code>df.head()</code>,
+          which displays the first five rows of the dataset to give a preview of
+          the data structure, such as column names and sample values.</li>
+      </ul>
+    </div>
+    <div id="e29b7316" class="cell markdown">
+      <h2 id="step-2-visualizing-data-and-preparing-for-analysis">Step 2:
+        Visualizing Data and Preparing for Analysis</h2>
+    </div>
+    <div id="f0d7bce2" class="cell code" data-execution_count="9"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:08.278730Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:08.278339Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:08.353234Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:08.351632Z&quot;}"
+      data-papermill="{&quot;duration&quot;:9.31e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:08.355468&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:08.262368&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb2">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>px.scatter(data_frame<span class="op">=</span>df,x<span class="op">=</span><span class="st">&#39;symmetry_worst&#39;</span>,color<span class="op">=</span><span class="st">&#39;diagnosis&#39;</span>,color_discrete_sequence<span class="op">=</span>[<span class="st">&#39;#05445E&#39;</span>,<span class="st">&#39;#75E6DA&#39;</span>])</span></code></pre>
+      </div>
+      <div class="output display_data">
+        <div>
+          <div id="bbc3c1f2-ce28-4472-a1b9-9dedb1c1b8ff" class="plotly-graph-div" style="height:525px; width:100%;">
+
+            <img src="../Assets/projectpics/newplot.png" alt="">
+          </div>
+
+        </div>
+      </div>
+      <div id="62786b2e" class="cell code" data-execution_count="12"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:08.601513Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:08.601188Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:08.629126Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:08.628146Z&quot;}"
+        data-papermill="{&quot;duration&quot;:4.625e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:08.631167&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:08.584917&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb3">
+          <pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;/kaggle/input/breast-cancer-dataset/breast-cancer.csv&#39;</span>)     </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre>
+        </div>
+        <div class="output execute_result" data-execution_count="12">
+          <div>
+            <style scoped>
+              .dataframe tbody tr th:only-of-type {
+                vertical-align: middle;
+              }
+
+              .dataframe tbody tr th {
+                vertical-align: top;
+              }
+
+              .dataframe thead th {
+                text-align: right;
+              }
+            </style>
+            <table border="1" class="dataframe">
+              <thead>
+                <tr style="text-align: right;">
+                  <th></th>
+                  <th>id</th>
+                  <th>diagnosis</th>
+                  <th>radius_mean</th>
+                  <th>texture_mean</th>
+                  <th>perimeter_mean</th>
+                  <th>area_mean</th>
+                  <th>smoothness_mean</th>
+                  <th>compactness_mean</th>
+                  <th>concavity_mean</th>
+                  <th>concave points_mean</th>
+                  <th>...</th>
+                  <th>radius_worst</th>
+                  <th>texture_worst</th>
+                  <th>perimeter_worst</th>
+                  <th>area_worst</th>
+                  <th>smoothness_worst</th>
+                  <th>compactness_worst</th>
+                  <th>concavity_worst</th>
+                  <th>concave points_worst</th>
+                  <th>symmetry_worst</th>
+                  <th>fractal_dimension_worst</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>0</th>
+                  <td>842302</td>
+                  <td>M</td>
+                  <td>17.99</td>
+                  <td>10.38</td>
+                  <td>122.80</td>
+                  <td>1001.0</td>
+                  <td>0.11840</td>
+                  <td>0.27760</td>
+                  <td>0.3001</td>
+                  <td>0.14710</td>
+                  <td>...</td>
+                  <td>25.38</td>
+                  <td>17.33</td>
+                  <td>184.60</td>
+                  <td>2019.0</td>
+                  <td>0.1622</td>
+                  <td>0.6656</td>
+                  <td>0.7119</td>
+                  <td>0.2654</td>
+                  <td>0.4601</td>
+                  <td>0.11890</td>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <td>842517</td>
+                  <td>M</td>
+                  <td>20.57</td>
+                  <td>17.77</td>
+                  <td>132.90</td>
+                  <td>1326.0</td>
+                  <td>0.08474</td>
+                  <td>0.07864</td>
+                  <td>0.0869</td>
+                  <td>0.07017</td>
+                  <td>...</td>
+                  <td>24.99</td>
+                  <td>23.41</td>
+                  <td>158.80</td>
+                  <td>1956.0</td>
+                  <td>0.1238</td>
+                  <td>0.1866</td>
+                  <td>0.2416</td>
+                  <td>0.1860</td>
+                  <td>0.2750</td>
+                  <td>0.08902</td>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>84300903</td>
+                  <td>M</td>
+                  <td>19.69</td>
+                  <td>21.25</td>
+                  <td>130.00</td>
+                  <td>1203.0</td>
+                  <td>0.10960</td>
+                  <td>0.15990</td>
+                  <td>0.1974</td>
+                  <td>0.12790</td>
+                  <td>...</td>
+                  <td>23.57</td>
+                  <td>25.53</td>
+                  <td>152.50</td>
+                  <td>1709.0</td>
+                  <td>0.1444</td>
+                  <td>0.4245</td>
+                  <td>0.4504</td>
+                  <td>0.2430</td>
+                  <td>0.3613</td>
+                  <td>0.08758</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>84348301</td>
+                  <td>M</td>
+                  <td>11.42</td>
+                  <td>20.38</td>
+                  <td>77.58</td>
+                  <td>386.1</td>
+                  <td>0.14250</td>
+                  <td>0.28390</td>
+                  <td>0.2414</td>
+                  <td>0.10520</td>
+                  <td>...</td>
+                  <td>14.91</td>
+                  <td>26.50</td>
+                  <td>98.87</td>
+                  <td>567.7</td>
+                  <td>0.2098</td>
+                  <td>0.8663</td>
+                  <td>0.6869</td>
+                  <td>0.2575</td>
+                  <td>0.6638</td>
+                  <td>0.17300</td>
+                </tr>
+                <tr>
+                  <th>4</th>
+                  <td>84358402</td>
+                  <td>M</td>
+                  <td>20.29</td>
+                  <td>14.34</td>
+                  <td>135.10</td>
+                  <td>1297.0</td>
+                  <td>0.10030</td>
+                  <td>0.13280</td>
+                  <td>0.1980</td>
+                  <td>0.10430</td>
+                  <td>...</td>
+                  <td>22.54</td>
+                  <td>16.67</td>
+                  <td>152.20</td>
+                  <td>1575.0</td>
+                  <td>0.1374</td>
+                  <td>0.2050</td>
+                  <td>0.4000</td>
+                  <td>0.1625</td>
+                  <td>0.2364</td>
+                  <td>0.07678</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>5 rows × 32 columns</p>
+          </div>
+        </div>
+      </div>
+      <div id="6187a453" class="cell code" data-execution_count="16"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:08.917854Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:08.917466Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:11.848936Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:11.848058Z&quot;}"
+        data-papermill="{&quot;duration&quot;:2.95307,&quot;end_time&quot;:&quot;2023-03-11T12:43:11.853661&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:08.900591&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb4">
+          <pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">&#39;id&#39;</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>) <span class="co">#drop redundant columns</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;diagnosis&#39;</span>] <span class="op">=</span> (df[<span class="st">&#39;diagnosis&#39;</span>] <span class="op">==</span> <span class="st">&#39;M&#39;</span>).astype(<span class="bu">int</span>) <span class="co">#encode the label into 1/0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df.corr()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr, cmap<span class="op">=</span><span class="st">&#39;mako_r&#39;</span>,annot<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+        </div>
+        <div class="output display_data">
+          <p><img src="../Assets/projectpics/confusion.png" /></p>
+        </div>
+      </div>
+      <div id="d81006c9" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li>
+            <p><strong>Scatter Plot (<code>px.scatter</code>)</strong>: As
+              explained earlier, this visualizes the relationship between the feature
+              <code>symmetry_worst</code> and the diagnosis of the tumor (benign or
+              malignant). This helps us observe how symmetry affects
+              diagnosis.
+            </p>
+          </li>
+          <li>
+            <p><strong>Dropping Redundant Columns
+                (<code>df.drop</code>)</strong>: The <code>id</code> column is not
+              useful for the model as it only serves as a unique identifier for each
+              row. By dropping this column, we remove unnecessary data.</p>
+          </li>
+          <li>
+            <p><strong>Encoding the Target Label
+                (<code>df['diagnosis'] = (df['diagnosis'] == 'M').astype(int)</code>)</strong>:
+              The <code>diagnosis</code> column is converted from a categorical
+              variable ('M' for Malignant, 'B' for Benign) into a binary numerical
+              variable:</p>
+            <ul>
+              <li><code>1</code> for Malignant</li>
+              <li><code>0</code> for Benign This is crucial for training the neural
+                network, which requires numerical inputs and outputs.</li>
+            </ul>
+          </li>
+          <li>
+            <p><strong>Correlation Matrix (<code>df.corr()</code>)</strong>: We
+              calculate the correlation matrix to examine the linear relationships
+              between all features. This gives us a better understanding of how
+              different features interact with one another.</p>
+          </li>
+          <li>
+            <p><strong>Heatmap (<code>sns.heatmap</code>)</strong>: The heatmap
+              visually represents the correlation matrix, where:</p>
+            <ul>
+              <li>Strong correlations (positive or negative) are more intense in
+                color.</li>
+              <li>This helps identify which features are strongly correlated with the
+                target (<code>diagnosis</code>) and could be useful for model
+                training.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>This step ensures our data is clean, encoded properly, and ready for
+          building the neural network while providing insights through
+          visualization.</p>
+      </div>
+      <div id="24b67fac" class="cell markdown">
+        <h2 id="step-3-selecting-relevant-features-for-the-neural-network">Step
+          3: Selecting Relevant Features for the Neural Network</h2>
+      </div>
+      <div id="5ac7c46b" class="cell markdown">
+        <p>In this step, we calculate the correlation between features and the
+          target variable (diagnosis). We then filter and select only the features
+          that have a correlation higher than a set threshold (0.2 in this case).
+          This helps us focus on the most relevant features for building our
+          neural network model.</p>
+      </div>
+      <div id="17d6e891" class="cell code" data-execution_count="17"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:11.899626Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:11.898648Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:11.910755Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:11.910132Z&quot;}"
+        data-papermill="{&quot;duration&quot;:3.7962e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:11.912845&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:11.874883&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb5">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the absolute value of the correlation</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cor_target <span class="op">=</span> <span class="bu">abs</span>(corr[<span class="st">&quot;diagnosis&quot;</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select highly correlated features (thresold = 0.2)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>relevant_features <span class="op">=</span> cor_target[cor_target<span class="op">&gt;</span><span class="fl">0.2</span>]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect the names of the features</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [index <span class="cf">for</span> index, value <span class="kw">in</span> relevant_features.iteritems()]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the target variable from the results</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>names.remove(<span class="st">&#39;diagnosis&#39;</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[names].values</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">&#39;diagnosis&#39;</span>].values</span></code></pre>
+        </div>
+        <div class="output stream stdout">
+          <pre><code>[&#39;radius_mean&#39;, &#39;texture_mean&#39;, &#39;perimeter_mean&#39;, &#39;area_mean&#39;, &#39;smoothness_mean&#39;, &#39;compactness_mean&#39;, &#39;concavity_mean&#39;, &#39;concave points_mean&#39;, &#39;symmetry_mean&#39;, &#39;radius_se&#39;, &#39;perimeter_se&#39;, &#39;area_se&#39;, &#39;compactness_se&#39;, &#39;concavity_se&#39;, &#39;concave points_se&#39;, &#39;radius_worst&#39;, &#39;texture_worst&#39;, &#39;perimeter_worst&#39;, &#39;area_worst&#39;, &#39;smoothness_worst&#39;, &#39;compactness_worst&#39;, &#39;concavity_worst&#39;, &#39;concave points_worst&#39;, &#39;symmetry_worst&#39;, &#39;fractal_dimension_worst&#39;]
+</code></pre>
+        </div>
+      </div>
+      <div id="b18bfdec" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li><strong>Absolute Correlation with Target</strong>
+            (<code>cor_target = abs(corr["diagnosis"])</code>):
+            <ul>
+              <li>We compute the absolute value of the correlation between each
+                feature and the target variable (<code>diagnosis</code>). This ensures
+                we consider both positive and negative correlations.</li>
+            </ul>
+          </li>
+          <li><strong>Select Highly Correlated Features</strong>
+            (<code>relevant_features = cor_target[cor_target &gt; 0.2]</code>):
+            <ul>
+              <li>We apply a threshold of 0.2 to filter out features with weak
+                correlations. Only features with a correlation greater than 0.2 are
+                considered relevant for model building.</li>
+            </ul>
+          </li>
+          <li><strong>Extract Feature Names</strong>
+            (<code>names = [index for index, value in relevant_features.iteritems()]</code>):
+            <ul>
+              <li>We extract the names of these highly correlated features and store
+                them in a list called <code>names</code>.</li>
+            </ul>
+          </li>
+          <li><strong>Remove Target from Features</strong>
+            (<code>names.remove('diagnosis')</code>):
+            <ul>
+              <li>Since <code>diagnosis</code> is our target variable, we remove it
+                from the list of features to avoid using it as an input in our
+                model.</li>
+            </ul>
+          </li>
+          <li><strong>Feature Matrix and Target Vector</strong> (<code>X</code>
+            and <code>y</code>):
+            <ul>
+              <li><strong><code>X</code></strong>: The feature matrix contains only
+                the selected features that are highly correlated with the target.</li>
+              <li><strong><code>y</code></strong>: The target vector holds the encoded
+                diagnosis labels (1 for malignant, 0 for benign).</li>
+            </ul>
+          </li>
+        </ul>
+        <p>By selecting only the most relevant features, we ensure that the
+          neural network focuses on important predictors, potentially improving
+          model performance and reducing complexity. This step prepares the
+          feature matrix and target vector for training the model.</p>
+      </div>
+      <div id="36e18338" class="cell markdown">
+        <h2 id="step-4-custom-train-test-split-function">Step 4: Custom
+          Train-Test Split Function</h2>
+      </div>
+      <div id="57187df6" class="cell markdown">
+        <p>In this step, we create a custom function to split the dataset into
+          training and testing sets. This allows us to separate a portion of the
+          data to evaluate our model after training, ensuring that the model
+          generalizes well to unseen data.</p>
+      </div>
+      <div id="c4172a8f" class="cell code" data-execution_count="19"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:12.051565Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:12.050930Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:12.058073Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:12.057269Z&quot;}"
+        data-papermill="{&quot;duration&quot;:3.2294e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.060363&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.028069&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb7">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_test_split(X, y, random_state<span class="op">=</span><span class="dv">41</span>, test_size<span class="op">=</span><span class="fl">0.2</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Splits the data into training and testing sets.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">        X (numpy.ndarray): Features array of shape (n_samples, n_features).</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">        y (numpy.ndarray): Target array of shape (n_samples,).</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">        random_state (int): Seed for the random number generator. Default is 42.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">        test_size (float): Proportion of samples to include in the test set. Default is 0.2.</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Tuple[numpy.ndarray]: A tuple containing X_train, X_test, y_train, y_test.</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get number of samples</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    n_samples <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set the seed for the random number generator</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    np.random.seed(random_state)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shuffle the indices</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    shuffled_indices <span class="op">=</span> np.random.permutation(np.arange(n_samples))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine the size of the test set</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    test_size <span class="op">=</span> <span class="bu">int</span>(n_samples <span class="op">*</span> test_size)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the indices into test and train</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    test_indices <span class="op">=</span> shuffled_indices[:test_size]</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    train_indices <span class="op">=</span> shuffled_indices[test_size:]</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split the features and target arrays into test and train</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    X_train, X_test <span class="op">=</span> X[train_indices], X[test_indices]</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    y_train, y_test <span class="op">=</span> y[train_indices], y[test_indices]</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X_train, X_test, y_train, y_test</span></code></pre>
+        </div>
+      </div>
+      <div id="044a276d" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li><strong>Parameters</strong>:
+            <ul>
+              <li><strong><code>X</code></strong>: The feature matrix.</li>
+              <li><strong><code>y</code></strong>: The target vector.</li>
+              <li><strong><code>random_state</code></strong>: A seed value to ensure
+                reproducibility when shuffling the data.</li>
+              <li><strong><code>test_size</code></strong>: The proportion of the
+                dataset to include in the test set. Here, it's set to 0.2 (20%).</li>
+            </ul>
+          </li>
+          <li><strong>Steps</strong>:
+            <ol>
+              <li><strong>Determine the number of samples</strong>: The variable
+                <code>n_samples</code> holds the number of samples in the dataset, which
+                we get from the shape of <code>X</code>.
+              </li>
+              <li><strong>Set random seed</strong>: We set the random seed with
+                <code>np.random.seed(random_state)</code> to ensure the data is shuffled
+                in the same way each time the function is called.
+              </li>
+              <li><strong>Shuffle the data</strong>: We randomly shuffle the indices
+                of the dataset using <code>np.random.permutation()</code>, ensuring that
+                the data is mixed before splitting.</li>
+              <li><strong>Calculate test size</strong>: The number of samples to
+                include in the test set is calculated as
+                <code>test_size = int(n_samples * test_size)</code>.
+              </li>
+              <li><strong>Split the indices</strong>: We split the shuffled indices
+                into test and training indices. The first <code>test_size</code> indices
+                go into the test set, while the rest go into the training set.</li>
+              <li><strong>Split data</strong>: Finally, we split both <code>X</code>
+                and <code>y</code> based on these indices into <code>X_train</code>,
+                <code>X_test</code>, <code>y_train</code>, and <code>y_test</code>.
+              </li>
+            </ol>
+          </li>
+        </ul>
+        <p>This function allows us to easily partition our data into training
+          and testing sets, a crucial step before building and evaluating machine
+          learning models.</p>
+      </div>
+      <div id="faa1e5b5" class="cell markdown">
+        <h2 id="step-5-scaling-features-and-splitting-the-data">Step 5: Scaling
+          Features and Splitting the Data</h2>
+      </div>
+      <div id="04bb0d66" class="cell markdown">
+        <p>In this step, we first standardize the feature data to ensure that
+          all features contribute equally to the model training. We then split the
+          standardized data into training and testing sets. This is an important
+          preprocessing step to improve the performance of neural networks.</p>
+      </div>
+      <div id="5e50f369" class="cell code" data-execution_count="20"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:12.105151Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:12.104382Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:12.109406Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:12.108385Z&quot;}"
+        data-papermill="{&quot;duration&quot;:2.9422e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.111423&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.082001&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb8">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale(X):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Standardizes the data in the array X.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">        X (numpy.ndarray): Features array of shape (n_samples, n_features).</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">        numpy.ndarray: The standardized features array.</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the mean and standard deviation of each feature</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    mean <span class="op">=</span> np.mean(X, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    std <span class="op">=</span> np.std(X, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Standardize the data</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> (X <span class="op">-</span> mean) <span class="op">/</span> std</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> scale(X)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size <span class="op">=</span> <span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>) <span class="co">#split the  data into traing and validating</span></span></code></pre>
+        </div>
+      </div>
+      <div id="c2ee9435" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li><strong>Feature Scaling (<code>scale(X)</code>)</strong>:
+            <ul>
+              <li><strong>Mean and Standard Deviation Calculation</strong>:
+                <ul>
+                  <li>We calculate the mean and standard deviation for each feature in the
+                    dataset. This is done using <code>np.mean(X, axis=0)</code> and
+                    <code>np.std(X, axis=0)</code>, which computes the mean and standard
+                    deviation across all samples for each feature.
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Standardization</strong>:
+                <ul>
+                  <li>Each feature is standardized using the formula:<br />
+                    [ X' = \frac{X - \text{mean}}{\text{std}} ] This transformation results
+                    in a new feature set where each feature has a mean of 0 and a standard
+                    deviation of 1, making it easier for the neural network to learn.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Data Splitting (<code>train_test_split</code>)</strong>:
+            <ul>
+              <li>We use our custom <code>train_test_split</code> function to split
+                the scaled features (<code>X</code>) and target labels (<code>y</code>)
+                into training and testing datasets.</li>
+              <li><strong><code>test_size=0.2</code></strong> indicates that 20% of
+                the data will be set aside for testing the model after training.</li>
+              <li><strong><code>random_state=42</code></strong> ensures that the data
+                is split consistently across different runs, making results
+                reproducible.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>At this stage, we have a scaled feature set ready for training, along
+          with separate training and testing sets. This prepares us for the
+          subsequent steps in building and evaluating the neural network
+          model.</p>
+      </div>
+      <div id="830c564d" class="cell markdown">
+        <h2 id="step-6-implementing-the-relu-activation-function">Step 6:
+          Implementing the ReLU Activation Function</h2>
+      </div>
+      <div id="73de1641" class="cell markdown">
+        <p>In this step, we implement the Rectified Linear Unit (ReLU)
+          activation function. ReLU is commonly used in neural networks due to its
+          simplicity and effectiveness in introducing non-linearity into the
+          model. It helps the network learn complex patterns by allowing it to
+          better capture relationships in the data.</p>
+      </div>
+      <div id="67c396fc" class="cell code" data-execution_count="22"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:12.334316Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:12.333564Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:12.339208Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:12.337495Z&quot;}"
+        data-papermill="{&quot;duration&quot;:3.0655e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.341320&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.310665&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb9">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(Z):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Implement the ReLU function.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Z -- Output of the linear layer</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    A -- Post-activation parameter</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    cache -- used for backpropagation</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.maximum(<span class="dv">0</span>,Z)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> Z </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A, cache</span></code></pre>
+        </div>
+      </div>
+      <div id="61ef2f00" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li><strong>Parameters</strong>:
+            <ul>
+              <li><strong><code>Z</code></strong>: This is the output from the linear
+                layer of the neural network, which may contain both positive and
+                negative values.</li>
+            </ul>
+          </li>
+          <li><strong>Steps</strong>:
+            <ol>
+              <li><strong>ReLU Computation</strong>:
+                <ul>
+                  <li>The ReLU function is defined as ( A = \max(0, Z) ). It outputs the
+                    input directly if it is positive; otherwise, it outputs zero. This helps
+                    prevent the vanishing gradient problem, allowing for faster
+                    training.</li>
+                </ul>
+              </li>
+              <li><strong>Caching the Input</strong>:
+                <ul>
+                  <li>We store the input <code>Z</code> in a variable called
+                    <code>cache</code>. This is crucial for backpropagation, as we need the
+                    original input to compute gradients during the training process.
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li><strong>Return Values</strong>:
+            <ul>
+              <li><strong><code>A</code></strong>: The output after applying the ReLU
+                activation, which will be passed to the next layer in the network.</li>
+              <li><strong><code>cache</code></strong>: The input <code>Z</code> is
+                returned for use in the backpropagation step.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>By implementing the ReLU activation function, we prepare our neural
+          network to handle non-linear transformations, which are essential for
+          learning complex data patterns.</p>
+      </div>
+      <div id="e9589135" class="cell code" data-execution_count="23"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:12.389838Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:12.389082Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:12.485859Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:12.484719Z&quot;}"
+        data-papermill="{&quot;duration&quot;:0.122672,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.487931&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.365259&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb10">
+          <pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">200</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.line(x<span class="op">=</span>z, y<span class="op">=</span>relu(z)[<span class="dv">0</span>],title<span class="op">=</span><span class="st">&#39;ReLU Function&#39;</span>,template<span class="op">=</span><span class="st">&quot;plotly_dark&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    title_font_color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>), </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>) </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code></pre>
+        </div>
+        <div class="output display_data">
+          <div>
+            <div id="0da02d02-bda7-4ba9-ab36-ffc2c965fe94" class="plotly-graph-div" style="height:525px; width:100%;">
+              <img src="../Assets/projectpics/relu.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="af875cf3" class="cell markdown">
+        <h3 id="key-features-of-the-graph">Key Features of the Graph:</h3>
+        <ol>
+          <li><strong>Axes</strong>:
+            <ul>
+              <li><strong>X-axis</strong>: Represents the input values (( Z )) ranging
+                from -12 to 12.</li>
+              <li><strong>Y-axis</strong>: Represents the output of the ReLU function
+                (( A )) for the corresponding input values.</li>
+            </ul>
+          </li>
+          <li><strong>Behavior of ReLU</strong>:
+            <ul>
+              <li><strong>Negative Inputs</strong>:
+                <ul>
+                  <li>For input values less than 0 (i.e., from -12 to just below 0), the
+                    output of the ReLU function is zero. This is represented by the flat,
+                    horizontal line along the x-axis, indicating that any negative input
+                    yields an output of 0.</li>
+                </ul>
+              </li>
+              <li><strong>Zero Input</strong>:
+                <ul>
+                  <li>At the input value of 0, the output is also 0. The graph touches the
+                    x-axis at this point, indicating the transition point of the
+                    function.</li>
+                </ul>
+              </li>
+              <li><strong>Positive Inputs</strong>:
+                <ul>
+                  <li>For input values greater than 0 (i.e., from 0 to 12), the output of
+                    the ReLU function equals the input. This is shown by the linear portion
+                    of the graph with a slope of 1. For instance, an input of 5 results in
+                    an output of 5, and an input of 10 results in an output of 10.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Graph Characteristics</strong>:
+            <ul>
+              <li><strong>Non-linearity</strong>: The ReLU function introduces
+                non-linearity into the neural network, which is crucial for learning
+                complex patterns.</li>
+              <li><strong>Computational Efficiency</strong>: The function is simple
+                and computationally efficient, as it only requires a maximum comparison.
+                This efficiency contributes to faster training times for neural
+                networks.</li>
+            </ul>
+          </li>
+          <li><strong>Activation Regions</strong>:
+            <ul>
+              <li><strong>Active Region</strong>: The region where ( Z &gt; 0 )
+                represents the active part of the ReLU function, where the model can
+                learn from the input.</li>
+              <li><strong>Inactive Region</strong>: The region where ( Z &lt; 0 ) is
+                inactive, leading to outputs of zero. This characteristic can help
+                reduce the likelihood of the vanishing gradient problem during
+                backpropagation.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div id="18f79176" class="cell markdown"
+        data-papermill="{&quot;duration&quot;:2.2831e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.627911&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.605080&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <h3 id="sigmoid">Sigmoid</h3>
+        <p><strong>The Sigmoid function is a common activation function used in
+            Neural Networks, particularly for binary classification problems. It is
+            represented by the following formula:</strong></p>
+        <p><strong>\begin{equation} f(Z) = \frac{1}{1+e^{-Z}}
+            \end{equation}</strong></p>
+        <p><strong>where <span class="math inline"><em>Z</em></span> is the
+            input to the function.</strong></p>
+        <p><strong>The Sigmoid function maps any real-valued number to a value
+            between 0 and 1, which can be interpreted as a probability. In binary
+            classification problems, we often use the Sigmoid function as the
+            activation function for the output layer of the Neural Network, since it
+            can be used to compute the probability of the input belonging to the
+            positive class.</strong></p>
+      </div>
+      <div id="07dc970f" class="cell markdown">
+        <h2 id="step-7-implementing-the-sigmoid-activation-function">Step 7:
+          Implementing the Sigmoid Activation Function</h2>
+        <p>In this step, we implement the Sigmoid activation function, which is
+          another commonly used activation function in neural networks. The
+          Sigmoid function maps any input value to a range between 0 and 1, making
+          it particularly useful for binary classification problems.</p>
+      </div>
+      <div id="4e9fe3b9" class="cell code" data-execution_count="25"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:12.674246Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:12.673914Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:12.679261Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:12.678214Z&quot;}"
+        data-papermill="{&quot;duration&quot;:3.0424e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.681030&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.650606&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb11">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(Z):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Implement the Sigmoid function.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Arguments:</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Z -- Output of the linear layer</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">    A -- Post-activation parameter</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">    cache -- a python dictionary containing &quot;A&quot; for backpropagation</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>Z))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> Z</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A, cache</span></code></pre>
+        </div>
+      </div>
+      <div id="523329ae" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li><strong>Parameters</strong>:
+            <ul>
+              <li><strong><code>Z</code></strong>: This is the output from the linear
+                layer of the neural network, similar to what we used in the ReLU
+                function.</li>
+            </ul>
+          </li>
+          <li><strong>Steps</strong>:
+            <ol>
+              <li><strong>Sigmoid Computation</strong>:
+                <ul>
+                  <li>The Sigmoid function is defined as ( A = \frac{1}{1 + e^{-Z}} ). It
+                    takes the linear layer output ( Z ) and transforms it into a value ( A )
+                    between 0 and 1. This squashing effect is useful for converting raw
+                    output values into probabilities, especially in binary classification
+                    tasks.</li>
+                </ul>
+              </li>
+              <li><strong>Caching the Input</strong>:
+                <ul>
+                  <li>The input ( Z ) is stored in a variable called <code>cache</code>,
+                    which will be used during the backpropagation step to compute
+                    gradients.</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li><strong>Return Values</strong>:
+            <ul>
+              <li><strong><code>A</code></strong>: The output after applying the
+                Sigmoid activation, which can be interpreted as the predicted
+                probability of the positive class (in binary classification).</li>
+              <li><strong><code>cache</code></strong>: The input ( Z ) is returned for
+                use in backpropagation.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="904c9f5a" class="cell code" data-execution_count="26"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:12.725948Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:12.725422Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:12.774072Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:12.773136Z&quot;}"
+        data-papermill="{&quot;duration&quot;:7.4439e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:12.776737&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:12.702298&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb12">
+          <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">12</span>, <span class="dv">12</span>, <span class="dv">200</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.line(x<span class="op">=</span>z, y<span class="op">=</span>sigmoid(z)[<span class="dv">0</span>],title<span class="op">=</span><span class="st">&#39;Sigmoid Function&#39;</span>,template<span class="op">=</span><span class="st">&quot;plotly_dark&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    title_font_color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>), </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>) </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code></pre>
+        </div>
+        <div class="output display_data">
+          <div>
+            <div id="4f1cb297-9ddb-4a73-abce-2061b9e9f253" class="plotly-graph-div" style="height:525px; width:100%;">
+              <img src="../Assets/projectpics/sigmoid.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="4590f440" class="cell markdown">
+        <h3 id="key-features-of-the-graph">Key Features of the Graph:</h3>
+        <ol>
+          <li><strong>Axes</strong>:
+            <ul>
+              <li><strong>X-axis</strong>: Represents the input values (( Z )),
+                typically ranging from about -6 to 6 for visualization.</li>
+              <li><strong>Y-axis</strong>: Represents the output of the Sigmoid
+                function (( A )), which ranges between 0 and 1.</li>
+            </ul>
+          </li>
+          <li><strong>Shape of the Sigmoid Curve</strong>:
+            <ul>
+              <li>The Sigmoid function produces an "S"-shaped curve (sigmoidal
+                curve).</li>
+              <li>The curve is asymptotic to the horizontal lines at ( y = 0 ) and ( y
+                = 1 ). This means that as ( Z ) approaches negative infinity, ( A )
+                approaches 0, and as ( Z ) approaches positive infinity, ( A )
+                approaches 1.</li>
+            </ul>
+          </li>
+          <li><strong>Behavior of the Sigmoid Function</strong>:
+            <ul>
+              <li><strong>Negative Inputs</strong>:
+                <ul>
+                  <li>For input values less than 0, the output values are closer to 0. As
+                    ( Z ) decreases, ( A ) approaches 0 but never actually reaches it.</li>
+                </ul>
+              </li>
+              <li><strong>Zero Input</strong>:
+                <ul>
+                  <li>At ( Z = 0 ), the output is ( A = 0.5 ). This point represents the
+                    threshold where the input is equally likely to belong to either class in
+                    a binary classification context.</li>
+                </ul>
+              </li>
+              <li><strong>Positive Inputs</strong>:
+                <ul>
+                  <li>For input values greater than 0, the output values increase and
+                    approach 1. As ( Z ) increases, ( A ) approaches 1 but never actually
+                    reaches it.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Characteristics</strong>:
+            <ul>
+              <li><strong>Output Range</strong>: The function's output is always
+                between 0 and 1, making it suitable for applications where probabilities
+                are required (e.g., binary classification).</li>
+              <li><strong>Non-linearity</strong>: The Sigmoid function introduces
+                non-linearity into the model, allowing the neural network to learn
+                complex relationships in the data.</li>
+              <li><strong>Gradient</strong>: The slope of the curve (derivative) is
+                steepest at ( Z = 0 ), meaning the model can learn effectively in this
+                region. However, for very high or low values of ( Z), the slope
+                approaches zero, which can lead to the vanishing gradient problem during
+                backpropagation.</li>
+            </ul>
+          </li>
+          <li><strong>Applications</strong>:
+            <ul>
+              <li>The Sigmoid function is commonly used in the output layer of binary
+                classification models, as it transforms the output into a probability,
+                facilitating the interpretation of the results.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div id="fc86f883" class="cell markdown">
+        <h2 id="step-8-building-the-neural-network-class">Step 8: Building the
+          Neural Network Class</h2>
+      </div>
+      <div id="d0b04c06" class="cell markdown">
+        <p>This step outlines the implementation of a feedforward neural network
+          in Python, which includes methods for initializing parameters, forward
+          propagation, cost calculation, backpropagation, and parameter updates.
+          The class is designed to facilitate training a neural network with
+          multiple layers and includes activation functions like ReLU and
+          sigmoid.</p>
+      </div>
+      <div id="c4554479" class="cell code" data-execution_count="28"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:13.050688Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:13.050036Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:13.081323Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:13.080227Z&quot;}"
+        data-papermill="{&quot;duration&quot;:5.8001e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:13.083796&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:13.025795&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb13">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NeuralNetwork:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, layer_dimensions<span class="op">=</span>[<span class="dv">25</span>,<span class="dv">16</span>,<span class="dv">16</span>,<span class="dv">1</span>],learning_rate<span class="op">=</span><span class="fl">0.00001</span>):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">        Parameters</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">        ----------</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">        layer_dimensions : list</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">            python array (list) containing the dimensions of each layer in our network</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">                </span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">        learning_rate :  float</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">            learning rate of the network.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layer_dimensions <span class="op">=</span> layer_dimensions</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> initialize_parameters(<span class="va">self</span>):</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;initializes the parameters&quot;&quot;&quot;</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        np.random.seed(<span class="dv">3</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_layers <span class="op">=</span>  <span class="bu">len</span>(<span class="va">self</span>.layer_dimensions)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="va">self</span>.n_layers):</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>            <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;W</span><span class="sc">{</span>l<span class="sc">}</span><span class="ss">&#39;</span>] <span class="op">=</span> np.random.randn(<span class="va">self</span>.layer_dimensions[l], <span class="va">self</span>.layer_dimensions[l<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> <span class="fl">0.01</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>            <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;b</span><span class="sc">{</span>l<span class="sc">}</span><span class="ss">&#39;</span>] <span class="op">=</span> np.zeros((<span class="va">self</span>.layer_dimensions[l], <span class="dv">1</span>))</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _linear_forward(<span class="va">self</span>, A, W, b):</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="co">        Implements the linear part of a layer&#39;s forward propagation.</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="co">        Arguments:</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="co">        A -- activations from previous layer (size of previous layer, number of examples)</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="co">        W -- weights matrix: numpy array of shape (size of current layer, size of previous layer)</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="co">        b -- bias vector, numpy array of shape (size of the current layer, 1)</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="co">        Z -- pre-activation parameter </span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="co">        cache -- a python tuple containing &quot;A&quot;, &quot;W&quot; and &quot;b&quot;  for backpropagation</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute Z</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>        Z <span class="op">=</span> np.dot(W,A) <span class="op">+</span> b</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Cache  A, W , b for backpropagation</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>        cache <span class="op">=</span> (A, W, b)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> Z, cache</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _forward_propagation(<span class="va">self</span>,A_prev ,W ,b , activation):</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="co">        Implements the forward propagation for a network layer</span></span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="co">        Arguments:</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="co">        A_prev -- activations from previous layer, shape : (size of previous layer, number of examples)</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="co">        W -- shape : (size of current layer, size of previous layer)</span></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="co">        b -- shape : (size of the current layer, 1)</span></span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="co">        activation -- the activation to be used in this layer</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="co">        A -- the output of the activation function </span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a><span class="co">        cache -- a python tuple containing &quot;linear_cache&quot; and &quot;activation_cache&quot; for backpropagation</span></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute Z using the function defined above, compute A using the activaiton function</span></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> activation <span class="op">==</span> <span class="st">&quot;sigmoid&quot;</span>:</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>            Z, linear_cache <span class="op">=</span> <span class="va">self</span>._linear_forward(A_prev, W, b)</span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a>            A, activation_cache <span class="op">=</span> sigmoid(Z) </span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> activation <span class="op">==</span> <span class="st">&quot;relu&quot;</span>:</span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a>            Z, linear_cache <span class="op">=</span> <span class="va">self</span>._linear_forward(A_prev, W, b) </span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a>            A, activation_cache <span class="op">=</span> relu(Z) </span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a>            <span class="co">#Store the cache for backpropagation</span></span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a>        cache <span class="op">=</span> (linear_cache, activation_cache)</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> A, cache</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward_propagation(<span class="va">self</span>, X):</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="co">        Implements forward propagation for the whole network</span></span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="co">        Arguments:</span></span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="co">        X --  shape : (input size, number of examples)</span></span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="co">        AL -- last post-activation value</span></span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a><span class="co">        caches -- list of cache returned by _forward_propagation helper function</span></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize empty list to store caches</span></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>        caches <span class="op">=</span> []</span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set initial A to X </span></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a>        A <span class="op">=</span> X</span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a>        L <span class="op">=</span>  <span class="va">self</span>.n_layers <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, L):</span>
+<span id="cb13-90"><a href="#cb13-90" aria-hidden="true" tabindex="-1"></a>            A_prev <span class="op">=</span> A </span>
+<span id="cb13-91"><a href="#cb13-91" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Forward propagate through the network except the last layer</span></span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a>            A, cache <span class="op">=</span> <span class="va">self</span>._forward_propagation(A_prev, <span class="bu">vars</span>(<span class="va">self</span>)[<span class="st">&#39;W&#39;</span> <span class="op">+</span> <span class="bu">str</span>(l)], <span class="bu">vars</span>(<span class="va">self</span>)[<span class="st">&#39;b&#39;</span> <span class="op">+</span> <span class="bu">str</span>(l)], <span class="st">&quot;relu&quot;</span>)</span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a>            caches.append(cache)</span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Forward propagate through the output layer and get the predictions</span></span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a>        predictions, cache <span class="op">=</span> <span class="va">self</span>._forward_propagation(A, <span class="bu">vars</span>(<span class="va">self</span>)[<span class="st">&#39;W&#39;</span> <span class="op">+</span> <span class="bu">str</span>(L)], <span class="bu">vars</span>(<span class="va">self</span>)[<span class="st">&#39;b&#39;</span> <span class="op">+</span> <span class="bu">str</span>(L)], <span class="st">&quot;sigmoid&quot;</span>)</span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Append the cache to caches list recall that cache will be (linear_cache, activation_cache)</span></span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a>        caches.append(cache)</span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> predictions, caches</span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_cost(<span class="va">self</span>, predictions, y):</span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a><span class="co">        Implements the cost function </span></span>
+<span id="cb13-104"><a href="#cb13-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-105"><a href="#cb13-105" aria-hidden="true" tabindex="-1"></a><span class="co">        Arguments:</span></span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="co">        predictions -- The model predictions, shape : (1, number of examples)</span></span>
+<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a><span class="co">        y -- The true values, shape : (1, number of examples)</span></span>
+<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a><span class="co">        cost -- cross-entropy cost</span></span>
+<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get number of training examples</span></span>
+<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> y.shape[<span class="dv">0</span>]</span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute cost we&#39;re adding small epsilon for numeric stability</span></span>
+<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> (<span class="op">-</span><span class="dv">1</span><span class="op">/</span>m) <span class="op">*</span> (np.dot(y, np.log(predictions<span class="op">+</span><span class="fl">1e-9</span>).T) <span class="op">+</span> np.dot((<span class="dv">1</span><span class="op">-</span>y), np.log(<span class="dv">1</span><span class="op">-</span>predictions<span class="op">+</span><span class="fl">1e-9</span>).T))</span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a>        <span class="co"># squeeze the cost to set it into the correct shape </span></span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a>        cost <span class="op">=</span> np.squeeze(cost)</span>
+<span id="cb13-118"><a href="#cb13-118" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> cost   </span>
+<span id="cb13-119"><a href="#cb13-119" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _linear_backward(<span class="va">self</span>, dZ, cache):</span>
+<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a><span class="co">        Implements the linear portion of backward propagation </span></span>
+<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a><span class="co">        Arguments:</span></span>
+<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a><span class="co">        dZ -- Gradient of the cost with respect to the linear output of the current layer </span></span>
+<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="co">        cache -- tuple of values (A_prev, W, b) coming from the forward propagation in the current layer</span></span>
+<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a><span class="co">        dA_prev -- Gradient of the cost with respect to the activation (of the previous layer l-1), same shape as A_prev</span></span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="co">        dW -- Gradient of the cost with respect to W (current layer l), same shape as W</span></span>
+<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a><span class="co">        db -- Gradient of the cost with respect to b (current layer l), same shape as b</span></span>
+<span id="cb13-132"><a href="#cb13-132" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-133"><a href="#cb13-133" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the cache from forward propagation</span></span>
+<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a>        A_prev, W, b <span class="op">=</span> cache</span>
+<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get number of training examples</span></span>
+<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a>        m <span class="op">=</span> A_prev.shape[<span class="dv">1</span>]</span>
+<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute gradients for W, b and A</span></span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a>        dW <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>m) <span class="op">*</span> np.dot(dZ, A_prev.T)</span>
+<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a>        db <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>m) <span class="op">*</span> np.<span class="bu">sum</span>(dZ, axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a>        dA_prev <span class="op">=</span> np.dot(W.T,dZ)</span>
+<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> dA_prev, dW, db</span>
+<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update_parameters(<span class="va">self</span>):</span>
+<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a>            <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a><span class="co">            Updates parameters using gradient descent</span></span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a><span class="co">            &quot;&quot;&quot;</span></span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a>            L <span class="op">=</span> <span class="va">self</span>.n_layers <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Loop over parameters and update them using computed gradients</span></span>
+<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">range</span>(L):</span>
+<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a>                <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;W</span><span class="sc">{</span>l<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">&#39;</span>] <span class="op">=</span> <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;W</span><span class="sc">{</span>l<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">&#39;</span>] <span class="op">-</span> <span class="va">self</span>.learning_rate <span class="op">*</span> <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;dW</span><span class="sc">{</span>l<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">&#39;</span>]</span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a>                <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;b</span><span class="sc">{</span>l<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">&#39;</span>]  <span class="op">=</span> <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;b</span><span class="sc">{</span>l<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">&#39;</span>] <span class="op">-</span> <span class="va">self</span>.learning_rate <span class="op">*</span> <span class="bu">vars</span>(<span class="va">self</span>)[<span class="ss">f&#39;db</span><span class="sc">{</span>l<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">&#39;</span>]</span>
+<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>,X, Y, epochs<span class="op">=</span><span class="dv">2000</span>, print_cost<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a>            <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a><span class="co">            Trains the Neural Network using input data</span></span>
+<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a><span class="co">            </span></span>
+<span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a><span class="co">            Arguments:</span></span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="co">            X -- input data</span></span>
+<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a><span class="co">            Y -- true &quot;label&quot; </span></span>
+<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a><span class="co">            Epochs -- number of iterations of the optimization loop</span></span>
+<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a><span class="co">            print_cost -- If set to True, this will print the cost every 100 iterations </span></span>
+<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a><span class="co">            &quot;&quot;&quot;</span></span>
+<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Transpose X to get the correct shape</span></span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a>            X <span class="op">=</span> X.T</span>
+<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>            np.random.seed(<span class="dv">1</span>)</span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>            <span class="co">#create empty array to store the costs</span></span>
+<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a>            costs <span class="op">=</span> [] </span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Get number of training examples</span></span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a>            m <span class="op">=</span> X.shape[<span class="dv">1</span>]                           </span>
+<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Initialize parameters </span></span>
+<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.initialize_parameters()</span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a>            <span class="co"># loop for stated number of epochs</span></span>
+<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, epochs):</span>
+<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Forward propagate and get the predictions and caches</span></span>
+<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a>                predictions, caches <span class="op">=</span> <span class="va">self</span>.forward_propagation(X)</span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>                <span class="co">#compute the cost function</span></span>
+<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a>                cost <span class="op">=</span> <span class="va">self</span>.compute_cost(predictions, Y)</span>
+<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Calculate the gradient and update the parameters</span></span>
+<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.back_propagation(predictions, Y, caches)</span>
+<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.update_parameters()</span>
+<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Print the cost every 10000 training example</span></span>
+<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> print_cost <span class="kw">and</span> i <span class="op">%</span> <span class="dv">5000</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="st">&quot;Cost after iteration </span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="st">&quot;</span>.<span class="bu">format</span>(i, np.squeeze(cost)))</span>
+<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> print_cost <span class="kw">and</span> i <span class="op">%</span> <span class="dv">5000</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a>                    costs.append(cost)</span>
+<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> print_cost:         </span>
+<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Plot the cost over training    </span></span>
+<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a>                fig <span class="op">=</span> px.line(y<span class="op">=</span>np.squeeze(costs),title<span class="op">=</span><span class="st">&#39;Cost&#39;</span>,template<span class="op">=</span><span class="st">&quot;plotly_dark&quot;</span>)</span>
+<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a>                fig.update_layout(</span>
+<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a>                    title_font_color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>, </span>
+<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a>                    xaxis<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>), </span>
+<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a>                    yaxis<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;#00F1FF&quot;</span>) </span>
+<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a>                fig.show()</span>
+<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>,X,y):</span>
+<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a><span class="co">        uses the trained model to predict given X value</span></span>
+<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a><span class="co">        Arguments:</span></span>
+<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a><span class="co">        X -- data set of examples you would like to label</span></span>
+<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a><span class="co">        y -- True values of examples; used for measuring the model&#39;s accuracy</span></span>
+<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a><span class="co">        predictions -- predictions for the given dataset X</span></span>
+<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> X.T</span>
+<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get predictions from forward propagation</span></span>
+<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a>        predictions, _ <span class="op">=</span> <span class="va">self</span>.forward_propagation(X)</span>
+<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Predictions Above 0.5 are True otherwise they are False</span></span>
+<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> (predictions <span class="op">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Squeeze the predictions into the correct shape and cast true/false values to 1/0</span></span>
+<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> np.squeeze(predictions.astype(<span class="bu">int</span>))</span>
+<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Print the accuracy</span></span>
+<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.<span class="bu">sum</span>((predictions <span class="op">==</span> y)<span class="op">/</span>X.shape[<span class="dv">1</span>]), predictions.T</span></code></pre>
+        </div>
+      </div>
+      <div id="79cfefc7" class="cell markdown">
+        <h3 id="explanation">Explanation:</h3>
+        <ul>
+          <li><strong>Class Initialization</strong>: The
+            <code>NeuralNetwork</code> class initializes with layer dimensions and
+            learning rate.
+          </li>
+          <li><strong>Parameter Initialization</strong>: Weights are initialized
+            to small random values, and biases are set to zero.</li>
+          <li><strong>Forward Propagation</strong>: Implements the forward pass
+            through the network, computing activations using ReLU for hidden layers
+            and sigmoid for the output layer.</li>
+          <li><strong>Cost Calculation</strong>: Computes cross-entropy cost for
+            predictions versus true labels.</li>
+          <li><strong>Parameter Update</strong>: Adjusts weights and biases based
+            on calculated gradients and learning rate.</li>
+          <li><strong>Model Training</strong>: The <code>fit</code> method trains
+            the model over multiple epochs, with cost logging and optional
+            plotting.</li>
+          <li><strong>Prediction</strong>: The <code>predict</code> method
+            generates class predictions based on trained weights and biases.</li>
+        </ul>
+        <p>This class effectively encapsulates a simple feedforward neural
+          network structure, enabling both training and inference.</p>
+      </div>
+      <div id="bb515091" class="cell markdown">
+        <h2 id="step-9-train-and-evaluate-the-neural-network-model">Step 9:
+          Train and Evaluate the Neural Network Model</h2>
+        <p>In this step, we define the <code>train_evaluate_model</code>
+          function, which trains a neural network model using specified
+          hyperparameters and evaluates its performance on test data. The function
+          performs the following actions:</p>
+        <ol>
+          <li><strong>Model Initialization</strong>: Create an instance of the
+            <code>NeuralNetwork</code> class using the provided learning rate and
+            layer dimensions.
+          </li>
+          <li><strong>Model Training</strong>: Train the model on the training
+            data (<code>X_train</code>, <code>y_train</code>) for a specified number
+            of epochs, suppressing the output of the training cost.</li>
+          <li><strong>Model Prediction</strong>: Use the trained model to make
+            predictions on the test data (<code>X_test</code>) and calculate the
+            accuracy based on the predictions compared to the true labels
+            (<code>y_test</code>).</li>
+          <li><strong>Results Visualization</strong>: Create a DataFrame to
+            summarize the hyperparameters (learning rate, layer dimensions, and
+            epochs) along with the accuracy of the model.</li>
+          <li><strong>Return DataFrame</strong>: The function returns the
+            DataFrame for further analysis or visualization.</li>
+        </ol>
+        <p>Here’s the implementation of the function:</p>
+      </div>
+      <div id="2076ffcb" class="cell code" data-execution_count="29"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:13.217318Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:13.216728Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:13.222583Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:13.221953Z&quot;}"
+        data-papermill="{&quot;duration&quot;:3.0419e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:13.224284&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:13.193865&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb14">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_evaluate_model(X_train, y_train, X_test, y_test, learning_rate, layer_dimensions, epochs):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Keyword arguments:</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">    X_train -- Training data</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">    y_train -- Traing labels</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">    X_train -- test data</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">    y_train -- test labels</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">    layer_dimensions -- python array (list) containing the dimensions of each layer in our network</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">    learning_rate --  learning rate of the network.</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Epochs -- number of iterations of the optimization loop</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">    returns a dataframe </span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">    &#39;&#39;&#39;</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create model instance with the given hyperparameters</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> NeuralNetwork(learning_rate<span class="op">=</span>learning_rate,layer_dimensions<span class="op">=</span>layers)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fit the model</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    model.fit(X_train, y_train,epochs<span class="op">=</span>epochs,print_cost<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    accuracy, predictions <span class="op">=</span> model.predict(X_test, y_test) <span class="co"># calculate accuracy and predictions</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#create a dataframe to visualize the results</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    eval_df <span class="op">=</span> pd.DataFrame([[learning_rate, layer_dimensions, epochs, accuracy]], columns<span class="op">=</span>[<span class="st">&#39;Learning_Rate&#39;</span>, <span class="st">&#39;Layers&#39;</span>, <span class="st">&#39;Epochs&#39;</span>, <span class="st">&#39;Accuracy&#39;</span>])</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> eval_df</span></code></pre>
+        </div>
+      </div>
+      <div id="552fa996" class="cell markdown">
+        <h2 id="step-10-visualizing-model-performance">Step 10: Visualizing
+          Model Performance</h2>
+      </div>
+      <div id="535cc63b" class="cell code" data-execution_count="32"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:43:13.999845Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:43:13.999513Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:43:14.065988Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:43:14.064741Z&quot;}"
+        data-papermill="{&quot;duration&quot;:9.5219e-2,&quot;end_time&quot;:&quot;2023-03-11T12:43:14.068653&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:43:13.973434&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb15">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>layers <span class="op">=</span> [<span class="dv">25</span>,<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">3000</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> train_evaluate_model(X_train, y_train, X_test, y_test, learning_rate<span class="op">=</span>learning_rate, layer_dimensions<span class="op">=</span>layers, epochs<span class="op">=</span>epochs)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>results.index <span class="op">=</span> [<span class="st">&#39;Model_1&#39;</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>results.style.background_gradient(cmap <span class="op">=</span>sns.cubehelix_palette(start<span class="op">=</span><span class="fl">.5</span>, rot<span class="op">=-</span><span class="fl">.5</span>, as_cmap<span class="op">=</span><span class="va">True</span>))</span></code></pre>
+        </div>
+        <div class="output execute_result" data-execution_count="32">
+          <style type="text/css">
+            #T_ea486_row0_col0,
+            #T_ea486_row0_col2,
+            #T_ea486_row0_col3 {
+              background-color: #c2e5d8;
+              color: #000000;
+            }
+          </style>
+          <table id="T_ea486_">
+            <thead>
+              <tr>
+                <th class="blank level0">&nbsp;</th>
+                <th class="col_heading level0 col0">Learning_Rate</th>
+                <th class="col_heading level0 col1">Layers</th>
+                <th class="col_heading level0 col2">Epochs</th>
+                <th class="col_heading level0 col3">Accuracy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th id="T_ea486_level0_row0" class="row_heading level0 row0">Model_1</th>
+                <td id="T_ea486_row0_col0" class="data row0 col0">0.001000</td>
+                <td id="T_ea486_row0_col1" class="data row0 col1">[25, 1, 1]</td>
+                <td id="T_ea486_row0_col2" class="data row0 col2">3000</td>
+                <td id="T_ea486_row0_col3" class="data row0 col3">0.628319</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div id="9dd528ec" class="cell markdown">
+        <h3 id="explanation">Explanation</h3>
+        <ol>
+          <li><strong>Define Hyperparameters</strong>:
+            <ul>
+              <li>The <code>learning_rate</code>, <code>layers</code>, and
+                <code>epochs</code> variables are set to define the model’s training
+                behavior.
+              </li>
+            </ul>
+          </li>
+          <li><strong>Train and Evaluate the Model</strong>:
+            <ul>
+              <li>The <code>train_evaluate_model</code> function is called with the
+                specified parameters, which trains the neural network and evaluates its
+                performance on the test set.</li>
+            </ul>
+          </li>
+          <li><strong>Set DataFrame Index</strong>:
+            <ul>
+              <li>The index of the results DataFrame is set to 'Model_1', providing
+                clarity on which model the results belong to.</li>
+            </ul>
+          </li>
+          <li><strong>Style the Results</strong>:
+            <ul>
+              <li>The results DataFrame is styled using a background gradient from
+                Seaborn to enhance visual appeal and clarity.</li>
+            </ul>
+          </li>
+          <li><strong>Display the Results</strong>:
+            <ul>
+              <li>The styled DataFrame is returned, allowing for easy inspection of
+                model performance metrics like accuracy, learning rate, layers, and
+                epochs.</li>
+            </ul>
+          </li>
+        </ol>
+        <p>This step effectively encapsulates the entire training and evaluation
+          process for your neural network model, showcasing the results in an
+          easily interpretable format. You can execute this code in your
+          environment to see the results visually represented.</p>
+      </div>
+      <div id="a0617326" class="cell markdown">
+        <h2 id="step-11--train-the-neural-network-model-and-make-predictions">Step
+          11 : Train the Neural Network Model and Make Predictions</h2>
+      </div>
+      <div id="2cced9aa" class="cell code" data-execution_count="47"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:46:19.012433Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:46:19.012073Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:46:30.957066Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:46:30.955803Z&quot;}"
+        data-papermill="{&quot;duration&quot;:11.972074,&quot;end_time&quot;:&quot;2023-03-11T12:46:30.959699&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:46:18.987625&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb16">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> NeuralNetwork(learning_rate<span class="op">=</span><span class="fl">0.0001</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train,epochs<span class="op">=</span><span class="dv">30000</span>,print_cost<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+        </div>
+        <div class="output stream stdout">
+          <pre><code>Cost after iteration 0: 0.6931646385744642
+Cost after iteration 5000: 0.6859908438587179
+Cost after iteration 10000: 0.6804080309241175
+Cost after iteration 15000: 0.6760589221252522
+Cost after iteration 20000: 0.6726670677037514
+Cost after iteration 25000: 0.6700190881972163
+</code></pre>
+        </div>
+        <div class="output display_data">
+          <div>
+            <div id="adf0a047-6bfd-4a7b-82ec-bbe6f4ecee5b" class="plotly-graph-div" style="height:525px; width:100%;">
+              <img src="../Assets/projectpics/model.png" alt="">
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div id="fc9af132" class="cell code" data-execution_count="48"
+        data-execution="{&quot;iopub.execute_input&quot;:&quot;2023-03-11T12:46:31.010811Z&quot;,&quot;iopub.status.busy&quot;:&quot;2023-03-11T12:46:31.010405Z&quot;,&quot;iopub.status.idle&quot;:&quot;2023-03-11T12:46:31.015788Z&quot;,&quot;shell.execute_reply&quot;:&quot;2023-03-11T12:46:31.014829Z&quot;}"
+        data-papermill="{&quot;duration&quot;:3.2664e-2,&quot;end_time&quot;:&quot;2023-03-11T12:46:31.017752&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2023-03-11T12:46:30.985088&quot;,&quot;status&quot;:&quot;completed&quot;}"
+        data-tags="[]">
+        <div class="sourceCode" id="cb18">
+          <pre
+            class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>accuracy,predictions <span class="op">=</span> model.predict(X_test, y_test)</span></code></pre>
+        </div>
+      </div>
+      <div id="71c0f03a" class="cell markdown">
+        <h3 id="explanation">Explanation</h3>
+        <ol>
+          <li><strong>Model Initialization</strong>:
+            <ul>
+              <li>A new instance of the <code>NeuralNetwork</code> class is created
+                with a learning rate of <code>0.0001</code>. This parameter controls how
+                quickly the model learns during training.</li>
+            </ul>
+          </li>
+          <li><strong>Model Training</strong>:
+            <ul>
+              <li>The <code>fit</code> method is called on the model, training it
+                using the training data (<code>X_train</code> and <code>y_train</code>)
+                for <code>30,000</code> epochs. The <code>print_cost=True</code>
+                argument ensures that the cost (loss) is printed at each epoch, allowing
+                you to monitor the model's learning progress.</li>
+            </ul>
+          </li>
+          <li><strong>Making Predictions</strong>:
+            <ul>
+              <li>After training, the <code>predict</code> method is used to evaluate
+                the model on the test data (<code>X_test</code> and
+                <code>y_test</code>). This method returns the accuracy of the model on
+                the test set and the predictions made for the test samples.
+              </li>
+            </ul>
+          </li>
+          <li><strong>Display Accuracy</strong>:
+            <ul>
+              <li>The test accuracy is printed in a formatted string to provide a
+                clear and concise output of the model’s performance.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div id="c1cd2c64" class="cell markdown">
+        <h2 id="conclusion">Conclusion</h2>
+        <p>In this tutorial, we walked through the process of building and
+          evaluating a simple neural network using Python. Here’s a recap of what
+          we covered:</p>
+        <ol>
+          <li>
+            <p><strong>Data Preparation</strong>: We began by loading and
+              preprocessing the dataset, ensuring it was ready for model training.
+              Understanding your data is crucial, as it directly impacts the
+              performance of your neural network.</p>
+          </li>
+          <li>
+            <p><strong>Neural Network Implementation</strong>: We implemented a
+              basic neural network architecture from scratch, allowing us to customize
+              various hyperparameters such as learning rate, layer dimensions, and the
+              number of epochs. This flexibility enables experimentation with
+              different configurations to find the optimal setup for our specific
+              problem.</p>
+          </li>
+          <li>
+            <p><strong>Model Training</strong>: Through the <code>fit</code>
+              method, we trained our model using the training dataset. We monitored
+              the cost at each epoch, providing insights into the model's learning
+              process and helping us identify potential issues like overfitting or
+              underfitting.</p>
+          </li>
+          <li>
+            <p><strong>Model Evaluation</strong>: After training, we evaluated
+              the model's performance on unseen test data. By calculating the accuracy
+              and making predictions, we could assess how well our model generalized
+              to new data.</p>
+          </li>
+          <li>
+            <p><strong>Hyperparameter Tuning</strong>: We demonstrated the
+              importance of hyperparameter tuning by experimenting with different
+              learning rates and epoch counts, showcasing how these choices can
+              significantly affect model performance.</p>
+          </li>
+        </ol>
+        <p>This tutorial provided a foundational understanding of neural
+          networks and practical skills to implement and evaluate them using
+          Python. With this knowledge, you can explore more complex architectures
+          and techniques, such as convolutional neural networks (CNNs) or
+          recurrent neural networks (RNNs), to tackle various machine learning
+          challenges.</p>
+        <h3 id="next-steps">Next Steps</h3>
+        <p>To further enhance your understanding and skills, consider the
+          following:</p>
+        <ul>
+          <li><strong>Experiment with Different Architectures</strong>: Try adding
+            more layers or units to your neural network and observe how it impacts
+            performance.</li>
+          <li><strong>Explore Advanced Techniques</strong>: Investigate
+            regularization methods, dropout layers, and other techniques to improve
+            model robustness and prevent overfitting.</li>
+          <li><strong>Work with Larger Datasets</strong>: Apply your knowledge to
+            larger and more complex datasets to understand real-world challenges in
+            machine learning.</li>
+          <li><strong>Learn about Transfer Learning</strong>: Explore how to
+            leverage pre-trained models for tasks such as image classification or
+            natural language processing to save time and resources.</li>
+        </ul>
+        <p>Thank you for following along with this tutorial! If you have any
+          questions or need further assistance, feel free to reach out. Happy
+          coding!</p>
+      </div>
+    </div>
+  </div>
+    <footer>
+      <div class="container">
+        <div class="footer-socials">
+          Follow us on:
+          <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+          <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+          <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+        </div>
+        <div class="footer-contact">
+          <p>
+            Contact us:
+            <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+            | Phone: +1 (555) 123-4567
+          </p>
+        </div>
+        <div class="footer-links">
+          <a href="../pages/privacy.html">Privacy Policy</a> |
+          <a href="../pages/terms.html">Terms of Service</a> |
+          <a href="../pages/about.html">About Us</a> |
+          <a href="../pages/contact.html">Contact</a> |
+          <a href="../pages/contact.html">Contributor</a>
+        </div>
+        <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+      </div>
+      <button id="scrollTopBtn" onclick="scrollToTop()">
+        <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+    </footer>
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+    <script src="../script/projects.js"></script>
+    <script>
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+      window.onscroll = function () {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          scrollTopBtn.style.display = "block";
+        } else {
+          scrollTopBtn.style.display = "none";
+        }
+      };
+  
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const coords = { x: 0, y: 0 };
+        const circles = document.querySelectorAll(".circle");
+  
+        circles.forEach(function (circle) {
+          circle.x = 0;
+          circle.y = 0;
+        });
+  
+        window.addEventListener("mousemove", function (e) {
+          coords.x = e.pageX;
+          coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+        });
+  
+        function animateCircles() {
+          let x = coords.x;
+          let y = coords.y;
+  
+          circles.forEach(function (circle, index) {
+            circle.style.left = `${x - 12}px`;
+            circle.style.top = `${y - 12}px`;
+            circle.style.transform = `scale(${(circles.length - index) / circles.length
+              })`;
+  
+            const nextCircle = circles[index + 1] || circles[0];
+            circle.x = x;
+            circle.y = y;
+  
+            x += (nextCircle.x - x) * 0.3;
+            y += (nextCircle.y - y) * 0.3;
+          });
+  
+          requestAnimationFrame(animateCircles);
+        }
+  
+        animateCircles();
+      });
+    </script>
+    <!-- Botpress Chat Scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    <script>
+      // Get the current year
+      const currentYear = new Date().getFullYear();
+      
+      // Update the HTML content
+      document.getElementById("current-year").textContent = currentYear;
+  </script>
+  </body>
+  
+  </html>
