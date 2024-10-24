@@ -735,8 +735,12 @@
         purchase and boost your ML journey.
       </p>
       <form id="emailForm">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <button type="button" class="signup-btn" onclick="showToastAndRedirect()">Sign Up Now</button>
+        <form id="signupForm">
+    <input type="text" id="fullName" placeholder="Full Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+    <button type="button" class="signup-btn" onclick="showToastAndRedirect()">Sign Up Now</button>
       </form>
       <a href="#" class="no-thanks close-btn">No thanks</a>
       <p class="terms">
