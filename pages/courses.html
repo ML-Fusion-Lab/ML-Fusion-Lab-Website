@@ -1,466 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ML Fusion Labs - Courses</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
-    <link rel="stylesheet" href="../style/style.css" />
-    <link rel="stylesheet" href="../style/scroll.css" />
-    <link rel="stylesheet" href="../style/course.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      .course-card {
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-      .course-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
-        border-color: #007bff;
-      }
+<head>
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Fusion Labs - Courses</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-      .course-card .btn {
-        background-color: #007bff;
-        border: none;
-        transition: background-color 0.3s;
-      }
+  <link rel="stylesheet" href="../style/style.css" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+  <link rel="stylesheet" href="../style/course.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .course-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-      .course-card .btn:hover {
-        background-color: #0056b3;
-      }
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 123, 255, 0.3);
+      border-color: #007bff;
+    }
 
-      body {
-        padding-top: 70px;
-      }
+    .course-card .btn {
+      background-color: #007bff;
+      border: none;
+      transition: background-color 0.3s;
+    }
 
-      .navbar-custom {
-        background-color: #1a1a1a;
-      }
+    .course-card .btn:hover {
+      background-color: #0056b3;
+    }
 
-      .navbar-custom .navbar-brand {
-        display: flex;
-        align-items: center;
-      }
+    body {
+      padding-top: 70px;
+    }
 
-      .navbar-custom .navbar-brand img {
-        height: 100px;
-        margin-right: 10px;
-      }
+    .navbar-custom {
+      background-color: #1a1a1a;
+    }
 
-      .navbar-custom .nav-link {
-        color: #ffffff !important;
-        transition: color 0.3s;
-      }
+    .navbar-custom .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
 
-      .navbar-custom .nav-link:hover {
-        color: #007bff !important;
-      }
+    .navbar-custom .navbar-brand img {
+      height: 100px;
+      margin-right: 10px;
+    }
 
-      .navbar-custom .nav-link.active {
-        color: #007bff !important;
-        font-weight: bold;
-      }
+    .navbar-custom .nav-link {
+      color: #ffffff !important;
+      transition: color 0.3s;
+    }
 
-      .hero-small {
-        padding-top: 50px;
-        padding-bottom: 50px;
-        background-color: #007bff;
-        color: white;
-        text-align: center;
-      }
-      .card {
-        cursor: pointer;
-      }
+    .navbar-custom .nav-link:hover {
+      color: #007bff !important;
+    }
 
-      .card .card-content .logo {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-      }
+    .navbar-custom .nav-link.active {
+      color: #007bff !important;
+      font-weight: bold;
+    }
 
-      .card .card-content .logo .logoName {
-        font-size: 18px;
-        margin-left: 3px;
-      }
+    .hero-small {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+    }
 
-      .no-decoration {
-        text-decoration: none;
-        color: black;
-      }
+    .card {
+      cursor: pointer;
+    }
 
-      .hide-btn {
-        display: none;
-      }
+    .card .card-content .logo {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+    }
 
-      .btn-cont {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+    .card .card-content .logo .logoName {
+      font-size: 18px;
+      margin-left: 3px;
+    }
 
-      .btn-cont .load-more-button {
-        background: #1c1c1c;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        margin-top: 15px;
-      }
+    .no-decoration {
+      text-decoration: none;
+      color: black;
+    }
 
-      .btn-cont .load-more-button:hover {
-        background: #000000;
-      }
+    .hide-btn {
+      display: none;
+    }
 
-      body.dark-mode .btn-cont .load-more-button {
-        background-color: #fff;
-        color: #000;
-      }
-      body.dark-mode .btn-cont .load-more-button:hover {
-        background-color: #e2e2e2;
-      }
-      /* css for mouse cursor trail effect */
-      .circle {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        pointer-events: none;
-        background: radial-gradient(
-          circle,
+    .btn-cont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btn-cont .load-more-button {
+      background: #1c1c1c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-top: 15px;
+    }
+
+    .btn-cont .load-more-button:hover {
+      background: #000000;
+    }
+
+    body.dark-mode .btn-cont .load-more-button {
+      background-color: #fff;
+      color: #000;
+    }
+
+    body.dark-mode .btn-cont .load-more-button:hover {
+      background-color: #e2e2e2;
+    }
+
+    /* css for mouse cursor trail effect */
+    .circle {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle,
           rgba(70, 130, 180, 0.3),
           skyblue,
           rgba(0, 0, 50, 0.3),
-          white
-        );
-        transition: transform 0.1s, left 0.1s, top 0.1s;
-      }
+          white);
+      transition: transform 0.1s, left 0.1s, top 0.1s;
+    }
 
-      .circle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
-      }
+    .circle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      /* removed the non-breaking space (&nbsp;) */
+    }
 
-      .filter-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+    .filter-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-      .remove-filters-btn {
-        background: black;
-        color: white;
-        border: 1px solid black;
-        padding: 8px 16px;
-        border-radius: 80px;
-        font-size: 14px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <!-- Enhanced Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-        <div id="progress-container">
-          <div id="progress-bar"></div>
-        </div>
-        <div class="container">
-          <a class="navbar-brand" href="../index.html">
-            <img
-              src="../image/ml fusion lab log.jpg"
-              alt="ML Fusion Labs Logo"
-              width="100"
-              height="100"
-            />
-            ML Fusion Labs
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navbarNav"
-          >
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="../index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="../pages/courses.html">Courses</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../pages/projects.html">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../pages/about.html">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../pages/contact.html">Contact</a>
-              </li>
-              <li>
-                <div class="gtranslate_wrapper"></div>
-                <script>
-                  window.gtranslateSettings = {
-                    default_language: "en",
-                    detect_browser_language: true,
-                    wrapper_selector: ".gtranslate_wrapper",
-                  };
-                </script>
-                <script
-                  src="https://cdn.gtranslate.net/widgets/latest/popup.js"
-                  defer
-                ></script>
-              </li>
-              <!-- <div class="theme-switch" id="theme-switch"></div> -->
-              <div id="themeSwitch" class="theme-switch">
-                <input type="checkbox" class="checkbox" id="checkbox">
-                <label for="checkbox" class="checkbox-label">
-                  
-                  <img src="../Assets/sun.png" class="theme-btn">
-                  <img src="../Assets/moon.png" class="theme-btn">
-                  <!-- <i class="fas fa-moon"></i>
-                  <i class="fas fa-sun"></i> -->
-                  <span class="ball"></span>
-                </label>
-              </div>
-              <!-- Optional: Add a dropdown or additional links if needed -->
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    .remove-filters-btn {
+      background: black;
+      color: white;
+      border: 1px solid black;
+      padding: 8px 16px;
+      border-radius: 80px;
+      font-size: 14px;
+    }
+  </style>
+</head>
 
-    <section
-      class="category-section py-5 text-center text-white"
-      style="background-color: #1a1a3d"
-    >
+<body>
+  <header>
+    <!-- Enhanced Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
       <div class="container">
-        <h1 class="fw-bold">
-          Explore top-tier courses
-          <span style="color: #b4ff00"
-            >designed to fast-track your career,</span
-          >
-        </h1>
-        <p class="lead mb-5" style="color: white">
-          Without breaking the bank. Achieve your learning goals with expert-led
-          content tailored for success.
-        </p>
+        <a class="navbar-brand" href="../index.html">
+          <img src="../image/ml fusion lab log.jpg" alt="ML Fusion Labs Logo" width="100" height="100" />
+          ML Fusion Labs
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="../pages/courses.html">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/contact.html">Contact</a>
+            </li>
+            <li>
+              <div class="gtranslate_wrapper"></div>
+              <script>
+                window.gtranslateSettings = {
+                  default_language: "en",
+                  detect_browser_language: true,
+                  wrapper_selector: ".gtranslate_wrapper",
+                };
+              </script>
+              <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
+            </li>
+            <!-- <div class="theme-switch" id="theme-switch"></div> -->
+            <div id="themeSwitch" class="theme-switch">
+              <input type="checkbox" class="checkbox" id="checkbox">
+              <label for="checkbox" class="checkbox-label">
 
-        <!-- Search Bar -->
-        <div class="row justify-content-center mb-4">
-          <div class="col-lg-10 col-md-8 col-sm-12">
-            <form class="d-flex" role="search">
-              <input
-                id="search-id"
-                class="form-control me-2"
-                type="search"
-                placeholder="Search for courses..."
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-light" type="submit">
-                Search
-              </button>
-            </form>
+                <img src="../Assets/sun.png" class="theme-btn">
+                <img src="../Assets/moon.png" class="theme-btn">
+                <!-- <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i> -->
+                <span class="ball"></span>
+              </label>
+            </div>
+            <!-- Optional: Add a dropdown or additional links if needed -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="category-section py-5 text-center text-white" style="background-color: #1a1a3d">
+    <div class="container">
+      <h1 class="fw-bold">
+        Explore top-tier courses
+        <span style="color: #b4ff00">designed to fast-track your career,</span>
+      </h1>
+      <p class="lead mb-5" style="color: white">
+        Without breaking the bank. Achieve your learning goals with expert-led
+        content tailored for success.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-10 col-md-8 col-sm-12">
+          <form class="d-flex" role="search">
+            <input id="search-id" class="form-control me-2" type="search" placeholder="Search for courses..."
+              aria-label="Search" />
+            <button class="btn btn-outline-light" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Course Categories -->
+      <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+          <div class="category-card p-3 bg-white text-dark rounded shadow">
+            <a href="data_science.html" style="text-decoration: none; color: inherit;">
+              <img src="../Course Icons/data-science.png" alt="Data Science Icon" class="img-fluid mb-3" />
+              <h5>Data Science Essentials</h5>
+            </a>
           </div>
         </div>
-
-        <!-- Course Categories -->
-        <div class="row">
-          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-            <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <a href="data_science.html" style="text-decoration: none; color: inherit;">
-                <img
-                  src="../Course Icons/data-science.png"
-                  alt="Data Science Icon"
-                  class="img-fluid mb-3"
-                />
-                <h5>Data Science Essentials</h5>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-            <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <a href="Programming.html" style="text-decoration: none; color: inherit;">
-              <img
-                src="../Course Icons/programming-language.png"
-                alt="Programming Icon"
-                class="img-fluid mb-3"
-              />
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+          <div class="category-card p-3 bg-white text-dark rounded shadow">
+            <a href="Programming.html" style="text-decoration: none; color: inherit;">
+              <img src="../Course Icons/programming-language.png" alt="Programming Icon" class="img-fluid mb-3" />
               <h5>Programming & Development</h5>
             </a>
-            </div>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-            <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <a href="ai.html" style="text-decoration: none; color: inherit;">
-              <img
-                src="../Course Icons/ai.png"
-                alt="AI Icon"
-                class="img-fluid mb-3"
-              />
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+          <div class="category-card p-3 bg-white text-dark rounded shadow">
+            <a href="ai.html" style="text-decoration: none; color: inherit;">
+              <img src="../Course Icons/ai.png" alt="AI Icon" class="img-fluid mb-3" />
               <h5>Artificial Intelligence</h5>
             </a>
-            </div>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-            <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <a href="business_development.html" style="text-decoration: none; color: inherit;">
-              <img
-                src="../Course Icons/business.png"
-                alt="Business Icon"
-                class="img-fluid mb-3"
-              />
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+          <div class="category-card p-3 bg-white text-dark rounded shadow">
+            <a href="business_development.html" style="text-decoration: none; color: inherit;">
+              <img src="../Course Icons/business.png" alt="Business Icon" class="img-fluid mb-3" />
               <h5>Business Development</h5>
-              </a>
-            </div>
+            </a>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-            <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <a href="autonomous_system.html" style="text-decoration: none; color: inherit;">
-              <img
-                src="../Course Icons/autonomous-system.png"
-                alt="Autonomous Systems Icon"
-                class="img-fluid mb-3"
-              />
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+          <div class="category-card p-3 bg-white text-dark rounded shadow">
+            <a href="autonomous_system.html" style="text-decoration: none; color: inherit;">
+              <img src="../Course Icons/autonomous-system.png" alt="Autonomous Systems Icon" class="img-fluid mb-3" />
               <h5>Autonomous Systems</h5>
-              </a>
-            </div>
+            </a>
           </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
-            <div class="category-card p-3 bg-white text-dark rounded shadow">
-              <a href="cloud_computing.html" style="text-decoration: none; color: inherit;">
-              <img
-                src="../Course Icons/cloud-computing.png"
-                alt="Cloud Computing Icon"
-                class="img-fluid mb-3"
-              />
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+          <div class="category-card p-3 bg-white text-dark rounded shadow">
+            <a href="cloud_computing.html" style="text-decoration: none; color: inherit;">
+              <img src="../Course Icons/cloud-computing.png" alt="Cloud Computing Icon" class="img-fluid mb-3" />
               <h5>Cloud Computing Essentials</h5>
             </a>
-            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="courses py-5">
-      <div class="cards-container">
-        <!-- Course card rendered using javascript -->
-      </div>
-      <div class="btn-cont">
-        <button class="load-more-button">Load more</button>
-      </div>
-    </section>
+  <section class="courses py-5">
+    <div class="cards-container">
+      <!-- Course card rendered using javascript -->
+    </div>
+    <div class="btn-cont">
+      <button class="load-more-button">Load more</button>
+    </div>
+  </section>
 
-    <div class="footer">
-      <div class="footer-col">
-          <img src="../image/ml fusion lab log.jpg" alt="">
-          <span class="footer-p">
-    
-            We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
-    
-          </span>
-          <div class="footer-social">
-              <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
-              <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-              <!-- Replaced: Twitter(X) Logo -->
-              <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
-          </div>
-      </div>
-      <div class="footer-col-main">
-          <h4 class="h46">ML Fusion Labs</h4>
-          <a href="#">Business</a>
-          <a href="#">Franchise</a>
-          <a href="#">Network</a>
-      </div>
-      <div class="footer-col-main">
-          <h4 class="h46">About Us</h4>
-          <a href="./about.html">About Us</a>
-          <a href="./privacy.html">Security</a>
-          <a href="./contributor.html">Contributors</a>
-      </div>
-      <div class="footer-col-main">
-          <h4 class="h46">Contact</h4>
-          <a href="./contact.html">Contact Us</a>
-          <a href="info@mlfusionlabs.com">Email Us</a>
-          <a href="./privacy.html">Privacy Policy</a>
-          <a href="./terms.html">Terms & Conditions</a>
+  <div class="footer">
+    <div class="footer-col">
+      <img src="../image/ml fusion lab log.jpg" alt="">
+      <span class="footer-p">
+
+        We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning
+        tutorials, projects, and resources for all.
+
+      </span>
+      <div class="footer-social">
+        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+        <!-- Replaced: Twitter(X) Logo -->
+        <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
       </div>
     </div>
-    <div class="footer-bar"> 
-        &copy; 2024 ML Fusion Labs | All Rights Reserved
-    
+    <div class="footer-col-main">
+      <h4 class="h46">ML Fusion Labs</h4>
+      <a href="#">Business</a>
+      <a href="#">Franchise</a>
+      <a href="#">Network</a>
     </div>
-    <button id="scrollTopBtn" onclick="scrollToTop()">
-      <i class="fas fa-arrow-up"></i>
-    </button>
+    <div class="footer-col-main">
+      <h4 class="h46">About Us</h4>
+      <a href="./about.html">About Us</a>
+      <a href="./privacy.html">Security</a>
+      <a href="./contributor.html">Contributors</a>
+    </div>
+    <div class="footer-col-main">
+      <h4 class="h46">Contact</h4>
+      <a href="./contact.html">Contact Us</a>
+      <a href="./email.html">Email Us</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms & Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bar">
+    &copy; 2024 ML Fusion Labs | All Rights Reserved
 
-    <script src="../script/scroll.js"></script>
-    <script src="../script/courses.js" type="module"></script>
-    <script src="../script/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <div class="circle-container">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-    </div>
+  </div>
+  <button id="scrollTopBtn" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="../script/scroll.js"></script>
+  <script src="../script/courses.js" type="module"></script>
+  <script src="../script/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
 
   <!-- Botpress Chat Scripts -->
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
   <script src="./script//popup.js"></script>
   <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
 
-  </body>
+</body>
+
 </html>
