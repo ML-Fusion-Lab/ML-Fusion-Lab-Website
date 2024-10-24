@@ -76,52 +76,22 @@ body {
   height: 120px;
 }
 
-/* footer {
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: auto;
-}
-
-.footer-container {
-  max-width: 800px;
-  margin: auto;
-  padding: 0 20px;
-} */
-
-/* .footer-links,
-.footer-socials {
-  margin: 10px 0;
-}
-
-.footer-links a,
-.footer-socials a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  transition: all .38s ease-in-out;
-}
-
-.footer-links a:hover,
-  .footer-socials a:hover {
-          color: white;
-          transform: scale(1.2);
-          padding: 2px 5px;
-          border-radius: 4px;} */
-
-/* .footer-contact {
-  margin: 10px 0;
-} */
 
 /* new footer properties */
 .footer {
   padding: 5rem 1rem;
   position: relative;
   display: grid;
-  grid-template-columns: 400px repeat(3, 1fr);
+  grid-template-columns: minmax(200px, 400px) repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   background-color:#191919;
+}
+
+@media (max-width: 400px) {
+  .footer {
+    grid-template-columns: 1fr;
+    text-align: center; 
+  }
 }
 
 .footer-col img {
@@ -220,11 +190,7 @@ body {
   background-color: black;
 }
 
-@media (max-width: 900px) {
-  .footer {
-      grid-template-columns: 1fr 200px;
-  }
-}
+
 /* this is only end of footer style */
 
 body {
@@ -605,26 +571,6 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer Styles */
-footer {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 40px 0;
-  text-align: center;
-}
-
-footer p {
-  margin: 10px 0;
-}
-
-footer p a {
-  color: #00c6ff;
-  text-decoration: none;
-}
-
-footer p a:hover {
-  text-decoration: underline;
-}
 
 /* Features Section */
 
@@ -1271,44 +1217,7 @@ body.dark-mode .newsletter-right {
   color: white;
 }
 
-/* Here are the styles for the theme toggel  */
-/* .theme-switch {
-  display: inline-block;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
-  background: linear-gradient(82deg, #ffffff, #00796b);
-  position: relative;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out;
-  vertical-align: middle;
-  right: -10px;
-}
 
-.theme-switch::before {
-  content: "";
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
-  background-image: url("../Assets/moon.png");
-}
-
-.theme-switch.dark-theme {
-  background: linear-gradient(82deg, #ffffff, #1f1f1f);
-}
-
-.theme-switch.dark-theme::before {
-  left: 33px;
-  background-image: url("../Assets/sun.png");
-} */
-
-/* theme toggle switch */
 
 .checkbox {
   opacity: 0;
@@ -1498,23 +1407,6 @@ footer {
   padding: 0 20px;
 }
 
-/* .footer-links,
-.footer-socials {
-  margin: 10px 0;
-}
-
-.footer-links a,
-.footer-socials a {
-  color: white;
-  text-decoration: none;
-  margin: 0 10px;
-  transition: color 0.3s;
-}
-
-.footer-links a:hover,
-.footer-socials a:hover {
-  color: #007bff;
-} */
 
 .footer-contact {
   margin: 10px 0;
@@ -1791,6 +1683,7 @@ header nav ul li a {
   /* Adjust padding for links */
   transition: color 0.3s ease;
 }
+
 
 /* Responsive styles */
 @media (max-width: 900px) {
@@ -2139,89 +2032,6 @@ h2 {
     font-size: 1.5em;
   }
 }
-
-/* .features {
-    padding: 80px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-  }
-
-  .features h2 {
-    font-size: 36px;
-    margin-bottom: 50px;
-    font-weight: 700;
-  }
-
-  .feature-grid {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .feature-item {
-    background-color: #fff;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    width: 30%;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-
-  .feature-item:hover {
-    transform: translateY(-10px);
-  }
-
-  .feature-item h3 {
-    font-size: 26px;
-    color: #0077cc;
-    margin-bottom: 20px;
-  }
-
-  .feature-item p {
-    font-size: 18px;
-    color: #555;
-  } */
-
-/*   
-  footer {
-    background-color: #ffffff;
-    color: rgb(8, 7, 7);
-    padding: 40px 0;
-    text-align: center;
-  }
-
-  footer p {
-    margin: 10px 0;
-  }
-
-  footer p a {
-    color: #00c6ff;
-    text-decoration: none;
-  }
-
-  footer p a:hover {
-    text-decoration: underline;
-  }
-  footer {
-    background-color: #1a1a1a;
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-  }
-
-  footer p {
-    margin: 10px 0;
-  }
-
-  footer p a {
-    color: #00c6ff;
-    text-decoration: none;
-  }
-
-  footer p a:hover {
-    text-decoration: underline;
-  } */
 
 /* Course Page Specific Styles */
 .hero-small {
