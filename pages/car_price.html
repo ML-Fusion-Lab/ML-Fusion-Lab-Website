@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fashion Recommendation System</title>
+    <title>Predict Car Prices with Machine Learning</title>
     <link rel="stylesheet" href="../style/style.css" />
     <style>
       body {
@@ -247,210 +247,154 @@
     </header>
 
     <div class="content">
-        <h1 class="ani">Fashion Recommendation System Using Deep Learning</h1>
+        <h1 class="ani">>Car Price Prediction Model Tutorial</h1>
     
     <div class="section">
         <h2>Overview</h2>
-        <p>This project implements a fashion recommendation system using deep learning. It utilizes transfer learning with ResNet models to extract features from fashion images and creates recommendations based on similarity metrics. The system is built using FastAI, PyTorch, and Spotify's Annoy library for efficient similarity search.</p>
+        <p>This code implements a machine learning model to predict car prices using PyTorch. The model takes various car features as input (such as year, present price, kilometers driven, etc.) and predicts the selling price.</p>
         
-        <h3>Required Libraries</h3>
+        <h3>Key Features:</h3>
+        <ul>
+            <li>Uses PyTorch for implementing the neural network</li>
+            <li>Handles both numerical and categorical data</li>
+            <li>Implements custom dataset preprocessing</li>
+            <li>Uses Linear Regression model architecture</li>
+            <li>Includes training and validation pipelines</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Step-by-Step Implementation</h2>
+
+        <h3><span class="step-number">1</span>Import Required Libraries</h3>
         <div class="code-block">
-            <div class="code-header">Dependencies</div>
-            <pre><code>import matplotlib.pyplot as plt
-import numpy as np
+            <pre><code>import torch
+import jovian
+import torch.nn as nn
 import pandas as pd
-import gdown
-from fastai.vision import *
-from fastai.metrics import accuracy, top_k_accuracy
-from annoy import AnnoyIndex
-import zipfile
-import time
-from google.colab import drive</code></pre>
+import matplotlib.pyplot as plt
+import torch.nn.functional as F
+from torch.utils.data import DataLoader, TensorDataset, random_split</code></pre>
         </div>
-    </div>
+        <p>These libraries provide essential functionality for data manipulation (pandas), deep learning (torch), and data visualization (matplotlib).</p>
 
-    <div class="section">
-        <h2>Implementation Steps</h2>
-
-        <div class="step">
-            <h3>1. Data Preparation</h3>
-            <p>Downloads and prepares the fashion dataset:</p>
-            <div class="code-block">
-                <div class="code-header">Downloading Dataset Files</div>
-                <pre><code># Download metadata files
-url = 'https://drive.google.com/uc?id=0B7EVK8r0v71pWnFiNlNGTVloLUk'
-output = 'list_category_cloth.txt'
-gdown.download(url, output, quiet=False)
-
-# Download and extract images
-root_path = './'
-url = 'https://drive.google.com/uc?id=1j5fCPgh0gnY6v7ChkWlgnnHH6unxuAbb'
-output = 'img.zip'
-gdown.download(url, output, quiet=False)
-with zipfile.ZipFile("img.zip","r") as zip_ref:
-    zip_ref.extractall(root_path)</code></pre>
-            </div>
+        <h3><span class="step-number">2</span>Data Loading and Preprocessing</h3>
+        <div class="code-block">
+            <pre><code>DATA_FILENAME = "car_data.csv"
+dataframe_raw = pd.read_csv(DATA_FILENAME)</code></pre>
         </div>
+        <p>The code loads car data from a CSV file into a pandas DataFrame.</p>
 
-        <div class="step">
-            <h3>2. Data Processing</h3>
-            <p>Processes the data into a structured format:</p>
-            <div class="code-block">
-                <div class="code-header">Data Processing and Organization</div>
-                <pre><code># Create DataFrame with image information
-data_df = pd.DataFrame(image_path_list, columns=['image_path', 'category_number'])
-data_df['category_number'] = data_df['category_number'].astype(int)
-data_df = data_df.merge(
-    pd.DataFrame(data_type_list, columns=['image_path', 'dataset_type']), 
-    on='image_path'
-)
-data_df['category'] = data_df['category_number'].apply(
-    lambda x: category_list[int(x) - 1]
-)
-
-# Create FastAI ImageList objects
-train_image_list = ImageList.from_df(
-    df=data_df, 
-    path=root_path, 
-    cols='image_path'
-).split_by_idxs(
-    (data_df[data_df['dataset_type']=='train'].index),
-    (data_df[data_df['dataset_type']=='val'].index)
-).label_from_df(cols='category')</code></pre>
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>3. Model Training</h3>
-            <p>Implements transfer learning with ResNet:</p>
-            <div class="code-block">
-                <div class="code-header">Model Training Setup</div>
-                <pre><code>def train_model(data, pretrained_model, model_metrics):
-    learner = cnn_learner(data, pretrained_model, metrics=model_metrics)
-    learner.model = torch.nn.DataParallel(learner.model)
-    learner.lr_find()
-    learner.recorder.plot(suggestion=True)
-    return learner
-
-# Setup and train the model
-pretrained_model = models.resnet18
-model_metrics = [
-    accuracy, 
-    partial(top_k_accuracy, k=1), 
-    partial(top_k_accuracy, k=5)
-]
-learner = train_model(data, pretrained_model, model_metrics)
-learner.fit_one_cycle(10, max_lr=1e-02)</code></pre>
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>4. Feature Extraction</h3>
-            <p>Extracts embeddings from the trained model:</p>
-            <div class="code-block">
-                <div class="code-header">Feature Extraction Implementation</div>
-                <pre><code>class SaveFeatures():
-    features=None
-    def __init__(self, m): 
-        self.hook = m.register_forward_hook(self.hook_fn)
-        self.features = None
-    def hook_fn(self, module, input, output): 
-        out = output.detach().cpu().numpy()
-        if isinstance(self.features, type(None)):
-            self.features = out
-        else:
-            self.features = np.row_stack((self.features, out))
-    def remove(self): 
-        self.hook.remove()
-
-# Extract features
-saved_features = SaveFeatures(learner.model.module[1][4])
-_= learner.get_preds(data.train_ds)
-_= learner.get_preds(DatasetType.Valid)</code></pre>
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>5. Recommendation System</h3>
-            <p>Implements similarity-based recommendations using Annoy:</p>
-            <div class="code-block">
-                <div class="code-header">Recommendation System Implementation</div>
-                <pre><code>def get_similar_images_annoy(annoy_tree, img_index, number_of_items=12):
-    start = time.time()
-    img_id, img_label = data_df_ouput.iloc[img_index, [0, 1]]
-    similar_img_ids = annoy_tree.get_nns_by_item(img_index, number_of_items+1)
-    end = time.time()
-    print(f'{(end - start) * 1000} ms')
-    return img_id, img_label, data_df_ouput.iloc[similar_img_ids[1:]]
-
-# Build Annoy index
-ntree = 100
-metric_choice = 'angular'
-annoy_tree = AnnoyIndex(len(data_df_ouput['embeddings'][0]), metric=metric_choice)
-
-for i, vector in enumerate(data_df_ouput['embeddings']):
-    annoy_tree.add_item(i, vector)
-_ = annoy_tree.build(ntree)</code></pre>
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>6. Centroid-based Recommendations</h3>
-            <p>Implements recommendations based on multiple reference images:</p>
-            <div class="code-block">
-                <div class="code-header">Centroid-based Recommendation Implementation</div>
-                <pre><code>def centroid_embedding(outfit_embedding_list):
-    number_of_outfits = outfit_embedding_list.shape[0]
-    length_of_embedding = outfit_embedding_list.shape[1]
-    centroid = []
-    for i in range(length_of_embedding):
-        centroid.append(np.sum(outfit_embedding_list[:, i])/number_of_outfits)
-    return centroid
-
-def get_similar_images_annoy_centroid(annoy_tree, vector_value, number_of_items=12):
-    start = time.time()
-    similar_img_ids = annoy_tree.get_nns_by_vector(vector_value, number_of_items+1)
-    end = time.time()
-    print(f'{(end - start) * 1000} ms')
-    return data_df_ouput.iloc[similar_img_ids[1:]]</code></pre>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Technical Requirements</h2>
-        <div class="warning">
-            <strong>Note:</strong> The code requires:
+        <div class="note">
+            <strong>Custom Dataset Modification:</strong> The code includes a <code>customize_dataset</code> function that:
             <ul>
-                <li>Python with PyTorch, FastAI, and Annoy libraries</li>
-                <li>Sufficient GPU memory for model training</li>
-                <li>Google Drive integration for model storage</li>
-                <li>Adequate storage for the fashion dataset</li>
+                <li>Randomly samples 95% of the data</li>
+                <li>Scales the Year and Selling_Price columns</li>
+                <li>Optionally drops the Car_Name column</li>
             </ul>
         </div>
+
+        <h3><span class="step-number">3</span>Feature Organization</h3>
+        <div class="code-block">
+            <pre><code>input_cols = ["Year","Present_Price","Kms_Driven","Owner"]
+categorical_cols = ["Fuel_Type","Seller_Type","Transmission"]
+output_cols = ["Selling_Price"]</code></pre>
+        </div>
+        <p>Features are organized into numerical inputs, categorical inputs, and output columns.</p>
+
+        <h3><span class="step-number">4</span>Data Preparation</h3>
+        <div class="code-block">
+            <pre><code>def dataframe_to_arrays(dataframe):
+    dataframe1 = dataframe.copy(deep=True)
+    for col in categorical_cols:
+        dataframe1[col] = dataframe1[col].astype('category').cat.codes
+    inputs_array = dataframe1[input_cols].to_numpy()
+    targets_array = dataframe1[output_cols].to_numpy()
+    return inputs_array, targets_array</code></pre>
+        </div>
+        <p>This function converts the DataFrame into numpy arrays, encoding categorical variables numerically.</p>
+
+        <h3><span class="step-number">5</span>PyTorch Dataset Creation</h3>
+        <div class="code-block">
+            <pre><code>inputs = torch.Tensor(inputs_array)
+targets = torch.Tensor(targets_array)
+dataset = TensorDataset(inputs, targets)
+train_ds, val_ds = random_split(dataset, [228, 57])</code></pre>
+        </div>
+        <p>The data is converted to PyTorch tensors and split into training and validation sets.</p>
+
+        <h3><span class="step-number">6</span>Model Architecture</h3>
+        <div class="code-block">
+            <pre><code>class CarsModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.linear = nn.Linear(input_size, output_size)
+        
+    def forward(self, xb):
+        out = self.linear(xb)
+        return out</code></pre>
+        </div>
+        <p>A simple linear regression model is implemented using PyTorch's neural network module.</p>
+
+        <h3><span class="step-number">7</span>Training and Validation</h3>
+        <div class="code-block">
+            <pre><code>def fit(epochs, lr, model, train_loader, val_loader, opt_func=torch.optim.SGD):
+    history = []
+    optimizer = opt_func(model.parameters(), lr)
+    for epoch in range(epochs):
+        # Training Phase 
+        for batch in train_loader:
+            loss = model.training_step(batch)
+            loss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
+        # Validation phase
+        result = evaluate(model, val_loader)
+        model.epoch_end(epoch, result, epochs)
+        history.append(result)
+    return history</code></pre>
+        </div>
+        <p>The training loop implements standard PyTorch training procedures with:</p>
+        <ul>
+            <li>Forward pass</li>
+            <li>Loss calculation</li>
+            <li>Backpropagation</li>
+            <li>Parameter updates</li>
+            <li>Validation after each epoch</li>
+        </ul>
+
+        <h3><span class="step-number">8</span>Making Predictions</h3>
+        <div class="code-block">
+            <pre><code>def predict_single(input, target, model):
+    inputs = input.unsqueeze(0)
+    predictions = model(inputs)
+    prediction = predictions[0].detach()
+    print("Input:", input)
+    print("Target:", target)
+    print("Prediction:", prediction)</code></pre>
+        </div>
+        <p>This function demonstrates how to use the trained model to make predictions on single examples.</p>
     </div>
 
     <div class="section">
-        <h2>Usage Example</h2>
-        <div class="code-block">
-            <div class="code-header">Finding Similar Items</div>
-            <pre><code># Find similar items to a group of shorts
-outfit_img_ids = [109938, 106385, 113703, 98666, 113467, 120667]
-outfit_embedding_list = []
-for img_index in outfit_img_ids:
-    outfit_embedding_list.append(data_df_ouput.iloc[img_index, 3])
+        <h2>Key Implementation Notes</h2>
+        <ul>
+            <li>The model uses L1 Loss (Mean Absolute Error) as the loss function</li>
+            <li>Learning rate is set very small (1e-8 and 1e-9) suggesting the data might need normalization</li>
+            <li>The training process includes 90 epochs initially, followed by additional 20 epochs with a lower learning rate</li>
+            <li>The model implements basic validation tracking to monitor performance</li>
+        </ul>
+    </div>
 
-outfit_embedding_list = np.array(outfit_embedding_list)
-outfit_centroid_embedding = centroid_embedding(outfit_embedding_list)
-similar_images_df = get_similar_images_annoy_centroid(
-    annoy_tree, 
-    outfit_centroid_embedding, 
-    30
-)
-
-# Display results
-show_similar_images(similar_images_df, fig_size=[15,15])</code></pre>
-        </div>
+    <div class="section">
+        <h2>Potential Improvements</h2>
+        <ul>
+            <li>Add feature normalization to improve training stability</li>
+            <li>Implement a more complex model architecture (e.g., adding hidden layers)</li>
+            <li>Add dropout or regularization to prevent overfitting</li>
+            <li>Implement cross-validation for better model evaluation</li>
+            <li>Add early stopping to prevent overtraining</li>
+        </ul>
     </div>
     <footer>
         <div class="container">
