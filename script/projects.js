@@ -404,12 +404,21 @@ const projects = [
     {
       "modelid": "modal45",
       "cardImage": "../Assets/projectpics/fashion.webp",
-      "cardAlt": "Heart Disease Prediction using Machine Learning",
+      "cardAlt": "Fashion Recommendation System",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Fashion Recommendation System ",
       "cardDesc": "In this tutorial , we will create a Fashion Recommendation System using Machine Learning",
       "learnMoreLink": "../pages/fashion.html"
-    }           
+    },
+    {
+      "modelid": "modal44",
+      "cardImage": "../Assets/projectpics/car_price.webp",
+      "cardAlt": "Predict Car Prices with Machine Learning",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Predict Car Prices with Machine Learning ",
+      "cardDesc": "In this tutorial , we will create a Car Price Prediction System using Machine Learning",
+      "learnMoreLink": "../pages/car_price.html"
+    }             
   ] 
 
   
