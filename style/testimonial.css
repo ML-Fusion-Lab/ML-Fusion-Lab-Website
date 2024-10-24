@@ -1,3 +1,27 @@
+.go-top-btn{
+  position:fixed;
+  bottom: 35px;
+  right: 35px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  background:#00A6FF;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition:background-color 0.3s, box-shadow 0.3s,transform 0.3s;
+}
+.go-top-btn:hover{
+  background-color: #007BBF;
+  box-shadow: 0px 6px 12px rgba(0,0,0 ,0.25);
+  transform: translateY(-2px)
+}
+
+
+
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap");
 
 body {
