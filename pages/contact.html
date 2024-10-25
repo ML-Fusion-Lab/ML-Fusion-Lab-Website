@@ -101,15 +101,20 @@
                         <form id="contactForm">
                             <div>
                                 <input type="text" class="form-control" id="firstName" placeholder="First Name"
-                                    required>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                    required pattern="[a-zA-Z ]+"
+                                    oninvalid="this.setCustomValidity('Numbers and Symbols are not allowed')"
+                                    oninput="this.setCustomValidity('')">
+                                
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required pattern="[a-zA-Z ]+"
+                                    oninvalid="this.setCustomValidity('Numbers and Symbols are not allowed')"
+                                    oninput="this.setCustomValidity('')">
                             </div>
                             <div>
                                 <input type="email" class="form-control" id="email" placeholder="E-mail" required>
                                 <div id="emailError" class="text-danger" style="display: none;">Please enter a valid
                                     email address from trusted providers (Gmail, Yahoo, Outlook, Hotmail, iCloud).</div>
                             </div>
-                            <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+                            <input type="text" class="form-control" id="phone" placeholder="Phone" required pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             <textarea rows="5" placeholder="Message" class="form-control" id="message"
                                 required></textarea>
                             <input id="send-btn" type="submit" class="send-btn" value="Send Message">
