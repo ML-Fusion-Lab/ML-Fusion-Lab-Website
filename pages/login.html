@@ -30,7 +30,9 @@
       <div class="form-container register-container">
         <form id="registerForm">
           <h1>ML Fusion Labs</h1>
-          <input type="text" placeholder="Name" id="registerName">
+          <input type="text" placeholder="Name" id="registerName" pattern="[a-zA-Z ]+"
+            oninvalid="this.setCustomValidity('Numbers and Symbols are not allowed')"
+            oninput="this.setCustomValidity('')">
           <input type="email" placeholder="Email" id="registerEmail">
           <div id="register-section" class="input-container">
             <input type="password" placeholder="Password" id="registerPassword">
