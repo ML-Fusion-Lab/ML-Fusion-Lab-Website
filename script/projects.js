@@ -286,8 +286,9 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI for Personalized Nutrition Plans",
       "cardDesc": "Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/nutrition_plans.html"
     },
+  
     {
       "modelid": "modal33",
       "cardImage": "../Assets/projectpics/rec.jpg",

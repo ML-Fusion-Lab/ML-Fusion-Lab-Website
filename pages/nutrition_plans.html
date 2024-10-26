@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> AI for Personalized Nutrition Plans  </title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .content {
+        margin: 20px auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+        transition: color 0.3s;
+      }
+      code {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        padding: 10px;
+        white-space: pre-wrap;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      /* css for mouse cursor trail effect */
+      .circle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle,
+          rgba(70, 130, 180, 0.3),
+          skyblue,
+          rgba(0, 0, 50, 0.3),
+          white
+        );
+        transition: transform 0.1s, left 0.1s, top 0.1s;
+      }
+
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+      }
+      .note {
+        background-color: #e7f3fe;
+        border-left: 6px solid #2196f3;
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        transition: background-color 0.3s, border-left-color 0.3s;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto;
+      }
+
+      .footer-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .footer-links,
+      .footer-socials,
+      .footer-contact {
+        margin: 10px 0;
+      }
+
+      .footer-links a,
+      .footer-socials a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover,
+      .footer-socials a:hover {
+        color: #007bff;
+      }
+
+      .footer-socials a {
+        font-size: 24px;
+        margin: 0 15px;
+      }
+
+      .footer-contact a {
+        color: white;
+      }
+
+      .ani {
+        display: flex;
+        padding: 0.5em 0;
+        justify-content: center;
+        align-items: center;
+        background-color: #4a90e2;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        animation: colorChange 8s infinite;
+      }
+      body.dark-mode .ani {
+        color: #1c2e3e;
+      }
+      @keyframes colorChange {
+        0% {
+          background-color: #4a90e2;
+        }
+        50% {
+          background-color: #50b3a2;
+        }
+        100% {
+          background-color: #4a90e2;
+        }
+      }
+
+      /* Dark mode styles */
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+      }
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3 {
+        color: #58a6ff;
+      }
+      body.dark-mode code {
+        background-color: #2b2b2b;
+        border-color: #444;
+        color: #e6e6e6;
+      }
+      body.dark-mode .note {
+        background-color: #1c2e3e;
+        border-left-color: #58a6ff;
+      }
+      body.dark-mode header {
+        background-color: #2c2c2c;
+      }
+      body.dark-mode nav ul li a {
+        color: #f0f0f0;
+      }
+      #scrollTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 105px;
+        z-index: 99;
+        font-size: 26px;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <header>
+      <div class="logo">
+        <a href="../index.html">
+          <h1>
+            <img
+              src="../image/ml fusion lab log.jpg"
+              alt="logo"
+              width="100"
+              height="100"
+            />
+          </h1>
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../pages/courses.html">Courses</a></li>
+          <li><a href="../pages/projects.html">Projects</a></li>
+          <li><a href="../pages/about.html">About Us</a></li>
+          <li><a href="../pages/contact.html">Contact</a></li>
+          <li>
+            <a href="../pages/community_suport.html">Community Support</a>
+          </li>
+          <li><a href="../pages/feedback.html">Feedback</a></li>
+          <!-- <div class="theme-switch" id="theme-switch"></div> -->
+          <div id="themeSwitch" class="theme-switch">
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+              
+              <img src="../Assets/sun.png" class="theme-btn">
+              <img src="../Assets/moon.png" class="theme-btn">
+              <!-- <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i> -->
+              <span class="ball"></span>
+            </label>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <div class="content">
+        <h1 class="ani">AI for Personalized Nutrition Plans</h1>
+    
+        <section>
+            <h2>1. Import Libraries and Data Preparation</h2>
+            <pre><code>
+    import pandas as pd
+    import numpy as np
+    import tensorflow as tf
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import StandardScaler
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import warnings
+    
+    warnings.filterwarnings("ignore")
+    
+    # Load nutrition dataset containing user dietary preferences and health data
+    df = pd.read_csv("nutrition_data.csv")
+    df.head()
+            </code></pre>
+            <p>This section initializes libraries for data manipulation (pandas, numpy), machine learning (TensorFlow), and data visualization (matplotlib, seaborn). The dataset is loaded, containing dietary preferences and health data, preparing it for analysis.</p>
+        </section>
+    
+        <section>
+            <h2>2. Data Visualization</h2>
+            <pre><code>
+    plt.figure(figsize=(10, 6))
+    sns.countplot(data=df, x='diet_type', palette='pastel')
+    plt.title('Distribution of Diet Types')
+    plt.xlabel('Diet Type')
+    plt.ylabel('Count')
+    plt.show()
+            </code></pre>
+            <p>This code visualizes the distribution of different diet types among users, helping to identify popular dietary preferences and inform personalized nutrition strategies.</p>
+        </section>
+    
+        <section>
+            <h2>3. Data Preprocessing for Model Training</h2>
+            <pre><code>
+    # One-hot encoding for categorical variables
+    df = pd.get_dummies(df, columns=['diet_type', 'food_preferences'], drop_first=True)
+    
+    # Split dataset into features and target
+    X = df.drop('nutrition_score', axis=1)
+    y = df['nutrition_score']
+    
+    # Standardize the features
+    scaler = StandardScaler()
+    X = scaler.fit_transform(X)
+    
+    # Split into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+            </code></pre>
+            <p>One-hot encode categorical variables, standardize features, and split the dataset into training and testing sets for model development.</p>
+        </section>
+    
+        <section>
+            <h2>4. Neural Network for Nutrition Score Prediction</h2>
+            <pre><code>
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Dense, Dropout
+    
+    # Build a neural network model for predicting nutrition score
+    model = Sequential([
+        Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
+        Dropout(0.2),
+        Dense(32, activation='relu'),
+        Dense(1)  # Output layer for nutrition score prediction
+    ])
+    
+    model.compile(optimizer='adam', loss='mean_squared_error')
+    model.fit(X_train, y_train, epochs=50, batch_size=32)
+    
+    # Predict nutrition scores for new data
+    predictions = model.predict(X_test)
+            </code></pre>
+            <p>Train a neural network to predict the nutrition score based on input features like dietary preferences and health data, enabling personalized nutrition planning.</p>
+        </section>
+    
+        <section>
+            <h2>5. Evaluation of Nutrition Score Prediction Model</h2>
+            <pre><code>
+    from sklearn.metrics import mean_squared_error, r2_score
+    
+    # Evaluate model performance
+    mse = mean_squared_error(y_test, predictions)
+    r2 = r2_score(y_test, predictions)
+    
+    print(f"Mean Squared Error: {mse:.2f}")
+    print(f"R² Score: {r2:.2f}")
+    
+    # Visualize actual vs predicted nutrition scores
+    plt.figure(figsize=(10, 6))
+    plt.plot(y_test.values, label='Actual', color='blue')
+    plt.plot(predictions, label='Predicted', color='red', linestyle='dashed')
+    plt.legend()
+    plt.title('Actual vs Predicted Nutrition Scores')
+    plt.xlabel('Sample')
+    plt.ylabel('Nutrition Score')
+    plt.show()
+            </code></pre>
+            <p>Evaluate the performance of the nutrition score prediction model using metrics like Mean Squared Error (MSE) and R² score. Visualize actual versus predicted values to understand the model's accuracy.</p>
+        </section>
+    
+        <section>
+            <h2>6. Deep Learning for Personalized Meal Recommendations</h2>
+            <pre><code>
+    # Example deep learning model for generating meal recommendations
+    from tensorflow.keras.layers import Embedding, Flatten
+    
+    recommendation_model = Sequential([
+        Embedding(input_dim=1000, output_dim=64, input_length=10),
+        Flatten(),
+        Dense(32, activation='relu'),
+        Dense(10, activation='softmax')  # Output layer for meal recommendations
+    ])
+    
+    recommendation_model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    recommendation_model.fit(X_train, y_train, epochs=30, batch_size=32)
+    
+    # Generate meal recommendations based on user preferences
+    meal_recommendations = recommendation_model.predict(X_test)
+            </code></pre>
+            <p>Implement a deep learning model to generate personalized meal recommendations based on user preferences and dietary restrictions, enhancing the overall nutrition experience.</p>
+        </section>
+    
+        <section>
+            <h2>7. Conclusion</h2>
+            <p>The AI for Personalized Nutrition Plans system combines machine learning and deep learning techniques to provide tailored nutrition advice based on individual preferences and health data. This approach empowers users to make informed dietary choices and promotes healthier eating habits.</p>
+        </section>
+    </div>
+    
+        
+    <footer>
+        <div class="container">
+          <div class="footer-socials">
+            Follow us on:
+            <a href="https://facebook.com" target="_blank">
+              <svg
+                style="width: 10px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  fill="#ffffff"
+                  d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+                />
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank"
+              ><svg
+                style="width: 15px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  fill="#ffffff"
+                  d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                />
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank">
+              <svg
+                style="width: 15px"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <path
+                  fill="#ffffff"
+                  d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="footer-contact">
+            <div>
+              Contact us:
+              <a href="mailto:info@mlfusionlabs.com" style="color: white"
+                >info@mlfusionlabs.com</a
+              >
+              | Phone: +1 (555) 123-4567
+            </div>
+          </div>
+          <div class="footer-links">
+            <a href="../pages/privacy.html">Privacy Policy</a> |
+            <a href="../pages/terms.html">Terms of Service</a> |
+            <a href="../pages/about.html">About Us</a> |
+            <a href="../pages/contact.html">Contact</a> |
+            <a href="../pages/contributor.html">Contributor</a>
+          </div>
+          <div>
+            &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+            Reserved
+          </div>
+        </div>
+        <button id="scrollTopBtn" onclick="scrollToTop()">
+          <svg
+            style="width: 20px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+            />
+          </svg>
+        </button>
+      </footer>
+      <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+          if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+          ) {
+            scrollTopBtn.style.display = "block";
+          } else {
+            scrollTopBtn.style.display = "none";
+          }
+        };
+  
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const coords = { x: 0, y: 0 };
+          const circles = document.querySelectorAll(".circle");
+  
+          circles.forEach(function (circle, index) {
+            circle.x = 0;
+            circle.y = 0;
+          });
+  
+          window.addEventListener("mousemove", function (e) {
+            coords.x = e.clientX;
+            coords.y = e.clientY;
+          });
+  
+          function animateCircles() {
+            let x = coords.x;
+            let y = coords.y;
+  
+            circles.forEach(function (circle, index) {
+              circle.style.left = x + "px";
+              circle.style.top = y + "px";
+  
+              circle.style.scale = (circles.length - index) / circles.length;
+              circle.x = x;
+              circle.y = y;
+  
+              const nextCircle = circles[index + 1] || circles[0];
+              x += (nextCircle.x - x) * 0.3;
+              y += (nextCircle.y - y) * 0.3;
+            });
+  
+            requestAnimationFrame(animateCircles);
+          }
+  
+          animateCircles();
+        });
+      </script>
+      <script src="../script/scroll.js"></script>
+      <script src="../script/script.js"></script>
+      <script src="../script/projects.js"></script>
+      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    </body>
+  </html>
+  
