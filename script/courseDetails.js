@@ -7,16 +7,14 @@ const courseDetails = [
     title: "Google AI Essentials",
     desc: "Beginner · Course",
     skills: "AI fundamentals",
-    certifiedBy:
-      "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    certifiedBy: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
     instructors: ["Dr. Sarah Lee", "Prof. John Smith"],
     courseDetails: {
       lessons: 12,
       assignments: 5,
       duration: { hours: 20, minutes: 30 },
     },
-    about:
-      "Dive into the world of AI with Google AI Essentials. This comprehensive course provides a solid foundation in artificial intelligence concepts, machine learning techniques, and their practical applications. You'll explore cutting-edge AI technologies and learn how to leverage Google's AI tools to solve real-world problems.",
+    about: "Dive into the world of AI with Google AI Essentials. This comprehensive course provides a solid foundation in artificial intelligence concepts, machine learning techniques, and their practical applications.",
     learningOutcomes: [
       "Understand core AI concepts and terminology",
       "Apply machine learning algorithms to solve practical problems",
@@ -39,16 +37,14 @@ const courseDetails = [
     title: "Python for Everybody",
     desc: "Beginner · Specialization",
     skills: "Python programming",
-    certifiedBy:
-      "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    certifiedBy: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
     instructors: ["Dr. Charles Severance"],
     courseDetails: {
       lessons: 25,
       assignments: 10,
       duration: { hours: 40, minutes: 0 },
     },
-    about:
-      "Python for Everybody is a comprehensive specialization designed to introduce you to programming and Python. From the basics of syntax to advanced concepts like data structures and web scraping, this course covers it all. You'll gain hands-on experience through numerous coding exercises and projects, preparing you for real-world programming challenges.",
+    about: "Python for Everybody is a comprehensive specialization designed to introduce you to programming and Python.",
     learningOutcomes: [
       "Master Python fundamentals and syntax",
       "Work with data structures and algorithms",
@@ -321,4 +317,49 @@ const courseDetails = [
   },
 ];
 
+// Define a standard structure for the course object
+const requiredProperties = [
+  "id",
+  "title",
+  "price",
+  "instructors",
+  "learningOutcomes",
+  "requirements",
+];
+
+// Function to validate course objects
+const validateCourseData = (course) => {
+  for (const prop of requiredProperties) {
+    if (!course[prop] || typeof course[prop] === "undefined") {
+      console.error(`Validation Error: Missing or undefined property '${prop}' in course with ID '${course.id}'`);
+      return false;
+    }
+    // Additional type checks can be added here as needed
+    if (prop === "instructors" || prop === "learningOutcomes" || prop === "requirements") {
+      if (!Array.isArray(course[prop])) {
+        console.error(`Validation Error: Property '${prop}' should be an array in course with ID '${course.id}'`);
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+// Validate each course
+courseDetails.forEach(course => validateCourseData(course));
+
+// Function to calculate discount dynamically
+const calculateDiscount = (strikedPrice, price) => {
+  const originalPrice = parseFloat(strikedPrice.replace('$', ''));
+  const currentPrice = parseFloat(price.replace('$', ''));
+  const discount = ((originalPrice - currentPrice) / originalPrice) * 100;
+  return Math.round(discount);
+};
+
+// Adding discount property to each course
+courseDetails.forEach(course => {
+  course.discountPercentage = calculateDiscount(course.strikedPrice, course.price);
+});
+
+// Optionally, you can export the updated courseDetails array with discounts
 export default courseDetails;
