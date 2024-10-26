@@ -232,7 +232,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Traffic Accident Prediction System",
       "cardDesc": "Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/traffic_accident.html"
     },
     {
       "modelid": "modal27",
