@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Human Face Landmark Detection   </title>
+    <title> AI-Driven Disaster Relief Supply Chain Optimization   </title>
     <link rel="stylesheet" href="../style/style.css" />
     <style>
       body {
@@ -253,153 +253,128 @@
       </nav>
     </header>
     <div class="content">
-      <h1 class="ani">Human Face Landmark Detection</h1>
-  
-      <section>
-          <h2>1. Import Libraries and Data Preparation</h2>
-          <pre><code>
-  import cv2
-  import numpy as np
-  import pandas as pd
-  import matplotlib.pyplot as plt
-  from sklearn.model_selection import train_test_split
-  import warnings
-  
-  warnings.filterwarnings("ignore")
-  
-  # Load dataset containing facial images and corresponding landmark points
-  df = pd.read_csv("face_landmarks.csv")
-  images = df['image'].values
-  landmarks = df['landmarks'].values
-          </code></pre>
-          <p>This section initializes libraries for image processing (OpenCV, NumPy) and data manipulation (pandas). The dataset is loaded, containing facial images along with their corresponding landmark coordinates for training the model.</p>
-      </section>
-  
-      <section>
-          <h2>2. Data Visualization</h2>
-          <pre><code>
-  # Visualizing a sample image and its landmarks
-  sample_image = cv2.imread(images[0])
-  sample_landmarks = np.array(landmarks[0].split()).astype('float').reshape(-1, 2)
-  
-  plt.imshow(cv2.cvtColor(sample_image, cv2.COLOR_BGR2RGB))
-  plt.scatter(sample_landmarks[:, 0], sample_landmarks[:, 1], color='red', s=10)
-  plt.title('Sample Image with Face Landmarks')
-  plt.axis('off')
-  plt.show()
-          </code></pre>
-          <p>This code visualizes a sample facial image along with its landmarks, helping to verify that the data has been loaded correctly and that the landmarks are positioned accurately.</p>
-      </section>
-  
-      <section>
-          <h2>3. Data Preprocessing</h2>
-          <pre><code>
-  # Preprocess images and landmarks
-  X = []
-  y = []
-  
-  for i in range(len(images)):
-      img = cv2.imread(images[i])
-      img = cv2.resize(img, (96, 96))  # Resize images to 96x96 pixels
-      X.append(img)
-      landmarks_array = np.array(landmarks[i].split()).astype('float').reshape(-1, 2)
-      y.append(landmarks_array)
-  
-  X = np.array(X) / 255.0  # Normalize pixel values
-  y = np.array(y)
-  X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
-          </code></pre>
-          <p>Prepare the data by resizing images to a uniform size and normalizing pixel values. Landmark coordinates are reshaped appropriately. The dataset is then split into training and validation sets for model evaluation.</p>
-      </section>
-  
-      <section>
-          <h2>4. Building the Face Landmark Detection Model</h2>
-          <pre><code>
-  from tensorflow.keras.models import Sequential
-  from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-  
-  # Build the convolutional neural network model
-  model = Sequential([
-      Conv2D(32, (3, 3), activation='relu', input_shape=(96, 96, 3)),
-      MaxPooling2D(pool_size=(2, 2)),
-      Conv2D(64, (3, 3), activation='relu'),
-      MaxPooling2D(pool_size=(2, 2)),
-      Conv2D(128, (3, 3), activation='relu'),
-      Flatten(),
-      Dense(256, activation='relu'),
-      Dropout(0.2),
-      Dense(68 * 2)  # Output layer for 68 landmarks (x, y) coordinates
-  ])
-  
-  model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
-  model.fit(X_train, y_train.reshape(-1, 136), epochs=30, batch_size=32, validation_data=(X_val, y_val.reshape(-1, 136)))
-          </code></pre>
-          <p>Train a convolutional neural network (CNN) model designed to detect facial landmarks from images, predicting the coordinates of key points on the face such as eyes, nose, and mouth.</p>
-      </section>
-  
-      <section>
-          <h2>5. Evaluation of the Landmark Detection Model</h2>
-          <pre><code>
-  # Evaluate model performance on validation set
-  val_loss, val_mae = model.evaluate(X_val, y_val.reshape(-1, 136))
-  print(f"Validation Loss: {val_loss:.2f}")
-  print(f"Validation MAE: {val_mae:.2f}")
-  
-  # Visualize predictions on a sample validation image
-  predicted_landmarks = model.predict(X_val)
-  sample_index = 0
-  sample_image = X_val[sample_index]
-  sample_landmarks = predicted_landmarks[sample_index].reshape(-1, 2)
-  
-  plt.imshow(sample_image)
-  plt.scatter(sample_landmarks[:, 0] * 96, sample_landmarks[:, 1] * 96, color='red', s=10)
-  plt.title('Predicted Face Landmarks')
-  plt.axis('off')
-  plt.show()
-          </code></pre>
-          <p>Evaluate the performance of the face landmark detection model using validation loss and mean absolute error (MAE) metrics. Visualize the predicted landmarks on a sample image to assess accuracy visually.</p>
-      </section>
-  
-      <section>
-          <h2>6. Real-Time Face Landmark Detection</h2>
-          <pre><code>
-  # Real-time face landmark detection using webcam
-  cap = cv2.VideoCapture(0)
-  
-  while True:
-      ret, frame = cap.read()
-      if not ret:
-          break
-  
-      # Preprocess frame
-      img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-      img_resized = cv2.resize(img, (96, 96)) / 255.0
-      img_array = np.expand_dims(img_resized, axis=0)
-  
-      # Predict landmarks
-      predicted_landmarks = model.predict(img_array)
-      landmarks = predicted_landmarks.reshape(-1, 2) * 96
-  
-      for (x, y) in landmarks.astype(int):
-          cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
-  
-      cv2.imshow("Face Landmark Detection", frame)
-      if cv2.waitKey(1) & 0xFF == ord('q'):
-          break
-  
-  cap.release()
-  cv2.destroyAllWindows()
-          </code></pre>
-          <p>This code enables real-time detection of facial landmarks using a webcam, demonstrating the model's practical application in identifying key facial features during live interactions.</p>
-      </section>
-  
-      <section>
-          <h2>7. Conclusion</h2>
-          <p>The Human Face Landmark Detection system utilizes deep learning techniques to accurately identify key facial points in images and real-time video. This technology can be applied in various fields, including emotion recognition, facial recognition, and augmented reality applications.</p>
-      </section>
-  </div>
-  
-        
+        <h1 class="ani">AI-Driven Disaster Relief Supply Chain Optimization</h1>
+    
+        <section>
+            <h2>1. Import Libraries and Data Preparation</h2>
+            <pre><code>
+    import pandas as pd
+    import numpy as np
+    import tensorflow as tf
+    from sklearn.preprocessing import StandardScaler
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import warnings
+    
+    warnings.filterwarnings("ignore")
+    
+    # Load dataset containing information on disaster-prone areas, supply demand, and transport routes
+    df = pd.read_csv("disaster_relief_supply_data.csv")
+    df.head()
+            </code></pre>
+            <p>This section initializes libraries for data manipulation (pandas, numpy), machine learning (TensorFlow), and data visualization (matplotlib, seaborn). The dataset is loaded, containing information on disaster-prone areas, supply demand, and transport routes, preparing it for analysis.</p>
+        </section>
+    
+        <section>
+            <h2>2. Data Visualization</h2>
+            <pre><code>
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=df, x='region', y='supply_demand', palette='Blues')
+    plt.title('Supply Demand by Region During Disasters')
+    plt.xlabel('Region')
+    plt.ylabel('Supply Demand (units)')
+    plt.show()
+            </code></pre>
+            <p>This code visualizes the supply demand in various regions during disasters, helping to identify critical areas that need prioritized resource allocation.</p>
+        </section>
+    
+        <section>
+            <h2>3. Feature Engineering for Supply Chain Optimization</h2>
+            <pre><code>
+    scaler = StandardScaler()
+    df[['distance', 'supply_demand', 'transport_capacity']] = scaler.fit_transform(df[['distance', 'supply_demand', 'transport_capacity']])
+    
+    # Convert categorical variables to numeric
+    df = pd.get_dummies(df, columns=['disaster_type', 'transport_mode'])
+    
+    # Preparing the data for training
+    X = df[['distance', 'supply_demand', 'transport_capacity', 'disaster_type_flood', 'transport_mode_air']]
+    y = df['relief_priority']
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+            </code></pre>
+            <p>Perform feature engineering to convert and scale data, making it ready for machine learning models to optimize the supply chain during disaster relief operations.</p>
+        </section>
+    
+        <section>
+            <h2>4. Neural Network for Predicting Optimal Resource Allocation</h2>
+            <pre><code>
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Dense
+    
+    model = Sequential([
+        Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
+        Dense(32, activation='relu'),
+        Dense(1, activation='linear')  # Predicting priority score for supply allocation
+    ])
+    
+    model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
+    model.fit(X_train, y_train, epochs=25, batch_size=32)
+    
+    # Predict priority levels for new scenarios
+    priority_prediction = model.predict(X_test)
+            </code></pre>
+            <p>Train a neural network to predict priority levels for supply allocation during disasters, ensuring that resources reach the most critical areas first.</p>
+        </section>
+    
+        <section>
+            <h2>5. Evaluation of Supply Chain Optimization Model</h2>
+            <pre><code>
+    from sklearn.metrics import mean_absolute_error, r2_score
+    
+    # Evaluate model performance
+    mae = mean_absolute_error(y_test, priority_prediction)
+    r2 = r2_score(y_test, priority_prediction)
+    
+    print(f"Mean Absolute Error: {mae:.2f}")
+    print(f"R^2 Score: {r2:.2f}")
+    plt.scatter(y_test, priority_prediction, alpha=0.5)
+    plt.xlabel('Actual Priority')
+    plt.ylabel('Predicted Priority')
+    plt.title('Actual vs Predicted Relief Priority')
+    plt.show()
+            </code></pre>
+            <p>Evaluate the performance of the relief supply optimization model using metrics such as Mean Absolute Error and R² Score, providing insights into the accuracy of the predictions.</p>
+        </section>
+    
+        <section>
+            <h2>6. Deep Learning for Route Planning and Logistics</h2>
+            <pre><code>
+    # Example deep learning model for logistics optimization (RNN, LSTM)
+    from tensorflow.keras.layers import LSTM, Dropout
+    
+    logistics_model = tf.keras.Sequential([
+        LSTM(100, activation='relu', input_shape=(10, 3)),
+        Dropout(0.2),
+        Dense(50, activation='relu'),
+        Dense(2)  # Output layer for optimized transport coordinates
+    ])
+    
+    logistics_model.compile(optimizer='adam', loss='mean_squared_error')
+    logistics_model.fit(df[['distance', 'supply_demand', 'transport_capacity']], epochs=30, batch_size=32)
+    
+    # Predict optimized logistics for new supply routes
+    optimized_routes = logistics_model.predict(df[['distance', 'supply_demand', 'transport_capacity']])
+            </code></pre>
+            <p>This deep learning approach using LSTM networks analyzes supply chain data to plan optimized logistics routes, reducing delays and ensuring efficient resource delivery.</p>
+        </section>
+    
+        <section>
+            <h2>7. Conclusion</h2>
+            <p>The AI-Driven Disaster Relief Supply Chain Optimization system integrates machine learning and deep learning models to improve the efficiency of supply allocation, logistics planning, and route optimization during disaster scenarios. This approach ensures that relief supplies are delivered swiftly and effectively, helping to save lives and resources.</p>
+        </section>
+    </div>
+            
     <footer>
         <div class="container">
           <div class="footer-socials">

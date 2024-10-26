@@ -232,7 +232,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Traffic Accident Prediction System",
       "cardDesc": "Use real-time traffic data and predictive models to forecast traffic accidents and improve road safety.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/traffic_accident.html"
     },
     {
       "modelid": "modal27",
@@ -241,7 +241,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Personalized Learning Recommendation System",
       "cardDesc": "Create an adaptive learning platform that suggests personalized learning paths based on student performance data.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/learning_system.html"
     },
     {
       "modelid": "modal28",
@@ -250,7 +250,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI for Mental Health Analysis",
       "cardDesc": "Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/mental_health.html"
     },
     {
       "modelid": "modal29",
@@ -259,7 +259,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Driven Disaster Relief Supply Chain Optimization",
       "cardDesc": "Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/disaster_releif.html"
     },
     {
       "modelid": "modal30",
@@ -268,7 +268,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Urban Sound Classification",
       "cardDesc": "Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.",
-      "learnMoreLink": "../pages/urban_sound_classification_tutorial.html"
+      "learnMoreLink": "../pages/urban_sound.html"
     },
     {
       "modelid": "modal31",
@@ -277,7 +277,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Smart Home Energy Prediction",
       "cardDesc": "Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/smart_home.html"
     },
     {
       "modelid": "modal32",
@@ -286,8 +286,9 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI for Personalized Nutrition Plans",
       "cardDesc": "Use user data (age, health conditions, dietary preferences) to develop personalized nutrition and meal plans using machine learning.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/nutrition_plans.html"
     },
+  
     {
       "modelid": "modal33",
       "cardImage": "../Assets/projectpics/rec.jpg",
@@ -295,7 +296,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Plastic Waste Classification To Recycle",
       "cardDesc": "Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/plastic_waste.html"
     },
     {
       "modelid": "modal34",
@@ -304,7 +305,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Powered Virtual Therapist",
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/virtual_therapy.html"
     },
     {
       "modelid": "modal35",

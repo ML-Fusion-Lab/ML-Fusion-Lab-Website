@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Human Face Landmark Detection   </title>
+    <title>  Urban Sound Classification   </title>
     <link rel="stylesheet" href="../style/style.css" />
     <style>
       body {
@@ -253,153 +253,128 @@
       </nav>
     </header>
     <div class="content">
-      <h1 class="ani">Human Face Landmark Detection</h1>
-  
-      <section>
-          <h2>1. Import Libraries and Data Preparation</h2>
-          <pre><code>
-  import cv2
-  import numpy as np
-  import pandas as pd
-  import matplotlib.pyplot as plt
-  from sklearn.model_selection import train_test_split
-  import warnings
-  
-  warnings.filterwarnings("ignore")
-  
-  # Load dataset containing facial images and corresponding landmark points
-  df = pd.read_csv("face_landmarks.csv")
-  images = df['image'].values
-  landmarks = df['landmarks'].values
-          </code></pre>
-          <p>This section initializes libraries for image processing (OpenCV, NumPy) and data manipulation (pandas). The dataset is loaded, containing facial images along with their corresponding landmark coordinates for training the model.</p>
-      </section>
-  
-      <section>
-          <h2>2. Data Visualization</h2>
-          <pre><code>
-  # Visualizing a sample image and its landmarks
-  sample_image = cv2.imread(images[0])
-  sample_landmarks = np.array(landmarks[0].split()).astype('float').reshape(-1, 2)
-  
-  plt.imshow(cv2.cvtColor(sample_image, cv2.COLOR_BGR2RGB))
-  plt.scatter(sample_landmarks[:, 0], sample_landmarks[:, 1], color='red', s=10)
-  plt.title('Sample Image with Face Landmarks')
-  plt.axis('off')
-  plt.show()
-          </code></pre>
-          <p>This code visualizes a sample facial image along with its landmarks, helping to verify that the data has been loaded correctly and that the landmarks are positioned accurately.</p>
-      </section>
-  
-      <section>
-          <h2>3. Data Preprocessing</h2>
-          <pre><code>
-  # Preprocess images and landmarks
-  X = []
-  y = []
-  
-  for i in range(len(images)):
-      img = cv2.imread(images[i])
-      img = cv2.resize(img, (96, 96))  # Resize images to 96x96 pixels
-      X.append(img)
-      landmarks_array = np.array(landmarks[i].split()).astype('float').reshape(-1, 2)
-      y.append(landmarks_array)
-  
-  X = np.array(X) / 255.0  # Normalize pixel values
-  y = np.array(y)
-  X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
-          </code></pre>
-          <p>Prepare the data by resizing images to a uniform size and normalizing pixel values. Landmark coordinates are reshaped appropriately. The dataset is then split into training and validation sets for model evaluation.</p>
-      </section>
-  
-      <section>
-          <h2>4. Building the Face Landmark Detection Model</h2>
-          <pre><code>
-  from tensorflow.keras.models import Sequential
-  from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-  
-  # Build the convolutional neural network model
-  model = Sequential([
-      Conv2D(32, (3, 3), activation='relu', input_shape=(96, 96, 3)),
-      MaxPooling2D(pool_size=(2, 2)),
-      Conv2D(64, (3, 3), activation='relu'),
-      MaxPooling2D(pool_size=(2, 2)),
-      Conv2D(128, (3, 3), activation='relu'),
-      Flatten(),
-      Dense(256, activation='relu'),
-      Dropout(0.2),
-      Dense(68 * 2)  # Output layer for 68 landmarks (x, y) coordinates
-  ])
-  
-  model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
-  model.fit(X_train, y_train.reshape(-1, 136), epochs=30, batch_size=32, validation_data=(X_val, y_val.reshape(-1, 136)))
-          </code></pre>
-          <p>Train a convolutional neural network (CNN) model designed to detect facial landmarks from images, predicting the coordinates of key points on the face such as eyes, nose, and mouth.</p>
-      </section>
-  
-      <section>
-          <h2>5. Evaluation of the Landmark Detection Model</h2>
-          <pre><code>
-  # Evaluate model performance on validation set
-  val_loss, val_mae = model.evaluate(X_val, y_val.reshape(-1, 136))
-  print(f"Validation Loss: {val_loss:.2f}")
-  print(f"Validation MAE: {val_mae:.2f}")
-  
-  # Visualize predictions on a sample validation image
-  predicted_landmarks = model.predict(X_val)
-  sample_index = 0
-  sample_image = X_val[sample_index]
-  sample_landmarks = predicted_landmarks[sample_index].reshape(-1, 2)
-  
-  plt.imshow(sample_image)
-  plt.scatter(sample_landmarks[:, 0] * 96, sample_landmarks[:, 1] * 96, color='red', s=10)
-  plt.title('Predicted Face Landmarks')
-  plt.axis('off')
-  plt.show()
-          </code></pre>
-          <p>Evaluate the performance of the face landmark detection model using validation loss and mean absolute error (MAE) metrics. Visualize the predicted landmarks on a sample image to assess accuracy visually.</p>
-      </section>
-  
-      <section>
-          <h2>6. Real-Time Face Landmark Detection</h2>
-          <pre><code>
-  # Real-time face landmark detection using webcam
-  cap = cv2.VideoCapture(0)
-  
-  while True:
-      ret, frame = cap.read()
-      if not ret:
-          break
-  
-      # Preprocess frame
-      img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-      img_resized = cv2.resize(img, (96, 96)) / 255.0
-      img_array = np.expand_dims(img_resized, axis=0)
-  
-      # Predict landmarks
-      predicted_landmarks = model.predict(img_array)
-      landmarks = predicted_landmarks.reshape(-1, 2) * 96
-  
-      for (x, y) in landmarks.astype(int):
-          cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
-  
-      cv2.imshow("Face Landmark Detection", frame)
-      if cv2.waitKey(1) & 0xFF == ord('q'):
-          break
-  
-  cap.release()
-  cv2.destroyAllWindows()
-          </code></pre>
-          <p>This code enables real-time detection of facial landmarks using a webcam, demonstrating the model's practical application in identifying key facial features during live interactions.</p>
-      </section>
-  
-      <section>
-          <h2>7. Conclusion</h2>
-          <p>The Human Face Landmark Detection system utilizes deep learning techniques to accurately identify key facial points in images and real-time video. This technology can be applied in various fields, including emotion recognition, facial recognition, and augmented reality applications.</p>
-      </section>
-  </div>
-  
-        
+        <h1 class="ani">Urban Sound Classification</h1>
+    
+        <section>
+            <h2>1. Import Libraries and Data Preparation</h2>
+            <pre><code>
+    import pandas as pd
+    import numpy as np
+    import librosa
+    import librosa.display
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import tensorflow as tf
+    from sklearn.model_selection import train_test_split
+    import warnings
+    
+    warnings.filterwarnings("ignore")
+    
+    # Load urban sound dataset containing audio features and labels
+    df = pd.read_csv("urban_sound_data.csv")
+    df.head()
+            </code></pre>
+            <p>This section initializes libraries for data manipulation (pandas, numpy), audio processing (librosa), machine learning (TensorFlow), and data visualization (matplotlib, seaborn). The dataset is loaded, containing audio features and labels for various urban sounds, preparing it for analysis.</p>
+        </section>
+    
+        <section>
+            <h2>2. Visualizing Audio Waveforms</h2>
+            <pre><code>
+    audio_path = 'example_sound.wav'
+    audio_data, sr = librosa.load(audio_path)
+    plt.figure(figsize=(10, 4))
+    librosa.display.waveshow(audio_data, sr=sr)
+    plt.title('Audio Waveform')
+    plt.xlabel('Time (seconds)')
+    plt.ylabel('Amplitude')
+    plt.show()
+            </code></pre>
+            <p>This code visualizes the waveform of an audio file, helping to analyze the characteristics of urban sounds such as traffic noise, sirens, and street music.</p>
+        </section>
+    
+        <section>
+            <h2>3. Feature Extraction Using Mel-Frequency Cepstral Coefficients (MFCCs)</h2>
+            <pre><code>
+    # Extract MFCCs from audio data
+    mfccs = librosa.feature.mfcc(y=audio_data, sr=sr, n_mfcc=13)
+    plt.figure(figsize=(10, 4))
+    librosa.display.specshow(mfccs, sr=sr, x_axis='time')
+    plt.colorbar()
+    plt.title('MFCCs of Urban Sound')
+    plt.xlabel('Time (seconds)')
+    plt.ylabel('MFCC Coefficients')
+    plt.show()
+            </code></pre>
+            <p>Extract MFCCs, a widely used feature in audio processing, to represent the sound characteristics. This helps in distinguishing different urban sounds for classification.</p>
+        </section>
+    
+        <section>
+            <h2>4. Neural Network for Sound Classification</h2>
+            <pre><code>
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D, Flatten
+    
+    # Build a Convolutional Neural Network (CNN) for sound classification
+    model = Sequential([
+        Conv2D(32, (3, 3), activation='relu', input_shape=(13, 216, 1)),
+        MaxPooling2D((2, 2)),
+        Conv2D(64, (3, 3), activation='relu'),
+        MaxPooling2D((2, 2)),
+        Flatten(),
+        Dense(128, activation='relu'),
+        Dense(10, activation='softmax')  # Assuming 10 different urban sound classes
+    ])
+    
+    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    model.fit(X_train, y_train, epochs=20, batch_size=32)
+    
+    # Predict urban sounds from new audio samples
+    predictions = model.predict(X_test)
+            </code></pre>
+            <p>Train a Convolutional Neural Network (CNN) to classify urban sounds. The network learns to identify unique patterns in audio data, enabling it to differentiate between various types of urban noises.</p>
+        </section>
+    
+        <section>
+            <h2>5. Evaluation of Sound Classification Model</h2>
+            <pre><code>
+    from sklearn.metrics import classification_report, confusion_matrix
+    
+    # Evaluate model performance
+    y_pred = np.argmax(predictions, axis=1)
+    y_true = np.argmax(y_test, axis=1)
+    
+    accuracy = accuracy_score(y_true, y_pred)
+    conf_matrix = confusion_matrix(y_true, y_pred)
+    
+    print(f"Accuracy: {accuracy:.2f}")
+    sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Greens")
+    plt.title('Confusion Matrix for Urban Sound Classification')
+    plt.xlabel('Predicted Labels')
+    plt.ylabel('True Labels')
+    plt.show()
+            </code></pre>
+            <p>Evaluate the performance of the urban sound classification model using accuracy scores and confusion matrices, providing insights into how well the model can distinguish between different urban sounds.</p>
+        </section>
+    
+        <section>
+            <h2>6. Data Augmentation for Improved Model Performance</h2>
+            <pre><code>
+    # Example of data augmentation techniques: time stretching and pitch shifting
+    audio_time_stretched = librosa.effects.time_stretch(audio_data, rate=0.8)
+    audio_pitch_shifted = librosa.effects.pitch_shift(audio_data, sr=sr, n_steps=2)
+    
+    # Apply augmentation to improve model training
+    augmented_data = [audio_data, audio_time_stretched, audio_pitch_shifted]
+            </code></pre>
+            <p>Use data augmentation techniques like time stretching and pitch shifting to increase the diversity of the training dataset, helping the model generalize better across different urban sound scenarios.</p>
+        </section>
+    
+        <section>
+            <h2>7. Conclusion</h2>
+            <p>The Urban Sound Classification system integrates feature extraction and deep learning models to accurately identify and classify various urban sounds. This system can be utilized for urban planning, noise monitoring, and even enhancing the quality of life in cities through intelligent noise control measures.</p>
+        </section>
+    </div>
+             
     <footer>
         <div class="container">
           <div class="footer-socials">
