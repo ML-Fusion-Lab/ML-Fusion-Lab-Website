@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> Human Face Landmark Detection   </title>
+    <title> Plastic Waste Classification To Recycle  </title>
     <link rel="stylesheet" href="../style/style.css" />
     <style>
       body {
@@ -253,152 +253,138 @@
       </nav>
     </header>
     <div class="content">
-      <h1 class="ani">Human Face Landmark Detection</h1>
-  
-      <section>
-          <h2>1. Import Libraries and Data Preparation</h2>
-          <pre><code>
-  import cv2
-  import numpy as np
-  import pandas as pd
-  import matplotlib.pyplot as plt
-  from sklearn.model_selection import train_test_split
-  import warnings
-  
-  warnings.filterwarnings("ignore")
-  
-  # Load dataset containing facial images and corresponding landmark points
-  df = pd.read_csv("face_landmarks.csv")
-  images = df['image'].values
-  landmarks = df['landmarks'].values
-          </code></pre>
-          <p>This section initializes libraries for image processing (OpenCV, NumPy) and data manipulation (pandas). The dataset is loaded, containing facial images along with their corresponding landmark coordinates for training the model.</p>
-      </section>
-  
-      <section>
-          <h2>2. Data Visualization</h2>
-          <pre><code>
-  # Visualizing a sample image and its landmarks
-  sample_image = cv2.imread(images[0])
-  sample_landmarks = np.array(landmarks[0].split()).astype('float').reshape(-1, 2)
-  
-  plt.imshow(cv2.cvtColor(sample_image, cv2.COLOR_BGR2RGB))
-  plt.scatter(sample_landmarks[:, 0], sample_landmarks[:, 1], color='red', s=10)
-  plt.title('Sample Image with Face Landmarks')
-  plt.axis('off')
-  plt.show()
-          </code></pre>
-          <p>This code visualizes a sample facial image along with its landmarks, helping to verify that the data has been loaded correctly and that the landmarks are positioned accurately.</p>
-      </section>
-  
-      <section>
-          <h2>3. Data Preprocessing</h2>
-          <pre><code>
-  # Preprocess images and landmarks
-  X = []
-  y = []
-  
-  for i in range(len(images)):
-      img = cv2.imread(images[i])
-      img = cv2.resize(img, (96, 96))  # Resize images to 96x96 pixels
-      X.append(img)
-      landmarks_array = np.array(landmarks[i].split()).astype('float').reshape(-1, 2)
-      y.append(landmarks_array)
-  
-  X = np.array(X) / 255.0  # Normalize pixel values
-  y = np.array(y)
-  X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
-          </code></pre>
-          <p>Prepare the data by resizing images to a uniform size and normalizing pixel values. Landmark coordinates are reshaped appropriately. The dataset is then split into training and validation sets for model evaluation.</p>
-      </section>
-  
-      <section>
-          <h2>4. Building the Face Landmark Detection Model</h2>
-          <pre><code>
-  from tensorflow.keras.models import Sequential
-  from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-  
-  # Build the convolutional neural network model
-  model = Sequential([
-      Conv2D(32, (3, 3), activation='relu', input_shape=(96, 96, 3)),
-      MaxPooling2D(pool_size=(2, 2)),
-      Conv2D(64, (3, 3), activation='relu'),
-      MaxPooling2D(pool_size=(2, 2)),
-      Conv2D(128, (3, 3), activation='relu'),
-      Flatten(),
-      Dense(256, activation='relu'),
-      Dropout(0.2),
-      Dense(68 * 2)  # Output layer for 68 landmarks (x, y) coordinates
-  ])
-  
-  model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
-  model.fit(X_train, y_train.reshape(-1, 136), epochs=30, batch_size=32, validation_data=(X_val, y_val.reshape(-1, 136)))
-          </code></pre>
-          <p>Train a convolutional neural network (CNN) model designed to detect facial landmarks from images, predicting the coordinates of key points on the face such as eyes, nose, and mouth.</p>
-      </section>
-  
-      <section>
-          <h2>5. Evaluation of the Landmark Detection Model</h2>
-          <pre><code>
-  # Evaluate model performance on validation set
-  val_loss, val_mae = model.evaluate(X_val, y_val.reshape(-1, 136))
-  print(f"Validation Loss: {val_loss:.2f}")
-  print(f"Validation MAE: {val_mae:.2f}")
-  
-  # Visualize predictions on a sample validation image
-  predicted_landmarks = model.predict(X_val)
-  sample_index = 0
-  sample_image = X_val[sample_index]
-  sample_landmarks = predicted_landmarks[sample_index].reshape(-1, 2)
-  
-  plt.imshow(sample_image)
-  plt.scatter(sample_landmarks[:, 0] * 96, sample_landmarks[:, 1] * 96, color='red', s=10)
-  plt.title('Predicted Face Landmarks')
-  plt.axis('off')
-  plt.show()
-          </code></pre>
-          <p>Evaluate the performance of the face landmark detection model using validation loss and mean absolute error (MAE) metrics. Visualize the predicted landmarks on a sample image to assess accuracy visually.</p>
-      </section>
-  
-      <section>
-          <h2>6. Real-Time Face Landmark Detection</h2>
-          <pre><code>
-  # Real-time face landmark detection using webcam
-  cap = cv2.VideoCapture(0)
-  
-  while True:
-      ret, frame = cap.read()
-      if not ret:
-          break
-  
-      # Preprocess frame
-      img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-      img_resized = cv2.resize(img, (96, 96)) / 255.0
-      img_array = np.expand_dims(img_resized, axis=0)
-  
-      # Predict landmarks
-      predicted_landmarks = model.predict(img_array)
-      landmarks = predicted_landmarks.reshape(-1, 2) * 96
-  
-      for (x, y) in landmarks.astype(int):
-          cv2.circle(frame, (x, y), 2, (0, 255, 0), -1)
-  
-      cv2.imshow("Face Landmark Detection", frame)
-      if cv2.waitKey(1) & 0xFF == ord('q'):
-          break
-  
-  cap.release()
-  cv2.destroyAllWindows()
-          </code></pre>
-          <p>This code enables real-time detection of facial landmarks using a webcam, demonstrating the model's practical application in identifying key facial features during live interactions.</p>
-      </section>
-  
-      <section>
-          <h2>7. Conclusion</h2>
-          <p>The Human Face Landmark Detection system utilizes deep learning techniques to accurately identify key facial points in images and real-time video. This technology can be applied in various fields, including emotion recognition, facial recognition, and augmented reality applications.</p>
-      </section>
-  </div>
-  
+        <h1 class="ani">Plastic Waste Classification To Recycle</h1>
+    
+        <section>
+            <h2>1. Import Libraries and Data Preparation</h2>
+            <pre><code>
+    import pandas as pd
+    import numpy as np
+    import tensorflow as tf
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import LabelEncoder
+    from tensorflow.keras.preprocessing.image import ImageDataGenerator
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import warnings
+    
+    warnings.filterwarnings("ignore")
+    
+    # Load dataset containing images of plastic waste and their labels
+    df = pd.read_csv("plastic_waste_data.csv")
+    df.head()
+            </code></pre>
+            <p>This section initializes libraries for data manipulation (pandas, numpy), machine learning (TensorFlow), and data visualization (matplotlib, seaborn). The dataset is loaded, containing images of plastic waste along with their corresponding labels for classification.</p>
+        </section>
+    
+        <section>
+            <h2>2. Data Visualization</h2>
+            <pre><code>
+    plt.figure(figsize=(10, 6))
+    sns.countplot(data=df, x='plastic_type', palette='Set2')
+    plt.title('Distribution of Plastic Types')
+    plt.xlabel('Plastic Type')
+    plt.ylabel('Count')
+    plt.show()
+            </code></pre>
+            <p>This code visualizes the distribution of different types of plastic waste in the dataset, helping to identify which categories are most prevalent and may require more focused recycling efforts.</p>
+        </section>
+    
+        <section>
+            <h2>3. Data Preprocessing and Augmentation</h2>
+            <pre><code>
+    # Encode labels
+    label_encoder = LabelEncoder()
+    df['encoded_labels'] = label_encoder.fit_transform(df['plastic_type'])
+    
+    # Set up data augmentation for image data
+    data_gen = ImageDataGenerator(
+        rescale=1.0/255,
+        rotation_range=20,
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        fill_mode='nearest'
+    )
+    
+    # Split dataset into training and validation sets
+    train_data, val_data = train_test_split(df, test_size=0.2, random_state=42)
+            </code></pre>
+            <p>Prepare the data by encoding labels and setting up data augmentation to enhance the training dataset. The dataset is then split into training and validation sets.</p>
+        </section>
+    
+        <section>
+            <h2>4. Convolutional Neural Network for Plastic Classification</h2>
+            <pre><code>
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+    
+    # Build a convolutional neural network model
+    model = Sequential([
+        Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)),
+        MaxPooling2D(pool_size=(2, 2)),
+        Conv2D(64, (3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+        Conv2D(128, (3, 3), activation='relu'),
+        MaxPooling2D(pool_size=(2, 2)),
+        Flatten(),
+        Dense(128, activation='relu'),
+        Dropout(0.5),
+        Dense(len(df['plastic_type'].unique()), activation='softmax')  # Output layer for classification
+    ])
+    
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    model.fit(data_gen.flow(train_data['image_path'], train_data['encoded_labels'], batch_size=32), epochs=30)
+            </code></pre>
+            <p>Train a convolutional neural network (CNN) model to classify plastic waste types based on images, facilitating the sorting and recycling process.</p>
+        </section>
+    
+        <section>
+            <h2>5. Evaluation of Plastic Classification Model</h2>
+            <pre><code>
+    # Evaluate model performance on validation set
+    val_loss, val_accuracy = model.evaluate(data_gen.flow(val_data['image_path'], val_data['encoded_labels'], batch_size=32))
+    print(f"Validation Loss: {val_loss:.2f}")
+    print(f"Validation Accuracy: {val_accuracy:.2f}")
+    
+    # Visualize training history
+    plt.plot(model.history.history['accuracy'], label='Training Accuracy')
+    plt.plot(model.history.history['val_accuracy'], label='Validation Accuracy')
+    plt.title('Model Accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.show()
+            </code></pre>
+            <p>Evaluate the performance of the plastic classification model using validation loss and accuracy. Visualize the training and validation accuracy over epochs to assess model training quality.</p>
+        </section>
+    
+        <section>
+            <h2>6. Plastic Waste Classification and Recycling</h2>
+            <pre><code>
+    # Load new sample image for classification
+    from tensorflow.keras.preprocessing import image
+    
+    img = image.load_img('new_plastic_sample.jpg', target_size=(150, 150))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0) / 255.0
+    
+    # Predict the type of plastic waste
+    predicted_class = model.predict(img_array)
+    predicted_label = label_encoder.inverse_transform([np.argmax(predicted_class)])
+    print(f"Identified Plastic Type: {predicted_label[0]}")
+            </code></pre>
+            <p>Implement the trained model to classify new images of plastic waste, identifying the type and enabling appropriate recycling measures.</p>
+        </section>
+    
+        <section>
+            <h2>7. Conclusion</h2>
+            <p>The Plastic Waste Classification system utilizes deep learning techniques to accurately identify different types of plastic waste from images. This classification helps streamline the recycling process, promoting more effective waste management and environmental sustainability.</p>
+        </section>
+    </div>
+    
         
     <footer>
         <div class="container">

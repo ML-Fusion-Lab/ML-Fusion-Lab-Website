@@ -296,7 +296,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Plastic Waste Classification To Recycle",
       "cardDesc": "Develop a system using computer vision to classify plastic waste into categories, helping streamline recycling processes.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/plastic_waste.html"
     },
     {
       "modelid": "modal34",
@@ -305,7 +305,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Powered Virtual Therapist",
       "cardDesc": "Create a conversational AI that provides mental health support and guidance based on user interactions, reducing barriers to therapy.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/virtual_therapy.html"
     },
     {
       "modelid": "modal35",
