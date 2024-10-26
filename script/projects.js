@@ -241,7 +241,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Personalized Learning Recommendation System",
       "cardDesc": "Create an adaptive learning platform that suggests personalized learning paths based on student performance data.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/learning_system.html"
     },
     {
       "modelid": "modal28",
@@ -250,7 +250,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI for Mental Health Analysis",
       "cardDesc": "Utilize sentiment analysis and pattern recognition to assess mental health based on user interactions and data.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/mental_health.html"
     },
     {
       "modelid": "modal29",
@@ -259,7 +259,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "AI-Driven Disaster Relief Supply Chain Optimization",
       "cardDesc": "Optimize supply chain logistics for disaster relief efforts, predicting demand and supply shortages in real time.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/disaster_releif.html"
     },
     {
       "modelid": "modal30",
@@ -268,7 +268,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Urban Sound Classification",
       "cardDesc": "Build a system that classifies urban sounds (e.g., traffic, sirens, and birds) to aid in city planning and noise pollution analysis.",
-      "learnMoreLink": "../pages/urban_sound_classification_tutorial.html"
+      "learnMoreLink": "../pages/urban_sound.html"
     },
     {
       "modelid": "modal31",
