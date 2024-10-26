@@ -277,7 +277,7 @@ const projects = [
       "imgStyle": "box-shadow: none; border-radius: 5px;",
       "cardTitle": "Smart Home Energy Prediction",
       "cardDesc": "Create a model that predicts energy consumption in smart homes based on weather and user behavior data, optimizing energy usage.",
-      "learnMoreLink": "#"
+      "learnMoreLink": "../pages/smart_home.html"
     },
     {
       "modelid": "modal32",
