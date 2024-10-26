@@ -427,7 +427,16 @@ const projects = [
       "cardTitle": "Predict Car Prices with Machine Learning ",
       "cardDesc": "In this tutorial , we will create a Car Price Prediction System using Machine Learning",
       "learnMoreLink": "../pages/car_price.html"
-    }             
+    },
+    {
+      "modelid": "modal45",
+      "cardImage": "../Assets/projectpics/uav_path_planning.jpg",
+      "cardAlt": "UAV Path Planning with Reinforcement Learning",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "UAV Path Planning with Reinforcement Learning",
+      "cardDesc": "This project demonstrates optimizing UAV path planning using Deep Q-Learning to navigate complex environments.",
+      "learnMoreLink": "../pages/uav_path_planning.html"
+}             
   ] 
 
   

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UAV Path Planning</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .content {
+        margin: 20px auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+        transition: color 0.3s;
+      }
+      code {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        padding: 10px;
+        white-space: pre-wrap;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      .note {
+        background-color: #e7f3fe;
+        border-left: 6px solid #2196f3;
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        transition: background-color 0.3s, border-left-color 0.3s;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto;
+      }
+
+      .footer-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .footer-links,
+      .footer-socials,
+      .footer-contact {
+        margin: 10px 0;
+      }
+
+      .footer-links a,
+      .footer-socials a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover,
+      .footer-socials a:hover {
+        color: #007bff;
+      }
+
+      .footer-socials a {
+        font-size: 24px;
+        margin: 0 15px;
+      }
+
+      .footer-contact a {
+        color: white;
+      }
+
+      .ani {
+        display: flex;
+        padding: 0.5em 0;
+        justify-content: center;
+        align-items: center;
+        background-color: #4a90e2;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        animation: colorChange 8s infinite;
+      }
+      @keyframes colorChange {
+        0% {
+          background-color: #4a90e2;
+        }
+        50% {
+          background-color: #50b3a2;
+        }
+        100% {
+          background-color: #4a90e2;
+        }
+      }
+
+      /* Dark mode styles */
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+      }
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3 {
+        color: #58a6ff;
+      }
+      body.dark-mode code {
+        background-color: #2b2b2b;
+        border-color: #444;
+        color: #e6e6e6;
+      }
+      body.dark-mode .note {
+        background-color: #1c2e3e;
+        border-left-color: #58a6ff;
+      }
+      body.dark-mode header {
+        background-color: #2c2c2c;
+      }
+      body.dark-mode nav ul li a {
+        color: #f0f0f0;
+      }
+      #scrollTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 105px;
+        z-index: 99;
+        font-size: 26px;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <header>
+      <div class="logo">
+        <a href="../index.html">
+          <h1>
+            <img
+              src="../image/ml fusion lab log.jpg"
+              alt="logo"
+              width="100"
+              height="100"
+            />
+          </h1>
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../pages/courses.html">Courses</a></li>
+          <li><a href="../pages/projects.html">Projects</a></li>
+          <li><a href="../pages/about.html">About Us</a></li>
+          <li><a href="../pages/contact.html">Contact</a></li>
+          <li>
+            <a href="../pages/community_suport.html">Community Support</a>
+          </li>
+          <li><a href="../pages/feedback.html">Feedback</a></li>
+          <div class="theme-switch" id="theme-switch"></div>
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="content">
+    <h1 class="ani">
+        UAV Path Planning: Reinforcement Learning Approach
+    </h1>
+
+    <h2>1. Project Overview</h2>
+    <p>
+        This project implements a reinforcement learning (RL) approach to optimize path planning for Unmanned Aerial Vehicles (UAVs). Using deep reinforcement learning (DRL), the model trains a UAV to navigate through various environments with obstacles while finding the most efficient path to its goal. This project leverages algorithms like DQN (Deep Q-Network) to achieve high performance in path optimization.
+    </p>
+
+    <h2>2. Setting Up the Environment</h2>
+    <p>Install the necessary libraries and packages to run this project:</p>
+    <code>
+        pip install tensorflow keras gym numpy<br>
+        pip install matplotlib seaborn<br>
+        pip install stable-baselines3<br>
+    </code>
+
+    <h2>3. Application Architecture</h2>
+    <p>The application is structured into three primary components:</p>
+    <ul>
+        <li><b>Environment Modeling</b>: Simulates the UAV's environment with obstacles and goal positions.</li>
+        <li><b>Reinforcement Learning Agent</b>: Uses DRL to train the UAV for optimal path planning.</li>
+        <li><b>Reward System</b>: A reward function that encourages goal-reaching behavior and penalizes obstacle collisions.</li>
+    </ul>
+
+    <h2>4. Implementing Key Components</h2>
+
+    <h3>4.1 Environment Modeling</h3>
+    <p>We create a custom environment class for the UAV path planning using the OpenAI Gym framework. The UAV’s environment includes a grid with the UAV’s starting point, the goal, and randomly placed obstacles:</p>
+    <code>
+        import gym
+        from gym import spaces
+        import numpy as np
+
+        class UAVPathEnv(gym.Env):
+            """Custom UAV environment compatible with OpenAI Gym."""
+            def __init__(self, grid_size=10, obstacle_count=10):
+                super(UAVPathEnv, self).__init__()
+                
+                self.grid_size = grid_size
+                self.obstacle_count = obstacle_count
+                self.observation_space = spaces.Box(low=0, high=1, shape=(grid_size, grid_size), dtype=np.float32)
+                self.action_space = spaces.Discrete(4)  # 0: up, 1: down, 2: left, 3: right
+                
+                # Initialize the UAV's position, goal position, and obstacles
+                self.uav_position = [0, 0]
+                self.goal_position = [grid_size - 1, grid_size - 1]
+                self.obstacles = self._generate_obstacles()
+
+            def _generate_obstacles(self):
+                """Randomly places obstacles in the grid, avoiding start and goal positions."""
+                obstacles = []
+                while len(obstacles) < self.obstacle_count:
+                    pos = [np.random.randint(0, self.grid_size), np.random.randint(0, self.grid_size)]
+                    if pos != self.uav_position and pos != self.goal_position:
+                        obstacles.append(pos)
+                return obstacles
+
+            def step(self, action):
+                """Performs an action to update the UAV's position and returns the reward."""
+                if action == 0:   # Up
+                    self.uav_position[0] = max(0, self.uav_position[0] - 1)
+                elif action == 1: # Down
+                    self.uav_position[0] = min(self.grid_size - 1, self.uav_position[0] + 1)
+                elif action == 2: # Left
+                    self.uav_position[1] = max(0, self.uav_position[1] - 1)
+                elif action == 3: # Right
+                    self.uav_position[1] = min(self.grid_size - 1, self.uav_position[1] + 1)
+                
+                done = False
+                reward = self.calculate_reward()
+                
+                if self.uav_position == self.goal_position:
+                    done = True  # Goal reached
+
+                obs = self._get_observation()
+                return obs, reward, done, {}
+
+            def calculate_reward(self):
+                """Calculates the reward based on the UAV's position relative to the goal and obstacles."""
+                if self.uav_position == self.goal_position:
+                    return 100  # Reward for reaching the goal
+                elif self.uav_position in self.obstacles:
+                    return -10  # Penalty for colliding with an obstacle
+                else:
+                    # Encourage proximity to the goal
+                    dist_to_goal = np.linalg.norm(np.array(self.uav_position) - np.array(self.goal_position))
+                    return -1 * dist_to_goal  # Negative reward proportional to the distance from the goal
+
+            def reset(self):
+                """Resets the UAV's position and the environment for a new episode."""
+                self.uav_position = [0, 0]
+                self.obstacles = self._generate_obstacles()
+                return self._get_observation()
+
+            def _get_observation(self):
+                """Returns the current state as a grid representation."""
+                grid = np.zeros((self.grid_size, self.grid_size))
+                grid[self.uav_position[0], self.uav_position[1]] = 1  # UAV's current position
+                grid[self.goal_position[0], self.goal_position[1]] = 2  # Goal position
+                for obs in self.obstacles:
+                    grid[obs[0], obs[1]] = -1  # Obstacles
+                return grid
+    </code>
+
+    <h3>4.2 Training the RL Agent</h3>
+    <p>We now train a Deep Q-Network (DQN) agent using the Stable-Baselines3 library. The model will learn to navigate the UAV through the environment by maximizing cumulative rewards.</p>
+    <code>
+        from stable_baselines3 import DQN
+        from stable_baselines3.common.env_util import make_vec_env
+
+        def train_rl_agent():
+            """Trains a DQN agent to navigate the UAV path planning environment."""
+            env = make_vec_env(lambda: UAVPathEnv(grid_size=10, obstacle_count=10), n_envs=1)
+            model = DQN("MlpPolicy", env, verbose=1, learning_rate=0.001, gamma=0.99)
+            model.learn(total_timesteps=50000)  # Adjust timesteps as necessary
+            return model
+
+        model = train_rl_agent()  # Train the model
+    </code>
+
+    <h3>4.3 Testing and Visualization</h3>
+    <p>After training, we can test the model by visualizing the UAV's path. This code shows how the UAV moves from its starting point to the goal:</p>
+    <code>
+        import matplotlib.pyplot as plt
+
+        def visualize_path(model, env):
+            obs = env.reset()
+            done = False
+            path = [env.uav_position.copy()]
+            
+            while not done:
+                action, _ = model.predict(obs, deterministic=True)
+                obs, reward, done, _ = env.step(action)
+                path.append(env.uav_position.copy())
+            
+            # Plotting the path
+            grid = np.zeros((env.grid_size, env.grid_size))
+            for pos in env.obstacles:
+                grid[pos[0], pos[1]] = -1  # Mark obstacles
+            grid[env.goal_position[0], env.goal_position[1]] = 2  # Mark goal
+            path_x, path_y = zip(*path)
+            
+            plt.imshow(grid, cmap="coolwarm", origin="upper")
+            plt.plot(path_y, path_x, marker='o', color='blue', label="UAV Path")
+            plt.scatter(env.goal_position[1], env.goal_position[0], color='green', marker='*', s=100, label="Goal")
+            plt.legend()
+            plt.show()
+
+        # Test and visualize the trained model
+        env = UAVPathEnv()
+        visualize_path(model, env)
+    </code>
+
+    <h2>5. Running the Project</h2>
+    <p>Execute the training script, and once the model is trained, use the visualization function to observe the UAV's path in the grid environment:</p>
+    <code>
+        # Train the model
+        model = train_rl_agent()
+
+        # Visualize the trained UAV path
+        env = UAVPathEnv()
+        visualize_path(model, env)
+    </code>
+
+    <h2>6. Conclusion</h2>
+    <p>
+        This project demonstrates a UAV path planning model using reinforcement learning, focusing on efficient navigation and obstacle avoidance. The agent learns to reach the goal by maximizing cumulative rewards, and the project can be further expanded to handle more complex environments, dynamic obstacles, or multi-UAV path planning.
+    </p>
+</div>
+
+<footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank">
+          <svg
+            style="width: 10px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+            />
+          </svg>
+        </a>
+        <a href="https://twitter.com" target="_blank"
+          ><svg
+            style="width: 15px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+            />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg
+            style="width: 15px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <div>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white"
+            >info@mlfusionlabs.com</a
+          >
+          | Phone: +1 (555) 123-4567
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contributor.html">Contributor</a>
+      </div>
+      <div>
+        &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+        Reserved
+      </div>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg
+        style="width: 20px"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+      >
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          fill="#ffffff"
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+        />
+      </svg>
+    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${
+            (circles.length - index) / circles.length
+          })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+</body>
+</html>
