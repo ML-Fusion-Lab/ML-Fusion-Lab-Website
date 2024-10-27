@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggleLoginPassword = document.getElementById('toggleLoginPassword');
     const loginPassword = document.getElementById('loginPassword');
     const loginIcon = document.getElementById('loginIcon');
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
 
     // Reattach toggle password visibility event listener
     toggleLoginPassword.addEventListener('click', function () {
@@ -90,9 +91,13 @@ document.addEventListener("DOMContentLoaded", function () {
         loginIcon.classList.add('fa-eye-slash');
       }
     });
+    forgotPasswordLink.addEventListener('click', function (event) {
+      event.preventDefault();
+      showForgotPasswordForm();
+    });
 
     // Re-attach login form submission event listener
-    loginForm.addEventListener("submit", function(event) {
+    loginForm.addEventListener("submit", function (event) {
       event.preventDefault();
       validateForm("login");
     });
@@ -235,4 +240,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     return passwordRegex.test(password);
   }
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      restoreLoginForm();
+    }
+  }); window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      restoreLoginForm();
+    }
+  });
+
 });
