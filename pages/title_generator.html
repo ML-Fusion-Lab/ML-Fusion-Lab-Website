@@ -1,268 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Title Generation with Machine Learning</title>
-    <link rel="stylesheet" href="../style/style.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 0;
-        padding: 10px;
-        transition: background-color 0.3s, color 0.3s;
-        font-size: 20px;
-        
-      }
-      .content {
-        margin: 20px auto;
-        padding: 20px;
-      }
-      h1,
-      h2,
-      h3 {
-        color: #2c3e50;
-        transition: color 0.3s;
-      }
-      code {
-        background-color: #f4f4f4;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        display: block;
-        padding: 10px;
-        white-space: pre-wrap;
-        font-size: 20px;
-        transition: background-color 0.3s, border-color 0.3s;
-      }
-      /* css for mouse cursor trail effect */
-      .circle {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        pointer-events: none;
-        background: radial-gradient(
-          circle,
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title Generation with Machine Learning</title>
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 10px;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 20px;
+
+    }
+
+    .content {
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #2c3e50;
+      transition: color 0.3s;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+      padding: 10px;
+      white-space: pre-wrap;
+      font-size: 20px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* css for mouse cursor trail effect */
+    .circle {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle,
           rgba(70, 130, 180, 0.3),
           skyblue,
           rgba(0, 0, 50, 0.3),
-          white
-        );
-        transition: transform 0.1s, left 0.1s, top 0.1s;
-      }
+          white);
+      transition: transform 0.1s, left 0.1s, top 0.1s;
+    }
 
-      .circle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
-      }
-      .note {
-        background-color: #e7f3fe;
-        border-left: 6px solid #2196f3;
-        margin-bottom: 15px;
-        padding: 4px 12px;
-        transition: background-color 0.3s, border-left-color 0.3s;
-      }
+    .circle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      /* removed the non-breaking space (&nbsp;) */
+    }
 
-      footer {
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 20px 0;
-        margin-top: auto;
-      }
+    .note {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196f3;
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      transition: background-color 0.3s, border-left-color 0.3s;
+    }
 
-      .footer-container {
-        max-width: 800px;
-        margin: auto;
-        padding: 0 20px;
-      }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
 
-      .footer-links,
-      .footer-socials,
-      .footer-contact {
-        margin: 10px 0;
-      }
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
 
-      .footer-links a,
-      .footer-socials a {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px;
-        transition: color 0.3s;
-      }
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
 
-      .footer-links a:hover,
-      .footer-socials a:hover {
-        color: #007bff;
-      }
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
 
-      .footer-socials a {
-        font-size: 24px;
-        margin: 0 15px;
-      }
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
 
-      .footer-contact a {
-        color: white;
-      }
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
 
-      .ani {
-        display: flex;
-        padding: 0.5em 0;
-        justify-content: center;
-        align-items: center;
+    .footer-contact a {
+      color: white;
+    }
+
+    .ani {
+      display: flex;
+      padding: 0.5em 0;
+      justify-content: center;
+      align-items: center;
+      background-color: #4a90e2;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      animation: colorChange 8s infinite;
+    }
+
+    body.dark-mode .ani {
+      color: #1c2e3e;
+    }
+
+    @keyframes colorChange {
+      0% {
         background-color: #4a90e2;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        animation: colorChange 8s infinite;
-      }
-      body.dark-mode .ani {
-        color: #1c2e3e;
-      }
-      @keyframes colorChange {
-        0% {
-          background-color: #4a90e2;
-        }
-        50% {
-          background-color: #50b3a2;
-        }
-        100% {
-          background-color: #4a90e2;
-        }
       }
 
-      /* Dark mode styles */
-      body.dark-mode {
-        background-color: #1a1a1a;
-        color: #f0f0f0;
-      }
-      body.dark-mode h1,
-      body.dark-mode h2,
-      body.dark-mode h3 {
-        color: #58a6ff;
-      }
-      body.dark-mode code {
-        background-color: #2b2b2b;
-        border-color: #444;
-        color: #e6e6e6;
-      }
-      body.dark-mode .note {
-        background-color: #1c2e3e;
-        border-left-color: #58a6ff;
-      }
-      body.dark-mode header {
-        background-color: #2c2c2c;
-      }
-      body.dark-mode nav ul li a {
-        color: #f0f0f0;
-      }
-      #scrollTopBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 105px;
-        z-index: 99;
-        font-size: 26px;
-        background-color: #00bfff;
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 50%;
+      50% {
+        background-color: #50b3a2;
       }
 
-      #scrollTopBtn:hover {
-        background-color: #555;
+      100% {
+        background-color: #4a90e2;
       }
-    </style>
-  </head>
-  <body>
-    <div class="circle-container">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+      color: #58a6ff;
+    }
+
+    body.dark-mode code {
+      background-color: #2b2b2b;
+      border-color: #444;
+      color: #e6e6e6;
+    }
+
+    body.dark-mode .note {
+      background-color: #1c2e3e;
+      border-left-color: #58a6ff;
+    }
+
+    body.dark-mode header {
+      background-color: #2c2c2c;
+    }
+
+    body.dark-mode nav ul li a {
+      color: #f0f0f0;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 105px;
+      z-index: 99;
+      font-size: 26px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
     </div>
-    <header>
-      <div class="logo">
-        <a href="../index.html">
-          <h1>
-            <img
-              src="../image/ml fusion lab log.jpg"
-              alt="logo"
-              width="100"
-              height="100"
-            />
-          </h1>
-        </a>
-      </div>
-      <nav>
-        <div class="hamburger" id="hamburger">&#9776;</div>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../pages/courses.html">Courses</a></li>
-          <li><a href="../pages/projects.html">Projects</a></li>
-          <li><a href="../pages/about.html">About Us</a></li>
-          <li><a href="../pages/contact.html">Contact</a></li>
-          <li>
-            <a href="../pages/community_suport.html">Community Support</a>
-          </li>
-          <li><a href="../pages/feedback.html">Feedback</a></li>
-          <div id="theme-switch" style="cursor: pointer;">🌙</div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li>
+          <a href="../pages/community_suport.html">Community Support</a>
+        </li>
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <div id="theme-switch" style="cursor: pointer;">🌙</div>
 
-        </ul>
-      </nav>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1 class="ani">Title Generator Using LSTM</h1>
+    <div class="bg-blue-100 p-4 rounded-lg">
+      <h2 class="text-xl font-semibold text-blue-800 mb-2">Overview</h2>
+      <p class="text-gray-700">
+        This code implements a deep learning model that generates YouTube video titles based on entertainment category
+        videos.
+        It uses an LSTM (Long Short-Term Memory) neural network to learn patterns from existing titles and generate new
+        ones.
+      </p>
+    </div>
     </header>
 
-    <div class="content">
-        <h1 class="ani">Title Generator Using LSTM</h1>
-            <div class="bg-blue-100 p-4 rounded-lg">
-                <h2 class="text-xl font-semibold text-blue-800 mb-2">Overview</h2>
-                <p class="text-gray-700">
-                    This code implements a deep learning model that generates YouTube video titles based on entertainment category videos. 
-                    It uses an LSTM (Long Short-Term Memory) neural network to learn patterns from existing titles and generate new ones.
-                </p>
-            </div>
-        </header>
-
-        <main>
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Data Preparation</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Importing Libraries</h3>
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+    <main>
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Data Preparation</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Importing Libraries</h3>
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 import pandas as pd
 import string
 import numpy as np
@@ -271,17 +284,18 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.layers import Embedding, LSTM, Dense, Dropout
 from keras.preprocessing.text import Tokenizer
 from keras.models import Sequential</code></pre>
-                    <p class="mt-4 text-gray-700">
-                        The code uses pandas for data manipulation, Keras for deep learning, and various utility libraries for text processing.
-                    </p>
-                </div>
-            </section>
+          <p class="mt-4 text-gray-700">
+            The code uses pandas for data manipulation, Keras for deep learning, and various utility libraries for text
+            processing.
+          </p>
+        </div>
+      </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Loading and Processing Data</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Loading YouTube Data</h3>
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Loading and Processing Data</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Loading YouTube Data</h3>
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 #load all the datasets 
 df1 = pd.read_csv('USvideos.csv')
 df2 = pd.read_csv('CAvideos.csv')
@@ -299,41 +313,41 @@ def category_extractor(data):
     category = zip(i_d, title)
     category = dict(category)
     return category</code></pre>
-                    <div class="bg-yellow-50 p-4 rounded-md mt-4">
-                        <p class="text-yellow-800">
-                            <strong>Key Function:</strong> category_extractor() converts JSON category data into a dictionary mapping
-                        </p>
-                    </div>
-                </div>
-            </section>
+          <div class="bg-yellow-50 p-4 rounded-md mt-4">
+            <p class="text-yellow-800">
+              <strong>Key Function:</strong> category_extractor() converts JSON category data into a dictionary mapping
+            </p>
+          </div>
+        </div>
+      </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Text Preprocessing</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Text Cleaning</h3>
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Text Preprocessing</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Text Cleaning</h3>
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 def clean_text(text):
     text = ''.join(e for e in text if e not in string.punctuation).lower()
     text = text.encode('utf8').decode('ascii', 'ignore')
     return text
 
 corpus = [clean_text(e) for e in entertainment]</code></pre>
-                    <p class="mt-4 text-gray-700">
-                        The clean_text function:
-                        <ul class="list-disc pl-6 mt-2">
-                            <li>Removes punctuation</li>
-                            <li>Converts text to lowercase</li>
-                            <li>Handles encoding issues</li>
-                        </ul>
-                    </p>
-                </div>
-            </section>
+          <p class="mt-4 text-gray-700">
+            The clean_text function:
+          <ul class="list-disc pl-6 mt-2">
+            <li>Removes punctuation</li>
+            <li>Converts text to lowercase</li>
+            <li>Handles encoding issues</li>
+          </ul>
+          </p>
+        </div>
+      </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Sequence Generation</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Token Sequences</h3>
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Sequence Generation</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Token Sequences</h3>
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 tokenizer = Tokenizer()
 def get_sequence_of_tokens(corpus):
     tokenizer.fit_on_texts(corpus)
@@ -347,22 +361,22 @@ def get_sequence_of_tokens(corpus):
             input_sequences.append(n_gram_sequence)
     
     return input_sequences, total_words</code></pre>
-                    <p class="mt-4 text-gray-700">
-                        The sequence generation process:
-                        <ul class="list-disc pl-6 text-gray-700">
-                            <li>Tokenizes the text using Keras Tokenizer</li>
-                            <li>Creates n-gram sequences</li>
-                            <li>Returns sequences and vocabulary size</li>
-                        </ul>
-                    </p>
-                </div>
-            </section>
+          <p class="mt-4 text-gray-700">
+            The sequence generation process:
+          <ul class="list-disc pl-6 text-gray-700">
+            <li>Tokenizes the text using Keras Tokenizer</li>
+            <li>Creates n-gram sequences</li>
+            <li>Returns sequences and vocabulary size</li>
+          </ul>
+          </p>
+        </div>
+      </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Model Architecture</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">LSTM Model Structure</h3>
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Model Architecture</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">LSTM Model Structure</h3>
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 def create_model(max_sequence_len, total_words):
     input_len = max_sequence_len - 1
     model = Sequential()
@@ -379,23 +393,23 @@ def create_model(max_sequence_len, total_words):
     model.compile(loss='categorical_crossentropy', optimizer='adam')
     
     return model</code></pre>
-                    <p class="mt-4 text-gray-700">
-                        The model architecture consists of:
-                        <ul class="list-disc pl-6 mt-2">
-                            <li>Embedding layer for word vector representation</li>
-                            <li>LSTM layer with 100 units for sequence processing</li>
-                            <li>Dropout layer (0.1) for regularization</li>
-                            <li>Dense output layer with softmax activation</li>
-                        </ul>
-                    </p>
-                </div>
-            </section>
+          <p class="mt-4 text-gray-700">
+            The model architecture consists of:
+          <ul class="list-disc pl-6 mt-2">
+            <li>Embedding layer for word vector representation</li>
+            <li>LSTM layer with 100 units for sequence processing</li>
+            <li>Dropout layer (0.1) for regularization</li>
+            <li>Dense output layer with softmax activation</li>
+          </ul>
+          </p>
+        </div>
+      </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Text Generation</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Generating New Titles</h3>
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Text Generation</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-3">Generating New Titles</h3>
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 def generate_text(seed_text, next_words, model, max_sequence_len):
     for _ in range(next_words):
         token_list = tokenizer.texts_to_sequences([seed_text])[0]
@@ -409,207 +423,188 @@ def generate_text(seed_text, next_words, model, max_sequence_len):
                 break
         seed_text += " " + output_word
     return seed_text.title()</code></pre>
-                    <p class="mt-4 text-gray-700">
-                        The generation process:
-                        <ul class="list-disc pl-6 mt-2">
-                            <li>Takes a seed text as input</li>
-                            <li>Converts text to sequence and pads it</li>
-                            <li>Predicts the next word using the trained model</li>
-                            <li>Adds predicted word to seed text</li>
-                            <li>Repeats for specified number of words</li>
-                        </ul>
-                    </p>
-                </div>
-            </section>
+          <p class="mt-4 text-gray-700">
+            The generation process:
+          <ul class="list-disc pl-6 mt-2">
+            <li>Takes a seed text as input</li>
+            <li>Converts text to sequence and pads it</li>
+            <li>Predicts the next word using the trained model</li>
+            <li>Adds predicted word to seed text</li>
+            <li>Repeats for specified number of words</li>
+          </ul>
+          </p>
+        </div>
+      </section>
 
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Usage Example</h2>
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Usage Example</h2>
+        <div class="bg-white p-6 rounded-lg shadow-sm">
+          <pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code class="language-python">
 # Train the model
 model = create_model(max_sequence_len, total_words)
 model.fit(predictors, label, epochs=20, verbose=5)
 
 # Generate new title
 print(generate_text("spiderman", 5, model, max_sequence_len))</code></pre>
-                    <p class="mt-4 text-gray-700">
-                        This example shows how to train the model and generate a new title starting with "spiderman" and adding 5 more words.
-                    </p>
-                </div>
-            </section>
-
-            <section class="bg-green-50 p-6 rounded-lg mt-8">
-                <h2 class="text-xl font-bold text-green-800 mb-2">Key Takeaways</h2>
-                <ul class="list-disc pl-6 text-gray-700">
-                    <li>The model learns patterns from real YouTube entertainment titles</li>
-                    <li>Uses LSTM architecture for understanding sequence patterns</li>
-                    <li>Implements text cleaning and preprocessing for better results</li>
-                    <li>Can generate new titles based on a seed word</li>
-                    <li>Customizable for different video categories</li>
-                </ul>
-            </section>
-        </main>
-
-    </div>
-    <footer>
-        <div class="container">
-          <div class="footer-socials">
-            Follow us on:
-            <a href="https://facebook.com" target="_blank">
-              <svg
-                style="width: 10px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 320 512"
-              >
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#ffffff"
-                  d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
-                />
-              </svg>
-            </a>
-            <a href="https://twitter.com" target="_blank"
-              ><svg
-                style="width: 15px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#ffffff"
-                  d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
-                />
-              </svg>
-            </a>
-            <a href="https://linkedin.com" target="_blank">
-              <svg
-                style="width: 15px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#ffffff"
-                  d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div class="footer-contact">
-            <div>
-              Contact us:
-              <a href="mailto:info@mlfusionlabs.com" style="color: white"
-                >info@mlfusionlabs.com</a
-              >
-              | Phone: +1 (555) 123-4567
-            </div>
-          </div>
-          <div class="footer-links">
-            <a href="../pages/privacy.html">Privacy Policy</a> |
-            <a href="../pages/terms.html">Terms of Service</a> |
-            <a href="../pages/about.html">About Us</a> |
-            <a href="../pages/contact.html">Contact</a> |
-            <a href="../pages/contributor.html">Contributor</a>
-          </div>
-          <div>
-            &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
-            Reserved
-          </div>
+          <p class="mt-4 text-gray-700">
+            This example shows how to train the model and generate a new title starting with "spiderman" and adding 5
+            more words.
+          </p>
         </div>
-        <button id="scrollTopBtn" onclick="scrollToTop()">
-          <svg
-            style="width: 20px"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"
-          >
+      </section>
+
+      <section class="bg-green-50 p-6 rounded-lg mt-8">
+        <h2 class="text-xl font-bold text-green-800 mb-2">Key Takeaways</h2>
+        <ul class="list-disc pl-6 text-gray-700">
+          <li>The model learns patterns from real YouTube entertainment titles</li>
+          <li>Uses LSTM architecture for understanding sequence patterns</li>
+          <li>Implements text cleaning and preprocessing for better results</li>
+          <li>Can generate new titles based on a seed word</li>
+          <li>Customizable for different video categories</li>
+        </ul>
+      </section>
+    </main>
+
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank">
+          <svg style="width: 10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-              fill="#ffffff"
-              d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
-            />
+            <path fill="#ffffff"
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
           </svg>
-        </button>
-      </footer>
-      <script>
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        window.onscroll = function () {
-          if (
-            document.body.scrollTop > 20 ||
-            document.documentElement.scrollTop > 20
-          ) {
-            scrollTopBtn.style.display = "block";
-          } else {
-            scrollTopBtn.style.display = "none";
-          }
-        };
-    
-        function scrollToTop() {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }
-      </script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const coords = { x: 0, y: 0 };
-          const circles = document.querySelectorAll(".circle");
-    
-          circles.forEach(function (circle, index) {
-            circle.x = 0;
-            circle.y = 0;
-          });
-    
-          window.addEventListener("mousemove", function (e) {
-            coords.x = e.clientX;
-            coords.y = e.clientY;
-          });
-    
-          function animateCircles() {
-            let x = coords.x;
-            let y = coords.y;
-    
-            circles.forEach(function (circle, index) {
-              circle.style.left = x + "px";
-              circle.style.top = y + "px";
-    
-              circle.style.scale = (circles.length - index) / circles.length;
-              circle.x = x;
-              circle.y = y;
-    
-              const nextCircle = circles[index + 1] || circles[0];
-              x += (nextCircle.x - x) * 0.3;
-              y += (nextCircle.y - y) * 0.3;
-            });
-    
-            requestAnimationFrame(animateCircles);
-          }
-    
-          animateCircles();
+        </a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg style="width: 15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+          </svg>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <div>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contributor.html">Contributor</a>
+      </div>
+      <div>
+        &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+        Reserved
+      </div>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path fill="#ffffff"
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+      </svg>
+    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle, index) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.clientX;
+        coords.y = e.clientY;
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = x + "px";
+          circle.style.top = y + "px";
+
+          circle.style.scale = (circles.length - index) / circles.length;
+          circle.x = x;
+          circle.y = y;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
         });
-      </script>
-      <script src="../script/scroll.js"></script>
-      <script src="../script/script.js"></script>
-      <script src="../script/projects.js"></script>
-      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const themeSwitch = document.getElementById("theme-switch");
-      
-          if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark-mode");
-          }
-      
-          themeSwitch.addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-            localStorage.setItem(
-              "theme",
-              document.body.classList.contains("dark-mode") ? "dark" : "light"
-            );
-          });
-        });
-      </script>
-    </body>
-    </html>
-    
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script>
+    window.embeddedChatbotConfig = {
+      chatbotId: "rKhBc1qcW7yrIovRvB5c4",
+      domain: "www.chatbase.co"
+    }
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" chatbotId="rKhBc1qcW7yrIovRvB5c4" domain="www.chatbase.co" defer>
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const themeSwitch = document.getElementById("theme-switch");
+
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+
+      themeSwitch.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "theme",
+          document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,264 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Deblurring with CNN</title>
-    <link rel="stylesheet" href="../style/style.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 0;
-        padding: 10px;
-        transition: background-color 0.3s, color 0.3s;
-        font-size: 20px;
-        
-      }
-      .content {
-        margin: 20px auto;
-        padding: 20px;
-      }
-      h1,
-      h2,
-      h3 {
-        color: #2c3e50;
-        transition: color 0.3s;
-      }
-      code {
-        background-color: #f4f4f4;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        display: block;
-        padding: 10px;
-        white-space: pre-wrap;
-        font-size: 20px;
-        transition: background-color 0.3s, border-color 0.3s;
-      }
-      /* css for mouse cursor trail effect */
-      .circle {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        pointer-events: none;
-        background: radial-gradient(
-          circle,
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Deblurring with CNN</title>
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 10px;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 20px;
+
+    }
+
+    .content {
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #2c3e50;
+      transition: color 0.3s;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+      padding: 10px;
+      white-space: pre-wrap;
+      font-size: 20px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* css for mouse cursor trail effect */
+    .circle {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle,
           rgba(70, 130, 180, 0.3),
           skyblue,
           rgba(0, 0, 50, 0.3),
-          white
-        );
-        transition: transform 0.1s, left 0.1s, top 0.1s;
-      }
+          white);
+      transition: transform 0.1s, left 0.1s, top 0.1s;
+    }
 
-      .circle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
-      }
-      .note {
-        background-color: #e7f3fe;
-        border-left: 6px solid #2196f3;
-        margin-bottom: 15px;
-        padding: 4px 12px;
-        transition: background-color 0.3s, border-left-color 0.3s;
-      }
+    .circle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      /* removed the non-breaking space (&nbsp;) */
+    }
 
-      footer {
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 20px 0;
-        margin-top: auto;
-      }
+    .note {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196f3;
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      transition: background-color 0.3s, border-left-color 0.3s;
+    }
 
-      .footer-container {
-        max-width: 800px;
-        margin: auto;
-        padding: 0 20px;
-      }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
 
-      .footer-links,
-      .footer-socials,
-      .footer-contact {
-        margin: 10px 0;
-      }
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
 
-      .footer-links a,
-      .footer-socials a {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px;
-        transition: color 0.3s;
-      }
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
 
-      .footer-links a:hover,
-      .footer-socials a:hover {
-        color: #007bff;
-      }
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
 
-      .footer-socials a {
-        font-size: 24px;
-        margin: 0 15px;
-      }
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
 
-      .footer-contact a {
-        color: white;
-      }
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
 
-      .ani {
-        display: flex;
-        padding: 0.5em 0;
-        justify-content: center;
-        align-items: center;
+    .footer-contact a {
+      color: white;
+    }
+
+    .ani {
+      display: flex;
+      padding: 0.5em 0;
+      justify-content: center;
+      align-items: center;
+      background-color: #4a90e2;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      animation: colorChange 8s infinite;
+    }
+
+    body.dark-mode .ani {
+      color: #1c2e3e;
+    }
+
+    @keyframes colorChange {
+      0% {
         background-color: #4a90e2;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        animation: colorChange 8s infinite;
-      }
-      body.dark-mode .ani {
-        color: #1c2e3e;
-      }
-      @keyframes colorChange {
-        0% {
-          background-color: #4a90e2;
-        }
-        50% {
-          background-color: #50b3a2;
-        }
-        100% {
-          background-color: #4a90e2;
-        }
       }
 
-      /* Dark mode styles */
-      body.dark-mode {
-        background-color: #1a1a1a;
-        color: #f0f0f0;
-      }
-      body.dark-mode h1,
-      body.dark-mode h2,
-      body.dark-mode h3 {
-        color: #58a6ff;
-      }
-      body.dark-mode code {
-        background-color: #2b2b2b;
-        border-color: #444;
-        color: #e6e6e6;
-      }
-      body.dark-mode .note {
-        background-color: #1c2e3e;
-        border-left-color: #58a6ff;
-      }
-      body.dark-mode header {
-        background-color: #2c2c2c;
-      }
-      body.dark-mode nav ul li a {
-        color: #f0f0f0;
-      }
-      #scrollTopBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 105px;
-        z-index: 99;
-        font-size: 26px;
-        background-color: #00bfff;
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 50%;
+      50% {
+        background-color: #50b3a2;
       }
 
-      #scrollTopBtn:hover {
-        background-color: #555;
+      100% {
+        background-color: #4a90e2;
       }
-    </style>
-  </head>
-  <body>
-    <div class="circle-container">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+      color: #58a6ff;
+    }
+
+    body.dark-mode code {
+      background-color: #2b2b2b;
+      border-color: #444;
+      color: #e6e6e6;
+    }
+
+    body.dark-mode .note {
+      background-color: #1c2e3e;
+      border-left-color: #58a6ff;
+    }
+
+    body.dark-mode header {
+      background-color: #2c2c2c;
+    }
+
+    body.dark-mode nav ul li a {
+      color: #f0f0f0;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 105px;
+      z-index: 99;
+      font-size: 26px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
     </div>
-    <header>
-      <div class="logo">
-        <a href="../index.html">
-          <h1>
-            <img
-              src="../image/ml fusion lab log.jpg"
-              alt="logo"
-              width="100"
-              height="100"
-            />
-          </h1>
-        </a>
-      </div>
-      <nav>
-        <div class="hamburger" id="hamburger">&#9776;</div>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../pages/courses.html">Courses</a></li>
-          <li><a href="../pages/projects.html">Projects</a></li>
-          <li><a href="../pages/about.html">About Us</a></li>
-          <li><a href="../pages/contact.html">Contact</a></li>
-          <li>
-            <a href="../pages/community_suport.html">Community Support</a>
-          </li>
-          <li><a href="../pages/feedback.html">Feedback</a></li>
-          <div id="theme-switch" style="cursor: pointer;">🌙</div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li>
+          <a href="../pages/community_suport.html">Community Support</a>
+        </li>
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <div id="theme-switch" style="cursor: pointer;">🌙</div>
 
-        </ul>
-      </nav>
-    </header>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="content">
-        <h1 class="ani">DeblurCNN: Image Deblurring with Convolutional Neural Networks</h1>
+  <div class="content">
+    <h1 class="ani">DeblurCNN: Image Deblurring with Convolutional Neural Networks</h1>
 
     <h2>Overview</h2>
     <p>
-        This code implements a Convolutional Neural Network (CNN) for image deblurring using PyTorch. The model is trained on a dataset of blurred and sharp image pairs, learning to transform blurred images into sharp ones. The code covers data loading, model definition, training, evaluation, and result visualization.
+      This code implements a Convolutional Neural Network (CNN) for image deblurring using PyTorch. The model is trained
+      on a dataset of blurred and sharp image pairs, learning to transform blurred images into sharp ones. The code
+      covers data loading, model definition, training, evaluation, and result visualization.
     </p>
 
     <h2>Step-by-Step Explanation</h2>
 
     <h3>1. Importing Libraries</h3>
     <p>
-        The code starts by importing necessary libraries:
+      The code starts by importing necessary libraries:
     </p>
     <pre><code>
 import torch
@@ -276,7 +289,7 @@ from tqdm import tqdm
 
     <h3>2. Device Configuration</h3>
     <p>
-        The code checks for CUDA availability to use GPU acceleration if possible:
+      The code checks for CUDA availability to use GPU acceleration if possible:
     </p>
     <pre><code>
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -285,7 +298,7 @@ print(f"Using device: {device}")
 
     <h3>3. Data Loading and Preprocessing</h3>
     <p>
-        Two main functions are defined for data handling:
+      Two main functions are defined for data handling:
     </p>
     <pre><code>
 def process_image(path):
@@ -315,7 +328,8 @@ test_blurred, test_sharp = load_images(data_path, 'test', limit=1000)
 
     <h3>4. Dataset and DataLoader Creation</h3>
     <p>
-        PyTorch's <code>TensorDataset</code> and <code>DataLoader</code> classes are used to create efficient data loading pipelines:
+      PyTorch's <code>TensorDataset</code> and <code>DataLoader</code> classes are used to create efficient data loading
+      pipelines:
     </p>
     <pre><code>
 train_dataset = TensorDataset(train_blurred, train_sharp)
@@ -329,7 +343,7 @@ test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
     <h3>5. Model Definition</h3>
     <p>
-        The <code>DeblurCNN</code> class defines the neural network architecture:
+      The <code>DeblurCNN</code> class defines the neural network architecture:
     </p>
     <pre><code>
 class DeblurCNN(nn.Module):
@@ -349,7 +363,8 @@ class DeblurCNN(nn.Module):
 
     <h3>6. Model Initialization and Training Setup</h3>
     <p>
-        The model is instantiated and moved to the appropriate device (CPU/GPU). Mean Squared Error (MSE) is used as the loss function, and Adam is chosen as the optimizer:
+      The model is instantiated and moved to the appropriate device (CPU/GPU). Mean Squared Error (MSE) is used as the
+      loss function, and Adam is chosen as the optimizer:
     </p>
     <pre><code>
 model = DeblurCNN().to(device)
@@ -359,7 +374,7 @@ optimizer = optim.Adam(model.parameters())
 
     <h3>7. Training and Validation Functions</h3>
     <p>
-        Two functions are defined for training and validation:
+      Two functions are defined for training and validation:
     </p>
     <pre><code>
 def train(model, train_loader, criterion, optimizer, device):
@@ -395,7 +410,7 @@ def validate(model, val_loader, criterion, device):
 
     <h3>8. Training Loop</h3>
     <p>
-        The model is trained for a specified number of epochs:
+      The model is trained for a specified number of epochs:
     </p>
     <pre><code>
 num_epochs = 20
@@ -416,7 +431,7 @@ for epoch in range(num_epochs):
 
     <h3>9. Loss Visualization</h3>
     <p>
-        A plot is generated to visualize the training and validation loss curves:
+      A plot is generated to visualize the training and validation loss curves:
     </p>
     <pre><code>
 plt.figure(figsize=(10, 5))
@@ -432,7 +447,7 @@ plt.show()
 
     <h3>10. Model Evaluation</h3>
     <p>
-        The trained model is evaluated on the test set:
+      The trained model is evaluated on the test set:
     </p>
     <pre><code>
 test_loss = validate(model, test_loader, criterion, device)
@@ -441,7 +456,7 @@ print(f'Test Loss: {test_loss:.4f}')
 
     <h3>11. Result Visualization</h3>
     <p>
-        A function is defined to visually compare the input, target, and output images:
+      A function is defined to visually compare the input, target, and output images:
     </p>
     <pre><code>
 def display_results(model, test_loader, device, num_samples=5):
@@ -473,7 +488,7 @@ display_results(model, test_loader, device)
 
     <h3>12. Model Saving</h3>
     <p>
-        Finally, the trained model is saved to disk:
+      Finally, the trained model is saved to disk:
     </p>
     <pre><code>
 torch.save(model.state_dict(), 'deblur_cnn_model.pth')
@@ -482,177 +497,159 @@ print("Model saved successfully.")
 
     <h2>Additional Notes</h2>
     <ul>
-        <li>The code uses a custom CNN architecture designed for image deblurring.</li>
-        <li>Batch normalization is used extensively to stabilize training.</li>
-        <li>The model processes images of size 64x64 pixels.</li>
-        <li>Data augmentation techniques are not used in this implementation but could potentially improve results.</li>
-        <li>The code includes progress bars (tqdm) and visualizations to monitor training progress and results.</li>
+      <li>The code uses a custom CNN architecture designed for image deblurring.</li>
+      <li>Batch normalization is used extensively to stabilize training.</li>
+      <li>The model processes images of size 64x64 pixels.</li>
+      <li>Data augmentation techniques are not used in this implementation but could potentially improve results.</li>
+      <li>The code includes progress bars (tqdm) and visualizations to monitor training progress and results.</li>
     </ul>
 
     <h2>Conclusion</h2>
     <p>
-        This code demonstrates a complete pipeline for training and evaluating a CNN for image deblurring. It covers all aspects from data loading to model definition, training, and result visualization. The modular structure allows for easy modifications and improvements to the model or training process.
+      This code demonstrates a complete pipeline for training and evaluating a CNN for image deblurring. It covers all
+      aspects from data loading to model definition, training, and result visualization. The modular structure allows
+      for easy modifications and improvements to the model or training process.
     </p>
-    </div>
-    <footer>
-        <div class="container">
-          <div class="footer-socials">
-            Follow us on:
-            <a href="https://facebook.com" target="_blank">
-              <svg
-                style="width: 10px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 320 512"
-              >
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#ffffff"
-                  d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
-                />
-              </svg>
-            </a>
-            <a href="https://twitter.com" target="_blank"
-              ><svg
-                style="width: 15px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#ffffff"
-                  d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
-                />
-              </svg>
-            </a>
-            <a href="https://linkedin.com" target="_blank">
-              <svg
-                style="width: 15px"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#ffffff"
-                  d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
-                />
-              </svg>
-            </a>
-          </div>
-          <div class="footer-contact">
-            <div>
-              Contact us:
-              <a href="mailto:info@mlfusionlabs.com" style="color: white"
-                >info@mlfusionlabs.com</a
-              >
-              | Phone: +1 (555) 123-4567
-            </div>
-          </div>
-          <div class="footer-links">
-            <a href="../pages/privacy.html">Privacy Policy</a> |
-            <a href="../pages/terms.html">Terms of Service</a> |
-            <a href="../pages/about.html">About Us</a> |
-            <a href="../pages/contact.html">Contact</a> |
-            <a href="../pages/contributor.html">Contributor</a>
-          </div>
-          <div>
-            &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
-            Reserved
-          </div>
-        </div>
-        <button id="scrollTopBtn" onclick="scrollToTop()">
-          <svg
-            style="width: 20px"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"
-          >
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank">
+          <svg style="width: 10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
             <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-              fill="#ffffff"
-              d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
-            />
+            <path fill="#ffffff"
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
           </svg>
-        </button>
-      </footer>
-      <script>
-        const scrollTopBtn = document.getElementById("scrollTopBtn");
-        window.onscroll = function () {
-          if (
-            document.body.scrollTop > 20 ||
-            document.documentElement.scrollTop > 20
-          ) {
-            scrollTopBtn.style.display = "block";
-          } else {
-            scrollTopBtn.style.display = "none";
-          }
-        };
-  
-        function scrollToTop() {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }
-      </script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const coords = { x: 0, y: 0 };
-          const circles = document.querySelectorAll(".circle");
-  
-          circles.forEach(function (circle, index) {
-            circle.x = 0;
-            circle.y = 0;
-          });
-  
-          window.addEventListener("mousemove", function (e) {
-            coords.x = e.clientX;
-            coords.y = e.clientY;
-          });
-  
-          function animateCircles() {
-            let x = coords.x;
-            let y = coords.y;
-  
-            circles.forEach(function (circle, index) {
-              circle.style.left = x + "px";
-              circle.style.top = y + "px";
-  
-              circle.style.scale = (circles.length - index) / circles.length;
-              circle.x = x;
-              circle.y = y;
-  
-              const nextCircle = circles[index + 1] || circles[0];
-              x += (nextCircle.x - x) * 0.3;
-              y += (nextCircle.y - y) * 0.3;
-            });
-  
-            requestAnimationFrame(animateCircles);
-          }
-  
-          animateCircles();
+        </a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg style="width: 15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+          </svg>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <div>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contributor.html">Contributor</a>
+      </div>
+      <div>
+        &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+        Reserved
+      </div>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path fill="#ffffff"
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+      </svg>
+    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle, index) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.clientX;
+        coords.y = e.clientY;
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = x + "px";
+          circle.style.top = y + "px";
+
+          circle.style.scale = (circles.length - index) / circles.length;
+          circle.x = x;
+          circle.y = y;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
         });
-      </script>
-      <script src="../script/scroll.js"></script>
-      <script src="../script/script.js"></script>
-      <script src="../script/projects.js"></script>
-      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const themeSwitch = document.getElementById("theme-switch");
-      
-          if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark-mode");
-          }
-      
-          themeSwitch.addEventListener("click", function () {
-            document.body.classList.toggle("dark-mode");
-            localStorage.setItem(
-              "theme",
-              document.body.classList.contains("dark-mode") ? "dark" : "light"
-            );
-          });
-        });
-      </script>
-    </body>
-  </html>
-  
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script>
+    window.embeddedChatbotConfig = {
+      chatbotId: "rKhBc1qcW7yrIovRvB5c4",
+      domain: "www.chatbase.co"
+    }
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" chatbotId="rKhBc1qcW7yrIovRvB5c4" domain="www.chatbase.co" defer>
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const themeSwitch = document.getElementById("theme-switch");
+
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+
+      themeSwitch.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "theme",
+          document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+      });
+    });
+  </script>
+</body>
+
+</html>
