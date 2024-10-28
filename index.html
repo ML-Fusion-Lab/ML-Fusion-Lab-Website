@@ -1082,11 +1082,23 @@
       circles.forEach(function (circle) {
         circle.x = 0;
         circle.y = 0;
+        //Initially Opacity should be zero 
+        circle.style.display = "none";
       });
 
       window.addEventListener("mousemove", function (e) {
         coords.x = e.pageX;
         coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+      
+      // Show As soon as cursor re-enters the webpage
+      window.addEventListener("mouseover", function () {
+        circles.forEach((circle) => (circle.style.display = "block")); // Show circles
+      });
+
+      // They must go invisible when cursor leaves the Document
+      window.addEventListener("mouseout", function () {
+        circles.forEach((circle) => (circle.style.display = "none")); // Hide circles
       });
 
       function animateCircles() {
