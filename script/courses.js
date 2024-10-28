@@ -68,14 +68,10 @@ const renderCourses = () => {
   currentIndex += cardPerPage;
 
   // Hide load more button if all courses are loaded
-  if (currentIndex >= filteredCourses.length) {
-    loadMoreButton.classList.add("hide-btn");
-  } else {
-    loadMoreButton.classList.remove("hide-btn");
-  }
+  loadMoreButton.classList.toggle("hide-btn", currentIndex >= filteredCourses.length);
 };
 
-// filter courses 
+// Filter courses 
 const filterCourses = (query) => {
   currentIndex = 0; 
   filteredCourses = courses.filter((course) =>
@@ -84,64 +80,57 @@ const filterCourses = (query) => {
   renderCourses();
 };
 
+// Event listeners
+loadMoreButton.addEventListener("click", renderCourses);
 
-loadMoreButton.addEventListener("click", () => {
-  renderCourses();
-});
-
-//search input 
 searchInput.addEventListener("input", (e) => {
   const searchQuery = e.target.value;
   filterCourses(searchQuery);
 });
 
-// Initial render of courses
-renderCourses();
+// Animation setup
+document.addEventListener("DOMContentLoaded", function () {
+  const coords = { x: 0, y: 0 };
+  const circles = document.querySelectorAll(".circle");
 
-
-   document.addEventListener("DOMContentLoaded", function () {
-const coords = { x: 0, y: 0 };
-const circles = document.querySelectorAll(".circle");
-
-circles.forEach(function (circle) {
-  circle.x = 0;
-  circle.y = 0;
-});
-
-window.addEventListener("mousemove", function (e) {
-  coords.x = e.pageX;
-  coords.y = e.pageY - window.scrollY;
-});
-
-window.onload=function(){
-  document.getElementById("search-id").focus();
-}
-
-function animateCircles() {
-  let x = coords.x;
-  let y = coords.y;
-
-  circles.forEach(function (circle, index) {
-    circle.style.left = `${x - 12}px`;
-    circle.style.top = `${y - 12}px`;
-    circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
-
-    const nextCircle = circles[index + 1] || circles[0];
-    circle.x = x;
-    circle.y = y;
-
-    x += (nextCircle.x - x) * 0.3;
-    y += (nextCircle.y - y) * 0.3;
+  circles.forEach(function (circle) {
+    circle.x = 0;
+    circle.y = 0;
   });
 
-  requestAnimationFrame(animateCircles);
-}
+  window.addEventListener("mousemove", function (e) {
+    coords.x = e.pageX;
+    coords.y = e.pageY - window.scrollY;
+  });
 
-animateCircles();
+  window.onload = function() {
+    document.getElementById("search-id").focus();
+  };
+
+  function animateCircles() {
+    let x = coords.x;
+    let y = coords.y;
+
+    circles.forEach(function (circle, index) {
+      circle.style.left = `${x - 12}px`;
+      circle.style.top = `${y - 12}px`;
+      circle.style.transform = `scale(${(circles.length - index) / circles.length}`;
+
+      const nextCircle = circles[index + 1] || circles[0];
+      circle.x = x;
+      circle.y = y;
+
+      x += (nextCircle.x - x) * 0.3;
+      y += (nextCircle.y - y) * 0.3;
+    });
+
+    requestAnimationFrame(animateCircles);
+  }
+
+  animateCircles();
 });
 
-// Filter courses
-
+// Filter courses based on URL params
 let URLParams = new URLSearchParams(window.location.search);
 let searchParams = URLParams.get("skill");
 
@@ -159,10 +148,10 @@ if (searchParams) {
     renderCourses();
     window.history.pushState({}, document.title, window.location.pathname);
     filterHeader.remove();
-  })
+  });
 
-  let filterTitle = document.createElement("h2")
-  filterTitle.setAttribute("id", "filterTitle")
+  let filterTitle = document.createElement("h2");
+  filterTitle.setAttribute("id", "filterTitle");
   filterTitle.style.fontSize = "25px";
   filterTitle.style.marginBottom = 0;
   filterTitle.innerHTML = `Courses tagged with '<u>${searchParams}</u>'`;
@@ -172,7 +161,12 @@ if (searchParams) {
 
   courseSection.prepend(filterHeader);
 
-  let coursesWithTag = filteredCourses.filter((course) => course.skills.includes(searchParams));
+  let coursesWithTag = filteredCourses.filter((course) => 
+    course.skills.includes(searchParams)
+  );
   filteredCourses = coursesWithTag;
   renderCourses();
 }
+
+// Initial render of courses
+renderCourses();
