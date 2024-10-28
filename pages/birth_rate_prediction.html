@@ -1,263 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Birth Rate Prediction</title>
-    <link rel="stylesheet" href="../style/style.css" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        transition: background-color 0.3s, color 0.3s;
-      }
-      .content {
-        margin: 20px auto;
-        padding: 20px;
-      }
-      h1,
-      h2,
-      h3 {
-        color: #2c3e50;
-        transition: color 0.3s;
-      }
-      code {
-        background-color: #f4f4f4;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        display: block;
-        padding: 10px;
-        white-space: pre-wrap;
-        transition: background-color 0.3s, border-color 0.3s;
-      }
-      /* css for mouse cursor trail effect */
-      .circle {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        pointer-events: none;
-        background: radial-gradient(
-          circle,
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birth Rate Prediction</title>
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .content {
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #2c3e50;
+      transition: color 0.3s;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+      padding: 10px;
+      white-space: pre-wrap;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* css for mouse cursor trail effect */
+    .circle {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle,
           rgba(70, 130, 180, 0.3),
           skyblue,
           rgba(0, 0, 50, 0.3),
-          white
-        );
-        transition: transform 0.1s, left 0.1s, top 0.1s;
-      }
+          white);
+      transition: transform 0.1s, left 0.1s, top 0.1s;
+    }
 
-      .circle-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
-      }
-      .note {
-        background-color: #e7f3fe;
-        border-left: 6px solid #2196f3;
-        margin-bottom: 15px;
-        padding: 4px 12px;
-        transition: background-color 0.3s, border-left-color 0.3s;
-      }
+    .circle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      /* removed the non-breaking space (&nbsp;) */
+    }
 
-      footer {
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 20px 0;
-        margin-top: auto;
-      }
+    .note {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196f3;
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      transition: background-color 0.3s, border-left-color 0.3s;
+    }
 
-      .footer-container {
-        max-width: 800px;
-        margin: auto;
-        padding: 0 20px;
-      }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
 
-      .footer-links,
-      .footer-socials,
-      .footer-contact {
-        margin: 10px 0;
-      }
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
 
-      .footer-links a,
-      .footer-socials a {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px;
-        transition: color 0.3s;
-      }
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
 
-      .footer-links a:hover,
-      .footer-socials a:hover {
-        color: #007bff;
-      }
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
 
-      .footer-socials a {
-        font-size: 24px;
-        margin: 0 15px;
-      }
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
 
-      .footer-contact a {
-        color: white;
-      }
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
 
-      .ani {
-        display: flex;
-        padding: 0.5em 0;
-        justify-content: center;
-        align-items: center;
+    .footer-contact a {
+      color: white;
+    }
+
+    .ani {
+      display: flex;
+      padding: 0.5em 0;
+      justify-content: center;
+      align-items: center;
+      background-color: #4a90e2;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      animation: colorChange 8s infinite;
+    }
+
+    body.dark-mode .ani {
+      color: #1c2e3e;
+    }
+
+    @keyframes colorChange {
+      0% {
         background-color: #4a90e2;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        animation: colorChange 8s infinite;
-      }
-      body.dark-mode .ani {
-        color: #1c2e3e;
-      }
-      @keyframes colorChange {
-        0% {
-          background-color: #4a90e2;
-        }
-        50% {
-          background-color: #50b3a2;
-        }
-        100% {
-          background-color: #4a90e2;
-        }
       }
 
-      /* Dark mode styles */
-      body.dark-mode {
-        background-color: #1a1a1a;
-        color: #f0f0f0;
-      }
-      body.dark-mode h1,
-      body.dark-mode h2,
-      body.dark-mode h3 {
-        color: #58a6ff;
-      }
-      body.dark-mode code {
-        background-color: #2b2b2b;
-        border-color: #444;
-        color: #e6e6e6;
-      }
-      body.dark-mode .note {
-        background-color: #1c2e3e;
-        border-left-color: #58a6ff;
-      }
-      body.dark-mode header {
-        background-color: #2c2c2c;
-      }
-      body.dark-mode nav ul li a {
-        color: #f0f0f0;
-      }
-      #scrollTopBtn {
-        display: none;
-        position: fixed;
-        bottom: 20px;
-        right: 105px;
-        z-index: 99;
-        font-size: 26px;
-        background-color: #00bfff;
-        color: white;
-        border: none;
-        padding: 15px;
-        border-radius: 50%;
+      50% {
+        background-color: #50b3a2;
       }
 
-      #scrollTopBtn:hover {
-        background-color: #555;
+      100% {
+        background-color: #4a90e2;
       }
-    </style>
-  </head>
-  <body>
-    <div class="circle-container">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+      color: #58a6ff;
+    }
+
+    body.dark-mode code {
+      background-color: #2b2b2b;
+      border-color: #444;
+      color: #e6e6e6;
+    }
+
+    body.dark-mode .note {
+      background-color: #1c2e3e;
+      border-left-color: #58a6ff;
+    }
+
+    body.dark-mode header {
+      background-color: #2c2c2c;
+    }
+
+    body.dark-mode nav ul li a {
+      color: #f0f0f0;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 105px;
+      z-index: 99;
+      font-size: 26px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
     </div>
-    <header>
-      <div class="logo">
-        <a href="../index.html">
-          <h1>
-            <img
-              src="../image/ml fusion lab log.jpg"
-              alt="logo"
-              width="100"
-              height="100"
-            />
-          </h1>
-        </a>
-      </div>
-      <nav>
-        <div class="hamburger" id="hamburger">&#9776;</div>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../pages/courses.html">Courses</a></li>
-          <li><a href="../pages/projects.html">Projects</a></li>
-          <li><a href="../pages/about.html">About Us</a></li>
-          <li><a href="../pages/contact.html">Contact</a></li>
-          <li>
-            <a href="../pages/community_suport.html">Community Support</a>
-          </li>
-          <li><a href="../pages/feedback.html">Feedback</a></li>
-          <!-- <div class="theme-switch" id="theme-switch"></div> -->
-          <div id="themeSwitch" class="theme-switch">
-            <input type="checkbox" class="checkbox" id="checkbox">
-            <label for="checkbox" class="checkbox-label">
-              
-              <img src="../Assets/sun.png" class="theme-btn">
-              <img src="../Assets/moon.png" class="theme-btn">
-              <!-- <i class="fas fa-moon"></i>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li>
+          <a href="../pages/community_suport.html">Community Support</a>
+        </li>
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
               <i class="fas fa-sun"></i> -->
-              <span class="ball"></span>
-            </label>
-          </div>
-        </ul>
-      </nav>
-    </header>
-    <div class="content">
-        <h1 class="ani">Detailed Time Series Forecasting and Testing Explanation</h1>
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="content">
+    <h1 class="ani">Detailed Time Series Forecasting and Testing Explanation</h1>
 
     <section>
-        <h2>1. Import Libraries and Data Preparation</h2>
-        <pre><code>
+      <h2>1. Import Libraries and Data Preparation</h2>
+      <pre><code>
 import pandas as pd
 import numpy as np
 from prophet import Prophet
@@ -276,12 +287,15 @@ df = pd.read_csv("daily-total-births.csv", parse_dates=['date'], date_parser=pd.
 df.columns = ['ds', 'y']
 df.head()
         </code></pre>
-        <p>This section imports necessary libraries for data manipulation (pandas, numpy), time series forecasting (Prophet, ARIMA), deep learning (TensorFlow), visualization (matplotlib, seaborn), and evaluation metrics. It also loads the dataset from a CSV file, parsing dates and renaming columns to match Prophet's required format ('ds' for date and 'y' for the target variable).</p>
+      <p>This section imports necessary libraries for data manipulation (pandas, numpy), time series forecasting
+        (Prophet, ARIMA), deep learning (TensorFlow), visualization (matplotlib, seaborn), and evaluation metrics. It
+        also loads the dataset from a CSV file, parsing dates and renaming columns to match Prophet's required format
+        ('ds' for date and 'y' for the target variable).</p>
     </section>
 
     <section>
-        <h2>2. Data Visualization</h2>
-        <pre><code>
+      <h2>2. Data Visualization</h2>
+      <pre><code>
 plt.figure(figsize=(10, 6))
 plt.plot(df['ds'], df['y'], label='Daily Births')
 plt.title('Daily  Births in 1959')
@@ -290,12 +304,13 @@ plt.ylabel('Number of Births')
 plt.legend()
 plt.show()
         </code></pre>
-        <p>This code creates a line plot of the daily births data. It helps visualize trends, seasonality, and any anomalies in the data over time.</p>
+      <p>This code creates a line plot of the daily births data. It helps visualize trends, seasonality, and any
+        anomalies in the data over time.</p>
     </section>
 
     <section>
-        <h2>3. Prophet Model</h2>
-        <code>
+      <h2>3. Prophet Model</h2>
+      <code>
 m = Prophet(yearly_seasonality=True, changepoint_prior_scale=0.5, seasonality_mode='multiplicative')
 m.fit(df)
 
@@ -309,12 +324,15 @@ m.plot(forecast)
 plt.title('Prophet Forecast')
 plt.show()
         </code>
-        <p>This section creates and fits a Prophet model to the data. It then generates future dates and makes predictions. The model components (trend, yearly seasonality) and the overall forecast are plotted. The Prophet model is configured with yearly seasonality and multiplicative seasonality mode, which is suitable for data where the seasonal variations increase with the trend.</p>
+      <p>This section creates and fits a Prophet model to the data. It then generates future dates and makes
+        predictions. The model components (trend, yearly seasonality) and the overall forecast are plotted. The Prophet
+        model is configured with yearly seasonality and multiplicative seasonality mode, which is suitable for data
+        where the seasonal variations increase with the trend.</p>
     </section>
 
     <section>
-        <h2>4. Evaluate Prophet Model</h2>
-        <pre><code>
+      <h2>4. Evaluate Prophet Model</h2>
+      <pre><code>
 y_true = df['y'].values
 y_pred = forecast['yhat'][:len(df)].values
 
@@ -324,12 +342,14 @@ rmse = sqrt(mse)
 
 print(f"Prophet Model - MAE: {mae:.2f}, MSE: {mse:.2f}, RMSE: {rmse:.2f}")
         </code></pre>
-        <p>This code evaluates the Prophet model's performance using Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE). These metrics provide a measure of the average prediction error in the model.</p>
+      <p>This code evaluates the Prophet model's performance using Mean Absolute Error (MAE), Mean Squared Error (MSE),
+        and Root Mean Squared Error (RMSE). These metrics provide a measure of the average prediction error in the
+        model.</p>
     </section>
 
     <section>
-        <h2>5. ARIMA Model</h2>
-        <pre><code>
+      <h2>5. ARIMA Model</h2>
+      <pre><code>
 arima_model = ARIMA(df['y'], order=(5, 1, 0)).fit()
 
 arima_forecast = arima_model.predict(start=len(df), end=len(df) + 49, typ='levels')
@@ -343,24 +363,27 @@ plt.ylabel('Number of Births')
 plt.legend()
 plt.show()
         </code></pre>
-        <p>This section fits an ARIMA model to the data. The order (5,1,0) specifies an ARIMA(5,1,0) model, which means 5 autoregressive terms, 1 difference, and 0 moving average terms. The model is then used to forecast 50 periods ahead, and the results are plotted against the original data.</p>
+      <p>This section fits an ARIMA model to the data. The order (5,1,0) specifies an ARIMA(5,1,0) model, which means 5
+        autoregressive terms, 1 difference, and 0 moving average terms. The model is then used to forecast 50 periods
+        ahead, and the results are plotted against the original data.</p>
     </section>
 
     <section>
-        <h2>6. Evaluate ARIMA Model</h2>
-        <pre><code>
+      <h2>6. Evaluate ARIMA Model</h2>
+      <pre><code>
 arima_mae = mean_absolute_error(y_true[-50:], arima_forecast[:50])
 arima_mse = mean_squared_error(y_true[-50:], arima_forecast[:50])
 arima_rmse = sqrt(arima_mse)
 
 print(f"ARIMA Model - MAE: {arima_mae:.2f}, MSE: {arima_mse:.2f}, RMSE: {arima_rmse:.2f}")
         </code></pre>
-        <p>Similar to the Prophet model evaluation, this code calculates MAE, MSE, and RMSE for the ARIMA model, providing a basis for comparison between the two models.</p>
+      <p>Similar to the Prophet model evaluation, this code calculates MAE, MSE, and RMSE for the ARIMA model, providing
+        a basis for comparison between the two models.</p>
     </section>
 
     <section>
-        <h2>7. LSTM Model Preparation</h2>
-        <pre><code>
+      <h2>7. LSTM Model Preparation</h2>
+      <pre><code>
 data = df['y'].values
 train_size = int(len(data) * 0.8)
 train, test = data[:train_size], data[train_size:]
@@ -379,12 +402,14 @@ X_test, y_test = create_dataset(test, look_back)
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
 X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
         </code></pre>
-        <p>This section prepares the data for the LSTM model. It splits the data into training and testing sets, creates sequences of data (with a look_back period of 5), and reshapes the data to fit the LSTM input requirements (samples, time steps, features).</p>
+      <p>This section prepares the data for the LSTM model. It splits the data into training and testing sets, creates
+        sequences of data (with a look_back period of 5), and reshapes the data to fit the LSTM input requirements
+        (samples, time steps, features).</p>
     </section>
 
     <section>
-        <h2>8. LSTM Model Building and Training</h2>
-        <pre><code>
+      <h2>8. LSTM Model Building and Training</h2>
+      <pre><code>
 lstm_model = tf.keras.Sequential([
     tf.keras.layers.LSTM(50, input_shape=(look_back, 1)),
     tf.keras.layers.Dense(1)
@@ -393,12 +418,14 @@ lstm_model.compile(optimizer='adam', loss='mean_squared_error')
 
 lstm_model.fit(X_train, y_train, epochs=10, batch_size=1, verbose=2)
         </code></pre>
-        <p>This code builds and trains the LSTM model. The model consists of an LSTM layer with 50 units, followed by a Dense layer for output. It's compiled with Adam optimizer and Mean Squared Error loss function, then trained for 10 epochs.</p>
+      <p>This code builds and trains the LSTM model. The model consists of an LSTM layer with 50 units, followed by a
+        Dense layer for output. It's compiled with Adam optimizer and Mean Squared Error loss function, then trained for
+        10 epochs.</p>
     </section>
 
     <section>
-        <h2>9. LSTM Predictions and Visualization</h2>
-        <pre><code>
+      <h2>9. LSTM Predictions and Visualization</h2>
+      <pre><code>
 lstm_train_pred = lstm_model.predict(X_train)
 lstm_test_pred = lstm_model.predict(X_test)
 
@@ -412,21 +439,23 @@ plt.ylabel('Number of Births')
 plt.legend()
 plt.show()
         </code></pre>
-        <p>This section uses the trained LSTM model to make predictions on both the training and test data, then visualizes these predictions alongside the original data.</p>
+      <p>This section uses the trained LSTM model to make predictions on both the training and test data, then
+        visualizes these predictions alongside the original data.</p>
     </section>
 
     <section>
-        <h2>10. Evaluate LSTM Model</h2>
-        <pre><code>
+      <h2>10. Evaluate LSTM Model</h2>
+      <pre><code>
 lstm_rmse = sqrt(mean_squared_error(y_test, lstm_test_pred))
 print(f"LSTM Model - RMSE: {lstm_rmse:.2f}")
         </code></pre>
-        <p>This code calculates the RMSE for the LSTM model on the test data, providing a measure of its predictive accuracy.</p>
+      <p>This code calculates the RMSE for the LSTM model on the test data, providing a measure of its predictive
+        accuracy.</p>
     </section>
 
     <section>
-        <h2>11. Model Comparison</h2>
-        <pre><code>
+      <h2>11. Model Comparison</h2>
+      <pre><code>
 results = pd.DataFrame({
     'Model': ['Prophet', 'ARIMA', 'LSTM'],
     'MAE': [mae, arima_mae, None],  # LSTM does not have MAE calculated
@@ -436,12 +465,13 @@ results = pd.DataFrame({
 print("Model Performance Summary:")
 print(results)
         </code></pre>
-        <p>This section creates a summary table comparing the performance metrics (MAE and RMSE) of all three models, allowing for easy comparison of their predictive accuracy.</p>
+      <p>This section creates a summary table comparing the performance metrics (MAE and RMSE) of all three models,
+        allowing for easy comparison of their predictive accuracy.</p>
     </section>
 
     <section>
-        <h2>12. Model Saving</h2>
-        <pre><code>
+      <h2>12. Model Saving</h2>
+      <pre><code>
 import pickle
 
 with open("models/prophet_model.pkl", 'wb') as f:
@@ -455,15 +485,17 @@ with open("models/scaler.pkl", 'wb') as f:
 with open("models/arima_model.pkl", 'wb') as f:
     pickle.dump(arima_model, f)
         </code></pre>
-        <p>This final section saves all the trained models (Prophet, LSTM, and ARIMA) as well as the scaler used for LSTM data preparation. This allows for easy reloading and reuse of the models in future analyses or applications.</p>
+      <p>This final section saves all the trained models (Prophet, LSTM, and ARIMA) as well as the scaler used for LSTM
+        data preparation. This allows for easy reloading and reuse of the models in future analyses or applications.</p>
     </section>
 
     <section>
-        <h2>13. Testing Notebook</h2>
-        <p>The testing notebook complements the main notebook by ensuring that all components are working as expected. It verifies data loading, model predictions, and the existence of saved model files.</p>
+      <h2>13. Testing Notebook</h2>
+      <p>The testing notebook complements the main notebook by ensuring that all components are working as expected. It
+        verifies data loading, model predictions, and the existence of saved model files.</p>
 
-        <h3>13.1 Import Statements and Setup</h3>
-        <pre><code>
+      <h3>13.1 Import Statements and Setup</h3>
+      <pre><code>
 import unittest
 import pandas as pd
 import numpy as np
@@ -477,10 +509,11 @@ import warnings
 
 warnings.filterwarnings("ignore")
         </code></pre>
-        <p>This section imports the necessary libraries for testing, including unittest for the testing framework and the same libraries used in the main notebook for data manipulation and modeling.</p>
+      <p>This section imports the necessary libraries for testing, including unittest for the testing framework and the
+        same libraries used in the main notebook for data manipulation and modeling.</p>
 
-        <h3>13.2 Test Class Definition</h3>
-        <pre><code>
+      <h3>13.2 Test Class Definition</h3>
+      <pre><code>
 class TestNotebookFunctions(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -500,37 +533,40 @@ class TestNotebookFunctions(unittest.TestCase):
         with open("models/scaler.pkl", 'rb') as f:
             cls.scaler = pickle.load(f)
         </code></pre>
-        <p>This defines the test class and its setup method. The setup method loads the data and the saved models, which will be used in the subsequent tests.</p>
+      <p>This defines the test class and its setup method. The setup method loads the data and the saved models, which
+        will be used in the subsequent tests.</p>
 
-        <h3>13.3 Data Loading Test</h3>
-        <pre><code>
+      <h3>13.3 Data Loading Test</h3>
+      <pre><code>
     def test_data_loading(self):
         self.assertIsInstance(self.df, pd.DataFrame)
         self.assertEqual(self.df.columns.tolist(), ['ds', 'y'])
         self.assertGreater(len(self.df), 0)
         </code></pre>
-        <p>This test checks if the data is loaded correctly, ensuring it's a DataFrame, has the correct columns, and contains data.</p>
+      <p>This test checks if the data is loaded correctly, ensuring it's a DataFrame, has the correct columns, and
+        contains data.</p>
 
-        <h3>13.4 Prophet Model Test</h3>
-        <pre><code>
+      <h3>13.4 Prophet Model Test</h3>
+      <pre><code>
     def test_prophet_model(self):
         future = self.prophet_model.make_future_dataframe(periods=50, freq='D')
         forecast = self.prophet_model.predict(future)
         self.assertIsInstance(forecast, pd.DataFrame)
         self.assertGreater(len(forecast), len(self.df))
         </code></pre>
-        <p>This test checks if the Prophet model can make predictions and if the forecast has the expected structure and length.</p>
+      <p>This test checks if the Prophet model can make predictions and if the forecast has the expected structure and
+        length.</p>
 
-        <h3>13.5 ARIMA Model Test</h3>
-        <pre><code>
+      <h3>13.5 ARIMA Model Test</h3>
+      <pre><code>
     def test_arima_model(self):
         arima_forecast = self.arima_model.forecast(steps=50)
         self.assertEqual(len(arima_forecast), 50)
         </code></pre>
-        <p>This test verifies if the ARIMA model can make predictions and if the forecast has the expected length.</p>
+      <p>This test verifies if the ARIMA model can make predictions and if the forecast has the expected length.</p>
 
-        <h3>13.6 LSTM Model Test</h3>
-        <pre><code>
+      <h3>13.6 LSTM Model Test</h3>
+      <pre><code>
     def test_lstm_model(self):
         look_back = 3
         test_data = self.scaler.transform(self.df[['y']].values[-look_back:])
@@ -540,20 +576,20 @@ class TestNotebookFunctions(unittest.TestCase):
         
         self.assertEqual(lstm_pred.shape, (1, 1))
         </code></pre>
-        <p>This test checks if the LSTM model can make predictions and if the prediction has the expected shape.</p>
+      <p>This test checks if the LSTM model can make predictions and if the prediction has the expected shape.</p>
 
-        <h3>13.7 Model Files Existence Test</h3>
-        <pre><code>
+      <h3>13.7 Model Files Existence Test</h3>
+      <pre><code>
     def test_model_files_exist(self):
         self.assertTrue(os.path.exists("models/prophet_model.pkl"))
         self.assertTrue(os.path.exists("models/arima_model.pkl"))
         self.assertTrue(os.path.exists("models/lstm_model.h5"))
         self.assertTrue(os.path.exists("models/scaler.pkl"))
         </code></pre>
-        <p>This test verifies if all the saved model files exist in the expected location.</p>
+      <p>This test verifies if all the saved model files exist in the expected location.</p>
 
-        <h3>13.8 Running the Tests</h3>
-        <pre><code>
+      <h3>13.8 Running the Tests</h3>
+      <pre><code>
 if __name__ == '__main__':
     unittest.main
     </code>
@@ -649,7 +685,7 @@ if __name__ == '__main__':
             scrollTopBtn.style.display = "none";
           }
         };
-  
+
         function scrollToTop() {
           window.scrollTo({
             top: 0,
@@ -661,45 +697,55 @@ if __name__ == '__main__':
         document.addEventListener("DOMContentLoaded", function () {
           const coords = { x: 0, y: 0 };
           const circles = document.querySelectorAll(".circle");
-  
+
           circles.forEach(function (circle, index) {
             circle.x = 0;
             circle.y = 0;
           });
-  
+
           window.addEventListener("mousemove", function (e) {
             coords.x = e.clientX;
             coords.y = e.clientY;
           });
-  
+
           function animateCircles() {
             let x = coords.x;
             let y = coords.y;
-  
+
             circles.forEach(function (circle, index) {
               circle.style.left = x + "px";
               circle.style.top = y + "px";
-  
+
               circle.style.scale = (circles.length - index) / circles.length;
               circle.x = x;
               circle.y = y;
-  
+
               const nextCircle = circles[index + 1] || circles[0];
               x += (nextCircle.x - x) * 0.3;
               y += (nextCircle.y - y) * 0.3;
             });
-  
+
             requestAnimationFrame(animateCircles);
           }
-  
+
           animateCircles();
         });
       </script>
       <script src="../script/scroll.js"></script>
       <script src="../script/script.js"></script>
       <script src="../script/projects.js"></script>
-      <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-      <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+      <script>
+        window.embeddedChatbotConfig = {
+          chatbotId: "rKhBc1qcW7yrIovRvB5c4",
+          domain: "www.chatbase.co"
+        }
+      </script>
+<script
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="rKhBc1qcW7yrIovRvB5c4"
+domain="www.chatbase.co"
+defer>
+</script>
     </body>
   </html>
   
