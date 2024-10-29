@@ -1,12 +1,14 @@
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+scrollTopBtn.style.setProperty('visibility', 'hidden', 'important');
 
-window.onscroll = function() {
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollTopBtn.style.display = "block";
+window.addEventListener('scroll', function() {
+
+    if (window.scrollY > 100) {
+        scrollTopBtn.style.setProperty('visibility', 'visible', 'important');
     } else {
-        scrollTopBtn.style.display = "none";
+        scrollTopBtn.style.setProperty('visibility', 'hidden', 'important');
     }
-};
+});
 
 function scrollToTop() {
     window.scrollTo({top: 0, behavior: 'smooth'});
