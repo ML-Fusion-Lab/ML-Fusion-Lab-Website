@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face Mask Detection</title>
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .content {
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #2c3e50;
+      transition: color 0.3s;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: block;
+      padding: 10px;
+      white-space: pre-wrap;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .note {
+      background-color: #e7f3fe;
+      border-left: 6px solid #2196f3;
+      margin-bottom: 15px;
+      padding: 4px 12px;
+      transition: background-color 0.3s, border-left-color 0.3s;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .ani {
+      display: flex;
+      padding: 0.5em 0;
+      justify-content: center;
+      align-items: center;
+      background-color: #4a90e2;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      animation: colorChange 8s infinite;
+    }
+
+    @keyframes colorChange {
+      0% {
+        background-color: #4a90e2;
+      }
+
+      50% {
+        background-color: #50b3a2;
+      }
+
+      100% {
+        background-color: #4a90e2;
+      }
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3 {
+      color: #58a6ff;
+    }
+
+    body.dark-mode code {
+      background-color: #2b2b2b;
+      border-color: #444;
+      color: #e6e6e6;
+    }
+
+    body.dark-mode .note {
+      background-color: #1c2e3e;
+      border-left-color: #58a6ff;
+    }
+
+    body.dark-mode header {
+      background-color: #2c2c2c;
+    }
+
+    body.dark-mode nav ul li a {
+      color: #f0f0f0;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 105px;
+      z-index: 99;
+      font-size: 26px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 50%;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li>
+          <a href="../pages/community_suport.html">Community Support</a>
+        </li>
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <div class="theme-switch" id="theme-switch"></div>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1 class="ani">
+      Plant Disease Detection: From Data Analysis to Model Deployment (Google Colab)
+    </h1>
+
+    <h2>1. Project Overview</h2>
+    <p>
+      This project focuses on detecting plant diseases by classifying healthy and diseased leaves using the PlantVillage
+      dataset. We'll use a fine-tuned Xception model, covering the entire pipeline from data preprocessing and analysis
+      to model training and deployment in Google Colab.
+    </p>
+
+    <h2>2. Setting Up the Environment in Colab</h2>
+    <p>Start by installing any necessary libraries and importing the required packages:</p>
+    <code>
+          !pip install tensorflow<br>
+          !pip install matplotlib seaborn<br>
+          import numpy as np<br>
+          import pandas as pd<br>
+          import matplotlib.pyplot as plt<br>
+          import seaborn as sns<br>
+          import tensorflow as tf<br>
+          from tensorflow.keras import layers, models<br>
+          from tensorflow.keras.preprocessing.image import ImageDataGenerator<br>
+          from tensorflow.keras.applications import Xception<br>
+          import os<br>
+          from sklearn.model_selection import train_test_split
+        </code>
+
+    <h2>3. Loading and Preparing the Dataset</h2>
+
+    <h3>3.1 Mounting Google Drive</h3>
+    <p>First, mount your Google Drive to access the PlantVillage dataset:</p>
+    <code>
+          from google.colab import drive<br>
+          drive.mount('/content/drive')<br>
+          DATA_DIR = '/content/drive/MyDrive/PlantVillage'  # Update the path to your dataset
+        </code>
+
+    <h3>3.2 Loading the Dataset</h3>
+    <p>
+      We load the dataset from Google Drive, which contains images of both healthy and diseased plant leaves:
+    </p>
+    <code>
+          categories = os.listdir(DATA_DIR)<br>
+          print(f"Categories: {categories}")<br>
+          img_paths = []<br>
+          labels = []<br>
+          for category in categories:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;category_dir = os.path.join(DATA_DIR, category)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;for img_name in os.listdir(category_dir):<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;img_paths.append(os.path.join(category_dir, img_name))<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labels.append(category)<br>
+          print(f"Total Images: {len(img_paths)}, Labels: {len(labels)}")
+        </code>
+
+    <h3>3.3 Analyzing Class Distribution</h3>
+    <p>Visualize the distribution of classes (disease categories) in the dataset:</p>
+    <code>
+          class_counts = pd.Series(labels).value_counts()<br>
+          print("Class Distribution:", class_counts)<br>
+          # Visualize class distribution<br>
+          plt.pie(class_counts.values, labels=class_counts.index, autopct='%1.2f%%')<br>
+          plt.title("Class Distribution in Dataset")<br>
+          plt.show()
+        </code>
+
+    <h2>4. Data Preprocessing</h2>
+    <p>
+      We'll resize the images to the required input size (299x299) and apply data augmentation:
+    </p>
+    <code>
+          IMG_SIZE = (299, 299)<br>
+          data_gen = ImageDataGenerator(rescale=1./255, validation_split=0.2, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;rotation_range=20, zoom_range=0.2, horizontal_flip=True)<br>
+          
+          train_data = data_gen.flow_from_directory(DATA_DIR, target_size=IMG_SIZE, batch_size=32,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;subset='training', class_mode='categorical')<br>
+          
+          val_data = data_gen.flow_from_directory(DATA_DIR, target_size=IMG_SIZE, batch_size=32,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;subset='validation', class_mode='categorical')
+        </code>
+
+    <h2>5. Model Creation and Training</h2>
+
+    <h3>5.1 Building the Fine-Tuned Xception Model</h3>
+    <p>We will use the Xception model, pre-trained on ImageNet, and add custom layers for plant disease classification:
+    </p>
+    <code>
+          base_model = Xception(weights='imagenet', include_top=False, input_shape=(299, 299, 3))<br>
+          base_model.trainable = False<br>
+          
+          model = models.Sequential([<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;base_model,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;layers.GlobalAveragePooling2D(),<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;layers.Dense(512, activation='relu'),<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;layers.Dropout(0.5),<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;layers.Dense(len(categories), activation='softmax')<br>
+          ])<br>
+          model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])<br>
+          model.summary()
+        </code>
+
+    <h3>5.2 Training the Model</h3>
+    <p>Train the model on the dataset and save the trained model:</p>
+    <code>
+          history = model.fit(train_data, validation_data=val_data, epochs=10)<br>
+          # Save the trained model<br>
+          model.save('/content/drive/MyDrive/plant_disease_model.h5')
+        </code>
+
+    <h3>5.3 Visualizing Training Performance</h3>
+    <p>Let's plot the training and validation accuracy and loss:</p>
+    <code>
+          plt.plot(history.history['accuracy'], label='train accuracy')<br>
+          plt.plot(history.history['val_accuracy'], label='val accuracy')<br>
+          plt.title('Model Accuracy')<br>
+          plt.xlabel('Epochs')<br>
+          plt.ylabel('Accuracy')<br>
+          plt.legend()<br>
+          plt.show()
+        </code>
+
+    <h2>6. Model Deployment and Usage</h2>
+
+    <h3>6.1 Loading the Model for Inference</h3>
+    <p>After training, you can load the model from Google Drive and use it for predictions:</p>
+    <code>
+          def load_trained_model(model_path='/content/drive/MyDrive/plant_disease_model.h5'):<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;model = tf.keras.models.load_model(model_path)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;return model<br><br>
+      
+          def preprocess_image(image_path):<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;img = tf.keras.preprocessing.image.load_img(image_path, target_size=IMG_SIZE)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;img_array = tf.keras.preprocessing.image.img_to_array(img)/255.0<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;img_array = np.expand_dims(img_array, axis=0)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;return img_array<br><br>
+      
+          def predict_disease(image_path, model):<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;img_array = preprocess_image(image_path)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;predictions = model.predict(img_array)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;predicted_class = np.argmax(predictions, axis=1)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;return predicted_class
+        </code>
+
+    <h3>6.2 Making Predictions</h3>
+    <p>To predict the disease of a new plant image, upload the image to Colab, and run the following:</p>
+    <code>
+          from google.colab import files<br>
+          uploaded = files.upload()<br><br>
+      
+          model = load_trained_model('/content/drive/MyDrive/plant_disease_model.h5')<br>
+          for img_name in uploaded.keys():<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;prediction = predict_disease(img_name, model)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;print(f"Predicted Disease: {categories[prediction[0]]}")
+        </code>
+
+    <div class="note">
+      <p>
+        <strong>Note:</strong> You can upload an image directly in Colab using the `files.upload()` function and make
+        predictions using the trained model saved in your Google Drive.
+      </p>
+    </div>
+
+    <h2>Conclusion</h2>
+    <p>
+      This project demonstrates the entire pipeline of a plant disease detection system, from data analysis to model
+      deployment using Google Colab. By following these steps, you can create and use a fine-tuned Xception model to
+      classify plant diseases effectively.
+    </p>
+  </div>
+
+
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank">
+          <svg style="width: 10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+          </svg>
+        </a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg style="width: 15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+          </svg>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <div>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contributor.html">Contributor</a>
+      </div>
+      <div>
+        &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+        Reserved
+      </div>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path fill="#ffffff"
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+      </svg>
+    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <script>
+    window.embeddedChatbotConfig = {
+      chatbotId: "rKhBc1qcW7yrIovRvB5c4",
+      domain: "www.chatbase.co"
+    }
+  </script>
+  <script src="https://www.chatbase.co/embed.min.js" chatbotId="rKhBc1qcW7yrIovRvB5c4" domain="www.chatbase.co" defer>
+  </script>
+</body>
+
+</html>

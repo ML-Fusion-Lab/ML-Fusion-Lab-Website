@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pipeline for detecting Phishing Websites</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 10px;
+        transition: background-color 0.3s, color 0.3s;
+        font-size: 20px;
+        
+      }
+      .content {
+        margin: 20px auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #2c3e50;
+        transition: color 0.3s;
+      }
+      code {
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: block;
+        padding: 10px;
+        white-space: pre-wrap;
+        font-size: 20px;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+      /* css for mouse cursor trail effect */
+      .circle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle,
+          rgba(70, 130, 180, 0.3),
+          skyblue,
+          rgba(0, 0, 50, 0.3),
+          white
+        );
+        transition: transform 0.1s, left 0.1s, top 0.1s;
+      }
+
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+      }
+      .note {
+        background-color: #e7f3fe;
+        border-left: 6px solid #2196f3;
+        margin-bottom: 15px;
+        padding: 4px 12px;
+        transition: background-color 0.3s, border-left-color 0.3s;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: auto;
+      }
+
+      .footer-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 0 20px;
+      }
+
+      .footer-links,
+      .footer-socials,
+      .footer-contact {
+        margin: 10px 0;
+      }
+
+      .footer-links a,
+      .footer-socials a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover,
+      .footer-socials a:hover {
+        color: #007bff;
+      }
+
+      .footer-socials a {
+        font-size: 24px;
+        margin: 0 15px;
+      }
+
+      .footer-contact a {
+        color: white;
+      }
+
+      .ani {
+        display: flex;
+        padding: 0.5em 0;
+        justify-content: center;
+        align-items: center;
+        background-color: #4a90e2;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        animation: colorChange 8s infinite;
+      }
+      body.dark-mode .ani {
+        color: #1c2e3e;
+      }
+      @keyframes colorChange {
+        0% {
+          background-color: #4a90e2;
+        }
+        50% {
+          background-color: #50b3a2;
+        }
+        100% {
+          background-color: #4a90e2;
+        }
+      }
+
+      /* Dark mode styles */
+      body.dark-mode {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+      }
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3 {
+        color: #58a6ff;
+      }
+      body.dark-mode code {
+        background-color: #2b2b2b;
+        border-color: #444;
+        color: #e6e6e6;
+      }
+      body.dark-mode .note {
+        background-color: #1c2e3e;
+        border-left-color: #58a6ff;
+      }
+      body.dark-mode header {
+        background-color: #2c2c2c;
+      }
+      body.dark-mode nav ul li a {
+        color: #f0f0f0;
+      }
+      #scrollTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 105px;
+        z-index: 99;
+        font-size: 26px;
+        background-color: #00bfff;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 50%;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <header>
+      <div class="logo">
+        <a href="../index.html">
+          <h1>
+            <img
+              src="../image/ml fusion lab log.jpg"
+              alt="logo"
+              width="100"
+              height="100"
+            />
+          </h1>
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../pages/courses.html">Courses</a></li>
+          <li><a href="../pages/projects.html">Projects</a></li>
+          <li><a href="../pages/about.html">About Us</a></li>
+          <li><a href="../pages/contact.html">Contact</a></li>
+          <li>
+            <a href="../pages/community_suport.html">Community Support</a>
+          </li>
+          <li><a href="../pages/feedback.html">Feedback</a></li>
+          <div id="theme-switch" style="cursor: pointer;">🌙</div>
+
+        </ul>
+      </nav>
+    </header>
+
+    <div class="content">
+        <h1 class="ani">Pipeline for detecting Phishing Websites</h1>
+
+  <h2>Jupyter Notebook File</h2>
+
+  <h3>Importing Libraries</h3>
+  <pre><code>
+import warnings
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import VotingClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import LinearSVC
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.model_selection import cross_val_score
+from matplotlib.colors import ListedColormap
+from sklearn.metrics import matthews_corrcoef
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import f1_score
+from sklearn.metrics import confusion_matrix,classification_report
+from sklearn.metrics import precision_score, recall_score, classification_report
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn import metrics
+%matplotlib inline
+  </code></pre>
+<p>importing necessary libraries for the pipeline </p>
+  <h3>Loading Data</h3>
+  <pre><code>
+train = pd.read_csv(r"Phishing_Training_Dataset.csv")
+train.info()
+train.head()
+train.describe()
+  </code></pre>
+
+  <h3>Data Exploration</h3>
+  <pre><code>
+# Looking at the count of phishing and legitimate entries in the training dataset
+a = len(train[train.Result == -1])
+b = len(train[train.Result == 1])
+print(a, "times -1 repeated in Result")
+print(b, "times 1 repeated in Result")
+sns.countplot(train['Result'])
+  </code></pre>
+<p>perform EDA on the given data</p>
+
+  <h3>Model Building</h3>
+  <pre><code>
+# Preparing the data for training
+train = train.drop(columns=['key'])
+X = train.drop('Result', axis=1).values
+y = train['Result'].values
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Testing on the following classifiers
+classifiers = [RandomForestClassifier(),
+               LogisticRegression(max_iter=1000),
+               DecisionTreeClassifier(),
+               KNeighborsClassifier(), 
+               SVC()]
+for cls in classifiers:
+    cls.fit(X_train, y_train)
+  </code></pre>
+  <p>we are building a ensemble model here using Voting Classifier</p>
+
+  <h3>Model Evaluation</h3>
+  <pre><code>
+# Cross-validation
+for i, model in enumerate(classifiers):
+    cv_score = cross_val_score(model, X_train, y_train, scoring="f1", cv=10)
+    print(f"{pipe_dict[i]}: {cv_score.mean()}")
+  </code></pre>
+<p>Lets evaluate the models performance so far</p>
+  <h3>Voting Classifiers</h3>
+  <pre><code>
+# Hard Voting Classifier
+lr = LogisticRegression(max_iter=1000)
+rf = RandomForestClassifier()
+dt = DecisionTreeClassifier()
+Classifier = VotingClassifier(estimators=[('lr', lr), ('rf', rf), ('dt', dt)], voting='hard')
+Classifier.fit(X_train, y_train)
+predictions = Classifier.predict(X_test)
+print("F1 score:", f1_score(y_test, predictions, average='weighted'))
+print("Accuracy: ", 100.0 * accuracy_score(y_test, predictions))
+print("Matthews correlation coefficient:", matthews_corrcoef(y_test, predictions))
+
+# Soft Voting Classifier
+Classifier = VotingClassifier(estimators=[('lr', lr), ('rf', rf), ('dt', dt)], voting='soft')
+Classifier.fit(X_train, y_train)
+predictions = Classifier.predict(X_test)
+print("F1 score:", f1_score(y_test, predictions, average='weighted'))
+print("Accuracy: ", 100.0 * accuracy_score(y_test, predictions))
+print("Matthews correlation coefficient:", matthews_corrcoef(y_test, predictions))
+  </code></pre>
+  <h3>Saving the Model</h3>
+  <pre><code>
+import joblib
+joblib.dump(Classifier, 'voting_classifier_model.pkl')
+  </code></pre>
+  <p>Saving the model using joblib</p>
+
+  <h2>Python Script</h2>
+
+  <h3>Feature Extractor Class</h3>
+  <pre><code>
+class URLFeatureExtractor:
+    def __init__(self, url):
+        self.url = url
+        self.domain = urlparse(url).netloc
+        self.features = {}
+        
+        def extract_all_features(self):
+        """Extract all features from the URL"""
+        self.check_ip_address()
+        self.check_url_length()
+        self.check_shortening_service()
+        self.check_at_symbol()
+        self.check_double_slash_redirect()
+        self.check_prefix_suffix()
+        self.check_sub_domains()
+        self.check_ssl()
+        self.check_domain_registration()
+        self.check_favicon()
+        self.check_port()
+        self.check_https_token()
+        self.check_request_url()
+        self.check_url_anchor()
+        self.check_links_in_tags()
+        self.check_sfh()
+        self.check_email_submission()
+        self.check_abnormal_url()
+        self.check_redirect()
+        self.check_mouseover()
+        self.check_right_click()
+        self.check_popup()
+        self.check_iframe()
+        self.check_age_of_domain()
+        self.check_dns_record()
+        self.check_web_traffic()
+        self.check_page_rank()
+        self.check_google_index()
+        self.check_pointing_links()
+        self.check_statistical_report()
+        
+        return self.features
+  </code></pre>
+
+  <h3>Feature Extraction Methods</h3>
+  <pre><code>
+    def check_ip_address(self):
+        """Check if URL contains IP address"""
+        ip_pattern = re.compile(
+            r'(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)'
+        )
+        self.features['having_IP'] = 1 if ip_pattern.search(self.url) else -1
+
+    def check_url_length(self):
+        """Check URL length"""
+        self.features['URL_Length'] = 1 if len(self.url) > 54 else -1
+
+    def check_shortening_service(self):
+        """Check if URL is using shortening service"""
+        shortening_services = ['bit.ly', 'goo.gl', 't.co', 'tinyurl.com']
+        self.features['Shortining_Service'] = 1 if any(service in self.url for service in shortening_services) else -1
+
+    def check_at_symbol(self):
+        """Check for @ symbol in URL"""
+        self.features['having_At_Symbol'] = 1 if '@' in self.url else -1
+
+    def check_double_slash_redirect(self):
+        """Check for double slash redirect"""
+        self.features['double_slash_redirecting'] = 1 if '//' in self.url[8:] else -1
+
+    def check_prefix_suffix(self):
+        """Check for prefix or suffix separated by dash"""
+        self.features['Prefix_Suffix'] = 1 if '-' in self.domain else -1
+
+    def check_sub_domains(self):
+        """Check number of subdomains"""
+        ext = tldextract.extract(self.url)
+        subdomain = ext.subdomain.split('.')
+        self.features['having_Sub_Domain'] = 1 if len(subdomain) > 1 else -1
+
+    def check_ssl(self):
+        """Check SSL final state"""
+        try:
+            ctx = ssl.create_default_context()
+            with ctx.wrap_socket(socket.socket(), server_hostname=self.domain) as s:
+                s.connect((self.domain, 443))
+                self.features['SSLfinal_State'] = 1
+        except:
+            self.features['SSLfinal_State'] = -1
+
+    def check_domain_registration(self):
+        """Check domain registration length"""
+        try:
+            w = whois.whois(self.domain)
+            if isinstance(w.expiration_date, list):
+                exp_date = w.expiration_date[0]
+            else:
+                exp_date = w.expiration_date
+            
+            if exp_date:
+                length = (exp_date - datetime.now()).days
+                self.features['Domain_registeration_length'] = 1 if length > 365 else -1
+            else:
+                self.features['Domain_registeration_length'] = -1
+        except:
+            self.features['Domain_registeration_length'] = -1
+
+    def check_favicon(self):
+        """Check favicon"""
+        try:
+            response = requests.get(self.url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            favicon = soup.find('link', rel='shortcut icon') or soup.find('link', rel='icon')
+            self.features['Favicon'] = 1 if favicon and self.domain in favicon.get('href', '') else -1
+        except:
+            self.features['Favicon'] = -1
+
+    def check_port(self):
+        """Check for non-standard port"""
+        try:
+            parsed = urlparse(self.url)
+            self.features['port'] = 1 if parsed.port and parsed.port not in [80, 443] else -1
+        except:
+            self.features['port'] = -1
+
+    def check_https_token(self):
+        """Check HTTPS token in domain"""
+        self.features['HTTPS_token'] = 1 if 'https' in self.domain else -1
+
+    def check_request_url(self):
+        """Check request URL"""
+        try:
+            response = requests.get(self.url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            imgs = soup.find_all('img', src=True)
+            total_urls = len(imgs)
+            suspicious_urls = sum(1 for img in imgs if self.domain not in img['src'])
+            self.features['Request_URL'] = 1 if suspicious_urls / total_urls < 0.22 else -1
+        except:
+            self.features['Request_URL'] = -1
+
+    def check_url_anchor(self):
+        """Check URL of anchor"""
+        try:
+            response = requests.get(self.url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            anchors = soup.find_all('a', href=True)
+            total_anchors = len(anchors)
+            suspicious_anchors = sum(1 for a in anchors if self.domain not in a['href'])
+            self.features['URL_of_Anchor'] = 1 if suspicious_anchors / total_anchors < 0.31 else -1
+        except:
+            self.features['URL_of_Anchor'] = -1
+
+    def check_links_in_tags(self):
+        """Check links in tags"""
+        try:
+            response = requests.get(self.url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            tags = soup.find_all(['meta', 'script', 'link'])
+            total_tags = len(tags)
+            suspicious_tags = sum(1 for tag in tags if tag.get('src', '') and self.domain not in tag['src'])
+            self.features['Links_in_tags'] = 1 if suspicious_tags / total_tags < 0.17 else -1
+        except:
+            self.features['Links_in_tags'] = -1
+
+    def check_sfh(self):
+        """Check server form handler"""
+        try:
+            response = requests.get(self.url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            forms = soup.find_all('form', action=True)
+            self.features['SFH'] = 1 if any(not form['action'] or 'about:blank' in form['action'] for form in forms) else -1
+        except:
+            self.features['SFH'] = -1
+
+    def check_email_submission(self):
+        """Check for email submission"""
+        try:
+            response = requests.get(self.url)
+            self.features['Submitting_to_email'] = 1 if 'mailto:' in response.text else -1
+        except:
+            self.features['Submitting_to_email'] = -1
+
+    def check_abnormal_url(self):
+        """Check abnormal URL"""
+        try:
+            w = whois.whois(self.domain)
+            self.features['Abnormal_URL'] = 1 if not w.domain_name else -1
+        except:
+            self.features['Abnormal_URL'] = 1
+
+    def check_redirect(self):
+        """Check redirect"""
+        try:
+            response = requests.get(self.url, allow_redirects=False)
+            self.features['Redirect'] = 1 if response.status_code in [301, 302] else -1
+        except:
+            self.features['Redirect'] = -1
+
+    def check_mouseover(self):
+        """Check onMouseOver"""
+        try:
+            response = requests.get(self.url)
+            self.features['on_mouseover'] = 1 if "'onmouseover=""window.status'"" in response.text.lower() else -1
+        except:
+            self.features['on_mouseover'] = -1
+
+    def check_right_click(self):
+        """Check RightClick disabled"""
+        try:
+            response = requests.get(self.url)
+            self.features['RightClick'] = 1 if 'preventdefault()' in response.text.lower() or 'event.button==2' in response.text.lower() else -1
+        except:
+            self.features['RightClick'] = -1
+
+    def check_popup(self):
+        """Check popup window"""
+        try:
+            response = requests.get(self.url)
+            self.features['popUpWidnow'] = 1 if 'window.open' in response.text.lower() else -1
+        except:
+            self.features['popUpWidnow'] = -1
+
+    def check_iframe(self):
+        """Check iframe presence"""
+        try:
+            response = requests.get(self.url)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            self.features['Iframe'] = 1 if soup.find_all('iframe') else -1
+        except:
+            self.features['Iframe'] = -1
+
+    def check_age_of_domain(self):
+        """Check age of domain"""
+        try:
+            w = whois.whois(self.domain)
+            if isinstance(w.creation_date, list):
+                age = (datetime.now() - w.creation_date[0]).days
+            else:
+                age = (datetime.now() - w.creation_date).days
+            self.features['age_of_domain'] = 1 if age > 180 else -1
+        except:
+            self.features['age_of_domain'] = -1
+
+    def check_dns_record(self):
+        """Check DNS record"""
+        try:
+            dns.resolver.resolve(self.domain, 'A')
+            self.features['DNSRecord'] = 1
+        except:
+            self.features['DNSRecord'] = -1
+
+    def check_web_traffic(self):
+        """Check web traffic (simplified)"""
+        try:
+            response = requests.get(f"https://data.alexa.com/data?cli=10&url={self.domain}")
+            self.features['web_traffic'] = 1 if response.status_code == 200 else -1
+        except:
+            self.features['web_traffic'] = -1
+
+    def check_page_rank(self):
+        """Check page rank (simplified)"""
+        self.features['Page_Rank'] = -1  # Actual PageRank API is not freely available
+
+    def check_google_index(self):
+        """Check Google index"""
+        try:
+            headers = {'User-Agent': 'Mozilla/5.0'}
+            search_url = f"https://www.google.com/search?q=site:{self.domain}"
+            response = requests.get(search_url, headers=headers)
+            self.features['Google_Index'] = 1 if "did not match any documents" not in response.text else -1
+        except:
+            self.features['Google_Index'] = -1
+
+    def check_pointing_links(self):
+        """Check links pointing to page (simplified)"""
+        self.features['Links_pointing_to_page'] = -1  # Would require backlink API service
+
+    def check_statistical_report(self):
+        """Check statistical report (simplified)"""
+        try:
+            response = requests.get(f"https://www.phishtank.com/search.php?query={self.domain}")
+            self.features['Statistical_report'] = 1 if response.status_code == 200 else -1
+        except:
+            self.features['Statistical_report'] = -1
+
+# Example usage
+def extract_features(url):
+    extractor = URLFeatureExtractor(url)
+    features = extractor.extract_all_features()
+    return features
+  </code></pre>
+  <p>this are functions that can be used for extracting features indiviually for the given URL</p>
+
+  <h3>Example Usage</h3>
+  <pre><code>
+if __name__ == "__main__":
+    # Example URL
+    url = "https://data-flair.training/blogs/python-mini-project-speech-emotion-recognition/"
+    features = extract_features(url)
+
+    for feature, value in features.items():
+        print(f"{feature}: {value}")
+    print(len(features))
+  </code></pre>
+  <p>Execute using the code provided here</p>
+
+  <h2>Conclusion</h2>
+  <p>This artifact provides a comprehensive explanation of the code from both the Jupyter Notebook file and the Python script. The Jupyter Notebook file focuses on the machine learning aspects of the phishing URL detection problem, while the Python script concentrates on the feature extraction part, providing a detailed set of methods to analyze various characteristics of a given URL.</p>
+</div>
+<footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank">
+          <svg
+            style="width: 10px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"
+            />
+          </svg>
+        </a>
+        <a href="https://twitter.com" target="_blank"
+          ><svg
+            style="width: 15px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+            />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+          <svg
+            style="width: 15px"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#ffffff"
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="footer-contact">
+        <div>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white"
+            >info@mlfusionlabs.com</a
+          >
+          | Phone: +1 (555) 123-4567
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contributor.html">Contributor</a>
+      </div>
+      <div>
+        &copy; <span id="current-year"></span> ML Fusion Labs | All Rights
+        Reserved
+      </div>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg
+        style="width: 20px"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+      >
+        <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          fill="#ffffff"
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+        />
+      </svg>
+    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle, index) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.clientX;
+        coords.y = e.clientY;
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = x + "px";
+          circle.style.top = y + "px";
+
+          circle.style.scale = (circles.length - index) / circles.length;
+          circle.x = x;
+          circle.y = y;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const themeSwitch = document.getElementById("theme-switch");
+  
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+  
+      themeSwitch.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "theme",
+          document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+      });
+    });
+  </script>
+</body>
+</html>
+
+

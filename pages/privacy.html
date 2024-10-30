@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon">
+    <link rel="icon" href="../image/ml-fusion-lab-logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ML Fusion Labs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/style.css">
+
+    <link rel="stylesheet" href="../style/scroll.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background-container {
+            background-color: #505050;
+            /* Dark background to make white text visible */
+            padding: 50px;
+            max-width: 100%;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-container {
+            max-width: 800px;
+            padding: 25px;
+            margin: auto;
+            color: #fff;
+            /* White text for all content except headings */
+        }
+
+        h2,
+        h3 {
+            color: #4c4c84;
+            /* Different color for headings */
+        }
+
+        p,
+        ol {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #fff;
+            /* White text */
+        }
+
+        .centered {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        a {
+            color: rgb(210, 17, 17);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Styling for specific paragraphs and lists */
+        ol li,
+        ol ol li {
+            color: rgb(136, 136, 142);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .footer-contact {
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 0 20px;
+            color: #333;
+
+        }
+
+        .footer-socials a {
+            font-size: 24px;
+            margin: 0 15px;
+        }
+
+        .footer-social {
+            margin-top: 30px;
+        }
+
+        .footer-contact a {
+            color: white;
+        }
+
+        /* css for mouse cursor trail effect */
+        .circle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(70, 130, 180, 0.3), skyblue, rgba(0, 0, 50, 0.3), white);
+            transition: transform 0.1s, left 0.1s, top 0.1s;
+        }
+
+        .circle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            /* removed the non-breaking space (&nbsp;) */
+        }
+
+        .privacy-hero {
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .privacy-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .privacy-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .privacy-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .privacy-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .privacy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .privacy-card h2 {
+            color: #1a237e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-card i {
+            font-size: 1.5rem;
+        }
+
+        .privacy-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .privacy-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #424242;
+        }
+
+        .privacy-list li::before {
+            content: "•";
+            color: #1a237e;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .contact-section {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-section h2 {
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1a237e;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #0d47a1;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-hero h1 {
+                font-size: 2rem;
+            }
+
+            .privacy-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <nav>
+            <div class="logo">
+                <h1><img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" /></h1>
+            </div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../pages/courses.html">Courses</a></li>
+                <li><a href="../pages/projects.html">Projects</a></li>
+                <li><a href="../pages/about.html">About Us</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/Testimonial.html">Testimonial</a></li>
+                <!-- <div class="theme-switch" id="theme-switch"></div> -->
+                <div id="themeSwitch" class="theme-switch">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+
+                        <img src="../Assets/sun.png" class="theme-btn">
+                        <img src="../Assets/moon.png" class="theme-btn">
+                        <!-- <i class="fas fa-moon"></i>
+                      <i class="fas fa-sun"></i> -->
+                        <span class="ball"></span>
+                    </label>
+                </div>
+            </ul>
+        </nav>
+
+    </header>
+    <!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <section class="privacy-hero">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is our top priority. Learn how we protect and manage your personal information.</p>
+    </section>
+
+    <div class="privacy-content">
+        <div class="privacy-card">
+            <h2><i class="fas fa-shield-alt"></i> Information We Collect</h2>
+            <p>At ML Fusion Labs, we collect various types of information to provide you with the best possible service:
+            </p>
+            <ul class="privacy-list">
+                <li>Personal identification information (Name, email, phone number)</li>
+                <li>Account credentials and preferences</li>
+                <li>Device and browser information</li>
+                <li>Usage data and analytics</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-user-lock"></i> How We Use Your Data</h2>
+            <ul class="privacy-list">
+                <li>Personalizing your learning experience</li>
+                <li>Improving our services and course offerings</li>
+                <li>Processing payments and transactions</li>
+                <li>Communicating important updates and announcements</li>
+                <li>Analyzing user behavior to enhance our platform</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-share-alt"></i> Information Sharing</h2>
+            <p>We may share your information with:</p>
+            <ul class="privacy-list">
+                <li>Course providers and instructors</li>
+                <li>Payment processing partners</li>
+                <li>Analytics and service providers</li>
+                <li>Legal authorities when required by law</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-lock"></i> Security Measures</h2>
+            <ul class="privacy-list">
+                <li>PCI DSS certified payment processing</li>
+                <li>Encrypted data transmission</li>
+                <li>Regular security audits and updates</li>
+                <li>Secure password policies</li>
+                <li>24/7 system monitoring</li>
+            </ul>
+        </div>
+
+        <div class="privacy-card">
+            <h2><i class="fas fa-user-shield"></i> Your Rights</h2>
+            <ul class="privacy-list">
+                <li>Access your personal data</li>
+                <li>Request data correction or deletion</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Control cookie preferences</li>
+                <li>Request data portability</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h2>Have Questions About Your Privacy?</h2>
+            <h4 style="color: black; margin-bottom: 12px;">We're here to help! Contact our privacy team for any concerns or questions.</h4>
+            <a href="mailto:info@mlfusionlabs.com" class="contact-button">
+                <i class="fas fa-envelope"></i> Contact Privacy Team
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <div class="footer">
+        <div class="footer-col">
+            <img src="./../image//ml fusion lab log.jpg" alt="">
+            <p class="footer-p">
+
+                We are a community-driven platform that aims to provide free, accessible, and high-quality machine
+                learning tutorials, projects, and resources for all.
+
+            </p>
+            <div class="footer-social">
+                <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">ML Fusion Labs</h4>
+            <a href="#">Business</a>
+            <a href="#">Franchise</a>
+            <a href="#">Network</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">About Us</h4>
+            <a href="./pages/about.html">About Us</a>
+            <a href="#">Security</a>
+            <a href="./pages/contributor.html">Contributors</a>
+        </div>
+        <div class="footer-col-main">
+            <h4 class="h46">Contact</h4>
+            <a href="./pages/contact.html">Contact Us</a>
+            <a href="./email.html">Email Us</a>
+            <a href="./pages/privacy.html">Privacy Policy</a>
+            <a href="./pages/terms.html">Terms & Conditions</a>
+        </div>
+    </div>
+    <div class="footer-bar">
+        &copy; 2024 ML Fusion Labs | All Rights Reserved
+        <button id="scrollTopBtn" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()"> <i class="fas fa-arrow-up"></i></button>
+    <!-- js for mouse cursor trail effect -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const coords = { x: 0, y: 0 };
+            const circles = document.querySelectorAll(".circle");
+
+            circles.forEach(function (circle) {
+                circle.x = 0;
+                circle.y = 0;
+            });
+
+            window.addEventListener("mousemove", function (e) {
+                coords.x = e.pageX;
+                coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+            });
+
+            function animateCircles() {
+                let x = coords.x;
+                let y = coords.y;
+
+                circles.forEach(function (circle, index) {
+                    circle.style.left = `${x - 12}px`;
+                    circle.style.top = `${y - 12}px`;
+                    circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+
+                    const nextCircle = circles[index + 1] || circles[0];
+                    circle.x = x;
+                    circle.y = y;
+
+                    x += (nextCircle.x - x) * 0.3;
+                    y += (nextCircle.y - y) * 0.3;
+                });
+
+                requestAnimationFrame(animateCircles);
+            }
+
+            animateCircles();
+        });
+    </script>
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
+</body>
+
+</html>

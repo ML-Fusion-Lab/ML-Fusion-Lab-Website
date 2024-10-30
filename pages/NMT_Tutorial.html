@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMT Tutorial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+<link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+body.dark-mode .project-container {
+  background-color:#1a1a1a;
+  color: white;
+}
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+ 
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+ <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml-fusion-lab-logo.png" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+
+<div id="e4dc334b" class="cell markdown">
+  <h2 id="building-an-nmt-based-autocorrect-model" style="font-size: 48px;">Building an NMT-Based
+  Autocorrect Model</h2>
+  <p>In this tutorial, we will build a Neural Machine Translation
+  (NMT)-based autocorrect model using a sequence-to-sequence (seq2seq)
+  architecture. The model will learn to correct spelling and grammatical
+  errors in text by translating incorrect input sequences into their
+  correct forms.</p>
+  <h3 id="what-is-neural-machine-translation-nmt">What is Neural Machine
+  Translation (NMT)?</h3>
+  <p>Neural Machine Translation (NMT) is a deep learning-based approach
+  for converting a sequence in one language to a sequence in another
+  language, using an encoder-decoder architecture. This architecture can
+  also be adapted to correct errors in text by treating the incorrect
+  sequence as the "source language" and the correct sequence as the
+  "target language."</p>
+  <h3 id="why-use-nmt-for-autocorrect">Why Use NMT for Autocorrect?</h3>
+  <p>Autocorrect systems are traditionally based on rule-based or
+  statistical methods, but these approaches have limitations in handling
+  complex language patterns. NMT models can learn context-dependent
+  corrections and generalize better over time, making them powerful tools
+  for tasks like spell-checking and grammar correction.</p>
+  </div>
+  <div id="f7652e4c" class="cell markdown">
+  <h2 id="step-1-importing-required-libraries">Step 1: Importing Required
+  Libraries</h2>
+  <p>In this step, we import the necessary libraries that will be used
+  throughout the project. These libraries include TensorFlow and Keras for
+  building the NMT-based autocorrect model, as well as utility libraries
+  for data manipulation, visualization, and model training.</p>
+  </div>
+  <div id="6bbabd44-4865-477e-bd6e-08b1d5a83cf0" class="cell code"
+  data-execution_count="1">
+  <div class="sourceCode" id="cb1"><pre
+  class="sourceCode python"><code class="sourceCode python">
+  <span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+  <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow.keras <span class="im">as</span> keras</span>
+  <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> load_model</span>
+  <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+  <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+  <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+  <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
+  <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+  <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+  <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.ticker <span class="im">as</span> ticker</span>
+  <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+  <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> unicodedata</span>
+  <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+  <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+  <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+  <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
+  <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span></code></pre></div>
+  </div>
+  <div id="7c8ed85b" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ul>
+  <li><p><strong>TensorFlow (<code>tf</code>) and Keras
+  (<code>keras</code>)</strong>: Used to define, train, and evaluate the
+  deep learning model. Keras provides an easy interface to build the
+  sequence-to-sequence architecture required for NMT.</p></li>
+  <li><p><strong><code>random</code> and <code>string</code></strong>:
+  Help in text preprocessing by generating random sequences or characters,
+  and handling string manipulations (e.g., converting to
+  lowercase).</p></li>
+  <li><p><strong>Pandas (<code>pd</code>)</strong>: This library is used
+  to manipulate and organize structured data (e.g., reading CSV files or
+  DataFrames), which will be helpful when loading and processing datasets
+  of incorrect-correct sentence pairs.</p></li>
+  <li><p><strong>TQDM</strong>: Adds a progress bar to loops, making it
+  easier to visualize how long operations take, especially for data
+  loading and model training steps.</p></li>
+  <li><p><strong>Pickle</strong>: Useful for saving preprocessed data and
+  trained models, which can be loaded at a later time for inference or
+  further training without having to retrain from scratch.</p></li>
+  <li><p><strong>Matplotlib (<code>plt</code>,
+  <code>ticker</code>)</strong>: Allows us to visualize the training
+  process, such as plotting loss curves or accuracy graphs over time to
+  monitor the model’s performance.</p></li>
+  <li><p><strong>Scikit-learn (<code>train_test_split</code>)</strong>:
+  This function is used to split the dataset into training and test
+  subsets, ensuring that the model can generalize well to unseen data
+  during evaluation.</p></li>
+  <li><p><strong><code>unicodedata</code> and <code>re</code></strong>:
+  These libraries help in text normalization and cleaning. This is
+  critical in ensuring that the input data is in a consistent format for
+  the model to learn from.</p></li>
+  <li><p><strong>NumPy (<code>np</code>)</strong>: Facilitates efficient
+  numerical computation and handling of arrays, which is important when
+  processing and managing the dataset as well as during model
+  training.</p></li>
+  <li><p><strong>OS, IO, and Time</strong>: These libraries provide file
+  management functionalities and allow us to monitor the time taken for
+  training and other operations.</p></li>
+  </ul>
+  </div>
+  <div id="5605e77a" class="cell markdown">
+  <h2 id="step-2-downloading-and-extracting-the-dataset">Step 2:
+  Downloading and Extracting the Dataset</h2>
+  </div>
+  <div id="513c919a" class="cell markdown">
+  <p>In this step, we are downloading a dataset from TensorFlow’s storage,
+  which consists of English-Spanish sentence pairs. These sentence pairs
+  will be used to train our NMT-based autocorrect model, where the source
+  sentences (Spanish) can represent incorrect sequences, and the target
+  sentences (English) represent the corrected versions.</p>
+  </div>
+  <div id="300c205d-e928-4fd3-ab28-088b0ac6433d" class="cell code"
+  data-execution_count="40">
+  <div class="sourceCode" id="cb2"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the file</span></span>
+  <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>path_to_zip <span class="op">=</span> tf.keras.utils.get_file(</span>
+  <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;spa-eng.zip&#39;</span>, origin<span class="op">=</span><span class="st">&#39;http://storage.googleapis.com/download.tensorflow.org/data/spa-eng.zip&#39;</span>,</span>
+  <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    extract<span class="op">=</span><span class="va">True</span>)</span>
+  <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>path_to_file <span class="op">=</span> os.path.dirname(path_to_zip)<span class="op">+</span><span class="st">&quot;/spa-eng/spa.txt&quot;</span></span></code></pre></div>
+  </div>
+  <div id="66a87380" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong><code>tf.keras.utils.get_file</code></strong>:
+  <ul>
+  <li>This function downloads the dataset (a ZIP file) from the specified
+  URL
+  (<code>http://storage.googleapis.com/download.tensorflow.org/data/spa-eng.zip</code>).</li>
+  <li>The <code>origin</code> parameter points to the dataset’s URL, and
+  the <code>extract=True</code> option ensures that the ZIP file is
+  automatically extracted once downloaded.</li>
+  </ul></li>
+  <li><strong><code>path_to_zip</code></strong>:
+  <ul>
+  <li>This variable stores the path to the downloaded ZIP file.</li>
+  </ul></li>
+  <li><strong><code>os.path.dirname(path_to_zip)</code></strong>:
+  <ul>
+  <li>This function retrieves the directory where the ZIP file was
+  saved.</li>
+  </ul></li>
+  <li><strong><code>path_to_file = os.path.dirname(path_to_zip)+"/spa-eng/spa.txt"</code></strong>:
+  <ul>
+  <li>After extracting the ZIP file, the path to the actual text file
+  (<code>spa.txt</code>) is constructed. This text file contains the
+  English-Spanish sentence pairs that will be loaded for
+  preprocessing.</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="64e5420a" class="cell markdown">
+  <h2
+  id="step-3-text-preprocessing---unicode-conversion-and-cleaning">Step 3:
+  Text Preprocessing - Unicode Conversion and Cleaning</h2>
+  </div>
+  <div id="2b812dd0" class="cell markdown">
+  <p>In this step, we define functions to convert text to ASCII format and
+  clean it for processing. We also ensure that the text is formatted in a
+  consistent way by removing special characters, converting to lowercase,
+  and adding padding between words and punctuation marks. This step is
+  crucial for preparing the text data so it can be effectively used by the
+  NMT model.</p>
+  </div>
+  <div id="bc0c774c-e2b8-4752-9afe-002a5a8be54c" class="cell code"
+  data-execution_count="3">
+  <div class="sourceCode" id="cb3"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts the unicode file to ascii</span></span>
+  <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unicode_to_ascii(s):</span>
+  <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;&#39;</span>.join(c <span class="cf">for</span> c <span class="kw">in</span> unicodedata.normalize(<span class="st">&#39;NFD&#39;</span>, s)</span>
+  <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">if</span> unicodedata.category(c) <span class="op">!=</span> <span class="st">&#39;Mn&#39;</span>)</span>
+  <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess_sentence(w):</span>
+  <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> unicode_to_ascii(w.lower().strip())</span>
+  <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add space between punctuation and words</span></span>
+  <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> re.sub(<span class="vs">r&quot;([?.!,¿])&quot;</span>, <span class="vs">r&quot; \1 &quot;</span>, w)</span>
+  <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> re.sub(<span class="vs">r&#39;[&quot; &quot;]+&#39;</span>, <span class="st">&quot; &quot;</span>, w)</span>
+  <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Replace non-alphabetical characters</span></span>
+  <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> re.sub(<span class="vs">r&quot;[^a-zA-Z ]+&quot;</span>, <span class="st">&quot;&quot;</span>, w)</span>
+  <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> w.strip()</span>
+  <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add start and end tokens</span></span>
+  <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w</span>
+  <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>en_sentence <span class="op">=</span> <span class="st">u&quot;May I borrow this book?&quot;</span></span>
+  <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(preprocess_sentence(en_sentence))</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>may i borrow this book
+  </code></pre>
+  </div>
+  </div>
+  <div id="0eef48c5" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong><code>unicode_to_ascii(s)</code></strong>:
+  <ul>
+  <li><p>This function converts Unicode text to ASCII by normalizing it
+  using <code>unicodedata.normalize('NFD', s)</code> and removing any
+  characters with the Unicode category "Mn" (which corresponds to
+  non-spacing marks like accents). This ensures the text is clean and
+  consistent for processing.</p></li>
+  <li><p><strong><code>unicodedata.category(c) != 'Mn'</code></strong>
+  checks each character and filters out accents or other diacritical
+  marks.</p></li>
+  </ul></li>
+  <li><strong><code>preprocess_sentence(w)</code></strong>:
+  <ul>
+  <li><p><strong>Lowercase and Strip</strong>: Converts the sentence to
+  lowercase (<code>w.lower()</code>) and removes any leading/trailing
+  whitespace (<code>.strip()</code>).</p></li>
+  <li><p><strong>Add Space Between Punctuation</strong>: Adds space around
+  punctuation marks like <code>?.!,¿</code> so that punctuation is treated
+  as separate tokens during training
+  (<code>re.sub(r"([?.!,¿])", r" \1 ", w)</code>).</p></li>
+  <li><p><strong>Remove Extra Spaces</strong>: Replaces multiple
+  consecutive spaces with a single space
+  (<code>re.sub(r'[" "]+', " ", w)</code>).</p></li>
+  <li><p><strong>Remove Non-Alphabetical Characters</strong>: Deletes any
+  character that is not a letter or space, effectively removing numbers,
+  special characters, or symbols
+  (<code>re.sub(r"[^a-zA-Z ]+", "", w)</code>).</p></li>
+  <li><p><strong>Strip</strong>: Ensures there are no leading or trailing
+  spaces left after cleaning.</p></li>
+  <li><p><strong>Start and End Tokens</strong>: While not explicitly added
+  in this example, typically, a start token (<code>&lt;start&gt;</code>)
+  and end token (<code>&lt;end&gt;</code>) would be appended to the
+  sentence to help the model learn when to begin and stop generating
+  text.</p></li>
+  </ul></li>
+  <li><strong>Testing the Function</strong>:
+  <ul>
+  <li><strong><code>en_sentence</code></strong>: We pass a sample sentence
+  (<code>"May I borrow this book?"</code>) through the
+  <code>preprocess_sentence()</code> function to see the cleaned and
+  formatted result.</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="7f898a97" class="cell markdown">
+  <h2 id="step-4-introducing-noise-to-data-for-training-robustness">Step
+  4: Introducing Noise to Data for Training Robustness</h2>
+  </div>
+  <div id="821ba328" class="cell markdown">
+  <p>In this step, we introduce noise to the data to make the model more
+  robust. By simulating misspellings and random character replacements in
+  the input, the model learns to correct noisy or incorrect inputs during
+  training. The function generates both noisy inputs and their
+  corresponding "correct" target versions to train the NMT model.</p>
+  </div>
+  <div id="c44800a6-b476-4807-a35e-fdacab0f11af" class="cell code"
+  data-execution_count="4">
+  <div class="sourceCode" id="cb5"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> noise(data):</span>
+  <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    input_texts <span class="op">=</span> []</span>
+  <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    target_texts <span class="op">=</span> []</span>
+  <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> data:</span>
+  <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        input_text <span class="op">=</span> line.lower()</span>
+  <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        input_text <span class="op">=</span> re.sub(<span class="vs">r&#39;[^a-zA-Z ]+&#39;</span>, <span class="st">&#39;&#39;</span>, input_text)</span>
+  <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        target_text <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span> <span class="op">+</span> input_text <span class="op">+</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span></span>
+  <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        input_texts.append(input_text)</span>
+  <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        target_texts.append(target_text)</span>
+  <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        inp <span class="op">=</span> input_text</span>
+  <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+  <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            input_text <span class="op">=</span> inp</span>
+  <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(np.random.choice(np.arange(<span class="dv">0</span>, <span class="dv">2</span>), p<span class="op">=</span>[<span class="fl">0.1</span>, <span class="fl">0.9</span>])):</span>
+  <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                input_text <span class="op">=</span> input_text.replace(random.choice(<span class="bu">list</span>(input_text)), random.choice(string.ascii_letters))</span>
+  <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            input_texts.append(input_text.lower())</span>
+  <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            target_texts.append(target_text)</span>
+  <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> input_texts, target_texts</span></code></pre></div>
+  </div>
+  <div id="48b70efd" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong><code>def noise(data)</code></strong>:
+  <ul>
+  <li>The <code>noise()</code> function takes the dataset
+  <code>data</code> (a list of sentences) as input and generates noisy
+  versions of these sentences. It returns two lists:
+  <code>input_texts</code> (noisy sentences) and <code>target_texts</code>
+  (correct sentences).</li>
+  </ul></li>
+  <li><strong>Converting Sentences to Lowercase</strong>:
+  <ul>
+  <li><strong><code>input_text = line.lower()</code></strong>: Each line
+  (sentence) from the data is converted to lowercase to ensure uniformity
+  during processing.</li>
+  </ul></li>
+  <li><strong>Removing Non-Alphabet Characters</strong>:
+  <ul>
+  <li><strong><code>re.sub(r'[^a-zA-Z ]+', '', input_text)</code></strong>:
+  This step removes any non-alphabetical characters from the sentence,
+  leaving only letters and spaces. This ensures that punctuation, numbers,
+  and other symbols are removed, as they are not needed in the training
+  data.</li>
+  </ul></li>
+  <li><strong>Defining Target Text</strong>:
+  <ul>
+  <li><strong><code>target_text = "\t" + input_text + "\n"</code></strong>:
+  Each target text is the original sentence (correct version) with a start
+  token (<code>\t</code>) and an end token (<code>\n</code>). These tokens
+  help the model during training to learn where to start and stop
+  generating text.</li>
+  </ul></li>
+  <li><strong>Adding Original Input to Lists</strong>:
+  <ul>
+  <li>The original (clean) input text is added to
+  <code>input_texts</code>, and the corresponding target text (correct
+  version) is added to <code>target_texts</code>.</li>
+  </ul></li>
+  <li><strong>Introducing Noise</strong>:
+  <ul>
+  <li><strong>Loop</strong>: The next part of the function introduces
+  noise into the input sentence. This is done twice per sentence to
+  generate different noisy versions.</li>
+  <li><strong>Random Character Replacement</strong>:
+  <ul>
+  <li><strong><code>np.random.choice(np.arange(0, 2), p=[0.1, 0.9])</code></strong>:
+  Randomly chooses whether to replace 0 or 1 characters in the sentence,
+  with a probability distribution of 10% for 0 replacements and 90% for 1
+  replacement.</li>
+  <li><strong><code>input_text.replace()</code></strong>: Randomly selects
+  a character from the sentence and replaces it with another random letter
+  from <code>string.ascii_letters</code>. This simulates common typing
+  errors.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Adding Noisy Inputs to Lists</strong>:
+  <ul>
+  <li>The noisy version of the input text is added to
+  <code>input_texts</code>, and the target text remains unchanged (as the
+  model should learn to correct the noisy input).</li>
+  </ul></li>
+  <li><strong>Return</strong>:
+  <ul>
+  <li>Finally, the function returns two lists: <code>input_texts</code>
+  (the noisy inputs) and <code>target_texts</code> (the corresponding
+  correct sentences).</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="25616b97" class="cell markdown">
+  <h2 id="step-5-creating-and-tokenizing-dataset">Step 5: Creating and
+  Tokenizing Dataset</h2>
+  </div>
+  <div id="219793d7" class="cell markdown">
+  <p>We now prepare the dataset by creating input-target pairs and
+  tokenizing them into tensors.</p>
+  </div>
+  <div id="daf99c05-0fd0-4da0-a801-ff954896ea23" class="cell code"
+  data-execution_count="7">
+  <div class="sourceCode" id="cb6"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_dataset(path, num_examples):</span>
+  <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> io.<span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">&#39;UTF-8&#39;</span>).read().strip().split(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span>)</span>
+  <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    en <span class="op">=</span> [preprocess_sentence(line.split(<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)[<span class="dv">0</span>]) <span class="cf">for</span> line <span class="kw">in</span> lines[:num_examples]]</span>
+  <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    inp, targ <span class="op">=</span> noise(en)</span>
+  <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inp, targ</span>
+  <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tokenize(lang):</span>
+  <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    lang_tokenizer <span class="op">=</span> keras.preprocessing.text.Tokenizer(filters<span class="op">=</span><span class="st">&#39;&#39;</span>, char_level<span class="op">=</span><span class="va">True</span>)</span>
+  <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    lang_tokenizer.fit_on_texts(lang)</span>
+  <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> lang_tokenizer.texts_to_sequences(lang)</span>
+  <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    tensor <span class="op">=</span> keras.preprocessing.sequence.pad_sequences(tensor, padding<span class="op">=</span><span class="st">&#39;post&#39;</span>)</span>
+  <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor, lang_tokenizer</span>
+  <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_dataset(path, num_examples<span class="op">=</span><span class="va">None</span>):</span>
+  <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    inp_lang, targ_lang <span class="op">=</span> create_dataset(path, num_examples)</span>
+  <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(inp_lang[<span class="dv">55000</span>])</span>
+  <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    input_tensor, inp_lang_tokenizer <span class="op">=</span> tokenize(inp_lang)</span>
+  <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    target_tensor, targ_lang_tokenizer <span class="op">=</span> tokenize(targ_lang)</span>
+  <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> input_tensor, target_tensor, inp_lang_tokenizer, targ_lang_tokenizer</span></code></pre></div>
+  </div>
+  <div id="8b8a7103" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong><code>create_dataset()</code></strong>:
+  <ul>
+  <li>Reads lines from the file, preprocesses them, and applies noise for
+  training.</li>
+  </ul></li>
+  <li><strong><code>tokenize()</code></strong>:
+  <ul>
+  <li>Tokenizes characters and converts sentences into padded sequences
+  for uniform input size.</li>
+  </ul></li>
+  <li><strong><code>load_dataset()</code></strong>:
+  <ul>
+  <li>Combines both functions to return tokenized input and target
+  tensors, along with tokenizers for encoding and decoding.</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="e0c442c9" class="cell markdown">
+  <h2 id="step-6-preparing-training-and-validation-sets">Step 6: Preparing
+  Training and Validation Sets</h2>
+  </div>
+  <div id="32285aa5" class="cell markdown">
+  <p>In this step, we set the number of training examples, load the
+  dataset, calculate the maximum lengths of the input and target tensors,
+  and split the dataset into training and validation sets.</p>
+  </div>
+  <div id="ad49d409-0685-4ca9-aad9-10d4a71a6b3a" class="cell code"
+  data-execution_count="9">
+  <div class="sourceCode" id="cb7"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of examples to train</span></span>
+  <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>num_examples <span class="op">=</span> <span class="dv">100000</span></span>
+  <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>input_tensor, target_tensor, inp_lang, targ_lang <span class="op">=</span> load_dataset(path_to_file, num_examples)</span>
+  <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate max length of the tensors</span></span>
+  <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>max_length_targ, max_length_inp <span class="op">=</span> target_tensor.shape[<span class="dv">1</span>], input_tensor.shape[<span class="dv">1</span>]</span>
+  <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating training and validation sets (80-20 split)</span></span>
+  <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val <span class="op">=</span> train_test_split(input_tensor, target_tensor, test_size<span class="op">=</span><span class="fl">0.2</span>)</span>
+  <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show length of datasets</span></span>
+  <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(input_tensor_train), <span class="bu">len</span>(target_tensor_train), <span class="bu">len</span>(input_tensor_val), <span class="bu">len</span>(target_tensor_val))</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>24000 24000 6000 6000
+  </code></pre>
+  </div>
+  </div>
+  <div id="557880a1" class="cell markdown">
+  <h2 id="step-7-mapping-indices-to-words">Step 7: Mapping Indices to
+  Words</h2>
+  </div>
+  <div id="09ebbc06" class="cell markdown">
+  <p>In this step, we define a function to convert tensor indices back to
+  their corresponding words for both input and target languages, allowing
+  us to visualize how the model interprets the data.</p>
+  </div>
+  <div id="63704928-b156-4171-a387-95ae32d1ccae" class="cell code"
+  data-execution_count="10">
+  <div class="sourceCode" id="cb9"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert(lang, tensor):</span>
+  <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> tensor:</span>
+  <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> t <span class="op">!=</span> <span class="dv">0</span>:</span>
+  <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&#39;</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> ----&gt; </span><span class="sc">{</span>lang<span class="sc">.</span>index_word[t]<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+  <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Input Language; index to word mapping&quot;</span>)</span>
+  <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>convert(inp_lang, input_tensor_train[<span class="dv">5</span>])</span>
+  <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Target Language; index to word mapping&quot;</span>)</span>
+  <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>convert(targ_lang, target_tensor_train[<span class="dv">5</span>])</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>Input Language; index to word mapping
+  13 ----&gt; d
+  4 ----&gt; o
+  1 ----&gt;  
+  18 ----&gt; c
+  4 ----&gt; o
+  11 ----&gt; m
+  2 ----&gt; e
+  1 ----&gt;  
+  6 ----&gt; a
+  17 ----&gt; g
+  6 ----&gt; a
+  5 ----&gt; i
+  9 ----&gt; n
+  
+  Target Language; index to word mapping
+  3 ----&gt; 	
+  15 ----&gt; d
+  6 ----&gt; o
+  1 ----&gt;  
+  20 ----&gt; c
+  6 ----&gt; o
+  13 ----&gt; m
+  2 ----&gt; e
+  1 ----&gt;  
+  8 ----&gt; a
+  19 ----&gt; g
+  8 ----&gt; a
+  7 ----&gt; i
+  11 ----&gt; n
+  4 ----&gt; 
+  
+  </code></pre>
+  </div>
+  </div>
+  <div id="6ff6e018" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Define the <code>convert()</code> Function</strong>:
+  <ul>
+  <li><strong><code>def convert(lang, tensor)</code></strong>: This
+  function takes a language tokenizer (<code>lang</code>) and a tensor
+  (<code>tensor</code>) as input. It iterates through each element in the
+  tensor to map indices back to their corresponding words.</li>
+  <li><strong><code>if t != 0:</code></strong>: Checks if the index is not
+  zero, as zero typically represents padding and does not correspond to
+  any word.</li>
+  </ul></li>
+  </ol>
+  <p>This step helps verify that the tokenization and mapping processes
+  have been implemented correctly, ensuring that the model receives the
+  correct input and generates appropriate output.</p>
+  </div>
+  <div id="6ebc5c00" class="cell markdown">
+  <h2 id="step-8-setting-hyperparameters-and-preparing-the-dataset">Step
+  8: Setting Hyperparameters and Preparing the Dataset</h2>
+  </div>
+  <div id="ed6a3a76" class="cell markdown">
+  <p>In this step, we set key hyperparameters for the model and prepare
+  the dataset for training using TensorFlow's data pipeline.</p>
+  </div>
+  <div id="dcefafe8-6244-47a6-bb37-a168782e77d0" class="cell code"
+  data-execution_count="11">
+  <div class="sourceCode" id="cb11"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hyperparameters and data preparation</span></span>
+  <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>BUFFER_SIZE <span class="op">=</span> <span class="bu">len</span>(input_tensor_train)</span>
+  <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>BATCH_SIZE <span class="op">=</span> <span class="dv">64</span></span>
+  <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>steps_per_epoch <span class="op">=</span> <span class="bu">len</span>(input_tensor_train) <span class="op">//</span> BATCH_SIZE</span>
+  <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>embedding_dim <span class="op">=</span> <span class="dv">256</span></span>
+  <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>units <span class="op">=</span> <span class="dv">1024</span></span>
+  <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>vocab_inp_size <span class="op">=</span> <span class="bu">len</span>(inp_lang.word_index) <span class="op">+</span> <span class="dv">1</span></span>
+  <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>vocab_tar_size <span class="op">=</span> <span class="bu">len</span>(targ_lang.word_index) <span class="op">+</span> <span class="dv">1</span></span>
+  <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Dataset pipeline</span></span>
+  <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> tf.data.Dataset.from_tensor_slices((input_tensor_train, target_tensor_train)).shuffle(BUFFER_SIZE)</span>
+  <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> dataset.batch(BATCH_SIZE, drop_remainder<span class="op">=</span><span class="va">True</span>)</span>
+  <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>example_input_batch, example_target_batch <span class="op">=</span> <span class="bu">next</span>(<span class="bu">iter</span>(dataset))</span>
+  <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(example_input_batch.shape, example_target_batch.shape)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>(64, 16) (64, 18)
+  </code></pre>
+  </div>
+  </div>
+  <div id="cd0fe1d3" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Set Hyperparameters</strong>:
+  <ul>
+  <li><strong><code>BUFFER_SIZE</code></strong>: Sets the buffer size for
+  shuffling the dataset, equal to the number of training examples.</li>
+  <li><strong><code>BATCH_SIZE = 64</code></strong>: Defines the number of
+  samples per gradient update, influencing training stability and
+  speed.</li>
+  <li><strong><code>steps_per_epoch</code></strong>: Calculates the number
+  of steps required to complete one epoch based on the batch size,
+  allowing for efficient training.</li>
+  <li><strong><code>embedding_dim = 256</code></strong>: Specifies the
+  dimensionality of the embedding layer, controlling the representation of
+  input words.</li>
+  <li><strong><code>units = 1024</code></strong>: Sets the number of units
+  in the RNN layers, determining the model's capacity to learn complex
+  patterns.</li>
+  <li><strong><code>vocab_inp_size</code> and
+  <code>vocab_tar_size</code></strong>: Calculate the vocabulary sizes for
+  input and target languages, accounting for the special padding
+  token.</li>
+  </ul></li>
+  <li><strong>Prepare Dataset Pipeline</strong>:
+  <ul>
+  <li><strong><code>tf.data.Dataset.from_tensor_slices((input_tensor_train, target_tensor_train))</code></strong>:
+  Creates a dataset from the input and target tensors.</li>
+  <li><strong><code>.shuffle(BUFFER_SIZE)</code></strong>: Shuffles the
+  dataset to ensure randomization, which helps improve model
+  generalization.</li>
+  <li><strong><code>.batch(BATCH_SIZE, drop_remainder=True)</code></strong>:
+  Groups the data into batches of specified size, dropping the last batch
+  if it's smaller than the batch size.</li>
+  </ul></li>
+  <li><strong>Inspect Example Batches</strong>:
+  <ul>
+  <li><strong><code>next(iter(dataset))</code></strong>: Retrieves an
+  example input and target batch from the dataset for inspection.</li>
+  <li><strong><code>print(example_input_batch.shape, example_target_batch.shape)</code></strong>:
+  Prints the shapes of the example input and target batches, confirming
+  that the data is correctly formatted for training.</li>
+  </ul></li>
+  </ol>
+  <p>This step establishes the necessary configuration for the training
+  process and ensures that the dataset is appropriately structured for
+  efficient model training.</p>
+  </div>
+  <div id="e5a47f0b" class="cell markdown">
+  <h2 id="step-9-defining-the-encoder-model">Step 9: Defining the Encoder
+  Model</h2>
+  </div>
+  <div id="cfeed281-a0b2-46ee-b8b2-962eb85d6fda" class="cell code"
+  data-execution_count="32">
+  <div class="sourceCode" id="cb13"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Encoder model</span></span>
+  <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Encoder(tf.keras.Model):</span>
+  <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, embedding_dim, enc_units, batch_sz):</span>
+  <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(Encoder, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+  <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.batch_sz <span class="op">=</span> batch_sz</span>
+  <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.enc_units <span class="op">=</span> enc_units</span>
+  <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.embedding <span class="op">=</span> tf.keras.layers.Embedding(vocab_size, embedding_dim)</span>
+  <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gru <span class="op">=</span> tf.keras.layers.GRU(<span class="va">self</span>.enc_units,</span>
+  <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                                       return_sequences<span class="op">=</span><span class="va">True</span>,</span>
+  <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                                       return_state<span class="op">=</span><span class="va">True</span>,</span>
+  <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                                       recurrent_initializer<span class="op">=</span><span class="st">&#39;glorot_uniform&#39;</span>)</span>
+  <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> call(<span class="va">self</span>, x, hidden):</span>
+  <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.embedding(x)</span>
+  <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        output, state <span class="op">=</span> <span class="va">self</span>.gru(x, initial_state<span class="op">=</span>hidden)</span>
+  <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> output, state</span>
+  <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> initialize_hidden_state(<span class="va">self</span>):</span>
+  <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> tf.zeros((<span class="va">self</span>.batch_sz, <span class="va">self</span>.enc_units))</span>
+  <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> Encoder(vocab_inp_size, embedding_dim, units, BATCH_SIZE)</span></code></pre></div>
+  </div>
+  <div id="9e366993" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Define the Encoder Class</strong>:
+  <ul>
+  <li>Inherits from <code>tf.keras.Model</code> to utilize TensorFlow's
+  model features.</li>
+  </ul></li>
+  <li><strong>Initialize Parameters</strong>:
+  <ul>
+  <li><strong><code>__init__</code></strong>: Accepts vocabulary size,
+  embedding dimensions, GRU units, and batch size.</li>
+  <li><strong>Embedding Layer</strong>: Converts input indices into dense
+  vectors.</li>
+  <li><strong>GRU Layer</strong>: Processes the embeddings, returning
+  output sequences and final hidden state.</li>
+  </ul></li>
+  <li><strong>Call Method</strong>:
+  <ul>
+  <li><strong><code>call</code></strong>: Performs the forward pass,
+  embedding inputs and passing them through the GRU to obtain outputs and
+  states.</li>
+  </ul></li>
+  <li><strong>Initialize Hidden State</strong>:
+  <ul>
+  <li><strong><code>initialize_hidden_state</code></strong>: Creates a
+  zero-initialized hidden state tensor for the GRU.</li>
+  </ul></li>
+  <li><strong>Instantiate the Encoder</strong>:
+  <ul>
+  <li>Creates an Encoder instance with specified parameters for
+  training.</li>
+  </ul></li>
+  </ol>
+  <p>This step sets up the encoder to convert input sequences into encoded
+  representations for the NMT model.</p>
+  </div>
+  <div id="38f69caf" class="cell markdown">
+  <h2 id="step-10-defining-the-attention-layer-bahdanau-attention">Step
+  10: Defining the Attention Layer (Bahdanau Attention)</h2>
+  </div>
+  <div id="1588562a-73e7-4ac6-9575-6ee79e94faae" class="cell code"
+  data-execution_count="14">
+  <div class="sourceCode" id="cb14"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Attention layer (Bahdanau Attention)</span></span>
+  <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BahdanauAttention(tf.keras.layers.Layer):</span>
+  <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, units):</span>
+  <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(BahdanauAttention, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+  <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W1 <span class="op">=</span> tf.keras.layers.Dense(units)</span>
+  <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.W2 <span class="op">=</span> tf.keras.layers.Dense(units)</span>
+  <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.V <span class="op">=</span> tf.keras.layers.Dense(<span class="dv">1</span>)</span>
+  <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> call(<span class="va">self</span>, query, values):</span>
+  <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        query_with_time_axis <span class="op">=</span> tf.expand_dims(query, <span class="dv">1</span>)</span>
+  <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        score <span class="op">=</span> <span class="va">self</span>.V(tf.nn.tanh(<span class="va">self</span>.W1(query_with_time_axis) <span class="op">+</span> <span class="va">self</span>.W2(values)))</span>
+  <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        attention_weights <span class="op">=</span> tf.nn.softmax(score, axis<span class="op">=</span><span class="dv">1</span>)</span>
+  <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        context_vector <span class="op">=</span> attention_weights <span class="op">*</span> values</span>
+  <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        context_vector <span class="op">=</span> tf.reduce_sum(context_vector, axis<span class="op">=</span><span class="dv">1</span>)</span>
+  <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> context_vector, attention_weights</span>
+  <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>attention_layer <span class="op">=</span> BahdanauAttention(<span class="dv">10</span>)</span>
+  <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>attention_result, attention_weights <span class="op">=</span> attention_layer(sample_hidden, sample_output)</span>
+  <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Attention result shape: (batch size, units)&quot;</span>, attention_result.shape)</span>
+  <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Attention weights shape: (batch size, sequence_length, 1)&quot;</span>, attention_weights.shape)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>Attention result shape: (batch size, units) (64, 1024)
+  Attention weights shape: (batch size, sequence_length, 1) (64, 16, 1)
+  </code></pre>
+  </div>
+  </div>
+  <div id="45e65998" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Define the Bahdanau Attention Class</strong>:
+  <ul>
+  <li>Inherits from <code>tf.keras.layers.Layer</code> to implement a
+  custom attention mechanism.</li>
+  </ul></li>
+  <li><strong>Initialize Parameters</strong>:
+  <ul>
+  <li><strong><code>__init__</code></strong>: Sets up three dense layers:
+  <ul>
+  <li><strong><code>W1</code></strong>: Transforms the query vector.</li>
+  <li><strong><code>W2</code></strong>: Transforms the encoder output
+  values.</li>
+  <li><strong><code>V</code></strong>: Outputs a score for calculating
+  attention weights.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Calculate Attention Weights</strong>:
+  <ul>
+  <li><strong><code>call</code> Method</strong>:
+  <ul>
+  <li><strong>Expand Query</strong>: Adds a time dimension to the query
+  vector using <code>tf.expand_dims</code>.</li>
+  <li><strong>Compute Scores</strong>: Combines transformed query and
+  values, applies the activation function (<code>tanh</code>), and
+  computes scores.</li>
+  <li><strong>Softmax Activation</strong>: Converts scores into attention
+  weights using <code>tf.nn.softmax</code>, ensuring they sum to 1 across
+  the sequence.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Compute Context Vector</strong>:
+  <ul>
+  <li><strong>Context Vector</strong>: Multiplies attention weights with
+  the values and sums them across the sequence dimension to get the final
+  context vector.</li>
+  </ul></li>
+  <li><strong>Instantiate Attention Layer</strong>:
+  <ul>
+  <li>Creates an instance of <code>BahdanauAttention</code> with 10
+  units.</li>
+  </ul></li>
+  <li><strong>Test the Attention Layer</strong>:
+  <ul>
+  <li><strong><code>attention_layer(sample_hidden, sample_output)</code></strong>:
+  Passes the sample hidden state and encoder output to the attention
+  layer, resulting in the context vector and attention weights.</li>
+  </ul></li>
+  <li><strong>Print Shapes of Outputs</strong>:
+  <ul>
+  <li>Displays the shapes of the attention result and weights, confirming
+  the expected dimensions of the outputs.</li>
+  </ul></li>
+  </ol>
+  <p>This step implements the Bahdanau attention mechanism, allowing the
+  model to focus on relevant parts of the input sequence, enhancing its
+  predictive capability.</p>
+  </div>
+  <div id="ecbf02fe" class="cell markdown">
+  <h2 id="step-11-defining-the-decoder-model">Step 11: Defining the
+  Decoder Model</h2>
+  </div>
+  <div id="92c4389d" class="cell markdown">
+  <p>This step defines the decoder component of the seq2seq model,
+  integrating attention to allow the model to focus on relevant encoder
+  outputs during decoding, thereby enhancing its performance in tasks such
+  as translation.</p>
+  </div>
+  <div id="fd1218f6-3dca-4ee6-8a96-de7244f002f7" class="cell code"
+  data-execution_count="15">
+  <div class="sourceCode" id="cb16"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decoder model</span></span>
+  <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Decoder(tf.keras.Model):</span>
+  <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, vocab_size, embedding_dim, dec_units, batch_sz):</span>
+  <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(Decoder, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+  <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.batch_sz <span class="op">=</span> batch_sz</span>
+  <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dec_units <span class="op">=</span> dec_units</span>
+  <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.embedding <span class="op">=</span> tf.keras.layers.Embedding(vocab_size, embedding_dim)</span>
+  <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gru <span class="op">=</span> tf.keras.layers.GRU(<span class="va">self</span>.dec_units,</span>
+  <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                                       return_sequences<span class="op">=</span><span class="va">True</span>,</span>
+  <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                                       return_state<span class="op">=</span><span class="va">True</span>,</span>
+  <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                                       recurrent_initializer<span class="op">=</span><span class="st">&#39;glorot_uniform&#39;</span>)</span>
+  <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.fc <span class="op">=</span> tf.keras.layers.Dense(vocab_size)</span>
+  <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Used for attention</span></span>
+  <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.attention <span class="op">=</span> BahdanauAttention(<span class="va">self</span>.dec_units)</span>
+  <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> call(<span class="va">self</span>, x, hidden, enc_output):</span>
+  <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        context_vector, attention_weights <span class="op">=</span> <span class="va">self</span>.attention(hidden, enc_output)</span>
+  <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.embedding(x)</span>
+  <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> tf.concat([tf.expand_dims(context_vector, <span class="dv">1</span>), x], axis<span class="op">=-</span><span class="dv">1</span>)</span>
+  <span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>        output, state <span class="op">=</span> <span class="va">self</span>.gru(x)</span>
+  <span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        output <span class="op">=</span> tf.reshape(output, (<span class="op">-</span><span class="dv">1</span>, output.shape[<span class="dv">2</span>]))</span>
+  <span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.fc(output)</span>
+  <span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x, state, attention_weights</span>
+  <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>decoder <span class="op">=</span> Decoder(vocab_tar_size, embedding_dim, units, BATCH_SIZE)</span></code></pre></div>
+  </div>
+  <div id="3f094d7e" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Define the Decoder Class</strong>:
+  <ul>
+  <li>Inherits from <code>tf.keras.Model</code> to create the decoder
+  component of the seq2seq model.</li>
+  </ul></li>
+  <li><strong>Initialize Parameters</strong>:
+  <ul>
+  <li><strong><code>__init__</code></strong>:
+  <ul>
+  <li>Initializes embedding layer for target vocabulary.</li>
+  <li>Sets up a GRU layer for sequential processing.</li>
+  <li>Adds a dense layer for outputting vocabulary predictions.</li>
+  <li>Creates an instance of the Bahdanau Attention mechanism for handling
+  attention.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Define the Call Method</strong>:
+  <ul>
+  <li><strong><code>call</code> Method</strong>:
+  <ul>
+  <li><strong>Calculate Context Vector</strong>: Calls the attention layer
+  with the previous hidden state and encoder output to get the context
+  vector and attention weights.</li>
+  <li><strong>Embedding Input</strong>: Embeds the current input token
+  (target sequence).</li>
+  <li><strong>Concatenate Context</strong>: Combines the context vector
+  with the embedded input, expanding the dimensions to match.</li>
+  <li><strong>GRU Processing</strong>: Passes the concatenated input
+  through the GRU layer to obtain output and updated state.</li>
+  <li><strong>Reshape Output</strong>: Flattens the output for the dense
+  layer.</li>
+  <li><strong>Output Predictions</strong>: Produces predictions for the
+  next token in the sequence using the dense layer.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Instantiate the Decoder</strong>:
+  <ul>
+  <li>Creates an instance of the <code>Decoder</code> class with the
+  specified vocabulary size, embedding dimension, units, and batch
+  size.</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="e760b076" class="cell markdown">
+  <h2
+  id="step-12-defining-the-optimizer-loss-function-and-training-step">Step
+  12: Defining the Optimizer, Loss Function, and Training Step</h2>
+  </div>
+  <div id="441608c5" class="cell markdown">
+  <p>This step effectively prepares the model for training, optimizing the
+  weights to minimize the loss between predicted and actual outputs for
+  each batch of data.</p>
+  </div>
+  <div id="6e55f472-68c5-4afe-b1b3-4218af4d4226" class="cell code"
+  data-execution_count="18">
+  <div class="sourceCode" id="cb17"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimizer and loss function</span></span>
+  <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> tf.keras.optimizers.Adam()</span>
+  <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>loss_object <span class="op">=</span> tf.keras.losses.SparseCategoricalCrossentropy(from_logits<span class="op">=</span><span class="va">True</span>, reduction<span class="op">=</span><span class="st">&#39;none&#39;</span>)</span>
+  <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss function</span></span>
+  <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loss_function(real, pred):</span>
+  <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> tf.math.logical_not(tf.math.equal(real, <span class="dv">0</span>))</span>
+  <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    loss_ <span class="op">=</span> loss_object(real, pred)</span>
+  <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> tf.cast(mask, dtype<span class="op">=</span>loss_.dtype)</span>
+  <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    loss_ <span class="op">*=</span> mask</span>
+  <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tf.reduce_mean(loss_)</span>
+  <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Training step</span></span>
+  <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="at">@tf.function</span></span>
+  <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_step(inp, targ, enc_hidden):</span>
+  <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> <span class="dv">0</span></span>
+  <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> tf.GradientTape() <span class="im">as</span> tape:</span>
+  <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        enc_output, enc_hidden <span class="op">=</span> encoder(inp, enc_hidden)</span>
+  <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>        dec_hidden <span class="op">=</span> enc_hidden</span>
+  <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        dec_input <span class="op">=</span> tf.expand_dims([targ_lang.word_index[<span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>]] <span class="op">*</span> BATCH_SIZE, <span class="dv">1</span>)</span>
+  <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Teacher forcing</span></span>
+  <span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, targ.shape[<span class="dv">1</span>]):</span>
+  <span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>            predictions, dec_hidden, _ <span class="op">=</span> decoder(dec_input, dec_hidden, enc_output)</span>
+  <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">+=</span> loss_function(targ[:, t], predictions)</span>
+  <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>            dec_input <span class="op">=</span> tf.expand_dims(targ[:, t], <span class="dv">1</span>)  <span class="co"># Teacher forcing</span></span>
+  <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    batch_loss <span class="op">=</span> (loss <span class="op">/</span> <span class="bu">int</span>(targ.shape[<span class="dv">1</span>]))</span>
+  <span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>    variables <span class="op">=</span> encoder.trainable_variables <span class="op">+</span> decoder.trainable_variables</span>
+  <span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    gradients <span class="op">=</span> tape.gradient(loss, variables)</span>
+  <span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    optimizer.apply_gradients(<span class="bu">zip</span>(gradients, variables))</span>
+  <span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> batch_loss</span></code></pre></div>
+  </div>
+  <div id="04538bd1" class="cell markdown">
+  <h3 id="explanation-of-step">Explanation of Step:</h3>
+  <ol>
+  <li><strong>Optimizer Setup</strong>:
+  <ul>
+  <li><strong><code>optimizer</code></strong>: Uses the Adam optimizer for
+  adaptive learning rates, which helps in faster convergence during
+  training.</li>
+  </ul></li>
+  <li><strong>Loss Function Definition</strong>:
+  <ul>
+  <li><strong><code>loss_object</code></strong>: Implements sparse
+  categorical crossentropy, which is suitable for multi-class
+  classification problems where classes are represented as integers.</li>
+  <li><strong><code>loss_function</code></strong>:
+  <ul>
+  <li><strong>Masking</strong>: Creates a mask to ignore the loss of
+  padding tokens (represented as 0) in the target sequences.</li>
+  <li><strong>Loss Calculation</strong>: Computes the loss using the true
+  labels and predictions, applies the mask, and averages the loss over the
+  non-padded tokens.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Training Step Function</strong>:
+  <ul>
+  <li><strong><code>train_step</code></strong>: Decorated with
+  <code>@tf.function</code> for performance optimization.
+  <ul>
+  <li><strong>Gradient Tape</strong>: Records operations to compute
+  gradients.</li>
+  <li><strong>Encoder Processing</strong>: Passes input through the
+  encoder to obtain outputs and hidden states.</li>
+  <li><strong>Decoder Initialization</strong>: Sets the initial decoder
+  input to the start token.</li>
+  <li><strong>Teacher Forcing</strong>:
+  <ul>
+  <li>Loops through each time step of the target sequence, using the
+  previous target token as input for the decoder.</li>
+  <li>Accumulates the loss from the predictions against the actual target
+  tokens.</li>
+  </ul></li>
+  <li><strong>Batch Loss Calculation</strong>: Averages the accumulated
+  loss over the length of the target sequence.</li>
+  <li><strong>Gradient Calculation</strong>: Computes gradients for all
+  trainable variables.</li>
+  <li><strong>Apply Gradients</strong>: Updates the model weights based on
+  the calculated gradients.</li>
+  </ul></li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="6938af89" class="cell markdown">
+  <h2 id="step-13-model-training-loop-execution">Step 13: Model Training
+  Loop Execution</h2>
+  </div>
+  <div id="023edd5f" class="cell markdown">
+  <p>This loop effectively trains the model over the specified number of
+  epochs, allowing it to learn from the dataset and improve its
+  predictions through backpropagation and optimization.</p>
+  </div>
+  <div id="f1b5c0a3-63c5-41f3-a62c-9300a41ad82e" class="cell code"
+  data-execution_count="19">
+  <div class="sourceCode" id="cb18"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Training loop</span></span>
+  <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>EPOCHS <span class="op">=</span> <span class="dv">2</span></span>
+  <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(EPOCHS):</span>
+  <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    start <span class="op">=</span> time.time()</span>
+  <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    enc_hidden <span class="op">=</span> encoder.initialize_hidden_state()</span>
+  <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="op">=</span> <span class="dv">0</span></span>
+  <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (batch, (inp, targ)) <span class="kw">in</span> <span class="bu">enumerate</span>(dataset.take(steps_per_epoch)):</span>
+  <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>        batch_loss <span class="op">=</span> train_step(inp, targ, enc_hidden)</span>
+  <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>        total_loss <span class="op">+=</span> batch_loss</span>
+  <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> batch <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+  <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&#39;Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> Batch </span><span class="sc">{</span>batch<span class="sc">}</span><span class="ss"> Loss </span><span class="sc">{</span>batch_loss<span class="sc">.</span>numpy()<span class="sc">:.4f}</span><span class="ss">&#39;</span>)</span>
+  <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&#39;Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> Loss </span><span class="sc">{</span>total_loss<span class="op">/</span>steps_per_epoch<span class="sc">:.4f}</span><span class="ss">&#39;</span>)</span>
+  <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&#39;Time taken for 1 epoch </span><span class="sc">{</span>time<span class="sc">.</span>time()<span class="op">-</span>start<span class="sc">:.2f}</span><span class="ss"> sec</span><span class="ch">\n</span><span class="ss">&#39;</span>)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>Epoch 1 Batch 0 Loss 2.5512
+  Epoch 1 Batch 100 Loss 1.6371
+  Epoch 1 Batch 200 Loss 0.8117
+  Epoch 1 Batch 300 Loss 0.5870
+  Epoch 1 Loss 1.1844
+  Time taken for 1 epoch 758.07 sec
+  
+  Epoch 2 Batch 0 Loss 0.2411
+  Epoch 2 Batch 100 Loss 0.3191
+  Epoch 2 Batch 200 Loss 0.1944
+  Epoch 2 Batch 300 Loss 0.2445
+  Epoch 2 Loss 0.3206
+  Time taken for 1 epoch 727.31 sec
+  
+  </code></pre>
+  </div>
+  </div>
+  <div id="670efd87-642a-4701-8b40-bf56a23cbdeb" class="cell markdown">
+  <p><strong>Note</strong>: The loss shown here is high since these models
+  were not trained on the maximum capacity of dataset.</p>
+  </div>
+  <div id="5cc62afc" class="cell markdown">
+  <h2 id="step-14-save-the-encoder-and-decoder-models">Step 14: Save the
+  Encoder and Decoder Models</h2>
+  </div>
+  <div id="3ecd007f" class="cell markdown">
+  <p>This step involves saving the trained encoder and decoder models to
+  the disk using the .keras format. This format allows for efficient
+  storage and easy loading of the models later for inference or further
+  training, ensuring that all the model parameters and architecture are
+  preserved.</p>
+  </div>
+  <div id="d399ab70-ba6e-4b05-a878-96afb62c002d" class="cell code"
+  data-execution_count="26">
+  <div class="sourceCode" id="cb20"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the models (Encoder and Decoder) using the new `.keras` format</span></span>
+  <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>encoder.save(<span class="st">&#39;encoder_model.keras&#39;</span>)</span>
+  <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>decoder.save(<span class="st">&#39;decoder_model.keras&#39;</span>)</span></code></pre></div>
+  </div>
+  <div id="4f5f22c0" class="cell markdown">
+  <h2 id="conclusion">Conclusion</h2>
+  <p>In this tutorial, we developed a Neural Machine Translation
+  (NMT)-based autocorrect model using TensorFlow. We started by preparing
+  our dataset and preprocessing the text data to ensure it was clean and
+  suitable for training. We built an encoder-decoder architecture that
+  incorporated attention mechanisms to improve translation quality.</p>
+  <p>Through the training process, we optimized our model using the Adam
+  optimizer and defined a custom loss function to handle the sequence data
+  effectively. After training, we saved our models for future use,
+  enabling easy deployment for autocorrect applications.</p>
+  <p>This implementation can serve as a foundation for further
+  enhancements, such as experimenting with different architectures, adding
+  more layers, or training on larger datasets to improve the accuracy and
+  robustness of the translation model. With these concepts and tools, you
+  can explore and develop more sophisticated machine translation solutions
+  tailored to various languages and applications.</p>
+  </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+        <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contact.html">Contributor</a>
+      </div>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+  </footer>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
+</body>
+
+</html>

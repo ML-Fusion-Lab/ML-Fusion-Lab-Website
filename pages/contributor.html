@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Fusion Lab</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="../style/contributor.css" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+
+    body {
+      background-color: #a0a09c;
+      overflow-x: hidden;
+      margin: 0;
+
+
+    }
+
+    header {
+      background-color: #1a1a1a;
+      padding: 0px 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid #00c6ff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    header nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s, border-bottom 0.3s;
+      background-color: rgb(72, 71, 71);
+      padding: 15px;
+    }
+
+    header nav ul li a:hover {
+      background-color: #00c6ff;
+      color: #000;
+      border-radius: 0.75rem;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+      }
+
+      header nav {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      header nav .hamburger {
+        display: block;
+        font-size: 28px;
+        cursor: pointer;
+        color: #fff;
+        padding: 1rem;
+        position: absolute;
+        top: 0;
+        right: 1rem;
+      }
+
+      header nav ul {
+        flex-direction: column;
+        display: none;
+        width: 100%;
+        height: 100vh;
+        background-color: #333;
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 8px 8px;
+      }
+
+      header nav ul.show {
+        display: flex;
+      }
+    }
+
+    @media (min-width: 901px) {
+      header nav .hamburger {
+        display: none;
+      }
+
+      header nav ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    header .logo h1 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .top-btn {
+      display: none;
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      bottom: 10px;
+      right: 0px;
+      background-color: #59038a;
+      color: #fff;
+      padding: 2px;
+      border: none;
+      margin-right: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .top-btn:hover {
+      background-color: #f689f2;
+    }
+
+    /* Container for the progress bar */
+    #progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-color: #f3f3f3;
+      z-index: 99;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Progress bar with glowing effect */
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #9be5ff, #0074e1);
+      box-shadow: 0 0 15px rgba(0, 116, 225, 0.7),
+        0 0 30px rgba(0, 116, 225, 0.5);
+      border-radius: 4px;
+      transition: width 0.25s ease-out;
+    }
+
+    /* Glowing animation */
+    #progress-bar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+      opacity: 0.5;
+      animation: glow 2s infinite;
+      border-radius: inherit;
+    }
+
+    /* Glowing animation keyframes */
+    @keyframes glow {
+      0% {
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.5;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 600px) {
+      #progress-container {
+        height: 6px;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    body {
+      min-height: 100vh;
+      max-width: 100vw;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="community_suport.html">Community Support</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li>
+          <div class="gtranslate_wrapper"></div>
+          <script>
+            window.gtranslateSettings = {
+              default_language: "en",
+              detect_browser_language: true,
+              wrapper_selector: ".gtranslate_wrapper",
+            };
+          </script>
+          <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
+        </li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1 class="title">Our Contributors</h1>
+    <div id="contributors" class="contributors-grid"></div>
+  </div>
+
+  <button class="top-btn" id="goToTopBtn" onclick="goToTop()">
+    <i class="fa-solid fa-chevron-up" style="color: #ffffff"></i>
+  </button>
+
+  <div class="footer">
+    <div class="footer-col">
+      <img src="../image/ml fusion lab log.jpg" alt="" />
+      <span class="footer-p">
+        We are a community-driven platform that aims to provide free,
+        accessible, and high-quality machine learning tutorials, projects, and
+        resources for all.
+      </span>
+      <div class="footer-social">
+        <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+        <!-- Replaced: Twitter(X) Logo -->
+        <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+    <div class="footer-col-main">
+      <h4 class="h46">ML Fusion Labs</h4>
+      <a href="#">Business</a>
+      <a href="#">Franchise</a>
+      <a href="#">Network</a>
+    </div>
+    <div class="footer-col-main">
+      <h4 class="h46">About Us</h4>
+      <a href="about.html">About Us</a>
+      <a href="./privacy.html">Security</a>
+      <a href="./contributor.html">Contributors</a>
+    </div>
+    <div class="footer-col-main">
+      <h4 class="h46">Contact</h4>
+      <a href="./contact.html">Contact Us</a>
+      <a href="./email.html">Email Us</a>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms & Conditions</a>
+    </div>
+  </div>
+  <div class="footer-bar">
+    &copy; 2024 ML Fusion Labs | All Rights Reserved
+  </div>
+
+  <script>
+    // Get the button
+    var mybutton = document.getElementById("goToTopBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function goToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+  <script src="../script/contributor.js"></script>
+  <script>
+    window.addEventListener("scroll", function () {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("progress-bar").style.width = scrolled + "%";
+    });
+    // progress bar functioning 
+    window.onscroll = function () { updateProgressBar() };
+
+    function updateProgressBar() {
+      var windowScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      var windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrollPercentage = (windowScroll / windowHeight) * 100;
+
+      document.getElementById('progress-bar').style.width = scrollPercentage + "%";
+    }
+  </script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+  </script>
+  <script src="../script/script.js"></script>
+</body>
+
+</html>
