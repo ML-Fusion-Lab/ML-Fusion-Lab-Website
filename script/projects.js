@@ -394,6 +394,15 @@ const projects = [
     },
     {
       "modelid": "modal44",
+      "cardImage": "../Assets/projectpics/phishing.webp",
+      "cardAlt": "Pipleine",
+      "imgStyle": "box-shadow: none; border-radius: 5px;",
+      "cardTitle": "Phishing Websites Detection",
+      "cardDesc": "In this tutorial , we will develop a pipleine to detect whether the given URL is a phishing website",
+      "learnMoreLink": "../pages/car_price.html"
+    } ,
+    {
+      "modelid": "modal45",
       "cardImage": "../Assets/projectpics/car_price.webp",
       "cardAlt": "Predict Car Prices with Machine Learning",
       "imgStyle": "box-shadow: none; border-radius: 5px;",
