@@ -1,0 +1,2005 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dog Breed Classifier</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+body.dark-mode .project-container {
+  background-color:#1a1a1a;
+  color: white;
+}
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 1.4em;
+    }
+
+    h5,
+    h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+
+    h6 {
+      font-weight: normal;
+    }
+
+    ol,
+    ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+
+    li>ol,
+    li>ul {
+      margin-top: 0;
+    }
+
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+
+    .sourceCode {
+      background-color: transparent;
+      overflow: visible;
+    }
+
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    table caption {
+      margin-bottom: 0.75em;
+    }
+
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+
+    #TOC li {
+      list-style: none;
+    }
+
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+
+    #TOC>ul {
+      padding-left: 0;
+    }
+
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    ul.task-list {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+
+    pre>code.sourceCode {
+      white-space: pre;
+      position: relative;
+    }
+
+    pre>code.sourceCode>span {
+      display: inline-block;
+      line-height: 1.25;
+    }
+
+    pre>code.sourceCode>span:empty {
+      height: 1.2em;
+    }
+
+    .sourceCode {
+      overflow: visible;
+    }
+
+    code.sourceCode>span {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    div.sourceCode {
+      margin: 1em 0;
+    }
+
+    pre.sourceCode {
+      margin: 0;
+    }
+
+    @media screen {
+      div.sourceCode {
+        overflow: auto;
+      }
+    }
+
+    @media print {
+      pre>code.sourceCode {
+        white-space: pre-wrap;
+      }
+
+      pre>code.sourceCode>span {
+        text-indent: -5em;
+        padding-left: 5em;
+      }
+    }
+
+    pre.numberSource code {
+      counter-reset: source-line 0;
+    }
+
+    pre.numberSource code>span {
+      position: relative;
+      left: -4em;
+      counter-increment: source-line;
+    }
+
+    pre.numberSource code>span>a:first-child::before {
+      content: counter(source-line);
+      position: relative;
+      left: -1em;
+      text-align: right;
+      vertical-align: baseline;
+      border: none;
+      display: inline-block;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: 0 4px;
+      width: 4em;
+      color: #aaaaaa;
+    }
+
+    pre.numberSource {
+      margin-left: 3em;
+      border-left: 1px solid #aaaaaa;
+      padding-left: 4px;
+    }
+
+    div.sourceCode {}
+
+    @media screen {
+      pre>code.sourceCode>span>a:first-child::before {
+        text-decoration: underline;
+      }
+    }
+
+    code span.al {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Alert */
+    code span.an {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Annotation */
+    code span.at {
+      color: #7d9029;
+    }
+
+    /* Attribute */
+    code span.bn {
+      color: #40a070;
+    }
+
+    /* BaseN */
+    code span.bu {
+      color: #008000;
+    }
+
+    /* BuiltIn */
+    code span.cf {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* ControlFlow */
+    code span.ch {
+      color: #4070a0;
+    }
+
+    /* Char */
+    code span.cn {
+      color: #880000;
+    }
+
+    /* Constant */
+    code span.co {
+      color: #60a0b0;
+      font-style: italic;
+    }
+
+    /* Comment */
+    code span.cv {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* CommentVar */
+    code span.do {
+      color: #ba2121;
+      font-style: italic;
+    }
+
+    /* Documentation */
+    code span.dt {
+      color: #902000;
+    }
+
+    /* DataType */
+    code span.dv {
+      color: #40a070;
+    }
+
+    /* DecVal */
+    code span.er {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Error */
+    code span.ex {}
+
+    /* Extension */
+    code span.fl {
+      color: #40a070;
+    }
+
+    /* Float */
+    code span.fu {
+      color: #06287e;
+    }
+
+    /* Function */
+    code span.im {
+      color: #008000;
+      font-weight: bold;
+    }
+
+    /* Import */
+    code span.in {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Information */
+    code span.kw {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* Keyword */
+    code span.op {
+      color: #666666;
+    }
+
+    /* Operator */
+    code span.ot {
+      color: #007020;
+    }
+
+    /* Other */
+    code span.pp {
+      color: #bc7a00;
+    }
+
+    /* Preprocessor */
+    code span.sc {
+      color: #4070a0;
+    }
+
+    /* SpecialChar */
+    code span.ss {
+      color: #bb6688;
+    }
+
+    /* SpecialString */
+    code span.st {
+      color: #4070a0;
+    }
+
+    /* String */
+    code span.va {
+      color: #19177c;
+    }
+
+    /* Variable */
+    code span.vs {
+      color: #4070a0;
+    }
+
+    /* VerbatimString */
+    code span.wa {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Warning */
+    .display.math {
+      display: block;
+      text-align: center;
+      margin: 0.5rem auto;
+    }
+    body.dark-mode p {
+  margin: 1em 0;
+}
+
+body.dark-mode a {
+  color: #e0e0e0;
+}
+
+body.dark-mode a:visited {
+  color: #cccccc;
+}
+
+body.dark-mode img {
+  max-width: 100%;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #f0f0f0;
+}
+
+body.dark-mode h5,
+body.dark-mode h6 {
+  font-size: 1em;
+  font-style: italic;
+  color: #cccccc;
+}
+
+body.dark-mode h6 {
+  font-weight: normal;
+}
+
+body.dark-mode ol,
+body.dark-mode ul {
+  padding-left: 1.7em;
+  margin-top: 1em;
+  color: #dddddd;
+}
+
+body.dark-mode li > ol,
+body.dark-mode li > ul {
+  margin-top: 0;
+}
+
+body.dark-mode blockquote {
+  margin: 1em 0 1em 1.7em;
+  padding-left: 1em;
+  border-left: 2px solid #444444;
+  color: #bbbbbb;
+}
+
+body.dark-mode code {
+  font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+  font-size: 85%;
+  margin: 0;
+  color: #eeeeee;
+  background-color: #333333;
+}
+
+body.dark-mode pre {
+  margin: 1em 0;
+  overflow: auto;
+  background-color: #2a2a2a;
+}
+
+body.dark-mode pre code {
+  padding: 0;
+  overflow: visible;
+  overflow-wrap: normal;
+}
+
+body.dark-mode .sourceCode {
+  background-color: transparent;
+  overflow: visible;
+}
+
+body.dark-mode hr {
+  background-color: #444444;
+  border: none;
+  height: 1px;
+  margin: 1em 0;
+}
+
+body.dark-mode table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #e0e0e0;
+}
+
+body.dark-mode table caption {
+  margin-bottom: 0.75em;
+  color: #cccccc;
+}
+
+body.dark-mode tbody {
+  margin-top: 0.5em;
+  border-top: 1px solid #444444;
+  border-bottom: 1px solid #444444;
+}
+
+body.dark-mode th {
+  border-top: 1px solid #444444;
+  padding: 0.25em 0.5em;
+  color: #f0f0f0;
+}
+
+body.dark-mode td {
+  padding: 0.125em 0.5em;
+  color: #dddddd;
+}
+
+body.dark-mode header {
+  margin-bottom: 4em;
+  text-align: center;
+  color: #ffffff;
+}
+
+body.dark-mode #TOC li {
+  list-style: none;
+}
+
+body.dark-mode #TOC ul {
+  padding-left: 1.3em;
+}
+
+body.dark-mode #TOC > ul {
+  padding-left: 0;
+}
+
+body.dark-mode #TOC a:not(:hover) {
+  text-decoration: none;
+}
+
+body.dark-mode code {
+  white-space: pre-wrap;
+}
+
+body.dark-mode span.smallcaps {
+  font-variant: small-caps;
+  color: #f0f0f0;
+}
+
+body.dark-mode div.columns {
+  display: flex;
+  gap: min(4vw, 1.5em);
+}
+
+body.dark-mode div.column {
+  flex: auto;
+  overflow-x: auto;
+}
+
+body.dark-mode div.hanging-indent {
+  margin-left: 1.5em;
+  text-indent: -1.5em;
+}
+
+body.dark-mode ul.task-list {
+  list-style: none;
+}
+
+body.dark-mode ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+
+body.dark-mode pre > code.sourceCode {
+  white-space: pre;
+  position: relative;
+}
+
+body.dark-mode pre > code.sourceCode > span {
+  display: inline-block;
+  line-height: 1.25;
+}
+
+body.dark-mode pre > code.sourceCode > span:empty {
+  height: 1.2em;
+}
+
+body.dark-mode .sourceCode {
+  overflow: visible;
+}
+
+body.dark-mode code.sourceCode > span {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body.dark-mode div.sourceCode {
+  margin: 1em 0;
+}
+
+body.dark-mode pre.sourceCode {
+  margin: 0;
+}
+
+@media screen {
+  body.dark-mode div.sourceCode {
+    overflow: auto;
+  }
+}
+
+@media print {
+  body.dark-mode pre > code.sourceCode {
+    white-space: pre-wrap;
+  }
+
+  body.dark-mode pre > code.sourceCode > span {
+    text-indent: -5em;
+    padding-left: 5em;
+  }
+}
+
+body.dark-mode pre.numberSource code {
+  counter-reset: source-line 0;
+}
+
+body.dark-mode pre.numberSource code > span {
+  position: relative;
+  left: -4em;
+  counter-increment: source-line;
+}
+
+body.dark-mode pre.numberSource code > span > a:first-child::before {
+  content: counter(source-line);
+  position: relative;
+  left: -1em;
+  text-align: right;
+  vertical-align: baseline;
+  border: none;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: 0 4px;
+  width: 4em;
+  color: #aaaaaa;
+}
+
+body.dark-mode pre.numberSource {
+  margin-left: 3em;
+  border-left: 1px solid #aaaaaa;
+  padding-left: 4px;
+}
+
+@media screen {
+  body.dark-mode pre > code.sourceCode > span > a:first-child::before {
+    text-decoration: underline;
+  }
+}
+
+body.dark-mode code span.al {
+  color: #ff6666;
+  font-weight: bold;
+}
+
+body.dark-mode code span.an {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.at {
+  color: #8bbf50;
+}
+
+body.dark-mode code span.bn {
+  color: #60d070;
+}
+
+body.dark-mode code span.bu {
+  color: #00b000;
+}
+
+body.dark-mode code span.cf {
+  color: #009040;
+  font-weight: bold;
+}
+
+body.dark-mode code span.ch {
+  color: #5080c0;
+}
+
+body.dark-mode code span.cn {
+  color: #ff6666;
+}
+
+body.dark-mode code span.co {
+  color: #80c0d0;
+  font-style: italic;
+}
+
+body.dark-mode code span.cv {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.do {
+  color: #d05a5a;
+  font-style: italic;
+}
+
+body.dark-mode code span.dt {
+  color: #b04030;
+}
+
+body.dark-mode code span.dv {
+  color: #60d070;
+}
+
+body.dark-mode code span.er {
+  color: #ff3333;
+  font-weight: bold;
+}
+body.dark-mode code span.ex {}
+
+body.dark-mode code span.fl {
+  color: #60d070;
+}
+
+body.dark-mode code span.fu {
+  color: #0848a0;
+}
+
+body.dark-mode code span.im {
+  color: #00b000;
+  font-weight: bold;
+}
+
+body.dark-mode code span.in {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode code span.kw {
+  color: #009040;
+  font-weight: bold;
+}
+
+body.dark-mode code span.op {
+  color: #999999;
+}
+
+body.dark-mode code span.ot {
+  color: #009040;
+}
+
+body.dark-mode code span.pp {
+  color: #e08a00;
+}
+
+body.dark-mode code span.sc {
+  color: #5080c0;
+}
+
+body.dark-mode code span.ss {
+  color: #d06688;
+}
+
+body.dark-mode code span.st {
+  color: #5080c0;
+}
+
+body.dark-mode code span.va {
+  color: #28287c;
+}
+
+body.dark-mode code span.vs {
+  color: #5080c0;
+}
+
+body.dark-mode code span.wa {
+  color: #80c0d0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+body.dark-mode .display.math {
+  display: block;
+  text-align: center;
+  margin: 0.5rem auto;
+  color: #f0f0f0;
+}
+
+    /* css for mouse cursor trail effect */
+.circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+    transition: transform 0.1s, left 0.1s, top 0.1s;
+  }
+  
+  .circle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+  }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml-fusion-lab-logo.png" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+    <div id="1b9a132b" class="cell markdown"
+      data-papermill="{&quot;duration&quot;:2.7561e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:23.878423&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:23.850862&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <h1 id="dog-breed-classifier-using-imagine-mobilenetv2">Dog Breed
+        Classifier Using TensorFlow (MobileNetV2)</h1>
+    </div>
+    <div id="ce74c1d0" class="cell markdown">
+      <p>In this tutorial, we will guide you through the process of creating a
+        dog breed classifier using Tensorflow, powered by MobileNetV2. Tensorflow is a
+        versatile deep learning library that allows us to leverage pre-trained
+        models like MobileNetV2, which is known for its efficiency and accuracy
+        in image classification tasks.</p>
+      <p>By the end of this tutorial, you will have a fully functional
+        classifier that can accurately predict dog breeds from a given image.
+        The steps involved include loading the pre-trained model, preparing the
+        dataset, training the classifier, and evaluating its performance.</p>
+    </div>
+    <div id="5808fd2b" class="cell markdown">
+      <h2 id="prerequisites">Prerequisites</h2>
+    </div>
+    <div id="d5bf9d2c" class="cell markdown">
+      <p>Before we begin, make sure you have the following:</p>
+      <ul>
+        <li>Basic knowledge of Python.</li>
+        <li>A working installation of TensorFlow.</li>
+        <li>A dataset of dog images, categorized by breed (<a
+            href="https://www.kaggle.com/datasets/gpiosenka/70-dog-breedsimage-data-set">you
+            can use this DATASET</a>).</li>
+      </ul>
+    </div>
+    <div id="b1b0fcd3" class="cell markdown">
+      <h3 id="step-1-importing-the-necessary-libraries">Step 1: Importing the
+        Necessary Libraries</h3>
+      <p>We start by importing all the essential libraries that will be used
+        throughout the project. Here's a breakdown of each import:</p>
+    </div>
+    <div id="334ee35b" class="cell code" data-execution_count="1"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:23.943596Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:23.942884Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:29.568228Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:29.567413Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:26.062009Z&quot;}"
+      data-papermill="{&quot;duration&quot;:5.664078,&quot;end_time&quot;:&quot;2024-10-05T22:22:29.568404&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:23.904326&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb1">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.preprocessing.image <span class="im">import</span> ImageDataGenerator</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.applications <span class="im">import</span> MobileNetV2</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.applications.mobilenet_v2 <span class="im">import</span> preprocess_input</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Sequential</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.layers <span class="im">import</span> Input, Lambda, GlobalAveragePooling2D, Dropout, Dense</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.optimizers <span class="im">import</span> Adam</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.callbacks <span class="im">import</span> ModelCheckpoint</span></code></pre>
+      </div>
+    </div>
+    <section id="explanation" class="cell markdown">
+      <h3>Explanation:</h3>
+      <ul>
+        <li>
+          <p>cv2 (OpenCV): This library is used for image processing tasks. In
+            this project, it can help us read, modify, or visualize images.</p>
+        </li>
+        <li>
+          <p>numpy: A fundamental package for scientific computing in Python.
+            It allows us to efficiently handle arrays, which is crucial for
+            processing images.</p>
+        </li>
+        <li>
+          <p>matplotlib.pyplot: A library for creating visualizations. We will
+            use it to display sample images and monitor model performance through
+            plots.</p>
+        </li>
+        <li>
+          <p>os: The os module provides functions to interact with the
+            operating system, like navigating file directories, which is helpful
+            when dealing with datasets.</p>
+          <h4 id="tensorflow-and-keras-imports">TensorFlow and Keras
+            Imports:</h4>
+        </li>
+        <li>
+          <p>tensorflow: TensorFlow is the deep learning framework used for
+            training our classifier.</p>
+        </li>
+        <li>
+          <p>ImageDataGenerator: A tool for augmenting and preprocessing image
+            datasets before feeding them into the model.</p>
+        </li>
+        <li>
+          <p>MobileNetV2: A pre-trained model architecture that is lightweight
+            and efficient for mobile and embedded applications. We'll fine-tune it
+            for our dog breed classification task.</p>
+        </li>
+        <li>
+          <p>preprocess_input: This function prepares images for the
+            MobileNetV2 model by scaling pixel values in a way that matches the
+            training of the original model.</p>
+        </li>
+        <li>
+          <p>Sequential: A Keras model that is a linear stack of layers. We'll
+            use it to build our model.</p>
+        </li>
+        <li>
+          <p>Input, Lambda, GlobalAveragePooling2D, Dropout, Dense: These are
+            Keras layers that will help in defining our neural network architecture.
+            We'll go through their specific usage as we build the model.</p>
+        </li>
+        <li>
+          <p>Adam: A popular optimizer that adapts the learning rate during
+            training for faster convergence.</p>
+        </li>
+        <li>
+          <p>ModelCheckpoint: This callback helps in saving the best model
+            during training by monitoring its performance.</p>
+        </li>
+      </ul>
+    </section>
+    <div id="5375acef" class="cell markdown">
+      <h2 id="step-2-loading-and-exploring-the-dataset">Step 2: Loading and
+        Exploring the Dataset</h2>
+      <p>Before we train the model, we need to load and explore the dataset to
+        ensure that it's structured correctly. In this case, we are working with
+        a dataset of dog images that is divided into different folders, where
+        each folder corresponds to a dog breed.</p>
+    </div>
+    <div id="cbbaecdb" class="cell code" data-execution_count="3"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:29.710914Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:29.710316Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:30.152238Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:30.152821Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:26.086166Z&quot;}"
+      data-papermill="{&quot;duration&quot;:0.471296,&quot;end_time&quot;:&quot;2024-10-05T22:22:30.152996&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:29.681700&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb2">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>class_folder_paths <span class="op">=</span> [<span class="st">&#39;../input/70-dog-breedsimage-data-set/test/&#39;</span><span class="op">+</span>x <span class="cf">for</span> x <span class="kw">in</span> os.listdir(<span class="st">&#39;../input/70-dog-breedsimage-data-set/test/&#39;</span>)]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> class_folder_path <span class="kw">in</span> class_folder_paths:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&#39;</span><span class="sc">{0}</span><span class="st">:&#39;</span>.<span class="bu">format</span>(class_folder_path), <span class="st">&#39; &#39;</span>, <span class="bu">len</span>(os.listdir(class_folder_path)))</span></code></pre>
+      </div>
+    </div>
+
+    <div id="08888510" class="cell markdown">
+      <h2 id="step-3-defining-dataset-directories-and-visualization">Step 3:
+        Defining Dataset Directories and Visualization</h2>
+      <p>In this step, we define the paths to our training, validation, and
+        test datasets. These directories contain the images that will be used to
+        train and evaluate the dog breed classifier.</p>
+    </div>
+    <div id="d6b896c4" class="cell code" data-execution_count="4"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:30.210720Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:30.210117Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:30.213068Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:30.212548Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:26.151793Z&quot;}"
+      data-papermill="{&quot;duration&quot;:3.3026e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:30.213197&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:30.180171&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb4">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>TRAIN_DIR <span class="op">=</span> <span class="st">&#39;../input/70-dog-breedsimage-data-set/train/&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>VAL_DIR <span class="op">=</span> <span class="st">&#39;../input/70-dog-breedsimage-data-set/valid/&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>TEST_DIR <span class="op">=</span> <span class="st">&#39;../input/70-dog-breedsimage-data-set/test/&#39;</span></span></code></pre>
+      </div>
+    </div>
+    <div id="923f2f84" class="cell markdown">
+      <ul>
+        <li>TRAIN_DIR: This is the directory path where the training images are
+          stored. These images will be used to train the model to classify
+          different dog breeds.</li>
+        <li>VAL_DIR: This path points to the validation dataset, which will be
+          used during the training process to evaluate the model's performance on
+          unseen data after each epoch. This helps in preventing overfitting and
+          in tuning hyperparameters.</li>
+        <li>TEST_DIR: The test directory contains images that will be used to
+          test the model's performance after the training is complete. It serves
+          as the final evaluation to measure how well the model generalizes to
+          completely unseen data.</li>
+      </ul>
+    </div>
+    <div id="f9b086a6" class="cell markdown">
+      <p>To get a better understanding of our dataset, we can visualize some
+        sample images from the training set. This step helps us verify that the
+        images are correctly labeled and gives us insight into the diversity of
+        breeds in our dataset.</p>
+    </div>
+    <div id="9e96e26c" class="cell code" data-execution_count="7"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:30.415247Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:30.414623Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:32.484378Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:32.484890Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:26.177102Z&quot;}"
+      data-papermill="{&quot;duration&quot;:2.106714,&quot;end_time&quot;:&quot;2024-10-05T22:22:32.485084&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:30.378370&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb5">
+        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>train_dogs<span class="op">=</span>os.listdir(TRAIN_DIR)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">7</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, ax <span class="kw">in</span> <span class="bu">enumerate</span>(axes.flat):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">dir</span> <span class="op">=</span> TRAIN_DIR <span class="op">+</span> <span class="st">&quot;/&quot;</span> <span class="op">+</span> train_dogs[i] <span class="op">+</span> <span class="st">&quot;/&quot;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ax.imshow(Image.<span class="bu">open</span>(<span class="bu">dir</span> <span class="op">+</span> os.listdir(<span class="bu">dir</span>)[<span class="dv">0</span>]))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    ax.set_title(train_dogs[i])</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre>
+      </div>
+      <div class="output display_data">
+        <p><img src="Assets/projectpics/dog_output.png" /></p>
+      </div>
+    </div>
+    <div id="0556d18f" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>Importing Libraries: We import matplotlib.pyplot for plotting and
+          Image from the PIL library for opening and manipulating images.</li>
+        <li>Listing Training Dogs: train_dogs = os.listdir(TRAIN_DIR) retrieves
+          the names of all folders (each representing a dog breed) within the
+          training directory.</li>
+        <li>Creating Subplots: fig, axes = plt.subplots(nrows=2, ncols=5,
+          figsize=(15, 7)) sets up a grid of subplots (2 rows and 5 columns) to
+          display 10 images. The figsize parameter adjusts the overall size of the
+          figure.</li>
+        <li>Displaying Images: The for loop iterates through the axes of the
+          subplots. For each subplot, it constructs the directory path to the
+          images of the respective dog breed and displays the first image using
+          ax.imshow(). ax.set_title(train_dogs[i]) sets the title of each subplot
+          to the corresponding dog breed name.</li>
+        <li>Final Touches: plt.tight_layout() optimizes the layout of the plots
+          to avoid overlaps. plt.show() renders the plots on the screen.</li>
+      </ol>
+    </div>
+    <div id="5f68e369" class="cell markdown"
+      data-papermill="{&quot;duration&quot;:5.1321e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:32.588303&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:32.536982&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <h2 id="step-5-data-preprocessing-and-augmentation">Step 5: Data
+        Preprocessing and Augmentation</h2>
+      <p>In this step, we set up data generators for our training, validation,
+        and test datasets. Data augmentation helps improve the robustness of our
+        model by artificially increasing the size of the training dataset and
+        introducing variability in the training data.</p>
+    </div>
+    <div id="31c84242" class="cell code" data-execution_count="8"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:32.699632Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:32.698950Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:33.921183Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:33.921732Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:27.680793Z&quot;}"
+      data-papermill="{&quot;duration&quot;:1.282393,&quot;end_time&quot;:&quot;2024-10-05T22:22:33.921948&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:32.639555&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb6">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train_data_gen <span class="op">=</span> ImageDataGenerator(horizontal_flip <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                                    rotation_range<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                    width_shift_range<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                    height_shift_range<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                    zoom_range<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>train_generator <span class="op">=</span> train_data_gen.flow_from_directory(TRAIN_DIR,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                                     target_size <span class="op">=</span> (<span class="dv">224</span>, <span class="dv">224</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                                     color_mode <span class="op">=</span> <span class="st">&#39;rgb&#39;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                                                     batch_size <span class="op">=</span> <span class="dv">32</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                                                     class_mode <span class="op">=</span><span class="st">&#39;categorical&#39;</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                                                     shuffle <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>val_data_gen <span class="op">=</span> ImageDataGenerator()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>val_generator <span class="op">=</span> val_data_gen.flow_from_directory(VAL_DIR,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                                                   target_size <span class="op">=</span> (<span class="dv">224</span>, <span class="dv">224</span>),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                                   color_mode <span class="op">=</span> <span class="st">&#39;rgb&#39;</span>,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                                                   batch_size <span class="op">=</span> <span class="dv">32</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                                                   class_mode <span class="op">=</span> <span class="st">&#39;categorical&#39;</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                                                   shuffle <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>test_generator <span class="op">=</span> val_data_gen.flow_from_directory(TEST_DIR,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>                                                   target_size <span class="op">=</span> (<span class="dv">224</span>, <span class="dv">224</span>),</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                                                   color_mode <span class="op">=</span> <span class="st">&#39;rgb&#39;</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                                                   batch_size <span class="op">=</span> <span class="dv">32</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                                                   class_mode <span class="op">=</span> <span class="st">&#39;categorical&#39;</span>,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>                                                   shuffle <span class="op">=</span> <span class="va">False</span>)</span></code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Found 7946 images belonging to 70 classes.
+Found 700 images belonging to 70 classes.
+Found 700 images belonging to 70 classes.
+</code></pre>
+      </div>
+    </div>
+    <div id="b906d9e6" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>ImageDataGenerator for Training:
+          <ul>
+            <li><code>train_data_gen = ImageDataGenerator(...)</code> initializes
+              the ImageDataGenerator for training images with several augmentation
+              parameters:</li>
+            <li><code>horizontal_flip=True</code>: Randomly flip images
+              horizontally. rotation_range=20: Randomly rotate images in the range of
+              20 degrees. width_shift_range=0.1: Randomly shift images horizontally by
+              up to 10% of the image width.</li>
+            <li><code>height_shift_range=0.1</code>: Randomly shift images
+              vertically by up to 10% of the image height.</li>
+            <li>zoom_range=0.2: Randomly zoom in on images by up to 20%.</li>
+          </ul>
+        </li>
+        <li>Creating the Training Data Generator:
+          <ul>
+            <li><code>train_generator = train_data_gen.flow_from_directory(...)</code>creates
+              the training data generator that will read images from the
+              TRAIN_DIR.</li>
+            <li><code>target_size=(224, 224)</code>: Resizes all images to 224x224
+              pixels, which is the input size expected by MobileNetV2.</li>
+            <li><code>color_mode='rgb'</code>: Specifies that the images should be
+              read in RGB color mode.</li>
+            <li><code>batch_size=32</code>: Specifies the number of images to be
+              yielded from the generator per batch.</li>
+            <li><code>class_mode='categorical'</code>: Indicates that the labels
+              will be one-hot encoded (suitable for multi-class classification).</li>
+            <li>shuffle=True: Randomly shuffles the training data for each
+              epoch.</li>
+          </ul>
+        </li>
+        <li>Validation Data Generator:
+          <ul>
+            <li><code>val_data_gen = ImageDataGenerator()</code> initializes a
+              generator for the validation set without any augmentation (to maintain
+              the integrity of validation data).</li>
+            <li><code>val_generator = val_data_gen.flow_from_directory(...)</code>
+              sets up the validation data generator similarly to the training
+              generator.</li>
+          </ul>
+        </li>
+        <li>Test Data Generator:
+          <ul>
+            <li>The same procedure is followed for the test dataset using
+              test_generator. Like the validation generator, it does not include
+              augmentation.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="bf4e72c1" class="cell markdown">
+      <h2 id="step-6-mapping-class-indices-to-class-labels">Step 6: Mapping
+        Class Indices to Class Labels</h2>
+      <p>In this step, we extract the class indices from the training
+        generator and create a mapping from the indices to the corresponding dog
+        breed names. This mapping will help us understand which index
+        corresponds to which dog breed when making predictions.</p>
+    </div>
+    <div id="e8bb9385" class="cell code" data-execution_count="9"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:34.035824Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:34.035032Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:34.037982Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:34.038466Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:28.424923Z&quot;}"
+      data-papermill="{&quot;duration&quot;:6.3584e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:34.038615&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:33.975031&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb8">
+        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> train_generator.class_indices</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>class_mapping <span class="op">=</span> <span class="bu">dict</span>((v,k) <span class="cf">for</span> k,v <span class="kw">in</span> labels.items())</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>class_mapping</span></code></pre>
+      </div>
+      <div class="output execute_result" data-execution_count="9">
+        <pre><code>{0: &#39;Afghan&#39;,
+ 1: &#39;African Wild Dog&#39;,
+ 2: &#39;Airedale&#39;,
+ 3: &#39;American Hairless&#39;,
+ 4: &#39;American Spaniel&#39;,
+ 5: &#39;Basenji&#39;,
+ 64 more...
+</code></pre>
+      </div>
+    </div>
+    <div id="3319c912" class="cell markdown"
+      data-papermill="{&quot;duration&quot;:5.1581e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:34.142949&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:34.091368&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <h2 id="step-7-building-the-mobilenetv2-model">Step 7: Building the
+        MobileNetV2 Model</h2>
+      <p>In this step, we define the architecture of our dog breed classifier
+        using the MobileNetV2 model. This model is efficient for image
+        classification tasks, especially with limited computational
+        resources.</p>
+    </div>
+    <div id="3e6324f1" class="cell code" data-execution_count="10"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:34.253257Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:34.252475Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:38.098086Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:38.097514Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:28.435058Z&quot;}"
+      data-papermill="{&quot;duration&quot;:3.903325,&quot;end_time&quot;:&quot;2024-10-05T22:22:38.098236&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:34.194911&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb10">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>before_mobilenet <span class="op">=</span> Sequential([Input((<span class="dv">224</span>,<span class="dv">224</span>,<span class="dv">3</span>)),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                             Lambda(preprocess_input)])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mobilenet <span class="op">=</span> MobileNetV2(input_shape <span class="op">=</span> (<span class="dv">224</span>,<span class="dv">224</span>,<span class="dv">3</span>), include_top <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>after_mobilenet <span class="op">=</span> Sequential([GlobalAveragePooling2D(),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                             Dropout(<span class="fl">0.2</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                             Dense(<span class="dv">70</span>, activation <span class="op">=</span> <span class="st">&#39;softmax&#39;</span>)])</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Sequential([before_mobilenet, mobilenet, after_mobilenet])</span></code></pre>
+      </div>
+      <div class="output stream stdout">
+        Output:
+        <pre><code>Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/mobilenet_v2/mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_224_no_top.h5
+9412608/9406464 [==============================] - 0s 0us/step
+9420800/9406464 [==============================] - 0s 0us/step
+</code></pre>
+      </div>
+    </div>
+    <div id="44b4f1d4" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>Preprocessing Layer:
+          <ul>
+            <li><code>before_mobilenet</code> : This sequential model includes an
+              input layer that specifies the shape of the input images (224x224 pixels
+              with 3 color channels for RGB).</li>
+            <li><code>Lambda(preprocess_input)</code>: This layer applies the
+              preprocess_input function from MobileNetV2, which normalizes the image
+              data to be compatible with the MobileNetV2 model's expectations.</li>
+          </ul>
+        </li>
+        <li>MobileNetV2 Base Model:
+          <ul>
+            <li><code>mobilenet = MobileNetV2(input_shape=(224, 224, 3), include_top=False)</code>:
+              This line initializes the MobileNetV2 model without the top
+              classification layer (hence include_top=False). This allows us to use
+              the pre-trained model as a feature extractor for our specific
+              classification task.</li>
+          </ul>
+        </li>
+        <li>Post-processing Layers:
+          <ul>
+            <li><code>after_mobilenet</code>: This sequential model adds layers
+              after the MobileNetV2 base:</li>
+            <li><code>GlobalAveragePooling2D()</code>: This layer reduces the
+              spatial dimensions of the output from the MobileNetV2 model by averaging
+              the feature maps, resulting in a 1D tensor that can be easily
+              processed.</li>
+            <li><code>Dropout(0.2)</code>: This layer randomly drops 20% of the
+              neurons during training to help prevent overfitting.</li>
+            <li><code>Dense(70, activation='softmax')</code>: This fully connected
+              layer outputs the final predictions, where 70 corresponds to the number
+              of dog breeds (classes), and softmax activation ensures that the output
+              values represent probabilities that sum to 1.</li>
+          </ul>
+        </li>
+        <li>Combining the Models:
+          <ul>
+            <li><code>model = Sequential([before_mobilenet, mobilenet, after_mobilenet])</code>:
+              This line combines all the layers into a single sequential model that
+              can be trained.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="a9d7d13b" class="cell markdown">
+      <h2 id="step-8-compiling-the-model-and-building-it">Step 8: Compiling
+        the Model and Building it</h2>
+      <p>In this step, we compile the MobileNetV2 model by specifying the
+        optimizer, loss function, and evaluation metrics. This step prepares the
+        model for training.</p>
+    </div>
+    <div id="008823b6" class="cell code" data-execution_count="11"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:38.220313Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:38.219618Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T22:22:38.226405Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T22:22:38.226858Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:29.456079Z&quot;}"
+      data-papermill="{&quot;duration&quot;:7.3244e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:38.227018&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:38.153774&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb12">
+        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>opt <span class="op">=</span> Adam(learning_rate<span class="op">=</span><span class="fl">0.00001</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer <span class="op">=</span> opt, loss <span class="op">=</span> <span class="st">&#39;categorical_crossentropy&#39;</span>, metrics <span class="op">=</span> [<span class="st">&#39;accuracy&#39;</span>])</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>model.build(((<span class="va">None</span>, <span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>)))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>before_mobilenet.summary()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>mobilenet.summary()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>after_mobilenet.summary()</span></code></pre>
+      </div>
+    </div>
+    <div id="efd809e9" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>Choosing an Optimizer:
+          <ul>
+            <li><code>opt = Adam(learning_rate=0.00001)</code>: This line
+              initializes the Adam optimizer with a very small learning rate of
+              0.00001. Adam is a popular optimization algorithm that adapts the
+              learning rate for each parameter, making it effective for a wide range
+              of problems.</li>
+          </ul>
+        </li>
+        <li>Compiling the Model:
+          <ul>
+            <li><code>model.compile(...)</code>: This method configures the model
+              for training with the following parameters:</li>
+            <li><code>optimizer=opt</code>: Uses the Adam optimizer we defined
+              earlier.</li>
+            <li><code>loss='categorical_crossentropy'</code>: Specifies the loss
+              function to be used during training. Categorical crossentropy is
+              suitable for multi-class classification tasks, where each training
+              sample belongs to one of multiple classes (in our case, dog
+              breeds).</li>
+            <li><code>metrics=['accuracy']</code>: Specifies that we want to track
+              the accuracy of the model during training and evaluation. Accuracy is a
+              common metric for classification tasks, indicating the proportion of
+              correct predictions.</li>
+          </ul>
+        </li>
+        <li>Building the Model:
+          <ul>
+            <li><code>model.build(((None, 224, 224, 3)))</code>: This line
+              explicitly builds the model by specifying the input shape of the images.
+              The None indicates that the batch size can vary. The shape (224, 224, 3)
+              corresponds to the input images, which are 224x224 pixels in size with 3
+              color channels (RGB).</li>
+          </ul>
+        </li>
+        <li>Displaying Summaries:
+          <ul>
+            <li><code>before_mobilenet.summary()</code>: Displays a summary of the
+              before_mobilenet model, showing the layers, output shapes, and the
+              number of parameters in each layer.</li>
+            <li><code>mobilenet.summary()</code>: Displays a summary of the
+              MobileNetV2 base model, providing similar details for its
+              architecture.</li>
+            <li><code>after_mobilenet.summary()</code>: Displays a summary of the
+              after_mobilenet model, which includes the pooling, dropout, and dense
+              layers.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="90e5e4b0" class="cell markdown"
+      data-papermill="{&quot;duration&quot;:5.5868e-2,&quot;end_time&quot;:&quot;2024-10-05T22:22:38.871917&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:38.816049&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <h2 id="step-10-training-the-model">Step 10: Training the Model</h2>
+      <p>In this step, we train the MobileNetV2 model using the training data
+        while validating its performance on a separate validation dataset. We
+        also utilize a callback to save the best model during training.</p>
+    </div>
+    <div id="a2184ba5" class="cell code" data-execution_count="13"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T22:22:38.989951Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T22:22:38.989270Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T23:13:28.812711Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T23:13:28.813323Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2024-10-05T20:32:31.435974Z&quot;}"
+      data-papermill="{&quot;duration&quot;:3049.885982,&quot;end_time&quot;:&quot;2024-10-05T23:13:28.813508&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T22:22:38.927526&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb13">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>train_cb <span class="op">=</span> ModelCheckpoint(<span class="st">&#39;./model/&#39;</span>, save_best_only <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>model.fit(train_generator, validation_data <span class="op">=</span> val_generator, callbacks <span class="op">=</span> [train_cb], epochs <span class="op">=</span> <span class="dv">20</span>)</span></code></pre>
+      </div>
+      <div class="output stream stdout">
+        Output:
+        <pre><code>Epoch 1/20
+249/249 [==============================] - 150s 556ms/step - loss: 4.1956 - accuracy: 0.0540 - val_loss: 3.5333 - val_accuracy: 0.1671
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 2/20
+249/249 [==============================] - 119s 478ms/step - loss: 3.2224 - accuracy: 0.2662 - val_loss: 2.4435 - val_accuracy: 0.5057
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 3/20
+249/249 [==============================] - 119s 476ms/step - loss: 2.3437 - accuracy: 0.4873 - val_loss: 1.5793 - val_accuracy: 0.6800
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 4/20
+249/249 [==============================] - 119s 477ms/step - loss: 1.7103 - accuracy: 0.6311 - val_loss: 1.0961 - val_accuracy: 0.7986
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 5/20
+249/249 [==============================] - 118s 472ms/step - loss: 1.2946 - accuracy: 0.7192 - val_loss: 0.8493 - val_accuracy: 0.8500
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 6/20
+249/249 [==============================] - 118s 474ms/step - loss: 1.0649 - accuracy: 0.7570 - val_loss: 0.7184 - val_accuracy: 0.8686
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 7/20
+249/249 [==============================] - 119s 476ms/step - loss: 0.8976 - accuracy: 0.7892 - val_loss: 0.6450 - val_accuracy: 0.8814
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 8/20
+249/249 [==============================] - 118s 475ms/step - loss: 0.7812 - accuracy: 0.8131 - val_loss: 0.5898 - val_accuracy: 0.8971
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 9/20
+249/249 [==============================] - 118s 473ms/step - loss: 0.6945 - accuracy: 0.8276 - val_loss: 0.5611 - val_accuracy: 0.9014
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 10/20
+249/249 [==============================] - 118s 475ms/step - loss: 0.6254 - accuracy: 0.8370 - val_loss: 0.5310 - val_accuracy: 0.9086
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 11/20
+249/249 [==============================] - 118s 473ms/step - loss: 0.5733 - accuracy: 0.8528 - val_loss: 0.5126 - val_accuracy: 0.9100
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 12/20
+249/249 [==============================] - 119s 477ms/step - loss: 0.5330 - accuracy: 0.8621 - val_loss: 0.5036 - val_accuracy: 0.9157
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 13/20
+249/249 [==============================] - 118s 475ms/step - loss: 0.5022 - accuracy: 0.8681 - val_loss: 0.4853 - val_accuracy: 0.9200
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 14/20
+249/249 [==============================] - 120s 480ms/step - loss: 0.4662 - accuracy: 0.8755 - val_loss: 0.4751 - val_accuracy: 0.9214
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 15/20
+249/249 [==============================] - 118s 474ms/step - loss: 0.4325 - accuracy: 0.8803 - val_loss: 0.4653 - val_accuracy: 0.9257
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 16/20
+249/249 [==============================] - 119s 476ms/step - loss: 0.4106 - accuracy: 0.8898 - val_loss: 0.4611 - val_accuracy: 0.9214
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 17/20
+249/249 [==============================] - 119s 475ms/step - loss: 0.3779 - accuracy: 0.9028 - val_loss: 0.4560 - val_accuracy: 0.9271
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 18/20
+249/249 [==============================] - 119s 476ms/step - loss: 0.3522 - accuracy: 0.9056 - val_loss: 0.4498 - val_accuracy: 0.9314
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 19/20
+249/249 [==============================] - 118s 474ms/step - loss: 0.3476 - accuracy: 0.9057 - val_loss: 0.4458 - val_accuracy: 0.9257
+</code></pre>
+      </div>
+      <div class="output stream stderr">
+        <pre><code>/opt/conda/lib/python3.7/site-packages/keras/utils/generic_utils.py:497: CustomMaskWarning: Custom mask layers require a config and must override get_config. When loading, the custom mask layer must be passed to the custom_objects argument.
+  category=CustomMaskWarning)
+</code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>Epoch 20/20
+249/249 [==============================] - 118s 474ms/step - loss: 0.3208 - accuracy: 0.9134 - val_loss: 0.4465 - val_accuracy: 0.9257
+</code></pre>
+      </div>
+      <div class="output execute_result" data-execution_count="13">
+        <pre><code>&lt;keras.callbacks.History at 0x7fc74bd914d0&gt;</code></pre>
+      </div>
+    </div>
+    <div id="4a0b7dce" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>Model Checkpoint Callback:
+          <ul>
+            <li><code>train_cb = ModelCheckpoint('./model/', save_best_only=True)</code>:
+              This line creates a callback that saves the model to the specified
+              directory (./model/). The save_best_only=True argument ensures that only
+              the model with the best validation performance (lowest validation loss)
+              is saved, preventing the storage of inferior models during
+              training.</li>
+          </ul>
+        </li>
+        <li>Fitting the Model:
+          <ul>
+            <li><code>model.fit(...)</code>: This method trains the model on the
+              training data (train_generator) and evaluates it on the validation data
+              (val_generator). The training process involves the following
+              parameters:</li>
+            <li><code>train_generator</code>: Provides the training data in
+              batches.</li>
+            <li><code>validation_data=val_generator</code>: Evaluates the model on
+              the validation dataset after each epoch, helping to monitor
+              performance.</li>
+            <li><code>callbacks=[train_cb]</code>: Includes the train_cb to save the
+              best model during training based on validation loss.</li>
+            <li><code>epochs=20</code>: Specifies that the model will be trained for
+              20 epochs. An epoch is one complete pass through the training
+              dataset.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="b9accce4" class="cell markdown">
+      <h2 id="step-11-saving-and-evaluating-the-model">Step 11: Saving and
+        Evaluating the Model</h2>
+      <p>In this final step, we save the trained MobileNetV2 model to a file
+        and evaluate its performance on the test dataset.</p>
+    </div>
+    <div id="20d00ce3" class="cell code" data-execution_count="15"
+      data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-05T23:13:36.032120Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-05T23:13:36.031387Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-05T23:13:39.788548Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-05T23:13:39.789089Z&quot;}"
+      data-papermill="{&quot;duration&quot;:5.44567,&quot;end_time&quot;:&quot;2024-10-05T23:13:39.789262&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-05T23:13:34.343592&quot;,&quot;status&quot;:&quot;completed&quot;}"
+      data-tags="[]">
+      <div class="sourceCode" id="cb54">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">&#39;MobileNetV2_model.h5&#39;</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>model.evaluate(test_generator)</span></code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>22/22 [==============================] - 4s 161ms/step - loss: 0.1654 - accuracy: 0.9629
+</code></pre>
+      </div>
+      <div class="output execute_result" data-execution_count="15">
+        <pre><code>[0.16537855565547943, 0.9628571271896362]</code></pre>
+      </div>
+    </div>
+    <div id="8a68bb78" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>Saving the Model:
+          <ul>
+            <li><code>model.save('MobileNetV2_model.h5')</code>: This line saves the
+              entire trained model to a file named MobileNetV2_model.h5. This file
+              format (HDF5) allows us to store the model architecture, weights, and
+              training configuration in a single file, making it easy to load and use
+              later without the need for retraining.</li>
+          </ul>
+        </li>
+        <li>Evaluating the Model:
+          <ul>
+            <li><code>model.evaluate(test_generator)</code>: This method evaluates
+              the saved model on the test dataset provided by test_generator. The
+              evaluation returns the loss value (0.16) and any metrics specified
+              during the model compilation (in our case, accuracy i.e 0.96 ). This is
+              crucial for assessing how well the model performs on completely unseen
+              data.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="effea9e4" class="cell markdown">
+      <h2 id="conclusion">Conclusion</h2>
+      <p>In this tutorial, we successfully built a dog breed classifier using
+        the MobileNetV2 model, leveraging transfer learning techniques to
+        achieve effective image classification. Here’s a summary of what we
+        covered:</p>
+      <ol>
+        <li>
+          <p><strong>Data Preparation</strong>: We started by preparing the
+            dataset, including training, validation, and test sets, and visualized
+            some sample images to understand the data better.</p>
+        </li>
+        <li>
+          <p><strong>Data Augmentation</strong>: We implemented data
+            augmentation techniques to enhance the training dataset, helping the
+            model generalize better and reduce the risk of overfitting.</p>
+        </li>
+        <li>
+          <p><strong>Model Architecture</strong>: We constructed the model
+            using MobileNetV2, combining it with additional layers to adapt it for
+            our specific classification task.</p>
+        </li>
+        <li>
+          <p><strong>Model Compilation</strong>: We compiled the model with
+            the Adam optimizer and categorical crossentropy loss function, preparing
+            it for the training phase.</p>
+        </li>
+        <li>
+          <p><strong>Training the Model</strong>: The model was trained on the
+            training data, with validation data used to monitor its performance and
+            save the best version of the model.</p>
+        </li>
+        <li>
+          <p><strong>Model Evaluation</strong>: Finally, we saved the trained
+            model and evaluated its performance on the test dataset, giving us a
+            final accuracy score.</p>
+        </li>
+      </ol>
+      <p>This tutorial demonstrates the complete workflow of building an image
+        classification model using deep learning. You can now take this
+        knowledge and apply it to other classification tasks or further refine
+        the model with more advanced techniques.</p>
+      <p>Feel free to explore and experiment with the model, adjust
+        hyperparameters, and try different architectures to improve performance.
+        Happy coding and best of luck with your machine learning journey!</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+        <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contact.html">Contributor</a>
+      </div>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+  </footer>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
+</body>
+
+</html>

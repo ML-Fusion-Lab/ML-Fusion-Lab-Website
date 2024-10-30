@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <head>
+      <link rel="icon" />
+      <link rel="icon" href="image/ml fusion lab log.jpg" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>ML Fusion Lab</title>
+      <!-- Linking Css -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+
+      <link rel="stylesheet" href="./style/popup.css" />
+      <link rel="stylesheet" href="./style/style.css" />
+
+      <style>
+        header {
+          height: 200px;
+          color:#333 ;
+        }
+        nav {
+          margin: 1rem 0;
+        }
+        nav ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+        }
+        nav ul li {
+          display: inline-block;
+          margin: 0 1px; /* Reduce margin between items */
+          font-size: 2px; /* Smaller font size */
+        }
+        nav ul li a {
+          text-decoration: none;
+          padding: 3px; /* Reduce padding for a more compact look */
+          color: #333;
+          transition: color 0.3s ease;
+        }
+
+        .logo {
+          margin: 30px 0 0 0;
+          color: #333;
+        }
+
+        footer {
+          background-color: #333;
+          color: white;
+          text-align: center;
+          padding: 20px 0;
+          margin-top: auto;
+        }
+
+        .footer-container {
+          max-width: 800px;
+          margin: auto;
+          padding: 0 20px;
+          color: #333;
+          
+        }
+
+        /* .footer-links,
+        .footer-socials,
+        .footer-contact {
+          margin: 10px 0;
+        }
+
+        .footer-links a,
+        .footer-socials a {
+          color: white;
+          text-decoration: none;
+          margin: 0 10px;
+          transition: all .38s ease-in-out;
+        } */
+
+        /* .footer-links a:hover,
+        .footer-socials a:hover {
+          color: #007bff;
+        } */
+
+        /* Facebook hover color with gradient */
+        /* . a.facebook:hover {
+          background: linear-gradient(to right, white, #3b5998);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        } */
+
+        /* Twitter hover color */
+        /* .footer-socials a.twitter:hover {
+          color: black; /* Twitter black 
+        } */
+
+        /* LinkedIn hover color */
+        /* .footer-socials a.linkedin:hover {
+          color: #0077b5; /* LinkedIn light blue 
+        } */
+
+        .footer-socials a {
+          font-size: 24px;
+          margin: 0 15px;
+        }
+
+        .footer-contact a {
+          color: white;
+        }
+
+        .newsletter .input-group .input {
+          color: black;
+          /* height: 50px; */
+          width: 450px;
+        }
+
+        #scrollTopBtn {
+          display: none;
+          position: fixed;
+          bottom: 20px;
+          right: 30px;
+          z-index: 99;
+          font-size: 18px;
+          background-color: #00bfff;
+          color: white;
+          border: none;
+          padding: 10px;
+          border-radius: 5px;
+        }
+
+        #scrollTopBtn:hover {
+          background-color: #555;
+        }
+        #cookie-consent {
+          position: fixed;
+          bottom: 10px;
+          left: 10px;
+          background-color: #292b30;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          width: 300px;
+          height: fit-content;
+          z-index: 10000;
+          border-radius: 10px;
+          margin-bottom: 5px;
+          margin: 20px;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid transparent;
+          transition: border-color 0.6s;
+          border: 3px solid #000000;
+        }
+
+        #cookie-consent:hover {
+          border-right-color: #336491;
+          border-bottom-color: #323257;
+        }
+        #cookie-consent img {
+  width: 20px; /* Adjust this size as needed */
+  height: auto;
+  margin-right: 15px;
+        }
+        #cookie-consent p {
+          margin-bottom: 10px;
+          color: rgb(255, 252, 252); /* Make the text black for better visibility */
+          text-align: center; /* Center align the text */
+        }
+
+        .accept-cookies,
+        .reject-cookies {
+          width: 260px; /* Decrease the button width */
+          height: 35px; /* Decrease the button height */
+          color: white;
+          background-color: #3e6088;
+          border: none;
+          border-radius: 5px; /* Add rounded corners */
+          cursor: pointer;
+          transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s,
+            color 0.3s; /* Smooth transition for effects */
+        }
+
+        .reject-cookies {
+          margin-top: 10px;
+        }
+
+        .accept-cookies:hover,
+        .reject-cookies:hover {
+          transform: scale(0.95);
+          box-shadow: 0 0 15px rgb(164, 232, 240); /* Reduce the shadow size */
+        }
+
+        .accept-cookies:hover {
+          background-color: rgb(174, 233, 255);
+          color: #ffffff;
+          border: 2px solid rgb(0, 0, 0);
+        }
+
+        .reject-cookies:hover {
+          background-color: rgb(174, 233, 255);
+          color: #ffffff;
+          border: 2px solid rgb(0, 0, 0);
+        }
+
+        #learn-more-link,
+        #show-less-link {
+          color: #bebebe;
+          text-decoration: none;
+          cursor: pointer;
+          font-size: 20px;
+        }
+
+        #cookie-content {
+          display: none;
+          margin-top: 10px;
+        }
+        .dark-mode #cookie-consent {
+          background-color: #000000;
+          margin-left: 8px;
+        }
+
+        .dark-mode #cookie-consent p {
+          color: white;
+          margin-left: 8px;
+        }
+      </style>
+    </head>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style/scroll.css" />
+  </head>
+
+  <body style="margin-right: 12px;">
+    <!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+
+    <header style="width: 100.8%;">
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
+      <div class="logo" style="margin-top: 15px">
+        <a href="index.html">
+          <h1>
+            <img
+              src="./image/ml fusion lab log.jpg"
+              alt="logo"
+              width="100"
+              height="100"
+            />
+          </h1>
+        </a>
+      </div>
+      <nav>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/courses.html">Courses</a></li>
+          <li><a href="pages/projects.html">Projects</a></li>
+          <li><a href="pages/about.html">About Us</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+          <li><a href="pages/community_suport.html">Community Support</a></li>
+          <li><a href="pages/feedback.html">Feedback</a></li>
+          <!-- Login/Logout Button -->
+          <li><a id="login-btn" href="pages/login.html">Login</a></li>
+          <li style="display: none;" id="logout-btn">
+            <a href="#" onclick="logout()">Logout</a>
+          </li>
+          <li>
+            <div class="gtranslate_wrapper"></div>
+            <script>
+              window.gtranslateSettings = {
+                default_language: "en",
+                detect_browser_language: true,
+                wrapper_selector: ".gtranslate_wrapper",
+                flag_size: 16,
+              };
+            </script>
+            <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
+          </li>
+          <!-- <div class="theme-switch themeSwitch" id="theme-switch"></div> -->
+
+          <div id="themeSwitch" class="theme-switch">
+            <input type="checkbox" class="checkbox" id="checkbox">
+            <label for="checkbox" class="checkbox-label">
+              
+              <img src="./Assets/sun.png" class="theme-btn">
+              <img src="./Assets/moon.png" class="theme-btn">
+              <!-- <i class="fas fa-moon"></i>
+              <i class="fas fa-sun"></i> -->
+              <span class="ball"></span>
+            </label>
+          </div>
+        </ul>
+      </nav>
+      
+    </header>
+
+    <section class="hero" style="width: 100.8%">
+      <div class="hero-content">
+        <h2>Learn Machine Learning with Us</h2>
+        <p>
+          We provide top-notch resources to help you master machine learning,
+          from basics to advanced levels.
+        </p>
+        <a href="pages/courses.html" class="btn">Explore Courses</a>
+      </div>
+    </section>
+
+    <!-- about section starts -->
+
+    <section class="about" id="about">
+      <div class="row">
+        <div class="img-container">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="ML Fusion Lab"
+          />
+          <h3>ML FUSION LAB</h3>
+        </div>
+
+        <div class="content">
+          <h3 class="content-heading">About Us</h3>
+          <!-- Added a heading for bold text -->
+          <p>
+            We are a community-driven platform that aims to provide free,
+            accessible, and high-quality machine learning tutorials, projects,
+            and resources for all. Whether you are a beginner or an experienced
+            professional, ML Fusion Labs has something to offer for everyone.
+          </p>
+          <a href="#" class="btn">Learn more</a>
+        </div>
+      </div>
+    </section>
+    <!-- Direct Course Jump-In -->
+    <div class="direct-course" style="width: 98.7%;">
+      <h3 class="head-h3">Jump To Courses</h3>
+      <p class="crcPara">
+        Our platform is perfect for those eager to dive into Python programming
+        and explore the fascinating world of AI and ML. With comprehensive
+        tutorials and hands-on projects, you'll gain the skills needed to excel
+        in these cutting-edge fields.
+      </p>
+      <div class="en-course">
+        <a class="cr-box" href="https://roadmap.sh/python">Know The Roadmap</a>
+        <a class="cr-box" href="https://www.learnpython.org/">Learn Basics</a>
+        <a
+          class="cr-box"
+          href="https://www.w3schools.com/python/python_ml_getting_started.asp"
+          >Learn AI & ML</a
+        >
+      </div>
+    </div>
+
+    <!-- about section ends -->
+
+    <section class="features" style="width: 100.8%;">
+      <div class="container">
+        <h2>Our Features</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <a href="pages/courses.html" style="text-decoration: none">
+            <h3>Structured Learning</h3>
+            <p>
+              Our courses are designed for clarity and progress, from
+              fundamentals to expert-level topics.
+            </p>
+          </div>
+          <div class="feature-item">
+            <a href="pages/projects.html" style="text-decoration: none">
+              <h3>Practical Projects</h3>
+              <p>
+                Work on real-world ML projects to apply the concepts you learn.
+              </p>
+            </a>
+          </div>
+
+          <div class="feature-item">
+            <a href="pages/community_suport.html" style="text-decoration: none">
+            <h3>Community Support</h3>
+            <p>
+              Collaborate with other learners and contribute to open-source ML
+              projects.
+            </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- Newsletters Section  -->
+    <div class="container newsletter d-flex flex-column p-5">
+      <div class="align-items-center justify-content-between w-100">
+        <div class="mx-auto col-lg-6">
+          <h1 class="h4">Sign Up for Newsletters</h1>
+          <p>Get updates in your email about the latest deals and products</p>
+        </div>
+        <div class="mx-auto col-lg-6 d-flex flex-wrap items-center">
+          <div class="input-group ">
+            <input
+              type="email"
+              id="email"
+              class="form-control me-md-3 rounded border border-dark px-4 py-2"
+              placeholder="Enter your email"
+              required
+            />
+            <button class="btn btn-secondary mb-2 rounded bg-dark p-2 px-4" style="width: max-content;" type="submit" id="submit-button">
+              Subscribe
+            </button>
+          </div>
+          <div id="error-message" class="text-danger small mt-2" style="display: none;">
+            *Please enter a valid email address.
+          </div>
+          <div id="confirmation-message" class="text-success small mt-2" style="display: none;">
+            Thank you for subscribing to our newsletter!
+          </div>
+        </div>
+      </div>
+    </div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .input-group {
+        display: flex;
+        align-items: stretch;
+      }
+    
+      .input-group .form-control {
+        border-radius: 4px 0 0 4px;
+      }
+    
+      .input-group .btn {
+        border-radius: 0 4px 4px 0;
+        flex-shrink: 0; 
+      }
+
+      @media (max-width: 768px) {
+        .input-group {
+          flex-direction: column;
+          justify-content: center;
+        }
+    
+        .input-group .form-control,
+        .input-group .btn {
+          border-radius: 4px;
+          width: 100%;
+        }
+    
+        .input-group .btn {
+          margin-top: 10px;
+        }
+      }
+    </style>
+    
+
+    <style>
+      .input-group {
+        display: flex;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+      }
+
+      .input {
+        transition: all 0.3s ease;
+        border: 2px solid #ccc;
+        padding: 10px;
+        outline: none;
+      }
+
+      .input:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 10px rgba(0, 86, 179, 0.2);
+      }
+
+      .input::placeholder {
+        color: #999;
+        transition: all 0.3s ease;
+      }
+
+      .input:focus::placeholder {
+        opacity: 0;
+        transform: translateX(10px);
+      }
+
+      .submit-button {
+        transition: all 0.3s ease;
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 20px;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        position: relative;
+        height: 55px;
+        top: -10px;
+        overflow: hidden;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 5px;
+      }
+
+      .submit-button:hover {
+        background-color: #003d82;
+      }
+
+      .submit-button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transition: width 0.6s ease, height 0.6s ease;
+        transform: translate(-50%, -50%);
+      }
+
+      .submit-button:hover::before {
+        width: 350px;
+        height: 350px;
+      }
+
+      .submit-button:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+
+        25% {
+          transform: translateX(5px);
+        }
+
+        75% {
+          transform: translateX(-5px);
+        }
+      }
+
+      .input:invalid:not(:placeholder-shown) {
+        animation: shake 0.3s;
+        border-color: #ff3860;
+      }
+
+      .confirmation-message {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #4caf50;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        z-index: 1000;
+        text-align: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .confirmation-message {
+          font-size: 14px;
+          padding: 10px;
+          width: 80%;
+        }
+      }
+
+      /* css for mouse cursor trail effect */
+      .circle {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: radial-gradient(
+          circle,
+          rgba(102, 120, 134, 0.3),
+          skyblue,
+          rgba(0, 0, 50, 0.3),
+          white
+        );
+        transition: transform 0.1s, left 0.1s, top 0.1s;
+      }
+
+      .circle-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        /* removed the non-breaking space (&nbsp;) */
+      }
+    </style>
+
+    <!-- This script for newsletter subscription -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("submit-button")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const emailInput = document.getElementById("email");
+            const email = emailInput.value.trim();
+            const errorMessage = document.getElementById("error-message");
+            const confirmationMessage = document.getElementById(
+              "confirmation-message"
+            );
+
+            if (!validateEmail(email)) {
+              errorMessage.style.display = "block";
+              confirmationMessage.style.display = "none";
+            } else {
+              errorMessage.style.display = "none";
+              confirmationMessage.style.display = "block";
+
+              emailInput.value = "";
+            }
+          });
+
+        function validateEmail(email) {
+          const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          return re.test(email);
+        }
+      });
+    </script>
+<div class="footer" style="width: 100.8%">
+  <div class="footer-col">
+      <img src="./image/ml fusion lab log.jpg" alt="">
+      <p class="footer-p">
+
+        We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
+
+      </p>
+      <div class="footer-social">
+          <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+  </div>
+  <div class="footer-col-main">
+      <h4 class="h46">ML Fusion Labs</h4>
+      <a href="#">Business</a>
+      <a href="#">Franchise</a>
+      <a href="#">Network</a>
+  </div>
+  <div class="footer-col-main">
+      <h4 class="h46">About Us</h4>
+      <a href="./pages/about.html">About Us</a>
+      <a href="#">Security</a>
+      <a href="./pages/contributor.html">Contributors</a>
+  </div>
+  <div class="footer-col-main">
+      <h4 class="h46">Contact</h4>
+      <a href="./pages/contact.html">Contact Us</a>
+      <a href="info@mlfusionlabs.com">Email Us</a>
+      <a href="./pages/privacy.html">Privacy Policy</a>
+      <a href="./pages/terms.html">Terms & Conditions</a>
+  </div>
+</div>
+<div class="footer-bar" style="width: 100.8%;"> 
+  &copy; 2024 ML Fusion Labs | All Rights Reserved
+  <button id="scrollTopBtn" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</div>
+    <script src="script/scroll.js"></script>
+
+    <!-- POP-UP HTML CODE GOES HERE -->
+    <!-- Pop-up for email sign-up -->
+    <!-- POP-UP HTML CODE -->
+<div id="popup" class="popup" style="display: none;">
+  <div class="popup-content">
+    <div class="popup-left">
+      <img src="image/popup.jpg" alt="ML Learning Image" />
+    </div>
+    <div class="popup-right">
+      <h1>Join ML Fusion Lab!</h1>
+      <h2>Get Free Machine Learning Resources</h2>
+      <p>
+        Sign up to avail up to <strong>75% off</strong> on your first
+        purchase and boost your ML journey.
+      </p>
+      <form id="emailForm">
+        <form id="signupForm">
+    <input type="text" id="fullName" placeholder="Full Name" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+    <button type="button" class="signup-btn" onclick="showToastAndRedirect()">Sign Up Now</button>
+      </form>
+      <a href="#" class="no-thanks close-btn">No thanks</a>
+      <p class="terms">
+        By signing up, you agree to our <a href="#">Terms of Service</a> and
+        <a href="#">Privacy Policy</a>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast">
+  <div class="toast-content">
+    <i class="fas fa-info-circle"></i>
+    <div class="message">
+      <span class="text text-1">Redirecting</span>
+      <span class="text text-2">Taking you to the signup page...</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="progress"></div>
+</div>
+
+
+
+
+<style>
+  /* Toast Notification Styles */
+  .toast {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+    z-index: 9999;
+  }
+
+  .toast.active {
+    transform: translateX(0%);
+  }
+
+  .toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .toast-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    background-color: #4070f4;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+  }
+
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+
+  .message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+  }
+
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .toast .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .toast .close:hover {
+    opacity: 1;
+  }
+
+  .toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  }
+
+  .toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+  }
+
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+
+  @keyframes progress {
+    100% {
+      right: 100%;
+    }
+  }
+  </style>
+
+    <div id="cookie-consent">
+      <p>
+        <img src="216341.png" alt="cookies">We use cookies to improve your experience. By using our website, you
+        consent to all cookies in accordance with our Cookie Policy.
+        <a href="#" id="learn-more-link">Learn More</a>
+      </p>
+      <div id="learn-more-content" style="display: none">
+        <p>
+          Cookies are small text files that can be used by websites to make a
+          user's experience more efficient. The law states that we can store
+          cookies on your device if they are strictly necessary for the
+          operation of this site. For all other types of cookies we need your
+          permission.
+        </p>
+        <p>
+          This site uses different types of cookies. Some cookies are placed by
+          third party services that appear on our pages.
+        </p>
+      </div>
+
+      <a href="#" id="show-less-link" style="display: none">Show Less</a>
+      <button class="accept-cookies">Accept</button>
+      <button class="reject-cookies">Reject</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const cookieConsent = document.getElementById("cookie-consent");
+        const acceptButton = document.querySelector(".accept-cookies");
+        const rejectButton = document.querySelector(".reject-cookies");
+        const learnMoreLink = document.getElementById("learn-more-link");
+        const learnMoreContent = document.getElementById("learn-more-content");
+
+        // Hide preloader after page load
+        window.addEventListener("load", function () {
+          const preloader = document.getElementById("preloader");
+          if (preloader) {
+            preloader.style.display = "none";
+          }
+          cookieConsent.style.display = "block";
+        });
+
+        // Check if localStorage is available
+        function localStorageAvailable() {
+          try {
+            const test = "__localStorage_test__";
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        if (localStorageAvailable()) {
+          // Check if the user has already made a choice
+          if (localStorage.getItem("cookieConsent")) {
+            cookieConsent.style.display = "none";
+          }
+
+          // Function to handle cookie consent choice
+          function handleConsent(choice) {
+            localStorage.setItem("cookieConsent", choice);
+            cookieConsent.style.display = "none";
+          }
+
+          // Add event listeners to buttons
+          acceptButton.addEventListener("click", function () {
+            handleConsent("accepted");
+          });
+
+          rejectButton.addEventListener("click", function () {
+            handleConsent("rejected");
+          });
+        } else {
+          // Hide consent if localStorage is not available
+          cookieConsent.style.display = "none";
+        }
+
+        // Add event listener to "Learn More" link
+        learnMoreLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          learnMoreContent.style.display = "block";
+          learnMoreLink.style.display = "none";
+        });
+      });
+    </script>
+    <script src="script/scroll.js"></script>
+    <script src="script/script.js"></script>
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.querySelector("header nav ul");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+      let isSubmitting = false; // Debouncing flag
+
+      // Function to show confirmation message
+      function showConfirmationMessage() {
+        var messageElement = document.getElementById("confirmation-message");
+        messageElement.style.display = "block";
+        messageElement.style.opacity = "1";
+
+        // Hide the message after 3 seconds
+        setTimeout(function () {
+          messageElement.style.opacity = "0";
+          setTimeout(function () {
+            messageElement.style.display = "none";
+          }, 500); // wait for the opacity transition to finish
+        }, 3000);
+      }
+
+      // Email validation function
+      function validateEmail(email) {
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+      }
+
+      // Debounced form submission function
+      function debouncedSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+        var email = document.getElementById("email").value;
+        var errorMessage = document.getElementById("error-message");
+
+        // Check if already submitting (debouncing) and if email is valid
+        if (isSubmitting) {
+          return; // Prevent multiple submissions
+        }
+
+        if (!validateEmail(email)) {
+          errorMessage.style.display = "block"; // Show error message
+          return;
+        }
+
+        errorMessage.style.display = "none"; // Hide error message if valid
+
+        console.log("Form submitted");
+        // Simulate form submission with a delay (debounce)
+        isSubmitting = true;
+        showConfirmationMessage();
+
+        // Simulate form submission here if needed (AJAX or similar)
+        setTimeout(() => {
+          isSubmitting = false; // Reset debouncing after 5 seconds
+        }, 5000);
+      }
+
+      // Attach the function to the submit button
+      document
+        .getElementById("submit-button")
+        .addEventListener("click", debouncedSubmit);
+    </script>
+    <!-- js for mouse cursor trail effect -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const coords = { x: 0, y: 0 };
+        const circles = document.querySelectorAll(".circle");
+
+        circles.forEach(function (circle) {
+          circle.x = 0;
+          circle.y = 0;
+        });
+
+        window.addEventListener("mousemove", function (e) {
+          coords.x = e.pageX;
+          coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+        });
+
+        function animateCircles() {
+          let x = coords.x;
+          let y = coords.y;
+
+          circles.forEach(function (circle, index) {
+            circle.style.left = `${x - 12}px`;
+            circle.style.top = `${y - 12}px`;
+            circle.style.transform = `scale(${
+              (circles.length - index) / circles.length
+            })`;
+
+            const nextCircle = circles[index + 1] || circles[0];
+            circle.x = x;
+            circle.y = y;
+
+            x += (nextCircle.x - x) * 0.3;
+            y += (nextCircle.y - y) * 0.3;
+          });
+
+          requestAnimationFrame(animateCircles);
+        }
+
+        animateCircles();
+      });
+    </script>
+    <!-- Botpress Chat Scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="./script//popup.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    <script>
+      // Get the current year
+      const currentYear = new Date().getFullYear();
+
+      // Update the HTML content
+      document.getElementById("current-year").textContent = currentYear;
+    </script>
+    <!-- Add this script at the end of your body tag or in your existing script file -->
+    <script>
+    function redirectToSignup() {
+        // Assuming your login/signup page is at pages/login.html
+        window.location.href = 'pages/login.html';
+    }
+    
+    </script>
+    <br /><br />
+    <link rel="stylesheet" href="visi.css">
+    <!-- ############### Footer ############### -->
+    <div class="visitor-counter">
+      <div>Visitor</div>
+      <div class="website-counter"></div>
+    </div>
+    <script src="path/to/visitorCounter.js"></script>
+    <script src="./assets/css/visitors.css"></script>
+    
+      <script src="visi.js"></script>
+  </body>
+</html>

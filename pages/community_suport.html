@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="../image/ml fusion lab log.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Fusion Labs - Community Support</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../style/scroll.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/style.css">
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="ML Fusion Labs - Join our community for Machine Learning resources, forums, Q&A sessions, and mentor support.">
+    <meta property="og:title" content="ML Fusion Labs - Community Support">
+    <meta property="og:description" content="A community dedicated to helping Machine Learning enthusiasts. Connect with forums, mentors, and resources.">
+    <meta property="og:image" content="ml-fusion-lab-logo.png">
+    <meta property="og:url" content="https://www.mlfusionlabs.com/community_support.html">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon for Different Platforms -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .community-support {
+            margin: 20px 0; /* Adjusts vertical spacing */
+        }
+        .community-support h3 {
+            margin-top: 30px; /* Creates a gap above the headings */
+            margin-bottom: 10px; /* Creates a gap below the headings */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            margin: 20px auto;
+            transition: transform 0.3s;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card:nth-child(5) {
+            width: 60%;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            z-index: 1;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px 0; /* Creates a gap between buttons */
+            background-color: #007BFF; /* Button Background Color */
+            color: white; /* Button Text Color */
+            padding: 10px 20px; /* Button Padding */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded Corners */
+            transition: background-color 0.3s ease; /* Smooth Transition for Hover */
+        }
+        .btn:hover {
+            background-color: #0056b3; /* Darker Blue on Hover */
+        }
+
+        /* Back to Top button styles */
+        #backToTop {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            border-radius: 50%; 
+            background-color: #00a6ff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px; 
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #backToTop:hover {
+            background-color: #555;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        .dark-mode .card h3 {
+    color: #000; /* Dark black for headings in dark mode */
+}
+ /* css for mouse cursor trail effect */
+ .circle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+  transition: transform 0.1s, left 0.1s, top 0.1s;
+}
+
+.circle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+}
+
+/* new footer properties */
+.footer {
+    padding: 5rem 1rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 400px repeat(3, 1fr);
+    gap: 2rem;
+    background-color: #191919;
+  }
+  
+  .footer-col img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    position: relative;
+    bottom: 15px;
+  }
+  
+  .footer-p {
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    color: white;
+    display: block;
+  }
+  
+  .footer-social {
+    display: flex;
+    align-items: center;
+  }
+   
+  .footer-social i:hover {
+    opacity: 1;
+    background-color: #35373b;
+  }
+  
+  .h46 {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .footer-col-main {
+    margin-top: -1rem;
+  }
+  
+  .footer-col-main a {
+    display: block;
+    margin-bottom: 1rem;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.3s ease 0s;
+  }
+  
+  .footer-col-main a:hover {
+    opacity: 1;
+  }
+
+  
+  @media (max-width: 900px) {
+    .footer {
+        grid-template-columns: 1fr 200px;
+    }
+  }
+  /* this is only end of footer style */
+  .hero {
+            background-image: url('../image/ml-fusion-lab-logo.png');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.cta-button:hover {
+    background-color: white; /* Change background color */
+    color: black; /* Change text color */
+}
+
+        .image-credit {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8em;
+        }
+        .yoga-types-parent {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #007BFF;
+        }
+        .yoga-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 18%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+   .dark-mode .yoga-card {
+     background-color: black;
+   }
+
+/* Base styles for yoga-types */
+.yoga-types-parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    background-color: #007BFF;
+}
+
+/* Yoga card styles */
+.yoga-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 calc(25% - 40px); /* Adjust width and spacing for 4 columns */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.yoga-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .yoga-card {
+        flex: 1 1 calc(33.33% - 40px); /* 3 columns for larger tablets and smaller laptops */
+    }
+}
+
+@media (max-width: 768px) {
+    .yoga-card {
+        flex: 1 1 calc(50% - 40px); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .yoga-card {
+        flex: 1 1 100%; /* 1 column for mobile devices */
+    }
+}
+
+
+.yoga-card:hover {
+    transform: translateY(-10px); /* Moves the card upwards */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+        .yoga-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.yoga-card img:hover {
+    transform: scale(1.1); /* Slightly increase size */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+        .yoga-card h3 {
+            margin: 10px 0;
+        }
+        .yoga-card p {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .more-button {
+    background-color: #007BFF; /* Bright blue color */
+    border: none;
+    color: white; /* Better contrast with background */
+    padding: 8px 16px; /* Increased padding for better spacing */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 0.9em; /* Slightly increased font size */
+    font-weight: bold; /* Make text bold */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.more-button:hover {
+    background-color: #0056b3; /* Darker shade of blue for hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div class="logo">
+                <a href="../index.html"><h1><img  src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100"/></h1></a>
+            </div>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+              <li><a href="../index.html">Home</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="Testimonial.html">Testimonial</a></li>
+              <li><div class="gtranslate_wrapper"></div>
+                <script>window.gtranslateSettings = {"default_language":"en",   "detect_browser_language":true,"wrapper_selector":".gtranslate_wrapper"}</script>
+                  <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script></li>
+              <!-- <div class="theme-switch" id="theme-switch"></div> -->
+              <div id="themeSwitch" class="theme-switch">
+                <input type="checkbox" class="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label">
+                  
+                  <img src="../Assets/sun.png" class="theme-btn">
+                  <img src="../Assets/moon.png" class="theme-btn">
+                  <!-- <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i> -->
+                  <span class="ball"></span>
+                </label>
+              </div>
+            </ul>
+          </nav>
+    </header>
+    <!-- html for mouse cursor trail effect -->
+    <div class="circle-container">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+    
+      <div class="hero">
+        <div class="hero-content">
+            <h1>At ML Fusion Labs, we believe that learning is best when shared.<br>Our community support section is designed to connect learners, share knowledge, and provide assistance for your machine learning journey.</h1>
+            <a href="forum.html" class="cta-button">JOIN THE COMMUNITY</a>
+        </div>
+        <div class="image-credit"></div>
+    </div>
+    
+    <div class="yoga-types yoga-types-parent">
+        <div class="yoga-card">
+            <img src="../image/forum.jpeg" alt="Hatha Yoga">
+            <h3>Join Our Forums</h3>
+            <p>Participate in discussions, ask questions, and share your experiences in our vibrant community forums.</p>
+            <a href="forum.html" class="more-button">VISIT FORUMS</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/QA.jpg" alt="Hatha Vinyasa">
+            <h3>Weekly Q&A Sessions</h3>
+            <p>Join our weekly Q&A sessions where experts from the ML field answer your questions live. Check our schedule and sign up!</p>
+            <a href="qa_schedule.html" class="more-button">VIEW SCHEDULE</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/resource.jpeg" alt="Pilates">
+            <h3>Resource Library</h3>
+            <p>Access our curated library of articles, tutorials, and videos to help you navigate through machine learning topics. Learn at your own pace!</p>
+            <a href="resources.html" class="more-button">EXPLORE RESOURCES</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/mentor.jpeg" alt="Iyengar">
+            <h3>Connect with Mentors</h3>
+            <p>Get paired with experienced mentors who can guide you through complex topics, provide insights, and support your learning journey.</p>
+            <a href="mentor_program.html" class="more-button">FIND A MENTOR</a>
+        </div>
+        <div class="yoga-card">
+            <img src="../image/social.jpeg" alt="Kundalini">
+            <h3>Social Media Groups</h3>
+            <p>Join our social media groups on platforms like Facebook, LinkedIn, and Discord to stay updated, network with other learners, and share resources.</p>
+            <a href="social_media.html" class="more-button">JOIN OUR GROUPS</a>
+        </div>
+    </div>
+    
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Go to top" aria-label="Back to Top"> <i class="fas fa-arrow-up"></i></button>
+
+    <div class="footer">
+      <div class="footer-col">
+          <img src="../image/ml fusion lab log.jpg" alt="">
+          <span class="footer-p">
+    
+            We are a community-driven platform that aims to provide free, accessible, and high-quality machine learning tutorials, projects, and resources for all.
+    
+          </span>
+          <div class="footer-social">
+              <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+              <!-- Replaced: Twitter(X) Logo -->
+              <a href="https://twitter.com/"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+      </div>
+      <div class="footer-col-main">
+          <h4 class="h46">ML Fusion Labs</h4>
+          <a href="#">Business</a>
+          <a href="#">Franchise</a>
+          <a href="#">Network</a>
+      </div>
+      <div class="footer-col-main">
+          <h4 class="h46">About Us</h4>
+          <a href="http://127.0.0.1:3000/pages/about.html">About Us</a>
+          <a href="#">Security</a>
+      </div>
+      <div class="footer-col-main">
+          <h4 class="h46">Contact</h4>
+          <a href="http://127.0.0.1:3000/pages/contact.html">Contact Us</a>
+          <a href="info@mlfusionlabs.com">Email Us</a>
+          <a href="http://127.0.0.1:3000/pages/privacy.html">Privacy Policy</a>
+          <a href="http://127.0.0.1:3000/pages/terms.html">Terms & Conditions</a>
+      </div>
+    </div>
+    <div class="footer-bar"> 
+      &copy; 2024 ML Fusion Labs | All Rights Reserved
+    
+    </div>
+    <div id="loading-spinner" style="display: none;">
+        <img src="spinner.gif" alt="Loading...">
+    </div>
+    <script src="../script/script.js"></script>
+    <script>
+        // Show loading spinner
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector("#loading-spinner").style.display = "block";
+            } else {
+                document.querySelector("#loading-spinner").style.display = "none";
+            }
+        };
+
+        // When the user scrolls down 20px from the top, show the button
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            const backToTop = document.getElementById("backToTop");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        document.getElementById("backToTop").onclick = function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+        };
+    </script>
+     <!-- js for mouse cursor trail effect -->
+     <script>
+        const hamburger = document.getElementById('hamburger');
+  const navMenu = document.querySelector('header nav ul');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+        document.addEventListener("DOMContentLoaded", function () {
+     const coords = { x: 0, y: 0 };
+     const circles = document.querySelectorAll(".circle");
+   
+     circles.forEach(function (circle) {
+       circle.x = 0;
+       circle.y = 0;
+     });
+   
+     window.addEventListener("mousemove", function (e) {
+       coords.x = e.pageX;
+       coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+     });
+   
+     function animateCircles() {
+       let x = coords.x;
+       let y = coords.y;
+   
+       circles.forEach(function (circle, index) {
+         circle.style.left = `${x - 12}px`;
+         circle.style.top = `${y - 12}px`;
+         circle.style.transform = `scale(${(circles.length - index) / circles.length})`;
+   
+         const nextCircle = circles[index + 1] || circles[0];
+         circle.x = x;
+         circle.y = y;
+   
+         x += (nextCircle.x - x) * 0.3;
+         y += (nextCircle.y - y) * 0.3;
+       });
+   
+       requestAnimationFrame(animateCircles);
+     }
+   
+     animateCircles();
+   });
+     </script>
+     <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
+</body>
+</html>
