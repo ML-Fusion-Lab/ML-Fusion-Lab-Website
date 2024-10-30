@@ -38,6 +38,7 @@ h2 {
 }
 
 .modules {
+    padding-left: 10%;
     display: flex;
     flex-direction: column;
 }
