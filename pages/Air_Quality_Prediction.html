@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Air Quality Prediction</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    h3{
+        align-items: center;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    .crop-height-container {
+    padding: 0 20px;
+    margin: 0;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.crop-height-container h1 {
+    color: #333;
+    font-size: 40px;
+}
+
+.crop-height-container h2 {
+    color: #555;
+    font-size: 35px;
+}
+
+.parta{
+    align-items: center;
+}
+
+.crop-height-container pre {
+    background-color: #f4f4f4;
+    border-left: 3px solid #ddd;
+    padding: 10px;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.crop-height-container code {
+    color: #c7254e;
+    background-color: #f9f2f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.crop-height-container ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+/* .project-link{
+    color:red;
+} */
+
+/* .project-link:hover{
+    color: black;
+} */
+
+.crop-height-container li {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.crop-height-container p {
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+.outputimages{
+    display: flex;
+    height: 500px;
+    width: 620px;
+    margin-left: 90px;
+    justify-content: space-evenly;
+}
+
+/* Specific Python comment color */
+.crop-height-container pre code::before {
+    content: " ";
+    white-space: pre;
+}
+
+.crop-height-container pre code {
+    font-size: 16px;
+}
+
+/* Change comment color */
+.crop-height-container pre code span.comment {
+    color: #228B22; /* Green color for Python comments */
+}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="community_suport.html">Community Support</a></li>
+
+        <li><a href="feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+<div class="crop-height-container">
+        <h1 style="text-align: center; margin-top: 40px;">Air Quality Prediction Using Random Forest</h1>
+        <p><strong>Why it's Needed: </strong> Air quality prediction is crucial for public health, environmental monitoring, and urban planning. Poor air quality can lead to serious health issues, including respiratory diseases and cardiovascular problems. By predicting air quality, we can take proactive measures to reduce pollution and protect communities.</p>
+
+        <h2>DATASET:-  https://www.kaggle.com/rohanrao/air-quality-data-in-india</h2>
+
+        <a href="air_quality_code.html"><h2> ↠ View Complete Code of Project ↞ </h2></a>
+        <div class="output-air">
+            <p class="parta">Final Output Images:- </p>
+
+            <div class="outputimages">
+                <img src="../CourseAssets/13.png" alt="">
+                <img src="../CourseAssets/14.png" alt="">
+            </div>
+        </div>
+        <h2>Method Chosen: For Air quality prediction - Random Forest</h2>
+        <ol>
+            <li>A robust ensemble learning method that combines multiple decision trees.</li>
+            <li>. Random Forest is effective for regression tasks, handles non-linear relationships well, and is less prone to overfitting compared to individual decision trees.</li>
+            <li>This method is suitable for predicting air quality metrics based on various environmental factors.</li>
+        </ol>
+
+        <h2>Step 1: Importing Libraries</h2>
+        <pre><code>
+            import pandas as pd  # For data manipulation and analysis
+            import numpy as np   # For numerical computations
+            import matplotlib.pyplot as plt  # For data visualization
+            import seaborn as sns  # For advanced visualization
+            from sklearn.model_selection import train_test_split  # For splitting the dataset
+            from sklearn.ensemble import RandomForestRegressor  # For the Random Forest model
+            from sklearn.metrics import mean_squared_error, r2_score  # For model evaluation
+            
+        </code></pre>
+        <p><strong>Explanation:</strong></p>
+        <ul>
+            <li><strong>cv2 (OpenCV):</strong> A powerful library for computer vision tasks, such as image processing and contour detection.</li>
+            <li><strong>NumPy (np):</strong> Used for array operations and handling image data.</li>
+            <li><strong>Matplotlib (plt):</strong> A plotting library to visualize the images and results.</li>
+        </ul>
+
+        <h2>Step 2: Loading and Preprocessing the Image</h2>
+        <pre><code>
+            <pre><code>
+                <span class="comment"># Load the dataset</span>
+                data = pd.read_csv('/kaggle/input/air-quality-data-in-india/Air Quality Data.csv')
+                
+                <span class="comment"># Display the first few rows of the dataset</span>
+                data.head()
+                
+                <span class="comment"># Preprocessing</span>
+                
+                <span class="comment"># Handling missing values</span>
+                data.fillna(data.mean(), inplace=True)
+                
+                <span class="comment"># Converting categorical variables if necessary</span>
+                data['city'] = data['city'].astype('category').cat.codes
+                
+                <span class="comment"># Splitting the dataset into features and target variable</span>
+                X = data.drop(columns=['target_variable'])  # Replace 'target_variable' with actual target column name
+                y = data['target_variable']  # Replace 'target_variable' with actual target column name
+                
+                <span class="comment"># Splitting into training and testing sets</span>
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+                </code></pre>
+                
+        </code></pre>
+        <p><strong>Explanation:</strong></p>
+        <ul>
+            <li><strong>pd.read_csv:</strong> This function loads the dataset from the specified CSV file, allowing us to easily manipulate the data with pandas.</li>
+            <li><strong>data.fillna:</strong> This method fills missing values in the dataset with the mean of their respective columns, ensuring we have no NaN values that could disrupt model training.</li>
+            <li><strong>astype('category').cat.codes:</strong> Converts categorical variables into numerical codes, making them suitable for model input.</li>
+            <li><strong>X = data.drop(columns=['target_variable']):</strong> This line separates the features (input variables) from the target variable (what we want to predict). Replace 'target_variable' with the actual name of the column containing the air quality metric you want to predict.</li>
+            <li><strong>train_test_split:</strong> This function splits the data into training (80%) and testing (20%) sets, using a fixed random seed to ensure the split is reproducible.</li>
+        </ul>        
+
+        <h2>Step 3: Normalizing the Dataset</h2>
+        <p>Before training the Random Forest model, we need to normalize the features in our dataset. Normalization ensures that all input variables are on a similar scale, which can enhance the performance of the model by making the training process more efficient.</p>
+        
+        <pre><code>
+            <span class="comment"># Normalizing the dataset</span>
+            from sklearn.preprocessing import StandardScaler
+            
+            <span class="comment"># Initialize the scaler</span>
+            scaler = StandardScaler()
+            
+            <span class="comment"># Fit the scaler on the training data and transform both training and testing sets</span>
+            X_train_normalized = scaler.fit_transform(X_train)
+            X_test_normalized = scaler.transform(X_test)
+            </code></pre>
+            
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li><strong>StandardScaler():</strong> This class from the sklearn.preprocessing module standardizes features by removing the mean and scaling to unit variance. The resulting distribution of each feature will have a mean of 0 and a standard deviation of 1.</li>
+                <li><strong>scaler.fit_transform(X_train):</strong> This method fits the scaler to the training data and transforms it in one step. This is important because we want to use the parameters (mean and standard deviation) derived from the training data to normalize both the training and testing datasets.</li>
+                <li><strong>scaler.transform(X_test):</strong> This method transforms the testing dataset using the same parameters (mean and standard deviation) obtained from the training set. This ensures that the test data is scaled in the same way as the training data.</li>
+            </ul>
+            <p>With the dataset normalized, we are now ready to proceed to training the Random Forest model for air quality prediction.</p>
+            
+
+        <h2>Step 4: Counting the Number of Classes</h2>
+        <p>In this step, we will determine the number of unique classes in our target variable. Understanding the number of classes is crucial for evaluating the model's performance, especially in classification tasks. However, for air quality prediction, we may be dealing with a regression problem where the target variable is continuous. Still, it’s helpful to confirm the nature of the target variable</p>
+
+        <pre><code>
+            <span class="comment"># Counting the number of unique classes in the target variable</span>
+            num_classes = y.nunique()  <span class="comment"># Replace 'y' with the appropriate target variable if necessary</span>
+            
+            <span class="comment"># Print the number of unique classes</span>
+            print(f'Number of unique classes in the target variable: {num_classes}')
+            </code></pre>
+            
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li><strong>y.nunique():</strong> This function counts the number of unique values in the target variable y. If the target variable is categorical, this gives us the number of distinct classes. If it’s continuous (as is common in air quality prediction), it indicates how many unique values there are, which can help us understand the variability in our data.</li>
+                <li><strong>print():</strong> This function outputs the number of unique classes to the console, providing immediate feedback on the structure of our target variable.</li>
+            </ul>
+            <p>By counting the unique classes, we can better assess the complexity of the prediction task. If the target variable is continuous, we will be treating it as a regression problem rather than classification, which will guide our model evaluation metrics. Now that we have this information, we can proceed to build and train our Random Forest model.</p>
+            
+
+        <h2>Step 5: Building the Model</h2>
+        <pre><code>
+            <span class="comment"># Building the Random Forest model</span>
+            model = RandomForestRegressor(n_estimators=100, random_state=42)
+            
+            <span class="comment"># Training the model on the training data</span>
+            model.fit(X_train_normalized, y_train)
+            </code></pre>
+            
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li><strong>RandomForestRegressor(n_estimators=100, random_state=42):</strong>
+                    <ul>
+                        <li><strong>RandomForestRegressor:</strong> This is the class we use to create our model. The <code>n_estimators</code> parameter specifies the number of decision trees to be built in the forest. In this case, we are using 100 trees, which provides a good balance between performance and training time.</li>
+                        <li><strong>random_state=42:</strong> This ensures reproducibility by setting a fixed seed for random number generation. This means that if we run the code multiple times, we will obtain the same results.</li>
+                    </ul>
+                </li>
+                <li><strong>model.fit(X_train_normalized, y_train):</strong> This method trains the Random Forest model using the normalized training features (<code>X_train_normalized</code>) and the corresponding target values (<code>y_train</code>). The model learns the relationships between the input features and the target variable during this training phase.</li>
+            </ul>
+
+
+            <h2>Step 6: Compiling the Model</h2>
+            <p>In the context of a Random Forest model, "compiling" is a bit different compared to deep learning models. Instead of compiling, we typically evaluate the model directly after training. However, we can still prepare for evaluation and performance assessment.
+                Here's how to proceed with evaluating the model after it has been trained:
+                </p>
+    
+                <pre><code>
+                    <span class="comment"># Predicting the target variable using the test set</span>
+                    y_pred = model.predict(X_test_normalized)
+                    
+                    <span class="comment"># Evaluating the model's performance</span>
+                    mse = mean_squared_error(y_test, y_pred)
+                    r2 = r2_score(y_test, y_pred)
+                    
+                    <span class="comment"># Printing the evaluation metrics</span>
+                    print(f'Mean Squared Error: {mse}')
+                    print(f'R² Score: {r2}')
+                    </code></pre>
+                    
+                
+                    <p><strong>Explanation:</strong></p>
+                    <ul>
+                        <li><strong>model.predict(X_test_normalized):</strong> This method generates predictions for the test dataset using the trained Random Forest model. The input is the normalized test features (<code>X_test_normalized</code>).</li>
+                        <li><strong>mean_squared_error(y_test, y_pred):</strong> This function calculates the Mean Squared Error (MSE) between the actual target values (<code>y_test</code>) and the predicted values (<code>y_pred</code>). MSE is a common metric for regression tasks that quantifies the average squared difference between predicted and actual values.</li>
+                        <li><strong>r2_score(y_test, y_pred):</strong> This function calculates the R² score, which indicates the proportion of variance in the dependent variable that can be explained by the independent variables. An R² score closer to 1 indicates a better fit.</li>
+                        <li><strong>print():</strong> Outputs the MSE and R² score to the console, providing an assessment of the model's performance.</li>
+                    </ul>
+                    <p>While traditional models like Random Forest don't require a compile step like neural networks, evaluating performance is crucial for understanding how well the model generalizes to unseen data. With these evaluations, we can determine if our model is performing satisfactorily or if further tuning is needed.</p>
+
+
+
+        <h2>Step 7: Training the Model</h2>
+        <pre><code>
+            <span class="comment"># Training the Random Forest model with Out-of-Bag estimation</span>
+            model = RandomForestRegressor(n_estimators=100, random_state=42, oob_score=True)
+            
+            <span class="comment"># Fit the model to the training data</span>
+            model.fit(X_train_normalized, y_train)
+            
+            <span class="comment"># Print the Out-of-Bag score as a performance metric</span>
+            print(f'Out-of-Bag score: {model.oob_score_}')
+        </code></pre>
+            
+            
+                <p><strong>Explanation:</strong></p>
+        <ul>
+            <li><strong>Out-of-Bag (OOB) estimation:</strong> This is a technique used in Random Forests to provide a validation score without needing a separate validation dataset. During training, for each tree, only a subset of the data is used, leaving some data points unused. These unused data points can then be used to evaluate the model's performance.</li>
+            <li><strong>n_estimators=100:</strong> Specifies the number of decision trees in the forest, which contributes to the ensemble's overall accuracy.</li>
+            <li><strong>random_state=42:</strong> Ensures reproducibility by setting a seed for random number generation.</li>
+            <li><strong>oob_score=True:</strong> This parameter enables the computation of the OOB score, allowing us to assess model performance based on the data that was not used during training.</li>
+            <li><strong>model.fit(X_train_normalized, y_train):</strong> This method trains the Random Forest model using the normalized training features and target values.</li>
+            <li><strong>print(f'Out-of-Bag score: {model.oob_score_}'): </strong>Outputs the OOB score, which indicates how well the model is expected to perform on unseen data.</li>
+        </ul>
+        <p>By utilizing OOB estimation, we can effectively monitor the model’s performance during training without the risk of overfitting. This allows us to make informed decisions about further tuning or adjustments needed for the model.</p>
+
+        <h2>Step 8  : Plotting Training and Validation Accuracy</h2>
+
+        <pre><code>
+            <span class="comment">import matplotlib.pyplot as plt</span>
+            
+            <span class="comment"># Assuming cv_scores has been calculated as shown in the previous step</span>
+            
+            <span class="comment"># Plotting Cross-Validation MSE scores</span>
+            plt.figure(figsize=(10, 5))
+            plt.plot(cv_scores, marker='o', linestyle='-', color='b', label='Cross-Validation MSE')
+            plt.axhline(y=cv_scores.mean(), color='r', linestyle='--', label='Average MSE')
+            plt.title('Cross-Validation Mean Squared Error')
+            plt.xlabel('Fold')
+            plt.ylabel('Mean Squared Error')
+            plt.xticks(range(len(cv_scores)), [f'Fold {i+1}' for i in range(len(cv_scores))])
+            plt.legend()
+            plt.grid()
+            plt.show()
+            
+            <span class="comment"># Display the Out-of-Bag score</span>
+            print(f'Out-of-Bag score: {model.oob_score_}')
+        </code></pre>
+         
+        <p><strong>Explanation:</strong></p>
+        <ul>
+            <li><strong>plt.figure():</strong> Creates a new figure for plotting, with a specified size.</li>
+            <li><strong>plt.plot():</strong> Plots the MSE for each fold of cross-validation. The <code>marker='o'</code> adds circular markers to each data point.</li>
+            <li><strong>plt.axhline():</strong> Draws a horizontal line representing the average MSE across all folds, providing a reference point.</li>
+            <li><strong>plt.title(), plt.xlabel(), plt.ylabel():</strong> Set the title and labels for the axes.</li>
+            <li><strong>plt.xticks():</strong> Customizes the x-axis ticks to label each fold.</li>
+            <li><strong>plt.legend():</strong> Displays a legend to identify the plotted lines.</li>
+            <li><strong>plt.grid():</strong> Adds a grid for better readability of the plot.</li>
+            <li><strong>plt.show():</strong> Renders the plot.</li>
+            <li><strong>print(f'Out-of-Bag score: {model.oob_score_}):</strong> Outputs the OOB score for reference.</li>
+        </ul>
+        <p>This visualization helps in understanding how the model performs across different subsets of the training data and gives insight into its generalization capability.</p>
+
+        <h2>Conclusion:- </h2>
+        <p>In this project, we successfully built a Random Forest model for predicting air quality using a dataset from Kaggle. Here’s a summary of the key steps and findings:</p>
+        <ol>
+            <li><strong>Data Preparation:</strong> We loaded the dataset, handled missing values, and normalized the feature set to improve model performance.</li>
+            <li><strong>Model Selection:</strong> We chose the Random Forest algorithm due to its robustness against overfitting and its ability to handle both categorical and continuous variables.</li>
+            <li><strong>Model Training:</strong> The model was trained using the training dataset, employing Out-of-Bag (OOB) estimation for validation. This method provided a reliable performance metric without needing a separate validation set.</li>
+            <li><strong>Performance Evaluation:</strong> We evaluated the model's performance using cross-validation, which allowed us to assess its generalization ability across different data subsets. The Mean Squared Error (MSE) and the OOB score provided insights into the model's accuracy.</li>
+            <li><strong>Visualization:</strong> We plotted the cross-validation results, showcasing the MSE for each fold and highlighting the average performance.</li>
+        </ol>
+        <p>Overall, the Random Forest model demonstrated effective predictive capabilities for air quality metrics. The use of OOB estimation and cross-validation helped ensure the model is not overfitting and provides a good balance between bias and variance.</p>
+        <p>Future improvements could involve feature engineering, exploring other algorithms, or fine-tuning hyperparameters for enhanced performance. Additionally, incorporating more environmental factors could lead to more accurate predictions. This project lays a strong foundation for further exploration in air quality prediction and machine learning applications.</p>
+
+                    
+    
+
+
+    
+    </div>
+</div>
+</div>
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      Follow us on:
+      <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+      <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+      <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+    </div>
+    <div class="footer-contact">
+      <p>
+        Contact us:
+        <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+        | Phone: +1 (555) 123-4567
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms of Service</a> |
+      <a href="about.html">About Us</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="contributor.html">Contributor</a>
+    </div>
+    <p>&copy; <span id="year"></span> ML Fusion Labs | All Rights Reserved</p>
+  </div>
+  <button id="scrollTopBtn" onclick="scrollToTop()">
+    <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+</footer>
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+
+    circles.forEach(function (circle) {
+      circle.x = 0;
+      circle.y = 0;
+    });
+
+    window.addEventListener("mousemove", function (e) {
+      coords.x = e.pageX;
+      coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+    });
+
+    function animateCircles() {
+      let x = coords.x;
+      let y = coords.y;
+
+      circles.forEach(function (circle, index) {
+        circle.style.left = `${x - 12}px`;
+        circle.style.top = `${y - 12}px`;
+        circle.style.transform = `scale(${(circles.length - index) / circles.length
+          })`;
+
+        const nextCircle = circles[index + 1] || circles[0];
+        circle.x = x;
+        circle.y = y;
+
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+      });
+
+      requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+  });
+</script>
+<!-- Botpress Chat Scripts -->
+<script>
+  window.embeddedChatbotConfig = {
+  chatbotId: "rKhBc1qcW7yrIovRvB5c4",
+  domain: "www.chatbase.co"
+  }
+  </script>
+  <script
+  src="https://www.chatbase.co/embed.min.js"
+  chatbotId="rKhBc1qcW7yrIovRvB5c4"
+  domain="www.chatbase.co"
+  defer>
+  </script>
+<script>
+  // Get the current year
+  const currentYear = new Date().getFullYear();
+  
+  // Update the HTML content
+  document.getElementById("current-year").textContent = currentYear;
+</script>
+</body>
+
+</html>

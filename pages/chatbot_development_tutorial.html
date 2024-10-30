@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot Development for Customer Support</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style\scroll.css" />
+</head>
+<style>
+  
+.chatbot-container {
+    padding: 0 20px;
+    margin: 0;
+    max-width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.chatbot-container h1 {
+    color: #333;
+    font-size: 40px;
+}
+
+.chatbot-container h2 {
+    color: #555;
+    font-size: 35px;
+}
+
+.chatbot-container pre {
+    background-color: #f4f4f4;
+    border-left: 3px solid #ddd;
+    padding: 10px;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.chatbot-container code {
+    color: #c7254e;
+    background-color: #f9f2f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.chatbot-container ul {
+    list-style-type: disc;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.chatbot-container li {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.chatbot-container p {
+    line-height: 1.6;
+    font-size: 20px;
+}
+
+.chatbot-container pre code::before {
+    content: " ";
+    white-space: pre;
+}
+
+.chatbot-container pre code {
+    font-size: 16px;
+}
+
+.chatbot-container pre code span.comment {
+    color: #228B22; /* Green color for Python comments */
+}
+</style>
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="community_suport.html">Community Support</a></li>
+
+        <li><a href="feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+<body>
+    <div class="chatbot-container">
+        <h1 style="text-align: center; margin-top: 40px;">Chatbot Development for Customer Support</h1>
+        <p>In this tutorial, we will build a customer support chatbot using Natural Language Processing (NLP) techniques. This chatbot can handle frequently asked questions, guide users through support queries, and escalate issues to human agents if necessary.</p>
+
+        <h2>Prerequisites</h2>
+        <ul>
+            <li>Basic Python programming knowledge.</li>
+            <li>Familiarity with Natural Language Processing (NLP).</li>
+            <li>Python environment (3.7+).</li>
+            <li>Required libraries installed: nltk, spaCy, rasa, ChatterBot, Flask.</li>
+        </ul>
+
+        <h2>Step 1: Understanding Chatbots in Customer Support</h2>
+        <p>Chatbots are classified into:</p>
+        <ul>
+            <li><strong>Rule-based Chatbots:</strong> Follow predefined rules.</li>
+            <li><strong>AI-driven Chatbots:</strong> Use machine learning for NLP to generate responses.</li>
+        </ul>
+        <p>We’ll build a chatbot that combines both rule-based logic and AI-driven responses.</p>
+
+        <h2>Step 2: Setting up Your Development Environment</h2>
+        <pre><code>
+<span class="comment"> # Install libraries</span>
+pip install nltk spacy rasa chatterbot flask
+
+<span class="comment"># Set up a virtual environment</span>
+python -m venv chatbot_env
+source chatbot_env/bin/activate
+        </code></pre>
+
+        <h2>Step 3: Designing the Conversation Flow</h2>
+        <p>Common customer queries include:</p>
+        <ul>
+            <li>FAQ Handling: "What are your hours?"</li>
+            <li>Order Status: "Where is my order?"</li>
+            <li>Escalation: "Can I speak to a representative?"</li>
+        </ul>
+
+        <h2>Step 4: Implementing Natural Language Processing (NLP)</h2>
+        <pre><code>
+import spacy
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("Where is my order?")
+for token in doc:
+    print(token.text, token.pos_)
+        </code></pre>
+
+        <h2>Step 5: Developing the Chatbot</h2>
+        <pre><code>
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
+
+chatbot = ChatBot('CustomerSupportBot')
+trainer = ListTrainer(chatbot)
+
+conversation = [
+    "Hello", "Hi there!",
+    "What is your name?", "I am a customer support chatbot."
+]
+
+trainer.train(conversation)
+response = chatbot.get_response("Hello")
+print(response)
+        </code></pre>
+
+        <h2>Step 6: Testing the Chatbot</h2>
+        <pre><code>
+<span class="comment"># Test chatbot with various inputs</span>
+response = chatbot.get_response("Where is my order?")
+print(response)
+        </code></pre>
+
+        <h2>Step 7: Deploying the Chatbot</h2>
+        <pre><code>
+from flask import Flask, request, jsonify
+app = Flask(__name__)
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.json.get("message")
+    bot_response = chatbot.get_response(user_message)
+    return jsonify({"response": str(bot_response)})
+
+if __name__ == "__main__":
+    app.run()
+        </code></pre>
+
+        <h2>Step 8: Adding Escalation Features</h2>
+        <pre><code>
+def escalate_to_agent(user_input):
+    if "speak to a representative" in user_input.lower():
+        return "Sure, I'll connect you to a representative."
+        </code></pre>
+
+        <h2>Conclusion</h2>
+        <p>In this tutorial, you learned how to build a simple chatbot for customer support using rule-based logic and NLP. You also integrated escalation features for complex issues.</p>
+        <p>Next steps:</p>
+        <ul>
+            <li>Integrate the chatbot with messaging platforms like WhatsApp or Slack.</li>
+            <li>Use advanced NLP models like GPT for better accuracy.</li>
+        </ul>
+    </div>
+</body>
+<footer>
+  <div class="container">
+    <div class="footer-socials">
+      Follow us on:
+      <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+      <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+      <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+    </div>
+    <div class="footer-contact">
+      <p>
+        Contact us:
+        <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+        | Phone: +1 (555) 123-4567
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms of Service</a> |
+      <a href="about.html">About Us</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="contributor.html">Contributor</a>
+    </div>
+    <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+  </div>
+  <button id="scrollTopBtn" onclick="scrollToTop()">
+    <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+</footer>
+<script>
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const coords = { x: 0, y: 0 };
+    const circles = document.querySelectorAll(".circle");
+
+    circles.forEach(function (circle) {
+      circle.x = 0;
+      circle.y = 0;
+    });
+
+    window.addEventListener("mousemove", function (e) {
+      coords.x = e.pageX;
+      coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+    });
+
+    function animateCircles() {
+      let x = coords.x;
+      let y = coords.y;
+
+      circles.forEach(function (circle, index) {
+        circle.style.left = `${x - 12}px`;
+        circle.style.top = `${y - 12}px`;
+        circle.style.transform = `scale(${(circles.length - index) / circles.length
+          })`;
+
+        const nextCircle = circles[index + 1] || circles[0];
+        circle.x = x;
+        circle.y = y;
+
+        x += (nextCircle.x - x) * 0.3;
+        y += (nextCircle.y - y) * 0.3;
+      });
+
+      requestAnimationFrame(animateCircles);
+    }
+
+    animateCircles();
+  });
+</script>
+<!-- Botpress Chat Scripts -->
+<script>
+  window.embeddedChatbotConfig = {
+  chatbotId: "rKhBc1qcW7yrIovRvB5c4",
+  domain: "www.chatbase.co"
+  }
+  </script>
+  <script
+  src="https://www.chatbase.co/embed.min.js"
+  chatbotId="rKhBc1qcW7yrIovRvB5c4"
+  domain="www.chatbase.co"
+  defer>
+  </script>
+</body>
+
+</html>

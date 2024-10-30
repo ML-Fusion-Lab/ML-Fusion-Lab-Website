@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paddy Disease Classification Using CNN</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml fusion lab log.jpg" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+    <section id="decision-tree-tutorial-using-the-iris-flower-dataset"
+class="cell markdown">
+<h1 style="text-align: center;">Decision Tree Tutorial Using the Iris Flower Dataset</h1>
+</section>
+<div class="cell markdown">
+<p>In this tutorial, we will explore how to create a Decision Tree
+classifier using the popular Iris Flower dataset. The Iris dataset is
+widely used for machine learning classification tasks due to its
+simplicity and well-defined features. It consists of 150 samples of iris
+flowers, each characterized by four features: sepal length, sepal width,
+petal length, and petal width. The goal of our classification task is to
+predict the species of iris based on these features.</p>
+<h3 id="what-is-a-decision-tree">What is a Decision Tree?</h3>
+<p>A Decision Tree is a flowchart-like tree structure where each
+internal node represents a decision based on a feature, each branch
+represents the outcome of that decision, and each leaf node represents a
+class label. Decision Trees are popular for their interpretability and
+ease of use, making them a great starting point for classification
+tasks.</p>
+<h3 id="objectives-of-this-tutorial">Objectives of This Tutorial</h3>
+<ul>
+<li>Understand the Iris dataset and its features.</li>
+<li>Preprocess the data for modeling.</li>
+<li>Create and train a Decision Tree classifier.</li>
+<li>Evaluate the model's performance.</li>
+<li>Visualize the Decision Tree.</li>
+</ul>
+</div>
+<section id="step-1-importing-required-libraries" class="cell markdown">
+<h2>Step 1: Importing Required Libraries</h2>
+<p>To start our Decision Tree tutorial, we need to ensure that the
+correct Python version and required libraries are available for our
+implementation.</p>
+</section>
+<div class="cell code">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python ≥3.5 is required</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> sys.version_info <span class="op">&gt;=</span> (<span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Scikit-Learn ≥0.20 is required</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> sklearn.__version__ <span class="op">&gt;=</span> <span class="st">&quot;0.20&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Common imports</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># to make this notebook&#39;s output stable across runs</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># To plot pretty figures</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>Version Check:
+<ul>
+<li><code>assert sys.version_info &gt;= (3, 5)</code>: This line checks
+if the Python version is 3.5 or higher, which is necessary for
+compatibility with the libraries we will use.</li>
+<li><code>assert sklearn.__version__ &gt;= "0.20"</code>: This ensures
+that the installed version of Scikit-Learn is 0.20 or higher, as earlier
+versions may not support some of the features we will be using.</li>
+</ul></li>
+<li>Common Imports:
+<ul>
+<li><code>import numpy as np</code>: Imports NumPy, a library for
+numerical computing in Python, which will be used for array manipulation
+and mathematical functions.</li>
+<li><code>import os</code>: Imports the OS module to interact with the
+operating system, which may be useful for file handling.</li>
+</ul></li>
+<li>Random Seed:
+<ul>
+<li><code>np.random.seed(42)</code>: Sets a seed for NumPy's random
+number generator to ensure reproducibility of results across multiple
+runs of the notebook.</li>
+</ul></li>
+<li>Matplotlib for Plotting:
+<ul>
+<li><code>%matplotlib inline</code>: This magic command allows for the
+display of Matplotlib plots directly in the notebook.</li>
+<li><code>import matplotlib as mpl and import matplotlib.pyplot as plt</code>:
+Imports the Matplotlib library, specifically the pyplot module, which
+provides a convenient interface for creating static, animated, and
+interactive visualizations in Python.</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-2-configuring-matplotlib-and-setting-up-image-saving"
+class="cell markdown">
+<h2>Step 2: Configuring Matplotlib and Setting Up Image Saving</h2>
+<p>In this step, we configure the Matplotlib settings for plot
+aesthetics and establish a directory for saving the figures generated
+during the tutorial.</p>
+</section>
+<div class="cell code" data-execution_count="1">
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mpl.rc(<span class="st">&#39;axes&#39;</span>, labelsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mpl.rc(<span class="st">&#39;xtick&#39;</span>, labelsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mpl.rc(<span class="st">&#39;ytick&#39;</span>, labelsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Where to save the figures</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>PROJECT_ROOT_DIR <span class="op">=</span> <span class="st">&quot;.&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>CHAPTER_ID <span class="op">=</span> <span class="st">&quot;decision_trees&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>IMAGES_PATH <span class="op">=</span> os.path.join(PROJECT_ROOT_DIR, <span class="st">&quot;images&quot;</span>, CHAPTER_ID)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>os.makedirs(IMAGES_PATH, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> save_fig(fig_id, tight_layout<span class="op">=</span><span class="va">True</span>, fig_extension<span class="op">=</span><span class="st">&quot;png&quot;</span>, resolution<span class="op">=</span><span class="dv">300</span>):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> os.path.join(IMAGES_PATH, fig_id <span class="op">+</span> <span class="st">&quot;.&quot;</span> <span class="op">+</span> fig_extension)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Saving figure&quot;</span>, fig_id)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> tight_layout:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        plt.tight_layout()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    plt.savefig(path, <span class="bu">format</span><span class="op">=</span>fig_extension, dpi<span class="op">=</span>resolution)</span></code></pre></div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>Matplotlib Configuration:
+<ul>
+<li><code>mpl.rc('axes', labelsize=14), mpl.rc('xtick', labelsize=12), mpl.rc('ytick', labelsize=12)</code>:
+These lines set the font sizes for the axes labels and tick labels in
+the plots, improving readability.</li>
+</ul></li>
+<li>Setting Up Image Saving Directory:
+<ul>
+<li><code>PROJECT_ROOT_DIR = "."</code>: Defines the root directory of
+the project. The . refers to the current directory.</li>
+<li><code>CHAPTER_ID = "decision_trees"</code>: Sets the chapter
+identifier, which helps organize files related to this specific
+tutorial.</li>
+<li><code>IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", CHAPTER_ID)</code>:
+Constructs the path where the images will be saved.</li>
+<li><code>os.makedirs(IMAGES_PATH, exist_ok=True)</code>: Creates the
+directory for saving images if it does not already exist, preventing
+errors from attempting to create an existing directory.</li>
+</ul></li>
+<li>Save Figure Function:
+<ul>
+<li><code>def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=300):</code>:
+Defines a function to save figures with customizable options for layout,
+file extension, and resolution.</li>
+<li><code>plt.tight_layout()</code>: Adjusts the layout of the plot to
+minimize overlap between elements, making it visually appealing.</li>
+<li><code>plt.savefig(path, format=fig_extension, dpi=resolution)</code>:
+Saves the figure to the specified path with the chosen format and
+resolution.</li>
+</ul></li>
+</ul>
+</section>
+<section
+id="step-3-loading-the-iris-dataset-and-training-the-decision-tree-classifier"
+class="cell markdown">
+<h2>Step 3: Loading the Iris Dataset and Training the Decision Tree
+Classifier</h2>
+<p>In this step, we will load the Iris dataset and train a Decision Tree
+classifier using the petal length and width features.</p>
+</section>
+<div class="cell code" data-execution_count="2">
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data[:, <span class="dv">2</span>:] <span class="co"># petal length and width</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>tree_clf <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>tree_clf.fit(X, y)</span></code></pre></div>
+<div class="output execute_result" data-execution_count="2">
+<pre><code>DecisionTreeClassifier(max_depth=2, random_state=42)</code></pre>
+</div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>Loading the Iris Dataset:
+<ul>
+<li><code>from sklearn.datasets import load_iris</code>: Imports the
+function to load the Iris dataset, which is a well-known dataset for
+classification tasks.</li>
+<li><code>iris = load_iris()</code>: Loads the Iris dataset into the
+variable iris.</li>
+<li><code>X = iris.data[:, 2:]</code>: Selects the features for our
+model. Here, we are using the petal length and width (the last two
+columns of the dataset).</li>
+<li><code>y = iris.target</code>: Extracts the target labels (species of
+Iris) from the dataset.</li>
+</ul></li>
+<li>Training the Decision Tree Classifier:
+<ul>
+<li><code>from sklearn.tree import DecisionTreeClassifier</code>:
+Imports the Decision Tree classifier from Scikit-Learn.</li>
+<li><code>tree_clf = DecisionTreeClassifier(max_depth=2, random_state=42)</code>:
+Creates an instance of the DecisionTreeClassifier with a maximum depth
+of 2 to prevent overfitting and ensures reproducibility by setting a
+random seed.</li>
+<li><code>tree_clf.fit(X, y)</code>: Fits the Decision Tree model to the
+features X and target y, training the model to learn the relationship
+between the input features and the target labels.</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-4-visualizing-the-decision-tree"
+class="cell markdown">
+<h2>Step 4: Visualizing the Decision Tree</h2>
+<p>In this step, we will export the trained Decision Tree model to a DOT
+file format and visualize it using Graphviz.</p>
+</section>
+<div class="cell code" data-execution_count="3">
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> graphviz <span class="im">import</span> Source</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> export_graphviz</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>export_graphviz(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        tree_clf,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        out_file<span class="op">=</span>os.path.join(IMAGES_PATH, <span class="st">&quot;iris_tree.dot&quot;</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        feature_names<span class="op">=</span>iris.feature_names[<span class="dv">2</span>:],</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        class_names<span class="op">=</span>iris.target_names,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        rounded<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        filled<span class="op">=</span><span class="va">True</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Source.from_file(os.path.join(IMAGES_PATH, <span class="st">&quot;iris_tree.dot&quot;</span>))</span></code></pre></div>
+<div class="output execute_result" data-execution_count="3">
+<p><img
+src="../Assets/projectpics/decision_graph.png" /></p>
+</div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>Exporting the Decision Tree:
+<ul>
+<li><code>from graphviz import Source</code>: Imports the Source class
+from the Graphviz library, which is used for visualizing the graph.</li>
+<li><code>from sklearn.tree import export_graphviz</code>: Imports the
+function to export the Decision Tree in DOT format.</li>
+<li><code>export_graphviz(...)</code>: This function exports the
+structure of the trained Decision Tree to a .dot file.</li>
+<li><code>tree_clf</code>: The trained Decision Tree classifier that we
+want to visualize.</li>
+<li><code>out_file=os.path.join(IMAGES_PATH, "iris_tree.dot")</code>:
+Specifies the output file path where the DOT file will be saved.</li>
+<li><code>feature_names=iris.feature_names[2:]</code>: Provides the
+names of the features used in the model (petal length and width).</li>
+<li><code>class_names=iris.target_names</code>: Specifies the names of
+the classes (species of Iris) to be displayed in the visualization.</li>
+<li><code>rounded=True</code>: Makes the nodes of the tree rounded in
+the visualization for better aesthetics.</li>
+<li><code>filled=True</code>: Fills the nodes with co`lors based on the
+predicted classes, enhancing visual clarity.</li>
+</ul></li>
+<li>Visualizing the Tree:
+<ul>
+<li><code>Source.from_file(os.path.join(IMAGES_PATH, "iris_tree.dot"))</code>:
+Reads the DOT file and visualizes the Decision Tree structure within the
+notebook.</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-5-plotting-the-decision-boundaries"
+class="cell markdown">
+<h2>Step 5: Plotting the Decision Boundaries</h2>
+<p>In this step, we will visualize the decision boundaries created by
+the trained Decision Tree classifier for the Iris dataset.</p>
+</section>
+<div class="cell code" data-execution_count="4">
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.colors <span class="im">import</span> ListedColormap</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_decision_boundary(clf, X, y, axes<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">7.5</span>, <span class="dv">0</span>, <span class="dv">3</span>], iris<span class="op">=</span><span class="va">True</span>, legend<span class="op">=</span><span class="va">False</span>, plot_training<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    x1s <span class="op">=</span> np.linspace(axes[<span class="dv">0</span>], axes[<span class="dv">1</span>], <span class="dv">100</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    x2s <span class="op">=</span> np.linspace(axes[<span class="dv">2</span>], axes[<span class="dv">3</span>], <span class="dv">100</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    x1, x2 <span class="op">=</span> np.meshgrid(x1s, x2s)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    X_new <span class="op">=</span> np.c_[x1.ravel(), x2.ravel()]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    y_pred <span class="op">=</span> clf.predict(X_new).reshape(x1.shape)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    custom_cmap <span class="op">=</span> ListedColormap([<span class="st">&#39;#fafab0&#39;</span>,<span class="st">&#39;#9898ff&#39;</span>,<span class="st">&#39;#a0faa0&#39;</span>])</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    plt.contourf(x1, x2, y_pred, alpha<span class="op">=</span><span class="fl">0.3</span>, cmap<span class="op">=</span>custom_cmap)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> iris:</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        custom_cmap2 <span class="op">=</span> ListedColormap([<span class="st">&#39;#7d7d58&#39;</span>,<span class="st">&#39;#4c4c7f&#39;</span>,<span class="st">&#39;#507d50&#39;</span>])</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        plt.contour(x1, x2, y_pred, cmap<span class="op">=</span>custom_cmap2, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> plot_training:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        plt.plot(X[:, <span class="dv">0</span>][y<span class="op">==</span><span class="dv">0</span>], X[:, <span class="dv">1</span>][y<span class="op">==</span><span class="dv">0</span>], <span class="st">&quot;yo&quot;</span>, label<span class="op">=</span><span class="st">&quot;Iris setosa&quot;</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        plt.plot(X[:, <span class="dv">0</span>][y<span class="op">==</span><span class="dv">1</span>], X[:, <span class="dv">1</span>][y<span class="op">==</span><span class="dv">1</span>], <span class="st">&quot;bs&quot;</span>, label<span class="op">=</span><span class="st">&quot;Iris versicolor&quot;</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        plt.plot(X[:, <span class="dv">0</span>][y<span class="op">==</span><span class="dv">2</span>], X[:, <span class="dv">1</span>][y<span class="op">==</span><span class="dv">2</span>], <span class="st">&quot;g^&quot;</span>, label<span class="op">=</span><span class="st">&quot;Iris virginica&quot;</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        plt.axis(axes)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> iris:</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">&quot;Petal length&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">&quot;Petal width&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="vs">r&quot;$x_1$&quot;</span>, fontsize<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="vs">r&quot;$x_2$&quot;</span>, fontsize<span class="op">=</span><span class="dv">18</span>, rotation<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> legend:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        plt.legend(loc<span class="op">=</span><span class="st">&quot;lower right&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>plot_decision_boundary(tree_clf, X, y)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="fl">2.45</span>, <span class="fl">2.45</span>], [<span class="dv">0</span>, <span class="dv">3</span>], <span class="st">&quot;k-&quot;</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="fl">2.45</span>, <span class="fl">7.5</span>], [<span class="fl">1.75</span>, <span class="fl">1.75</span>], <span class="st">&quot;k--&quot;</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="fl">4.95</span>, <span class="fl">4.95</span>], [<span class="dv">0</span>, <span class="fl">1.75</span>], <span class="st">&quot;k:&quot;</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="fl">4.85</span>, <span class="fl">4.85</span>], [<span class="fl">1.75</span>, <span class="dv">3</span>], <span class="st">&quot;k:&quot;</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">1.40</span>, <span class="fl">1.0</span>, <span class="st">&quot;Depth=0&quot;</span>, fontsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">3.2</span>, <span class="fl">1.80</span>, <span class="st">&quot;Depth=1&quot;</span>, fontsize<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>plt.text(<span class="fl">4.05</span>, <span class="fl">0.5</span>, <span class="st">&quot;(Depth=2)&quot;</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>save_fig(<span class="st">&quot;decision_tree_decision_boundaries_plot&quot;</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Saving figure decision_tree_decision_boundaries_plot
+</code></pre>
+</div>
+<div class="output display_data">
+<p><img
+src="../Assets/projectpics/decision_tree.svg" /></p>
+</div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>Importing Libraries:
+<ul>
+<li><code>from matplotlib.colors import ListedColormap</code>: Imports
+the ListedColormap class to create custom color maps for
+visualizations.</li>
+<li><code>Defining the plot_decision_boundary Function</code>: This
+function takes a classifier, features, target labels, axes limits, and
+optional parameters to visualize the decision boundary of the
+classifier.</li>
+</ul></li>
+<li>Creating a Mesh Grid:
+<ul>
+<li><code>x1s and x2s</code>: Creates linear space for the two feature
+dimensions (petal length and width).</li>
+<li><code>X_new</code>: Combines the mesh grid points into a 2D array
+for predictions.</li>
+</ul></li>
+<li>Predicting Class Labels:
+<ul>
+<li><code>y_pred = clf.predict(X_new).reshape(x1.shape)</code>: Uses the
+classifier to predict class labels for all points in the mesh grid.</li>
+</ul></li>
+<li>Plotting the Decision Boundary:
+<ul>
+<li><code>plt.contourf(...)</code>: Creates filled contour plots
+representing the decision regions.</li>
+</ul></li>
+<li>Plotting Training Points:
+<ul>
+<li>The function plots the actual training points with different markers
+and colors based on their class labels.</li>
+</ul></li>
+<li>Visualizing the Decision Boundaries:
+<ul>
+<li><code>plt.figure(figsize=(8, 4))</code>: Sets the size of the
+figure.</li>
+<li><code>plot_decision_boundary(tree_clf, X, y)</code>: Calls the
+function to plot the decision boundary using the trained Decision
+Tree.</li>
+</ul></li>
+<li>Plotting Additional Lines and Text:
+<ul>
+<li>Plots vertical and horizontal lines to indicate the decision
+thresholds at various depths.</li>
+<li>Uses plt.text(...) to annotate the decision boundary with the
+corresponding tree depth.</li>
+</ul></li>
+<li>Saving and Displaying the Plot:
+<ul>
+<li><code>save_fig("decision_tree_decision_boundaries_plot")</code>:
+Saves the plot to the specified path.</li>
+<li><code>plt.show()</code>: Displays the final plot of decision
+boundaries and training points.</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-6-predicting-class-probabilities"
+class="cell markdown">
+<h2>Step 6: Predicting Class Probabilities</h2>
+<p>In this step, we will use the trained Decision Tree classifier to
+predict the class probabilities for a specific instance of iris flower
+with given petal length and width.</p>
+</section>
+<div class="cell code" data-execution_count="5">
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tree_clf.predict_proba([[<span class="dv">5</span>, <span class="fl">1.5</span>]])</span></code></pre></div>
+<div class="output execute_result" data-execution_count="5">
+<pre><code>array([[0.        , 0.90740741, 0.09259259]])</code></pre>
+</div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>tree_clf.predict_proba([[5, 1.5]]):
+<ul>
+<li>This function call predicts the class probabilities for the input
+features [[5, 1.5]], where 5 represents the petal length and 1.5
+represents the petal width of an iris flower.</li>
+<li>The output will be an array of probabilities corresponding to each
+class (species of iris). Each probability indicates the likelihood of
+the instance belonging to that particular class based on the trained
+Decision Tree model.</li>
+<li>This is useful for understanding the confidence of the model in its
+predictions, as it provides probabilities for all possible classes
+rather than just the most likely class.</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-7-making-class-predictions" class="cell markdown">
+<h2>Step 7: Making Class Predictions</h2>
+<p>In this step, we will use the trained Decision Tree classifier to
+predict the class label for a specific instance of iris flower based on
+its petal length and width.</p>
+</section>
+<div class="cell code" data-execution_count="6">
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tree_clf.predict([[<span class="dv">5</span>, <span class="fl">1.5</span>]])</span></code></pre></div>
+<div class="output execute_result" data-execution_count="6">
+<pre><code>array([1])</code></pre>
+</div>
+</div>
+<section id="explanation" class="cell markdown">
+<h3>Explanation:</h3>
+<ul>
+<li>tree_clf.predict([[5, 1.5]]):
+<ul>
+<li>This function call predicts the class label for the input features
+[[5, 1.5]], where 5 represents the petal length and 1.5 represents the
+petal width of an iris flower.</li>
+<li>The output will be an array containing the predicted class index (0,
+1, or 2), which corresponds to the three species of iris in the dataset:
+Iris setosa, Iris versicolor, and Iris virginica.</li>
+<li>This prediction is made by traversing the decision tree based on the
+provided input features and determining the class label based on the
+conditions defined in the tree.</li>
+</ul></li>
+</ul>
+</section>
+<section id="conclusion" class="cell markdown">
+<h2>Conclusion</h2>
+<p>In this tutorial, we successfully built a Decision Tree classifier to
+predict the species of iris flowers based on their petal length and
+width. We walked through the essential steps, including data loading,
+model training, and visualizing the decision boundaries.</p>
+<h3 id="key-takeaways">Key Takeaways:</h3>
+<ul>
+<li><strong>Model Training</strong>: We utilized the
+<code>DecisionTreeClassifier</code> from Scikit-Learn to train our model
+on the Iris dataset, which is a well-known benchmark in machine
+learning.</li>
+<li><strong>Visualization</strong>: The use of <code>Graphviz</code>
+enabled us to visualize the structure of the decision tree, providing
+insights into how the model makes decisions based on the features.</li>
+<li><strong>Predictions</strong>: We demonstrated how to predict both
+class probabilities and class labels for new instances, showcasing the
+model's ability to generalize beyond the training data.</li>
+</ul>
+<p>Decision Trees are intuitive and provide a clear understanding of the
+decision-making process, making them an excellent choice for both
+beginners and practitioners in machine learning. While they may not
+always yield the highest accuracy compared to more complex models, their
+interpretability and ease of use make them a valuable tool in many
+applications.</p>
+<p>By following this tutorial, you should now have a foundational
+understanding of how to implement and visualize a Decision Tree
+classifier in Python using Scikit-Learn. Feel free to experiment with
+different parameters, visualize different datasets, and apply the same
+techniques to solve your own classification problems.</p>
+</section>
+
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+        <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contributor.html">Contributor</a>
+      </div>
+      <p>&copy; 2024 ML Fusion Labs | All Rights Reserved</p>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+  
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+  
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+  
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+  
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+  
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+  
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+  
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+  
+        requestAnimationFrame(animateCircles);
+      }
+  
+      animateCircles();
+    });
+  </script>
+  <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  </body>
+  
+  </html>

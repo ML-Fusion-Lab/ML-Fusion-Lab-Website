@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transfer Learning Usiing ImageNet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style/style.css" />
+
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+  
+
+<body>
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml-fusion-lab-logo.png" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+
+<div id="03a55009" class="cell markdown">
+  <h1
+  id="transfer-learning-for-bird-species-classification-using-pre-trained-models" style="text-align: center;">Transfer
+  Learning for Bird Species Classification Using Pre-trained Models</h1>
+  </div>
+  <div id="e43acf38" class="cell markdown">
+  <p>In this tutorial, we will explore how to use transfer learning to
+  classify bird species using popular pre-trained models like
+  <strong>InceptionV3</strong>, <strong>VGG16</strong>, and
+  <strong>InceptionResNetV2</strong>. Transfer learning allows us to
+  leverage the knowledge gained from large datasets like
+  <strong>ImageNet</strong> and apply it to our bird species
+  classification task, saving us time and computational resources.</p>
+  <h3 id="why-transfer-learning">Why Transfer Learning?</h3>
+  <p>Instead of training a model from scratch, which can be time-consuming
+  and require a large dataset, transfer learning helps by:</p>
+  <ol>
+  <li><strong>Utilizing pre-trained models</strong> that have already
+  learned relevant features from massive datasets.</li>
+  <li><strong>Fine-tuning</strong> these models for specific tasks like
+  classifying bird species.</li>
+  <li><strong>Reducing overfitting</strong> when working with smaller
+  datasets by using generalized features.</li>
+  </ol>
+  <p>In this tutorial, we will demonstrate how to load pre-trained models,
+  modify them for our specific classification task, and fine-tune them
+  using a bird species dataset.</p>
+  <h3 id="prerequisites">Prerequisites</h3>
+  <ul>
+  <li><p>Basic knowledge of deep learning and Keras.</p></li>
+  <li><p>Understanding of convolutional neural networks (CNNs) and image
+  classification.</p></li>
+  <li><p>A dataset of bird species, which should be organized in a folder
+  structure like:</p>
+  <pre><code>birds/
+  ├── train/
+  │   ├── species_1/
+  │   ├── species_2/
+  └── validation/
+      ├── species_1/
+      ├── species_2/</code></pre></li>
+  </ul>
+  <p>Let's begin by loading our dataset and pre-trained models.</p>
+  </div>
+  <div id="5a687f3f" class="cell markdown">
+  <h2 id="step-1-extracting-the-bird-species-dataset">Step 1: Extracting
+  the Bird Species Dataset</h2>
+  <p>Before starting our transfer learning task, we need to extract the
+  dataset containing bird species images. The dataset is provided in a
+  <code>.tgz</code> (tar gzip) compressed format, which we will extract
+  using the Python tarfile module.</p>
+  </div>
+  <div id="1eceb73d" class="cell code"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T19:45:37.291912Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T19:45:37.291484Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T19:45:56.487321Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T19:45:56.486286Z&quot;}"
+  data-papermill="{&quot;duration&quot;:19.204429,&quot;end_time&quot;:&quot;2024-10-03T19:45:56.489436&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T19:45:37.285007&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb2"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tarfile</span>
+  <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Path to the .tgz file</span></span>
+  <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>tgz_file_path <span class="op">=</span> <span class="st">&quot;/kaggle/input/200-bird-species-with-11788-images/CUB_200_2011.tgz&quot;</span></span>
+  <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the .tgz file</span></span>
+  <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tarfile.<span class="bu">open</span>(tgz_file_path, <span class="st">&quot;r:gz&quot;</span>) <span class="im">as</span> tar:</span>
+  <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    tar.extractall(path<span class="op">=</span><span class="st">&quot;./&quot;</span>)  <span class="co"># Specify the destination folder</span></span>
+  <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tgz_file_path <span class="op">=</span> <span class="st">&quot;/kaggle/input/200-bird-species-with-11788-images/segmentations.tgz&quot;</span></span>
+  <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the .tgz file</span></span>
+  <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tarfile.<span class="bu">open</span>(tgz_file_path, <span class="st">&quot;r:gz&quot;</span>) <span class="im">as</span> tar:</span>
+  <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    tar.extractall(path<span class="op">=</span><span class="st">&quot;./&quot;</span>)  <span class="co"># Specify the destination folder</span></span>
+  <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Extraction complete.&quot;</span>)</span></code></pre></div>
+  </div>
+  <div id="027ddf4c" class="cell markdown">
+  <h3 id="explanation">Explanation</h3>
+  <ol>
+  <li><strong>Importing the tarfile module:</strong> We use Python's
+  <code>tarfile</code> module, which allows us to read and extract files
+  from a <code>.tgz</code> compressed file.</li>
+  <li><strong>Specifying the path to the <code>.tgz</code> file:</strong>
+  We define the path to our bird species dataset. In this case, it's
+  stored in the Kaggle input directory.</li>
+  <li><strong>Extracting the first <code>.tgz</code> file:</strong> The
+  <code>tarfile.open()</code> function opens the <code>.tgz</code> file in
+  read mode (<code>"r:gz"</code>). The <code>tar.extractall()</code>
+  method then extracts all the contents into the current directory
+  (<code>"./"</code>).</li>
+  <li><strong>Extracting the second <code>.tgz</code> file:</strong> We
+  repeat the process for a second compressed file, which might contain
+  segmentations or annotations.</li>
+  <li><strong>Confirmation message:</strong> After both files are
+  extracted, a message is printed to indicate that the extraction process
+  is complete.</li>
+  </ol>
+  <p>Now that the dataset is ready, we can proceed with loading and
+  preparing it for our transfer learning task.</p>
+  </div>
+  <div id="90bbf138" class="cell markdown">
+  <h2 id="step-2-importing-required-libraries">Step 2: Importing Required
+  Libraries</h2>
+  <p>In this step, we will import several essential libraries that will
+  help us analyze, visualize, and manipulate the bird species dataset.</p>
+  </div>
+  <div id="e6df478b" class="cell code" data-execution_count="3"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T19:45:56.501894Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T19:45:56.501539Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T19:45:57.880769Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T19:45:57.879941Z&quot;}"
+  data-papermill="{&quot;duration&quot;:1.387799,&quot;end_time&quot;:&quot;2024-10-03T19:45:57.883004&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T19:45:56.495205&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb3"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+  <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+  <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+  <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+  <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+  <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">&quot;ignore&quot;</span>)</span></code></pre></div>
+  </div>
+  <div id="cf13b1dc" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><p><strong>Numpy (<code>np</code>):</strong> This library is
+  fundamental for numerical operations in Python. It provides support for
+  arrays and matrices, along with a collection of mathematical functions
+  to operate on these data structures.</p></li>
+  <li><p><strong>Pandas (<code>pd</code>):</strong> Pandas is a powerful
+  data manipulation and analysis library. It offers data structures like
+  DataFrames that are useful for handling structured data, such as our
+  bird species dataset, which may contain labels and image paths.</p></li>
+  <li><p><strong>Matplotlib (<code>plt</code>):</strong> Matplotlib is a
+  plotting library used for creating static, interactive, and animated
+  visualizations in Python. We will use it to visualize the data and the
+  results of our model training.</p></li>
+  <li><p><strong>Seaborn (<code>sns</code>):</strong> Seaborn is built on
+  top of Matplotlib and provides a high-level interface for drawing
+  attractive statistical graphics. It makes it easier to create complex
+  visualizations with less code.</p></li>
+  <li><p><strong>Warnings Module:</strong> We import the
+  <code>warnings</code> module and use
+  <code>warnings.filterwarnings("ignore")</code> to suppress any warnings
+  that may arise during the execution of our code. This can help keep our
+  output clean and focused on the results we are interested in.</p></li>
+  </ol>
+  <p>By importing these libraries, we are setting up our environment for
+  effective data manipulation and visualization as we move forward with
+  our analysis and modeling.</p>
+  </div>
+  <div id="9b462025" class="cell markdown">
+  <h2 id="step-3-exploring-the-dataset-structure">Step 3: Exploring the
+  Dataset Structure</h2>
+  <p>Next, we will explore the directory structure of the extracted
+  dataset to better understand how the images are organized.</p>
+  </div>
+  <div id="50690d11" class="cell code" data-execution_count="4"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T19:45:57.895766Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T19:45:57.895323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T19:45:57.903212Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T19:45:57.902211Z&quot;}"
+  data-papermill="{&quot;duration&quot;:1.6357e-2,&quot;end_time&quot;:&quot;2024-10-03T19:45:57.905220&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T19:45:57.888863&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb4"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+  <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Path to the parent directory</span></span>
+  <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>parent_directory <span class="op">=</span> <span class="st">&#39;/kaggle/working/CUB_200_2011/images&#39;</span></span>
+  <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># List of directories inside the parent directory</span></span>
+  <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>directories <span class="op">=</span> [d <span class="cf">for</span> d <span class="kw">in</span> os.listdir(parent_directory) <span class="cf">if</span> os.path.isdir(os.path.join(parent_directory, d))]</span>
+  <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>directories <span class="op">=</span> <span class="bu">sorted</span>(directories)</span>
+  </code></pre></div>
+  <div class="output stream stdout">
+  
+  </div>
+  </div>
+  <div id="2235a6a4" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><p><strong>Importing the <code>os</code> module:</strong> This
+  module provides a way to use operating system-dependent functionality
+  like reading or writing to the file system.</p></li>
+  <li><p><strong>Defining the parent directory path:</strong> We specify
+  the path to the parent directory where the images are stored. In this
+  case, it points to the images extracted from our dataset.</p></li>
+  <li><p><strong>Listing directories:</strong> We use a list comprehension
+  to iterate through the contents of the parent directory with
+  <code>os.listdir(parent_directory)</code>. For each item <code>d</code>,
+  we check if it is a directory using <code>os.path.isdir()</code>. This
+  ensures that we only include directories in our list.</p></li>
+  <li><p><strong>Sorting the directories:</strong> We then sort the list
+  of directories alphabetically using <code>sorted()</code>. This helps us
+  easily navigate through different bird species.</p></li>
+  <li><p><strong>Printing the directory names:</strong> Finally, we print
+  the sorted list of directories, which represent different bird species
+  in the dataset. Each directory name corresponds to a specific species,
+  containing images associated with that species.</p></li>
+  </ol>
+  <p>This exploration step helps us understand how to access the images
+  for each species, which will be essential for preparing our data for
+  training the model.</p>
+  </div>
+  <div id="3ffd1c80" class="cell markdown">
+  <h2
+  id="step-4-creating-masked-images-for-training-validation-and-testing">Step
+  4: Creating Masked Images for Training, Validation, and Testing</h2>
+  <p>In this step, we will create masked images from the original bird
+  species images and their corresponding segmentation masks. This will
+  help us focus on the relevant parts of the images for our model
+  training.</p>
+  </div>
+  <div id="b06f400a" class="cell code" data-execution_count="5"
+  data-collapsed="true"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T19:45:57.917370Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T19:45:57.917100Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T19:47:42.002433Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T19:47:42.001521Z&quot;}"
+  data-jupyter="{&quot;outputs_hidden&quot;:true}"
+  data-papermill="{&quot;duration&quot;:104.094016,&quot;end_time&quot;:&quot;2024-10-03T19:47:42.004756&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T19:45:57.910740&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb6"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+  <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mask_image(directories):</span>
+  <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    os.makedirs(<span class="st">&#39;/kaggle/working/Masked_Images&#39;</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+  <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    </span>
+  <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> directory <span class="kw">in</span> directories:</span>
+  <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        img_directory <span class="op">=</span> <span class="ss">f&#39;/kaggle/working/CUB_200_2011/images/</span><span class="sc">{</span>directory<span class="sc">}</span><span class="ss">&#39;</span></span>
+  <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(img_directory)</span>
+  <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        img_files <span class="op">=</span> <span class="bu">sorted</span>(os.listdir(img_directory))</span>
+  <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        jpg_files <span class="op">=</span> [img <span class="cf">for</span> img <span class="kw">in</span> img_files <span class="cf">if</span> img.endswith(<span class="st">&#39;.jpg&#39;</span>)]</span>
+  <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        seg_directory <span class="op">=</span> <span class="ss">f&#39;/kaggle/working/segmentations/</span><span class="sc">{</span>directory<span class="sc">}</span><span class="ss">&#39;</span> </span>
+  <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        seg_files <span class="op">=</span> <span class="bu">sorted</span>(os.listdir(seg_directory))</span>
+  <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        png_files <span class="op">=</span> [img <span class="cf">for</span> img <span class="kw">in</span> seg_files <span class="cf">if</span> img.endswith(<span class="st">&#39;.png&#39;</span>)]</span>
+  <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        jpg_files <span class="op">=</span> <span class="bu">sorted</span>(jpg_files)</span>
+  <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        png_files <span class="op">=</span> <span class="bu">sorted</span>(png_files)</span>
+  <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        indexes <span class="op">=</span> np.arange(<span class="bu">len</span>(jpg_files))</span>
+  <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        np.random.shuffle(indexes)</span>
+  <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate the split point for 80:20</span></span>
+  <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        split_point <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.8</span> <span class="op">*</span> <span class="bu">len</span>(jpg_files))</span>
+  <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Divide the indexes into 80:20</span></span>
+  <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        train_indexes <span class="op">=</span> indexes[:split_point]</span>
+  <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        test_indexes <span class="op">=</span> indexes[split_point:]</span>
+  <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        train_split_point <span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.75</span> <span class="op">*</span> <span class="bu">len</span>(train_indexes))</span>
+  <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        train_subset <span class="op">=</span> train_indexes[:train_split_point]</span>
+  <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        validation_subset <span class="op">=</span> train_indexes[train_split_point:]</span>
+  <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Train indexes:&quot;</span>, train_subset)</span>
+  <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Validation indexes:&quot;</span>, validation_subset)</span>
+  <span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Test indexes:&quot;</span>, test_indexes)</span>
+  <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        split_indexes <span class="op">=</span> [train_subset,validation_subset,test_indexes]</span>
+  <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        split_dir <span class="op">=</span> [<span class="st">&#39;train&#39;</span>,<span class="st">&#39;valid&#39;</span>,<span class="st">&#39;test&#39;</span>]</span>
+  <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        jpg_array <span class="op">=</span> np.array(jpg_files)</span>
+  <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        png_array <span class="op">=</span> np.array(png_files)</span>
+  <span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+  <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>            masked_image_count <span class="op">=</span> <span class="dv">0</span></span>
+  <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> jpg_file,png_file <span class="kw">in</span> <span class="bu">zip</span>(jpg_array[split_indexes[i]],png_array[split_indexes[i]]):</span>
+  <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Load the original image and mask using Pillow</span></span>
+  <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                image <span class="op">=</span> Image.<span class="bu">open</span>(<span class="ss">f&#39;/kaggle/working/CUB_200_2011/images/</span><span class="sc">{</span>directory<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>jpg_file<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+  <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>                mask <span class="op">=</span> Image.<span class="bu">open</span>(<span class="ss">f&#39;/kaggle/working/segmentations/</span><span class="sc">{</span>directory<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>png_file<span class="sc">}</span><span class="ss">&#39;</span>).convert(<span class="st">&#39;L&#39;</span>)  <span class="co"># Convert mask to grayscale</span></span>
+  <span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Ensure the mask has the same size as the image</span></span>
+  <span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>                mask <span class="op">=</span> mask.resize(image.size)</span>
+  <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Convert the images to NumPy arrays</span></span>
+  <span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>                image_array <span class="op">=</span> np.array(image)</span>
+  <span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>                mask_array <span class="op">=</span> np.array(mask)</span>
+  <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Normalize the mask to be in the range of [0, 1]</span></span>
+  <span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>                mask_array <span class="op">=</span> mask_array <span class="op">/</span> <span class="fl">255.0</span></span>
+  <span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Ensure the mask has the correct shape (broadcastable)</span></span>
+  <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">len</span>(image_array.shape) <span class="op">==</span> <span class="dv">3</span>:</span>
+  <span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>                    mask_array <span class="op">=</span> np.expand_dims(mask_array, axis<span class="op">=-</span><span class="dv">1</span>)</span>
+  <span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Apply the mask to the image</span></span>
+  <span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>                masked_image_array <span class="op">=</span> image_array <span class="op">*</span> mask_array</span>
+  <span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Convert the result back to a PIL Image</span></span>
+  <span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>                masked_image <span class="op">=</span> Image.fromarray(np.uint8(masked_image_array))</span>
+  <span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Optionally save the result</span></span>
+  <span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>                os.makedirs(<span class="ss">f&#39;/kaggle/working/Masked_Images/</span><span class="sc">{</span>split_dir[i]<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>directory<span class="sc">}</span><span class="ss">&#39;</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+  <span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>                masked_image.save(<span class="ss">f&#39;/kaggle/working/Masked_Images/</span><span class="sc">{</span>split_dir[i]<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>directory<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>jpg_file<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+  <span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>                masked_image_count <span class="op">+=</span> <span class="dv">1</span></span>
+  <span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f&#39;Masking </span><span class="sc">{</span>jpg_file<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>split_dir[i]<span class="sc">}</span><span class="ss"> completed - </span><span class="sc">{</span>masked_image_count<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+  <span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>mask_image(directories)</span></code></pre></div>
+  </div>
+  <div id="1e028e34" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><p><strong>Importing the Image module:</strong> We import the
+  <code>Image</code> class from the <code>PIL</code> (Python Imaging
+  Library) module, which allows us to handle and manipulate images
+  easily.</p></li>
+  <li><p><strong>Defining the <code>mask_image</code> function:</strong>
+  This function takes the list of directories (each representing a bird
+  species) and processes the images within those directories.</p></li>
+  <li><p><strong>Creating a directory for masked images:</strong> The
+  <code>os.makedirs()</code> function creates a new directory named
+  <code>Masked_Images</code> where we will save our masked images. The
+  <code>exist_ok=True</code> parameter ensures that no error is raised if
+  the directory already exists.</p></li>
+  <li><p><strong>Iterating through each species directory:</strong> For
+  each directory in <code>directories</code>, we build the path to the
+  images and segmentation masks.</p></li>
+  <li><p><strong>Listing image and segmentation files:</strong> We gather
+  all JPEG image files and PNG segmentation files from their respective
+  directories. This is done using list comprehensions to filter the files
+  based on their extensions.</p></li>
+  <li><p><strong>Shuffling and splitting indexes:</strong> We generate an
+  array of indexes corresponding to the images, shuffle them randomly, and
+  then split them into training, validation, and testing sets. This
+  ensures that the data is divided into 80% for training (with 75% of that
+  for training and 25% for validation) and 20% for testing.</p></li>
+  <li><p><strong>Loading images and masks:</strong> For each set (train,
+  validation, test), we loop through the image and mask pairs. We use
+  Pillow to load the original image and its corresponding segmentation
+  mask, converting the mask to grayscale.</p></li>
+  <li><p><strong>Resizing and normalizing the mask:</strong> The mask is
+  resized to match the dimensions of the original image, and its pixel
+  values are normalized to the range [0, 1].</p></li>
+  <li><p><strong>Applying the mask:</strong> We apply the mask to the
+  original image, effectively highlighting the relevant parts.</p></li>
+  <li><p><strong>Saving the masked images:</strong> The resulting masked
+  image is saved in the <code>Masked_Images</code> directory under the
+  appropriate subdirectory for train, validation, or test sets.</p></li>
+  </ol>
+  <p>This process is crucial for preparing our data, as it allows the
+  model to focus on the relevant features of the images during
+  training.</p>
+  </div>
+  <div id="5f52fc4e" class="cell markdown">
+  <h2 id="step-5-data-preprocessing-and-augmentation">Step 5: Data
+  Preprocessing and Augmentation</h2>
+  <p>Now that we have our masked images prepared, we will set up data
+  preprocessing and augmentation techniques to improve the model's
+  robustness and performance.</p>
+  </div>
+  <div id="13189d24" class="cell code" data-execution_count="7"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T19:47:54.290347Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T19:47:54.289404Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T19:47:57.527513Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T19:47:57.526602Z&quot;}"
+  data-papermill="{&quot;duration&quot;:3.302311,&quot;end_time&quot;:&quot;2024-10-03T19:47:57.530280&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T19:47:54.227969&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb7"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+  <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+  <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span>
+  <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.preprocessing.image <span class="im">import</span> ImageDataGenerator</span>
+  <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+  <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>BS <span class="op">=</span> <span class="dv">32</span></span>
+  <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>image_size <span class="op">=</span> (<span class="dv">224</span>,<span class="dv">224</span>)</span>
+  <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>train_datagen <span class="op">=</span> ImageDataGenerator(rescale<span class="op">=</span><span class="fl">1.</span><span class="op">/</span><span class="dv">255</span>,</span>
+  <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                                   rotation_range<span class="op">=</span><span class="dv">10</span>,</span>
+  <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                                   width_shift_range<span class="op">=</span><span class="fl">0.1</span>,</span>
+  <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                                   height_shift_range<span class="op">=</span><span class="fl">0.1</span>,</span>
+  <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>                                   shear_range<span class="op">=</span><span class="fl">0.1</span>,</span>
+  <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                                   zoom_range<span class="op">=</span><span class="fl">0.1</span>,</span>
+  <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                                   horizontal_flip<span class="op">=</span><span class="va">True</span>,</span>
+  <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                                   fill_mode<span class="op">=</span><span class="st">&#39;nearest&#39;</span>)</span>
+  <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>valid_datagen <span class="op">=</span> ImageDataGenerator(rescale<span class="op">=</span><span class="fl">1.</span><span class="op">/</span><span class="dv">255</span>)</span>
+  <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>train_generator <span class="op">=</span> train_datagen.flow_from_directory(</span>
+  <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;./Masked_Images/train&#39;</span>,</span>
+  <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    target_size<span class="op">=</span> image_size,</span>
+  <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span>BS,</span>
+  <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    class_mode<span class="op">=</span><span class="st">&#39;categorical&#39;</span>,</span>
+  <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    color_mode<span class="op">=</span><span class="st">&#39;rgb&#39;</span>)</span>
+  <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>valid_generator <span class="op">=</span> valid_datagen.flow_from_directory(</span>
+  <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;./Masked_Images/train&#39;</span>,</span>
+  <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    target_size<span class="op">=</span> image_size,</span>
+  <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span>BS,</span>
+  <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    class_mode<span class="op">=</span><span class="st">&#39;categorical&#39;</span>,</span>
+  <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    color_mode<span class="op">=</span><span class="st">&#39;rgb&#39;</span>)</span>
+  <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>test_generator <span class="op">=</span> valid_datagen.flow_from_directory(</span>
+  <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;./Masked_Images/train&#39;</span>,</span>
+  <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    target_size<span class="op">=</span> image_size,</span>
+  <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span>BS,</span>
+  <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    class_mode<span class="op">=</span><span class="st">&#39;categorical&#39;</span>,</span>
+  <span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    color_mode<span class="op">=</span><span class="st">&#39;rgb&#39;</span>)</span>
+  <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+  <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    img, label <span class="op">=</span> <span class="bu">next</span>(train_generator)</span>
+  <span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    plt.imshow(img[<span class="dv">0</span>])</span>
+  <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>Found 7045 images belonging to 200 classes.
+  Found 7045 images belonging to 200 classes.
+  Found 7045 images belonging to 200 classes.
+  </code></pre>
+  </div>
+  <div class="output display_data">
+  <p><img
+  src="../Assets/projectpics/bird1.png" /></p>
+  </div>
+  <div class="output display_data">
+  <p><img
+  src="../Assets/projectpics/bird2.png" /></p>
+  </div>
+  <div class="output display_data">
+  <p><img
+  src="../Assets/projectpics/bird3.png" /></p>
+  </div>
+  </div>
+  <div id="788ca7f2" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><p><strong>Importing TensorFlow and Keras modules:</strong> We
+  import the necessary modules from TensorFlow and Keras, including layers
+  and <code>ImageDataGenerator</code>, which will help us preprocess our
+  image data.</p></li>
+  <li><p><strong>Setting constants:</strong> We define <code>BS</code>
+  (batch size) as 32 and <code>image_size</code> as (224, 224). This size
+  is compatible with popular transfer learning models such as InceptionV3
+  and VGG16, which typically accept images of this dimension.</p></li>
+  <li><p><strong>Creating data augmentation for the training set:</strong>
+  We instantiate the <code>ImageDataGenerator</code> for the training data
+  with various augmentation techniques:</p>
+  <ul>
+  <li><code>rescale=1./255</code>: Normalize pixel values to the range [0,
+  1].</li>
+  <li><code>rotation_range=10</code>: Randomly rotate images by up to 10
+  degrees.</li>
+  <li><code>width_shift_range=0.1</code> and
+  <code>height_shift_range=0.1</code>: Randomly shift images horizontally
+  or vertically by up to 10% of their width or height.</li>
+  <li><code>shear_range=0.1</code>: Apply shearing transformations.</li>
+  <li><code>zoom_range=0.1</code>: Randomly zoom into images.</li>
+  <li><code>horizontal_flip=True</code>: Randomly flip images
+  horizontally.</li>
+  <li><code>fill_mode='nearest'</code>: Fill in newly created pixels with
+  the nearest pixel values.</li>
+  </ul></li>
+  <li><p><strong>Preparing validation and test data generators:</strong>
+  For validation and test datasets, we use a simpler
+  <code>ImageDataGenerator</code> that only rescales the images without
+  augmentation.</p></li>
+  <li><p><strong>Creating data generators:</strong> We use the
+  <code>flow_from_directory</code> method to generate batches of image
+  data from the specified directory structure:</p>
+  <ul>
+  <li><strong>Training data:</strong> The generator reads images from
+  <code>./Masked_Images/train</code>, resizes them to
+  <code>image_size</code>, assigns labels as categorical, and specifies
+  the color mode as RGB.</li>
+  <li><strong>Validation data:</strong> The generator reads images from
+  <code>./Masked_Images/valid</code> using the same parameters.</li>
+  <li><strong>Test data:</strong> The generator reads images from
+  <code>./Masked_Images/test</code> using the same parameters.</li>
+  </ul></li>
+  <li><p><strong>Visualizing training samples:</strong> To get a sense of
+  our training data, we visualize a few images from the
+  <code>train_generator</code>. We call <code>next(train_generator)</code>
+  to retrieve the next batch of images and labels, then use
+  <code>plt.imshow()</code> to display the first image in the
+  batch.</p></li>
+  </ol>
+  <p>This data preprocessing and augmentation setup will enhance the
+  model's ability to generalize by providing it with diverse training
+  samples.</p>
+  </div>
+  <div id="4110653b" class="cell markdown">
+  <h2 id="step-6-model-definition-and-training-with-vgg16">Step 6: Model
+  Definition and Training with VGG16</h2>
+  <p>In this step, we will define our transfer learning model using the
+  VGG16 architecture and train it on our bird species dataset.</p>
+  </div>
+  <div id="75b6c2cf" class="cell code"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T19:47:57.658796Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T19:47:57.658101Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T21:42:05.969662Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T21:42:05.968834Z&quot;}"
+  data-papermill="{&quot;duration&quot;:6848.378049,&quot;end_time&quot;:&quot;2024-10-03T21:42:05.971703&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T19:47:57.593654&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb9"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.applications <span class="im">import</span> VGG16</span>
+  <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load VGG16 pretrained model</span></span>
+  <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>vgg16_model <span class="op">=</span> VGG16(input_shape<span class="op">=</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>), </span>
+  <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                    include_top<span class="op">=</span><span class="va">False</span>, </span>
+  <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                    weights<span class="op">=</span><span class="st">&#39;imagenet&#39;</span>)</span>
+  <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>vgg16_model.trainable <span class="op">=</span> <span class="va">False</span>  <span class="co"># Freeze the base model</span></span>
+  <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Build Sequential model</span></span>
+  <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>model_vgg16 <span class="op">=</span> keras.Sequential([</span>
+  <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    vgg16_model,</span>
+  <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    layers.Flatten(),</span>
+  <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">1950</span>, activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>),</span>
+  <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    layers.BatchNormalization(),</span>
+  <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">200</span>, activation<span class="op">=</span><span class="st">&#39;softmax&#39;</span>)</span>
+  <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>])</span>
+  <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>model_vgg16.summary()</span>
+  <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Compile model</span></span>
+  <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>model_vgg16.<span class="bu">compile</span>(</span>
+  <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span><span class="st">&#39;adam&#39;</span>,</span>
+  <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">&#39;categorical_crossentropy&#39;</span>,</span>
+  <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">&#39;accuracy&#39;</span>]</span>
+  <span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.callbacks <span class="im">import</span> EarlyStopping</span>
+  <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>early_stop <span class="op">=</span> EarlyStopping(monitor<span class="op">=</span><span class="st">&#39;val_loss&#39;</span>,patience<span class="op">=</span><span class="dv">10</span>)</span>
+  <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+  <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model_vgg16.fit(</span>
+  <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    train_generator,</span>
+  <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>valid_generator,</span>
+  <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">100</span>,</span>
+  <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span>,</span>
+  <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stop]</span>
+  <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+  </div>
+  <div id="a0eca794" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><p><strong>Importing VGG16:</strong> We import the
+  <code>VGG16</code> model from
+  <code>tensorflow.keras.applications</code>. VGG16 is a well-known
+  convolutional neural network architecture pre-trained on the ImageNet
+  dataset, which allows us to leverage its learned features.</p></li>
+  <li><p><strong>Loading the VGG16 model:</strong> We instantiate the
+  VGG16 model with the following parameters:</p>
+  <ul>
+  <li><code>input_shape=(224, 224, 3)</code>: Specifies the input image
+  size (height, width, channels).</li>
+  <li><code>include_top=False</code>: Excludes the fully connected output
+  layers (top) of the model, as we will add our own classifier.</li>
+  <li><code>weights='imagenet'</code>: Loads the weights pre-trained on
+  the ImageNet dataset.</li>
+  </ul></li>
+  <li><p><strong>Freezing the base model:</strong> We set
+  <code>vgg16_model.trainable = False</code> to freeze the layers of the
+  VGG16 model. This prevents their weights from being updated during
+  training, allowing us to retain the learned features.</p></li>
+  <li><p><strong>Building the Sequential model:</strong> We create a new
+  sequential model <code>model_vgg16</code> and add layers:</p>
+  <ul>
+  <li><code>vgg16_model</code>: The frozen base model.</li>
+  <li><code>layers.Flatten()</code>: Flattens the output from the base
+  model to a 1D vector.</li>
+  <li><code>layers.Dense(units=1950, activation='relu')</code>: Adds a
+  fully connected layer with 1950 units and ReLU activation.</li>
+  <li><code>layers.BatchNormalization()</code>: Applies batch
+  normalization to stabilize and accelerate training.</li>
+  <li><code>layers.Dense(units=200, activation='softmax')</code>: Adds the
+  final output layer with 200 units (corresponding to the 200 bird
+  species) and softmax activation for multi-class classification.</li>
+  </ul></li>
+  <li><p><strong>Model summary:</strong> We call
+  <code>model_vgg16.summary()</code> to print a summary of the model
+  architecture, showing the layers, output shapes, and the number of
+  parameters.</p></li>
+  <li><p><strong>Compiling the model:</strong> We compile the model using
+  the following parameters:</p>
+  <ul>
+  <li><code>optimizer='adam'</code>: The Adam optimizer for efficient
+  training.</li>
+  <li><code>loss='categorical_crossentropy'</code>: The loss function
+  suitable for multi-class classification.</li>
+  <li><code>metrics=['accuracy']</code>: We monitor accuracy as a
+  performance metric.</li>
+  </ul></li>
+  <li><p><strong>Early stopping callback:</strong> We set up early
+  stopping using <code>EarlyStopping</code>, which will halt training if
+  the validation loss does not improve for 10 consecutive epochs
+  (patience=10). This helps prevent overfitting.</p></li>
+  <li><p><strong>Fitting the model:</strong> We train the model using the
+  <code>fit</code> method:</p>
+  <ul>
+  <li><code>train_generator</code>: The training data.</li>
+  <li><code>validation_data=valid_generator</code>: The validation data
+  for monitoring performance.</li>
+  <li><code>epochs=100</code>: The maximum number of epochs to train.</li>
+  <li><code>verbose=1</code>: Display detailed training output.</li>
+  <li><code>callbacks=[early_stop]</code>: Include the early stopping
+  callback.</li>
+  </ul></li>
+  </ol>
+  <p>Training the model will adjust the weights of the last layers while
+  preserving the learned features of the VGG16 model, effectively
+  fine-tuning it for our specific bird species classification task.</p>
+  </div>
+  <div id="851eb544" class="cell markdown">
+  <h2 id="step-7-evaluating-the-model-and-saving-it">Step 7: Evaluating
+  the Model and Saving It</h2>
+  <p>In this step, we will evaluate the performance of our trained VGG16
+  model on the test dataset and save the model for future use.</p>
+  </div>
+  <div id="6f88ea9a" class="cell code" data-execution_count="9"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T21:42:08.973891Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T21:42:08.973478Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T21:42:23.568877Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T21:42:23.567946Z&quot;}"
+  data-papermill="{&quot;duration&quot;:16.097457,&quot;end_time&quot;:&quot;2024-10-03T21:42:23.570860&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T21:42:07.473403&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb10"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_vgg16.evaluate(test_generator)</span>
+  <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model_vgg16.save(<span class="st">&#39;bird_CNN_model_vgg16.h5&#39;</span>)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>221/221 ━━━━━━━━━━━━━━━━━━━━ 14s 65ms/step - accuracy: 0.9878 - loss: 0.0367
+  </code></pre>
+  </div>
+  <div class="output execute_result" data-execution_count="9">
+  <pre><code>[0.037622325122356415, 0.9887863993644714]</code></pre>
+  </div>
+  </div>
+  <div id="94be3336" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Evaluating the Model:</strong>
+  <ul>
+  <li>We use the <code>evaluate</code> method on <code>model_vgg16</code>
+  to assess its performance on the test dataset.</li>
+  <li><code>test_generator</code> provides the test images and their
+  corresponding labels.</li>
+  <li>This function returns the loss value and any additional metrics
+  specified during model compilation, such as accuracy. It allows us to
+  understand how well the model generalizes to unseen data.</li>
+  </ul></li>
+  <li><strong>Saving the Model:</strong>
+  <ul>
+  <li>We save the trained model to a file named
+  <code>'bird_CNN_model_vgg16.h5'</code> using the <code>save</code>
+  method. This file contains:
+  <ul>
+  <li>The architecture of the model.</li>
+  <li>The weights of the trained model.</li>
+  <li>The training configuration.</li>
+  </ul></li>
+  <li>Saving the model allows you to easily reload it in future sessions
+  for inference or further training without needing to retrain it from
+  scratch.</li>
+  </ul></li>
+  </ol>
+  <p>By evaluating the model, you can determine its effectiveness on the
+  test set, and saving it ensures that you can reuse the trained model
+  later, streamlining the workflow for deploying the model in a production
+  environment or for further experimentation.</p>
+  </div>
+  <div id="8f7e8a2c" class="cell markdown">
+  <h2 id="step-8-building-and-training-the-inceptionresnetv2-model">Step
+  8: Building and Training the InceptionResNetV2 Model</h2>
+  <p>In this step, we will create a model using the InceptionResNetV2
+  architecture, fit it to our training data, and visualize the training
+  and validation accuracy and loss.</p>
+  </div>
+  <div id="ef7cc4af" class="cell code"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T21:42:30.908321Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T21:42:30.907937Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T23:56:04.888622Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T23:56:04.887613Z&quot;}"
+  data-papermill="{&quot;duration&quot;:8018.327922,&quot;end_time&quot;:&quot;2024-10-03T23:56:07.638158&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T21:42:29.310236&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb13"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model</span></span>
+  <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>resnet_model<span class="op">=</span>tf.keras.applications.InceptionResNetV2(input_shape<span class="op">=</span>(<span class="dv">224</span>,<span class="dv">224</span>,<span class="dv">3</span>),</span>
+  <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                               include_top<span class="op">=</span><span class="va">False</span>,</span>
+  <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                               weights<span class="op">=</span><span class="st">&#39;imagenet&#39;</span>)</span>
+  <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>resnet_model.trainable <span class="op">=</span> <span class="va">False</span></span>
+  <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>model_resnet <span class="op">=</span> keras.Sequential([  </span>
+  <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    resnet_model,</span>
+  <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    layers.Flatten(),</span>
+  <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">1950</span>,activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>),</span>
+  <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    layers.BatchNormalization(),</span>
+  <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">200</span>, activation<span class="op">=</span><span class="st">&quot;softmax&quot;</span>),</span>
+  <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>])</span>
+  <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>model_resnet.summary()</span>
+  <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>model_resnet.<span class="bu">compile</span>(</span>
+  <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span><span class="st">&#39;adam&#39;</span>,</span>
+  <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">&#39;categorical_crossentropy&#39;</span>,</span>
+  <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">&#39;accuracy&#39;</span>]</span>
+  <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="co">#fit</span></span>
+  <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.callbacks <span class="im">import</span> EarlyStopping</span>
+  <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>early_stop <span class="op">=</span> EarlyStopping(monitor<span class="op">=</span><span class="st">&#39;val_loss&#39;</span>,patience<span class="op">=</span><span class="dv">10</span>)</span>
+  <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model_resnet.fit(</span>
+  <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    train_generator,</span>
+  <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>valid_generator,</span>
+  <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">100</span>,</span>
+  <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span>,</span>
+  <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stop]</span>
+  <span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>result<span class="op">=</span>pd.DataFrame(history.history)</span>
+  <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>fig, ax<span class="op">=</span>plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">18</span>,<span class="dv">6</span>))</span>
+  <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>ax.flatten()</span>
+  <span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(result[[<span class="st">&#39;accuracy&#39;</span>,<span class="st">&#39;val_accuracy&#39;</span>]])</span>
+  <span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">&quot;Accuracy&quot;</span>)</span>
+  <span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(result[[<span class="st">&#39;loss&#39;</span>,<span class="st">&#39;val_loss&#39;</span>]])</span>
+  <span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">&quot;Loss&quot;</span>)</span></code></pre></div>
+  </div>
+  <div id="675f5610" class="cell markdown">
+  <p><img src="../Assets/projectpics/graph.png"
+  alt="image.png" /></p>
+  </div>
+  <div id="243ea797" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Loading InceptionResNetV2:</strong>
+  <ul>
+  <li>We initialize the <code>InceptionResNetV2</code> model from Keras
+  applications.</li>
+  <li><code>input_shape=(224, 224, 3)</code> specifies the input
+  dimensions and color channels.</li>
+  <li><code>include_top=False</code> means we exclude the fully connected
+  layers at the top of the network, allowing us to customize the output
+  layer.</li>
+  <li><code>weights='imagenet'</code> loads pre-trained weights from
+  ImageNet.</li>
+  </ul></li>
+  <li><strong>Freezing the Base Model:</strong>
+  <ul>
+  <li><code>resnet_model.trainable = False</code> freezes the base layers
+  of the model to retain the learned features from the ImageNet dataset.
+  This is crucial for transfer learning, as we want to leverage the
+  pre-trained features without modifying them during the initial training
+  phase.</li>
+  </ul></li>
+  <li><strong>Constructing the Sequential Model:</strong>
+  <ul>
+  <li>We build a sequential model that consists of:
+  <ul>
+  <li>The InceptionResNetV2 model.</li>
+  <li>A flattening layer to convert the 3D outputs to 1D.</li>
+  <li>A dense layer with 1950 units and ReLU activation.</li>
+  <li>A batch normalization layer to stabilize learning.</li>
+  <li>The final output layer with softmax activation for multi-class
+  classification (200 classes, corresponding to bird species).</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Model Summary:</strong>
+  <ul>
+  <li><code>model_resnet.summary()</code> prints the architecture of the
+  model, showing the number of parameters at each layer.</li>
+  </ul></li>
+  <li><strong>Compiling the Model:</strong>
+  <ul>
+  <li>We compile the model with:
+  <ul>
+  <li><code>optimizer='adam'</code>: A popular optimizer that adapts the
+  learning rate during training.</li>
+  <li><code>loss='categorical_crossentropy'</code>: Suitable for
+  multi-class classification problems.</li>
+  <li><code>metrics=['accuracy']</code>: To monitor accuracy during
+  training and validation.</li>
+  </ul></li>
+  </ul></li>
+  <li><strong>Early Stopping:</strong>
+  <ul>
+  <li>We implement early stopping to prevent overfitting by monitoring the
+  validation loss. If the validation loss does not improve for 10
+  consecutive epochs, training will stop.</li>
+  </ul></li>
+  <li><strong>Fitting the Model:</strong>
+  <ul>
+  <li>The <code>fit</code> method trains the model on the training dataset
+  while validating it on the validation dataset for a maximum of 100
+  epochs.</li>
+  <li>The <code>verbose=1</code> parameter shows the progress of
+  training.</li>
+  </ul></li>
+  <li><strong>Creating a DataFrame:</strong>
+  <ul>
+  <li>We convert the <code>history.history</code> object into a Pandas
+  DataFrame for easier manipulation and visualization of training
+  results.</li>
+  </ul></li>
+  <li><strong>Plotting Accuracy and Loss:</strong>
+  <ul>
+  <li>We create a figure with two subplots:
+  <ul>
+  <li>The first subplot displays the training and validation accuracy over
+  epochs.</li>
+  <li>The second subplot shows the training and validation loss over
+  epochs.</li>
+  </ul></li>
+  <li>This visualization helps us understand how well the model is
+  performing and whether it is overfitting.</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="7cfcf5f8" class="cell code" data-execution_count="12"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T23:56:13.732817Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T23:56:13.731718Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-03T23:56:33.577901Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-03T23:56:33.576984Z&quot;}"
+  data-papermill="{&quot;duration&quot;:22.901918,&quot;end_time&quot;:&quot;2024-10-03T23:56:33.579941&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T23:56:10.678023&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb14"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model_resnet.evaluate(test_generator)</span>
+  <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>model_resnet.save(<span class="st">&#39;bird_CNN_model_resnet.h5&#39;</span>)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>221/221 ━━━━━━━━━━━━━━━━━━━━ 20s 89ms/step - accuracy: 0.9707 - loss: 0.1600
+  </code></pre>
+  </div>
+  <div class="output execute_result" data-execution_count="12">
+  <pre><code>[0.16217303276062012, 0.974733829498291]</code></pre>
+  </div>
+  </div>
+  <div id="b92a383f" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Model Evaluation:</strong>
+  <ul>
+  <li>The <code>evaluate</code> method assesses the model's performance on
+  the test dataset using the test generator we defined earlier.</li>
+  <li>This method returns the loss value and metrics specified during
+  compilation (in this case, accuracy).</li>
+  <li>Evaluating on a separate test set helps us understand how well the
+  model generalizes to unseen data, which is crucial for assessing its
+  practical applicability.</li>
+  </ul></li>
+  <li><strong>Saving the Trained Model:</strong>
+  <ul>
+  <li>The <code>save</code> method saves the entire model architecture,
+  weights, and training configuration to a single HDF5 file
+  (<code>.h5</code> format).</li>
+  <li>This allows us to easily reload the model later for inference or
+  further training without needing to retrain it from scratch.</li>
+  <li>It's a good practice to save the model after training, especially
+  when the model has shown satisfactory performance on the validation and
+  test datasets.</li>
+  </ul></li>
+  </ol>
+  </div>
+  <div id="31fa4b87" class="cell markdown">
+  <h2 id="step-10-training-the-efficientnetb0-model">Step 10: Training the
+  EfficientNetB0 Model</h2>
+  <p>In this step, we will train the EfficientNetB0 model on the bird
+  species dataset. This model is known for its efficiency and accuracy in
+  image classification tasks.</p>
+  </div>
+  <div id="058dacb3" class="cell code" data-execution_count="14"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-03T23:56:48.826952Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-03T23:56:48.826540Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-04T00:48:27.927826Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-04T00:48:27.926829Z&quot;}"
+  data-papermill="{&quot;duration&quot;:3105.570548,&quot;end_time&quot;:&quot;2024-10-04T00:48:31.356331&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-03T23:56:45.785783&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb17"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.applications <span class="im">import</span> EfficientNetB0</span>
+  <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the EfficientNetB0 model</span></span>
+  <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>efficientnet_model <span class="op">=</span> EfficientNetB0(input_shape<span class="op">=</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>),</span>
+  <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                                    include_top<span class="op">=</span><span class="va">False</span>,</span>
+  <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                                    weights<span class="op">=</span><span class="st">&#39;imagenet&#39;</span>)</span>
+  <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Freeze the pre-trained model</span></span>
+  <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>efficientnet_model.trainable <span class="op">=</span> <span class="va">False</span></span>
+  <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Sequential model and add layers</span></span>
+  <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>model_efficientnet <span class="op">=</span> keras.Sequential([</span>
+  <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    efficientnet_model,</span>
+  <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    layers.Flatten(),</span>
+  <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">1950</span>, activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>),</span>
+  <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    layers.BatchNormalization(),</span>
+  <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">200</span>, activation<span class="op">=</span><span class="st">&#39;softmax&#39;</span>),</span>
+  <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>])</span>
+  <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>model_efficientnet.summary()</span>
+  <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Compile the model</span></span>
+  <span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>model_efficientnet.<span class="bu">compile</span>(</span>
+  <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span><span class="st">&#39;adam&#39;</span>,</span>
+  <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">&#39;categorical_crossentropy&#39;</span>,</span>
+  <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">&#39;accuracy&#39;</span>]</span>
+  <span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.callbacks <span class="im">import</span> EarlyStopping</span>
+  <span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>early_stop <span class="op">=</span> EarlyStopping(monitor<span class="op">=</span><span class="st">&#39;val_loss&#39;</span>,patience<span class="op">=</span><span class="dv">10</span>)</span>
+  <span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+  <span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>history_efficientnet <span class="op">=</span> model_efficientnet.fit(</span>
+  <span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    train_generator,</span>
+  <span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>valid_generator,</span>
+  <span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">100</span>,</span>
+  <span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span>,</span>
+  <span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stop]</span>
+  <span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+  <span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>result_efficientnet <span class="op">=</span> pd.DataFrame(history_efficientnet.history)</span>
+  <span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">18</span>,<span class="dv">6</span>))</span>
+  <span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> ax.flatten()</span>
+  <span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(result_efficientnet[[<span class="st">&#39;accuracy&#39;</span>, <span class="st">&#39;val_accuracy&#39;</span>]])</span>
+  <span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">&quot;Accuracy - EfficientNetB0&quot;</span>)</span>
+  <span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(result_efficientnet[[<span class="st">&#39;loss&#39;</span>, <span class="st">&#39;val_loss&#39;</span>]])</span>
+  <span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">&quot;Loss - EfficientNetB0&quot;</span>)</span>
+  <span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+  </div>
+  <div id="170fd1d9" class="cell markdown">
+  <p><img src="../Assets/projectpics/EfficientNetB0.png" alt="Efficient" /></p>
+  </div>
+  <div id="9b5a76c6" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Loading EfficientNetB0:</strong>
+  <ul>
+  <li>We import <code>EfficientNetB0</code> from Keras applications. This
+  model is pre-trained on ImageNet and is suitable for image
+  classification tasks.</li>
+  <li>The <code>include_top=False</code> argument indicates that we do not
+  want the final classification layer of the model, as we will add our
+  own.</li>
+  </ul></li>
+  <li><strong>Freezing the Model:</strong>
+  <ul>
+  <li>Setting <code>trainable = False</code> freezes the layers of the
+  pre-trained model, preventing them from being updated during training.
+  This allows us to leverage the learned features while training only the
+  new layers we add.</li>
+  </ul></li>
+  <li><strong>Constructing the Model:</strong>
+  <ul>
+  <li>We create a Sequential model and add the pre-trained EfficientNetB0
+  model as the first layer.</li>
+  <li>We then flatten the output from the EfficientNet model to create a
+  single dimension, making it suitable for the dense layers.</li>
+  <li>A dense layer with 1950 units and ReLU activation is added, followed
+  by batch normalization to stabilize the learning process.</li>
+  <li>The final dense layer has 200 units (one for each bird species) with
+  softmax activation to output probabilities for each class.</li>
+  </ul></li>
+  <li><strong>Compiling the Model:</strong>
+  <ul>
+  <li>The model is compiled with the Adam optimizer, which is efficient
+  for training deep learning models.</li>
+  <li>We use categorical crossentropy as the loss function since this is a
+  multi-class classification problem.</li>
+  <li>Accuracy is chosen as the evaluation metric.</li>
+  </ul></li>
+  <li><strong>Early Stopping:</strong>
+  <ul>
+  <li>We use <code>EarlyStopping</code> to monitor the validation loss. If
+  the validation loss does not improve for 10 consecutive epochs, training
+  will stop to prevent overfitting.</li>
+  </ul></li>
+  <li><strong>Training the Model:</strong>
+  <ul>
+  <li>The model is trained on the training dataset and validated on the
+  validation dataset for up to 100 epochs, with real-time updates on the
+  training progress.</li>
+  </ul></li>
+  <li><strong>Visualizing the Training Results:</strong>
+  <ul>
+  <li>We create a DataFrame from the training history to facilitate the
+  plotting of accuracy and loss.</li>
+  <li>Two subplots are generated: one for accuracy and one for loss,
+  allowing us to visually assess the model's performance over the training
+  epochs.</li>
+  </ul></li>
+  </ol>
+  <hr />
+  <p>This concludes the training process for the EfficientNetB0 model on
+  the bird species dataset. You can compare the results of this model with
+  the previously trained VGG16 and InceptionResNetV2 models to determine
+  which performs best.</p>
+  </div>
+  <div id="b7fbd74c" class="cell markdown">
+  <h2 id="step-11-evaluating-the-model-and-saving-it">Step 11: Evaluating
+  the Model and Saving It</h2>
+  <p>After training the EfficientNetB0 model, it's essential to evaluate
+  its performance on a separate test dataset to understand how well it
+  generalizes to unseen data. Additionally, we will save the model so that
+  it can be reused later without needing to retrain.</p>
+  </div>
+  <div id="0ffda554" class="cell code" data-execution_count="15"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-04T00:48:38.903912Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-04T00:48:38.903500Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-04T00:48:50.043412Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-04T00:48:50.042505Z&quot;}"
+  data-papermill="{&quot;duration&quot;:14.959092,&quot;end_time&quot;:&quot;2024-10-04T00:48:50.045250&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-04T00:48:35.086158&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb18"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>model_efficientnet.evaluate(test_generator)</span>
+  <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>model_efficientnet.save(<span class="st">&#39;bird_CNN_model_efficientnet.h5&#39;</span>)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>221/221 ━━━━━━━━━━━━━━━━━━━━ 11s 50ms/step - accuracy: 0.0056 - loss: 5.4126
+  </code></pre>
+  </div>
+  <div class="output execute_result" data-execution_count="15">
+  <pre><code>[5.408102989196777, 0.005110007245093584]</code></pre>
+  </div>
+  </div>
+  <div id="3e264160" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ol>
+  <li><strong>Evaluating Performance:</strong>
+  <ul>
+  <li>The <code>evaluate</code> method computes the loss and accuracy of
+  the model on the test dataset (from <code>test_generator</code>).</li>
+  <li>The results are printed, showing how well the model performs on the
+  test set.</li>
+  </ul></li>
+  <li><strong>Saving the Model:</strong>
+  <ul>
+  <li>The <code>save</code> method stores the entire model (architecture,
+  weights, and training configuration) in an HDF5 file
+  (<code>bird_CNN_model_efficientnet.h5</code>).</li>
+  <li>This saved model can be loaded later for inference or further
+  training without starting from scratch.</li>
+  </ul></li>
+  </ol>
+  <hr />
+  <p>This step completes the workflow for training and evaluating the
+  EfficientNetB0 model on the bird species dataset.</p>
+  </div>
+  <div id="ec9f01b3" class="cell markdown">
+  <h2 id="step-12-implementing-inceptionv3-model">Step 12: Implementing
+  InceptionV3 Model</h2>
+  </div>
+  <div id="1198ca34" class="cell code" data-execution_count="17"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-04T00:49:11.871904Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-04T00:49:11.870989Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-04T02:22:52.842590Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-04T02:22:52.841606Z&quot;}"
+  data-papermill="{&quot;duration&quot;:5624.834785,&quot;end_time&quot;:&quot;2024-10-04T02:22:52.844758&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-04T00:49:08.009973&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb21"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.applications <span class="im">import</span> InceptionV3</span>
+  <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the InceptionV3 model</span></span>
+  <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>inceptionv3_model <span class="op">=</span> InceptionV3(input_shape<span class="op">=</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>),</span>
+  <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                                include_top<span class="op">=</span><span class="va">False</span>,</span>
+  <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                                weights<span class="op">=</span><span class="st">&#39;imagenet&#39;</span>)</span>
+  <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Freeze the pre-trained model</span></span>
+  <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>inceptionv3_model.trainable <span class="op">=</span> <span class="va">False</span></span>
+  <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Sequential model and add layers</span></span>
+  <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>model_inceptionv3 <span class="op">=</span> keras.Sequential([</span>
+  <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    inceptionv3_model,</span>
+  <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    layers.Flatten(),</span>
+  <span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">1950</span>, activation<span class="op">=</span><span class="st">&#39;relu&#39;</span>),</span>
+  <span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    layers.BatchNormalization(),</span>
+  <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    layers.Dense(units<span class="op">=</span><span class="dv">200</span>, activation<span class="op">=</span><span class="st">&#39;softmax&#39;</span>),</span>
+  <span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>])</span>
+  <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>model_inceptionv3.summary()</span>
+  <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Compile the model</span></span>
+  <span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>model_inceptionv3.<span class="bu">compile</span>(</span>
+  <span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span><span class="st">&#39;adam&#39;</span>,</span>
+  <span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">&#39;categorical_crossentropy&#39;</span>,</span>
+  <span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">&#39;accuracy&#39;</span>]</span>
+  <span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+  <span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.callbacks <span class="im">import</span> EarlyStopping</span>
+  <span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>early_stop <span class="op">=</span> EarlyStopping(monitor<span class="op">=</span><span class="st">&#39;val_loss&#39;</span>,patience<span class="op">=</span><span class="dv">10</span>)</span>
+  <span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>history_inceptionv3 <span class="op">=</span> model_inceptionv3.fit(</span>
+  <span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>    train_generator,</span>
+  <span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>valid_generator,</span>
+  <span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">100</span>,</span>
+  <span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span>,</span>
+  <span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stop]</span>
+  <span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>)</span>
+  <span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot results</span></span>
+  <span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>result_inceptionv3 <span class="op">=</span> pd.DataFrame(history_inceptionv3.history)</span>
+  <span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">18</span>,<span class="dv">6</span>))</span>
+  <span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> ax.flatten()</span>
+  <span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(result_inceptionv3[[<span class="st">&#39;accuracy&#39;</span>, <span class="st">&#39;val_accuracy&#39;</span>]])</span>
+  <span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">&quot;Accuracy - InceptionV3&quot;</span>)</span>
+  <span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(result_inceptionv3[[<span class="st">&#39;loss&#39;</span>, <span class="st">&#39;val_loss&#39;</span>]])</span>
+  <span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">&quot;Loss - InceptionV3&quot;</span>)</span>
+  <span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+  </div>
+  <div id="44800b1b" class="cell markdown">
+  <p><img src="../Assets/projectpics/InceptionV3.png" alt="Inceptionv3" /></p>
+  </div>
+  <div id="56117797" class="cell markdown">
+  <h3 id="explaination">Explaination</h3>
+  <ul>
+  <li><strong>Model Architecture:</strong>
+  <ul>
+  <li>The InceptionV3 model is loaded without the top layer
+  (<code>include_top=False</code>) to adapt it to your specific
+  classification task.</li>
+  <li>The model's weights are initialized from the pre-trained ImageNet
+  dataset.</li>
+  <li>The model architecture includes additional layers for
+  classification.</li>
+  <li>The model is compiled with Adam optimizer and categorical
+  crossentropy loss function.</li>
+  <li>The training process includes early stopping to prevent
+  overfitting.</li>
+  <li>The training accuracy and validation accuracy, along with loss
+  values, are plotted for visual analysis of model performance over
+  epochs.</li>
+  </ul></li>
+  </ul>
+  </div>
+  <div id="69930b6b" class="cell markdown">
+  <h2 id="final-steps-evaluating-and-saving-the-model">Final Steps:
+  Evaluating and Saving the Model</h2>
+  </div>
+  <div id="4aab4620" class="cell code" data-execution_count="18"
+  data-execution="{&quot;iopub.execute_input&quot;:&quot;2024-10-04T02:23:02.656503Z&quot;,&quot;iopub.status.busy&quot;:&quot;2024-10-04T02:23:02.655585Z&quot;,&quot;iopub.status.idle&quot;:&quot;2024-10-04T02:23:13.228024Z&quot;,&quot;shell.execute_reply&quot;:&quot;2024-10-04T02:23:13.227064Z&quot;}"
+  data-papermill="{&quot;duration&quot;:15.487066,&quot;end_time&quot;:&quot;2024-10-04T02:23:13.230054&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2024-10-04T02:22:57.742988&quot;,&quot;status&quot;:&quot;completed&quot;}"
+  data-tags="[]">
+  <div class="sourceCode" id="cb22"><pre
+  class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>model_inceptionv3.evaluate(test_generator)</span>
+  <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>model_inceptionv3.save(<span class="st">&#39;bird_CNN_model_inceptionv3.h5&#39;</span>)</span></code></pre></div>
+  <div class="output stream stdout">
+  <pre><code>221/221 ━━━━━━━━━━━━━━━━━━━━ 10s 47ms/step - accuracy: 0.9738 - loss: 0.1130
+  </code></pre>
+  </div>
+  <div class="output execute_result" data-execution_count="18">
+  <pre><code>[0.15123121440410614, 0.9728885889053345]</code></pre>
+  </div>
+  </div>
+  <div id="21354284" class="cell markdown">
+  <h3 id="explanation">Explanation:</h3>
+  <ul>
+  <li><strong>Model Evaluation:</strong>
+  <ul>
+  <li>The <code>evaluate</code> method computes the loss and accuracy of
+  the model on the provided test dataset (<code>test_generator</code>).
+  This gives you an idea of how well your model is likely to perform on
+  unseen data.</li>
+  </ul></li>
+  <li><strong>Printing Results:</strong>
+  <ul>
+  <li>The test loss and accuracy are printed out to the console for quick
+  reference.</li>
+  </ul></li>
+  <li><strong>Model Saving:</strong>
+  <ul>
+  <li>The <code>save</code> method stores the model architecture, weights,
+  and training configuration in an HDF5 file
+  (<code>bird_CNN_model_inceptionv3.h5</code>). This allows you to load
+  the model later without needing to retrain it.</li>
+  </ul></li>
+  </ul>
+  </div>
+  <div id="ccda75c3" class="cell markdown">
+  <h2 id="conclusion">Conclusion</h2>
+  <p>In this tutorial, we explored the process of building a convolutional
+  neural network (CNN) for bird species classification using various
+  pre-trained models, including VGG16, InceptionV3, EfficientNetB0, and
+  InceptionResNetV2. Here’s a summary of what we accomplished:</p>
+  <ol>
+  <li><strong>Data Preparation:</strong>
+  <ul>
+  <li>We extracted the dataset containing images and segmentation masks of
+  different bird species.</li>
+  <li>The data was organized into training, validation, and test sets,
+  ensuring that our model could learn effectively while being evaluated on
+  unseen data.</li>
+  </ul></li>
+  <li><strong>Model Selection and Training:</strong>
+  <ul>
+  <li>We employed state-of-the-art transfer learning techniques by
+  leveraging pre-trained models, which significantly reduce training time
+  and improve performance.</li>
+  <li>Each model was fine-tuned by adding custom layers for classification
+  tasks and training them on the prepared dataset.</li>
+  <li>Early stopping was implemented to prevent overfitting, ensuring our
+  models maintained good generalization on unseen data.</li>
+  </ul></li>
+  <li><strong>Model Evaluation and Saving:</strong>
+  <ul>
+  <li>After training, we evaluated the models on a separate test set to
+  gauge their performance, focusing on metrics such as accuracy and
+  loss.</li>
+  <li>Finally, we saved the trained models for future use, allowing for
+  easy deployment in real-world applications or further
+  experimentation.</li>
+  </ul></li>
+  </ol>
+  <h3 id="key-takeaways">Key Takeaways:</h3>
+  <ul>
+  <li><strong>Transfer Learning:</strong> Using pre-trained models
+  significantly enhances performance and speeds up the training process,
+  especially when working with limited datasets.</li>
+  <li><strong>Data Augmentation:</strong> Implementing techniques such as
+  rotation, shifting, and flipping helps improve model robustness by
+  exposing it to a wider variety of images.</li>
+  <li><strong>Evaluation Metrics:</strong> Always evaluate your model on a
+  dedicated test set to ensure it performs well on unseen data.</li>
+  </ul>
+  <h3 id="next-steps">Next Steps:</h3>
+  <ul>
+  <li>You can further enhance your models by experimenting with additional
+  hyperparameters, exploring more complex architectures, or applying
+  techniques such as fine-tuning on the pre-trained models.</li>
+  <li>Consider deploying your trained models using web frameworks or
+  mobile applications to make your bird classification system accessible
+  to users.</li>
+  <li>Finally, you can apply the concepts learned in this tutorial to
+  other datasets and domains, expanding your knowledge and skills in deep
+  learning and computer vision.</li>
+  </ul>
+  </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg></a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></i></a>
+        <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contact.html">Contributor</a>
+      </div>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px;"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></svg>    </button>
+  </footer>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+    
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+</script>
+</body>
+
+</html>
