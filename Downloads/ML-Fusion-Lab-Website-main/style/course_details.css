@@ -1,0 +1,530 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+/* switch theme toggal */
+.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .checkbox-label {
+    background: linear-gradient(82deg, #ffffff, #00796b);
+    width: 60px;
+    height: 28px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .theme-btn{
+    height: 23px;
+    height: 23px;
+  }
+  .checkbox-label .ball {
+    background-color: #000000;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.3s linear;
+    
+  }
+  
+  .checkbox:checked + .checkbox-label .ball {
+    transform: translateX(31px);
+    
+  }
+  
+
+/* 
+.theme-switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url("../Assets/moon.png");
+}
+
+.theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url("../Assets/sun.png"); */
+/* } */
+
+:root {
+    --black: #1d1d1f;
+    --fade-black: #434343;
+    --grey: #6e6e73;
+    --lightest-white: rgb(228, 228, 228);
+    --max-width-cd-container: 800px;
+    --max-width-wrapper: 1280px;
+    --max-width-sidebar: var(--max-width-wrapper) - var(--max-width-cd-container);
+}
+
+.cd-wrapper {
+    max-width: var(--max-width-wrapper);
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.cd-wrapper .cd-container {
+    max-width: var(--max-width-cd-container);
+}
+
+.cd-wrapper .cd-container .cd-header .cd-company-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cd-wrapper .cd-container .cd-header .cd-company-group p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cd-wrapper .cd-container .cd-header .cd-company-group .cd-cmp-img {
+    width: 50px;
+    height: auto;
+}
+
+.cd-wrapper .cd-container .cd-header .cd-title {
+    margin-top: 20px;
+    font-size: 48px;
+    color: var(--black);
+}
+
+.cd-wrapper .cd-container .cd-header .cd-instructor-cont {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.cd-wrapper .cd-container .cd-header .cd-instructor-cont .cd-instructor-label {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.cd-wrapper .cd-container .cd-header .cd-instructor-cont .cd-instructor {
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.cd-wrapper .cd-container .cd-header .cd-lesson-detail-cont {
+    margin-top: 20px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.cd-wrapper .cd-container .cd-header .cd-lesson-detail-cont .cd-lesson-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cd-wrapper .cd-container .course-img-cont {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.cd-wrapper .cd-container .course-img-cont .course-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.cd-wrapper .cd-container .cd-core-details .about-cont,
+.cd-wrapper .cd-container .cd-core-details .completing-course-cont,
+.cd-wrapper .cd-container .cd-core-details .requirement-sec {
+    margin: 50px 0;
+}
+
+.cd-wrapper .cd-container .cd-core-details .skills-gain{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.cd-wrapper .cd-container .cd-core-details .skills-gain .skillName{
+    border: 1px solid var(--black);
+    width: max-content;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 14px;
+    background: var(--black);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cd-wrapper .cd-container .cd-core-details .skills-gain .skillName:hover{
+    background-color: var(--fade-black);
+}
+.cd-wrapper .cd-container .cd-core-details .about-cont .about-title {
+    color: var(--black);
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.cd-wrapper .cd-container .cd-core-details .about-cont .about-desc {
+    color: var(--fade-black);
+    font-size: 18px;
+}
+
+.cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.cd-wrapper .cd-container .cd-core-details .completing-course-cont .title {
+    color: var(--black);
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group .cd-tick,
+.cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group .cd-tick {
+    border-radius: 100%;
+    padding: 5px;
+    color: rgb(0, 102, 255);
+    font-size: 24px;
+}
+
+.cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group p,
+.cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group p {
+    color: #000000;
+    font-size: 18px;
+}
+
+.cd-wrapper .cd-container .cd-core-details .requirement-sec .title {
+    color: var(--black);
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: capitalize;
+
+}
+
+.cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.cd-wrapper .sidebar {
+    width: var(--max-width-sidebar);
+    margin-top: 70px;
+    border-left: 1px solid var(--lightest-white);
+    padding-left: 36px;
+    height: max-content;
+    position: sticky;
+    top: 120px;
+}
+
+.cd-wrapper .sidebar .sidebar-item-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.cd-wrapper .sidebar .sidebar-item-group .icon {
+    color: rgb(0, 102, 255);
+    font-size: 24px;
+    max-width: 36px;
+    width: 100%;
+}
+
+.cd-wrapper .sidebar .line {
+    background: var(--lightest-white);
+    height: 1px;
+    width: 100%;
+    margin: 36px 0;
+}
+
+.cd-wrapper .sidebar .price-cont .price-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cd-wrapper .sidebar .price-cont .price-group .striked-price {
+    color: var(--grey);
+    font-size: 20px;
+}
+
+.cd-wrapper .sidebar .price-cont .price-group .price {
+    color: var(--black);
+    font-size: 20px;
+    color: rgb(0, 102, 255);
+    font-weight: 700;
+}
+
+.cd-wrapper .sidebar .price-cont .enroll-btn {
+    width: 100%;
+    padding: 13px 20px;
+    background-color: rgb(0, 102, 255);
+    color: white;
+    border: 1px solid rgb(0, 102, 255);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+}
+
+.cd-wrapper .sidebar .price-cont .enroll-btn:hover {
+    background-color: rgb(2 92 228);
+} 
+
+.cd-wrapper .sidebar .price-cont .enroll-btn:focus {
+    box-shadow: 0 0 0 4px rgba(40, 126, 255, 0.3);
+}
+
+/* Bootstrap adding margins by default, so needed to remove uneccesary margins from all <p> tags  */
+
+.cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group p,
+.cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group p,
+.cd-wrapper .sidebar .sidebar-item-group p,
+.cd-wrapper .cd-container .cd-header .cd-lesson-detail-cont .cd-lesson-group p,
+.cd-wrapper .cd-container .cd-header .cd-instructor-cont p,
+.cd-wrapper .cd-container .cd-header .cd-company-group p {
+    margin: 0;
+}
+
+/* dark mode  */
+body.dark-mode .cd-wrapper .cd-container .cd-header .cd-title {
+    color: white;
+}
+
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .skills-gain .skillName {
+    color: var(--black);
+    background: white;
+} 
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .skills-gain .skillName:hover{
+    color: var(--black);
+    background: rgb(233, 233, 233);
+}
+
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .about-cont .about-desc {
+    color: white;
+}
+
+body.dark-mode .cd-wrapper .cd-container .cd-header .cd-instructor-cont .cd-instructor-label {
+    color: white;
+}
+
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .about-cont .about-title,
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .completing-course-cont .title,
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .requirement-sec .title {
+    color: white;
+}
+
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group p,
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group p {
+    color: white;
+}
+
+body.dark-mode {
+    background-color: #1c1c1c;
+}
+
+body.dark-mode .cd-wrapper .sidebar .sidebar-item-group .icon,
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group .cd-tick,
+body.dark-mode .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group .cd-tick {
+    color: rgb(93, 169, 255);
+}
+
+/* Media queries */
+@media(max-width: 1280px) {
+    .cd-wrapper {
+        max-width: 992px;
+        justify-content: start;
+        gap: 30px;
+
+    }
+
+    .cd-wrapper .cd-container {
+        max-width: calc(992px - 30%);
+    }
+
+    .cd-wrapper .sidebar {
+        max-width: calc(992px - 80%);
+        padding-left: 20px;
+        border: none;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group,
+    .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group,
+    .cd-wrapper .sidebar .sidebar-item-group {
+        align-items: start;
+    }
+}
+
+@media(max-width: 992px) {
+    .cd-wrapper {
+        max-width: 768px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+
+    }
+
+    .cd-wrapper .cd-container {
+        max-width: 100%;
+    }
+
+    .cd-wrapper .sidebar {
+        max-width: 100%;
+        border-top: 1px solid var(--lightest-white);
+        padding-top: 36px;
+        padding-left: 0;
+        margin-top: 0;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group,
+    .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group,
+    .cd-wrapper .sidebar .sidebar-item-group {
+        align-items: center;
+    }
+}
+
+@media(max-width: 768px) {
+    .cd-wrapper {
+        max-width: 576px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-lesson-detail-cont {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0;
+    }
+}
+
+@media(max-width: 576px) {
+    .cd-wrapper {
+        max-width: 425px;
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-title {
+        font-size: 36px;
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-instructor-cont {
+        flex-wrap: wrap;
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-lesson-detail-cont .cd-lesson-group {
+        margin-bottom: 10px;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .about-cont .about-title,
+    .cd-wrapper .cd-container .cd-core-details .completing-course-cont .title,
+    .cd-wrapper .cd-container .cd-core-details .requirement-sec .title {
+        font-size: 24px;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .about-cont .about-desc {
+        font-size: 16px;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group p,
+    .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group p,
+    .cd-wrapper .sidebar .sidebar-item-group p,
+    .cd-wrapper .cd-container .cd-header .cd-lesson-detail-cont .cd-lesson-group p,
+    .cd-wrapper .cd-container .cd-header .cd-instructor-cont p,
+    .cd-wrapper .cd-container .cd-header .cd-company-group p {
+        font-size: 16px;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group .cd-tick,
+    .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group .cd-tick {
+        font-size: 18px;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .completing-course-cont .completing-course-group,
+    .cd-wrapper .cd-container .cd-core-details .requirement-sec .req-group,
+    .cd-wrapper .sidebar .sidebar-item-group {
+        align-items: start;
+    }
+
+    .cd-wrapper .cd-container .cd-core-details .skills-gain .skillName {
+        font-size: 12px;
+    }
+}
+
+@media(max-width: 425px) {
+    .cd-wrapper {
+        max-width: 100%;
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-title {
+        font-size: 28px;
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-company-group p {
+        font-size: 14px;
+    }
+
+    .cd-wrapper .cd-container .cd-header .cd-instructor-cont .cd-instructor-label,
+    .cd-wrapper .cd-container .cd-header .cd-instructor-cont .cd-instructor {
+        font-size: 16px;
+    }
+
+    .cd-wrapper .sidebar .sidebar-item-group .icon {
+        max-width: 36px;
+        width: 100%;
+    }
+}
+
+     /* css for mouse cursor trail effect */
+   .circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(70, 130, 180, 0.3),skyblue, rgba(0, 0, 50, 0.3),white);
+    transition: transform 0.1s, left 0.1s, top 0.1s;
+  }
+  
+  .circle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999; /* removed the non-breaking space (&nbsp;) */
+  }

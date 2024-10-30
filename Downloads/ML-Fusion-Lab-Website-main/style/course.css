@@ -1,0 +1,635 @@
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #181818;
+  color: white;
+  padding: 15px 0;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+header nav .logo h1 {
+  margin: 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  margin-left: 20px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.courses {
+  margin: 0 auto;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.course-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-item:hover {
+  transform: translateY(-5px);
+}
+
+.course-item h3 {
+  margin-bottom: 10px;
+}
+
+.course-item p {
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+h1 {
+  font-weight: bold;
+  color: white;
+  -webkit-text-stroke: 1.5px black;
+  text-shadow: 1px 1px 0 black;
+  font-size: 3rem;
+}
+
+p {
+  font-weight: bold;
+  color: black;
+  font-size: 3rem;
+}
+
+
+
+/* Cards Container */
+/* Container styling */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 45px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+/* Card styling */
+.card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  height: 430px !important;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 12px 24px rgba(0, 123, 255, 0.25);
+  border-color: #007bff;
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.card:hover h3 {
+  color: #007bff;
+}
+
+.card-content p {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Tag styling */
+.tag {
+  background-color: #f39c12;
+  color: white;
+  padding: 8px 10px;
+  display: block;
+  text-align: center;
+  border-radius: 7px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.card:hover .tag {
+  background-color: #e67e22;
+}
+
+/* Category card hover effect */
+.category-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.category-card img {
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Flip Card Styling */
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+  width: 280px;
+  height: 350px;
+  margin: auto;
+  position: relative;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+}
+
+.flip-card-front {
+  background-color: #fff;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #007bff;
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Logo styling */
+.logo {
+  display: inline-block;
+  margin-right: 10px;
+  vertical-align: middle;
+  height: 20px;
+}
+
+.logo img {
+  width: 35px;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Description styling */
+.description {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+  text-decoration: underline;
+  color: #007bff;
+}
+
+p {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+  line-height: 1.6;
+  color: #555;
+}
+
+.info {
+  text-align: left;
+  list-style-position: inside;
+  padding-left: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Animation for card hover */
+@keyframes cardHoverAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card:hover {
+  animation: cardHoverAnimation 0.5s ease-in-out;
+}
+
+/* Footer styling */
+/* footer {
+  background-color: #1a1919;
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+  position: relative;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+} */
+
+/* .footer-links,
+.footer-socials {
+  margin: 10px 0;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #007BFF;
+} */
+
+/* .footer-contact {
+  margin: 10px 0;
+  color: white;
+}
+
+.footer-contact a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+} */
+
+/* .footer-socials a {
+  margin: 0 10px;
+  color: rgb(240, 228, 228); 
+  font-size: 24px;
+  transition: color 0.3s ease;
+} */
+
+/* .footer-socials a:hover {
+  color: #aca7eb;
+} */
+
+/* footer p {
+  font-size: 14px;
+  color: white;
+} */
+
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  /* .footer-socials, .footer-contact, .footer-links {
+    margin-bottom: 15px;
+    font-size: 16px;
+  } */
+
+  /* .footer-socials a {
+    font-size: 20px;
+  }
+
+  .footer-contact p, .footer-links a {
+    font-size: 14px;
+  } */
+  /* } */
+
+  .theme-switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url("../Assets/moon.png");
+  }
+
+  .theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url("../Assets/sun.png");
+  }
+
+  /* .theme-switch::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.3s ease-in-out, background-image 0.3s ease-in-out;
+    background-image: url("../Assets/moon.png");
+}
+
+.theme-switch.dark-theme::before {
+    left: 33px;
+    background-image: url("../Assets/sun.png");
+} */
+
+  /* toggle theme switch style */
+  .checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .checkbox-label {
+    background: linear-gradient(82deg, #ffffff, #00796b);
+    width: 60px;
+    height: 28px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .theme-btn {
+    height: 23px;
+    height: 23px;
+  }
+
+  .checkbox-label .ball {
+    background-color: #000000;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.3s linear;
+
+  }
+
+  .checkbox:checked+.checkbox-label .ball {
+    transform: translateX(31px);
+
+  }
+}
+
+/* new footer properties */
+.footer {
+  padding: 5rem 1rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 400px repeat(3, 1fr);
+  gap: 2rem;
+  background-color: #191919;
+}
+
+.footer-col img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 10px;
+  position: relative;
+  bottom: 15px;
+}
+
+.footer-p {
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  color: white;
+  display: block;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+}
+
+/* .footer-social i {
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    opacity: 0.7;
+    border: 2px solid white;
+    border-radius: 100%;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease 0s;
+  }
+  
+  .footer-social i:hover {
+    opacity: 1;
+    background-color: #35373b;
+  } */
+
+.h46 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+}
+
+.footer-col-main {
+  margin-top: -1rem;
+}
+
+.footer-col-main a {
+  display: block;
+  margin-bottom: 1rem;
+  color: white;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.3s ease 0s;
+}
+
+.footer-col-main a:hover {
+  opacity: 1;
+}
+
+.footer-bar {
+  /* Adjusted Width to cover entire footer bottom */
+  width: 100%;
+}
+
+.footer-col img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 10px;
+  position: relative;
+  bottom: 15px;
+}
+
+.footer-p {
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  color: white;
+  display: block;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+}
+
+.footer-social i {
+  color: white;
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  opacity: 0.7;
+  border: 2px solid white;
+  border-radius: 100%;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease 0s;
+}
+
+.footer-social i:hover {
+  opacity: 1;
+  background-color: #35373b;
+}
+
+.h46 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: white;
+}
+
+.footer-col-main {
+  margin-top: -1rem;
+}
+
+.footer-col-main a {
+  display: block;
+  margin-bottom: 1rem;
+  color: white;
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity 0.3s ease 0s;
+}
+
+.footer-col-main a:hover {
+  opacity: 1;
+}
+
+.footer-bar {
+  margin: auto;
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: white;
+  background-color: black;
+}
+
+
+@media (max-width: 900px) {
+  .footer {
+    grid-template-columns: 1fr 200px;
+  }
+}
+
+/* this is only end of footer style */

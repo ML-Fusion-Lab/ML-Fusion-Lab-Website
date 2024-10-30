@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="icon" type="image/x-icon" href="log/favicon.ico">
+  <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/f2e55912f8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../style/login.css">
+</head>
+<body>
+  <div id="loginSuccessBanner" class="success-banner" style="display:none;">Logged in successfully</div>
+  <div id="loginDeclineBanner" class="decline-banner" style="display:none;">Login Blocked <br> Credentials didn't match</div>
+  <div id="registerSuccessBanner" class="success-banner" style="display:none;">Registered successfully</div>
+  <div id="registerDeclineBanner" class="decline-banner" style="display:none;">Registration Blocked <br> Same email address exists</div>
+  
+  <!-- Back to Home Button -->
+  <div>
+    <a href="../index.html">
+      <button style="padding: 25px 25px 25px 25px; border-radius: 40px; font-size: 20px;">
+        <i class="lni lni-home"></i>
+      </button>
+    </a>
+  </div>
+
+  <div class="main-container">
+    <div class="container" id="container">
+      <div class="form-container register-container">
+        <form id="registerForm">
+          <h1>ML Fusion Labs</h1>
+          <input type="text" placeholder="Name" id="registerName">
+          <input type="email" placeholder="Email" id="registerEmail">
+          <div id="register-section" class="input-container">
+            <input type="password" placeholder="Password" id="registerPassword">
+            <button type="button" id="toggleRegisterPassword">
+              <i id="registerIcon" class="fas fa-eye"></i>
+            </button>
+          </div>
+          <button type="submit">Register</button>
+          <button id="google-login" style="color: black;font-family:var(--ff-poppins); background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=); background-repeat: no-repeat; background-position: 5% 50%; background-size: 30px;"><a href="https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fmyaccount.google.com%2F%3Futm_source%3Dsign_in_no_continue%26pli%3D1&ec=GAlAwAE&hl=en_GB&service=accountsettings&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-2077688360%3A1729768269226170&ddm=0">Login With Google</a></button>
+
+          <button id="facbook-login" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg); background-repeat: no-repeat; background-position: 5% 50%; background-size: 30px;"><a href="https://www.facebook.com/login/">Login with facebook</a></button>
+          <button id="x-login" style="color: black;font-family:var(--ff-poppins); background-image: url(https://img.freepik.com/free-vector/twitter-new-2023-x-logo-white-background-vector_1017-45422.jpg?t=st=1729705399~exp=1729708999~hmac=86164ca5278d72d1e806212a9399b9f1d09e5db1559733d42425370dbca91851&w=826); background-repeat: no-repeat; background-position: 5% 50%; background-size: 30px;"><a href="https://x.com/i/flow/login">Login with X</a></button>
+          
+        </form>
+      </div>
+
+      <div class="form-container login-container">
+        <form id="loginForm">
+          <h1>ML Fusion Labs</h1>
+          <input type="email" placeholder="Email" id="loginEmail">
+          <div id="login-section" class="input-container">
+            <input type="password" placeholder="Password" id="loginPassword">
+            <button type="button" id="toggleLoginPassword">
+              <i id="loginIcon" class="fas fa-eye"></i>
+            </button>
+          </div>
+          <div class="content">
+            <div class="checkbox">
+              <input type="checkbox" name="checkbox" id="checkbox">
+              <label>Remember me</label>
+            </div>
+            <div class="pass-link">
+              <a href="#" id="forgotPasswordLink">Forgot password?</a>
+            </div>
+            <div id="forgotPasswordMessage"></div>
+          </div>
+          <button type="submit">Login</button>
+          <button id="google-login" style="color: black;font-family:var(--ff-poppins); background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=); background-repeat: no-repeat; background-position: 5% 50%; background-size: 30px;"><a href="https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fmyaccount.google.com%2F%3Futm_source%3Dsign_in_no_continue%26pli%3D1&ec=GAlAwAE&hl=en_GB&service=accountsettings&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S-2077688360%3A1729768269226170&ddm=0">Login With Google</a></button>
+
+          <button id="facbook-login" style=" background-image: url(https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg); background-repeat: no-repeat; background-position: 5% 50%; background-size: 30px;"><a href="https://www.facebook.com/login/">Login with facebook</a></button>
+          <button id="x-login" style="color: black;font-family:var(--ff-poppins); background-image: url(https://img.freepik.com/free-vector/twitter-new-2023-x-logo-white-background-vector_1017-45422.jpg?t=st=1729705399~exp=1729708999~hmac=86164ca5278d72d1e806212a9399b9f1d09e5db1559733d42425370dbca91851&w=826); background-repeat: no-repeat; background-position: 5% 50%; background-size: 30px;"><a href="https://x.com/i/flow/login">Login with X</a></button>
+        </form>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1 class="title">Hello friends</h1>
+            <p>If you have an account, login here.</p>
+            <button class="ghost" id="login">Login
+              <i class="lni lni-arrow-left login"></i>
+            </button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1 class="title">Start your journey now</h1>
+            <p>If you don't have an account yet, join us and start your journey.</p>
+            <button class="ghost" id="register">Register
+              <i class="lni lni-arrow-right register"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <script src="../script/login.js"></script>
+
+</body>
+</html>

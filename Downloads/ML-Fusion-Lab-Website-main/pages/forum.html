@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - ML Fusion Lab</title>
+    <link rel="icon" href="../image/ml-fusion-lab-logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../style/forum.css">
+    
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="head">
+        <div class="logo">
+            <a href="../index.html">
+                <h1><img src="../image/ml fusion lab log.jpg" alt="logo" width="50" height="50" /></h1>
+            </a>
+        </div>
+        <nav>
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../pages/courses.html">Courses</a></li>
+                <li><a href="../pages/projects.html">Projects</a></li>
+                <li><a href="../pages/about.html">About Us</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/feedback.html">Feedback</a></li>
+                <!-- <div class="theme-switch" id="theme-switch"></div> -->
+                <div id="themeSwitch" class="theme-switch">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label">
+                      
+                      <img src="../Assets/sun.png" class="theme-btn">
+                      <img src="../Assets/moon.png" class="theme-btn">
+                      <!-- <i class="fas fa-moon"></i>
+                      <i class="fas fa-sun"></i> -->
+                      <span class="ball"></span>
+                    </label>
+                  </div>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="forum-section">
+        <h2 class="forum-title">Join Our Forum</h2>
+        <p class="forum-description">Explore some of the best machine learning forums around the globe. Connect with like-minded learners, discuss, collaborate, and grow together.</p>
+    
+        <div class="forum-container">
+            <a href="#" class="forum-card">
+                <h3>Topic-Specific Discussion Threads</h3>
+                <p>Dive deep into machine learning topics and engage with discussions tailored to specific areas of interest.</p>
+            </a>
+    
+            <a href="#" class="forum-card">
+                <h3>Course-Specific Discussion Threads</h3>
+                <p>Get help with your learning materials by participating in discussions related to specific machine learning courses.</p>
+            </a>
+    
+            <a href="#" class="forum-card">
+                <h3>Project Sharing and Collaboration Space</h3>
+                <p>Share your machine learning projects and collaborate with peers to enhance your work.</p>
+            </a>
+    
+            <a href="#" class="forum-card">
+                <h3>Peer Study Groups</h3>
+                <p>Form study groups to enhance your learning journey through peer collaboration.</p>
+            </a>
+    
+            <a href="#" class="forum-card">
+                <h3>Career Advice and Job Postings</h3>
+                <p>Seek guidance on career paths in machine learning and find the latest job postings in the field.</p>
+            </a>
+    
+            <a href="#" class="forum-card">
+                <h3>Virtual Whiteboard for Collaboration</h3>
+                <p>Brainstorm and collaborate in real-time with peers using our virtual whiteboard feature.</p>
+            </a>
+        </div>
+    
+        <div class="see-more">
+            <a href="#" class="see-more-btn">See More</a>
+        </div>
+    </section>
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-socials">
+                Follow us on:
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank">
+                    <img src="/CourseAssets/x.png" alt="X Logo" style="width: 30px; height: 30px;">
+                </a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact us: <a href="mailto:info@mlfusionlabs.com">info@mlfusionlabs.com</a> | Phone: +1 (555) 123-4567</p>
+            </div>
+            <div class="footer-links">
+                <a href="../pages/privacy.html">Privacy Policy</a> |
+                <a href="../pages/terms.html">Terms of Service</a> |
+                <a href="../pages/about.html">About Us</a> |
+                <a href="../pages/contact.html">Contact</a>
+            </div>
+            <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+        </div>
+        <button id="scrollTopBtn" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../script/scroll.js"></script>
+    <script src="../script/script.js"></script>
+    <script>
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        
+        // Update the HTML content
+        document.getElementById("current-year").textContent = currentYear;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <link rel="icon" />
+  <link rel="icon" href="../image/ml-fusion-lab-logo.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Based Recommendation System </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  integrity="sha384-DyZvIiAlK5ou5JHox2F5E6g/xW6+U3A6M9fzy+nuU0T+CEql5G2RzQZn8AdBQ7kG" crossorigin="anonymous">
+<link rel="stylesheet" href="../style/style.css" />
+  <style>
+    .project-container {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+      margin: 0 auto;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+
+    body.dark-mode .project-container {
+      background-color: #1a1a1a;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .project-container {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+
+      .project-container h1 {
+        font-size: 1.8em;
+      }
+    }
+
+    @media print {
+      .project-container {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .project-container p,
+      .project-container h2,
+      .project-container h3 {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .project-container h2,
+      .project-container h3,
+      .project-container h4 {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      height: 100px;
+    }
+
+    .logo {
+      margin: 30px 0 0 0;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .footer-links,
+    .footer-socials,
+    .footer-contact {
+      margin: 10px 0;
+    }
+
+    .footer-links a,
+    .footer-socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover,
+    .footer-socials a:hover {
+      color: #007bff;
+    }
+
+    .footer-socials a {
+      font-size: 24px;
+      margin: 0 15px;
+    }
+
+    .footer-contact a {
+      color: white;
+    }
+
+    .newsletter .input-group .input {
+      color: black;
+    }
+
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 101;
+      font-size: 18px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    a {
+      color: #1a1a1a;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 1.4em;
+    }
+
+    h5,
+    h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+
+    h6 {
+      font-weight: normal;
+    }
+
+    ol,
+    ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+
+    li>ol,
+    li>ul {
+      margin-top: 0;
+    }
+
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+
+    .sourceCode {
+      background-color: transparent;
+      overflow: visible;
+    }
+
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    table caption {
+      margin-bottom: 0.75em;
+    }
+
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+
+    #TOC li {
+      list-style: none;
+    }
+
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+
+    #TOC>ul {
+      padding-left: 0;
+    }
+
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    ul.task-list {
+      list-style: none;
+    }
+
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+
+    pre>code.sourceCode {
+      white-space: pre;
+      position: relative;
+    }
+
+    pre>code.sourceCode>span {
+      display: inline-block;
+      line-height: 1.25;
+    }
+
+    pre>code.sourceCode>span:empty {
+      height: 1.2em;
+    }
+
+    .sourceCode {
+      overflow: visible;
+    }
+
+    code.sourceCode>span {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    div.sourceCode {
+      margin: 1em 0;
+    }
+
+    pre.sourceCode {
+      margin: 0;
+    }
+
+    @media screen {
+      div.sourceCode {
+        overflow: auto;
+      }
+    }
+
+    @media print {
+      pre>code.sourceCode {
+        white-space: pre-wrap;
+      }
+
+      pre>code.sourceCode>span {
+        text-indent: -5em;
+        padding-left: 5em;
+      }
+    }
+
+    pre.numberSource code {
+      counter-reset: source-line 0;
+    }
+
+    pre.numberSource code>span {
+      position: relative;
+      left: -4em;
+      counter-increment: source-line;
+    }
+
+    pre.numberSource code>span>a:first-child::before {
+      content: counter(source-line);
+      position: relative;
+      left: -1em;
+      text-align: right;
+      vertical-align: baseline;
+      border: none;
+      display: inline-block;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: 0 4px;
+      width: 4em;
+      color: #aaaaaa;
+    }
+
+    pre.numberSource {
+      margin-left: 3em;
+      border-left: 1px solid #aaaaaa;
+      padding-left: 4px;
+    }
+
+    div.sourceCode {}
+
+    @media screen {
+      pre>code.sourceCode>span>a:first-child::before {
+        text-decoration: underline;
+      }
+    }
+
+    code span.al {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Alert */
+    code span.an {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Annotation */
+    code span.at {
+      color: #7d9029;
+    }
+
+    /* Attribute */
+    code span.bn {
+      color: #40a070;
+    }
+
+    /* BaseN */
+    code span.bu {
+      color: #008000;
+    }
+
+    /* BuiltIn */
+    code span.cf {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* ControlFlow */
+    code span.ch {
+      color: #4070a0;
+    }
+
+    /* Char */
+    code span.cn {
+      color: #880000;
+    }
+
+    /* Constant */
+    code span.co {
+      color: #60a0b0;
+      font-style: italic;
+    }
+
+    /* Comment */
+    code span.cv {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* CommentVar */
+    code span.do {
+      color: #ba2121;
+      font-style: italic;
+    }
+
+    /* Documentation */
+    code span.dt {
+      color: #902000;
+    }
+
+    /* DataType */
+    code span.dv {
+      color: #40a070;
+    }
+
+    /* DecVal */
+    code span.er {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* Error */
+    code span.ex {}
+
+    /* Extension */
+    code span.fl {
+      color: #40a070;
+    }
+
+    /* Float */
+    code span.fu {
+      color: #06287e;
+    }
+
+    /* Function */
+    code span.im {
+      color: #008000;
+      font-weight: bold;
+    }
+
+    /* Import */
+    code span.in {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Information */
+    code span.kw {
+      color: #007020;
+      font-weight: bold;
+    }
+
+    /* Keyword */
+    code span.op {
+      color: #666666;
+    }
+
+    /* Operator */
+    code span.ot {
+      color: #007020;
+    }
+
+    /* Other */
+    code span.pp {
+      color: #bc7a00;
+    }
+
+    /* Preprocessor */
+    code span.sc {
+      color: #4070a0;
+    }
+
+    /* SpecialChar */
+    code span.ss {
+      color: #bb6688;
+    }
+
+    /* SpecialString */
+    code span.st {
+      color: #4070a0;
+    }
+
+    /* String */
+    code span.va {
+      color: #19177c;
+    }
+
+    /* Variable */
+    code span.vs {
+      color: #4070a0;
+    }
+
+    /* VerbatimString */
+    code span.wa {
+      color: #60a0b0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    /* Warning */
+    .display.math {
+      display: block;
+      text-align: center;
+      margin: 0.5rem auto;
+    }
+
+    body.dark-mode p {
+      margin: 1em 0;
+    }
+
+    body.dark-mode a {
+      color: #e0e0e0;
+    }
+
+    body.dark-mode a:visited {
+      color: #cccccc;
+    }
+
+    body.dark-mode img {
+      max-width: 100%;
+    }
+
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4,
+    body.dark-mode h5,
+    body.dark-mode h6 {
+      color: #f0f0f0;
+    }
+
+    body.dark-mode h5,
+    body.dark-mode h6 {
+      font-size: 1em;
+      font-style: italic;
+      color: #cccccc;
+    }
+
+    body.dark-mode h6 {
+      font-weight: normal;
+    }
+
+    body.dark-mode ol,
+    body.dark-mode ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+      color: #dddddd;
+    }
+
+    body.dark-mode li>ol,
+    body.dark-mode li>ul {
+      margin-top: 0;
+    }
+
+    body.dark-mode blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #444444;
+      color: #bbbbbb;
+    }
+
+    body.dark-mode code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+      color: #eeeeee;
+      background-color: #333333;
+    }
+
+    body.dark-mode pre {
+      margin: 1em 0;
+      overflow: auto;
+      background-color: #2a2a2a;
+    }
+
+    body.dark-mode pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+
+    body.dark-mode .sourceCode {
+      background-color: transparent;
+      overflow: visible;
+    }
+
+    body.dark-mode hr {
+      background-color: #444444;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+
+    body.dark-mode table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode table caption {
+      margin-bottom: 0.75em;
+      color: #cccccc;
+    }
+
+    body.dark-mode tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #444444;
+      border-bottom: 1px solid #444444;
+    }
+
+    body.dark-mode th {
+      border-top: 1px solid #444444;
+      padding: 0.25em 0.5em;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode td {
+      padding: 0.125em 0.5em;
+      color: #dddddd;
+    }
+
+    body.dark-mode header {
+      margin-bottom: 4em;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    body.dark-mode #TOC li {
+      list-style: none;
+    }
+
+    body.dark-mode #TOC ul {
+      padding-left: 1.3em;
+    }
+
+    body.dark-mode #TOC>ul {
+      padding-left: 0;
+    }
+
+    body.dark-mode #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+
+    body.dark-mode code {
+      white-space: pre-wrap;
+    }
+
+    body.dark-mode span.smallcaps {
+      font-variant: small-caps;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode div.columns {
+      display: flex;
+      gap: min(4vw, 1.5em);
+    }
+
+    body.dark-mode div.column {
+      flex: auto;
+      overflow-x: auto;
+    }
+
+    body.dark-mode div.hanging-indent {
+      margin-left: 1.5em;
+      text-indent: -1.5em;
+    }
+
+    body.dark-mode ul.task-list {
+      list-style: none;
+    }
+
+    body.dark-mode ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+
+    body.dark-mode pre>code.sourceCode {
+      white-space: pre;
+      position: relative;
+    }
+
+    body.dark-mode pre>code.sourceCode>span {
+      display: inline-block;
+      line-height: 1.25;
+    }
+
+    body.dark-mode pre>code.sourceCode>span:empty {
+      height: 1.2em;
+    }
+
+    body.dark-mode .sourceCode {
+      overflow: visible;
+    }
+
+    body.dark-mode code.sourceCode>span {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    body.dark-mode div.sourceCode {
+      margin: 1em 0;
+    }
+
+    body.dark-mode pre.sourceCode {
+      margin: 0;
+    }
+
+    @media screen {
+      body.dark-mode div.sourceCode {
+        overflow: auto;
+      }
+    }
+
+    @media print {
+      body.dark-mode pre>code.sourceCode {
+        white-space: pre-wrap;
+      }
+
+      body.dark-mode pre>code.sourceCode>span {
+        text-indent: -5em;
+        padding-left: 5em;
+      }
+    }
+
+    body.dark-mode pre.numberSource code {
+      counter-reset: source-line 0;
+    }
+
+    body.dark-mode pre.numberSource code>span {
+      position: relative;
+      left: -4em;
+      counter-increment: source-line;
+    }
+
+    body.dark-mode pre.numberSource code>span>a:first-child::before {
+      content: counter(source-line);
+      position: relative;
+      left: -1em;
+      text-align: right;
+      vertical-align: baseline;
+      border: none;
+      display: inline-block;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      padding: 0 4px;
+      width: 4em;
+      color: #aaaaaa;
+    }
+
+    body.dark-mode pre.numberSource {
+      margin-left: 3em;
+      border-left: 1px solid #aaaaaa;
+      padding-left: 4px;
+    }
+
+    @media screen {
+      body.dark-mode pre>code.sourceCode>span>a:first-child::before {
+        text-decoration: underline;
+      }
+    }
+
+    body.dark-mode code span.al {
+      color: #ff6666;
+      font-weight: bold;
+    }
+
+    body.dark-mode code span.an {
+      color: #80c0d0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    body.dark-mode code span.at {
+      color: #8bbf50;
+    }
+
+    body.dark-mode code span.bn {
+      color: #60d070;
+    }
+
+    body.dark-mode code span.bu {
+      color: #00b000;
+    }
+
+    body.dark-mode code span.cf {
+      color: #009040;
+      font-weight: bold;
+    }
+
+    body.dark-mode code span.ch {
+      color: #5080c0;
+    }
+
+    body.dark-mode code span.cn {
+      color: #ff6666;
+    }
+
+    body.dark-mode code span.co {
+      color: #80c0d0;
+      font-style: italic;
+    }
+
+    body.dark-mode code span.cv {
+      color: #80c0d0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    body.dark-mode code span.do {
+      color: #d05a5a;
+      font-style: italic;
+    }
+
+    body.dark-mode code span.dt {
+      color: #b04030;
+    }
+
+    body.dark-mode code span.dv {
+      color: #60d070;
+    }
+
+    body.dark-mode code span.er {
+      color: #ff3333;
+      font-weight: bold;
+    }
+
+    body.dark-mode code span.ex {}
+
+    body.dark-mode code span.fl {
+      color: #60d070;
+    }
+
+    body.dark-mode code span.fu {
+      color: #0848a0;
+    }
+
+    body.dark-mode code span.im {
+      color: #00b000;
+      font-weight: bold;
+    }
+
+    body.dark-mode code span.in {
+      color: #80c0d0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    body.dark-mode code span.kw {
+      color: #009040;
+      font-weight: bold;
+    }
+
+    body.dark-mode code span.op {
+      color: #999999;
+    }
+
+    body.dark-mode code span.ot {
+      color: #009040;
+    }
+
+    body.dark-mode code span.pp {
+      color: #e08a00;
+    }
+
+    body.dark-mode code span.sc {
+      color: #5080c0;
+    }
+
+    body.dark-mode code span.ss {
+      color: #d06688;
+    }
+
+    body.dark-mode code span.st {
+      color: #5080c0;
+    }
+
+    body.dark-mode code span.va {
+      color: #28287c;
+    }
+
+    body.dark-mode code span.vs {
+      color: #5080c0;
+    }
+
+    body.dark-mode code span.wa {
+      color: #80c0d0;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    body.dark-mode .display.math {
+      display: block;
+      text-align: center;
+      margin: 0.5rem auto;
+      color: #f0f0f0;
+    }
+
+    /* css for mouse cursor trail effect */
+    .circle {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(70, 130, 180, 0.3), skyblue, rgba(0, 0, 50, 0.3), white);
+      transition: transform 0.1s, left 0.1s, top 0.1s;
+    }
+
+    .circle-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      /* removed the non-breaking space (&nbsp;) */
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style/scroll.css" />
+</head>
+
+<body>
+
+  <div class="circle-container">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <header>
+    <div class="logo">
+      <a href="../index.html">
+        <h1>
+          <img src="../image/ml-fusion-lab-logo.png" alt="logo" width="100" height="100" />
+        </h1>
+      </a>
+    </div>
+    <nav>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../pages/courses.html">Courses</a></li>
+        <li><a href="../pages/projects.html">Projects</a></li>
+        <li><a href="../pages/about.html">About Us</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../pages/community_suport.html">Community Support</a></li>
+
+        <li><a href="../pages/feedback.html">Feedback</a></li>
+        <!-- <div class="theme-switch" id="theme-switch"></div> -->
+        <div id="themeSwitch" class="theme-switch">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+
+            <img src="../Assets/sun.png" class="theme-btn">
+            <img src="../Assets/moon.png" class="theme-btn">
+            <!-- <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i> -->
+            <span class="ball"></span>
+          </label>
+        </div>
+      </ul>
+    </nav>
+  </header>
+  <div class="project-container">
+
+    <div id="b618afce" class="cell markdown">
+      <h1 id="building-a-content-based-recommender-system-using-movie-data">Building
+        a Content-Based Recommender System Using Movie Data</h1>
+      <p>Recommender systems are an essential part of many online platforms
+        like Netflix, Amazon, and YouTube. They help users discover content that
+        matches their preferences by filtering information based on patterns and
+        user data. In this tutorial, we will build a <strong>Content-Based
+          Recommender System</strong> using movies as an example.</p>
+      <h3 id="what-is-a-content-based-recommender-system">What is a
+        Content-Based Recommender System?</h3>
+      <p>A content-based recommender system suggests items to a user by
+        finding similarities between items and recommending those that are most
+        similar to what the user has already liked or interacted with. Unlike
+        collaborative filtering, which relies on user-user or item-item
+        interactions, content-based filtering focuses on the attributes of the
+        items themselves.</p>
+      <h3 id="project-overview">Project Overview</h3>
+      <p>In this tutorial, we'll use a dataset of movies with metadata such as
+        genres, descriptions, and tags. Our goal is to build a recommendation
+        system that suggests movies based on a selected movie's content
+        features, such as genres, cast, or movie descriptions.</p>
+      <p>By the end of this tutorial, you'll understand how to:</p>
+      <ol>
+        <li>Load and process movie data.</li>
+        <li>Extract key features for content-based filtering.</li>
+        <li>Implement a similarity metric (e.g., sigmoid similarity).</li>
+        <li>Build a movie recommender system that provides relevant
+          recommendations based on movie metadata.</li>
+      </ol>
+    </div>
+    <div id="1d51fae3" class="cell markdown">
+      <h2 id="step-1-importing-libraries-and-loading-the-dataset">Step 1:
+        Importing Libraries and Loading the Dataset</h2>
+      <p>Before we begin building the recommender system, we need to load the
+        required libraries and datasets. We'll use the Pandas library for
+        handling data in tabular form and NumPy for numerical operations.</p>
+    </div>
+    <div id="61be110e" class="cell code" data-execution_count="2">
+      <div class="sourceCode" id="cb1">
+        <pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+  <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+  <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>credits <span class="op">=</span> pd.read_csv(<span class="st">&quot;tmdb_5000_credits.csv&quot;</span>)</span>
+  <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_csv(<span class="st">&quot;tmdb_5000_movies.csv&quot;</span>)</span>
+  <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>movies.head()</span></code></pre>
+      </div>
+      <div class="output execute_result" data-execution_count="2">
+        <div>
+          <style scoped>
+            .dataframe tbody tr th:only-of-type {
+              vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+              vertical-align: top;
+            }
+
+            .dataframe thead th {
+              text-align: right;
+            }
+          </style>
+          <table border="1" class="dataframe">
+            <thead>
+              <tr style="text-align: right;">
+                <th></th>
+                <th>budget</th>
+                <th>genres</th>
+                <th>homepage</th>
+                <th>id</th>
+                <th>keywords</th>
+                <th>original_language</th>
+                <th>original_title</th>
+                <th>overview</th>
+                <th>popularity</th>
+                <th>production_companies</th>
+                <th>production_countries</th>
+                <th>release_date</th>
+                <th>revenue</th>
+                <th>runtime</th>
+                <th>spoken_languages</th>
+                <th>status</th>
+                <th>tagline</th>
+                <th>title</th>
+                <th>vote_average</th>
+                <th>vote_count</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>0</th>
+                <td>237000000</td>
+                <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+                <td>http://www.avatarmovie.com/</td>
+                <td>19995</td>
+                <td>[{"id": 1463, "name": "culture clash"}, {"id":...</td>
+                <td>en</td>
+                <td>Avatar</td>
+                <td>In the 22nd century, a paraplegic Marine is di...</td>
+                <td>150.437577</td>
+                <td>[{"name": "Ingenious Film Partners", "id": 289...</td>
+                <td>[{"iso_3166_1": "US", "name": "United States o...</td>
+                <td>2009-12-10</td>
+                <td>2787965087</td>
+                <td>162.0</td>
+                <td>[{"iso_639_1": "en", "name": "English"}, {"iso...</td>
+                <td>Released</td>
+                <td>Enter the World of Pandora.</td>
+                <td>Avatar</td>
+                <td>7.2</td>
+                <td>11800</td>
+              </tr>
+              <tr>
+                <th>1</th>
+                <td>300000000</td>
+                <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+                <td>http://disney.go.com/disneypictures/pirates/</td>
+                <td>285</td>
+                <td>[{"id": 270, "name": "ocean"}, {"id": 726, "na...</td>
+                <td>en</td>
+                <td>Pirates of the Caribbean: At World's End</td>
+                <td>Captain Barbossa, long believed to be dead, ha...</td>
+                <td>139.082615</td>
+                <td>[{"name": "Walt Disney Pictures", "id": 2}, {"...</td>
+                <td>[{"iso_3166_1": "US", "name": "United States o...</td>
+                <td>2007-05-19</td>
+                <td>961000000</td>
+                <td>169.0</td>
+                <td>[{"iso_639_1": "en", "name": "English"}]</td>
+                <td>Released</td>
+                <td>At the end of the world, the adventure begins.</td>
+                <td>Pirates of the Caribbean: At World's End</td>
+                <td>6.9</td>
+                <td>4500</td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td>245000000</td>
+                <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+                <td>http://www.sonypictures.com/movies/spectre/</td>
+                <td>206647</td>
+                <td>[{"id": 470, "name": "spy"}, {"id": 818, "name...</td>
+                <td>en</td>
+                <td>Spectre</td>
+                <td>A cryptic message from Bond’s past sends him o...</td>
+                <td>107.376788</td>
+                <td>[{"name": "Columbia Pictures", "id": 5}, {"nam...</td>
+                <td>[{"iso_3166_1": "GB", "name": "United Kingdom"...</td>
+                <td>2015-10-26</td>
+                <td>880674609</td>
+                <td>148.0</td>
+                <td>[{"iso_639_1": "fr", "name": "Fran\u00e7ais"},...</td>
+                <td>Released</td>
+                <td>A Plan No One Escapes</td>
+                <td>Spectre</td>
+                <td>6.3</td>
+                <td>4466</td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <td>250000000</td>
+                <td>[{"id": 28, "name": "Action"}, {"id": 80, "nam...</td>
+                <td>http://www.thedarkknightrises.com/</td>
+                <td>49026</td>
+                <td>[{"id": 849, "name": "dc comics"}, {"id": 853,...</td>
+                <td>en</td>
+                <td>The Dark Knight Rises</td>
+                <td>Following the death of District Attorney Harve...</td>
+                <td>112.312950</td>
+                <td>[{"name": "Legendary Pictures", "id": 923}, {"...</td>
+                <td>[{"iso_3166_1": "US", "name": "United States o...</td>
+                <td>2012-07-16</td>
+                <td>1084939099</td>
+                <td>165.0</td>
+                <td>[{"iso_639_1": "en", "name": "English"}]</td>
+                <td>Released</td>
+                <td>The Legend Ends</td>
+                <td>The Dark Knight Rises</td>
+                <td>7.6</td>
+                <td>9106</td>
+              </tr>
+              <tr>
+                <th>4</th>
+                <td>260000000</td>
+                <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+                <td>http://movies.disney.com/john-carter</td>
+                <td>49529</td>
+                <td>[{"id": 818, "name": "based on novel"}, {"id":...</td>
+                <td>en</td>
+                <td>John Carter</td>
+                <td>John Carter is a war-weary, former military ca...</td>
+                <td>43.926995</td>
+                <td>[{"name": "Walt Disney Pictures", "id": 2}]</td>
+                <td>[{"iso_3166_1": "US", "name": "United States o...</td>
+                <td>2012-03-07</td>
+                <td>284139100</td>
+                <td>132.0</td>
+                <td>[{"iso_639_1": "en", "name": "English"}]</td>
+                <td>Released</td>
+                <td>Lost in our world, found in another.</td>
+                <td>John Carter</td>
+                <td>6.1</td>
+                <td>2124</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="eade37fa" class="cell code" data-execution_count="3">
+      <div class="sourceCode" id="cb2">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>credits.head()</span></code></pre>
+      </div>
+      <div class="output execute_result" data-execution_count="3">
+        <div>
+          <style scoped>
+            .dataframe tbody tr th:only-of-type {
+              vertical-align: middle;
+            }
+
+            .dataframe tbody tr th {
+              vertical-align: top;
+            }
+
+            .dataframe thead th {
+              text-align: right;
+            }
+          </style>
+          <table border="1" class="dataframe">
+            <thead>
+              <tr style="text-align: right;">
+                <th></th>
+                <th>movie_id</th>
+                <th>title</th>
+                <th>cast</th>
+                <th>crew</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>0</th>
+                <td>19995</td>
+                <td>Avatar</td>
+                <td>[{"cast_id": 242, "character": "Jake Sully", "...</td>
+                <td>[{"credit_id": "52fe48009251416c750aca23", "de...</td>
+              </tr>
+              <tr>
+                <th>1</th>
+                <td>285</td>
+                <td>Pirates of the Caribbean: At World's End</td>
+                <td>[{"cast_id": 4, "character": "Captain Jack Spa...</td>
+                <td>[{"credit_id": "52fe4232c3a36847f800b579", "de...</td>
+              </tr>
+              <tr>
+                <th>2</th>
+                <td>206647</td>
+                <td>Spectre</td>
+                <td>[{"cast_id": 1, "character": "James Bond", "cr...</td>
+                <td>[{"credit_id": "54805967c3a36829b5002c41", "de...</td>
+              </tr>
+              <tr>
+                <th>3</th>
+                <td>49026</td>
+                <td>The Dark Knight Rises</td>
+                <td>[{"cast_id": 2, "character": "Bruce Wayne / Ba...</td>
+                <td>[{"credit_id": "52fe4781c3a36847f81398c3", "de...</td>
+              </tr>
+              <tr>
+                <th>4</th>
+                <td>49529</td>
+                <td>John Carter</td>
+                <td>[{"cast_id": 5, "character": "John Carter", "c...</td>
+                <td>[{"credit_id": "52fe479ac3a36847f813eaa3", "de...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="cc8f1167" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li>
+          <p><strong><code>import pandas as pd</code></strong>: This imports
+            the Pandas library, which is used for working with datasets in Python.
+            Pandas provides easy-to-use data structures (like DataFrames) for
+            handling large datasets.</p>
+        </li>
+        <li>
+          <p><strong><code>import numpy as np</code></strong>: NumPy is a
+            library used for numerical operations. It provides tools for working
+            with arrays and large sets of numerical data.</p>
+        </li>
+        <li>
+          <p><strong><code>credits = pd.read_csv("tmdb_5000_credits.csv")</code></strong>:
+            This line reads a CSV file containing movie credits (cast and crew)
+            using the <code>read_csv()</code> method from Pandas. The data is stored
+            in a DataFrame called <code>credits</code>.</p>
+        </li>
+        <li>
+          <p><strong><code>movies = pd.read_csv("tmdb_5000_movies.csv")</code></strong>:
+            Similarly, this reads the movies dataset, which contains metadata like
+            movie titles, genres, and descriptions. The data is stored in the
+            <code>movies</code> DataFrame.
+          </p>
+        </li>
+      </ol>
+      <p>In the next steps, we'll clean the data and extract relevant features
+        for our content-based recommender system.</p>
+    </div>
+    <div id="d593bfb0" class="cell markdown">
+      <h2 id="step-2-merging-and-cleaning-the-datasets">Step 2: Merging and
+        Cleaning the Datasets</h2>
+    </div>
+    <div id="d6e7d1fd" class="cell markdown">
+      <p>Now that we have loaded the movie and credits datasets, we need to
+        merge them based on the common <code>id</code> column. After merging,
+        we'll remove unnecessary columns to keep our data clean and focused on
+        the features that are most relevant for building the recommendation
+        system.</p>
+    </div>
+    <div id="25e90c32" class="cell code">
+      <div class="sourceCode" id="cb3">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>credits_column_renamed <span class="op">=</span> credits.rename(index<span class="op">=</span><span class="bu">str</span>, columns<span class="op">=</span>{<span class="st">&quot;movie_id&quot;</span>: <span class="st">&quot;id&quot;</span>})</span>
+  <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>movies_merge <span class="op">=</span> movies.merge(credits_column_renamed, on<span class="op">=</span><span class="st">&#39;id&#39;</span>)</span>
+  <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>movies_cleaned <span class="op">=</span> movies_merge.drop(columns<span class="op">=</span>[<span class="st">&#39;homepage&#39;</span>, <span class="st">&#39;title_x&#39;</span>, <span class="st">&#39;title_y&#39;</span>, <span class="st">&#39;status&#39;</span>,<span class="st">&#39;production_countries&#39;</span>])</span></code></pre>
+      </div>
+    </div>
+    <div id="4fda42ed" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li><strong>Renaming and Merging</strong>:
+          <ul>
+            <li>We start by renaming the <code>movie_id</code> column in the
+              <code>credits</code> dataset to <code>id</code>, ensuring that both
+              datasets have a common key to merge on.
+            </li>
+            <li>Next, we merge the <code>movies</code> and <code>credits</code>
+              datasets on the <code>id</code> column using the <code>merge()</code>
+              function. This combines the two datasets into a single DataFrame, which
+              now contains movie metadata (from <code>movies</code>) and movie credits
+              (from <code>credits</code>).</li>
+          </ul>
+        </li>
+        <li><strong>Cleaning the Dataset</strong>:
+          <ul>
+            <li>After merging, we remove irrelevant columns using the
+              <code>drop()</code> function. Specifically, we drop the columns:
+              <ul>
+                <li><strong><code>homepage</code></strong>: The URL of the movie's
+                  homepage, which isn’t needed for our recommender system.</li>
+                <li><strong><code>title_x</code> and <code>title_y</code></strong>:
+                  These are duplicate columns for the movie title, created during the
+                  merge process.</li>
+                <li><strong><code>status</code></strong>: Whether the movie is released
+                  or not; not relevant for recommendations.</li>
+                <li><strong><code>production_countries</code></strong>: Information
+                  about the countries where the movie was produced, which isn't useful in
+                  our content-based filtering.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <p>At this point, our dataset contains only the essential columns we
+        need for building a content-based movie recommendation system.</p>
+    </div>
+    <div id="13c69640" class="cell markdown">
+      <h2 id="step-3-feature-extraction-using-tf-idf">Step 3: Feature
+        Extraction Using TF-IDF</h2>
+      <p>In this step, we will extract key textual features from the movie
+        data. One of the most important features in a content-based
+        recommendation system is the <strong>plot summary</strong> (or
+        <strong>overview</strong>) of each movie. We'll use <strong>TF-IDF (Term
+          Frequency-Inverse Document Frequency)</strong> to convert the text data
+        (movie overviews) into numerical values that reflect the importance of
+        words.
+      </p>
+      <p>The <code>TfidfVectorizer</code> from the
+        <strong>scikit-learn</strong> library helps us convert the text data
+        into a matrix of TF-IDF features. This transformation will allow us to
+        compute the similarity between different movies based on their
+        overviews.
+      </p>
+    </div>
+    <div id="17bcd62a" class="cell code">
+      <div class="sourceCode" id="cb4">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+  <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tfv <span class="op">=</span> TfidfVectorizer(min_df<span class="op">=</span><span class="dv">3</span>,  max_features<span class="op">=</span><span class="va">None</span>,</span>
+  <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            strip_accents<span class="op">=</span><span class="st">&#39;unicode&#39;</span>, analyzer<span class="op">=</span><span class="st">&#39;word&#39;</span>,token_pattern<span class="op">=</span><span class="vs">r&#39;\w{1,}&#39;</span>,</span>
+  <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            ngram_range<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
+  <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            stop_words <span class="op">=</span> <span class="st">&#39;english&#39;</span>)</span>
+  <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>tfv_matrix <span class="op">=</span> tfv.fit_transform(movies_cleaned_df[<span class="st">&#39;overview&#39;</span>].values.astype(<span class="st">&#39;U&#39;</span>))</span></code></pre>
+      </div>
+    </div>
+    <div id="f72c667e" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li><strong><code>TfidfVectorizer()</code></strong>:
+          <ul>
+            <li>This function converts a collection of raw text into a matrix of
+              TF-IDF features. We customize it with several parameters:
+              <ul>
+                <li><strong><code>min_df=3</code></strong>: Ignores terms that appear in
+                  fewer than 3 documents (movies) to remove very rare words.</li>
+                <li><strong><code>max_features=None</code></strong>: This means we don’t
+                  set a limit on the number of features. All words that meet the
+                  <code>min_df</code> threshold will be used.
+                </li>
+                <li><strong><code>strip_accents='unicode'</code></strong>: This removes
+                  accent marks from characters, ensuring text normalization.</li>
+                <li><strong><code>analyzer='word'</code></strong>: This specifies that
+                  the vectorizer will analyze the text at the word level.</li>
+                <li><strong><code>token_pattern=r'\w{1,}'</code></strong>: Defines the
+                  tokenization pattern, specifying that words of at least 1 character
+                  should be considered.</li>
+                <li><strong><code>ngram_range=(1, 3)</code></strong>: This allows the
+                  vectorizer to consider single words (unigrams), two-word combinations
+                  (bigrams), and three-word combinations (trigrams).</li>
+                <li><strong><code>stop_words='english'</code></strong>: This removes
+                  common English stop words (like "the", "and", "is") that do not add
+                  meaningful information.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong><code>tfv.fit_transform(movies_cleaned['overview'].values.astype('U'))</code></strong>:
+          <ul>
+            <li><strong><code>fit_transform()</code></strong>: This function first
+              fits the TF-IDF vectorizer to the data (i.e., it learns the vocabulary
+              and calculates TF-IDF scores) and then transforms the movie overviews
+              into a TF-IDF matrix.</li>
+            <li><strong><code>movies_cleaned['overview'].values.astype('U')</code></strong>:
+              Here, we extract the <code>overview</code> column from the cleaned
+              dataset and convert it to Unicode (using <code>.astype('U')</code>) to
+              handle any potential issues with non-UTF text encoding.</li>
+          </ul>
+        </li>
+        <li><strong><code>tfv_matrix</code></strong>: This is the resulting
+          matrix where each row represents a movie, and each column represents a
+          TF-IDF score for a word (or n-gram) in the movie's overview. This matrix
+          will later be used to calculate similarities between movies.</li>
+      </ol>
+    </div>
+    <div id="2808b8dd" class="cell markdown">
+      <h2 id="step-4-calculating-movie-similarities-using-the-sigmoid-kernel">Step
+        4: Calculating Movie Similarities Using the Sigmoid Kernel</h2>
+      <p>In this step, we will calculate the similarity between movies based
+        on their TF-IDF features. We will use the <strong>Sigmoid
+          Kernel</strong> from the <strong>scikit-learn</strong> library to
+        compute a similarity score between all pairs of movies. The sigmoid
+        kernel is commonly used in machine learning to map data points into a
+        non-linear feature space, making it suitable for content-based
+        recommendations.</p>
+    </div>
+    <div id="d4070d81" class="cell code" data-execution_count="10">
+      <div class="sourceCode" id="cb5">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> sigmoid_kernel</span>
+  <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the sigmoid kernel</span></span>
+  <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sig <span class="op">=</span> sigmoid_kernel(tfv_matrix, tfv_matrix)</span>
+  <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sig[<span class="dv">0</span>])</span></code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>[0.76163447 0.76159416 0.76159416 ... 0.76159416 0.76159416 0.76159416]
+  </code></pre>
+      </div>
+    </div>
+    <div id="551b98d0" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li><strong><code>sigmoid_kernel()</code></strong>:
+          <ul>
+            <li>The <code>sigmoid_kernel()</code> function computes a similarity
+              matrix between the input data points. In our case, it compares the
+              TF-IDF features of each movie with every other movie, giving a
+              similarity score between 0 and 1.</li>
+            <li><strong>Input</strong>: The function takes the TF-IDF matrix
+              (<code>tfv_matrix</code>) as input. The matrix is compared with itself,
+              meaning we are calculating the similarity between all movies based on
+              their overview.</li>
+          </ul>
+        </li>
+        <li><strong><code>sig = sigmoid_kernel(tfv_matrix, tfv_matrix)</code></strong>:
+          <ul>
+            <li>Here, the <code>sigmoid_kernel()</code> computes the similarity
+              score between every pair of movies. The result is a 2D matrix
+              (<code>sig</code>), where each element <code>sig[i][j]</code> represents
+              the similarity score between movie <code>i</code> and movie
+              <code>j</code>. A higher score indicates higher similarity between the
+              movies.
+            </li>
+          </ul>
+        </li>
+        <li><strong><code>print(sig[0])</code></strong>:
+          <ul>
+            <li>This line prints the similarity scores for the first movie (index
+              <code>0</code>). The result is a list of similarity scores between the
+              first movie and every other movie in the dataset, including itself (the
+              similarity with itself will be the highest).
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="107f3c6e" class="cell markdown">
+      <h2 id="step-5-mapping-movie-titles-to-indices-and-finding-similar-movies">Step
+        5: Mapping Movie Titles to Indices and Finding Similar Movies</h2>
+      <p>Now that we have computed the similarity scores using the sigmoid
+        kernel, we need a way to map movie titles to their corresponding indices
+        in the dataset. This mapping will allow us to easily access the
+        similarity scores for any given movie and recommend similar movies.</p>
+      <p>In this step, we'll create a reverse mapping of movie indices and
+        titles and use it to find the movies most similar to a given movie.</p>
+    </div>
+    <div id="16607093" class="cell code" data-execution_count="11">
+      <div class="sourceCode" id="cb7">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse mapping of indices and movie titles</span></span>
+  <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> pd.Series(movies_cleaned.index, index<span class="op">=</span>movies_cleaned[<span class="st">&#39;original_title&#39;</span>]).drop_duplicates()</span>
+  <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(<span class="bu">list</span>(<span class="bu">enumerate</span>(sig[indices[<span class="st">&#39;Newlyweds&#39;</span>]])), key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+      </div>
+    </div>
+    <div id="7f1a513e" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li><strong>Reverse Mapping</strong>:
+          <ul>
+            <li>
+              <strong><code>pd.Series(movies_cleaned.index, index=movies_cleaned['original_title']).drop_duplicates()</code></strong>:
+              <ul>
+                <li>This line creates a reverse mapping between the movie titles
+                  (<code>original_title</code>) and their corresponding indices in the
+                  <code>movies_cleaned</code> DataFrame. We use
+                  <code>drop_duplicates()</code> to avoid any duplicate entries in the
+                  mapping.
+                </li>
+                <li>This mapping will be useful to find a movie’s index based on its
+                  title, which we can then use to look up its similarity scores in the
+                  sigmoid kernel matrix.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong><code>indices['Newlyweds']</code></strong>:
+          <ul>
+            <li>This retrieves the index of the movie titled "Newlyweds" from the
+              reverse mapping. In our case, it will return the index
+              <code>4799</code>.
+            </li>
+          </ul>
+        </li>
+        <li><strong>Similarity Scores</strong>:
+          <ul>
+            <li><strong><code>sig[4799]</code></strong>: This retrieves the
+              similarity scores for the movie at index <code>4799</code> (which
+              corresponds to "Newlyweds") from the similarity matrix <code>sig</code>.
+              It returns a list of similarity scores between "Newlyweds" and every
+              other movie in the dataset.</li>
+            <li><strong><code>list(enumerate(sig[indices['Newlyweds']]))</code></strong>:
+              This enumerates the similarity scores for "Newlyweds," pairing each
+              score with the index of the corresponding movie. The result is a list of
+              tuples where the first element is the movie's index and the second is
+              its similarity score with "Newlyweds."</li>
+          </ul>
+        </li>
+        <li><strong>Sorting the Similar Movies</strong>:
+          <ul>
+            <li>
+              <strong><code>sorted(list(enumerate(sig[indices['Newlyweds']])), key=lambda x: x[1], reverse=True)</code></strong>:
+              <ul>
+                <li>This line sorts the enumerated list of similarity scores in
+                  descending order (from most similar to least similar), using a lambda
+                  function that sorts based on the similarity score
+                  (<code>x[1]</code>).</li>
+                <li>The sorted list will help us identify the top movies that are most
+                  similar to "Newlyweds."</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <p>In the next step, we'll use this sorted list to recommend the top N
+        similar movies to any given movie title.</p>
+    </div>
+    <div id="be6f06f2" class="cell markdown">
+      <h2 id="step-6-building-the-recommendation-function">Step 6: Building
+        the Recommendation Function</h2>
+      <p>Now that we have computed the similarity scores for all movies and
+        mapped movie titles to their corresponding indices, we can build the
+        recommendation function. This function will take a movie title as input
+        and return the top 10 most similar movies based on the sigmoid kernel
+        similarity scores.</p>
+    </div>
+    <div id="2296faab" class="cell code" data-execution_count="13">
+      <div class="sourceCode" id="cb8">
+        <pre
+          class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> give_recomendations(title, sig<span class="op">=</span>sig):</span>
+  <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the index corresponding to original_title</span></span>
+  <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> indices[title]</span>
+  <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the pairwsie similarity scores</span></span>
+  <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    sig_scores <span class="op">=</span> <span class="bu">list</span>(<span class="bu">enumerate</span>(sig[idx]))</span>
+  <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort the movies</span></span>
+  <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    sig_scores <span class="op">=</span> <span class="bu">sorted</span>(sig_scores, key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+  <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Scores of the 10 most similar movies</span></span>
+  <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    sig_scores <span class="op">=</span> sig_scores[<span class="dv">1</span>:<span class="dv">11</span>]</span>
+  <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Movie indices</span></span>
+  <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    movie_indices <span class="op">=</span> [i[<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> sig_scores]</span>
+  <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+  <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Top 10 most similar movies</span></span>
+  <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> movies_cleaned[<span class="st">&#39;original_title&#39;</span>].iloc[movie_indices]</span>
+  <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(give_recomendations(<span class="st">&#39;Avatar&#39;</span>))</span></code></pre>
+      </div>
+      <div class="output stream stdout">
+        <pre><code>1341                Obitaemyy Ostrov
+  634                       The Matrix
+  3604                       Apollo 18
+  2130                    The American
+  775                        Supernova
+  529                 Tears of the Sun
+  151                          Beowulf
+  311     The Adventures of Pluto Nash
+  847                         Semi-Pro
+  942                 The Book of Life
+  Name: original_title, dtype: object
+  </code></pre>
+      </div>
+    </div>
+    <div id="67e66f69" class="cell markdown">
+      <h3 id="explanation">Explanation:</h3>
+      <ol>
+        <li><strong><code>def give_recommendations(title, sig=sig):</code></strong>:
+          <ul>
+            <li>This defines a function that takes a movie title and the precomputed
+              sigmoid kernel matrix (<code>sig</code>) as input. The default value for
+              <code>sig</code> is the similarity matrix we computed earlier.
+            </li>
+          </ul>
+        </li>
+        <li><strong><code>idx = indices[title]</code></strong>:
+          <ul>
+            <li>This retrieves the index of the given movie title using the reverse
+              mapping (<code>indices</code>) created in the previous step. The index
+              is used to look up the similarity scores.</li>
+          </ul>
+        </li>
+        <li><strong><code>sig_scores = list(enumerate(sig[idx]))</code></strong>:
+          <ul>
+            <li>This creates a list of tuples where each tuple contains the index of
+              a movie and its similarity score with the given movie. The similarity
+              scores are taken from the <code>sig</code> matrix.</li>
+          </ul>
+        </li>
+        <li><strong><code>sorted(sig_scores, key=lambda x: x[1], reverse=True)</code></strong>:
+          <ul>
+            <li>This sorts the list of similarity scores in descending order. The
+              lambda function <code>lambda x: x[1]</code> sorts based on the
+              similarity score (<code>x[1]</code>), with the most similar movies
+              appearing first.</li>
+          </ul>
+        </li>
+        <li><strong><code>sig_scores = sig_scores[1:11]</code></strong>:
+          <ul>
+            <li>We slice the list to get the top 10 most similar movies, excluding
+              the movie itself (which would be the first entry with a similarity score
+              of 1).</li>
+          </ul>
+        </li>
+        <li><strong><code>movie_indices = [i[0] for i in sig_scores]</code></strong>:
+          <ul>
+            <li>This extracts the indices of the top 10 most similar movies from the
+              sorted list.</li>
+          </ul>
+        </li>
+        <li><strong><code>movies_cleaned['original_title'].iloc[movie_indices]</code></strong>:
+          <ul>
+            <li>Finally, we use the extracted indices to return the titles of the 10
+              most similar movies from the <code>movies_cleaned</code> DataFrame.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div id="c0c00d4d" class="cell markdown">
+      <h3 id="conclusion">Conclusion</h3>
+      <p>In this tutorial, we successfully built a content-based
+        recommendation system using movie overviews as the primary feature for
+        measuring similarity. Here's a brief recap of what we covered:</p>
+      <ol>
+        <li>
+          <p><strong>Data Preparation</strong>: We started by loading and
+            merging two datasets, <code>tmdb_5000_movies.csv</code> and
+            <code>tmdb_5000_credits.csv</code>, and cleaned the data to focus on
+            relevant features.
+          </p>
+        </li>
+        <li>
+          <p><strong>Feature Extraction</strong>: We utilized the
+            <strong>TF-IDF Vectorizer</strong> to convert movie overviews into
+            numerical representations, capturing the importance of each word in the
+            context of the dataset.
+          </p>
+        </li>
+        <li>
+          <p><strong>Similarity Calculation</strong>: By employing the
+            <strong>Sigmoid Kernel</strong>, we computed a similarity matrix that
+            quantifies how similar each movie is to every other movie based on their
+            overviews.
+          </p>
+        </li>
+        <li>
+          <p><strong>Mapping Titles to Indices</strong>: We created a reverse
+            mapping to easily access movie indices using their titles, which is
+            essential for retrieving similarity scores.</p>
+        </li>
+        <li>
+          <p><strong>Recommendation Function</strong>: Finally, we implemented
+            a recommendation function that identifies the top 10 movies most similar
+            to a given title, allowing users to receive tailored suggestions based
+            on their interests.</p>
+        </li>
+      </ol>
+      <p>This content-based recommendation system can be further enhanced by
+        incorporating additional features such as genres, directors, or actors,
+        and exploring other recommendation algorithms like collaborative
+        filtering.</p>
+      <p>By understanding the fundamentals of how recommendation systems work,
+        you can apply similar principles to various domains, including
+        e-commerce, music, and books, to provide personalized experiences for
+        users.</p>
+      <p>Feel free to explore, modify, and extend this project as you gain
+        more insights into recommendation systems. Happy coding!</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-socials">
+        Follow us on:
+        <a href="https://facebook.com" target="_blank"><svg style="width: 10px;" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
+          </svg></a>
+        <a href="https://twitter.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+          </svg></i></a>
+        <a href="https://linkedin.com" target="_blank"><svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+          </svg></i></a>
+      </div>
+      <div class="footer-contact">
+        <p>
+          Contact us:
+          <a href="mailto:info@mlfusionlabs.com" style="color: white">info@mlfusionlabs.com</a>
+          | Phone: +1 (555) 123-4567
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="../pages/privacy.html">Privacy Policy</a> |
+        <a href="../pages/terms.html">Terms of Service</a> |
+        <a href="../pages/about.html">About Us</a> |
+        <a href="../pages/contact.html">Contact</a> |
+        <a href="../pages/contact.html">Contributor</a>
+      </div>
+      <p>&copy; <span id="current-year"></span> ML Fusion Labs | All Rights Reserved</p>
+    </div>
+    <button id="scrollTopBtn" onclick="scrollToTop()">
+      <svg style="width: 20px;" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path fill="#ffffff"
+          d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2 160 448c0 17.7 14.3 32 32 32s32-14.3 32-32l0-306.7L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+      </svg> </button>
+  </footer>
+  <script src="../script/scroll.js"></script>
+  <script src="../script/script.js"></script>
+  <script src="../script/projects.js"></script>
+  <script>
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function () {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        scrollTopBtn.style.display = "block";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const coords = { x: 0, y: 0 };
+      const circles = document.querySelectorAll(".circle");
+
+      circles.forEach(function (circle) {
+        circle.x = 0;
+        circle.y = 0;
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        coords.x = e.pageX;
+        coords.y = e.pageY - window.scrollY; // Adjust for vertical scroll position
+      });
+
+      function animateCircles() {
+        let x = coords.x;
+        let y = coords.y;
+
+        circles.forEach(function (circle, index) {
+          circle.style.left = `${x - 12}px`;
+          circle.style.top = `${y - 12}px`;
+          circle.style.transform = `scale(${(circles.length - index) / circles.length
+            })`;
+
+          const nextCircle = circles[index + 1] || circles[0];
+          circle.x = x;
+          circle.y = y;
+
+          x += (nextCircle.x - x) * 0.3;
+          y += (nextCircle.y - y) * 0.3;
+        });
+
+        requestAnimationFrame(animateCircles);
+      }
+
+      animateCircles();
+    });
+  </script>
+  <!-- Botpress Chat Scripts -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2024/10/06/10/20241006104845-C8MQIMON.js"></script>
+  <script>
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Update the HTML content
+    document.getElementById("current-year").textContent = currentYear;
+  </script>
+</body>
+
+</html>
