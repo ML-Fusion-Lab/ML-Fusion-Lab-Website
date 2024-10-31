@@ -288,21 +288,51 @@
           </script>
           <script src="https://cdn.gtranslate.net/widgets/latest/popup.js" defer></script>
         </li>
-        <!-- <div class="theme-switch themeSwitch" id="theme-switch"></div> -->
-
         <div id="themeSwitch" class="theme-switch">
           <input type="checkbox" class="checkbox" id="checkbox">
           <label for="checkbox" class="checkbox-label">
-
             <img src="./Assets/sun.png" class="theme-btn">
             <img src="./Assets/moon.png" class="theme-btn">
-            <!-- <i class="fas fa-moon"></i>
-              <i class="fas fa-sun"></i> -->
             <span class="ball"></span>
           </label>
         </div>
-      </ul>
-    </nav>
+        
+        <script>
+          // Function to toggle the theme and update local storage
+          const toggleTheme = () => {
+            const checkbox = document.getElementById("checkbox");
+            if (checkbox.checked) {
+              document.body.classList.add("dark-mode"); // Update to match your CSS
+              localStorage.setItem("theme", "dark"); // Save theme to localStorage
+            } else {
+              document.body.classList.remove("dark-mode"); // Update to match your CSS
+              localStorage.setItem("theme", "light"); // Save theme to localStorage
+            }
+          };
+        
+          // Load the theme from local storage on page load
+          const loadTheme = () => {
+            const theme = localStorage.getItem("theme");
+            const checkbox = document.getElementById("checkbox");
+            
+            // Check the stored theme and apply it
+            if (theme === "dark") {
+              checkbox.checked = true; // Set checkbox state
+              document.body.classList.add("dark-mode"); // Apply dark theme
+            } else {
+              checkbox.checked = false; // Set checkbox state
+              document.body.classList.remove("dark-mode"); // Apply light theme
+            }
+          };
+        
+          // Event listener for the checkbox
+          document.getElementById("checkbox").addEventListener("change", toggleTheme);
+        
+          // Call the function to load the theme when the page loads
+          window.onload = loadTheme;
+        </script>
+</ul>
+</nav>        
 
   </header>
 
