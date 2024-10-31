@@ -1,0 +1,74 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.header-container {
+    background-color: #007bff;
+    color: #fff;
+    padding: 1.5em;
+    text-align: center;
+}
+
+.header-container h1 {
+    margin-bottom: 0.5em;
+}
+
+.header-container p {
+    font-size: 1.1em;
+}
+
+/* Main Content */
+main {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.terms-section {
+    margin-bottom: 1.5em;
+}
+
+.terms-section h2 {
+    font-size: 1.3em;
+    color: #007bff;
+    margin-bottom: 0.5em;
+}
+
+.terms-section p {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+
+/* Footer */
+.footer-bar {
+    text-align: center;
+    padding: 1em;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 0.9em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
