@@ -52,8 +52,8 @@ Welcome to **ML Fusion Lab**!.
    </tr>
    <tr>
       <td><img src="./image/gssocextd.jpg" width="200" height="auto" loading="lazy" alt="GSSoC 24"/></td>
-      <td>GirlScript Summer of Code 2024</td>
-      <td>GirlScript Summer of Code is a three-month-long Open Source Program conducted every summer by GirlScript Foundation. It is an initiative to bring more beginners to Open-Source Software Development.</td>
+      <td>GirlScript Summer of Code 2024 Extd</td>
+      <td>The coding period is from October 1st to November 10, during which contributors make contributions and earn points on the platform.</td>
    </tr>
     <tr>
       <td><img src="./image/haaaaack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2024"/></td>
