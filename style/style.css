@@ -1631,7 +1631,7 @@ header nav ul li a {
   text-decoration: none;
   transition: color 0.3s, border-bottom 0.3s;
 
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.125);
   padding: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
